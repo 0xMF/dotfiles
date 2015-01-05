@@ -49,7 +49,7 @@ function parse_git_dirty {
   else
     # not in list of large repos, run a one time check for this being a large repo
     sts=$(/usr/bin/time -f "%E" git status --porcelain 2>&1)
-    if [ $(printf "$sts"|wc -l) -eq 1 ]; then
+    if [ $(echo "$sts"|wc -l) -eq 1 ]; then
       echo $unchanged
     else
       # do we need to add it to the list of large repos?
@@ -59,7 +59,11 @@ function parse_git_dirty {
         echo $sts_skip && return
       fi
       # no then 
-      echo $changed 
+      echo "$sts"|head -1|grep -Ee '^[0-9]:[0-9][0-9].[0-9][0-9]$' 2>&1 >/dev/null
+      if [ $? -eq 0 ]; then
+        echo $unchanged 
+      fi
+        echo $changed
     fi
   fi
 }
