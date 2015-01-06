@@ -13,6 +13,7 @@ if [ -f /etc/bashrc ]; then
 fi
 
 # source local and private settings
+# changes to local.bash should not be publicly tracked and shared (recommended)
 if [ -f $REPO/local.bash ]; then
   source $REPO/local.bash
 fi
