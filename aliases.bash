@@ -16,7 +16,6 @@ if [ $OS == "FreeBSD" ]; then
   alias lsof='fstat'
   alias lynx='elinks'
   alias m=more
-  alias man='mman'
   alias pg='less -Feq'
   alias pgr='vi -R'
   alias pkg_check='pkg_libchk'

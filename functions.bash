@@ -4,6 +4,7 @@
 # user defined aliases .bash
 #
 
+OS=$(uname -s)
 export PROMPT_COMMAND="ps1;$PROMPT_COMMAND"
 
 BLACK="\[\033[1;30m\]"
@@ -48,10 +49,12 @@ function parse_git_dirty {
     echo $sts_skip
   else
     # not in list of large repos, run a one time check for this being a large repo
+    if [ $OS != "FreeBSD" ]; then
     sts=$(/usr/bin/time -f "%E" git status --porcelain 2>&1)
     if [ $(echo "$sts"|wc -l) -eq 1 ]; then
       echo $unchanged
     else
+      echo "$sts"
       # do we need to add it to the list of large repos?
       if [ $(echo "$sts"|tail -1 |cut -d: -f2|cut -d. -f1) -gt 1 ]; then 
         echo "$PWD" >> $large_repos
@@ -64,6 +67,7 @@ function parse_git_dirty {
         echo $unchanged 
       fi
         echo $changed
+    fi
     fi
   fi
 }
