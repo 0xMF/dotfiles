@@ -90,7 +90,7 @@ function psh {
 }
 
 function pss {
-  PS1="$BLUE\w$(parse_git_branch_colour)$NOCOLOR$ "
+  PS1="$BLUE\W$(parse_git_branch_colour)$NOCOLOR$ "
   PROMPT_COMMAND="pss"
 }
 
