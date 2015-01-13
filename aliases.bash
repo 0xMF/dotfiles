@@ -12,6 +12,7 @@ if [ $OS == "FreeBSD" ]; then
   alias l='ls -l'
   alias links='elinks'
   alias ll='ls -laFo'
+  alias lld='ls -laFod'
   alias ls='/bin/ls -F'
   alias lsof='fstat'
   alias lynx='elinks'
@@ -30,6 +31,7 @@ else
   alias la='ls -lah'
   alias lc='ls -Cp -w 120|less -FRMS'
   alias ll='ls -lh'
+  alias lld='ls -lhd'
   alias su='su -'
 
 fi
