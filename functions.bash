@@ -78,6 +78,15 @@ function parse_git_dirty {
   fi
 }
 
+# show all git aliases
+function gits(){
+  alias|sed 's/alias //'|grep ^g
+}
+function ghist() {
+  #git log --pretty=format:\"%h %ad | %s%d [%an]\" --graph --date=short
+  git log --pretty=format:"%h %ad | %s" --graph --date=short
+}
+
 # Edit your current day's todo list. 
 function todo(){ 
   ${EDITOR:-/usr/local/bin/vim} + ~/$(date +todolist-%Y%m%d); 
