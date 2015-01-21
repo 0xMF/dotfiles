@@ -14,6 +14,6 @@ else
 fi
 
 # required for mosh
-LC_CTYPE="en_US.UTF-8".
+LC_CTYPE="en_US.UTF-8"
 
 # vim:nospell:ft=sh:
