@@ -8,6 +8,7 @@ if [ $OS == "FreeBSD" ]; then
 
   alias g='egrep -i'
   alias h='fc -l'
+  alias iotop='top -mio -ototal'
   alias j=jobs
   alias l='ls -l'
   alias links='elinks'
