@@ -24,6 +24,7 @@ if [ $OS == "FreeBSD" ]; then
   alias pkg_locate="echo /usr/ports/*/*|tr ' ' '\n'"
   alias portaudit='/usr/sbin/pkg audit -F'
   alias su='su -l'
+  alias stat="man -k '*' | grep -Ee 'stat\((1|8)\) '"
 
 else
 
@@ -34,7 +35,7 @@ else
   alias ll='ls -lh'
   alias lld='ls -lhd'
   alias su='su -'
-
+  alias stat="man -k ' ' | grep -Ee 'stat \((1|8)\) '"
 fi
 
 alias ..='cd ..'
