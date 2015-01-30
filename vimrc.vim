@@ -1,4 +1,30 @@
 " vimrc
+"
+"** check if gvim is running and set its options accordingly
+:if has ("gui_running")
+    "** only initialize window size if has not been initialized yet
+    :if !exists ("s:my_windowInitialized_variable")
+    :   let s:my_windowInitialized_variable=1
+    :   set guiheadroom=20  "room for window decorations
+    :   set guioptions-=T   "hide the toolbar
+    :   set guioptions-=m   "hide the menu
+    :   set columns=114     "width in number of cols
+    :   set lines=30        "height in number of lines
+    :endif
+
+    "** check os version where gvim is running
+    :if has ("gui_win32")
+    :   winpos 0 0          "make window stick to the top left corner
+    :   set guifont=Rod:h10:cHEBREW "set font and its size
+    :   set bs=2            "backspace over indent,eol,start
+    :elseif has ("gui_gtk")
+    :   set guifont=Nimbus\ Mono\ L\ Bold\ 13 "set font and its size
+    :   set guioptions+=a   " visual selection can copy to clipboard
+    :   set guioptions+=i   " show gvim color icon, instead of default
+    :   let &guicursor = &guicursor . ",a:blinkon0"
+    :endif
+:endif
+
 
 "** Custom Settings
 set nocompatible        " Use VIM not vi
