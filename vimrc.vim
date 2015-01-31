@@ -46,6 +46,9 @@ set expandtab           " expand tabs to spaces
 set smarttab            " convert spaces to tabs for quicker editing
 set visualbell t_vb=    " no bell and no visual bell (flashing)
 set whichwrap=b,s,<,>,[,]   " whichwrap for Windows style arrow keys
+set selectmode=mouse,key selection=inclusive  " when does select mode begin
+set mousemodel=popup keymodel=startsel        " type of mouse/keyboard behaviour
+
 
 "* status line gives information about the file, the character under the cursor and its position
 "* adjust for root user (shows status line in red)
