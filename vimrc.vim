@@ -1,5 +1,17 @@
 " vimrc
 "
+
+"  MYVIM variable used to handle different OS repos/conf locations
+" use expand() because "$HOME", "~" or "$MYVIM" do not work
+" correctly with the let command. vim's function expand() tries to
+" correctly substitute environment variables from the shell.
+:if has ("gui_win32")
+  :let $MYVIM=expand("$HOME")
+:else
+  :let $MYVIM=expand("$HOME")
+  :let $USER=substitute(system("/usr/bin/id -u"),"\n","","g")
+:endif
+
 "** check if gvim is running and set its options accordingly
 :if has ("gui_running")
     "** only initialize window size if has not been initialized yet
@@ -10,6 +22,7 @@
     :   set guioptions-=m   "hide the menu
     :   set columns=114     "width in number of cols
     :   set lines=30        "height in number of lines
+    :   set runtimepath=$VIMRUNTIME,$MYVIM/.vim
     :endif
 
     "** check os version where gvim is running
