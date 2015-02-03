@@ -62,7 +62,6 @@ set whichwrap=b,s,<,>,[,]   " whichwrap for Windows style arrow keys
 set selectmode=mouse,key selection=inclusive  " when does select mode begin
 set mousemodel=popup keymodel=startsel        " type of mouse/keyboard behaviour
 
-
 "* status line gives information about the file, the character under the cursor and its position
 "* adjust for root user (shows status line in red)
 :if  $USER == 0
@@ -72,6 +71,22 @@ set mousemodel=popup keymodel=startsel        " type of mouse/keyboard behaviour
 : set statusline=%f%m%r%h%w\ [%{&ff}]\ [%Y]\ [ASCII=\%3.3b]\ [HEX=\%02.2B]\ [%l,%v][%p%%]\ [TOTAL=%L]
 :endif
 set laststatus=2        " always show the statusline
+
+"** locations of backup directories
+set backup
+set backupdir=$MYVIM/.vim/backup " all the *~ files go here
+set directory=$MYVIM/.vim/backup " all the *.swp files go here
+
+"
+"** Vim70 features
+:if (version >= 700) && (has("gui_running"))
+:   set nospell
+:   set spelllang=en_ca,en_us       " Canadian and US spelling, ca words
+:   set spellfile=$MYVIM/.vim/spell/latin1.add   " my dictionary
+:   set formatlistpat=^\\s*\\d\\+[\\]:.)}\*\\t\ ]\\s* "also called set flp
+:   set showtabline=1   " =0 never show tabs, =1 show if 2 or more tabs, =2 always show
+:endif
+
 
 "** Simple scripts for autocommands on file type detectiong
 :if !exists("autocommands_loaded")
