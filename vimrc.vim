@@ -12,6 +12,14 @@
   :let $USER=substitute(system("/usr/bin/id -u"),"\n","","g")
 :endif
 
+"** Global variables for this script
+" my_settings_path has location of .vim/my_settings directory in
+" user's home directory. We use expand() because "$HOME" or "~" do not
+" work correctly with the let command. expand(), tries to expand the
+" environment variables from the shell, which works if your shell
+" supports that expanded environment.
+:let my_settings_path= expand("$HOME/.vim/my_settings")
+
 "** check if gvim is running and set its options accordingly
 :if has ("gui_running")
     "** only initialize window size if has not been initialized yet
@@ -76,6 +84,16 @@ set laststatus=2        " always show the statusline
 set backup
 set backupdir=$MYVIM/.vim/backup " all the *~ files go here
 set directory=$MYVIM/.vim/backup " all the *.swp files go here
+
+"** Keyboard Mappings
+"   sourced from ~/.vim/my_settings/mappings.vim
+"   Note:   filereadable() does not expand ~ or $HOME  correctly so we
+"   use variable my_settings defined above and '.' to join two strings
+:if filereadable(my_settings_path . "/keymap.vim")
+:    so ~/.vim/my_settings/keymap.vim
+:else
+:   echoerr "no keyboard mappings found"
+:endif
 
 "
 "** Vim70 features
