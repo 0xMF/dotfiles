@@ -95,6 +95,14 @@ set directory=$MYVIM/.vim/backup " all the *.swp files go here
 :   echoerr "no keyboard mappings found"
 :endif
 
+"** My Scripts
+:if filereadable(my_settings_path . "/scripts.vim")
+:   so $MYVIM/.vim/my_settings/scripts.vim
+:else
+:   echoerr "none of my scripts found"
+:endif
+
+
 "
 "** Vim70 features
 :if (version >= 700) && (has("gui_running"))
