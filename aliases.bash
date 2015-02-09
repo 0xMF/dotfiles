@@ -6,7 +6,7 @@ OS=$(uname -s)
 
 if [ $OS == "FreeBSD" ]; then 
 
-  alias g='egrep -i'
+  alias eg='egrep -i'
   alias h='fc -l'
   alias iotop='top -mio -ototal'
   alias j=jobs
@@ -54,6 +54,7 @@ alias reset='reset -e ^?'
 alias vi='vim'
 
 # git based aliases 
+alias git='hub'
 alias g='git'
 alias gbr='g branch'
 alias gc='g commit -v'
