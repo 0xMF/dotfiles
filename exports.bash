@@ -16,4 +16,8 @@ fi
 # required for mosh
 LC_CTYPE="en_CA.UTF-8"
 
+# required for hub (cli tool for github management)
+#export BROWSER='links2 -no-g'
+export BROWSER='w3m -v -no-mouse -s -cookie -no-proxy'
+
 # vim:nospell:ft=sh:
