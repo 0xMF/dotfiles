@@ -153,6 +153,49 @@ set directory=$MYVIM/.vim/backup " all the *.swp files go here
     :au BufRead,BufNewFile *.go set filetype=go
     ":au BufRead,BufNewFile *.go setlocal bomb
     :au BufRead,BufNewFile *.go setlocal fileencoding=utf-8
+    :au BufRead,BufNewFile *.go set spell
+    :au BufRead,BufNewFile *.go set textwidth=70
+    :au BufRead,BufNewFile *.go set colorcolumn=70
+    ":au BufRead,BufNewFile *.go set noexpandtab
+
+    "* Markdown
+    :au BufRead,BufNewFile *.md set filetype=markdown
+
+    "*  Squirrel
+    : au BufNewFile,BufRead *.nut set ft=squirrel
+
+    " tmux autodetection
+    : au BufNewFile,BufRead *.tmux.conf*,tmux.conf* setf tmux
+
+    "*  Python
+    : au BufNewFile,BufRead *.py set ts=4
+    : au BufRead,BufNewFile *.py  :set expandtab
+    ": au BufNewFile,BufRead *.py so <sfile>:h\vim70\ftplugin\python.vim
+
+
+    "* BibTeX  and LaTeX
+    : au BufNewFile,BufRead *.bib set nospell
+    : au BufNewFile,BufRead *.bib set tw=0
+    : au BufRead            *.dbj set ft=tex
+
+    "* C/C++
+    "* Programmer settings for smart C/C++ style indents and commenting
+    au FileType c,cpp :set cindent
+    au BufRead,BufNewFile *.c,*.cpp :set comments-=://
+    au BufRead,BufNewFile *.c,*.cpp :set comments+=mb:*
+    au BufRead,BufNewFile *.c,*.cpp :set comments+=slO://,mbO://,ebOx:--
+
+    "* conf files
+    "* options for conf file, turn autowrapping back on and remove numbered lists
+    au FileType conf :set tw=84
+    au FileType conf :set formatoptions+=ntc
+    au FileType conf :set formatlistpat=^\\s*\\d\\+[\\]:.)}\\t\ ]\\s* "also called set flp
+    au FileType conf :set comments+=fb:-
+
+    "* dae files
+    "* options for COLLADA files
+    au BufRead,BufNewFile *.dae  :set filetype=COLLADA
+    au FileType COLLADA          :set syntax=xml
 
     "* Markdown
     :au BufRead,BufNewFile *.md set filetype=markdown
