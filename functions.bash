@@ -7,7 +7,8 @@
 OS=$(uname -s)
 export PROMPT_COMMAND="ps1;$PROMPT_COMMAND"
 
-BLACK="\[\033[1;30m\]"
+BLACK="\[\033[30m\]"
+GREY="\[\033[1;30m\]"
 RED="\[\033[1;31m\]"
 GREEN="\[\033[1;32m\]"
 YELLOW="\[\033[1;33m\]"
@@ -16,6 +17,28 @@ PURPLE="\[\033[1;35m"
 CYAN="\[\033[1;36m\]"
 WHITE="\[\033[1;37m\]"
 NOCOLOR="\[\033[00m\]"
+
+function dark {
+  # yellow dir
+  LS_COLORS="`echo $LS_COLORS|sed 's/di=0[01];3[0-9]/di=01;33:/'`"
+  # cyan link
+  LS_COLORS="`echo $LS_COLORS|sed 's/ln=0[01];3[0-9]/ln=00;36:/'`"
+  # green executables
+  LS_COLORS="`echo $LS_COLORS|sed 's/ex=0[01];3[0-9]/ex=00;32:/'`"
+  export LS_COLORS
+}
+
+function light {
+  # black dir
+  # LS_COLORS="`echo $LS_COLORS|sed 's/di=01;33/di=00;30:/'`"
+  # brown dir
+  LS_COLORS="`echo $LS_COLORS|sed 's/di=0[01];3[0-9]/di=00;33:/'`"
+  # purple link
+  LS_COLORS="`echo $LS_COLORS|sed 's/ln=0[01];3[0-9]/ln=01;35:/'`"
+  # green executables
+  LS_COLORS="`echo $LS_COLORS|sed 's/ex=0[01];3[0-9]/ex=00;32:/'`"
+  export LS_COLORS
+}
 
 function parse_git_branch {
   ref=$(git symbolic-ref HEAD 2> /dev/null) || return
