@@ -20,7 +20,7 @@ NOCOLOR="\[\033[00m\]"
 
 function dark {
   # yellow dir
-  LS_COLORS="`echo $LS_COLORS|sed 's/di=0[01];3[0-9]/di=01;33:/'`"
+  LS_COLORS="`echo $LS_COLORS|sed 's/di=0[01];3[0-9]/di=01;34:/'`"
   # cyan link
   LS_COLORS="`echo $LS_COLORS|sed 's/ln=0[01];3[0-9]/ln=00;36:/'`"
   # green executables
@@ -32,7 +32,7 @@ function light {
   # black dir
   # LS_COLORS="`echo $LS_COLORS|sed 's/di=01;33/di=00;30:/'`"
   # brown dir
-  LS_COLORS="`echo $LS_COLORS|sed 's/di=0[01];3[0-9]/di=00;33:/'`"
+  LS_COLORS="`echo $LS_COLORS|sed 's/di=0[01];3[0-9]/di=00;34:/'`"
   # purple link
   LS_COLORS="`echo $LS_COLORS|sed 's/ln=0[01];3[0-9]/ln=01;35:/'`"
   # green executables
