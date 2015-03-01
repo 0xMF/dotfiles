@@ -154,9 +154,9 @@ set directory=$MYVIM/.vim/backup " all the *.swp files go here
     ":au BufRead,BufNewFile *.go setlocal bomb
     :au BufRead,BufNewFile *.go setlocal fileencoding=utf-8
     :au BufRead,BufNewFile *.go set spell
-    :au BufRead,BufNewFile *.go set textwidth=70
-    :au BufRead,BufNewFile *.go set colorcolumn=70
-    ":au BufRead,BufNewFile *.go set noexpandtab
+    :au BufRead,BufNewFile *.go set textwidth=85
+    :au BufRead,BufNewFile *.go set colorcolumn=85
+    :au BufRead,BufNewFile *.go set noexpandtab
 
     "* Markdown
     :au BufRead,BufNewFile *.md set filetype=markdown
