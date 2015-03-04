@@ -235,6 +235,14 @@ set directory=$MYVIM/.vim/backup " all the *.swp files go here
     au BufRead,BufNewFile   *.txt :set nocindent
     au BufRead,BufNewFile   *.txt :set autoindent
 
+    "* Texapp files
+    au BufRead,BufNewFile   texapp-*.txt :set nowrap
+    au BufRead,BufNewFile   texapp-*.txt :set textwidth=0
+    au BufRead,BufNewFile   texapp-*.txt :set spell
+    au BufRead,BufNewFile   texapp-*.txt :set syntax=asciidoc
+    au BufRead,BufNewFile   texapp-*.txt :set filetype=asciidoc
+    au BufRead,BufNewFile   texapp-*.txt :set expandtab
+
     "* options for PowerShell files
     au BufNewFile,BufRead   *.ps1   set ft=ps1
     au BufNewFile,BufRead   *.psd1  set ft=ps1
