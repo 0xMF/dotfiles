@@ -236,7 +236,8 @@ set directory=$MYVIM/.vim/backup " all the *.swp files go here
     au BufRead,BufNewFile   *.txt :set autoindent
 
     "* Texapp files
-    au BufRead,BufNewFile   texapp-*.txt :set nowrap
+    au BufRead,BufNewFile   texapp-*.txt :set nonumber
+    au BufRead,BufNewFile   texapp-*.txt :set wrap
     au BufRead,BufNewFile   texapp-*.txt :set textwidth=0
     au BufRead,BufNewFile   texapp-*.txt :set spell
     au BufRead,BufNewFile   texapp-*.txt :set syntax=asciidoc
