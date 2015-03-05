@@ -52,7 +52,8 @@ set nocompatible        " Use VIM not vi
 syntax on               " start syntax highlighting
 set number              " display linenumbers in text
 set history=50          " keep track of last 50 chars
-set textwidth=70        " no of chars/line
+set textwidth=80        " no of chars/line
+set formatprg=par\ -reqw80  " use external par instead of Vim fmt, still avail with gw
 set formatoptions=tcqnl " include numbered lists when formatting with gq
 set autoindent          " set automatic indenting
 set wrap                " force word wrapping on (does not put hard return)
@@ -121,150 +122,153 @@ set directory=$MYVIM/.vim/backup " all the *.swp files go here
     :filetype on        " enables file type detection.
 
     "* BibTeX  and LaTeX
-    : au BufNewFile,BufRead *.bib set nospell
-    : au BufNewFile,BufRead *.bib set tw=0
-    : au BufRead            *.dbj set ft=tex
+    : au BufNewFile,BufRead *.bib setlocal nospell
+    : au BufNewFile,BufRead *.bib setlocal tw=0
+    : au BufRead            *.dbj setlocal ft=tex
 
     "* C/C++
     "* Programmer settings for smart C/C++ style indents and commenting
-    au FileType c,cpp :set cindent
-    au BufRead,BufNewFile *.c,*.cpp :set comments-=://
-    au BufRead,BufNewFile *.c,*.cpp :set comments+=slO://,mbO://,ebOx:--
+    au FileType c,cpp :setlocal cindent
+    au BufRead,BufNewFile *.c,*.cpp :setlocal comments-=://
+    au BufRead,BufNewFile *.c,*.cpp :setlocal comments+=slO://,mbO://,ebOx:--
 
      " CMake settings
     :autocmd BufRead,BufNewFile *.cmake,CMakeLists.txt,*.cmake.in runtime! indent/cmake.vim
     :autocmd BufRead,BufNewFile *.cmake,CMakeLists.txt,*.cmake.in setf cmake
     :autocmd BufRead,BufNewFile *.ctest,*.ctest.in setf cmake
-    :autocmd BufRead,BufNewFile   CMakeLists.txt :set syntax=cmake
+    :autocmd BufRead,BufNewFile   CMakeLists.txt :setlocal syntax=cmake
 
     "* conf files
     "* options for conf file, turn autowrapping back on and remove numbered lists
-    "au FileType conf :set comments+=fb:-
-    au FileType conf :set formatoptions+=ntc
-    au FileType conf :set formatlistpat=^\\s*-[\\t\ ]\\s*
-    au FileType conf :set comments+=fb:-
-    au FileType conf :set tw=84
+    "au FileType conf :setlocal comments+=fb:-
+    au FileType conf :setlocal formatoptions+=ntc
+    au FileType conf :setlocal formatlistpat=^\\s*-[\\t\ ]\\s*
+    au FileType conf :setlocal comments+=fb:-
+    au FileType conf :setlocal tw=84
 
     "* dae files
     "* options for COLLADA files
-    au BufRead,BufNewFile *.dae  :set filetype=COLLADA
-    au FileType COLLADA          :set syntax=xml
+    au BufRead,BufNewFile *.dae  :setlocal filetype=COLLADA
+    au FileType COLLADA          :setlocal syntax=xml
 
      "* Go
-    :au BufRead,BufNewFile *.go set filetype=go
+    :au BufRead,BufNewFile *.go setlocal filetype=go
     ":au BufRead,BufNewFile *.go setlocal bomb
     :au BufRead,BufNewFile *.go setlocal fileencoding=utf-8
-    :au BufRead,BufNewFile *.go set spell
-    :au BufRead,BufNewFile *.go set textwidth=85
-    :au BufRead,BufNewFile *.go set colorcolumn=85
-    :au BufRead,BufNewFile *.go set noexpandtab
+    :au BufRead,BufNewFile *.go setlocal spell
+    :au BufRead,BufNewFile *.go setlocal textwidth=85
+    :au BufRead,BufNewFile *.go setlocal colorcolumn=85
+    :au BufRead,BufNewFile *.go setlocal formatprg=par\ -reqw85
+    :au BufRead,BufNewFile *.go setlocal noexpandtab
 
     "* Markdown
-    :au BufRead,BufNewFile *.md set filetype=markdown
+    :au BufRead,BufNewFile *.md setlocal filetype=markdown
 
     "*  Squirrel
-    : au BufNewFile,BufRead *.nut set ft=squirrel
+    : au BufNewFile,BufRead *.nut setlocal ft=squirrel
 
     " tmux autodetection
     : au BufNewFile,BufRead *.tmux.conf*,tmux.conf* setf tmux
 
     "*  Python
-    : au BufNewFile,BufRead *.py set ts=4
-    : au BufRead,BufNewFile *.py  :set expandtab
+    : au BufNewFile,BufRead *.py setlocal ts=4
+    : au BufRead,BufNewFile *.py  :setlocal expandtab
     ": au BufNewFile,BufRead *.py so <sfile>:h\vim70\ftplugin\python.vim
 
 
     "* BibTeX  and LaTeX
-    : au BufNewFile,BufRead *.bib set nospell
-    : au BufNewFile,BufRead *.bib set tw=0
-    : au BufRead            *.dbj set ft=tex
+    : au BufNewFile,BufRead *.bib setlocal nospell
+    : au BufNewFile,BufRead *.bib setlocal tw=0
+    : au BufRead            *.dbj setlocal ft=tex
 
     "* C/C++
     "* Programmer settings for smart C/C++ style indents and commenting
-    au FileType c,cpp :set cindent
-    au BufRead,BufNewFile *.c,*.cpp :set comments-=://
-    au BufRead,BufNewFile *.c,*.cpp :set comments+=mb:*
-    au BufRead,BufNewFile *.c,*.cpp :set comments+=slO://,mbO://,ebOx:--
+    au FileType c,cpp :setlocal cindent
+    au BufRead,BufNewFile *.c,*.cpp :setlocal comments-=://
+    au BufRead,BufNewFile *.c,*.cpp :setlocal comments+=mb:*
+    au BufRead,BufNewFile *.c,*.cpp :setlocal comments+=slO://,mbO://,ebOx:--
 
     "* conf files
     "* options for conf file, turn autowrapping back on and remove numbered lists
-    au FileType conf :set tw=84
-    au FileType conf :set formatoptions+=ntc
-    au FileType conf :set formatlistpat=^\\s*\\d\\+[\\]:.)}\\t\ ]\\s* "also called set flp
-    au FileType conf :set comments+=fb:-
+    au FileType conf :setlocal tw=84
+    au FileType conf :setlocal formatoptions+=ntc
+    au FileType conf :setlocal formatlistpat=^\\s*\\d\\+[\\]:.)}\\t\ ]\\s* "also called set flp
+    au FileType conf :setlocal comments+=fb:-
 
     "* dae files
     "* options for COLLADA files
-    au BufRead,BufNewFile *.dae  :set filetype=COLLADA
-    au FileType COLLADA          :set syntax=xml
+    au BufRead,BufNewFile *.dae  :setlocal filetype=COLLADA
+    au FileType COLLADA          :setlocal syntax=xml
 
     "* Markdown
-    :au BufRead,BufNewFile *.md set filetype=markdown
+    :au BufRead,BufNewFile *.md setlocal filetype=markdown
 
     "* MAXScript
-    au BufRead,BufNewFile *.ms  :set filetype=maxscript
-    au FileType maxscript       :set syntax=maxscript
+    au BufRead,BufNewFile *.ms  :setlocal filetype=maxscript
+    au FileType maxscript       :setlocal syntax=maxscript
     au FileType maxscript       :colorscheme nice-gui
 
     "* SCALA files
-    au BufRead,BufNewFile *.scala :set filetype=scala
-    au FileType SCALA             :set syntax=scala
+    au BufRead,BufNewFile *.scala :setlocal filetype=scala
+    au FileType SCALA             :setlocal syntax=scala
 
     "* SH files
-    au FileType sh    :set fileformat=unix
+    au FileType sh    :setlocal fileformat=unix
 
     "*  Squirrel
-    : au BufNewFile,BufRead *.nut set ft=squirrel
+    : au BufNewFile,BufRead *.nut setlocal ft=squirrel
 
     " tmux autodetection
     : au BufNewFile,BufRead *.tmux.conf*,tmux.conf* setf tmux
 
     "* Text file
-    au BufRead,BufNewFile   *.txt :set textwidth=100
-    au BufRead,BufNewFile   *.txt :set syntax=asciidoc
-    au BufRead,BufNewFile   *.txt :set spell
-    au BufRead,BufNewFile   *.txt :set formatoptions+=n
-    au BufRead,BufNewFile   *.txt :set comments+=n:>
-    au BufRead,BufNewFile   *.txt :set comments=b:>
-    au BufRead,BufNewFile   *.txt :set comments+=b:>>
-    au BufRead,BufNewFile   *.txt :set comments+=b:>>>
-    au BufRead,BufNewFile   *.txt :set comments+=b:#
-    au BufRead,BufNewFile   *.txt :set comments+=fb:-
-    au BufRead,BufNewFile   *.txt :set comments+=fb:*
-    au BufRead,BufNewFile   *.txt :set comments+=fb:.
-    au BufRead,BufNewFile   *.txt :set comments+=fb:\|
-    au BufRead,BufNewFile   *.txt :set nocindent
-    au BufRead,BufNewFile   *.txt :set autoindent
+    au BufRead,BufNewFile   *.txt :setlocal textwidth=100
+    au BufRead,BufNewFile   *.txt :setlocal formatprg=par\ -reqw100
+    au BufRead,BufNewFile   *.txt :setlocal syntax=asciidoc
+    au BufRead,BufNewFile   *.txt :setlocal spell
+    au BufRead,BufNewFile   *.txt :setlocal formatoptions+=n
+    au BufRead,BufNewFile   *.txt :setlocal comments+=n:>
+    au BufRead,BufNewFile   *.txt :setlocal comments=b:>
+    au BufRead,BufNewFile   *.txt :setlocal comments+=b:>>
+    au BufRead,BufNewFile   *.txt :setlocal comments+=b:>>>
+    au BufRead,BufNewFile   *.txt :setlocal comments+=b:#
+    au BufRead,BufNewFile   *.txt :setlocal comments+=fb:-
+    au BufRead,BufNewFile   *.txt :setlocal comments+=fb:*
+    au BufRead,BufNewFile   *.txt :setlocal comments+=fb:.
+    au BufRead,BufNewFile   *.txt :setlocal comments+=fb:\|
+    au BufRead,BufNewFile   *.txt :setlocal nocindent
+    au BufRead,BufNewFile   *.txt :setlocal autoindent
 
     "* Texapp files
-    au BufRead,BufNewFile   texapp-*.txt :set nonumber
-    au BufRead,BufNewFile   texapp-*.txt :set wrap
-    au BufRead,BufNewFile   texapp-*.txt :set textwidth=0
-    au BufRead,BufNewFile   texapp-*.txt :set spell
-    au BufRead,BufNewFile   texapp-*.txt :set syntax=asciidoc
-    au BufRead,BufNewFile   texapp-*.txt :set filetype=asciidoc
-    au BufRead,BufNewFile   texapp-*.txt :set expandtab
+    au BufRead,BufNewFile   texapp-*.txt :setlocal nonumber
+    au BufRead,BufNewFile   texapp-*.txt :setlocal wrap
+    au BufRead,BufNewFile   texapp-*.txt :setlocal textwidth=0
+    au BufRead,BufNewFile   texapp-*.txt :setlocal formatprg=par\ -reqw0
+    au BufRead,BufNewFile   texapp-*.txt :setlocal spell
+    au BufRead,BufNewFile   texapp-*.txt :setlocal syntax=asciidoc
+    au BufRead,BufNewFile   texapp-*.txt :setlocal filetype=asciidoc
+    au BufRead,BufNewFile   texapp-*.txt :setlocal expandtab
 
     "* options for PowerShell files
-    au BufNewFile,BufRead   *.ps1   set ft=ps1
-    au BufNewFile,BufRead   *.psd1  set ft=ps1
-    au BufNewFile,BufRead   *.psm1  set ft=ps1
-    au BufRead,BufNewFile   *.ps1   :set filetype=ps1
-    au FileType ps1                 :set syntax=ps1
-    au FileType ps1                 :set fileformat=dos
+    au BufNewFile,BufRead   *.ps1   setlocal ft=ps1
+    au BufNewFile,BufRead   *.psd1  setlocal ft=ps1
+    au BufNewFile,BufRead   *.psm1  setlocal ft=ps1
+    au BufRead,BufNewFile   *.ps1   :setlocal filetype=ps1
+    au FileType ps1                 :setlocal syntax=ps1
+    au FileType ps1                 :setlocal fileformat=dos
 
     "*  Python
-    : au BufNewFile,BufRead *.py set ts=4
-    : au BufRead,BufNewFile *.py  :set noexpandtab
+    : au BufNewFile,BufRead *.py setlocal ts=4
+    : au BufRead,BufNewFile *.py  :setlocal noexpandtab
 
     "* VIM files (.vim) settings
-    au FileType vim     :set fileformat=unix
-    au BufRead,BufNewFile *.vim :set fileformat=unix
+    au FileType vim     :setlocal fileformat=unix
+    au BufRead,BufNewFile *.vim :setlocal fileformat=unix
 
     "* vim help files
     "* switch off the listing of unprintable characters
-    au FileType help :set nolist
-    au FileType help :set nospell
+    au FileType help :setlocal nolist
+    au FileType help :setlocal nospell
 
     "* wikipedia files
     au BufRead,BufNewFile *.wikipedia.org* :if &ft == 'flexwiki' | set filetype=Wikipedia | endif
@@ -272,6 +276,7 @@ set directory=$MYVIM/.vim/backup " all the *.swp files go here
     au FileType Wikipedia :so $MYVIM/.vim/ftdetect/Wikipedia.vim
     au BufRead,BufNewFile *.wiki :setlocal linebreak
     au BufRead,BufNewFile *.wiki :setlocal textwidth=0
+    au BufRead,BufNewFile *.wiki :setlocal formatprg=par\ -reqw0
     au BufRead,BufNewFile *.wiki :setlocal formatoptions=rol
     au BufRead,BufNewFile *.wiki :noremap <buffer> k gk
     au BufRead,BufNewFile *.wiki :noremap <buffer> j gj
