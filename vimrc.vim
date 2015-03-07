@@ -243,7 +243,7 @@ set directory=$MYVIM/.vim/backup " all the *.swp files go here
     au BufRead,BufNewFile   texapp-*.txt :setlocal nonumber
     au BufRead,BufNewFile   texapp-*.txt :setlocal wrap
     au BufRead,BufNewFile   texapp-*.txt :setlocal textwidth=0
-    au BufRead,BufNewFile   texapp-*.txt :setlocal formatprg=par\ -reqw0
+    au BufRead,BufNewFile   texapp-*.txt :setlocal formatprg=par\ -req
     au BufRead,BufNewFile   texapp-*.txt :setlocal spell
     au BufRead,BufNewFile   texapp-*.txt :setlocal syntax=asciidoc
     au BufRead,BufNewFile   texapp-*.txt :setlocal filetype=asciidoc
@@ -276,7 +276,7 @@ set directory=$MYVIM/.vim/backup " all the *.swp files go here
     au FileType Wikipedia :so $MYVIM/.vim/ftdetect/Wikipedia.vim
     au BufRead,BufNewFile *.wiki :setlocal linebreak
     au BufRead,BufNewFile *.wiki :setlocal textwidth=0
-    au BufRead,BufNewFile *.wiki :setlocal formatprg=par\ -reqw0
+    au BufRead,BufNewFile *.wiki :setlocal formatprg=par\ -req
     au BufRead,BufNewFile *.wiki :setlocal formatoptions=rol
     au BufRead,BufNewFile *.wiki :noremap <buffer> k gk
     au BufRead,BufNewFile *.wiki :noremap <buffer> j gj
