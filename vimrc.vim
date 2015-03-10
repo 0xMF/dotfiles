@@ -22,6 +22,11 @@
 
 "** check if gvim is running and set its options accordingly
 :if has ("gui_running")
+    "** prefer my colorscheme (nice-gui) for gui (win/gtk)
+    : if filereadable(expand("$MYVIM/.vim/colors/nice-gui.vim"))
+    :   colorscheme nice-gui     "select colorscheme
+    : endif
+
     "** only initialize window size if has not been initialized yet
     :if !exists ("s:my_windowInitialized_variable")
     :   let s:my_windowInitialized_variable=1
@@ -44,6 +49,11 @@
     :   set guioptions+=i   " show gvim color icon, instead of default
     :   let &guicursor = &guicursor . ",a:blinkon0"
     :endif
+:else
+    "** prefer my colorscheme (nice-term) for conosole
+    : if filereadable(expand("$MYVIM/.vim/colors/nice-term.vim"))
+    :   colorscheme nice-term
+    : endif
 :endif
 
 
