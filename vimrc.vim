@@ -304,3 +304,25 @@ set directory=$MYVIM/.vim/backup " all the *.swp files go here
     au BufRead,BufNewFile *.wiki :setlocal comments=n:#,n:*,n:\:,s:{\|,m:\|,ex:\|}
 
 :endif
+
+"* Plugin management (via Vundle)
+"
+" Brief help
+" :PluginList       - lists configured plugins
+" :PluginInstall    - installs plugins; append `!` to update or just :PluginUpdate
+" :PluginSearch foo - searches for foo; append `!` to refresh local cache
+" :PluginClean      - confirms removal of unused plugins; append `!` to auto-approve removal
+"
+" see :h vundle for more details or wiki for FAQ
+" Put your non-Plugin stuff after this line
+"
+
+" set the runtime path to include Vundle and initialize
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
+Plugin 'gmarik/Vundle.vim'        " let Vundle manage Vundle, required
+Plugin 'kyuhi/vim-emoji-complete' " to see list of emojis in insert mode use CTRL-X CTRL-E
+
+" All of your Plugins must be added before the following line
+call vundle#end()            " required
+filetype plugin indent on    " required
