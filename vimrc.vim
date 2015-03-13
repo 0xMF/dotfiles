@@ -22,11 +22,6 @@
 
 "** check if gvim is running and set its options accordingly
 :if has ("gui_running")
-    "** prefer my colorscheme (nice-gui) for gui (win/gtk)
-    : if filereadable(expand("$MYVIM/.vim/colors/nice-gui.vim"))
-    :   colorscheme nice-gui     "select colorscheme
-    : endif
-
     "** only initialize window size if has not been initialized yet
     :if !exists ("s:my_windowInitialized_variable")
     :   let s:my_windowInitialized_variable=1
@@ -49,6 +44,11 @@
     :   set guioptions+=i   " show gvim color icon, instead of default
     :   let &guicursor = &guicursor . ",a:blinkon0"
     :endif
+
+    "** prefer my colorscheme (nice-gui) for gui (win/gtk)
+    : if filereadable(expand("$MYVIM/.vim/colors/nice-gui.vim"))
+    :   colorscheme nice-gui     "select colorscheme
+    : endif
 :else
     "** prefer my colorscheme (nice-term) for conosole
     : if filereadable(expand("$MYVIM/.vim/colors/nice-term.vim"))
@@ -125,6 +125,27 @@ set directory=$MYVIM/.vim/backup " all the *.swp files go here
 :   set showtabline=1   " =0 never show tabs, =1 show if 2 or more tabs, =2 always show
 :endif
 
+"* Plugin management (via Vundle)
+"
+" Brief help
+" :PluginList       - lists configured plugins
+" :PluginInstall    - installs plugins; append `!` to update or just :PluginUpdate
+" :PluginSearch foo - searches for foo; append `!` to refresh local cache
+" :PluginClean      - confirms removal of unused plugins; append `!` to auto-approve removal
+"
+" see :h vundle for more details or wiki for FAQ
+" Put your non-Plugin stuff after this line
+"
+
+" set the runtime path to include Vundle and initialize
+set runtimepath+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
+Plugin 'gmarik/Vundle.vim'        " let Vundle manage Vundle, required
+Plugin 'kyuhi/vim-emoji-complete' " to see list of emojis in insert mode use CTRL-X CTRL-E
+
+" All of your Plugins must be added before the following line
+call vundle#end()            " required for vundle
+filetype plugin indent on    " required for vundle
 
 "** Simple scripts for autocommands on file type detectiong
 :if !exists("autocommands_loaded")
@@ -304,25 +325,3 @@ set directory=$MYVIM/.vim/backup " all the *.swp files go here
     au BufRead,BufNewFile *.wiki :setlocal comments=n:#,n:*,n:\:,s:{\|,m:\|,ex:\|}
 
 :endif
-
-"* Plugin management (via Vundle)
-"
-" Brief help
-" :PluginList       - lists configured plugins
-" :PluginInstall    - installs plugins; append `!` to update or just :PluginUpdate
-" :PluginSearch foo - searches for foo; append `!` to refresh local cache
-" :PluginClean      - confirms removal of unused plugins; append `!` to auto-approve removal
-"
-" see :h vundle for more details or wiki for FAQ
-" Put your non-Plugin stuff after this line
-"
-
-" set the runtime path to include Vundle and initialize
-set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
-Plugin 'gmarik/Vundle.vim'        " let Vundle manage Vundle, required
-Plugin 'kyuhi/vim-emoji-complete' " to see list of emojis in insert mode use CTRL-X CTRL-E
-
-" All of your Plugins must be added before the following line
-call vundle#end()            " required
-filetype plugin indent on    " required
