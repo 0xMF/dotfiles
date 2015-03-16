@@ -152,5 +152,24 @@ function ports {
   popd  > /dev/null
 }
 
+function g+++ {
+  rm -f a.out
+  if [ -e /usr/bin/g++-4.9 ];
+  then
+    /usr/bin/g++-4.9 -std=c++1y -Wall $*
+  else
+    /usr/bin/g++ -std=c++0x -Wall $*
+  fi
+
+  if [ -e a.out ]
+  then
+    if [ -e /usr/bin/valgrind ]
+    then
+      valgrind 2>&1 a.out|sed '1,5d'
+    else
+      a.out
+    fi
+  fi
+}
 
 # vim:nospell:ft=sh:
