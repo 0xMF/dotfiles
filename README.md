@@ -13,4 +13,4 @@ license](LICENSE)
 
 Best.
 
-# vim: spell
+ vim: spell
