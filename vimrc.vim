@@ -63,7 +63,7 @@ syntax on               " start syntax highlighting
 set number              " display linenumbers in text
 set history=50          " keep track of last 50 chars
 set textwidth=80        " no of chars/line
-set formatprg=par\ -reqw80  " use external par instead of Vim fmt, still avail with gw
+"set formatprg=par\ -reqw80  " use external par instead of Vim fmt, still avail with gw
 set formatoptions=tcqnl " include numbered lists when formatting with gq
 set autoindent          " set automatic indenting
 set wrap                " force word wrapping on (does not put hard return)
@@ -189,7 +189,6 @@ filetype plugin indent on    " required for vundle
     :au BufRead,BufNewFile *.go setlocal spell
     :au BufRead,BufNewFile *.go setlocal textwidth=85
     :au BufRead,BufNewFile *.go setlocal colorcolumn=85
-    :au BufRead,BufNewFile *.go setlocal formatprg=par\ -reqw85
     :au BufRead,BufNewFile *.go setlocal noexpandtab
 
     "* Markdown
@@ -254,7 +253,6 @@ filetype plugin indent on    " required for vundle
 
     "* Text file
     au BufRead,BufNewFile   *.txt :setlocal textwidth=100
-    au BufRead,BufNewFile   *.txt :setlocal formatprg=par\ -reqw100
     au BufRead,BufNewFile   *.txt :setlocal syntax=asciidoc
     au BufRead,BufNewFile   *.txt :setlocal spell
     au BufRead,BufNewFile   *.txt :setlocal formatoptions+=n
@@ -307,7 +305,6 @@ filetype plugin indent on    " required for vundle
     au FileType Wikipedia :so $MYVIM/.vim/ftdetect/Wikipedia.vim
     au BufRead,BufNewFile *.wiki :setlocal linebreak
     au BufRead,BufNewFile *.wiki :setlocal textwidth=0
-    au BufRead,BufNewFile *.wiki :setlocal formatprg=par\ -req
     au BufRead,BufNewFile *.wiki :setlocal formatoptions=rol
     au BufRead,BufNewFile *.wiki :noremap <buffer> k gk
     au BufRead,BufNewFile *.wiki :noremap <buffer> j gj
