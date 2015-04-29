@@ -12,7 +12,12 @@ PATH=$PATH:/usr/local/bin:.:~/bin
 
 # source common aliases used by power users
 if [ -f $REPO/aliases.ksh ]; then
-  source $REPO/aliases.ksh
+  . $REPO/aliases.ksh
+fi
+
+# source various utility functions
+if [ -f $REPO/functions.bash ]; then
+  . $REPO/functions.bash
 fi
 
 # setup our prompt PS1, first get OS release+version
