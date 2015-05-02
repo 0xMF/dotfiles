@@ -44,20 +44,13 @@ if [ $(uname -o) == "FreeBSD" ]; then
     OSRV=$(uname -sr)
 fi
 
-# next vary prompt according to regular user or root
-if [ $(/usr/bin/id -u) -ne 0 ]; then
-  ps1 2>/dev/null
-  if [ $? -eq 0 ]; then
-    PROMPT_COMMAND="ps1"
-  else
-    PS1="$GREEN${OSRV}$BLUE:\W$(parse_git_branch_colour 2>/dev/null)$NOCOLOR$ "
-  fi
-else
-  PS1="$RED${OSRV}$BLUE:\W$(parse_git_branch_colour 2>/dev/null)$NOCOLOR# "
-fi
+set -o emacs             # vi-style editing
+bind -m '^L'=clear'^J'   # clear the screen
+FCEDIT='/usr/bin/vim'    # fc usese vi too
 
-# editor settings for bash
-set -o emacs
+# resembles the bash equivalent of '\w$ ' with green colour highlighting
+# next vary prompt according to regular user or root
+export PS1=`print '\e[0m\e[32;1m$(basename $(echo $PWD|sed "s,^$HOME$,~," ))\e[0m$ '`
 
 # command line calendar
 # https://github.com/0xMF/catholic/calendar
