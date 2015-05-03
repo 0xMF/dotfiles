@@ -2,7 +2,7 @@
 #-----------------------------------------------------------------
 
 #
-REPO=~/.sh
+export SHELL_REPO=~/.sh
 
 #
 print .kshrc called ...
@@ -11,24 +11,24 @@ print .kshrc called ...
 PATH=$PATH:/usr/local/bin:.:~/bin
 
 # source local and private settings
-# changes to local.bash should not be publicly tracked and shared (recommended)
-if [ -f $REPO/local.sh ]; then
-  . $REPO/local.sh
+# changes to local.sh should not be publicly tracked and shared (recommended)
+if [ -f $SHELL_REPO/local.sh ]; then
+  . $SHELL_REPO/local.sh
 fi
 
 # source common aliases used by power users
-if [ -f $REPO/aliases ]; then
-  . $REPO/aliases
+if [ -f $SHELL_REPO/aliases ]; then
+  . $SHELL_REPO/aliases
 fi
 
 # source environment variables exported
-if [ -f $REPO/exports ]; then
-  . $REPO/exports
+if [ -f $SHELL_REPO/exports ]; then
+  . $SHELL_REPO/exports
 fi
 
 # source various utility functions
-if [ -f $REPO/functions ]; then
-  . $REPO/functions
+if [ -f $SHELL_REPO/functions ]; then
+  . $SHELL_REPO/functions
 fi
 
 
