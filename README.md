@@ -13,4 +13,4 @@ license](LICENSE)
 
 Best.
 
-// vim: spell:ft=markdown:tw=72:nonu
+[]: # vim: spell:ft=markdown:tw=72:nonu:
