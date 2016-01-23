@@ -52,6 +52,7 @@ alias pg='vi -R'
 alias rehash='hash -r'
 alias reset='reset -e ^?'
 alias vi='vim'
+alias gv='gvim --remote-tab-silent'
 
 # git based aliases 
 alias git='hub'

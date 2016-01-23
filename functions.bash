@@ -130,6 +130,14 @@ function pss {
   PROMPT_COMMAND="pss"
 }
 
+function psl {
+  PS1="$CYAN\W$(parse_git_branch_colour)$NOCOLOR$ "
+  PROMPT_COMMAND="psl"
+}
+
+function psd {
+  dark
+}
 function anc {
   alias ls='lsn'
   alias tree='tree -n'
@@ -150,6 +158,16 @@ function ports {
   pushd /usr/ports > /dev/null
   echo */*|tr ' ' '\n'|grep $1
   popd  > /dev/null
+}
+
+function alarm {
+  if [ ! -z "$1" ]
+  then
+    echo "alarm will go off in $1"
+    sleep $1 && while true; do espeak "Time's up!"; done &
+  else
+    sleep 1m && while true; do espeak "Time's up!"; done &
+  fi
 }
 
 function g+++ {
