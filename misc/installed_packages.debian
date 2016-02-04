@@ -70,6 +70,7 @@ cpp-4.9						install
 cpp-5						install
 crda						install
 cron						install
+crystal						install
 cups						install
 cups-browsed					install
 cups-bsd					install
@@ -220,6 +221,7 @@ gir1.2-webkit2-4.0:amd64			install
 gir1.2-xkl-1.0					install
 git						install
 git-man						install
+gitg						install
 gkbd-capplet					install
 gksu						install
 glib-networking:amd64				install
@@ -662,6 +664,7 @@ libgnomevfs2-extra:amd64			install
 libgnustep-base1.24				install
 libgnutls-deb0-28:amd64				install
 libgnutls-openssl27:amd64			install
+libgnutls30:amd64				install
 libgoa-1.0-0b:amd64				install
 libgoa-1.0-common				install
 libgomp1:amd64					install
@@ -697,6 +700,8 @@ libgtkglext1					install
 libgtkmm-2.4-1c2a:amd64				install
 libgtkmm-2.4-1v5:amd64				install
 libgtkmm-3.0-1:amd64				install
+libgtksourceview-3.0-1:amd64			install
+libgtksourceview-3.0-common			install
 libgtkspell0					install
 libgtop-2.0-10:amd64				install
 libgtop2-common					install
@@ -801,6 +806,7 @@ liblockfile1:amd64				install
 liblogging-stdlog0:amd64			install
 liblognorm1:amd64				install
 liblognorm2:amd64				install
+liblouis-bin					install
 liblouis-data					install
 liblouis9:amd64					install
 liblouisutdml-bin				install
@@ -1082,6 +1088,8 @@ libsrtp0					install
 libss2:amd64					install
 libssh-gcrypt-4:amd64				install
 libssh2-1:amd64					install
+libssl-dev:amd64				install
+libssl-doc					install
 libssl1.0.0:amd64				install
 libssl1.0.2:amd64				install
 libstartup-notification0:amd64			install
@@ -1288,6 +1296,7 @@ libxss1:amd64					install
 libxt-dev:amd64					install
 libxt6:amd64					install
 libxtables10					install
+libxtables11					install
 libxtst6:amd64					install
 libxv1:amd64					install
 libxvidcore4:amd64				install
@@ -1666,6 +1675,7 @@ xserver-xorg-input-synaptics			install
 xserver-xorg-input-vmmouse			install
 xserver-xorg-input-wacom			install
 xserver-xorg-video-all				install
+xserver-xorg-video-amdgpu			install
 xserver-xorg-video-ati				install
 xserver-xorg-video-cirrus			install
 xserver-xorg-video-fbdev			install
@@ -1692,6 +1702,7 @@ xz-utils					install
 yelp						install
 yelp-xsl					install
 zathura						install
+zathura-pdf-poppler				install
 zenity						install
 zenity-common					install
 zerofree					install
