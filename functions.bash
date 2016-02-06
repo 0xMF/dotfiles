@@ -144,6 +144,14 @@ function anc {
   alias grep='grep --color=none -i'
 }
 
+function dpkg-get-selections {
+  dpkg --get-selections
+  >&2 echo 
+  >&2 echo -----------------------------
+  >&2 echo Usage: dpkg --get-selections 
+  >&2 echo -----------------------------
+}
+
 function dpkg-list {
 dpkg-query --list|awk -F' ' '{printf("%s\t%-32s\t",$1,substr($2,0,40));$1=$2=$3=$4=""; print $0}'
 }
