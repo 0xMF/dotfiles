@@ -741,6 +741,7 @@ libidl0:amd64					install
 libidn11:amd64					install
 libieee1284-3:amd64				install
 libijs-0.35:amd64				install
+libilmbase12:amd64				install
 libilmbase6:amd64				install
 libilmbase6v5:amd64				install
 libimage-magick-perl				install
@@ -928,6 +929,7 @@ libopencv-objdetect2.4:amd64			install
 libopencv-objdetect2.4v5:amd64			install
 libopencv-video2.4:amd64			install
 libopencv-video2.4v5:amd64			install
+libopenexr22:amd64				install
 libopenexr6:amd64				install
 libopenexr6v5:amd64				install
 libopenjpeg5:amd64				install
@@ -1685,7 +1687,7 @@ xserver-xorg-video-mga				install
 xserver-xorg-video-modesetting			install
 xserver-xorg-video-neomagic			install
 xserver-xorg-video-nouveau			install
-xserver-xorg-video-openchrome			install
+xserver-xorg-video-openchrome			deinstall
 xserver-xorg-video-qxl				install
 xserver-xorg-video-r128				install
 xserver-xorg-video-radeon			install
