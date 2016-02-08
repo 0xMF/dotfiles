@@ -168,6 +168,14 @@ function ports {
   popd  > /dev/null
 }
 
+function poof {
+  sudo sync
+  sudo sync
+  sudo sync
+  sudo systemctl start poweroff.target
+}
+
+
 function alarm {
   if [ ! -z "$1" ]
   then
