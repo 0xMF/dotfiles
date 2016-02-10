@@ -138,14 +138,14 @@ set directory=$MYVIM/.vim/backup " all the *.swp files go here
 "
 
 " set the runtime path to include Vundle and initialize
-set runtimepath+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
-Plugin 'gmarik/Vundle.vim'        " let Vundle manage Vundle, required
-Plugin 'kyuhi/vim-emoji-complete' " to see list of emojis in insert mode use CTRL-X CTRL-E
+"set runtimepath+=~/.vim/bundle/Vundle.vim
+"call vundle#begin()
+"Plugin 'gmarik/Vundle.vim'        " let Vundle manage Vundle, required
+"Plugin 'kyuhi/vim-emoji-complete' " to see list of emojis in insert mode use CTRL-X CTRL-E
 
 " All of your Plugins must be added before the following line
-call vundle#end()            " required for vundle
-filetype plugin indent on    " required for vundle
+"call vundle#end()            " required for vundle
+"filetype plugin indent on    " required for vundle
 
 "** Simple scripts for autocommands on file type detectiong
 :if !exists("autocommands_loaded")
