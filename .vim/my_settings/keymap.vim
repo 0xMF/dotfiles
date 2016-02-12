@@ -6,4 +6,7 @@
 :imap \qw <Esc>magw}``| " Vim's paragraph formatting
 :map  \q <Esc>magq}``| " par command  paragraph formatting
 :imap \q <Esc>magq}``| " par command paragraph formatting
+:map \l <Esc>:set list!<CR> | "toggle non-printable
+:imap \l <Esc>:set list!<CR>a | "toggle non-printable
+:
 
