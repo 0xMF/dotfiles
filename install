@@ -1,0 +1,65 @@
+# bash
+bash() {
+  echo -n "checking bash..." >&2
+
+  [ -e $HOME/.bashrc ] && {
+    echo "found, not installing" >&2  
+    return
+  }
+  ln -s $PWD/bashrc/bashrc.bash $HOME/.bashrc
+
+  [ -d $HOME/.bash ] && return
+  ln -s $PWD/bashrc $HOME/.bash
+
+  echo "installed." >&2
+}
+
+# vim
+vim() {
+  echo -n "checking vim..." >&2
+
+  [ -e $HOME/.vimrc ] && {
+    echo "found, not installing" >&2  
+    return
+  }
+  ln -s $PWD/vim/vimrc.vim $HOME/.vimrc
+
+  [ -d $HOME/.vim ] && return 
+  ln -s $PWD/vim/.vim $HOME/.vim
+
+  echo "installed." >&2
+}
+
+# git
+git() {
+  echo -n "checking git..." >&2
+  [ -e $HOME/.gitconfig ] && {
+    echo "found, not installing" >&2  
+    return
+  }
+  ln -s $PWD/misc/gitconfig $HOME/.gitconfig
+
+  [ -e $HOME/.gitignore ] && return
+  ln -s $PWD/misc/gitignore $HOME/.gitignore
+
+  echo "installed." >&2
+}
+
+# misc
+misc() {
+  echo -n "checking misc..." >&2
+
+  [ -e $HOME/.tmux.conf ] && {
+    echo "found, not installing" >&2  
+    return
+  }
+  ln -s $PWD/misc/tmux.conf $HOME/.tmux.conf
+
+  echo "installed." >&2
+}
+
+bash
+vim
+git
+misc
+# vim: nonu:nowrap:nospell:ft=sh
