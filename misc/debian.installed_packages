@@ -482,7 +482,7 @@ libbrlapi0.6:amd64				install
 libbs2b0:amd64					install
 libbsd-dev:amd64				install
 libbsd0:amd64					install
-libburn4					install
+libburn4:amd64					install
 libbz2-1.0:amd64				install
 libc-bin					install
 libc-dev-bin					install
@@ -932,7 +932,7 @@ libisccfg90					install
 libisl10:amd64					deinstall
 libisl15:amd64					install
 libiso9660-8					install
-libisofs6					install
+libisofs6:amd64					install
 libitm1:amd64					install
 libiw30:amd64					install
 libjack-jackd2-0:amd64				install
