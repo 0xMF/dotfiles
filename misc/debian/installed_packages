@@ -1089,13 +1089,14 @@ libnghttp2-14:amd64				install
 libnice10:amd64					install
 libnl-3-200:amd64				install
 libnl-genl-3-200:amd64				install
-libnl-route-3-200:amd64				install
 libnm-glib-vpn1:amd64				install
 libnm-glib4:amd64				install
 libnm-gtk-common				install
 libnm-gtk0:amd64				install
 libnm-util2:amd64				install
 libnm0:amd64					install
+libnma-common					install
+libnma0:amd64					install
 libnotify4:amd64				install
 libnspr4:amd64					install
 libnss-mdns:amd64				install
@@ -1525,6 +1526,7 @@ libx11-xcb1:amd64				install
 libx264-142:amd64				deinstall
 libx264-148:amd64				install
 libx265-68:amd64				install
+libx265-79:amd64				install
 libxapian22					install
 libxapian22v5:amd64				install
 libxatracker2:amd64				install
@@ -2043,6 +2045,7 @@ xserver-xorg-video-vesa				install
 xserver-xorg-video-vmware			install
 xsltproc					install
 xterm						install
+xtightvncviewer					install
 xtrans-dev					install
 xwayland					install
 xz-utils					install
