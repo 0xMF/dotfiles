@@ -858,7 +858,7 @@ libgtop2-7					deinstall
 libgtop2-common					install
 libgucharmap-2-90-7				install
 libgudev-1.0-0:amd64				install
-libgupnp-1.0-4					install
+libgupnp-1.0-4:amd64				install
 libgupnp-av-1.0-2				install
 libgupnp-dlna-2.0-3				install
 libgupnp-igd-1.0-4:amd64			install
@@ -913,7 +913,6 @@ libindicator3-7					install
 libindirect-perl				install
 libinput10:amd64				install
 libinput5:amd64					deinstall
-libintl-perl					install
 libio-html-perl					install
 libio-pty-perl					install
 libio-socket-inet6-perl				install
