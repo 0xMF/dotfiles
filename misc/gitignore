@@ -38,5 +38,6 @@ Thumbs.db
 
 # My files
 #####################
+secrets
 secrets.*
 local.*

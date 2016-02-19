@@ -4,7 +4,7 @@
 
 [core]
 	editor  = vim
-	excludesfile = ~/.gitignore 
+	excludesfile = ~/.gitignore
 	pager = more -s
 	#pager = more -Rq
 	#pager = less -cFEXq
@@ -39,7 +39,7 @@
 
 
 [alias]
-	st      = status 
+	st      = status
 	sts     = status -s
 	sta     = status
 	co      = checkout
@@ -132,4 +132,7 @@
 [github]
 	user = mark
 
-# vim: noet:nonu:nospell
+[rebase]
+	autosquash = true
+
+# vim: noet:nonu:nospell:ft=gitconfig
