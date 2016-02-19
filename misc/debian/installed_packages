@@ -116,6 +116,7 @@ dh-python					install
 dictionaries-common				install
 diffstat					install
 diffutils					install
+dirmngr						install
 distro-info-data				install
 dkms						install
 dleyna-server					install
@@ -1097,6 +1098,7 @@ libnm0:amd64					install
 libnma-common					install
 libnma0:amd64					install
 libnotify4:amd64				install
+libnpth0:amd64					install
 libnspr4:amd64					install
 libnss-mdns:amd64				install
 libnss-myhostname:amd64				install
@@ -1219,7 +1221,7 @@ libproxy1v5:amd64				install
 libpsl0:amd64					install
 libpstoedit0c2a					install
 libptexenc1:amd64				install
-libpth20:amd64					install
+libpth20:amd64					deinstall
 libpthread-stubs0-dev:amd64			install
 libpulse-mainloop-glib0:amd64			install
 libpulse0:amd64					install
