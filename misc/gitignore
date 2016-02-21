@@ -41,3 +41,4 @@ Thumbs.db
 secrets
 secrets.*
 local.*
+.crystal
