@@ -37,10 +37,16 @@ fi
 # setup our prompt PS1, first get OS release+version
 OSRV=
 if [ $(uname -o) == "GNU/Linux" ]; then 
-  if [ $(cat /etc/*-release|wc -l) -eq 1 ]; then
-      OSRV=$(cat /etc/*-release)
+  if [ -e /etc/os-release ]; then
+    OSRV=$(grep "^ID=" /etc/os-release|awk -F'=' '{ print $NF }')
+    OSRV=$(grep "PRETTY_NAME=" /etc/os-release|sed 's/"//g'|awk '{print $NF}')
+    #OSRV=${OSRV}$(grep "^VERSION_ID=" /etc/os-release|awk -F'=' '{ print $NF }'|sed 's/"//g;s/^/ /')
   else
-      OSRV=$(cat /etc/lsb-release|grep DESCRIPTION|sed -e 's/.*=//;s/\"//g')
+    if [ $(cat /etc/*-release|wc -l) -eq 1 ]; then
+        OSRV=$(cat /etc/*-release)
+    else
+        OSRV=$(cat /etc/lsb-release|grep DESCRIPTION|sed -e 's/.*=//;s/\"//g')
+    fi
   fi
 fi  
 if [ $(uname -o) == "FreeBSD" ]; then
