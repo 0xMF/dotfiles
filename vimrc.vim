@@ -1,14 +1,14 @@
-" vimrc
 "
+"** Global variables for this script
 
 "  MYVIM variable used to handle different OS repos/conf locations
 " use expand() because "$HOME", "~" or "$MYVIM" do not work
 " correctly with the let command. vim's function expand() tries to
 " correctly substitute environment variables from the shell.
+:let $MYVIM=expand("$HOME")
 :if has ("gui_win32")
-  :let $MYVIM=expand("$HOME")
+  :let $MYVIM=expand("c:/extra/repos/dotfiles/vim/")
 :else
-  :let $MYVIM=expand("$HOME")
   :let $USER=substitute(system("/usr/bin/id -u"),"\n","","g")
 :endif
 
@@ -18,7 +18,7 @@
 " work correctly with the let command. expand(), tries to expand the
 " environment variables from the shell, which works if your shell
 " supports that expanded environment.
-:let my_settings_path= expand("$HOME/.vim/my_settings")
+:let my_settings_path= expand("$MYVIM/.vim/my_settings")
 
 "** check if gvim is running and set its options accordingly
 :if has ("gui_running")
@@ -31,6 +31,7 @@
     :   set columns=114     "width in number of cols
     :   set lines=30        "height in number of lines
     :   set runtimepath=$VIMRUNTIME,$MYVIM/.vim
+    :   colors nice-gui     "select colorscheme
     :endif
 
     "** check os version where gvim is running
@@ -39,7 +40,10 @@
     :   set guifont=Rod:h10:cHEBREW "set font and its size
     :   set bs=2            "backspace over indent,eol,start
     :elseif has ("gui_gtk")
-    :   set guifont=Nimbus\ Mono\ L\ Bold\ 13 "set font and its size
+    ":   let hostname = substitute(system("uname -n"),"\n","","g")
+    ":   if (hostname == 'name')
+    :   set guifont=Source\ Code\ Pro\ Medium\ 12 "set font and its size
+    ":  set guifont=Nimbus\ Mono\ L\ Bold\ 13 "set font and its size
     :   set guioptions+=a   " visual selection can copy to clipboard
     :   set guioptions+=i   " show gvim color icon, instead of default
     :   let &guicursor = &guicursor . ",a:blinkon0"
@@ -62,13 +66,16 @@ set nocompatible        " Use VIM not vi
 syntax on               " start syntax highlighting
 set number              " display linenumbers in text
 set history=50          " keep track of last 50 chars
-set textwidth=80        " no of chars/line
-"set formatprg=par\ -reqw80  " use external par instead of Vim fmt, still avail with gw
+set textwidth=100       " force text width off (prev at 80 chars/line)
+set colorcolumn=100      " show the last column in colour
+"set formatprg=par\ -reqw100 " use external par instead of Vim fmt, still avail with gw
 set formatoptions=tcqnl " include numbered lists when formatting with gq
 set autoindent          " set automatic indenting
 set wrap                " force word wrapping on (does not put hard return)
 set linebreak           " does not breakup words
 set nojoinspaces        " avoids inserting two spaces when joining lines
+
+set encoding=utf-8      " set encoding to Unicode by default
 
 "** Tab settings
 set tabstop=2           " change tabstop from 8 (default) to 2
@@ -114,8 +121,6 @@ set directory=$MYVIM/.vim/backup " all the *.swp files go here
 :   echoerr "none of my scripts found"
 :endif
 
-
-"
 "** Vim70 features
 :if (version >= 700) && (has("gui_running"))
 :   set nospell
@@ -124,18 +129,6 @@ set directory=$MYVIM/.vim/backup " all the *.swp files go here
 :   set formatlistpat=^\\s*\\d\\+[\\]:.)}\*\\t\ ]\\s* "also called set flp
 :   set showtabline=1   " =0 never show tabs, =1 show if 2 or more tabs, =2 always show
 :endif
-
-"* Plugin management (via Vundle)
-"
-" Brief help
-" :PluginList       - lists configured plugins
-" :PluginInstall    - installs plugins; append `!` to update or just :PluginUpdate
-" :PluginSearch foo - searches for foo; append `!` to refresh local cache
-" :PluginClean      - confirms removal of unused plugins; append `!` to auto-approve removal
-"
-" see :h vundle for more details or wiki for FAQ
-" Put your non-Plugin stuff after this line
-"
 
 " set the runtime path to include Vundle and initialize
 "set runtimepath+=~/.vim/bundle/Vundle.vim
@@ -161,62 +154,14 @@ set directory=$MYVIM/.vim/backup " all the *.swp files go here
     "* Programmer settings for smart C/C++ style indents and commenting
     au FileType c,cpp :setlocal cindent
     au BufRead,BufNewFile *.c,*.cpp :setlocal comments-=://
+    au BufRead,BufNewFile *.c,*.cpp :setlocal comments+=mb:*
     au BufRead,BufNewFile *.c,*.cpp :setlocal comments+=slO://,mbO://,ebOx:--
 
-     " CMake settings
+    " CMake settings
     :autocmd BufRead,BufNewFile *.cmake,CMakeLists.txt,*.cmake.in runtime! indent/cmake.vim
     :autocmd BufRead,BufNewFile *.cmake,CMakeLists.txt,*.cmake.in setf cmake
     :autocmd BufRead,BufNewFile *.ctest,*.ctest.in setf cmake
     :autocmd BufRead,BufNewFile   CMakeLists.txt :setlocal syntax=cmake
-
-    "* conf files
-    "* options for conf file, turn autowrapping back on and remove numbered lists
-    "au FileType conf :setlocal comments+=fb:-
-    au FileType conf :setlocal formatoptions+=ntc
-    au FileType conf :setlocal formatlistpat=^\\s*-[\\t\ ]\\s*
-    au FileType conf :setlocal comments+=fb:-
-    au FileType conf :setlocal tw=84
-
-    "* dae files
-    "* options for COLLADA files
-    au BufRead,BufNewFile *.dae  :setlocal filetype=COLLADA
-    au FileType COLLADA          :setlocal syntax=xml
-
-     "* Go
-    :au BufRead,BufNewFile *.go setlocal filetype=go
-    ":au BufRead,BufNewFile *.go setlocal bomb
-    :au BufRead,BufNewFile *.go setlocal fileencoding=utf-8
-    :au BufRead,BufNewFile *.go setlocal spell
-    :au BufRead,BufNewFile *.go setlocal textwidth=85
-    :au BufRead,BufNewFile *.go setlocal colorcolumn=85
-    :au BufRead,BufNewFile *.go setlocal noexpandtab
-
-    "* Markdown
-    :au BufRead,BufNewFile *.md setlocal filetype=markdown
-
-    "*  Squirrel
-    : au BufNewFile,BufRead *.nut setlocal ft=squirrel
-
-    " tmux autodetection
-    : au BufNewFile,BufRead *.tmux.conf*,tmux.conf* setf tmux
-
-    "*  Python
-    : au BufNewFile,BufRead *.py setlocal ts=4
-    : au BufRead,BufNewFile *.py  :setlocal expandtab
-    ": au BufNewFile,BufRead *.py so <sfile>:h\vim70\ftplugin\python.vim
-
-
-    "* BibTeX  and LaTeX
-    : au BufNewFile,BufRead *.bib setlocal nospell
-    : au BufNewFile,BufRead *.bib setlocal tw=0
-    : au BufRead            *.dbj setlocal ft=tex
-
-    "* C/C++
-    "* Programmer settings for smart C/C++ style indents and commenting
-    au FileType c,cpp :setlocal cindent
-    au BufRead,BufNewFile *.c,*.cpp :setlocal comments-=://
-    au BufRead,BufNewFile *.c,*.cpp :setlocal comments+=mb:*
-    au BufRead,BufNewFile *.c,*.cpp :setlocal comments+=slO://,mbO://,ebOx:--
 
     "* conf files
     "* options for conf file, turn autowrapping back on and remove numbered lists
@@ -230,6 +175,16 @@ set directory=$MYVIM/.vim/backup " all the *.swp files go here
     au BufRead,BufNewFile *.dae  :setlocal filetype=COLLADA
     au FileType COLLADA          :setlocal syntax=xml
 
+    "* Go
+    :au BufRead,BufNewFile *.go setlocal filetype=go
+    ":au BufRead,BufNewFile *.go setlocal bomb
+    :au BufRead,BufNewFile *.go setlocal fileencoding=utf-8
+    :au BufRead,BufNewFile *.go setlocal spell
+    :au BufRead,BufNewFile *.go setlocal textwidth=85
+    ":au BufRead,BufNewFile *.go setlocal formatprg=par\ -reqw85
+    :au BufRead,BufNewFile *.go setlocal colorcolumn=85
+    :au BufRead,BufNewFile *.go setlocal noexpandtab
+
     "* Markdown
     :au BufRead,BufNewFile *.md setlocal filetype=markdown
 
@@ -238,7 +193,23 @@ set directory=$MYVIM/.vim/backup " all the *.swp files go here
     au FileType maxscript       :setlocal syntax=maxscript
     au FileType maxscript       :colorscheme nice-gui
 
-    "* SCALA files
+    "* OKSH files
+    au BufNewFile,BufRead .okshrc*,*.oksh :call SetFileTypeSH("sh")
+
+    "* options for PowerShell files
+    au BufNewFile,BufRead   *.ps1   setlocal ft=ps1
+    au BufNewFile,BufRead   *.psd1  setlocal ft=ps1
+    au BufNewFile,BufRead   *.psm1  setlocal ft=ps1
+    au BufRead,BufNewFile   *.ps1   :setlocal filetype=ps1
+    au FileType ps1                 :setlocal syntax=ps1
+    au FileType ps1                 :setlocal fileformat=dos
+
+    "*  Python
+    : au BufNewFile,BufRead *.py setlocal ts=4
+    : au BufRead,BufNewFile *.py  :setlocal expandtab
+    ": au BufNewFile,BufRead *.py so <sfile>:h\vim70\ftplugin\python.vim
+
+    "* options for SCALA files
     au BufRead,BufNewFile *.scala :setlocal filetype=scala
     au FileType SCALA             :setlocal syntax=scala
 
@@ -253,6 +224,7 @@ set directory=$MYVIM/.vim/backup " all the *.swp files go here
 
     "* Text file
     au BufRead,BufNewFile   *.txt :setlocal textwidth=100
+    "au BufRead,BufNewFile   *.txt :setlocal formatprg=par\ -reqw100
     au BufRead,BufNewFile   *.txt :setlocal syntax=asciidoc
     au BufRead,BufNewFile   *.txt :setlocal spell
     au BufRead,BufNewFile   *.txt :setlocal formatoptions+=n
@@ -267,28 +239,18 @@ set directory=$MYVIM/.vim/backup " all the *.swp files go here
     au BufRead,BufNewFile   *.txt :setlocal comments+=fb:\|
     au BufRead,BufNewFile   *.txt :setlocal nocindent
     au BufRead,BufNewFile   *.txt :setlocal autoindent
+    au BufRead,BufNewFile   *.txt :setlocal fileencoding=utf-8
+    "au FileType asciidoc    :call My_FileType()
 
     "* Texapp files
     au BufRead,BufNewFile   texapp-*.txt :setlocal nonumber
     au BufRead,BufNewFile   texapp-*.txt :setlocal wrap
     au BufRead,BufNewFile   texapp-*.txt :setlocal textwidth=0
-    au BufRead,BufNewFile   texapp-*.txt :setlocal formatprg=par\ -req
+    "au BufRead,BufNewFile   texapp-*.txt :setlocal formatprg=par\ -reqw0
     au BufRead,BufNewFile   texapp-*.txt :setlocal spell
     au BufRead,BufNewFile   texapp-*.txt :setlocal syntax=asciidoc
     au BufRead,BufNewFile   texapp-*.txt :setlocal filetype=asciidoc
     au BufRead,BufNewFile   texapp-*.txt :setlocal expandtab
-
-    "* options for PowerShell files
-    au BufNewFile,BufRead   *.ps1   setlocal ft=ps1
-    au BufNewFile,BufRead   *.psd1  setlocal ft=ps1
-    au BufNewFile,BufRead   *.psm1  setlocal ft=ps1
-    au BufRead,BufNewFile   *.ps1   :setlocal filetype=ps1
-    au FileType ps1                 :setlocal syntax=ps1
-    au FileType ps1                 :setlocal fileformat=dos
-
-    "*  Python
-    : au BufNewFile,BufRead *.py setlocal ts=4
-    : au BufRead,BufNewFile *.py  :setlocal noexpandtab
 
     "* VIM files (.vim) settings
     au FileType vim     :setlocal fileformat=unix
@@ -300,11 +262,12 @@ set directory=$MYVIM/.vim/backup " all the *.swp files go here
     au FileType help :setlocal nospell
 
     "* wikipedia files
-    au BufRead,BufNewFile *.wikipedia.org* :if &ft == 'flexwiki' | set filetype=Wikipedia | endif
-    au BufRead,BufNewFile *.wiki   :if &ft == 'flexwiki' |  set filetype=Wikipedia | endif
+    au BufRead,BufNewFile *.wikipedia.org* :if &ft == 'flexwiki' | setlocal filetype=Wikipedia | endif
+    au BufRead,BufNewFile *.wiki   :if &ft == 'flexwiki' |  setlocal filetype=Wikipedia | endif
     au FileType Wikipedia :so $MYVIM/.vim/ftdetect/Wikipedia.vim
     au BufRead,BufNewFile *.wiki :setlocal linebreak
     au BufRead,BufNewFile *.wiki :setlocal textwidth=0
+    "au BufRead,BufNewFile *.wiki :setlocal formatprg=par\ -reqw0
     au BufRead,BufNewFile *.wiki :setlocal formatoptions=rol
     au BufRead,BufNewFile *.wiki :noremap <buffer> k gk
     au BufRead,BufNewFile *.wiki :noremap <buffer> j gj
@@ -316,9 +279,21 @@ set directory=$MYVIM/.vim/backup " all the *.swp files go here
     au BufRead,BufNewFile *.wiki :inoremap <buffer> <Up> <C-O>gk
     au BufRead,BufNewFile *.wiki :inoremap <buffer> <Down> <C-O>gj
 
-    " utf-8 should be set if not already done globally
+    " utf-8 should be setlocal if not already done globally
     au BufRead,BufNewFile *.wiki :setlocal fileencoding=utf-8
     au BufRead,BufNewFile *.wiki :setlocal matchpairs+=<:>
     au BufRead,BufNewFile *.wiki :setlocal comments=n:#,n:*,n:\:,s:{\|,m:\|,ex:\|}
 
 :endif
+
+"* Plugin management (via Vundle)
+"
+" Brief help
+" :PluginList       - lists configured plugins
+" :PluginInstall    - installs plugins; append `!` to update or just :PluginUpdate
+" :PluginSearch foo - searches for foo; append `!` to refresh local cache
+" :PluginClean      - confirms removal of unused plugins; append `!` to auto-approve removal
+"
+" see :h vundle for more details or wiki for FAQ
+" Put your non-Plugin stuff after this line
+"
