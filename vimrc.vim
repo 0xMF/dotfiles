@@ -64,7 +64,7 @@
 "** Custom Settings
 set nocompatible        " Use VIM not vi
 syntax on               " start syntax highlighting
-set number              " display linenumbers in text
+set nonumber            " hides linenumbers by default
 set history=50          " keep track of last 50 chars
 set textwidth=100       " force text width off (prev at 80 chars/line)
 set colorcolumn=100      " show the last column in colour
@@ -229,9 +229,13 @@ set directory=$MYVIM/.vim/backup " all the *.swp files go here
     : au BufNewFile,BufRead *.tmux.conf*,tmux.conf* setf tmux
 
     "* Text file
-    au BufRead,BufNewFile   *.txt :setlocal textwidth=100
     "au BufRead,BufNewFile   *.txt :setlocal formatprg=par\ -reqw100
     au BufRead,BufNewFile   *.txt :setlocal syntax=asciidoc
+    au BufRead,BufNewFile   *.txt setlocal colorcolumn=70
+    au BufRead,BufNewFile   *.txt setlocal textwidth=72
+    au BufRead,BufNewFile   *.txt setlocal nowrap
+    au BufRead,BufNewFile   *.txt setlocal nonumber
+    au BufRead,BufNewFile   *.txt setlocal guioptions-=r
     au BufRead,BufNewFile   *.txt :setlocal spell
     au BufRead,BufNewFile   *.txt :setlocal formatoptions+=n
     au BufRead,BufNewFile   *.txt :setlocal comments+=n:>
