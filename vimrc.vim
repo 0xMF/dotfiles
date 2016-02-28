@@ -187,6 +187,12 @@ set directory=$MYVIM/.vim/backup " all the *.swp files go here
 
     "* Markdown
     :au BufRead,BufNewFile *.md setlocal filetype=markdown
+    :au BufRead,BufNewFile *.md setlocal spell
+    :au BufRead,BufNewFile *.md setlocal colorcolumn=70
+    :au BufRead,BufNewFile *.md setlocal textwidth=72
+    :au BufRead,BufNewFile *.md setlocal nowrap
+    :au BufRead,BufNewFile *.md setlocal nonumber
+    :au BufRead,BufNewFile *.md setlocal guioptions-=r
 
     "* MAXScript
     au BufRead,BufNewFile *.ms  :setlocal filetype=maxscript
