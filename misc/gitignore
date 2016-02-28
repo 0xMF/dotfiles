@@ -42,3 +42,4 @@ secrets
 secrets.*
 local.*
 .crystal
+backup
