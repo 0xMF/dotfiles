@@ -71,7 +71,7 @@ set colorcolumn=100      " show the last column in colour
 "set formatprg=par\ -reqw100 " use external par instead of Vim fmt, still avail with gw
 set formatoptions=tcqnl " include numbered lists when formatting with gq
 set autoindent          " set automatic indenting
-set wrap                " force word wrapping on (does not put hard return)
+set nowrap              " do not force word wrapping on (does not put hard return)
 set linebreak           " does not breakup words
 set nojoinspaces        " avoids inserting two spaces when joining lines
 
@@ -146,58 +146,61 @@ set directory=$MYVIM/.vim/backup " all the *.swp files go here
     :filetype on        " enables file type detection.
 
     "* BibTeX  and LaTeX
-    : au BufNewFile,BufRead *.bib setlocal nospell
-    : au BufNewFile,BufRead *.bib setlocal tw=0
-    : au BufRead            *.dbj setlocal ft=tex
+    au BufNewFile,BufRead *.bib setlocal nospell
+    au BufNewFile,BufRead *.bib setlocal tw=0
+    au BufRead            *.dbj setlocal ft=tex
 
     "* C/C++
     "* Programmer settings for smart C/C++ style indents and commenting
-    au FileType c,cpp :setlocal cindent
-    au BufRead,BufNewFile *.c,*.cpp :setlocal comments-=://
-    au BufRead,BufNewFile *.c,*.cpp :setlocal comments+=mb:*
-    au BufRead,BufNewFile *.c,*.cpp :setlocal comments+=slO://,mbO://,ebOx:--
+    au FileType c,cpp setlocal cindent
+    au BufRead,BufNewFile *.c,*.cpp setlocal comments-=://
+    au BufRead,BufNewFile *.c,*.cpp setlocal comments+=mb:*
+    au BufRead,BufNewFile *.c,*.cpp setlocal comments+=slO://,mbO://,ebOx:--
 
     " CMake settings
-    :autocmd BufRead,BufNewFile *.cmake,CMakeLists.txt,*.cmake.in runtime! indent/cmake.vim
-    :autocmd BufRead,BufNewFile *.cmake,CMakeLists.txt,*.cmake.in setf cmake
-    :autocmd BufRead,BufNewFile *.ctest,*.ctest.in setf cmake
-    :autocmd BufRead,BufNewFile   CMakeLists.txt :setlocal syntax=cmake
+    autocmd BufRead,BufNewFile *.cmake,CMakeLists.txt,*.cmake.in runtime! indent/cmake.vim
+    autocmd BufRead,BufNewFile *.cmake,CMakeLists.txt,*.cmake.in setf cmake
+    autocmd BufRead,BufNewFile *.ctest,*.ctest.in setf cmake
+    autocmd BufRead,BufNewFile   CMakeLists.txt setlocal syntax=cmake
 
     "* conf files
     "* options for conf file, turn autowrapping back on and remove numbered lists
-    au FileType conf :setlocal tw=84
-    au FileType conf :setlocal formatoptions+=ntc
-    au FileType conf :setlocal formatlistpat=^\\s*\\d\\+[\\]:.)}\\t\ ]\\s* "also called set flp
-    au FileType conf :setlocal comments+=fb:-
+    au FileType conf setlocal tw=84
+    au FileType conf setlocal formatoptions+=ntc
+    au FileType conf setlocal formatlistpat=^\\s*\\d\\+[\\]:.)}\\t\ ]\\s* "also called set flp
+    au FileType conf setlocal comments+=fb:-
 
     "* dae files
     "* options for COLLADA files
-    au BufRead,BufNewFile *.dae  :setlocal filetype=COLLADA
-    au FileType COLLADA          :setlocal syntax=xml
+    au BufRead,BufNewFile *.dae  setlocal filetype=COLLADA
+    au FileType COLLADA          setlocal syntax=xml
+
+    "* git commit messages
+    au FileType gitcommit setlocal spell textwidth=72
 
     "* Go
-    :au BufRead,BufNewFile *.go setlocal filetype=go
-    ":au BufRead,BufNewFile *.go setlocal bomb
-    :au BufRead,BufNewFile *.go setlocal fileencoding=utf-8
-    :au BufRead,BufNewFile *.go setlocal spell
-    :au BufRead,BufNewFile *.go setlocal textwidth=85
-    ":au BufRead,BufNewFile *.go setlocal formatprg=par\ -reqw85
-    :au BufRead,BufNewFile *.go setlocal colorcolumn=85
-    :au BufRead,BufNewFile *.go setlocal noexpandtab
+    au BufRead,BufNewFile *.go setlocal filetype=go
+    "au BufRead,BufNewFile *.go setlocal bomb
+    au BufRead,BufNewFile *.go setlocal fileencoding=utf-8
+    au BufRead,BufNewFile *.go setlocal spell
+    au BufRead,BufNewFile *.go setlocal textwidth=85
+    "au BufRead,BufNewFile *.go setlocal formatprg=par\ -reqw85
+    au BufRead,BufNewFile *.go setlocal colorcolumn=85
+    au BufRead,BufNewFile *.go setlocal noexpandtab
 
     "* Markdown
-    :au BufRead,BufNewFile *.md setlocal filetype=markdown
-    :au BufRead,BufNewFile *.md setlocal spell
-    :au BufRead,BufNewFile *.md setlocal colorcolumn=70
-    :au BufRead,BufNewFile *.md setlocal textwidth=72
-    :au BufRead,BufNewFile *.md setlocal nowrap
-    :au BufRead,BufNewFile *.md setlocal nonumber
-    :au BufRead,BufNewFile *.md setlocal guioptions-=r
+    au BufRead,BufNewFile *.md setlocal filetype=markdown
+    au BufRead,BufNewFile *.md setlocal spell
+    au BufRead,BufNewFile *.md setlocal colorcolumn=70
+    au BufRead,BufNewFile *.md setlocal textwidth=72
+    au BufRead,BufNewFile *.md setlocal nowrap
+    au BufRead,BufNewFile *.md setlocal nonumber
+    au BufRead,BufNewFile *.md setlocal guioptions-=r
 
     "* MAXScript
-    au BufRead,BufNewFile *.ms  :setlocal filetype=maxscript
-    au FileType maxscript       :setlocal syntax=maxscript
-    au FileType maxscript       :colorscheme nice-gui
+    au BufRead,BufNewFile *.ms  setlocal filetype=maxscript
+    au FileType maxscript       setlocal syntax=maxscript
+    au FileType maxscript       colorscheme nice-gui
 
     "* OKSH files
     au BufNewFile,BufRead .okshrc*,*.oksh :call SetFileTypeSH("sh")
@@ -206,93 +209,92 @@ set directory=$MYVIM/.vim/backup " all the *.swp files go here
     au BufNewFile,BufRead   *.ps1   setlocal ft=ps1
     au BufNewFile,BufRead   *.psd1  setlocal ft=ps1
     au BufNewFile,BufRead   *.psm1  setlocal ft=ps1
-    au BufRead,BufNewFile   *.ps1   :setlocal filetype=ps1
-    au FileType ps1                 :setlocal syntax=ps1
-    au FileType ps1                 :setlocal fileformat=dos
+    au BufRead,BufNewFile   *.ps1   setlocal filetype=ps1
+    au FileType ps1                 setlocal syntax=ps1
+    au FileType ps1                 setlocal fileformat=dos
 
     "*  Python
-    : au BufNewFile,BufRead *.py setlocal ts=4
-    : au BufRead,BufNewFile *.py  :setlocal expandtab
-    ": au BufNewFile,BufRead *.py so <sfile>:h\vim70\ftplugin\python.vim
+    au BufNewFile,BufRead *.py setlocal ts=4
+    au BufRead,BufNewFile *.py  setlocal expandtab
+    "au BufNewFile,BufRead *.py so <sfile>:h\vim70\ftplugin\python.vim
 
     "* options for SCALA files
-    au BufRead,BufNewFile *.scala :setlocal filetype=scala
-    au FileType SCALA             :setlocal syntax=scala
+    au BufRead,BufNewFile *.scala setlocal filetype=scala
+    au FileType SCALA             setlocal syntax=scala
 
     "* SH files
-    au FileType sh    :setlocal fileformat=unix
+    au FileType sh    setlocal fileformat=unix
 
     "*  Squirrel
-    : au BufNewFile,BufRead *.nut setlocal ft=squirrel
+    au BufNewFile,BufRead *.nut setlocal ft=squirrel
 
     " tmux autodetection
-    : au BufNewFile,BufRead *.tmux.conf*,tmux.conf* setf tmux
+    au BufNewFile,BufRead *.tmux.conf*,tmux.conf* setf tmux
 
     "* Text file
-    "au BufRead,BufNewFile   *.txt :setlocal formatprg=par\ -reqw100
-    au BufRead,BufNewFile   *.txt :setlocal syntax=asciidoc
+    "au BufRead,BufNewFile   *.txt setlocal formatprg=par\ -reqw100
+    au BufRead,BufNewFile   *.txt setlocal syntax=asciidoc
     au BufRead,BufNewFile   *.txt setlocal colorcolumn=70
     au BufRead,BufNewFile   *.txt setlocal textwidth=72
     au BufRead,BufNewFile   *.txt setlocal nowrap
     au BufRead,BufNewFile   *.txt setlocal nonumber
     au BufRead,BufNewFile   *.txt setlocal guioptions-=r
-    au BufRead,BufNewFile   *.txt :setlocal spell
-    au BufRead,BufNewFile   *.txt :setlocal formatoptions+=n
-    au BufRead,BufNewFile   *.txt :setlocal comments+=n:>
-    au BufRead,BufNewFile   *.txt :setlocal comments=b:>
-    au BufRead,BufNewFile   *.txt :setlocal comments+=b:>>
-    au BufRead,BufNewFile   *.txt :setlocal comments+=b:>>>
-    au BufRead,BufNewFile   *.txt :setlocal comments+=b:#
-    au BufRead,BufNewFile   *.txt :setlocal comments+=fb:-
-    au BufRead,BufNewFile   *.txt :setlocal comments+=fb:*
-    au BufRead,BufNewFile   *.txt :setlocal comments+=fb:.
-    au BufRead,BufNewFile   *.txt :setlocal comments+=fb:\|
-    au BufRead,BufNewFile   *.txt :setlocal nocindent
-    au BufRead,BufNewFile   *.txt :setlocal autoindent
-    au BufRead,BufNewFile   *.txt :setlocal fileencoding=utf-8
+    au BufRead,BufNewFile   *.txt setlocal spell
+    au BufRead,BufNewFile   *.txt setlocal formatoptions+=n
+    au BufRead,BufNewFile   *.txt setlocal comments+=n:>
+    au BufRead,BufNewFile   *.txt setlocal comments=b:>
+    au BufRead,BufNewFile   *.txt setlocal comments+=b:>>
+    au BufRead,BufNewFile   *.txt setlocal comments+=b:>>>
+    au BufRead,BufNewFile   *.txt setlocal comments+=b:#
+    au BufRead,BufNewFile   *.txt setlocal comments+=fb:-
+    au BufRead,BufNewFile   *.txt setlocal comments+=fb:*
+    au BufRead,BufNewFile   *.txt setlocal comments+=fb:.
+    au BufRead,BufNewFile   *.txt setlocal comments+=fb:\|
+    au BufRead,BufNewFile   *.txt setlocal nocindent
+    au BufRead,BufNewFile   *.txt setlocal autoindent
+    "au BufRead,BufNewFile   *.txt setlocal fileencoding=utf-8
     "au FileType asciidoc    :call My_FileType()
 
     "* Texapp files
-    au BufRead,BufNewFile   texapp-*.txt :setlocal nonumber
-    au BufRead,BufNewFile   texapp-*.txt :setlocal wrap
-    au BufRead,BufNewFile   texapp-*.txt :setlocal textwidth=0
-    "au BufRead,BufNewFile   texapp-*.txt :setlocal formatprg=par\ -reqw0
-    au BufRead,BufNewFile   texapp-*.txt :setlocal spell
-    au BufRead,BufNewFile   texapp-*.txt :setlocal syntax=asciidoc
-    au BufRead,BufNewFile   texapp-*.txt :setlocal filetype=asciidoc
-    au BufRead,BufNewFile   texapp-*.txt :setlocal expandtab
+    au BufRead,BufNewFile   texapp-*.txt setlocal nonumber
+    au BufRead,BufNewFile   texapp-*.txt setlocal wrap
+    au BufRead,BufNewFile   texapp-*.txt setlocal textwidth=0
+    "au BufRead,BufNewFile   texapp-*.txt setlocal formatprg=par\ -reqw0
+    au BufRead,BufNewFile   texapp-*.txt setlocal spell
+    au BufRead,BufNewFile   texapp-*.txt setlocal syntax=asciidoc
+    au BufRead,BufNewFile   texapp-*.txt setlocal filetype=asciidoc
+    au BufRead,BufNewFile   texapp-*.txt setlocal expandtab
 
     "* VIM files (.vim) settings
-    au FileType vim     :setlocal fileformat=unix
-    au BufRead,BufNewFile *.vim :setlocal fileformat=unix
+    au FileType vim     setlocal fileformat=unix
+    au BufRead,BufNewFile *.vim setlocal fileformat=unix
 
     "* vim help files
     "* switch off the listing of unprintable characters
-    au FileType help :setlocal nolist
-    au FileType help :setlocal nospell
+    au FileType help setlocal nolist
+    au FileType help setlocal nospell
 
     "* wikipedia files
     au BufRead,BufNewFile *.wikipedia.org* :if &ft == 'flexwiki' | setlocal filetype=Wikipedia | endif
     au BufRead,BufNewFile *.wiki   :if &ft == 'flexwiki' |  setlocal filetype=Wikipedia | endif
     au FileType Wikipedia :so $MYVIM/.vim/ftdetect/Wikipedia.vim
-    au BufRead,BufNewFile *.wiki :setlocal linebreak
-    au BufRead,BufNewFile *.wiki :setlocal textwidth=0
-    "au BufRead,BufNewFile *.wiki :setlocal formatprg=par\ -reqw0
-    au BufRead,BufNewFile *.wiki :setlocal formatoptions=rol
-    au BufRead,BufNewFile *.wiki :noremap <buffer> k gk
-    au BufRead,BufNewFile *.wiki :noremap <buffer> j gj
-    au BufRead,BufNewFile *.wiki :noremap <buffer> <Up> gk
-    au BufRead,BufNewFile *.wiki :noremap <buffer> <Down> gj
-    au BufRead,BufNewFile *.wiki :noremap <buffer> 0 g0
-    au BufRead,BufNewFile *.wiki :noremap <buffer> ^ g^
-    au BufRead,BufNewFile *.wiki :noremap <buffer> $ g$
-    au BufRead,BufNewFile *.wiki :inoremap <buffer> <Up> <C-O>gk
-    au BufRead,BufNewFile *.wiki :inoremap <buffer> <Down> <C-O>gj
-
+    au BufRead,BufNewFile *.wiki setlocal linebreak
+    au BufRead,BufNewFile *.wiki setlocal textwidth=0
+    "au BufRead,BufNewFile *.wiki setlocal formatprg=par\ -reqw0
+    au BufRead,BufNewFile *.wiki setlocal formatoptions=rol
+    au BufRead,BufNewFile *.wiki noremap <buffer> k gk
+    au BufRead,BufNewFile *.wiki noremap <buffer> j gj
+    au BufRead,BufNewFile *.wiki noremap <buffer> <Up> gk
+    au BufRead,BufNewFile *.wiki noremap <buffer> <Down> gj
+    au BufRead,BufNewFile *.wiki noremap <buffer> 0 g0
+    au BufRead,BufNewFile *.wiki noremap <buffer> ^ g^
+    au BufRead,BufNewFile *.wiki noremap <buffer> $ g$
+    au BufRead,BufNewFile *.wiki inoremap <buffer> <Up> <C-O>gk
+    au BufRead,BufNewFile *.wiki inoremap <buffer> <Down> <C-O>gj
     " utf-8 should be setlocal if not already done globally
-    au BufRead,BufNewFile *.wiki :setlocal fileencoding=utf-8
-    au BufRead,BufNewFile *.wiki :setlocal matchpairs+=<:>
-    au BufRead,BufNewFile *.wiki :setlocal comments=n:#,n:*,n:\:,s:{\|,m:\|,ex:\|}
+    au BufRead,BufNewFile *.wiki setlocal fileencoding=utf-8
+    au BufRead,BufNewFile *.wiki setlocal matchpairs+=<:>
+    au BufRead,BufNewFile *.wiki setlocal comments=n:#,n:*,n:\:,s:{\|,m:\|,ex:\|}
 
 :endif
 
