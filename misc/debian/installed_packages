@@ -80,6 +80,7 @@ cpp-5						install
 cracklib-runtime				install
 crda						install
 cron						install
+crystal						install
 cups						install
 cups-browsed					install
 cups-bsd					install
@@ -255,8 +256,11 @@ gir1.2-wnck-3.0:amd64				install
 gir1.2-xkl-1.0					install
 gir1.2-zeitgeist-2.0:amd64			install
 git						install
+git-doc						install
+git-gui						install
 git-man						install
 gitg						install
+gitk						install
 gkbd-capplet					install
 gksu						install
 glib-networking:amd64				install
@@ -309,7 +313,6 @@ grub-pc-bin					install
 grub2-common					install
 gsettings-desktop-schemas			install
 gsfonts						install
-gstreamer0.10-plugins-base:amd64		install
 gstreamer1.0-clutter-3.0			install
 gstreamer1.0-libav:amd64			install
 gstreamer1.0-nice:amd64				install
@@ -360,6 +363,7 @@ info						install
 init						install
 init-system-helpers				install
 initramfs-tools					install
+initramfs-tools-core				install
 initscripts					install
 inkscape					install
 insserv						install
@@ -413,7 +417,6 @@ libart-2.0-2:amd64				install
 libasan0:amd64					install
 libasan1:amd64					install
 libasan2:amd64					install
-libasn1-8-heimdal:amd64				install
 libasound2:amd64				install
 libasound2-data					install
 libasound2-plugins:amd64			install
@@ -829,14 +832,13 @@ libgsl0ldbl					install
 libgsl2:amd64					install
 libgsm1:amd64					install
 libgssapi-krb5-2:amd64				install
-libgssapi3-heimdal:amd64			install
 libgssdp-1.0-3					install
 libgstreamer-plugins-bad0.10-0:amd64		deinstall
 libgstreamer-plugins-bad1.0-0:amd64		install
-libgstreamer-plugins-base0.10-0:amd64		install
+libgstreamer-plugins-base0.10-0:amd64		deinstall
 libgstreamer-plugins-base1.0-0:amd64		install
 libgstreamer-vaapi1.0-0:amd64			install
-libgstreamer0.10-0:amd64			install
+libgstreamer0.10-0:amd64			deinstall
 libgstreamer1.0-0:amd64				install
 libgtk-3-0:amd64				install
 libgtk-3-bin					install
@@ -871,9 +873,6 @@ libgweather-common				install
 libgxps2:amd64					install
 libharfbuzz-icu0:amd64				install
 libharfbuzz0b:amd64				install
-libhcrypto4-heimdal:amd64			install
-libheimbase1-heimdal:amd64			install
-libheimntlm0-heimdal:amd64			install
 libhogweed2:amd64				install
 libhogweed4:amd64				install
 libhpmud0					install
@@ -889,7 +888,6 @@ libhttp-message-perl				install
 libhttp-negotiate-perl				install
 libhttp-parser2.1:amd64				install
 libhunspell-1.3-0:amd64				install
-libhx509-5-heimdal:amd64			install
 libhyphen0					install
 libibus-1.0-5:amd64				install
 libical1a					install
@@ -958,7 +956,6 @@ libkeyutils1:amd64				install
 libklibc					install
 libkmod2:amd64					install
 libkpathsea6:amd64				install
-libkrb5-26-heimdal:amd64			install
 libkrb5-3:amd64					install
 libkrb5support0:amd64				install
 libksba8:amd64					install
@@ -1103,7 +1100,6 @@ libnspr4:amd64					install
 libnss-mdns:amd64				install
 libnss-myhostname:amd64				install
 libnss3:amd64					install
-libntdb1:amd64					install
 libnuma1:amd64					install
 liboauth0:amd64					install
 libobjc4:amd64					install
@@ -1253,8 +1249,7 @@ libqt5svg5:amd64				install
 libqt5widgets5:amd64				install
 libqt5x11extras5:amd64				install
 libquadmath0:amd64				install
-libquvi-scripts					install
-libquvi7:amd64					install
+libquvi7:amd64					deinstall
 libraptor2-0:amd64				install
 librarian0					install
 librasqal3:amd64				install
@@ -1283,7 +1278,6 @@ librest-0.7-0:amd64				install
 librevenge-0.0-0				install
 librhythmbox-core8				deinstall
 librhythmbox-core9				install
-libroken18-heimdal:amd64			install
 librole-tiny-perl				install
 librsvg2-2:amd64				install
 librsvg2-common:amd64				install
@@ -1440,7 +1434,7 @@ libusbmuxd4:amd64				install
 libusbredirhost1:amd64				install
 libusbredirparser1:amd64			install
 libustr-1.0-1:amd64				install
-libutempter0					install
+libutempter0:amd64				install
 libuuid1:amd64					install
 libv4l-0:amd64					install
 libv4lconvert0:amd64				install
@@ -1486,7 +1480,6 @@ libwebpmux1:amd64				install
 libwebrtc-audio-processing-0:amd64		install
 libwildmidi-config				install
 libwildmidi1:amd64				install
-libwind0-heimdal:amd64				install
 libwinpr-crt0.1:amd64				install
 libwinpr-crypto0.1:amd64			install
 libwinpr-dsparse0.1:amd64			install
@@ -1606,6 +1599,7 @@ libxxf86dga1:amd64				install
 libxxf86vm1:amd64				install
 libyajl2:amd64					install
 libyaml-0-2:amd64				install
+libyaml-libyaml-perl				install
 libyaml-tiny-perl				install
 libyelp0					install
 libzbar0					install
@@ -1858,6 +1852,7 @@ ruby-power-assert				install
 ruby-test-unit					install
 ruby-thor					install
 ruby2.2						install
+ruby2.2-doc					install
 rubygems-integration				install
 rygel						install
 samba-libs:amd64				install
@@ -1917,6 +1912,7 @@ texlive-latex-extra				install
 texlive-latex-extra-doc				install
 texlive-latex-recommended			install
 texlive-latex-recommended-doc			install
+texlive-luatex					install
 texlive-math-extra				install
 texlive-pictures				install
 texlive-pictures-doc				install
