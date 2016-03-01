@@ -164,11 +164,13 @@ fontconfig-config				install
 fonts-dejavu					install
 fonts-dejavu-core				install
 fonts-dejavu-extra				install
-fonts-droid					install
+fonts-droid					deinstall
+fonts-droid-fallback				install
 fonts-freefont-ttf				install
 fonts-lato					install
 fonts-liberation				install
 fonts-lmodern					install
+fonts-noto-mono					install
 fonts-opensymbol				install
 fonts-texgyre					install
 foomatic-db-compressed-ppds			install
@@ -902,7 +904,7 @@ libieee1284-3:amd64				install
 libijs-0.35:amd64				install
 libilmbase12:amd64				install
 libilmbase6:amd64				install
-libilmbase6v5:amd64				install
+libilmbase6v5:amd64				deinstall
 libimage-magick-perl				install
 libimage-magick-q16-perl			install
 libimobiledevice4:amd64				deinstall
@@ -1134,7 +1136,8 @@ libopencv-video2.4:amd64			install
 libopencv-video2.4v5:amd64			install
 libopenexr22:amd64				install
 libopenexr6:amd64				install
-libopenexr6v5:amd64				install
+libopenexr6v5:amd64				deinstall
+libopenjp2-7:amd64				install
 libopenjpeg5:amd64				install
 libopenraw1:amd64				deinstall
 libopenvg1-mesa:amd64				deinstall
@@ -1408,7 +1411,7 @@ libtotem-plparser-common			install
 libtotem-plparser18:amd64			install
 libtotem0					install
 libtracker-sparql-1.0-0:amd64			install
-libtrio2:amd64					install
+libtrio2:amd64					deinstall
 libtry-tiny-perl				install
 libtsan0:amd64					install
 libtwolame0:amd64				install
@@ -1519,7 +1522,6 @@ libx11-protocol-perl				install
 libx11-xcb1:amd64				install
 libx264-142:amd64				deinstall
 libx264-148:amd64				install
-libx265-68:amd64				install
 libx265-79:amd64				install
 libxapian22					install
 libxapian22v5:amd64				install

@@ -6,26 +6,10 @@ bash() {
     echo "found, not installing" >&2  
     return
   }
-  ln -s $PWD/bashrc/bashrc.bash $HOME/.bashrc
+  ln -s $PWD/shells/bash/bashrc.bash $HOME/.bashrc
 
   [ -d $HOME/.bash ] && return
-  ln -s $PWD/bashrc $HOME/.bash
-
-  echo "installed." >&2
-}
-
-# vim
-vim() {
-  echo -n "checking vim..." >&2
-
-  [ -e $HOME/.vimrc ] && {
-    echo "found, not installing" >&2  
-    return
-  }
-  ln -s $PWD/vim/vimrc.vim $HOME/.vimrc
-
-  [ -d $HOME/.vim ] && return 
-  ln -s $PWD/vim/.vim $HOME/.vim
+  ln -s $PWD/shells/bash $HOME/.bash
 
   echo "installed." >&2
 }
@@ -58,8 +42,25 @@ misc() {
   echo "installed." >&2
 }
 
+# vim
+vim() {
+  echo -n "checking vim..." >&2
+
+  [ -e $HOME/.vimrc ] && {
+    echo "found, not installing" >&2  
+    return
+  }
+  ln -s $PWD/vim/vimrc.vim $HOME/.vimrc
+
+  [ -d $HOME/.vim ] && return 
+  ln -s $PWD/vim/.vim $HOME/.vim
+
+  echo "installed." >&2
+}
+
 bash
-vim
 git
 misc
+vim
+
 # vim: nonu:nowrap:nospell:ft=sh
