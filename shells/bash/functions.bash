@@ -50,9 +50,9 @@ function parse_git_branch_colour {
   if [ -z "$br" ]; then
     return
   elif [ "$br" == "master" ]; then
-    echo " $BLUE($RED"$br"$BLUE $(parse_git_dirty))"
+    echo " $BLUE($RED"$br"$BLUE $(parse_git_dirty)$BLUE)"
   else
-    echo " $BLUE($YELLOW"$br"$BLUE $(parse_git_dirty))"
+    echo " $BLUE($YELLOW"$br"$BLUE $(parse_git_dirty)$BLUE)"
   fi
 }
 
@@ -116,22 +116,38 @@ function todo(){
 }
 
 function ps1 {
-  PS1="$GREEN${OSRV}$BLUE:\w$(parse_git_branch_colour)$NOCOLOR$ "
+  if [ `id -u` -eq 0 ]; then
+    PS1="$RED${OSRV}$BLUE:\w$(parse_git_branch_colour)$RED#$NOCOLOR "
+  else
+    PS1="$GREEN${OSRV}$BLUE:\w$(parse_git_branch_colour)$NOCOLOR$ "
+  fi
   PROMPT_COMMAND="ps1"
 }
 
 function psh {
-  PS1="$BLUE\h:\W$(parse_git_branch_colour)$NOCOLOR$ "
+  if [ `id -u` -eq 0 ]; then
+    PS1="$RED\h:\W$(parse_git_branch_colour)$RED#$NOCOLOR "
+  else
+    PS1="$BLUE\h:\W$(parse_git_branch_colour)$NOCOLOR$ "
+  fi
   PROMPT_COMMAND="psh"
 }
 
 function pss {
-  PS1="$BLUE\W$(parse_git_branch_colour)$NOCOLOR$ "
+  if [ `id -u` -eq 0 ]; then
+    PS1="$RED\W$(parse_git_branch_colour)$RED#$NOCOLOR "
+  else
+    PS1="$BLUE\W$(parse_git_branch_colour)$NOCOLOR$ "
+  fi
   PROMPT_COMMAND="pss"
 }
 
 function psl {
-  PS1="$CYAN\W$(parse_git_branch_colour)$NOCOLOR$ "
+  if [ `id -u` -eq 0 ]; then
+    PS1="$PURPLE\W$(parse_git_branch_colour)$RED#$NOCOLOR "
+  else
+    PS1="$CYAN\W$(parse_git_branch_colour)$NOCOLOR$ "
+  fi
   PROMPT_COMMAND="psl"
 }
 
@@ -147,6 +163,10 @@ function poof {
 
 function share {
   sudo mount -t vboxsf -o uid=1000,gid=1000,dmode=700,fmode=600,umask=077 share /home/mark/share
+}
+
+function su {
+  [ -z "$1" ] && /bin/su -m || /bin/su "$1"
 }
 
 function anc {

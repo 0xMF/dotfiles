@@ -34,7 +34,6 @@ else
   alias lc='ls -Cp -w 120|less -FRMS'
   alias ll='ls -lh'
   alias lld='ls -lhd'
-  alias su='su -'
   alias stats="man -k ' ' | grep -Ee 'stat \((1|8)\) '"
 
 fi
