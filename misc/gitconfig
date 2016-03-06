@@ -56,78 +56,83 @@
 	lolar   = log --decorate --pretty=oneline --abbrev-commit --all --reverse
 	ls      = ls-files
 
-  ga      = add
-  gb      = branch
-  gba     = branch -a
-  gc      = commit -v
-  #'gc!'   = commit -v --amend
-  gca     = commit -v -a
-  #'gca!'  = commit -v -a --amend
-  gcl     = config --list
-  gclean  = reset --hard && git clean -dfx
-  gcm     = checkout master
-  gcmsg   = commit -m
-  gco     = checkout
-  gcount  = shortlog -sn
-  gcp     = cherry-pick
-  gd      = diff
-  gdc     = diff --cached
-  gg      = gui citool
-  gga     = gui citool --amend
-  ggpnp   = pull origin $(current_branch) && git push origin $(current_branch)
-  ggpull  = pull origin $(current_branch)
-  ggpur   = pull --rebase origin $(current_branch)
-  ggpush  = push origin $(current_branch)
-  gignore = update-index --assume-unchanged
-  gignored= ls-files -v | grep "^[[:lower:]]"
-  git-svn-dcommit-push= svn dcommit && git push github master:svntrunk
-  gk      =k --all --branches
-  gl      = pull
-  glg     = log --stat --max-count=10
-  glgg    = log --graph --max-count=10
-  glgga   = log --graph --decorate --all
-  glo     = log --oneline --decorate --color
-  glog    = log --oneline --decorate --color --graph
-  glp     =_git_log_prettily
-  gm      = merge
-  gmt     = mergetool --no-prompt
-  gp      = push
-  gpoat   = push origin --all && git push origin --tags
-  gr      = remote
-  grba    = rebase --abort
-  grbc    = rebase --continue
-  grbi    = rebase -i
-  grh     = reset HEAD
-  grhh    = reset HEAD --hard
-  grmv    = remote rename
-  grrm    = remote remove
-  grset   = remote set-url
-  grt     ='cd $(git rev-parse --show-toplevel || echo ".")'
-  grup    = remote update
-  grv     = remote -v
-  gsd     = svn dcommit
-  gsr     = svn rebase
-  gss     = status -s
-  gst     = status
-  gsta    = stash
-  gstd    = stash drop
-  gstp    = stash pop
-  gsts    = stash show --text
-  gunignore= update-index --no-assume-unchanged
- # gunwip  = log -n 1 | grep -q -c "\-\-wip\-\-" && git reset HEAD~1
-  gup     = pull --rebase
-  gwc     = whatchanged -p --abbrev-commit --pretty=medium
-  #gwip    = add -A; git ls-files --deleted -z | xargs -r0 git rm; git commit -m "--wip--"
+	ga      = add
+	gb      = branch
+	gba     = branch -a
+	gc      = commit -v
+	#'gc!'   = commit -v --amend
+	gca     = commit -v -a
+	#'gca!'  = commit -v -a --amend
+	gcf = commit --fixup
+	gcl     = config --list
+	gclean  = reset --hard && git clean -dfx
+	gcm     = checkout master
+	gcmsg   = commit -m
+	gco     = checkout
+	gcount  = shortlog -sn
+	gcp     = cherry-pick
+	gf	=fetch
+	gfr	=fetch && git rebase remotes/origin/master
+	gd      = diff
+	gdc     = diff --cached
+	gg      = gui citool
+	gga     = gui citool --amend
+	ggpnp   = pull origin $(current_branch) && git push origin $(current_branch)
+	ggpull  = pull origin $(current_branch)
+	ggpur   = pull --rebase origin $(current_branch)
+	ggpush  = push origin $(current_branch)
+	gignore = update-index --assume-unchanged
+	gignored= ls-files -v | grep "^[[:lower:]]"
+	git-svn-dcommit-push= svn dcommit && git push github master:svntrunk
+	gk      =k --all --branches
+	gl      = pull
+	glg     = log --stat --max-count=10
+	glgg    = log --graph --max-count=10
+	glgga   = log --graph --decorate --all
+	glo     = log --oneline --decorate --color
+	glog    = log --oneline --decorate --color --graph
+	glp     =_git_log_prettily
+	gm      = merge
+	gmt     = mergetool --no-prompt
+	gp      = push
+	gpr	= pull --rebase
+	gpoat   = push origin --all && git push origin --tags
+	gr      = remote
+	gri	=rebase --interactive
+	grba    = rebase --abort
+	grbc    = rebase --continue
+	grbi    = rebase -i
+	grh     = reset HEAD
+	grhh    = reset HEAD --hard
+	grmv    = remote rename
+	grrm    = remote remove
+	grset   = remote set-url
+	grt     ='cd $(git rev-parse --show-toplevel || echo ".")'
+	grup    = remote update
+	grv     = remote -v
+	gsd     = svn dcommit
+	gsr     = svn rebase
+	gss     = status -s
+	gst     = status
+	gsta    = stash
+	gstd    = stash drop
+	gstp    = stash pop
+	gsts    = stash show --text
+	gunignore= update-index --no-assume-unchanged
+ # gunwip	= log -n 1 | grep -q -c "\-\-wip\-\-" && git reset HEAD~1
+	gup     = pull --rebase
+	gwc     = whatchanged -p --abbrev-commit --pretty=medium
+	#gwip    = add -A; git ls-files --deleted -z | xargs -r0 git rm; git commit -m "--wip--"
 
 
-  # show only what is in orgin/master that isn't in master
-  incoming= log orgin/master ^master
-  # show only what is in master that isn't in orgin/master
-  outgoing= log master ^orgin/master
+	# show only what is in orgin/master that isn't in master
+	incoming= log orgin/master ^master
+	# show only what is in master that isn't in orgin/master
+	outgoing= log master ^orgin/master
 
 
  # Show files ignored by git:
-  ign     = ls-files -o -i --exclude-standard
+	ign	   = ls-files -o -i --exclude-standard
 
 [github]
 	user = mark
@@ -135,4 +140,4 @@
 [rebase]
 	autosquash = true
 
-# vim: noet:nonu:nospell:ft=gitconfig
+# vim: et:nonu:nospell:ft=gitconfig
