@@ -177,6 +177,8 @@ set directory=$MYVIM/.vim/backup " all the *.swp files go here
 
     "* git commit messages
     au FileType gitcommit setlocal spell textwidth=72
+    au BufEnter,BufRead,BufNewFile */COMMIT_EDITMSG setlocal filetype=gitcommit
+    au BufEnter,BufRead,BufNewFile */MERGE_MSG      setlocal filetype=gitcommit
 
     "* Go
     au BufRead,BufNewFile *.go setlocal filetype=go

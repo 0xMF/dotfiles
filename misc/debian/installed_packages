@@ -138,6 +138,7 @@ dosfstools					install
 dpkg						install
 dselect						install
 dvdauthor					install
+dvipng						install
 e2fslibs:amd64					install
 e2fsprogs					install
 eject						install
@@ -877,7 +878,7 @@ libharfbuzz-icu0:amd64				install
 libharfbuzz0b:amd64				install
 libhogweed2:amd64				install
 libhogweed4:amd64				install
-libhpmud0					install
+libhpmud0:amd64					install
 libhtml-form-perl				install
 libhtml-format-perl				install
 libhtml-parser-perl				install
@@ -994,6 +995,7 @@ liblsan0:amd64					install
 libltdl7:amd64					install
 liblua5.1-0:amd64				install
 liblua5.2-0:amd64				install
+liblua5.3-0:amd64				install
 libluajit-5.1-2:amd64				install
 libluajit-5.1-common				install
 liblvm2app2.2:amd64				install
@@ -1286,6 +1288,7 @@ librsvg2-2:amd64				install
 librsvg2-common:amd64				install
 librtmp1:amd64					install
 libruby2.2:amd64				install
+libruby2.3:amd64				install
 librygel-core-2.4-2				deinstall
 librygel-core-2.6-2				install
 librygel-db-2.6-2				install
@@ -1298,7 +1301,7 @@ libsane:amd64					install
 libsane-common					install
 libsane-extras:amd64				install
 libsane-extras-common				install
-libsane-hpaio					install
+libsane-hpaio:amd64				install
 libsasl2-2:amd64				install
 libsasl2-modules:amd64				install
 libsasl2-modules-db:amd64			install
@@ -1835,6 +1838,7 @@ python3.5-minimal				install
 qpdf						install
 qttranslations5-l10n				install
 quadrapassel					install
+rake						install
 rarian-compat					install
 readline-common					install
 realmd						install
@@ -1848,8 +1852,10 @@ rsync						install
 rsyslog						install
 rtkit						install
 ruby						install
+ruby-did-you-mean				install
 ruby-erubis					install
 ruby-minitest					install
+ruby-net-telnet					install
 ruby-power-assert				install
 ruby-test-unit					install
 ruby-thor					install
@@ -1898,6 +1904,8 @@ tcpd						install
 telnet						install
 tex-common					install
 tex-gyre					install
+tex4ht						install
+tex4ht-common					install
 texinfo						install
 texlive						install
 texlive-base					install
@@ -1908,6 +1916,7 @@ texlive-font-utils				install
 texlive-fonts-recommended			install
 texlive-fonts-recommended-doc			install
 texlive-generic-recommended			install
+texlive-htmlxml					install
 texlive-latex-base				install
 texlive-latex-base-doc				install
 texlive-latex-extra				install
