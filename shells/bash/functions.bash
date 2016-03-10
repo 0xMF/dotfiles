@@ -229,4 +229,16 @@ function g+++ {
   fi
 }
 
+# queries git log based on arguments
+#   no args : show last 10 one-line commit messages
+#   1 arg   : show that (relative to HEAD~) commit message details
+#   2 arts  : show summary of commit messages within the given numbers
+function gh {
+  case $# in
+    1) git log -p --stat HEAD~`expr $1 - 1`...HEAD~$1;;
+    2) git log --stat  HEAD~$1...HEAD~$2;;
+    *) git log --graph --decorate --pretty=oneline --abbrev-commit --all -10;;
+  esac
+}
+
 # vim:nospell:ft=sh:
