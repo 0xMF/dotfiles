@@ -229,9 +229,14 @@ function g+++ {
   fi
 }
 
+
+# completes the triad of:
+#   * alias gcf for git commit --fixup
+#   * alias gcs for git commit --squash
+#   * function gcr for git commit --reword
 function gcr {
   case $# in
-    1)  git add . ;  git commit -c $1  ;;
+    1)  git add . ;  git commit -vac $1  ;;
     *) echo "Usage: gcr <commit>" >&2 ;;
   esac
 }
@@ -241,8 +246,12 @@ function gcr {
 #   1 arg   : show that (relative to HEAD~) commit message details
 #   2 arts  : show summary of commit messages within the given numbers
 function gh {
+  _gh `echo "$*"|sed 's/,/ /g'`
+}
+
+function _gh {
   case $# in
-    1) [ $1 -eq 1 ] && git log -p --stat HEAD \
+    1) [ $1 -eq 1 ] && git log -p --stat HEAD...HEAD~1 \
                     || git log -p --stat HEAD~`expr $1 - 1`...HEAD~$1 ;;
     2) [ $1 -eq 1 ] && git log --stat  HEAD...HEAD~$2 \
                     || git log --stat  HEAD~$1...HEAD~$2 ;;
