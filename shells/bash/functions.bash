@@ -235,9 +235,11 @@ function g+++ {
 #   2 arts  : show summary of commit messages within the given numbers
 function gh {
   case $# in
-    1) git log -p --stat HEAD~`expr $1 - 1`...HEAD~$1;;
-    2) git log --stat  HEAD~$1...HEAD~$2;;
-    *) git log --graph --decorate --pretty=oneline --abbrev-commit --all -10;;
+    1) [ $1 -eq 1 ] && git log -p --stat HEAD \
+                    || git log -p --stat HEAD~`expr $1 - 1`...HEAD~$1 ;;
+    2) [ $1 -eq 1 ] && git log --stat  HEAD...HEAD~$2 \
+                    || git log --stat  HEAD~$1...HEAD~$2 ;;
+    *) git log --graph --decorate --pretty=oneline --abbrev-commit --all -10 ;;
   esac
 }
 
