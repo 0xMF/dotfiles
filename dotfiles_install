@@ -31,15 +31,20 @@ git() {
 
 # misc
 misc() {
-  echo -n "checking misc..." >&2
+  echo "checking misc dotfiles..." >&2
 
-  [ -e $HOME/.tmux.conf ] && {
-    echo "found, not installing" >&2  
-    return
-  }
-  ln -s $PWD/misc/tmux.conf $HOME/.tmux.conf
-
-  echo "installed." >&2
+  if [ -e $HOME/.tmux.conf ]; then
+    echo " - found tmux.conf, not installing" >&2
+  else
+    ln -s $PWD/misc/tmux.conf $HOME/.tmux.conf &&
+    echo " - ...installed tmux.conf" >&2
+  fi
+  if [ -e $HOME/.gemrc ]; then
+    echo " - found gemrc, not installing" >&2
+  else
+    ln -s $PWD/misc/gemrc $HOME/.gemrc &&
+    echo " - ...installed gemrc" >&2
+  fi
 }
 
 # vim

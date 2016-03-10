@@ -1,0 +1,5 @@
+# settings for gem
+
+gem: --user-install
+
+# vim: ft=conf
