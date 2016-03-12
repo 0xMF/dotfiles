@@ -229,6 +229,13 @@ function g+++ {
   fi
 }
 
+function gcr {
+  case $# in
+    1)  git add . ;  git commit -c $1  ;;
+    *) echo "Usage: gcr <commit>" >&2 ;;
+  esac
+}
+
 # queries git log based on arguments
 #   no args : show last 10 one-line commit messages
 #   1 arg   : show that (relative to HEAD~) commit message details
@@ -240,6 +247,14 @@ function gh {
     2) [ $1 -eq 1 ] && git log --stat  HEAD...HEAD~$2 \
                     || git log --stat  HEAD~$1...HEAD~$2 ;;
     *) git log --graph --decorate --pretty=oneline --abbrev-commit --all -10 ;;
+  esac
+}
+
+function gshow {
+  case $# in
+    1) [ $1 -eq 1 ] && git show HEAD \
+                    || git show $1 ;;
+    *) git show HEAD ;;
   esac
 }
 
