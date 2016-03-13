@@ -222,13 +222,18 @@ function g+++ {
 
 
 # show all git aliases
-function gits(){
-  alias|sed 's/alias //'|grep ^g
+function gits() {
+  # get all git-aliases and git-functions; filter out non-git; sort
+  {
+    declare -F | /bin/grep ' -f g[a-zA-Z]' |cut -d" " -f3
+    alias|sed 's/alias //' | /bin/grep '^g[a-zA-Z]'
+  } | sed -r '/(gpg|gvim)/d'| sort | awk -F"'" '{printf("%8s %s\n",$1,$2)}'
 }
+
 function ghist() {
   #git log --pretty=format:\"%h %ad | %s%d [%an]\" --graph --date=short
   git log --graph --date=short \
-          --pretty=format:"%C(red bold)%h%Creset %C(green)%ad%Creset %C(cyan bold)|%Creset %s"
+          --pretty=format:"%C(red bold)%h%Creset %C(dim green)%ad%Creset %C(cyan bold)|%Creset %s"
 }
 
 # completes the triad of:
@@ -257,7 +262,7 @@ function _gh {
     2) [ $1 -eq 1 ] && git log --stat  HEAD...HEAD~$2 \
                     || git log --stat  HEAD~$1...HEAD~$2 ;;
     *) git log --graph --date=short --all -10 \
-          --pretty=format:"%C(red bold)%h%Creset %C(green)%ad%Creset %C(cyan bold)|%Creset %s" ;;
+          --pretty=format:"%C(red bold)%h%Creset %C(dim green)%ad%Creset %C(cyan bold)|%Creset %s" ;;
   esac
 }
 
