@@ -101,15 +101,6 @@ function parse_git_dirty {
   fi
 }
 
-# show all git aliases
-function gits(){
-  alias|sed 's/alias //'|grep ^g
-}
-function ghist() {
-  #git log --pretty=format:\"%h %ad | %s%d [%an]\" --graph --date=short
-  git log --pretty=format:"%h %ad | %s" --graph --date=short
-}
-
 # Edit your current day's todo list. 
 function todo(){ 
   ${EDITOR:-/usr/local/bin/vim} + ~/$(date +todolist-%Y%m%d); 
@@ -230,6 +221,16 @@ function g+++ {
 }
 
 
+# show all git aliases
+function gits(){
+  alias|sed 's/alias //'|grep ^g
+}
+function ghist() {
+  #git log --pretty=format:\"%h %ad | %s%d [%an]\" --graph --date=short
+  git log --graph --date=short \
+          --pretty=format:"%C(red bold)%h%Creset %C(green)%ad%Creset %C(cyan bold)|%Creset %s"
+}
+
 # completes the triad of:
 #   * alias gcf for git commit --fixup
 #   * alias gcs for git commit --squash
@@ -255,7 +256,8 @@ function _gh {
                     || git log -p --stat HEAD~`expr $1 - 1`...HEAD~$1 ;;
     2) [ $1 -eq 1 ] && git log --stat  HEAD...HEAD~$2 \
                     || git log --stat  HEAD~$1...HEAD~$2 ;;
-    *) git log --graph --decorate --pretty=oneline --abbrev-commit --all -10 ;;
+    *) git log --graph --date=short --all -10 \
+          --pretty=format:"%C(red bold)%h%Creset %C(green)%ad%Creset %C(cyan bold)|%Creset %s" ;;
   esac
 }
 
