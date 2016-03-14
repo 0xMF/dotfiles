@@ -225,18 +225,18 @@ function g+++ {
 function gits() {
   # get all git-aliases and git-functions; filter out non-git; sort
   {
-    declare -F | /bin/grep ' -f g[a-zA-Z]' |cut -d" " -f3
     alias|sed 's/alias //' | /bin/grep '^g[a-zA-Z]'
-  } | sed -r '/(gpg|gvim)/d'| sort | awk -F"'" '{printf("%8s %s\n",$1,$2)}'
+  } | sed -r '/(gpg|gvim|grep)/d'| sort | awk -F"'" '{printf("%8s %s\n",$1,$2)}'
+  echo -ne "...and git-related bash functions are: "
+  declare -F | /bin/grep ' -f g[a-zA-Z]' |cut -d" " -f3|sort |fmt
 }
 
 function gmru {
    history|awk '{$1="";print $0}'|sort|uniq -c|sort -n|/bin/grep '[0-9] *g[a-zA-Z]'
 }
 
-function ghist() {
-  #git log --pretty=format:\"%h %ad | %s%d [%an]\" --graph --date=short
-  git log --graph --date=short \
+function ghist {
+  git log $* --graph --date=short \
           --pretty=format:"%C(red bold)%h%Creset %C(blue bold)%ad%Creset %C(cyan bold)|%Creset %C(auto)%d%Creset %s"
 }
 
@@ -261,13 +261,31 @@ function _gh {
                     || git log -p --stat HEAD~`expr $1 - 1`...HEAD~$1 ;;
     2) [ $1 -eq 1 ] && git log --stat  HEAD...HEAD~$2 \
                     || git log --stat  HEAD~$1...HEAD~$2 ;;
-    *) git log --graph --date=short --all -10 \
-          --pretty=format:"%C(red bold)%h%Creset %C(blue bold)%ad%Creset %C(cyan bold)|%Creset %C(auto)%d%Creset %s" ;;
+    *) [ "`git rev-parse --abbrev-ref HEAD`" == "master" ] \
+        && git log -10 --graph --date=short \
+              --pretty=format:"%C(red bold)%h%Creset %C(blue bold)%ad%Creset %C(cyan bold)|%Creset %C(auto)%d%Creset %s" \
+        || git log -10 --graph --date=short \
+              --pretty=format:"%C(red bold)%h%Creset %C(blue bold)%ad%Creset %C(cyan bold)|%Creset %C(auto)%d%Creset %s" \
+              HEAD...origin/master
+        ;;
   esac
 }
 
 function gh {
    _gh `echo "$*"|sed -r 's/(,|-|  )/ /g'`
+}
+
+function gha {
+   git log -10 --all --graph --date=short \
+          --pretty=format:"%C(red bold)%h%Creset %C(blue bold)%ad%Creset %C(cyan bold)|%Creset %C(auto)%d%Creset %s"
+}
+
+
+function ghb {
+  for c in `seq $(gh|wc -l)`
+  do
+    git log --pretty=format:"%C(bold red)%h%Creset %C(bold blue)%s%Creset%n %C(bold green)%b%Creset" HEAD~$c..HEAD~`expr $c - 1`
+  done
 }
 
 
