@@ -237,7 +237,7 @@ function gmru {
 function ghist() {
   #git log --pretty=format:\"%h %ad | %s%d [%an]\" --graph --date=short
   git log --graph --date=short \
-          --pretty=format:"%C(red bold)%h%Creset %C(dim green)%ad%Creset %C(cyan bold)|%Creset %s"
+          --pretty=format:"%C(red bold)%h%Creset %C(blue bold)%ad%Creset %C(cyan bold)|%Creset %C(auto)%d%Creset %s"
 }
 
 # completes the triad of:
@@ -262,7 +262,7 @@ function _gh {
     2) [ $1 -eq 1 ] && git log --stat  HEAD...HEAD~$2 \
                     || git log --stat  HEAD~$1...HEAD~$2 ;;
     *) git log --graph --date=short --all -10 \
-          --pretty=format:"%C(red bold)%h%Creset %C(dim green)%ad%Creset %C(cyan bold)|%Creset %C(auto)%d%Creset %s" ;;
+          --pretty=format:"%C(red bold)%h%Creset %C(blue bold)%ad%Creset %C(cyan bold)|%Creset %C(auto)%d%Creset %s" ;;
   esac
 }
 
