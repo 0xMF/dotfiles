@@ -230,6 +230,10 @@ function gits() {
   } | sed -r '/(gpg|gvim)/d'| sort | awk -F"'" '{printf("%8s %s\n",$1,$2)}'
 }
 
+function gmru {
+   history|awk '{$1="";print $0}'|sort|uniq -c|sort -n|/bin/grep '[0-9] *g[a-zA-Z]'
+}
+
 function ghist() {
   #git log --pretty=format:\"%h %ad | %s%d [%an]\" --graph --date=short
   git log --graph --date=short \
@@ -251,10 +255,6 @@ function gcr {
 #   no args : show last 10 one-line commit messages
 #   1 arg   : show that (relative to HEAD~) commit message details
 #   2 arts  : show summary of commit messages within the given numbers
-function gh {
-  _gh `echo "$*"|sed 's/,/ /g'`
-}
-
 function _gh {
   case $# in
     1) [ $1 -eq 1 ] && git log -p --stat HEAD...HEAD~1 \
@@ -262,16 +262,32 @@ function _gh {
     2) [ $1 -eq 1 ] && git log --stat  HEAD...HEAD~$2 \
                     || git log --stat  HEAD~$1...HEAD~$2 ;;
     *) git log --graph --date=short --all -10 \
-          --pretty=format:"%C(red bold)%h%Creset %C(dim green)%ad%Creset %C(cyan bold)|%Creset %s" ;;
+          --pretty=format:"%C(red bold)%h%Creset %C(dim green)%ad%Creset %C(cyan bold)|%Creset %C(auto)%d%Creset %s" ;;
   esac
 }
 
-function gshow {
+function gh {
+   _gh `echo "$*"|sed -r 's/(,|-|  )/ /g'`
+}
+
+
+# if $1 is 1 'git show HEAD' otherwise 'git show $1'
+function _gshow {
   case $# in
-    1) [ $1 -eq 1 ] && git show HEAD \
-                    || git show $1 ;;
+    1) [ "$1" == "1" ] && git show HEAD \
+                       || git show HEAD~$1 2>/dev/null ;;
     *) git show HEAD ;;
   esac
+
+  # unknown error, probably a SHA1, so git show $1
+  [ $? -ne 0 ] && git show $1
+}
+
+# if $1 contains alphabets (HEAD,SHA1 commits) 'git show $1' otherwise call _gshow
+function gshow {
+  echo $1|grep '[a-zA-Z]' > /dev/null
+  [ $? -eq 0 ] && git show $1 \
+               || _gshow $1
 }
 
 # vim:nospell:ft=sh:
