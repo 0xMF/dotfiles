@@ -54,7 +54,7 @@ alias vi='vim'
 alias gv='gvim --remote-tab-silent'
 
 # git based aliases 
-[ ! -z "`which hub`" ] && alias git='hub'
+[ ! -z "`which hub 2>/dev/null`" ] && alias git='hub'
 alias g='git'
 alias gbr='g branch'
 alias gc='g commit -v'
