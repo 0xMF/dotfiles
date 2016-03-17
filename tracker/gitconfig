@@ -1,6 +1,6 @@
-[user]
-  name      = Mark Fernandes
-  email     = 0xmf@outlook.com
+[include]
+  path      = ~/.git/gitconfig.local
+  path      = ~/.git/gitconfig.aliases
 
 [core]
   editor    = vim
@@ -110,6 +110,8 @@
   # Show files ignored by git:
   ign       = ls-files -o -i --exclude-standard
 
+# vim: et:nonu:nospell:ft=gitconfig
+
 [color]
   branch    = auto
   diff      = auto
@@ -131,9 +133,6 @@
   added     = yellow
   changed   = green
   untracked = cyan
-
-[github]
-  user      = mark
 
 [merge]
   tool      = gvimdiff

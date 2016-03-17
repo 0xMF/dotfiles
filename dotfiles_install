@@ -11,7 +11,7 @@ bash() {
   [ -d $HOME/.bash ] && return
   ln -s $PWD/shells/bash $HOME/.bash
 
-  echo "installed." >&2
+  echo "INSTALLED!" >&2
 }
 
 # git
@@ -21,11 +21,15 @@ git() {
     echo "found, not installing" >&2  
     return
   }
-  ln -s $PWD/misc/gitconfig $HOME/.gitconfig
+  ln -s $PWD/tracker/gitconfig $HOME/.gitconfig
+
+  [ -d $HOME/.git ] && return
+  ln -s $PWD/tracker/git $HOME/.git
 
   [ -e $HOME/.gitignore ] && return
-  ln -s $PWD/misc/gitignore $HOME/.gitignore
+  ln -s $PWD/tracker/gitignore $HOME/.gitignore
 
+  echo "INSTALLED!" >&2
   echo "installed." >&2
 }
 
@@ -37,13 +41,13 @@ misc() {
     echo " - found tmux.conf, not installing" >&2
   else
     ln -s $PWD/misc/tmux.conf $HOME/.tmux.conf &&
-    echo " - ...installed tmux.conf" >&2
+    echo " - ...INSTALLED tmux.conf" >&2
   fi
   if [ -e $HOME/.gemrc ]; then
     echo " - found gemrc, not installing" >&2
   else
     ln -s $PWD/misc/gemrc $HOME/.gemrc &&
-    echo " - ...installed gemrc" >&2
+    echo " - ...INSTALLED gemrc" >&2
   fi
 }
 
@@ -60,7 +64,7 @@ vim() {
   [ -d $HOME/.vim ] && return 
   ln -s $PWD/editor/vim $HOME/.vim
 
-  echo "installed." >&2
+  echo "INSTALLED!" >&2
 }
 
 bash
