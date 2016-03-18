@@ -27,10 +27,9 @@ git() {
   ln -s $PWD/tracker/git $HOME/.git
 
   [ -e $HOME/.gitignore ] && return
-  ln -s $PWD/tracker/gitignore $HOME/.gitignore
+  ln -s $PWD/tracker/git/gitignore $HOME/.gitignore
 
   echo "INSTALLED!" >&2
-  echo "installed." >&2
 }
 
 # misc

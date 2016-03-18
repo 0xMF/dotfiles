@@ -1,6 +1,6 @@
 [include]
-  path      = ~/.git/gitconfig.local
-  path      = ~/.git/gitconfig.aliases
+  path      = ~/.git/local.gitconfig
+  path      = ~/.git/aliases.gitconfig
 
 [core]
   editor    = vim
