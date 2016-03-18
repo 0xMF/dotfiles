@@ -27,7 +27,7 @@ git() {
   ln -s $PWD/tracker/git $HOME/.git
 
   [ -e $HOME/.gitignore ] && return
-  ln -s $PWD/tracker/git/gitignore $HOME/.gitignore
+  ln -s $PWD/tracker/git/ignore.conf $HOME/.gitignore
 
   echo "INSTALLED!" >&2
 }
