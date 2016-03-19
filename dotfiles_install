@@ -21,7 +21,7 @@ git() {
     echo "found, not installing" >&2  
     return
   }
-  ln -s $PWD/tracker/gitconfig $HOME/.gitconfig
+  ln -s $PWD/tracker/gitrc.gitconfig $HOME/.gitconfig
 
   [ -d $HOME/.git ] && return
   ln -s $PWD/tracker/git $HOME/.git
