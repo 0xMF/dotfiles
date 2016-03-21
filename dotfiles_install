@@ -1,35 +1,52 @@
+installed=
+
 # bash
 bash() {
+  installed=
   echo -n "checking bash..." >&2
 
   [ -e $HOME/.bashrc ] && {
-    echo "found, not installing" >&2  
-    return
+    echo "found, not installing" >&2
+  } || {
+    installed="bash"
+    ln -s $PWD/shells/bash/bashrc.bash $HOME/.bashrc
   }
-  ln -s $PWD/shells/bash/bashrc.bash $HOME/.bashrc
 
-  [ -d $HOME/.bash ] && return
-  ln -s $PWD/shells/bash $HOME/.bash
+  # install .bash if not present else do nothing
+  [[ -d $HOME/.bash || -L $HOME/.bash ]] && { :
+  } || {
+    installed="bash"
+    ln -s $PWD/shells/bash $HOME/.bash
+  }
 
-  echo "INSTALLED!" >&2
+  [ ! -z "$installed" ] && echo "INSTALLED!" >&2
 }
 
 # git
 git() {
+  installed=
   echo -n "checking git..." >&2
-  [ -e $HOME/.gitconfig ] && {
-    echo "found, not installing" >&2  
-    return
+
+  [ -e $HOME/.gitconfig ] && { 
+    echo "found .gitconfig" >&2
+  } || {
+    installed="git"
+    ln -s $PWD/tracker/gitrc.gitconfig $HOME/.gitconfig
   }
-  ln -s $PWD/tracker/gitrc.gitconfig $HOME/.gitconfig
 
-  [ -d $HOME/.git ] && return
-  ln -s $PWD/tracker/git $HOME/.git
+  [[ -d $HOME/.git || -L $HOME/.git ]] && { :
+  } || {
+    installed="git"
+    ln -s $PWD/tracker/git $HOME/.git
+  }
 
-  [ -e $HOME/.gitignore ] && return
-  ln -s $PWD/tracker/git/ignore.conf $HOME/.gitignore
+  [[ -e $HOME/.gitignore || -L $HOME/.gitignore ]] && { :
+  } || {
+    installed="git"
+    ln -s $PWD/tracker/git/ignore.conf $HOME/.gitignore
+  }
 
-  echo "INSTALLED!" >&2
+  [ ! -z "$installed" ] && echo "INSTALLED!" >&2
 }
 
 # misc
@@ -52,18 +69,23 @@ misc() {
 
 # vim
 vim() {
+  installed=
   echo -n "checking vim..." >&2
 
   [ -e $HOME/.vimrc ] && {
-    echo "found, not installing" >&2  
-    return
+    echo "found, not installing" >&2
+  } || {
+    installed="vim"
+    ln -s $PWD/editor/vimrc.vim $HOME/.vimrc
   }
-  ln -s $PWD/editor/vimrc.vim $HOME/.vimrc
 
-  [ -d $HOME/.vim ] && return 
-  ln -s $PWD/editor/vim $HOME/.vim
+  [[ -d $HOME/.vim || -L $HOME/.vim ]] && { :
+  } || {
+    installed="vim"
+    ln -s $PWD/editor/vim $HOME/.vim
+  }
 
-  echo "INSTALLED!" >&2
+  [ ! -z "$installed" ] && echo "INSTALLED!" >&2
 }
 
 bash
