@@ -583,6 +583,7 @@ libcurl3-gnutls:amd64				install
 libcwidget3:amd64				install
 libcwidget3v5:amd64				install
 libdaemon0:amd64				install
+libdata-alias-perl				install
 libdata-optlist-perl				install
 libdata-perl-perl				install
 libdata-section-perl				install
@@ -835,7 +836,7 @@ libgsl0ldbl					install
 libgsl2:amd64					install
 libgsm1:amd64					install
 libgssapi-krb5-2:amd64				install
-libgssdp-1.0-3					install
+libgssdp-1.0-3:amd64				install
 libgstreamer-plugins-bad0.10-0:amd64		deinstall
 libgstreamer-plugins-bad1.0-0:amd64		install
 libgstreamer-plugins-base0.10-0:amd64		deinstall
@@ -1190,7 +1191,7 @@ libpeas-common					install
 libperl4-corelibs-perl				install
 libperl5.22:amd64				install
 libperlio-gzip-perl				install
-libpgm-5.1-0					install
+libpgm-5.1-0					deinstall
 libpipeline1:amd64				install
 libpixman-1-0:amd64				install
 libplist2:amd64					deinstall
@@ -1254,6 +1255,8 @@ libqt5svg5:amd64				install
 libqt5widgets5:amd64				install
 libqt5x11extras5:amd64				install
 libquadmath0:amd64				install
+libquvi-0.9-0.9.3:amd64				install
+libquvi-scripts-0.9				install
 libquvi7:amd64					deinstall
 libraptor2-0:amd64				install
 librarian0					install
@@ -1273,6 +1276,7 @@ libreoffice-core				install
 libreoffice-draw				install
 libreoffice-gnome				install
 libreoffice-gtk					install
+libreoffice-gtk3				install
 libreoffice-impress				install
 libreoffice-math				install
 libreoffice-style-galaxy			install
@@ -1479,7 +1483,6 @@ libwbclient0:amd64				install
 libwebkit2gtk-4.0-37:amd64			install
 libwebkit2gtk-4.0-37-gtk2:amd64			install
 libwebkitgtk-3.0-0:amd64			install
-libwebkitgtk-3.0-common				install
 libwebp5:amd64					install
 libwebpdemux1:amd64				install
 libwebpmux1:amd64				install
@@ -1610,7 +1613,7 @@ libyelp0					install
 libzbar0					install
 libzeitgeist-2.0-0:amd64			install
 libzephyr4:amd64				install
-libzmq3:amd64					install
+libzmq5:amd64					install
 libzvbi-common					install
 libzvbi0:amd64					install
 libzzip-0-13:amd64				install
@@ -1619,18 +1622,18 @@ lightdm-gtk-greeter				install
 lightsoff					install
 lintian						install
 linux-base					install
-linux-compiler-gcc-4.8-x86			install
 linux-compiler-gcc-5-x86			install
-linux-headers-3.16.0-4-amd64			install
-linux-headers-3.16.0-4-common			install
 linux-headers-4.3.0-1-amd64			install
 linux-headers-4.3.0-1-common			install
+linux-headers-4.4.0-1-amd64			install
+linux-headers-4.4.0-1-common			install
 linux-headers-amd64				install
-linux-image-3.16.0-4-amd64			install
+linux-image-3.16.0-4-amd64			deinstall
 linux-image-4.3.0-1-amd64			install
+linux-image-4.4.0-1-amd64			install
 linux-image-amd64				install
-linux-kbuild-3.16				install
 linux-kbuild-4.3				install
+linux-kbuild-4.4				install
 linux-libc-dev:amd64				install
 live-manual					install
 live-manual-epub				install
@@ -1647,6 +1650,11 @@ lp-solve					install
 lsb-base					install
 lsb-release					install
 lsof						install
+lua-bitop:amd64					install
+lua-expat:amd64					install
+lua-json					install
+lua-lpeg:amd64					install
+lua-socket:amd64				install
 lvm2						install
 m4						install
 make						install
@@ -1861,6 +1869,7 @@ ruby-test-unit					install
 ruby-thor					install
 ruby2.2						install
 ruby2.2-doc					install
+ruby2.3						install
 rubygems-integration				install
 rygel						install
 samba-libs:amd64				install
