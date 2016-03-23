@@ -231,10 +231,12 @@ function gits() {
   declare -F | /bin/grep ' -f g[a-zA-Z]' |cut -d" " -f3|sort |fmt
 }
 
+# git most-recently-used aliases and bash-functions
 function gmru {
    history|awk '{$1="";print $0}'|sort|uniq -c|sort -n|/bin/grep '[0-9] *g[a-zA-Z]'
 }
 
+# show all git commits history
 function ghist {
   git log $* --graph --date=short \
           --pretty=format:"%C(red bold)%h%Creset %C(blue bold)%ad%Creset %C(cyan bold)|%Creset %C(auto)%d%Creset %s"
@@ -306,6 +308,33 @@ function gshow {
   echo $1|grep '[a-zA-Z]' > /dev/null
   [ $? -eq 0 ] && git show $1 \
                || _gshow $1
+}
+
+# help learning git, without arguments shows a list, with arguments works like grep
+function glearn {
+
+ if [ ! -z "$1" ]; then
+  man -k git|grep --color=none -w git|grep -w "(7)" | grep "$@"
+  man -k git|grep --color=none -w git|grep -w "(5)" | grep "$@"
+  man -k git|grep --color=none -w git|grep -w "([^157])" | grep "$@"
+ else
+  man -k git|grep --color=none -w git|grep -w "(7)"
+  echo
+  man -k git|grep --color=none -w git|grep -w "(5)"
+  man -k git|grep --color=none -w git|grep -w "([^157])"
+  # check if tty
+  if [ -t 0 ]; then
+    echo
+    read -p 'Any key to continue or q to quit: ' key
+    [[ "$key" == "q" || "$key" == "Q" ]] && return
+  fi
+ fi
+
+ if [ ! -z "$1" ]; then
+  man -k git|/bin/grep  -w git|/bin/grep -w "(1)"|sed 's/\(.*\) - \(.*\)/\2 : \1/'|sort|awk -F':' '{printf ("%-80s %s\n", $1,$2)}'|grep "$@"
+ else
+  man -k git|/bin/grep  -w git|/bin/grep -w "(1)"|sed 's/\(.*\) - \(.*\)/\2 : \1/'|sort|awk -F':' '{printf ("%-80s %s\n", $1,$2)}'|less
+ fi
 }
 
 # vim:nospell:ft=sh:
