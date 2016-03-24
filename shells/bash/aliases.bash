@@ -18,7 +18,6 @@ if [ $OS == "FreeBSD" ]; then
   alias lsof='fstat'
   alias lynx='elinks'
   alias m=more
-  alias pg='less -Feq'
   alias pgr='vi -R'
   alias pkg_check='pkg_libchk'
   alias pkg_locate="echo /usr/ports/*/*|tr ' ' '\n'"
@@ -47,7 +46,7 @@ alias cpu='cp -u'
 alias gnupg='gpg'
 alias grep='grep --color=always -i'
 alias mvi='mv -i'
-alias pg='vi -R'
+alias pg='less -Feq'
 alias rehash='hash -r'
 alias reset='reset -e ^?'
 alias vi='vim'
