@@ -337,4 +337,14 @@ function glearn {
  fi
 }
 
+# serve up git man-pages
+function gman {
+  old_pwd=`pwd`
+  which adsf > /dev/null
+  [ $? -eq 0 ] && {
+    cd /usr/share/doc/git/html i
+    adsf 2> /dev/null &
+  }
+  cd $old_pwd
+}
 # vim:nospell:ft=sh:
