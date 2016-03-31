@@ -136,6 +136,7 @@ docbook-xsl					install
 docutils-common					deinstall
 dosfstools					install
 dpkg						install
+dpkg-dev					install
 dselect						install
 dvdauthor					install
 dvipng						install
@@ -158,6 +159,7 @@ fakeroot					install
 file						install
 file-roller					install
 findutils					install
+firefox-esr					install
 firmware-linux-free				install
 five-or-more					install
 fontconfig					install
@@ -355,7 +357,7 @@ iamerican					install
 ibritish					install
 icedove						install
 iceowl-extension				install
-iceweasel					install
+iceweasel					deinstall
 ienglish-common					install
 ifupdown					install
 iio-sensor-proxy				install
@@ -398,6 +400,9 @@ libabw-0.1-1					install
 libaccountsservice0				install
 libacl1:amd64					install
 libalgorithm-c3-perl				install
+libalgorithm-diff-perl				install
+libalgorithm-diff-xs-perl			install
+libalgorithm-merge-perl				install
 libamd2.3.1:amd64				deinstall
 libamd2.4.1:amd64				install
 libao-common					install
@@ -1241,7 +1246,8 @@ libpython3.4-minimal:amd64			deinstall
 libpython3.5:amd64				install
 libpython3.5-minimal:amd64			install
 libpython3.5-stdlib:amd64			install
-libqmi-glib1:amd64				install
+libqmi-glib1:amd64				deinstall
+libqmi-glib5:amd64				install
 libqmi-proxy					install
 libqpdf13:amd64					deinstall
 libqpdf17:amd64					install
@@ -1711,6 +1717,7 @@ openssl						install
 os-prober					install
 p11-kit						install
 p11-kit-modules:amd64				install
+p7zip						install
 p7zip-full					install
 packagekit					install
 packagekit-tools				install
