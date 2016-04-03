@@ -13,7 +13,7 @@ RED="\[\033[1;31m\]"
 GREEN="\[\033[1;32m\]"
 YELLOW="\[\033[1;33m\]"
 BLUE="\[\033[1;34m\]"
-PURPLE="\[\033[1;35m" 
+PURPLE="\[\033[1;35m"
 CYAN="\[\033[1;36m\]"
 WHITE="\[\033[1;37m\]"
 NOCOLOR="\[\033[00m\]"
@@ -68,7 +68,7 @@ function parse_git_dirty {
 
   # (slower) check for large repo in filenames of all large repos
   /bin/grep -qw "$PWD$" $large_repos 2>/dev/null
-  if [ $? -eq 0 ]; then 
+  if [ $? -eq 0 ]; then
     echo $sts_skip
   else
     # not in list of large repos, run a one time check for this being a large repo
@@ -86,24 +86,24 @@ function parse_git_dirty {
           export GIT_LARGE_REPO="$PWD"
           echo $sts_skip && return
       fi
-      
+
       if [ $lns -eq 1 ]; then
         echo $unchanged
       else
         echo $changed
-        # no then 
+        # no then
         #echo "$sts"|head -1|grep -Ee '^[0-9]:[0-9][0-9].[0-9][0-9]$' 2>&1 >/dev/null
         #if [ $? -eq 0 ]; then
-        #  echo $unchanged 
+        #  echo $unchanged
         #fi
       fi
     fi
   fi
 }
 
-# Edit your current day's todo list. 
-function todo(){ 
-  ${EDITOR:-/usr/local/bin/vim} + ~/$(date +todolist-%Y%m%d); 
+# Edit your current day's todo list.
+function todo(){
+  ${EDITOR:-/usr/local/bin/vim} + ~/$(date +todolist-%Y%m%d);
 }
 
 function ps1 {
@@ -168,9 +168,9 @@ function anc {
 
 function dpkg-get-selections {
   dpkg --get-selections
-  >&2 echo 
+  >&2 echo
   >&2 echo -----------------------------
-  >&2 echo Usage: dpkg --get-selections 
+  >&2 echo Usage: dpkg --get-selections
   >&2 echo -----------------------------
 }
 
