@@ -21,6 +21,7 @@ aspell-en					install
 at						install
 at-spi2-core					install
 autopoint					install
+autotools-dev					install
 avahi-autoipd					install
 avahi-daemon					install
 base-files					install
@@ -39,6 +40,7 @@ brasero-common					install
 bsd-mailx					install
 bsdmainutils					install
 bsdutils					install
+build-essential					install
 busybox						install
 bzip2						install
 ca-certificates					install
@@ -183,6 +185,8 @@ freepats					install
 freerdp-x11					install
 ftp						install
 fuse						install
+g++						install
+g++-5						install
 gawk						install
 gcc						install
 gcc-4.8						install
@@ -393,6 +397,8 @@ klibc-utils					install
 kmod						install
 krb5-locales					install
 less						install
+lib32gcc1					install
+lib32stdc++6					install
 liba52-0.7.4:amd64				install
 libaa1:amd64					install
 libaacs0:amd64					install
@@ -501,6 +507,7 @@ libc-dev-bin					install
 libc-l10n					install
 libc6:amd64					install
 libc6-dev:amd64					install
+libc6-i386					install
 libcaca0:amd64					install
 libcacard0:amd64				install
 libcairo-gobject2:amd64				install
@@ -1375,6 +1382,7 @@ libssl-doc					install
 libssl1.0.0:amd64				install
 libssl1.0.2:amd64				install
 libstartup-notification0:amd64			install
+libstdc++-5-dev:amd64				install
 libstdc++6:amd64				install
 libstemmer0d:amd64				install
 libstrictures-perl				install
