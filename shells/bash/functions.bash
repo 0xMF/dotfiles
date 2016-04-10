@@ -347,4 +347,11 @@ function gman {
   }
   cd $old_pwd
 }
+
+function sc {
+  case "$1" in
+    "help"|"h"|"-h"|"--help") systemctl --help $* ;;
+    * ) systemctl $* ;;
+  esac
+}
 # vim:nospell:ft=sh:
