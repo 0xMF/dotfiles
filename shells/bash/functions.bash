@@ -79,6 +79,7 @@ function parse_git_dirty {
       sts=$(/usr/bin/time -f "%E" git status --porcelain 2>&1)
       lns=$(echo "$sts"|wc -l)
       secs=$(echo "$sts"|tail -1 |cut -d: -f2|cut -d. -f1)
+      secs=${secs:-0}
 
       # do we need to add it to the list of large repos?
       if [ $secs -gt 1 ]; then
