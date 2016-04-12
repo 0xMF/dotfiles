@@ -27,8 +27,9 @@ if [ $OS == "FreeBSD" ]; then
 
 else
 
-  alias ls='/bin/ls --color=always'
+  #alias ls='/bin/ls --color=always'
   alias lsn='ls -pF --color=none'
+  alias ls='ls --color=always --ignore="NTUSER.*" --ignore="ntuser.*"'
   alias la='ls -lah'
   alias lc='ls -Cp -w 120|less -FRMS'
   alias ll='ls -lh'
