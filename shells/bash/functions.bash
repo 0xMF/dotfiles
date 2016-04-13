@@ -63,7 +63,16 @@ function parse_git_dirty {
   local changed="$RED✗$NOCOLOR"
   local sts_skip="$RED❔$YELLOW❓$GREEN❓$NOCOLOR"
 
-  [ ! -e /usr/bin/time ] && return
+  [ ! -e /usr/bin/time ] && {
+      sts=$(git status --porcelain 2>&1)
+      lns=$(echo "$sts"|wc -l)
+      if [ $lns -eq 1 ]; then
+        echo $unchanged
+      else
+        echo $changed
+      fi
+      return
+  }
   # check for large repo (fastest)
   [ -n "$GIT_LARGE_REPO" ] && echo $sts_skip && return
 

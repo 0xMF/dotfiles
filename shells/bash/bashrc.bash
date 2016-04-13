@@ -49,6 +49,9 @@ if [ $(uname -o) == "GNU/Linux" ]; then
     fi
   fi
 fi  
+if [ -z "$OSRV" ]; then
+  OSRV=$(hostname)
+fi
 if [ $(uname -o) == "FreeBSD" ]; then
     OSRV=$(uname -sr)
 fi
