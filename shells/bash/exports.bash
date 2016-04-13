@@ -21,6 +21,6 @@ LC_CTYPE="en_CA.UTF-8"
 #export BROWSER='links2 -no-g'
 export BROWSER='w3m -v -no-mouse -s -cookie -no-proxy'
 
-export LESS='Feq'
+export LESS='Feqr'
 
 # vim:nospell:ft=sh:

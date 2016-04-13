@@ -48,8 +48,10 @@ if [ $(uname -o) == "GNU/Linux" ]; then
         OSRV=$(cat /etc/lsb-release|grep DESCRIPTION|sed -e 's/.*=//;s/\"//g')
     fi
   fi
-fi  
-if [ -z "$OSRV" ]; then
+fi
+
+OSRVT=$(echo $OSRV|sed 's/[a-zA-Z0-9]//g')
+if [[ -z "$OSRV" || "$OSRVT" == "()" ]]; then
   OSRV=$(hostname)
 fi
 if [ $(uname -o) == "FreeBSD" ]; then
