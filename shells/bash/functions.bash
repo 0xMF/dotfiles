@@ -65,8 +65,7 @@ function parse_git_dirty {
 
   [ ! -e /usr/bin/time ] && {
       sts=$(git status --porcelain 2>&1)
-      lns=$(echo "$sts"|wc -l)
-      if [ $lns -eq 1 ]; then
+      if [ -z "$sts" ]; then
         echo $unchanged
       else
         echo $changed
@@ -297,7 +296,7 @@ function gha {
 function ghb {
   for c in `seq $(gh|wc -l)`
   do
-    git log --pretty=format:"%C(bold red)%h%Creset %C(bold blue)%s%Creset%n %C(bold green)%b%Creset" HEAD~$c..HEAD~`expr $c - 1`
+    git log --pretty=format:"%C(bold red)%h%Creset %C(bold cyan)%s%Creset%n %C(bold green)%b%Creset" HEAD~$c..HEAD~`expr $c - 1`
   done
 }
 
