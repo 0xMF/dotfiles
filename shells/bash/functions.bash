@@ -63,6 +63,8 @@ function parse_git_dirty {
   local changed="$RED✗$NOCOLOR"
   local sts_skip="$RED❔$YELLOW❓$GREEN❓$NOCOLOR"
 
+  # check for large repo (fastest)
+  #[ -n "$GIT_LARGE_REPO" ] && echo $sts_skip && return
   [ ! -e /usr/bin/time ] && {
       sts=$(git status --porcelain 2>&1)
       if [ -z "$sts" ]; then
@@ -72,8 +74,7 @@ function parse_git_dirty {
       fi
       return
   }
-  # check for large repo (fastest)
-  [ -n "$GIT_LARGE_REPO" ] && echo $sts_skip && return
+
 
   # (slower) check for large repo in filenames of all large repos
   /bin/grep -qw "$PWD$" $large_repos 2>/dev/null

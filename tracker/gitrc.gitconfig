@@ -40,4 +40,10 @@
 [rebase]
   autosquash= true
 
+[branch]
+	autosetuprebase = always
+
+[branch "master"]
+	autoSetupRebase = always
+
 # vim: et:nonu:nospell:ft=gitconfig
