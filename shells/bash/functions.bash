@@ -365,4 +365,14 @@ function sc {
     * ) systemctl $* ;;
   esac
 }
+
+function ghw {
+  echo -e "my git workflow\n\
+    git branch wip\n\
+    git commit ...\n\
+    git rebase master\n\
+    git checkout master\n\
+    git merge wip"
+}
+
 # vim:nospell:ft=sh:
