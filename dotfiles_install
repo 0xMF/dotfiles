@@ -28,7 +28,7 @@ git() {
   echo -n "checking git..." >&2
 
   [ -e $HOME/.gitconfig ] && { 
-    echo "found .gitconfig" >&2
+    echo "found .gitconfig, not installing" >&2
   } || {
     installed="git"
     ln -s $PWD/tracker/gitrc.gitconfig $HOME/.gitconfig
@@ -64,6 +64,12 @@ misc() {
   else
     ln -s $PWD/misc/gemrc $HOME/.gemrc &&
     echo " - ...INSTALLED gemrc" >&2
+  fi
+  if [ -e $HOME/.inputrc ]; then
+    echo " - found inputrc, not installing" >&2
+  else
+    ln -s $PWD/misc/inputrc $HOME/.inputrc &&
+    echo " - ...INSTALLED inputrc" >&2
   fi
 }
 
