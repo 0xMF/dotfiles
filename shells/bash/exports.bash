@@ -23,4 +23,6 @@ export BROWSER='w3m -v -no-mouse -s -cookie -no-proxy'
 
 export LESS='Feqr'
 
+[ `uname` == "CYGWIN_NT-10.0" ] && export DISPLAY=:0.0
+
 # vim:nospell:ft=sh:
