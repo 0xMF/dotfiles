@@ -42,7 +42,13 @@
     :elseif has ("gui_gtk")
     ":   let hostname = substitute(system("uname -n"),"\n","","g")
     ":   if (hostname == 'name')
-    :   set guifont=Source\ Code\ Pro\ Medium\ 12 "set font and its size
+    " set font and its size
+    :   silent let scp_detected=systemlist("fc-list|grep 'Source Code Pro Medium'|wc -l")[0]
+    :   if scp_detected == "2"
+    :     set guifont=Source\ Code\ Pro\ Medium\ 12
+    :   else
+    :     set guifont=Monospace\ 12
+    :   endif
     ":  set guifont=Nimbus\ Mono\ L\ Bold\ 13 "set font and its size
     :   set guioptions+=a   " visual selection can copy to clipboard
     :   set guioptions+=i   " show gvim color icon, instead of default
