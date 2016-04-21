@@ -1,19 +1,48 @@
 "
 "** Global variables for this script
 
-"  MYVIM variable used to handle different OS repos/conf locations
-" use expand() because "$HOME", "~" or "$MYVIM" do not work
-" correctly with the let command. vim's function expand() tries to
-" correctly substitute environment variables from the shell.
-:let $MYVIM=expand("$HOME")
+" MYVIM variable used to handle different OS repos/conf locations
+"   use expand() because "$HOME", "~" or "$MYVIM" do not work
+"   correctly with the let command. vim's function expand() tries to
+"   correctly substitute environment variables from the shell, which
+"   works if your shell supports that expanded environment.
+" Note:   filereadable() does not expand ~ or $HOME  correctly so we
+"   use variable my_settings defined above and '.' to join two strings
+"   :echoerr expand("$HOME")
+"   :echoerr expand("$MYVIM")
 
-"** Global variables for this script
-" my_settings_path has location of .vim/my_settings directory in
-" user's home directory. We use expand() because "$HOME" or "~" do not
-" work correctly with the let command. expand(), tries to expand the
-" environment variables from the shell, which works if your shell
-" supports that expanded environment.
-:let my_settings_path= expand("$MYVIM/.vim/my_settings")
+:if has ("gui_win32")
+:   let $MYVIM=expand("$HOME/repos/dotfiles/editor/vim")
+:   if filereadable(expand("$MYVIM"))
+:     echoerr $MYVIM
+:   endif
+:else
+:   let $USER=substitute(system("/usr/bin/id -u"),"\n","","g")
+:   let $MYVIM=expand("$HOME/.vim")
+:end
+
+set runtimepath=$VIMRUNTIME,$MYVIM
+
+"** Keyboard Mappings
+:if filereadable($MYVIM . "/my_settings/keymap.vim")
+:   so $MYVIM/my_settings/keymap.vim
+:else
+:   echoerr "no keyboard mappings found"
+:endif
+
+"** My Scripts
+:if filereadable($MYVIM . "/my_settings/scripts.vim")
+:   so $MYVIM/my_settings/scripts.vim
+:else
+:   echoerr "none of my scripts found"
+:endif
+
+"** My Abbreviations
+:if filereadable($MYVIM . "/my_settings/abbr.vim")
+:    so $MYVIM/my_settings/abbr.vim
+:else
+:   echoerr "no abbreviations found"
+:endif
 
 "** check if gvim is running and set its options accordingly
 :if has ("gui_running")
@@ -25,19 +54,17 @@
     :   set guioptions-=m   "hide the menu
     :   set columns=114     "width in number of cols
     :   set lines=30        "height in number of lines
-    :   set runtimepath=$VIMRUNTIME,$MYVIM/.vim
-    :   colors nice-gui     "select colorscheme
     :endif
 
     "** check os version where gvim is running
     :if has ("gui_win32")
     :   winpos 0 0          "make window stick to the top left corner
-    :   set guifont=Rod:h10:cHEBREW "set font and its size
+    :     set guifont=Source_Code_Pro_Medium:h10:cANSI
+    ":   set guifont=Rod:h10:cHEBREW "set font and its size
     :   set bs=2            "backspace over indent,eol,start
     :elseif has ("gui_gtk")
     ":   let hostname = substitute(system("uname -n"),"\n","","g")
     ":   if (hostname == 'name')
-    :   let $USER=substitute(system("/usr/bin/id -u"),"\n","","g")
     " set font and its size
     :   silent let scp_detected=systemlist("fc-list|grep 'Source Code Pro Medium'|wc -l")[0]
     :   if scp_detected == "2"
@@ -49,25 +76,24 @@
     :   set guioptions+=a   " visual selection can copy to clipboard
     :   set guioptions+=i   " show gvim color icon, instead of default
     :   let &guicursor = &guicursor . ",a:blinkon0"
+    "** tags
+    :   set tags=./tags,tags,TAGS,
+    :   let tagfiles = glob("`/bin/ls -1 $HOME/src/tags/*tags`")
+    :   let tagfiles = substitute(tagfiles, "\n", ",", "g")
+    :   let &tags.= tagfiles
     :endif
 
     "** prefer my colorscheme (nice-gui) for gui (win/gtk)
-    : if filereadable(expand("$MYVIM/.vim/colors/nice-gui.vim"))
+    : if filereadable(expand("$MYVIM/colors/nice-gui.vim"))
     :   colorscheme nice-gui     "select colorscheme
     : endif
 :else
+
     "** prefer my colorscheme (nice-term) for conosole
-    : if filereadable(expand("$MYVIM/.vim/colors/nice-term.vim"))
+    : if filereadable(expand("$MYVIM/colors/nice-term.vim"))
     :   colorscheme nice-term
     : endif
 :endif
-
-"** tags
-: set tags=./tags,tags,TAGS,
-: let tagfiles = glob("`/bin/ls -1 /home/mark/src/tags/*tags`")
-: let tagfiles = substitute(tagfiles, "\n", ",", "g")
-: let &tags.= tagfiles
-
 
 "** Custom Settings
 set nocompatible        " Use VIM not vi
@@ -109,8 +135,8 @@ set laststatus=2        " always show the statusline
 
 "** locations of backup directories
 set backup
-set backupdir=$MYVIM/.vim/backup " all the *~ files go here
-set directory=$MYVIM/.vim/backup " all the *.swp files go here
+set backupdir=$MYVIM/backup " all the *~ files go here
+set directory=$MYVIM/backup " all the *.swp files go here
 
 "** Search related options
 set incsearch           " make search incremental
@@ -120,23 +146,6 @@ set smartcase           " ...if it didn't have a capital letter
 "** Make unnamed buffer the default for clipboard (see line below)
 set clipboard=unnamed   " all yanking goes to clipboard
 
-"** Keyboard Mappings
-"   sourced from ~/.vim/my_settings/mappings.vim
-"   Note:   filereadable() does not expand ~ or $HOME  correctly so we
-"   use variable my_settings defined above and '.' to join two strings
-:if filereadable(my_settings_path . "/keymap.vim")
-:   so $MYVIM/.vim/my_settings/keymap.vim
-:else
-:   echoerr "no keyboard mappings found"
-:endif
-
-"** My Scripts
-:if filereadable(my_settings_path . "/scripts.vim")
-:   so $MYVIM/.vim/my_settings/scripts.vim
-:else
-:   echoerr "none of my scripts found"
-:endif
-
 "** Vim70 features
 :if (version >= 700) && (has("gui_running"))
 :   set nospell
@@ -145,25 +154,6 @@ set clipboard=unnamed   " all yanking goes to clipboard
 :   set formatlistpat=^\\s*\\d\\+[\\]:.)}\*\\t\ ]\\s* "also called set flp
 :   set showtabline=1   " =0 never show tabs, =1 show if 2 or more tabs, =2 always show
 :endif
-
-"** Abbreviations for words commonly misspelt and shorthand notations
-"   sourced from ~/.vim/my_settings/abbr.vim
-
-:if filereadable(my_settings_path . "/abbr.vim")
-:    so $MYVIM/.vim/my_settings/abbr.vim
-:else
-:   echoerr "no abbreviations found"
-:endif
-
-" set the runtime path to include Vundle and initialize
-"set runtimepath+=~/.vim/bundle/Vundle.vim
-"call vundle#begin()
-"Plugin 'gmarik/Vundle.vim'        " let Vundle manage Vundle, required
-"Plugin 'kyuhi/vim-emoji-complete' " to see list of emojis in insert mode use CTRL-X CTRL-E
-
-" All of your Plugins must be added before the following line
-"call vundle#end()            " required for vundle
-"filetype plugin indent on    " required for vundle
 
 "** Simple scripts for autocommands on file type detectiong
 :if !exists("autocommands_loaded")
