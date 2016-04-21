@@ -6,11 +6,6 @@
 " correctly with the let command. vim's function expand() tries to
 " correctly substitute environment variables from the shell.
 :let $MYVIM=expand("$HOME")
-:if has ("gui_win32")
-  :let $MYVIM=expand("c:/extra/repos/dotfiles/vim/")
-:else
-  :let $USER=substitute(system("/usr/bin/id -u"),"\n","","g")
-:endif
 
 "** Global variables for this script
 " my_settings_path has location of .vim/my_settings directory in
@@ -42,6 +37,7 @@
     :elseif has ("gui_gtk")
     ":   let hostname = substitute(system("uname -n"),"\n","","g")
     ":   if (hostname == 'name')
+    :   let $USER=substitute(system("/usr/bin/id -u"),"\n","","g")
     " set font and its size
     :   silent let scp_detected=systemlist("fc-list|grep 'Source Code Pro Medium'|wc -l")[0]
     :   if scp_detected == "2"
@@ -65,6 +61,12 @@
     :   colorscheme nice-term
     : endif
 :endif
+
+"** tags
+: set tags=./tags,tags,TAGS,
+: let tagfiles = glob("`/bin/ls -1 /home/mark/src/tags/*tags`")
+: let tagfiles = substitute(tagfiles, "\n", ",", "g")
+: let &tags.= tagfiles
 
 
 "** Custom Settings
@@ -110,12 +112,20 @@ set backup
 set backupdir=$MYVIM/.vim/backup " all the *~ files go here
 set directory=$MYVIM/.vim/backup " all the *.swp files go here
 
+"** Search related options
+set incsearch           " make search incremental
+set ignorecase          " makes searches case insensitive...
+set smartcase           " ...if it didn't have a capital letter
+
+"** Make unnamed buffer the default for clipboard (see line below)
+set clipboard=unnamed   " all yanking goes to clipboard
+
 "** Keyboard Mappings
 "   sourced from ~/.vim/my_settings/mappings.vim
 "   Note:   filereadable() does not expand ~ or $HOME  correctly so we
 "   use variable my_settings defined above and '.' to join two strings
 :if filereadable(my_settings_path . "/keymap.vim")
-:    so ~/.vim/my_settings/keymap.vim
+:   so $MYVIM/.vim/my_settings/keymap.vim
 :else
 :   echoerr "no keyboard mappings found"
 :endif
@@ -134,6 +144,15 @@ set directory=$MYVIM/.vim/backup " all the *.swp files go here
 :   set spellfile=$MYVIM/.vim/spell/latin1.add   " my dictionary
 :   set formatlistpat=^\\s*\\d\\+[\\]:.)}\*\\t\ ]\\s* "also called set flp
 :   set showtabline=1   " =0 never show tabs, =1 show if 2 or more tabs, =2 always show
+:endif
+
+"** Abbreviations for words commonly misspelt and shorthand notations
+"   sourced from ~/.vim/my_settings/abbr.vim
+
+:if filereadable(my_settings_path . "/abbr.vim")
+:    so $MYVIM/.vim/my_settings/abbr.vim
+:else
+:   echoerr "no abbreviations found"
 :endif
 
 " set the runtime path to include Vundle and initialize
