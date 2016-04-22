@@ -11,7 +11,7 @@
 "   :echoerr expand("$HOME")
 "   :echoerr expand("$MYVIM")
 
-:if has ("gui_win32")
+:if has ("win32")
 :   let $MYVIM=expand("$HOME/repos/dotfiles/editor/vim")
 :   if filereadable(expand("$MYVIM"))
 :     echoerr $MYVIM
@@ -42,6 +42,15 @@ set runtimepath=$VIMRUNTIME,$MYVIM
 :    so $MYVIM/my_settings/abbr.vim
 :else
 :   echoerr "no abbreviations found"
+:endif
+
+"** locations of backup directories
+:if isdirectory($MYVIM . "/backup")
+: set backup
+: set backupdir=$MYVIM/backup " all the *~ files go here
+: set directory=$MYVIM/backup " all the *.swp files go here
+:else
+:   echoerr "cannot create backups"
 :endif
 
 "** check if gvim is running and set its options accordingly
@@ -132,11 +141,6 @@ set mousemodel=popup keymodel=startsel        " type of mouse/keyboard behaviour
 : set statusline=%f%m%r%h%w\ [%{&ff}]\ [%Y]\ [ASCII=\%3.3b]\ [HEX=\%02.2B]\ [%l,%v]\ [%{CharCount()}\ CHARS][%{WordCount()}\ WORDS][%p%%:%L\ LINES]
 :endif
 set laststatus=2        " always show the statusline
-
-"** locations of backup directories
-set backup
-set backupdir=$MYVIM/backup " all the *~ files go here
-set directory=$MYVIM/backup " all the *.swp files go here
 
 "** Search related options
 set incsearch           " make search incremental
