@@ -39,19 +39,22 @@ else
 fi
 
 alias ..='cd ..'
+alias ...='cd ../..'
 alias ack='ack-grep'
+alias gv='gvim --remote-tab-silent'
 alias cd..='cd ..'
 alias cls='clear'
 alias cpi='cp -i'
 alias cpu='cp -u'
 alias gnupg='gpg'
 alias grep='grep --color=always -i'
+alias gv='gvim --remote-tab-silent'
 alias mvi='mv -i'
 alias pg='less -Feq'
 alias rehash='hash -r'
 alias reset='reset -e ^?'
 alias vi='vim'
-alias gv='gvim --remote-tab-silent'
+alias tmux='tmux -u'
 
 # git based aliases 
 [ ! -z "`which hub 2>/dev/null`" ] && alias git='hub'
