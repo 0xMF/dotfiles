@@ -44,6 +44,6 @@
 	autosetuprebase = always
 
 [branch "master"]
-	autoSetupRebase = always
+	autoSetupRebase = never
 
 # vim: et:nonu:nospell:ft=gitconfig
