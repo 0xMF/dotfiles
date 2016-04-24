@@ -19,7 +19,10 @@ bash() {
     ln -s $PWD/shells/bash $HOME/.bash
   }
 
-  [ ! -z "$installed" ] && echo "INSTALLED!" >&2
+  [ ! -z "$installed" ] && {
+    echo "INSTALLED!" >&2
+    echo "Don't forget to install local.bash and secrets.bash" >&2
+  }
 }
 
 # git
@@ -46,7 +49,10 @@ git() {
     ln -s $PWD/tracker/git/ignore.conf $HOME/.gitignore
   }
 
-  [ ! -z "$installed" ] && echo "INSTALLED!" >&2
+  [ ! -z "$installed" ] && {
+    echo "INSTALLED!" >&2
+    echo "Don't forget to install local.gitconfig and ignore.conf" >&2
+  }
 }
 
 # misc
