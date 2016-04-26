@@ -54,3 +54,18 @@ augroup END
 :1
 :endfunction
 
+:function! My_Colours_Change()
+:   if g:colors_name == "nice-gui"
+:     colorscheme darkblue
+:   else
+:     colorscheme nice-gui
+:   endif
+:endfunction
+
+:function! My_FontSize_Change()
+:if getfontname() == "Courier\ 10 Pitch\ 24"
+: set guifont=Courier\ 10\ Pitch\ 19 "set font and its size
+:else
+: set guifont=Courier\ 10\ Pitch\ 24 "set font and its size
+:endif
+:endfunction

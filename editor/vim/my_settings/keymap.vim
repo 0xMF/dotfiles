@@ -16,6 +16,7 @@
 :imap ;qw <Esc>magw}``|                 " Vim's paragraph formatting
 
 :map ;fo <Esc>:call My_Convert()<CR>|   " removes dos formatting
+:map ;cc <Esc>:call My_Colours_Change()<CR>|
 :map ;l <Esc>:set list!<CR>|            " toggle non-printable
 :map ;n <Esc>:set nu!<CR>|              " toggle line-numbers
 :map ;nu <Esc>:set nu!<CR>|             " toggle line-numbers
