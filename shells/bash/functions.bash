@@ -375,4 +375,14 @@ function ghw {
     git merge wip"
 }
 
+function gsearch {
+
+  [ -z "$1" ] && echo Usage: gsearch search_term && return
+  for commit in $(git log --oneline|/bin/grep "$1"|awk '{print $1}')
+  do
+    git show --pretty="%h %s %b" --stat $commit
+    git show --pretty="%n        %Cred===%C(yellow)**%Cgreenx%C(yellow)**%Cred===%Creset%n" -s $commit
+  done
+}
+
 # vim:nospell:ft=sh:
