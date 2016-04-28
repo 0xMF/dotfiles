@@ -1,4 +1,4 @@
-"
+
 "** Global variables for this script
 
 " MYVIM variable used to handle different OS repos/conf locations
@@ -58,6 +58,7 @@ set runtimepath=$VIMRUNTIME,$MYVIM
     "** only initialize window size if has not been initialized yet
     :if !exists ("s:my_windowInitialized_variable")
     :   let s:my_windowInitialized_variable=1
+    :   let g:fonts_small=0
     :   set guiheadroom=20  "room for window decorations
     :   set guioptions-=T   "hide the toolbar
     :   set guioptions-=m   "hide the menu

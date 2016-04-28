@@ -17,6 +17,7 @@ function! UpdateWordCount()
   endwhile
   let g:word_count = n
 endfunction
+
 set updatetime=1000
 augroup WordCounter
   au! CursorHold,CursorHoldI * call UpdateWordCount()
@@ -62,10 +63,30 @@ augroup END
 :   endif
 :endfunction
 
-:function! My_FontSize_Change()
-:if getfontname() == "Courier\ 10 Pitch\ 24"
-: set guifont=Courier\ 10\ Pitch\ 19 "set font and its size
-:else
-: set guifont=Courier\ 10\ Pitch\ 24 "set font and its size
-:endif
+:function! My_Fonts_Change()
+    :if exists("g:font_small")
+    :   unlet g:font_small
+    :   if has ("gui_win32")
+    :     set guifont=Source_Code_Pro_Medium:h10:cANSI
+    :   elseif has ("gui_gtk")
+    :     silent let scp_detected=systemlist("fc-list|grep 'Source Code Pro Medium'|wc -l")[0]
+    :     if scp_detected == "2"
+    :       set guifont=Source\ Code\ Pro\ Medium\ 12
+    :     else
+    :       set guifont=Monospace\ 12
+    :     endif
+    :   endif
+    :else
+    :   let g:font_small = 1
+    :   if has ("gui_win32")
+    :     set guifont=Source_Code_Pro_Medium:h8:cANSI
+    :   elseif has ("gui_gtk")
+    :     silent let scp_detected=systemlist("fc-list|grep 'Source Code Pro Medium'|wc -l")[0]
+    :     if scp_detected == "2"
+    :       set guifont=Source\ Code\ Pro\ Medium\ 10
+    :     else
+    :       set guifont=Monospace\ 10
+    :     endif
+    :   endif
+    :endif
 :endfunction

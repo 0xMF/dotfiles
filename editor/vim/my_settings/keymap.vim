@@ -82,15 +82,13 @@ map <Space> <C-f>
 map b       <C-b>
 map q       :q<CR>
 
-
-
 :imap <A-BS> <ESC>ua|                   " --ditto-- in insert mode
 :imap <C-D> <Esc>ldea|                  " --ditto-- in insert mode
 :imap <C-Del> <Esc>ldwi|                " Window's style delete
 :imap <C-s> <Esc>:w<CR>a|               " --ditto-- in insert mode
 :imap <End> <Esc>$a|                    " --ditto-- in insert mode
 :imap <M-q> <Esc>magq}``a|              " --ditto-- in insert mode
-:imap ;a <<Esc>ea><Esc>a|	              " --ditto-- in insert mode
+:imap ;a <<Esc>ea><Esc>a|               " --ditto-- in insert mode
 :imap ;l  <Esc>:set list!<CR>a|         " toggle non-printable
 :imap ;n <Esc>:set nu!<CR>a|            " toggle numbering
 :imap ;nu  <Esc>:set nu!<CR>a|          " toggle line-numbers
@@ -99,25 +97,28 @@ map q       :q<CR>
 
 :imap ;e <Esc>:set spell!<CR>i|  "toggle spell checking
 
-:map ;' i'<Esc>Ea'<Esc>|	              " ' ' around a word
-:map ;* i*<Esc>Ea*<Esc>|	              " * * around a word
-:map ;+ i+<Esc>Ea+<Esc>|	              " + + around a word
-:map ;a i<<Esc>Ea><Esc>|	              " angles <> around a word
-:map ;b i*<Esc>Ea*<Esc>|	              " * * around a word
-:map ;c i{<Esc>Ea}<Esc>|	              " curlies {} around a word
+:map ;' i'<Esc>Ea'<Esc>|              " ' ' around a word
+:map ;* i*<Esc>Ea*<Esc>|              " * * around a word
+:map ;+ i+<Esc>Ea+<Esc>|              " + + around a word
+:map ;a i<<Esc>Ea><Esc>|              " angles <> around a word
+:map ;b i*<Esc>Ea*<Esc>|              " * * around a word
+:map ;c i{<Esc>Ea}<Esc>|              " curlies {} around a word
 :map ;cc <Esc>:call My_Colours_Change()<CR>|
-:map ;e :set spell!<CR>|                "toggle spell checking
-:map ;ea i</<Esc>ea><Esc>|	            " add end tags <> around a word
+:map ;cf <Esc>:call My_Fonts_Change()<CR>|
+:map ;e :set spell!<CR>|                " toggle spell checking
+:map ;ea i</<Esc>ea><Esc>|              " add end tags <> around a word
 :map ;fo <Esc>:call My_Convert()<CR>|   " removes dos formatting
-:map ;h :set hls!<CR>|	"toggle hilightsearch
-:map ;i i'<Esc>Ea'<Esc>|	              " ' ' around a word
+:map ;h :set hls!<CR>|                  " toggle hilightsearch
+:map ;i i'<Esc>Ea'<Esc>|                " ' ' around a word
 :map ;l <Esc>:set list!<CR>|            " toggle non-printable
-:map ;m i+<Esc>Ea+<Esc>|	              " + + around a word
+:map ;m i+<Esc>Ea+<Esc>|                " + + around a word
 :map ;n <Esc>:set nu!<CR>|              " toggle line-numbers
 :map ;nu <Esc>:set nu!<CR>|             " toggle line-numbers
-:map ;p i(<Esc>Ea)<Esc>|	              " parens () around a word
+:map ;p i(<Esc>Ea)<Esc>|                " parens () around a word
 :map ;q  <Esc>magq}``|                  " par command  paragraph formatting
 :map ;qw <Esc>magw}``|                  " Vim's paragraph formatting
+:map ;tp gT|                            " tabprevious for console vim
+:map ;tn gt|                            " tabnext
 :map <A-BS> <ESC>u|                     " Window's style undo
 :map <C-D> de|                          " delete word under cursor
 :map <C-s> :w<CR>|                      " like Windows CTRL +S to save
