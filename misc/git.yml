@@ -1,0 +1,13 @@
+# ~/.tmuxinator/git.yml
+
+name: git
+root: ~/
+
+windows:
+  - misc:
+      layout: 3e83,127x79,0,0{79x79,0,0,1,47x79,80,0,7}
+      panes:
+        - left:
+          - glast gshow -t 0.0
+        - right:
+          - glast ghc -t 0.1

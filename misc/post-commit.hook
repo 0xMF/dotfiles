@@ -1,0 +1,5 @@
+#!/bin/sh
+#
+
+repo_name=$(basename `git rev-parse --show-toplevel`)
+echo $repo_name > $HOME/repos/mru_repo

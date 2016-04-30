@@ -301,6 +301,12 @@ function ghb {
   done
 }
 
+function ghc {
+  git log --decorate --abbrev-commit --date=short --all --graph\
+          --pretty=format:"%C(red bold)%h%Creset %C(green bold)%s%Creset" |\
+  cut -c1-64 | less -R
+}
+
 
 # if $1 is 1 'git show HEAD' otherwise 'git show $1'
 function _gshow {
@@ -383,6 +389,13 @@ function gsearch {
     git show --pretty="%h %s %b" --stat $commit
     git show --pretty="%n        %Cred===%C(yellow)**%Cgreenx%C(yellow)**%Cred===%Creset%n" -s $commit
   done
+}
+
+
+function glast {
+  mru_repo=$(cat $HOME/repos/mru_repo)
+  cd $HOME/repos/$mru_repo
+  [ -z "$1" ] && echo "Usage: glast my_git_command/alias" >&2 || "$1"
 }
 
 # vim:nospell:ft=sh:
