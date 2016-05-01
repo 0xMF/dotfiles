@@ -2,13 +2,10 @@
   br        = branch
   ci        = commit
   co        = checkout
-  dump      = cat-file -p
   h         = log --pretty=oneline --decorate --abbrev-commit --date=short
-  history   = log --pretty=format:"%C(yellow)%h\\ %ad%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --graph --date=short
   hist      = log --pretty=format:\"%h %ad | %s%d [%an]\" --graph --date=short
   lgp       = log -p
   lgs       = log --stat
-  logs      = log --stat
   lol       = log --graph --decorate --pretty=oneline --abbrev-commit
   lola      = log --graph --decorate --pretty=oneline --abbrev-commit --all
   lolar     = log --decorate --pretty=oneline --abbrev-commit --all --reverse
@@ -16,7 +13,6 @@
   st        = status
   sta       = status
   sts       = status -s
-  type      = cat-file -t
 
   ga        = add
   gb        = branch
@@ -88,16 +84,51 @@
   gsr       = svn rebase
   git-svn-dcommit-push = svn dcommit && git push github master:svntrunk
 
+  # Blog Post: Human Git Aliases; http://gggritso.com/human-git-aliases
+  # https://github.com/gggritso/dotfiles/blob/master/gitconfig.symlink
+  # BEGIN HUMAN
+  amend     = commit --amend
+  back      = checkout "-"
+  branches  = branch -a
+  branchout = checkout -b
+  contributors = shortlog -s -n
+  discard   = checkout --
+  filetrail = git log --follow -p -w
+  graph     = log --graph -10 --branches --remotes --tags  --format=format:'%Cgreen%h %Creset %<(75,trunc)%s (%cN, %ar) %Cred%d' --date-order
+  history   = log -10 --format=format:'%Cgreen%h %Creset %s (%cN, %ar)'
+  invert    = revert
+  last      = log -1 HEAD --format=format:"%Cred%H"
+  mergetrail = log --ancestry-path --merges
+  move      = mv
+  nevermind = !git reset --hard HEAD && git clean -d -f
+  precommit = diff --cached -w --word-diff=color --word-diff-regex='[^[:space:]<>]+'
+  prestage  = diff -w --word-diff=color
+  remotes   = remote -v
+  remove    = rm
+  resave    = commit --amend
+  rewrite   = rebase -i
+  save      = commit -m
+  stashes   = stash list
+  summary   = status -u -s
+  tags      = tag
+  uncommit  = reset --mixed HEAD~
+  unmerged  = branch --no-merged
+  unmerged  = diff --name-only --diff-filter=U
+  unstage   = reset -q HEAD --
+  unstash   = stash pop
+  untrack   = rm -r --cached
+  what      = show -w
+  #----
 
-  # show only what is in orgin/master that isn't in master
-  # show only what is in master that isn't in orgin/master
-  incoming  = log orgin/master ^master
-  outgoing  = log master ^orgin/master
-
+  dump      = cat-file -p
+  history   = log --pretty=format:"%C(yellow)%h\\ %ad%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --graph --date=short
+  ignore    = ls-files -o -i --exclude-standard   # Show files ignored by git:
+  incoming  = log orgin/master ^master            # show only what is in orgin/master that isn't in master
+  logs      = log --stat
+  outgoing  = log master ^orgin/master            # show only what is in master that isn't in orgin/master
+  type      = cat-file -t
   undo      = reset --soft HEAD~1
-
-  # Show files ignored by git:
-  ign       = ls-files -o -i --exclude-standard
+  # END HUMAN
 
 # vim: et:nonu:nospell:ft=gitconfig
 

@@ -238,8 +238,33 @@ function gits() {
   {
     alias|sed 's/alias //' | /bin/grep '^g[a-zA-Z]'
   } | sed -r '/(gpg|gvim|grep)/d'| sort | awk -F"'" '{printf("%8s %s\n",$1,$2)}'
+  echo
   echo -ne "...and git-related bash functions are: "
   declare -F | /bin/grep ' -f g[a-zA-Z]' |cut -d" " -f3|sort |fmt
+  #sed -r '/#/d;/^ *g[a-z]{1,}/d;/^$/d;/^\[/d;s/ *=.*//' $HOME/.git/aliases.gitconfig|sort |fmt
+  sed -r '/#/d;/^$/d;/^\[/d;s/ *=.*//' $HOME/.git/aliases.gitconfig|sort |fmt
+}
+
+function ghelp() {
+  if [ -z "$1" ]; then
+    ghuman
+    echo
+    sed -r '/#/d;/^$/d;/^\[/d;s/ *=.*//' $HOME/.git/aliases.gitconfig|sort |fmt
+    echo -e "\nUsage:ghelp search_term\n"
+  else
+    expand=$(alias "$1" 2>/dev/null)
+    [ $? -eq 0 ] && echo "$expand" && return
+    expand=$(grep -w "^ *$1" $HOME/.git/aliases.gitconfig 2>/dev/null)
+    [ $? -eq 0 ] && echo "$expand" && return
+    expand=$(declare -f "$1")
+    [ $? -eq 0 ] && echo "$expand" && return
+
+    echo "$1 isn't a bash alias,git alias, or a bash function"
+  fi
+}
+
+function ghuman() {
+   sed -n '/BEGIN HUMAN/,/END HUMAN/p' $HOME/.git/aliases.gitconfig
 }
 
 # git most-recently-used aliases and bash-functions
