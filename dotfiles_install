@@ -77,11 +77,11 @@ misc() {
     ln -s $PWD/misc/inputrc $HOME/.inputrc &&
     echo " - ...INSTALLED inputrc" >&2
   fi
-  if [ -e $HOME/.tmuxinator/git.yml ]; then
-    echo " - found git.yml, not installing" >&2
+  if [[ -d $HOME/.tmuxinator || -L $HOME/.tmuxinator ]]; then
+    echo " - found .tmuxinator, not installing" >&2
   else
-    ln -s $PWD/misc/git.yml $HOME/.tmuxinator/git.yml &&
-    echo " - .../INSTALLED git.yml" >&2
+    ln -s $PWD/misc/tmuxinator $HOME/.tmuxinator &&
+    echo " - .../INSTALLED .tmuxinator" >&2
   fi
 }
 

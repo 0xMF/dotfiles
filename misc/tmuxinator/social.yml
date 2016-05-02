@@ -1,0 +1,32 @@
+# ~/.tmuxinator/social.yml
+
+name: social
+root: ~/
+
+# Optional tmux socket
+# socket_name: foo
+
+# Runs before everything. Use it to start daemons etc.
+# pre: sudo /etc/rc.d/mysqld start
+
+# Runs in each window and pane before window/pane specific commands. Useful for setting up interpreter versions.
+# pre_window: rbenv shell 2.0.0-p247
+
+# Pass command line options to tmux. Useful for specifying a different tmux.conf.
+# tmux_options: -f ~/.tmux.mac.conf
+
+# Change the command to call tmux.  This can be used by derivatives/wrappers like byobu.
+# tmux_command: byobu
+
+windows:
+  - misc: 
+      layout: d65c,136x34,0,0[136x27,0,0,0,136x6,0,28{105x6,0,28,1,30x6,106,28,2}]
+      #layout: 1ab5,136x35,0,0[136x28,0,0,23,136x6,0,29{86x6,0,29,26,49x6,87,29,27}]
+      panes:
+        - ssh
+        - 
+        - tmux clock-mode -t 0.2
+#  - editor: 
+#        - tmux select-window -t 1 && 
+#          tmux set-option -g status off &&
+#          clear && pal
