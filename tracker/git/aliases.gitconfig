@@ -107,7 +107,7 @@
   remove    = rm
   resave    = commit --amend
   rewrite   = rebase -i
-  save      = commit -m
+  save      = commit -am
   stashes   = stash list
   summary   = status -u -s
   tags      = tag
@@ -126,6 +126,8 @@
   incoming  = log orgin/master ^master            # show only what is in orgin/master that isn't in master
   logs      = log --stat
   outgoing  = log master ^orgin/master            # show only what is in master that isn't in orgin/master
+  show-all  = log --follow
+  shop-all  = log --follow -p
   type      = cat-file -t
   undo      = reset --soft HEAD~1
   # END HUMAN
