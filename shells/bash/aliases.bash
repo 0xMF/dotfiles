@@ -54,7 +54,7 @@ alias pg='less -Feq'
 alias rehash='hash -r'
 alias reset='reset -e ^?'
 alias vi='vim'
-alias tmux='tmuxinator -u'
+alias tmux='tmux -u'
 
 # git based aliases 
 [ ! -z "`which hub 2>/dev/null`" ] && alias git='hub'
