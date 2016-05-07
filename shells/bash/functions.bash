@@ -289,23 +289,30 @@ function gcr {
   esac
 }
 
+
+function __gh {
+  git log -10 --graph --date=short \
+              --pretty=format:"%C(red bold)%h%Creset %C(blue bold)%ad%Creset %C(cyan bold)|%Creset %C(auto)%d%Creset %s"
+}
 # queries git log based on arguments
 #   no args : show last 10 one-line commit messages
 #   1 arg   : show that (relative to HEAD~) commit message details
 #   2 arts  : show summary of commit messages within the given numbers
 function _gh {
+  br_name=`git rev-parse --abbrev-ref HEAD`
   case $# in
     1) [ $1 -eq 1 ] && git log -p --stat HEAD...HEAD~1 \
                     || git log -p --stat HEAD~`expr $1 - 1`...HEAD~$1 ;;
     2) [ $1 -eq 1 ] && git log --stat  HEAD...HEAD~$2 \
                     || git log --stat  HEAD~$1...HEAD~$2 ;;
-    *) [ "`git rev-parse --abbrev-ref HEAD`" == "master" ] \
-        && git log -10 --graph --date=short \
-              --pretty=format:"%C(red bold)%h%Creset %C(blue bold)%ad%Creset %C(cyan bold)|%Creset %C(auto)%d%Creset %s" \
-        || git log -10 --graph --date=short \
-              --pretty=format:"%C(red bold)%h%Creset %C(blue bold)%ad%Creset %C(cyan bold)|%Creset %C(auto)%d%Creset %s" \
-              HEAD...origin/master
-        ;;
+    *) if [ "$br_name" == "master" ]
+       then
+          __gh
+       else
+         [ "origin/$br_name" ==  "`git branch -a|grep HEAD|cut -d'>' -f2`" ] \
+         && __gh \
+         || __gh HEAD...origin/$br_name
+       fi
   esac
 }
 

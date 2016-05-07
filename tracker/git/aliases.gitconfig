@@ -89,6 +89,7 @@
   # BEGIN HUMAN
   amend     = commit --amend
   back      = checkout "-"
+  branch-name= rev-parse --abbrev-ref HEAD
   branches  = branch -a
   branchout = checkout -b
   contributors = shortlog -s -n
