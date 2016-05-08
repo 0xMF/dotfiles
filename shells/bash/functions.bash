@@ -290,16 +290,25 @@ function gcr {
 }
 
 
-function __gh {
+function __gdh {
   git log -10 --graph --date=short \
               --pretty=format:"%C(red bold)%h%Creset %C(blue bold)%ad%Creset %C(cyan bold)|%Creset %C(auto)%d%Creset %s"
+}
+function __gh {
+  git log -10 --graph \
+              --pretty=format:"%C(red bold)%h%Creset %C(cyan bold)|%Creset %C(auto)%d%Creset %s"
 }
 # queries git log based on arguments
 #   no args : show last 10 one-line commit messages
 #   1 arg   : show that (relative to HEAD~) commit message details
 #   2 arts  : show summary of commit messages within the given numbers
-function _gh {
+function gh {
+  #`echo "$*"|sed -r 's/(,|-|  )/ /g'`
+
+  e=$([ "$1" == "d" ] && echo __gdh || echo __gh)
   br_name=`git rev-parse --abbrev-ref HEAD`
+
+  [ "$1" == "d" ] && shift
   case $# in
     1) [ $1 -eq 1 ] && git log -p --stat HEAD...HEAD~1 \
                     || git log -p --stat HEAD~`expr $1 - 1`...HEAD~$1 ;;
@@ -307,22 +316,17 @@ function _gh {
                     || git log --stat  HEAD~$1...HEAD~$2 ;;
     *) if [ "$br_name" == "master" ]
        then
-          __gh
+         $e
        else
          [ "origin/$br_name" ==  "`git branch -a|grep HEAD|cut -d'>' -f2`" ] \
-         && __gh \
-         || __gh HEAD...origin/$br_name
+         && $e \
+         || $e HEAD...origin/$br_name
        fi
   esac
 }
 
-function gh {
-   _gh `echo "$*"|sed -r 's/(,|-|  )/ /g'`
-}
-
 function gha {
-   git log -10 --all --graph --date=short \
-          --pretty=format:"%C(red bold)%h%Creset %C(blue bold)%ad%Creset %C(cyan bold)|%Creset %C(auto)%d%Creset %s"
+   eval ` [ -z "$1" ] && echo __gh || echo __gdh ` --all -10
 }
 
 
