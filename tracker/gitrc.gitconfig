@@ -5,7 +5,8 @@
 [core]
   editor    = vim
   excludesfile = ~/.gitignore
-  pager     = more -s
+  pager     = less -FEqRSX
+  #pager     = more -s
   # pager    = less -cFEXq
   # pager    = more -Rq
 

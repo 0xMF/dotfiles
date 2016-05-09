@@ -341,8 +341,8 @@ function ghc {
   # lines=$(git log --oneline|wc -l)
   # pager=`[ $lines -gt 78 ] && echo "less -R"  || echo "cat"  `
   git log --decorate --abbrev-commit --date=short --all --graph\
-          --pretty=format:"%C(red bold)%h%Creset %C(green bold)%s%Creset" |\
-  cut -c1-64 | less #eval "$pager"
+          --pretty=format:"%C(red bold)%h%Creset %C(green bold)%s%Creset" #|\
+  #cut -c1-64 | less #eval "$pager"
 }
 
 
