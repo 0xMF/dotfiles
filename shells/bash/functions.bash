@@ -237,12 +237,15 @@ function gits() {
   # get all git-aliases and git-functions; filter out non-git; sort
   {
     alias|sed 's/alias //' | /bin/grep '^g[a-zA-Z]'
-  } | sed -r '/(gpg|gvim|grep)/d'| sort | awk -F"'" '{printf("%8s %s\n",$1,$2)}'
+  } | sed -r '/(gpg|gvim|grep)/d'| sort | awk -F"'" '{printf("%8s %s\n",$1,$2)}'|less -E
   echo
-  echo -ne "...and git-related bash functions are: "
-  declare -F | /bin/grep ' -f g[a-zA-Z]' |cut -d" " -f3|sort |fmt
-  #sed -r '/#/d;/^ *g[a-z]{1,}/d;/^$/d;/^\[/d;s/ *=.*//' $HOME/.git/aliases.gitconfig|sort |fmt
-  sed -r '/#/d;/^$/d;/^\[/d;s/ *=.*//' $HOME/.git/aliases.gitconfig|sort |fmt
+  echo To see any expansion of the functions below use ghelp, example: ghelp amend
+  echo
+  {
+    declare -F | /bin/grep ' -f g[a-zA-Z]' |cut -d" " -f3|
+    sed -r '/#/d;/^$/d;/^\[/d;s/ *=.*//' $HOME/.git/aliases.gitconfig
+  } |sort |fmt -w `tput cols`
+  echo
 }
 
 function ghelp() {
