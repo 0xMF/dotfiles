@@ -27,7 +27,7 @@ export BROWSER='w3m -v -no-mouse -s -cookie -no-proxy'
 
 # Handles: (-R) ANSI colors with ESC, (-FX) quit on one screen without destroying text, 
 #          (-q) quiet mode and (-e) terminate after second encounter with EOF
-export LESS='FeqRX'
+export LESS='FeqRSX'
 
 [ `uname` == "CYGWIN_NT-10.0" ] && export DISPLAY=:0.0
 
