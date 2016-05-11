@@ -294,11 +294,13 @@ function gcr {
 
 
 function __gdh {
-  git log -10 --graph --date=short \
+  n=${1:--10}
+  git log $n --graph --date=short \
               --pretty=format:"%C(red bold)%h%Creset %C(blue bold)%ad%Creset %C(cyan bold)|%Creset %C(auto)%d%Creset %s"
 }
 function __gh {
-  git log -10 --graph \
+  n=${1:--10}
+  git log $n --graph \
               --pretty=format:"%C(red bold)%h%Creset %C(cyan bold)|%Creset %C(auto)%d%Creset %s"
 }
 # queries git log based on arguments
@@ -309,7 +311,6 @@ function gh {
   #`echo "$*"|sed -r 's/(,|-|  )/ /g'`
 
   e=$([ "$1" == "d" ] && echo __gdh || echo __gh)
-  br_name=`git rev-parse --abbrev-ref HEAD`
 
   [ "$1" == "d" ] && shift
   case $# in
@@ -317,19 +318,18 @@ function gh {
                     || git log -p --stat HEAD~`expr $1 - 1`...HEAD~$1 ;;
     2) [ $1 -eq 1 ] && git log --stat  HEAD...HEAD~$2 \
                     || git log --stat  HEAD~$1...HEAD~$2 ;;
-    *) if [ "$br_name" == "master" ]
-       then
-         $e
-       else
-         [ "origin/$br_name" ==  "`git branch -a|grep HEAD|cut -d'>' -f2`" ] \
-         && $e \
-         || $e HEAD...origin/$br_name
-       fi
+    *) $e;;
+       #br_name=`git rev-parse --abbrev-ref HEAD`
+       #br_all=`git branch -a|grep HEAD|cut -d'>' -f2`
+       #case "origin/$br_name" in
+       #  "$br_all") $e HEAD...origin/$br_name;;
+       #  *)
+       #esac
   esac
 }
 
 function gha {
-   eval ` [ -z "$1" ] && echo __gh || echo __gdh ` --all -10
+   eval ` [ -z "$1" ] && echo __gh || echo __gdh ` --all
 }
 
 
