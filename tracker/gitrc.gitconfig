@@ -1,3 +1,5 @@
+# vim: et:nonu:nospell:ft=gitconfig
+
 [include]
   path      = ~/.git/local.gitconfig
   path      = ~/.git/aliases.gitconfig
@@ -47,4 +49,5 @@
 [branch "master"]
 	autoSetupRebase = never
 
-# vim: et:nonu:nospell:ft=gitconfig
+[pull]
+	rebase = true
