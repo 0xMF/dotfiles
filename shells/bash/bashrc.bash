@@ -75,6 +75,9 @@ fi
 set -o emacs
 shopt -s extglob
 
+# override system umask settings because they are nonsense in some distros
+umask 0022
+
 # command line calendar
 # https://github.com/0xMF/catholic/calendar
 pal 2> /dev/null
