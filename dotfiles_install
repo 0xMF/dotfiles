@@ -5,7 +5,7 @@ bash() {
   installed=
   echo -n "checking bash..." >&2
 
-  [ -e $HOME/.bashrc ] && {
+  [[ -e $HOME/.bashrc || -L $HOME/.bashrc ]] && {
     echo "found, not installing" >&2
   } || {
     installed="bash"
@@ -17,6 +17,12 @@ bash() {
   } || {
     installed="bash"
     ln -s $PWD/shells/bash $HOME/.bash
+  }
+
+  [[ -e $HOME/.bash_logout || -L $HOME/.bash_logout ]] && { :
+  } || {
+    installed="bash"
+    ln -s $PWD/shells/bash/bash_logout $HOME/.bash_logout
   }
 
   [ ! -z "$installed" ] && {
