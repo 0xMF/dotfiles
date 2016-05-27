@@ -163,6 +163,31 @@ function poof {
   sudo systemctl start poweroff.target
 }
 
+# Environment variable settings for setting DISPLAY to local or remote
+function get_xserver ()
+{
+  case $TERM in
+    xterm )
+        XSERVER=$(who am i | awk '{print $NF}' | tr -d ')''(' )
+        XSERVER=${XSERVER%%:*}
+        ;;
+    aterm | rxvt)
+        ;;
+  esac
+}
+
+if [ -z ${DISPLAY:=""} ]; then
+  get_xserver
+  if [[ -z ${XSERVER} || ${XSERVER} == $(hostname) || \
+    ${XSERVER} == "unix" ]]; then
+      DISPLAY=":0.0" # Display on local host.
+  else
+      DISPLAY=${XSERVER}:0.0 # Display on remote host.
+  fi
+fi
+
+export DISPLAY
+
 function share {
   sudo mount -t vboxsf -o uid=1000,gid=1000,dmode=700,fmode=600,umask=077 share /home/mark/share
 }
