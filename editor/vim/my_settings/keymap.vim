@@ -124,9 +124,9 @@ map q       :q<CR>
 :map <C-s> :w<CR>|                      " like Windows CTRL +S to save
 :map <End>  <Esc>$|                     " jump to the end
 
-" Unused or untested
-":map <F11> :set report=0<CR>:set nohls<CR>:'t,.s/\i\+/&/g<CR>| " from mark t to current line wordcount
-":map <F12> :set report=0<CR>:set nohls<CR>:%s/\i\+/&/g<CR>| " entire file wordcount
+" Word counting
+:map <F11> :set report=0<CR>:set nohls<CR>:'t,.s/\i\+/&/g<CR>| " from mark t to current line wordcount
+:map <F12> :set report=0<CR>:set nohls<CR>:%s/\i\+/&/g<CR>| " entire file wordcount
 
 " FAILED COPY ATTEMPTS
 "map <C-C>  vgG
