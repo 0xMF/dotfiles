@@ -17,6 +17,7 @@
 :ab THe The
 :ab vulnerabilties vulnerabilities
 :ab vulnerabilty vulnerability
+
 "* formatting for Asciidoc
 :ab *[r *[red]##*
 :ab '[r '[red]##'
@@ -38,4 +39,13 @@
 :ab '[p '[purple]##'
 :ab [p [purple]##
 
+"*:ab C++ C\+\+
+:ab +_  +++<?my-underline?>+++
+:ab +.  +++<?my-nopagenumber?>+++
+:ab +\n +++<?asciidoc-pagebreak?>+++
 
+"* Interesting abbreviations
+:let @t=strftime("%e %b %Y")
+:ab onl [Online]. Available from: (Accessed: <C-R>t).
+:ab doi [Online]. [DOI] http://dx.doi.org/ (Accessed: <C-R>t).
+:ab onli [Online]. Available from: \url{} (Accessed: <C-R>t).
