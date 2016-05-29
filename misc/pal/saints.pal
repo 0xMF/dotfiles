@@ -1,0 +1,402 @@
+# This calendar is a calendar of Catholic saints. The list is taken
+# from Wikipedia. See:
+#
+# http://en.wikipedia.org/wiki/Roman_Catholic_calendar_of_saints
+#
+
+CC Catholic
+00000101 Octave of Christmas, Solemnity of Mary, Mother of God - Solemnity
+00000102 Saints Basil the Great and Gregory Nazianzen, bishops and doctors - Memorial (liturgy)|Memorial
+00000103 Feast of the Holy Name of Jesus|The Most Holy Name of Jesus - Optional Memorial
+00000104 Feria
+00000105 Feria
+00000106 Epiphany (Christian)|Epiphany (celebrated on the first Sunday after 1 January in countries where this feast is not a Holy Day of Obligation)
+00000107 Saint Raymond of Peñafort, priest - Optional Memorial
+00000108 Feria
+00000109 Feria
+00000110 Feria
+00000111 Feria
+00000112 Feria
+00000113 Saint Hilary of Poitiers, bishop and doctor - Optional Memorial
+00000114 Feria
+00000115 Feria
+00000116 Feria
+00000117 Anthony the Great|Saint Anthony of Egypt, abbot - Memorial
+00000118 Feria
+00000119 Feria
+00000120 Pope Fabian|Saint Fabian, pope and martyr; or Saint Sebastian, martyr - Optional Memorial
+00000121 Saint Agnes, virgin and martyr - Memorial
+00000122 Vincent of Saragossa|Saint Vincent, deacon and martyr - Optional Memorial
+00000123 Feria
+00000124 Saint Francis de Sales, bishop and doctor - Memorial
+00000125 The Conversion of Paul of Tarsus|Saint Paul, apostle - Feast
+00000126 Saints Timothy and Apostle Titus|Titus, bishops - Memorial
+00000127 Saint Angela Merici, virgin - Optional Memorial
+00000128 Saint Thomas Aquinas, priest and doctor - Memorial
+00000129 Feria
+00000130 Feria
+00000131 Saint John Bosco, priest - Memorial
+
+# Note: The feast of the Baptism of the Lord is celebrated on the
+# Sunday after 6 January. But whenever Epiphany falls on 07 or 8
+# 01(only in countries where it is not a Holy Day of Obligation), the
+# feast of the Baptism of the Lord is celebrated on the following
+# Monday.
+
+
+#===02(February)===
+00000201 Feria
+00000202 Presentation of Jesus at the Temple|Presentation of the Lord - Feast
+00000203 Saint Blaise|Saint Blase, bishop and martyr, or Ansgar|Saint Ansgar, bishop - Optional Memorial
+00000204 Feria
+00000205 Agatha of Sicily|Saint Agatha, virgin and martyr - Memorial
+00000206 Saints Paul Miki and companions, martyrs - Memorial
+00000207 Feria
+00000208 Saint Jerome Emiliani or Saint Josephine Bakhita, virgin - Optional Memorial
+00000209 Feria
+00000210 Saint Scholastica, virgin - Memorial
+00000211 Our Lady of Lourdes - Optional Memorial
+00000212 Feria
+00000213 Feria
+00000214 Saints Saints Cyril and Methodius|Cyril, monk, and Saint Methodius|Methodius, bishop - Memorial
+00000215 Feria
+00000216 Feria
+00000217 Seven Holy Founders of the Servite|Servite Order - Optional Memorial
+00000218 Feria
+00000219 Feria
+00000220 Feria
+00000221 Saint Peter Damian, bishop and doctor of the Church - Optional Memorial
+00000222 Chair of Saint Peter, apostle - Feast
+00000223 Saint Polycarp, bishop and martyr - Memorial
+00000224 Feria
+00000225 Feria
+00000226 Feria
+00000227 Feria
+00000228 Feria
+00000229 occurring only in leap year: Feria
+
+#===03(March)===
+00000301 Feria
+00000302 Feria
+00000303 Feria
+00000304 Saint Casimir - Optional Memorial
+00000305 Feria
+00000306 Feria
+00000307 Saints Perpetua and Felicity, martyrs - Memorial
+00000308 Saint John of God, religious - Optional Memorial
+00000309 Saint Frances of Rome, religious - Optional Memorial
+00000310 Feria
+00000311 Feria
+00000312 Feria
+00000313 Feria
+00000314 Feria
+00000315 Feria
+00000316 Feria
+00000317 Saint Patrick, bishop - Optional Memorial
+00000318 Saint Cyril of Jerusalem, bishop and doctor - Optional Memorial
+00000319 Saint Joseph Husband of the Blessed Virgin Mary - Solemnity
+00000320 Feria
+00000321 Feria
+00000322 Feria
+00000323 Saint Turibius of Mogrovejo, bishop - Optional Memorial
+00000324 Feria
+00000325 Annunciation|Annunciation of the Lord - Solemnity
+00000326 Feria
+00000327 Feria
+00000328 Feria
+00000329 Feria
+00000330 Feria
+00000331 Feria
+
+#===04(April)===
+00000401 Feria
+00000402 Saint Francis of Paola, hermit - Optional Memorial
+00000403 Feria
+00000404 Isidore of Seville|Saint Isidore, bishop and doctor of the Church- Optional Memorial
+00000405 Saint Vincent Ferrer, priest - Optional Memorial
+00000406 Feria
+00000407 John Baptist de la Salle|Saint John Baptist de la Salle, priest - Memorial
+00000408 Feria
+00000409 Feria
+00000410 Feria
+00000411 Stanislaus of Szczepanów|Saint Stanislaus, bishop and martyr - Memorial
+00000412 Feria
+00000413 Pope Martin I|Saint Martin I, pope and martyr - Optional Memorial
+00000414 Feria
+00000415 Feria
+00000416 Feria
+00000417 Feria
+00000418 Feria
+00000419 Feria
+00000420 Feria
+00000421 Anselm of Canterbury|Saint Anselm of Canterbury, bishop and doctor of the Church - Optional Memorial
+00000422 Feria
+00000423 Saint George, martyr, or Adalbert of Prague|Saint Adalbert, bishop and martyr - Optional Memorial
+00000424 Saint Fidelis of Sigmaringen, priest and martyr - Optional Memorial
+00000425 Saint Mark the Evangelist - Feast
+00000426 Feria
+00000427 Feria
+00000428 Saint Peter Chanel, priest and martyr, or Louis Marie de Montfort|Saint Louis Marie de Montfort, priest - Optional Memorial
+00000429 Saint Catherine of Siena, virgin and doctor of the Church - Memorial
+00000430 Pope Pius V|Saint Pius V, pope - Optional Memorial
+
+#=== 05(May) ===
+00000501 Saint Joseph the Worker - Optional Memorial
+00000502 Athanasius of Alexandria|Saint Athanasius, bishop and doctor - Memorial
+00000503 Saints Philip the Apostle|Philip and James, son of Alphaeus|James, Apostles - Feast
+00000504 Feria
+00000505 Feria
+00000506 Feria
+00000507 Feria
+00000508 Feria
+00000509 Feria
+00000510 Feria
+00000511 Feria
+00000512 Saints Nereus and Achilleus, martyrs or Pancras of Rome|Saint Pancras, martyr - Optional Memorial
+00000513 Our Lady of Fatima - Optional Memorial
+00000514 Saint Matthias the Apostle - Feast
+00000515 Feria
+00000516 Feria
+00000517 Feria
+00000518 Pope John I|Saint John I, pope and martyr - Optional Memorial
+00000519 Feria
+00000520 Saint Bernardine of Siena, priest - Optional Memorial
+00000521 Cristóbal Magallanes Jara|Saint Christopher Magallanes and companions, martyrs - Optional Memorial
+00000522 Saint Rita of Cascia - Optional Memorial
+00000523 Feria
+00000524 Feria
+00000525 Saint Bede the Venerable, priest and doctor; or Pope Gregory VII|Saint Gregory VII, pope or Magdalena de Pazzi|Saint Mary Magdalene de Pazzi, virgin - Optional Memorial
+00000526 Saint Philip Neri, priest - Memorial
+00000527 Saint Augustine (Austin) of Canterbury, bishop - Optional Memorial
+00000528 Feria
+00000529 Feria
+00000530 Feria
+00000531 Visitation (Christian)|Visitation of the Blessed Virgin Mary - Feast
+
+#=== 06(June) ===
+00000601 Saint Justin Martyr - Memorial
+00000602 Saints Marcellinus and Peter, martyrs - Optional Memorial
+00000603 Saints Carl Lwanga|Charles Lwanga and companions, martyrs - Memorial
+00000604 Feria
+00000605 Saint Boniface, bishop and martyr - Memorial
+00000606 Norbert of Xanten|Saint Norbert, bishop - Optional Memorial
+00000607 Feria
+00000608 Feria
+00000609 Ephrem the Syrian|Saint Ephrem, deacon and doctor - Optional Memorial
+00000610 Feria
+00000611 Saint Barnabas the Apostle - Memorial
+00000612 Feria
+00000613 Saint Anthony of Padua, priest and doctor - Memorial
+00000614 Feria
+00000615 Feria
+00000616 Feria
+00000617 Feria
+00000618 Feria
+00000619 Saint Romuald, abbot - Optional Memorial
+00000620 Feria
+00000621 Saint Aloysius Gonzaga, religious - Memorial
+00000622 Saint Paulinus of Nola, bishop or Saints John Fisher and Thomas More, martyrs - Optional Memorial
+00000623 Feria
+00000624 Nativity of St. John the Baptist|Birth of Saint John the Baptist - Solemnity
+00000625 Feria
+00000626 Feria
+00000627 Saint Cyril of Alexandria, bishop and doctor - Optional Memorial
+00000628 Saint Irenaeus, bishop and martyr - Memorial
+00000629 Feast of Saints Peter and Paul|Saints Peter and Paul, Apostles - Solemnity
+00000630 First Martyrs of the Church of Rome - Optional Memorial
+
+#=== 07(July) ===
+00000701 Feria
+00000702 Feria
+00000703 Saint Thomas the Apostle - Feast
+00000704 Saint Elizabeth of Portugal - Optional Memorial
+00000705 St. Anthony Maria Zaccaria|Saint Anthony Zaccaria, priest - Optional Memorial
+00000706 Saint Maria Goretti, virgin and martyr - Optional Memorial
+00000707 Feria
+00000708 Feria
+00000709 Chinese Martyrs|Saint Augustine Zhao Rong and companions, martyrs - Optional Memorial
+00000710 Feria
+00000711 Saint Benedict, abbot - Memorial
+00000712 Feria
+00000713 Henry II, Holy Roman Emperor|Saint Henry - Optional Memorial
+00000714 Saint Camillus de Lellis, priest - Optional Memorial
+00000715 Saint Bonaventure, bishop and doctor - Memorial
+00000716 Carmelites|Our Lady of Mount Carmel - Optional Memorial
+00000717 Feria
+00000718 Feria
+00000719 Feria
+00000720 Apollinare|Saint Apollinaris - Optional Memorial
+00000721 Saint Lawrence of Brindisi, priest and doctor - Optional Memorial
+00000722 Saint Mary Magdalene - Memorial
+00000723 Saint Birgitta, religious- Optional Memorial
+00000724 Saint Sharbel Makhluf, hermit - Optional Memorial
+00000725 James, son of Zebedee|Saint James, apostle - Feast
+00000726 Saints Joachim and Saint Anne|Anne - Memorial
+00000727 Feria
+00000728 Feria
+00000729 Saint Martha - Memorial
+00000730 Saint Peter Chrysologus, bishop and doctor - Optional Memorial
+00000731 Saint Ignatius of Loyola, priest - Memorial
+
+#=== 08(August) ===
+00000801 Alphonsus Liguori|Saint Alphonsus Maria de Liguori, bishop and doctor of the Church - Memorial
+00000802 Saint Eusebius of Vercelli, bishop, or Peter Julian Eymard|Saint Peter Julian Eymard, priest - Optional Memorial
+00000803 Feria
+00000804 Saint Jean Vianney (the Curé of Ars), priest - Memorial
+00000805 Dedication of the Basilica di Santa Maria Maggiore - Optional Memorial
+00000806 Transfiguration of Jesus|Transfiguration of the Lord - Feast
+00000807 Pope Sixtus II|Saint Sixtus II, pope, and companions, martyrs, or Saint Cajetan, priest - Optional Memorial
+00000808 Saint Dominic, priest - Memorial
+00000809 Edith Stein|Saint Teresa Benedicta of the Cross (Edith Stein), virgin and martyr - Optional Memorial
+00000810 Saint Lawrence, deacon and martyr - Feast
+00000811 Clare of Assisi|Saint Clare, virgin - Memorial
+00000812 Saint Jane Frances de Chantal, religious - Optional Memorial
+00000813 Saints Pope Pontian|Pontian, pope, and Hippolytus of Rome|Hippolytus, priest, martyrs - Optional Memorial
+00000814 Saint Maximilian Mary Kolbe, priest and martyr - Memorial
+00000815 Assumption of Mary|Assumption of the Blessed Virgin Mary - Solemnity
+00000816 Saint Stephen of Hungary - Optional Memorial
+00000817 Feria
+00000818 Feria
+00000819 Saint John Eudes, priest - Optional Memorial
+00000820 Bernard of Clairvaux|Saint Bernard of Clairvaux, abbot and doctor of the Church - Memorial
+00000821 Saint Pius X, pope - Memorial
+00000822 Queenship of Mary|Queenship of Blessed Virgin Mary - Memorial
+00000823 Saint Rose of Lima, virgin - Optional Memorial
+00000824 Saint Bartholomew the Apostle - Feast
+00000825 Saint Louis or Saint Joseph of Calasanz, priest - Optional Memorial
+00000826 Feria
+00000827 Monica of Hippo|Saint Monica - Memorial
+00000828 Saint Augustine of Hippo, bishop and doctor of the Church - Memorial
+00000829 The Beheading of John the Baptist|Saint John the Baptist, martyr - Memorial
+00000830 Feria
+00000831 Feria
+
+#=== 09(September) ===
+00000901 Feria
+00000902 Feria
+00000903 Pope Gregory I|Saint Gregory the Great, pope and doctor - Memorial
+00000904 Feria
+00000905 Feria
+00000906 Feria
+00000907 Feria
+00000908 Birth of the Blessed Virgin Mary - Feast
+00000909 Saint Peter Claver, priest - Optional Memorial
+00000910 Feria
+00000911 Feria
+00000912 Holy Name of the Blessed Virgin Mary - Optional Memorial
+00000913 Saint John Chrysostom, bishop and doctor - Memorial
+00000914 Feast of the Cross|Triumph of the Holy Cross - Feast
+00000915 Our Lady of Sorrows - Memorial
+00000916 Pope Cornelius|Saints Cornelius, pope, and Cyprian, bishop, martyrs - Memorial
+00000917 Saint Robert Bellarmine, bishop and doctor - Optional Memorial
+00000918 Feria
+00000919 Saint Januarius, bishop and martyr - Optional Memorial
+00000920 Saint Andrew Kim Taegon, priest, and Korean Martyrs|Paul Chong Hasang and companions, martyrs - Memorial
+00000921 Saint Matthew the Evangelist, Apostle, Evangelist - Feast
+00000922 Feria
+00000923 Saint Pio of Pietrelcina (Padre Pio), priest - Memorial
+00000924 Feria
+00000925 Feria
+00000926 Saints Cosmas and Damian, martyrs - Optional Memorial
+00000927 Saint Vincent de Paul, priest - Memorial
+00000928 Wenceslas I, Duke of Bohemia|Saint Wenceslaus, martyr or Lorenzo Ruiz|Saints Lawrence Ruiz and companions, martyrs - Optional Memorial
+00000929 Michael (archangel)|Saints Michael, Gabriel (archangel)|Gabriel and Raphael (angel)|Raphael, Archangels - Feast
+00000930 Saint Jerome, priest and doctor - Memorial
+
+#=== 10(October) ===
+00001001 Saint Therese of the Child Jesus, virgin and doctor - Memorial
+00001002 Guardian Angels - Memorial
+00001003 Feria
+00001004 Saint Francis of Assisi - Memorial
+00001005 Feria
+00001006 Saint Bruno of Cologne, priest - Optional Memorial
+00001007 Our Lady of the Rosary - Memorial
+00001008 Feria
+00001009 Saint Denis and companions, martyrs
+00001010 Feria
+00001011 Feria
+00001012 Feria
+00001013 Feria
+00001014 Pope Callistus I|Saint Callistus I, pope and martyr - Optional Memorial
+00001015 Teresa of Avila|Saint Teresa of Jesus, virgin and doctor - Memorial
+00001016 Saint Hedwig, religious or Saint Margaret Mary Alacoque, virgin - Optional Memorial
+00001017 Saint Ignatius of Antioch, bishop and martyr - Memorial
+00001018 Saint Luke the Evangelist - Feast
+00001019 Saints Jean de Brébeuf, Isaac Jogues, priests and Canadian Martyrs
+00001020 Feria
+00001021 Feria
+00001022 Feria
+00001023 Giovanni da Capistrano|Saint John of Capistrano, priest - Optional Memorial
+00001024 Antonio María Claret y Clará|Saint Anthony Mary Claret, bishop - Optional Memorial
+00001025 Feria
+00001026 Feria
+00001027 Feria
+00001028 Simon the Canaanite|Saint Simon and Saint Jude, apostles - Feast
+00001029 Feria
+00001030 Feria
+00001031 Feria
+
+#=== 11(November) ===
+00001101 All Saints - Solemnity
+00001102 All Souls' Day|All Souls - ranked with solemnities
+00001103 Saint Martin de Porres, religious - Optional Memorial
+00001104 Saint Charles Borromeo, bishop - Memorial
+00001105 Feria
+00001106 Feria
+00001107 Feria
+00001108 Feria
+00001109 Dedication of the Basilica di San Giovanni in Laterano
+00001110 Pope Leo I|Saint Leo the Great, pope and doctor - Memorial
+00001111 Saint Martin of Tours, bishop - Memorial
+00001112 Josaphat Kuncevyc|Saint Josaphat, bishop and martyr - Memorial
+00001113 Feria
+00001114 Feria
+00001115 Albertus Magnus|Saint Albert the Great, bishop and doctor - Optional Memorial
+00001116 Saint Margaret of Scotland or Saint Gertrude the Great, virgin - Optional Memorial
+00001117 Saint Elizabeth of Hungary, religious - Memorial
+00001118 Dedication of the basilicas of St. Peter's Basilica and Basilica of Saint Paul Outside the Walls, Apostles - Optional Memorial
+00001119 Feria
+00001120 Feria
+00001121 Presentation of the Blessed Virgin Mary - Memorial
+00001122 Saint Cecilia - Memorial
+00001123 Pope Clement I|Saint Clement I, pope and martyr
+00001124 Saint Andre Dung Lac and his companions, martyrs - Memorial
+00001125 Saint Catherine of Alexandria - Optional Memorial
+00001126 Feria
+00001127 Feria
+00001128 Feria
+00001129 Feria
+00001130 Saint Andrew the Apostle - Feast
+
+#=== 12(December) ===
+00001201 Feria
+00001202 Feria
+00001203 Saint Francis Xavier, priest - Memorial
+00001204 Saint John Damascene, priest and doctor - Optional Memorial
+00001205 Feria
+00001206 Saint Nicholas, bishop - Optional Memorial
+00001207 Saint Ambrose, bishop and doctor - Memorial
+00001208 Immaculate Conception of the Blessed Virgin Mary - Solemnity
+00001209 Saint Juan Diego - Optional Memorial
+00001210 Feria
+00001211 Pope Damasus I|Saint Damasus I, pope - Optional Memorial
+00001212 Our Lady of Guadalupe - Optional Memorial 
+00001213 Saint Lucy of Syracuse, virgin and martyr - Memorial
+00001214 Saint John of the Cross, priest and doctor - Memorial
+00001215 Feria
+00001216 Feria
+00001217 Feria
+00001218 Feria
+00001219 Feria
+00001220 Feria
+00001221 Saint Peter Canisius, priest and doctor - Optional Memorial
+00001222 Feria
+00001223 John Cantius|Saint John of Kanty, priest - Optional Memorial
+00001224 Feria
+00001225 Christmas|Nativity of the Lord - Solemnity
+00001226 Saint Stephen, the first martyr - Feast
+00001227 Saint John the Apostle and evangelist - Feast
+00001228 Holy Innocents, martyrs - Feast
+00001229 Saint Thomas Becket, bishop and martyr - Optional Memorial
+00001230 Feria (Sixth Day with the Octave of Christmas)
+00001231 Pope Sylvester I|Saint Sylvester I, pope - Optional Memorial

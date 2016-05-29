@@ -91,6 +91,21 @@ misc() {
   fi
 }
 
+# pal
+pal() {
+  installed=
+  echo -n "checking pal..." >&2
+
+  [[ -d $HOME/.pal || -L $HOME/.pal ]] && {
+    echo "found, not installing" >&2
+  } || {
+    installed="pal"
+    ln -s $PWD/misc/pal $HOME/.pal
+  }
+
+  [ ! -z "$installed" ] && echo "INSTALLED!" >&2
+}
+
 # vim
 vim() {
   installed=
@@ -115,6 +130,7 @@ vim() {
 bash
 git
 misc
+pal
 vim
 
 # vim: nonu:nowrap:nospell:ft=sh
