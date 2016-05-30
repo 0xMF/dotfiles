@@ -41,7 +41,7 @@ if [ $(uname -o) == "GNU/Linux" ]; then
     OSRV=$(grep "^ID=" /etc/os-release|awk -F'=' '{ print $NF }')
     OSRV=$(grep "PRETTY_NAME=" /etc/os-release|sed 's/"//g'|awk '{print $NF}')
     #OSRV=${OSRV}$(grep "^VERSION_ID=" /etc/os-release|awk -F'=' '{ print $NF }'|sed 's/"//g;s/^/ /')
-    OSRV=$(grep "^PRETTY_NAME=" /etc/os-release|sed 's/"//g'|awk -F' '  '{$1="\b"; print $0}')
+    OSRV=$(grep "^PRETTY_NAME=" /etc/os-release|awk -F' '  '{$1=""; print $0}'|sed 's/^ //;s/"$//')
   else
     if [ $(cat /etc/*-release|wc -l) -eq 1 ]; then
         OSRV=$(cat /etc/*-release)
@@ -51,8 +51,8 @@ if [ $(uname -o) == "GNU/Linux" ]; then
   fi
 fi
 
-OSRVT=$(echo $OSRV|sed 's/[a-zA-Z0-9]//g')
-if [[ -z "$OSRV" || "$OSRVT" == "()" ]]; then
+OSRVT=$(echo $OSRV|sed 's/[a-zA-Z0-9 	]//g')
+if [[ "$OSRVT" == "()" || -z "$OSRV" ]]; then
   OSRV=$(hostname)
 fi
 if [ $(uname -o) == "FreeBSD" ]; then
