@@ -75,8 +75,15 @@ fi
 set -o emacs
 shopt -s extglob
 
+# check the window size after each command and, if necessary,
+# update the values of LINES and COLUMNS.
+shopt -s checkwinsize
+
 # override system umask settings because they are nonsense in some distros
 umask 0022
+
+# make less more friendly for non-text input files, see lesspipe(1)
+[ -x /usr/bin/lesspipe ] && eval "$(SHELL=/bin/sh lesspipe)"
 
 # command line calendar
 # https://github.com/0xMF/catholic/calendar

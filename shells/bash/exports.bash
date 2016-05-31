@@ -14,6 +14,10 @@ else
   fi
 fi
 
+# remove duplicate lines in the history; force ignoredups and ignorespace
+export HISTCONTROL=$HISTCONTROL${HISTCONTROL+,}ignoredups
+export HISTCONTROL=ignoreboth
+
 # terminal clients need local
 export LC_ALL=en_US.UTF-8
 export LC_CTYPE=en_US.UTF-8
