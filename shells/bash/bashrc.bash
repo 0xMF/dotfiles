@@ -41,7 +41,12 @@ if [ $(uname -o) == "GNU/Linux" ]; then
     OSRV=$(grep "^ID=" /etc/os-release|awk -F'=' '{ print $NF }')
     OSRV=$(grep "PRETTY_NAME=" /etc/os-release|sed 's/"//g'|awk '{print $NF}')
     #OSRV=${OSRV}$(grep "^VERSION_ID=" /etc/os-release|awk -F'=' '{ print $NF }'|sed 's/"//g;s/^/ /')
-    OSRV=$(grep "^PRETTY_NAME=" /etc/os-release|awk -F' '  '{$1=""; print $0}'|sed 's/^ //;s/"$//')
+    #OSRV=$(grep "^PRETTY_NAME=" /etc/os-release|awk -F' '  '{$1=""; print $0}'|sed 's/^ //;s/"$//')
+    #OSRV=$(grep "^PRETTY_NAME=" /etc/os-release|awk -F' ' '{$1=""; ($2 == "GNU/Linux") && $2=""; print $0}'|sed 's/^ *//g;s/"$//')
+    PRETTY_NAME=$(grep ^PRETTY_NAME /etc/os-release|cut -d'=' -f2|sed 's/"//g')
+    NAME=$(grep ^NAME /etc/os-release|cut -d'=' -f2|sed 's/"//g')
+    OSRV=$(echo ${PRETTY_NAME#${NAME}})
+
   else
     if [ $(cat /etc/*-release|wc -l) -eq 1 ]; then
         OSRV=$(cat /etc/*-release)
