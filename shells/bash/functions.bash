@@ -267,8 +267,10 @@ function gits() {
   echo To see any expansion of the functions below use ghelp, example: ghelp amend
   echo
   {
-    declare -F | /bin/grep ' -f g[a-zA-Z]' |cut -d" " -f3|
-    sed -r '/#/d;/^$/d;/^\[/d;s/ *=.*//' $HOME/.git/aliases.gitconfig
+    d=$(declare -F | /bin/grep ' -f g[a-zA-Z]' |cut -d" " -f3)
+    a=$(sed -r '/#/d;/^$/d;/^\[/d;s/ *=.*//' $HOME/.git/aliases.gitconfig)
+    f="$d $a"
+    echo $f|tr ' ' '\n'
   } |sort |fmt -w `tput cols`
   echo
 }
