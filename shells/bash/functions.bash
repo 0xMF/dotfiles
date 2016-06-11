@@ -193,7 +193,8 @@ function share {
 }
 
 function su {
-  [ -z "$1" ] && /bin/su -m || /bin/su "$1"
+  SU=$(which su)
+  [ -z "$1" ] && $SU -m || $SU "$1"
 }
 
 function anc {

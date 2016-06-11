@@ -1,7 +1,7 @@
 installed=
 
 # bash
-bash() {
+_bash() {
   installed=
   echo -n "checking bash..." >&2
 
@@ -19,6 +19,12 @@ bash() {
     ln -s $PWD/shells/bash $HOME/.bash
   }
 
+  [[ -e $HOME/.bash_profile || -L $HOME/.bash_profile ]] && { :
+  } || {
+    installed="bash"
+    ln -s $PWD/shells/bash/bash_profile $HOME/.bash_profile
+  }
+
   [[ -e $HOME/.bash_logout || -L $HOME/.bash_logout ]] && { :
   } || {
     installed="bash"
@@ -32,7 +38,7 @@ bash() {
 }
 
 # git
-git() {
+_git() {
   installed=
   echo -n "checking git..." >&2
 
@@ -62,7 +68,7 @@ git() {
 }
 
 # misc
-misc() {
+_misc() {
   echo "checking misc dotfiles..." >&2
 
   if [ -e $HOME/.tmux.conf ]; then
@@ -92,7 +98,7 @@ misc() {
 }
 
 # pal
-pal() {
+_pal() {
   installed=
   echo -n "checking pal..." >&2
 
@@ -107,7 +113,7 @@ pal() {
 }
 
 # vim
-vim() {
+_vim() {
   installed=
   echo -n "checking vim..." >&2
 
@@ -127,10 +133,10 @@ vim() {
   [ ! -z "$installed" ] && echo "INSTALLED!" >&2
 }
 
-bash
-git
-misc
-pal
-vim
+_bash
+_git
+_misc
+_pal
+_vim
 
 # vim: nonu:nowrap:nospell:ft=sh
