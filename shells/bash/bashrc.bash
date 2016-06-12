@@ -61,7 +61,7 @@ if [[ "$OSRVT" == "()" || -z "$OSRV" ]]; then
   OSRV=$(hostname)
 fi
 if [ $(uname -o) == "FreeBSD" ]; then
-    OSRV=$(uname -sr)
+    OSRV=$(freebsd-version)
 fi
 
 # next vary prompt according to regular user or root
