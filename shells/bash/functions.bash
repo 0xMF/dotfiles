@@ -57,6 +57,17 @@ function parse_git_branch_colour {
 }
 
 function parse_git_dirty {
+  local unchanged="$GREEN✔$NOCOLOR"
+  local changed="$RED✗$NOCOLOR"
+      sts=$(git status --porcelain 2>&1)
+      if [ -z "$sts" ]; then
+        echo $unchanged
+      else
+        echo $changed
+      fi
+}
+
+function old_parse_git_dirty {
 
   local large_repos=~/.bash_git_large_repos
   local unchanged="$GREEN✔$NOCOLOR"
@@ -84,6 +95,7 @@ function parse_git_dirty {
     # not in list of large repos, run a one time check for this being a large repo
     if [ $OS == "FreeBSD" ]; then
       sts=$(/usr/bin/time -p git status --porcelain 2>&1)
+      echo $sts
     else
       sts=$(/usr/bin/time -f "%E" git status --porcelain 2>&1)
       secs=$(echo "$sts"|tail -1 |cut -d: -f2|cut -d. -f1)
