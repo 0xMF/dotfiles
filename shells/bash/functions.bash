@@ -84,10 +84,8 @@ function parse_git_dirty {
     # not in list of large repos, run a one time check for this being a large repo
     if [ $OS == "FreeBSD" ]; then
       sts=$(/usr/bin/time -p git status --porcelain 2>&1)
-      echo -e '\b'
     else
       sts=$(/usr/bin/time -f "%E" git status --porcelain 2>&1)
-      lns=$(echo "$sts"|wc -l)
       secs=$(echo "$sts"|tail -1 |cut -d: -f2|cut -d. -f1)
       secs=${secs:-0}
 
@@ -97,17 +95,13 @@ function parse_git_dirty {
           export GIT_LARGE_REPO="$PWD"
           echo $sts_skip && return
       fi
+    fi
 
-      if [ $lns -eq 1 ]; then
-        echo $unchanged
-      else
-        echo $changed
-        # no then
-        #echo "$sts"|head -1|grep -Ee '^[0-9]:[0-9][0-9].[0-9][0-9]$' 2>&1 >/dev/null
-        #if [ $? -eq 0 ]; then
-        #  echo $unchanged
-        #fi
-      fi
+    lns=$(echo "$sts"|wc -l)
+    if [ $lns -eq 1 ]; then
+      echo $unchanged
+    else
+      echo $changed
     fi
   fi
 }
@@ -225,6 +219,18 @@ function ports {
   pushd /usr/ports > /dev/null
   echo */*|tr ' ' '\n'|grep $1
   popd  > /dev/null
+}
+
+function pkg {
+  [ "`uname -s`" != "FreeBSD" ] && return
+
+  local old_pkg=/usr/sbin/pkg
+  case "$1" in
+    "add")  shift && $old_pkg install "$@"
+            ;;
+    *) $old_pkg "$@"
+            ;;
+  esac
 }
 
 function alarm {
