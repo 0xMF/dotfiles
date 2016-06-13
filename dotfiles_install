@@ -1,3 +1,5 @@
+[ -z "$BASH_VERSION" ] && echo "Usage: run `basename $0` from a bash shell" && return
+
 installed=
 
 # bash
@@ -42,7 +44,7 @@ _git() {
   installed=
   echo -n "checking git..." >&2
 
-  [ -e $HOME/.gitconfig ] && { 
+  [[ -e $HOME/.gitconfig || -L $HOME/.gitconfig ]] && {
     echo "found .gitconfig, not installing" >&2
   } || {
     installed="git"
@@ -71,19 +73,19 @@ _git() {
 _misc() {
   echo "checking misc dotfiles..." >&2
 
-  if [ -e $HOME/.tmux.conf ]; then
+  if [[ -e $HOME/.tmux.conf || -L $HOME/.tmux.conf ]]; then
     echo " - found tmux.conf, not installing" >&2
   else
     ln -s $PWD/misc/tmux.conf $HOME/.tmux.conf &&
     echo " - ...INSTALLED tmux.conf" >&2
   fi
-  if [ -e $HOME/.gemrc ]; then
+  if [[ -e $HOME/.gemrc || -L $HOME/.gemrc ]]; then
     echo " - found gemrc, not installing" >&2
   else
     ln -s $PWD/misc/gemrc $HOME/.gemrc &&
     echo " - ...INSTALLED gemrc" >&2
   fi
-  if [ -e $HOME/.inputrc ]; then
+  if [[ -e $HOME/.inputrc || -L $HOME/.inputrc ]]; then
     echo " - found inputrc, not installing" >&2
   else
     ln -s $PWD/misc/inputrc $HOME/.inputrc &&
@@ -117,7 +119,7 @@ _vim() {
   installed=
   echo -n "checking vim..." >&2
 
-  [ -e $HOME/.vimrc ] && {
+  [[ -e $HOME/.vimrc || -L $HOME/.vimrc ]] && {
     echo "found, not installing" >&2
   } || {
     installed="vim"
