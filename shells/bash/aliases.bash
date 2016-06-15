@@ -10,11 +10,11 @@ if [ $OS == "FreeBSD" ]; then
   alias h='fc -l'
   alias iotop='top -mio -ototal'
   alias j=jobs
-  alias l='ls -l'
+  alias l='ls -lG'
   alias links='elinks'
-  alias ll='ls -laFo'
-  alias lld='ls -laFod'
-  alias ls='/bin/ls -F'
+  alias ll='ls -laFGo'
+  alias lld='ls -laFodG'
+  alias ls='/bin/ls -FG'
   alias lsof='fstat'
   alias lynx='elinks'
   alias m=more
