@@ -88,7 +88,7 @@ function old_parse_git_dirty {
 
 
   # (slower) check for large repo in filenames of all large repos
-  /bin/grep -qw "$PWD$" $large_repos 2>/dev/null
+  $GREP -qw "$PWD$" $large_repos 2>/dev/null
   if [ $? -eq 0 ]; then
     echo $sts_skip
   else
@@ -229,7 +229,7 @@ function pkg_locate {
 function ports {
   [ -z "$1" ] && echo "Usage: ports name" && return
   pushd /usr/ports > /dev/null
-  echo */*|tr ' ' '\n'|grep $1
+  echo */*|tr ' ' '\n'|$GREP $1
   popd  > /dev/null
 }
 
@@ -280,13 +280,13 @@ function g+++ {
 function gits() {
   # get all git-aliases and git-functions; filter out non-git; sort
   {
-    alias|sed 's/alias //' | /bin/grep '^g[a-zA-Z]'
+    alias|sed 's/alias //' | $GREP '^g[a-zA-Z]'
   } | sed -r '/(gpg|gvim|grep)/d'| sort | awk -F"'" '{printf("%8s %s\n",$1,$2)}'|less -E
   echo
   echo To see any expansion of the functions below use ghelp, example: ghelp amend
   echo
   {
-    d=$(declare -F | /bin/grep ' -f g[a-zA-Z]' |cut -d" " -f3)
+    d=$(declare -F | $GREP ' -f g[a-zA-Z]' |cut -d" " -f3)
     a=$(sed -r '/#/d;/^$/d;/^\[/d;s/ *=.*//' $HOME/.git/aliases.gitconfig)
     f="$d $a"
     echo $f|tr ' ' '\n'
@@ -303,7 +303,7 @@ function ghelp() {
   else
     expand=$(alias "$1" 2>/dev/null)
     [ $? -eq 0 ] && echo "$expand" && return
-    expand=$(grep -w "^ *$1" $HOME/.git/aliases.gitconfig 2>/dev/null)
+    expand=$($GREP -w "^ *$1" $HOME/.git/aliases.gitconfig 2>/dev/null)
     [ $? -eq 0 ] && echo "$expand" && return
     expand=$(declare -f "$1")
     [ $? -eq 0 ] && echo "$expand" && return
@@ -318,7 +318,7 @@ function ghuman() {
 
 # git most-recently-used aliases and bash-functions
 function gmru {
-   history|awk '{$1="";print $0}'|sort|uniq -c|sort -n|/bin/grep '[0-9] *g[a-zA-Z]'
+   history|awk '{$1="";print $0}'|sort|uniq -c|sort -n|$GREP '[0-9] *g[a-zA-Z]'
 }
 
 # show all git commits history
@@ -366,7 +366,7 @@ function gh {
                     || git log --stat  HEAD~$1...HEAD~$2 ;;
     *) $e;;
        #br_name=`git rev-parse --abbrev-ref HEAD`
-       #br_all=`git branch -a|grep HEAD|cut -d'>' -f2`
+       #br_all=`git branch -a|$GREP HEAD|cut -d'>' -f2`
        #case "origin/$br_name" in
        #  "$br_all") $e HEAD...origin/$br_name;;
        #  *)
@@ -409,7 +409,7 @@ function _gshow {
 
 # if $1 contains alphabets (HEAD,SHA1 commits) 'git show $1' otherwise call _gshow
 function gshow {
-  echo $1|grep '[a-zA-Z]' > /dev/null
+  echo $1|$GREP '[a-zA-Z]' > /dev/null
   [ $? -eq 0 ] && git show $1 \
                || _gshow $1
 }
@@ -418,14 +418,15 @@ function gshow {
 function glearn {
 
  if [ ! -z "$1" ]; then
-  man -k git|grep --color=none -w git|grep -w "(7)" | grep "$@"
-  man -k git|grep --color=none -w git|grep -w "(5)" | grep "$@"
-  man -k git|grep --color=none -w git|grep -w "([^157])" | grep "$@"
+  man -k git|$GREP --color=none -iw git|$GREP "(7)" | $GREP "$@"
+  man -k git|$GREP --color=none -iw git|$GREP "(5)" | $GREP "$@"
+  man -k git|$GREP --color=none -iw git|$GREP "([^157])" | $GREP "$@"
  else
-  man -k git|grep --color=none -w git|grep -w "(7)"
+  man -k git|$GREP --color "(7)"
   echo
-  man -k git|grep --color=none -w git|grep -w "(5)"
-  man -k git|grep --color=none -w git|grep -w "([^157])"
+  man -k git|$GREP --color "(5)"
+  echo
+  man -k git|$GREP --color=none -iw git|$GREP --color "^[^:]*([^157])"
   # check if tty
   if [ -t 0 ]; then
     echo
@@ -435,9 +436,9 @@ function glearn {
  fi
 
  if [ ! -z "$1" ]; then
-  man -k git|/bin/grep  -w git|/bin/grep -w "(1)"|sed 's/\(.*\) - \(.*\)/\2 : \1/'|sort|awk -F':' '{printf ("%-80s %s\n", $1,$2)}'|grep "$@"
+  man -k git|$GREP  -w git|$GREP "(1)"|sed 's/\(.*\) - \(.*\)/\2 : \1/'|sort|awk -F':' '{printf ("%-80s %s\n", $1,$2)}'|$GREP "$@"
  else
-  man -k git|/bin/grep  -w git|/bin/grep -w "(1)"|sed 's/\(.*\) - \(.*\)/\2 : \1/'|sort|awk -F':' '{printf ("%-80s %s\n", $1,$2)}'|less
+  man -k git|$GREP  -w git|$GREP "(1)"|sed 's/\(.*\) - \(.*\)/\2 : \1/'|sort|awk -F':' '{printf ("%-80s %s\n", $1,$2)}'|less
  fi
 }
 
@@ -471,7 +472,7 @@ function ghw {
 function gsearch {
 
   [ -z "$1" ] && echo Usage: gsearch search_term && return
-  for commit in $(git log --oneline|/bin/grep "$1"|awk '{print $1}')
+  for commit in $(git log --oneline|$GREP "$1"|awk '{print $1}')
   do
     git show --pretty="%h %s %b" --stat $commit
     git show --pretty="%n        %Cred===%C(yellow)**%Cgreenx%C(yellow)**%Cred===%Creset%n" -s $commit
