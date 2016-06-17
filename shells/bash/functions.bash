@@ -418,10 +418,22 @@ function gshow {
 function glearn {
 
  if [ ! -z "$1" ]; then
-  man -k git|$GREP --color=none -iw git|$GREP "(7)" | $GREP "$@"
-  man -k git|$GREP --color=none -iw git|$GREP "(5)" | $GREP "$@"
-  man -k git|$GREP --color=none -iw git|$GREP "([^157])" | $GREP "$@"
+
+  TFILE=/tmp/glearn
+  cat /dev/null > /tmp/glearn
+  man -k git|$GREP --color=none -iw git|$GREP "(7)" | $GREP "$@" | tee -a $TFILE
+  man -k git|$GREP --color=none -iw git|$GREP "(5)" | $GREP "$@" | tee -a $TFILE
+  man -k git|$GREP --color=none -iw git|$GREP "([^157])" | $GREP "$@" | tee -a $TFILE
+
+  if [[ `wc -l $TFILE|awk '{print $1}'` -eq 1 ]]; then
+   echo
+   read -p 'Show man page? (Y/y/q): ' key
+   [[ "$key" == "q" || "$key" == "Q" ]] && return
+   man `awk '{print $1}' $TFILE|sed 's/([0-9])//'`
+  fi
+
  else
+
   man -k git|$GREP --color "(7)"
   echo
   man -k git|$GREP --color "(5)"
