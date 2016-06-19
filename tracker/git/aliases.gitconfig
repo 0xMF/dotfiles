@@ -2,6 +2,8 @@
   br        = branch
   ci        = commit
   co        = checkout
+  ds        = diff --staged
+  g         = grep --break --heading --line-number
   h         = log --pretty=oneline --decorate --abbrev-commit --date=short
   hist      = log --pretty=format:\"%h %ad | %s%d [%an]\" --graph --date=short
   lgp       = log -p
@@ -123,7 +125,8 @@
 
   dump      = cat-file -p
   history   = log --pretty=format:"%C(yellow)%h\\ %ad%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --graph --date=short
-  ignore    = ls-files -o -i --exclude-standard   # Show files ignored by git:
+  ignore    = update-index --assume-unchanged
+  ignored   = ls-files -o -i --exclude-standard   # Show files ignored by git:
   incoming  = log orgin/master ^master            # show only what is in orgin/master that isn't in master
   logs      = log --stat
   outgoing  = log master ^orgin/master            # show only what is in master that isn't in orgin/master
@@ -131,6 +134,7 @@
   shop-all  = log --follow -p
   type      = cat-file -t
   undo      = reset --soft HEAD~1
+  unignore  = update-index --no-assume-changed
   # END HUMAN
 
 # vim: et:nonu:nospell:ft=gitconfig
