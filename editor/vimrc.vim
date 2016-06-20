@@ -219,7 +219,7 @@ set clipboard=unnamed   " all yanking goes to clipboard
     au BufRead,BufNewFile *.md setlocal nonumber
     au BufRead,BufNewFile *.md setlocal guioptions-=r
     au BufRead,BufNewFile *.md setlocal formatoptions-=q
-    au BufRead,BufNewFile *.md setlocal formatlistpat=^\\s*\\d\\+\\.\\s\\+\\\|^\\s*-\\s*\\[[\ xX]\\]\\s\\+\\\|^[-*+]\\s\\+\\\|^\\[^\\ze[^\\]]\\+\\]:
+    au BufRead,BufNewFile *.md setlocal formatlistpat=^\\s*\\d\\+\\.\\s\\+\\\|^\\s*-\\s*\\[[\ xX]\\]\\s\\+\\\|^\\s*[-*+]\\s\\+\\\|^\\[^\\ze[^\\]]\\+\\]:
 
     "* MAXScript
     au BufRead,BufNewFile *.ms  setlocal filetype=maxscript
