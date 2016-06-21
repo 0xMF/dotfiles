@@ -24,7 +24,7 @@ export LC_ALL=en_US.UTF-8
 export LC_CTYPE=en_US.UTF-8
 export LANG=en_US.UTF-8
 export LANGUAGE=en_US.UTF-8
-export TODAY=$(date +"%d-%b-%y")
+export TODAY=$(date +"%Y-%b-%d")
 
 # required for hub (cli tool for github management)
 #export BROWSER='links2 -no-g'

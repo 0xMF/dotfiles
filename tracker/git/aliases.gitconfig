@@ -2,6 +2,8 @@
   br        = branch
   ci        = commit
   co        = checkout
+  d         = diff HEAD
+  dc        = diff --cached
   ds        = diff --staged
   g         = grep --break --heading --line-number
   h         = log --pretty=oneline --decorate --abbrev-commit --date=short
@@ -29,8 +31,6 @@
   gco       = checkout
   gcount    = shortlog -sn
   gcp       = cherry-pick
-  gd        = diff
-  gdc       = diff --cached
   gf        = fetch
   gfr       = fetch && git rebase remotes/origin/master
   gg        = gui citool

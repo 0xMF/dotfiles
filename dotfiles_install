@@ -79,18 +79,27 @@ _misc() {
     ln -s $PWD/misc/tmux.conf $HOME/.tmux.conf &&
     echo " - ...INSTALLED tmux.conf" >&2
   fi
+
   if [[ -e $HOME/.gemrc || -L $HOME/.gemrc ]]; then
     echo " - found gemrc, not installing" >&2
   else
-    ln -s $PWD/misc/gemrc $HOME/.gemrc &&
+    ln -s $PWD/misc/ruby/gemrc $HOME/.gemrc &&
     echo " - ...INSTALLED gemrc" >&2
   fi
+  if [[ -e $HOME/.pryrc || -L $HOME/.pryrc ]]; then
+    echo " - found pryrc, not installing" >&2
+  else
+    ln -s $PWD/misc/ruby/pryrc $HOME/.pryrc &&
+    echo " - ...INSTALLED pryrc" >&2
+  fi
+
   if [[ -e $HOME/.inputrc || -L $HOME/.inputrc ]]; then
     echo " - found inputrc, not installing" >&2
   else
     ln -s $PWD/misc/inputrc $HOME/.inputrc &&
     echo " - ...INSTALLED inputrc" >&2
   fi
+
   if [[ -d $HOME/.tmuxinator || -L $HOME/.tmuxinator ]]; then
     echo " - found .tmuxinator, not installing" >&2
   else
