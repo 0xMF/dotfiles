@@ -14,9 +14,12 @@
   lola      = log --graph --decorate --pretty=oneline --abbrev-commit --all
   lolar     = log --decorate --pretty=oneline --abbrev-commit --all --reverse
   ls        = ls-files
+  p         = push
+  pr        = pull --rebase
   st        = status
   sta       = status
   sts       = status -s
+  wc        = whatchanged -p --abbrev-commit --pretty=medium
 
   ga        = add
   gb        = branch
@@ -50,9 +53,7 @@
   glp       = _git_log_prettily
   gm        = merge
   gmt       = mergetool --no-prompt
-  gp        = push
   gpoat     = push origin --all && git push origin --tags
-  gpr       = pull --rebase
   gr        = remote
   grba      = rebase --abort
   grbc      = rebase --continue
@@ -73,8 +74,6 @@
   gstp      = stash pop
   gsts      = stash show --text
   gunignore = update-index --no-assume-unchanged
-  gup       = pull --rebase
-  gwc       = whatchanged -p --abbrev-commit --pretty=medium
 
   # 'gc!'    = commit -v --amend
   # 'gca!'   = commit -v -a --amend
@@ -95,6 +94,7 @@
   branches  = branch -a
   branchout = checkout -b
   contributors = shortlog -s -n
+  down      = pull --rebase
   discard   = checkout --
   filetrail = git log --follow -p -w
   graph     = log --graph -10 --branches --remotes --tags  --format=format:'%Cgreen%h %Creset %<(75,trunc)%s (%cN, %ar) %Cred%d' --date-order
@@ -120,6 +120,7 @@
   unstage   = reset -q HEAD --
   unstash   = stash pop
   untrack   = rm -r --cached
+  up        = push up master
   what      = show -w
   #----
 
