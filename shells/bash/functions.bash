@@ -417,41 +417,40 @@ function gshow {
 # help learning git, without arguments shows a list, with arguments works like grep
 function glearn {
 
- if [ ! -z "$1" ]; then
-
   TFILE=/tmp/glearn
-  cat /dev/null > /tmp/glearn
-  man -k git|$GREP --color=none -iw git|$GREP "(7)" | $GREP "$@" | tee -a $TFILE
-  man -k git|$GREP --color=none -iw git|$GREP "(5)" | $GREP "$@" | tee -a $TFILE
-  man -k git|$GREP --color=none -iw git|$GREP "([^157])" | $GREP "$@" | tee -a $TFILE
 
-  if [[ `wc -l $TFILE|awk '{print $1}'` -eq 1 ]]; then
-   echo
-   read -p 'Show man page? (Y/y/q): ' key
-   [[ "$key" == "q" || "$key" == "Q" ]] && return
-   man `awk '{print $1}' $TFILE|sed 's/([0-9])//'`
-  fi
+  if [ ! -z "$1" ]; then
+    cat /dev/null > /tmp/glearn
+    man -k git|$GREP --color=none -iw git|$GREP "(7)" | $GREP "$@" | tee -a $TFILE
+    man -k git|$GREP --color=none -iw git|$GREP "(5)" | $GREP "$@" | tee -a $TFILE
+    man -k git|$GREP --color=none -iw git|$GREP "([^157])" | $GREP "$@" | tee -a $TFILE
 
- else
-
-  man -k git|$GREP --color "(7)"
-  echo
-  man -k git|$GREP --color "(5)"
-  echo
-  man -k git|$GREP --color=none -iw git|$GREP --color "^[^:]*([^157])"
-  # check if tty
-  if [ -t 0 ]; then
+    if [[ `wc -l $TFILE|awk '{print $1}'` -eq 1 ]]; then
+      echo
+      read -p 'Show man page? (Y/y/q): ' key
+      [[ "$key" == "q" || "$key" == "Q" ]] && return
+      man `awk '{print $1}' $TFILE|sed 's/([0-9])//'`
+    fi
+  else
+    man -k git|$GREP --color "(7)"
     echo
-    read -p 'Any key to continue or q to quit: ' key
-    [[ "$key" == "q" || "$key" == "Q" ]] && return
+    man -k git|$GREP --color "(5)"
+    echo
+    man -k git|$GREP --color=none -iw git|$GREP --color "^[^:]*([^157])"
+    # check if tty
+    if [ -t 0 ]; then
+      echo
+      read -p 'Any key to continue or q to quit: ' key
+      [[ "$key" == "q" || "$key" == "Q" ]] && return
+    fi
   fi
- fi
 
- if [ ! -z "$1" ]; then
-  man -k git|$GREP  -w git|$GREP "(1)"|sed 's/\(.*\) - \(.*\)/\2 : \1/'|sort|awk -F':' '{printf ("%-80s %s\n", $1,$2)}'|$GREP "$@"
- else
-  man -k git|$GREP  -w git|$GREP "(1)"|sed 's/\(.*\) - \(.*\)/\2 : \1/'|sort|awk -F':' '{printf ("%-80s %s\n", $1,$2)}'|less
- fi
+  if [ ! -z "$1" ]; then
+    man -k git|$GREP  -w git|$GREP "(1)"|sed 's/\(.*\) - \(.*\)/\2 : \1/'|sort|awk -F':' '{printf ("%-80s %s\n", $1,$2)}'|$GREP "$@"
+  else
+    man -k git|$GREP  -w git|$GREP "(1)"|sed 's/\(.*\) - \(.*\)/\2 : \1/'|sort|awk -F':' '{printf ("%-80s %s\n", $1,$2)}'|less
+  fi
+  rm -f $TFILE
 }
 
 # serve up git man-pages
