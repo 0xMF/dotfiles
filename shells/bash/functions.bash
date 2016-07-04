@@ -497,4 +497,15 @@ function glast {
   [ -z "$1" ] && echo "Usage: glast my_git_command/alias" >&2 || "$1"
 }
 
+function sdate {
+  if [ `id -u` -eq 0 ]; then
+    date `cat /tmp/date`
+    rm -f /tmp/date
+  else
+    rm -f /tmp/date
+    date "+%Y%m%d%H%M.%S" >/tmp/date
+    scp /tmp/date mark@$VM:/tmp/date
+  fi
+}
+
 # vim:nospell:ft=sh:
