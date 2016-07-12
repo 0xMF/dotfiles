@@ -58,7 +58,7 @@ alias tmux='tmux -u'
 
 # git based aliases 
 [ ! -z "`which hub 2>/dev/null`" ] && alias git='hub'
-alias g='git'
+#alias g='git' # now g() is a function that calls git
 alias gbr='g branch'
 alias gbrn='g rev-parse --abbrev-ref HEAD'
 alias gc='g commit -v'

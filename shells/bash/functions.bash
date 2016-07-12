@@ -508,4 +508,13 @@ function sdate {
   fi
 }
 
+function g() {
+  case "$1" in
+    "alias")
+     git config --get-regexp alias.*|cut -d'.' -f2-|awk '{f=$1; $1=""; printf("%-15s %s\n", f, $0)}'|sort|less
+     ;;
+    *) git $* ;;
+  esac
+}
+
 # vim:nospell:ft=sh:
