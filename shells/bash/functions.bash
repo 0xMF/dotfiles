@@ -510,8 +510,8 @@ function sdate {
 
 function g() {
   case "$1" in
-    "alias")
-     git config --get-regexp alias.*|cut -d'.' -f2-|awk '{f=$1; $1=""; printf("%-15s %s\n", f, $0)}'|sort|less
+    "alias"|"a")
+     git config --get-regexp alias.*|cut -d'.' -f2-|awk '{f=$1; $1=""; printf("%-15s %s\n", f, $0)}'|sort -bk2,2|less
      ;;
     *) git $* ;;
   esac
