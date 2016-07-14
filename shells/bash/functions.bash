@@ -518,4 +518,8 @@ function g() {
   esac
 }
 
+function low() {
+  lowriter "$@" 2>/dev/null &
+}
+
 # vim:nospell:ft=sh:
