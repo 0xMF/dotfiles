@@ -50,9 +50,9 @@ function parse_git_branch_colour {
   if [ -z "$br" ]; then
     return
   elif [ "$br" == "master" ]; then
-    echo " $BLUE($RED"$br"$BLUE $(parse_git_dirty)$BLUE)"
+    echo "$BLUE($RED"$br"$BLUE $(parse_git_dirty)$BLUE)"
   else
-    echo " $BLUE($YELLOW"$br"$BLUE $(parse_git_dirty)$BLUE)"
+    echo "$BLUE($YELLOW"$br"$BLUE $(parse_git_dirty)$BLUE)"
   fi
 }
 
@@ -125,36 +125,36 @@ function todo(){
 
 function ps1 {
   if [ `id -u` -eq 0 ]; then
-    PS1="$RED${OSRV}$BLUE:\w$(parse_git_branch_colour)$RED#$NOCOLOR "
+    PS1="$RED${OSRV}$BLUE:\w $(parse_git_branch_colour)$RED#$NOCOLOR "
   else
-    PS1="$GREEN${OSRV}$BLUE:\w$(parse_git_branch_colour)$NOCOLOR$ "
+    PS1="$GREEN${OSRV}$BLUE:\w $(parse_git_branch_colour)$NOCOLOR$ "
   fi
   PROMPT_COMMAND="ps1"
 }
 
 function psh {
   if [ `id -u` -eq 0 ]; then
-    PS1="$RED\h:\W$(parse_git_branch_colour)$RED#$NOCOLOR "
+    PS1="$RED\h:\W $(parse_git_branch_colour)$RED#$NOCOLOR "
   else
-    PS1="$BLUE\h:\W$(parse_git_branch_colour)$NOCOLOR$ "
+    PS1="$BLUE\h:\W $(parse_git_branch_colour)$NOCOLOR$ "
   fi
   PROMPT_COMMAND="psh"
 }
 
 function pss {
   if [ `id -u` -eq 0 ]; then
-    PS1="$RED\W$(parse_git_branch_colour)$RED#$NOCOLOR "
+    PS1="$RED\W $(parse_git_branch_colour)$RED#$NOCOLOR "
   else
-    PS1="$BLUE\W$(parse_git_branch_colour)$NOCOLOR$ "
+    PS1="$BLUE\W $(parse_git_branch_colour)$NOCOLOR$ "
   fi
   PROMPT_COMMAND="pss"
 }
 
 function psl {
   if [ `id -u` -eq 0 ]; then
-    PS1="$PURPLE\W$(parse_git_branch_colour)$RED#$NOCOLOR "
+    PS1="$PURPLE\W $(parse_git_branch_colour)$RED#$NOCOLOR "
   else
-    PS1="$CYAN\W$(parse_git_branch_colour)$NOCOLOR$ "
+    PS1="$CYAN\W $(parse_git_branch_colour)$NOCOLOR$ "
   fi
   PROMPT_COMMAND="psl"
 }
@@ -162,6 +162,16 @@ function psl {
 function psd {
   dark
 }
+
+function psm {
+  if [ `id -u` -eq 0 ]; then
+    PS1="$(parse_git_branch_colour)$RED#$NOCOLOR "
+  else
+    PS1="$(parse_git_branch_colour)$NOCOLOR$ "
+  fi
+  PROMPT_COMMAND="psm"
+}
+
 function poof {
   sudo sync
   sudo sync
