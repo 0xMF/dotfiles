@@ -528,6 +528,10 @@ function g() {
   esac
 }
 
+function loc() {
+  localc "$@" 2>/dev/null &
+}
+
 function low() {
   lowriter "$@" 2>/dev/null &
 }
