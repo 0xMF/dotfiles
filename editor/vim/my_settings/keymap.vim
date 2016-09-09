@@ -78,9 +78,9 @@ map <C-F12> :!ctags -R --c++-kinds=+p --fields=+iaS --extra=+q .<CR>
 map <F3>  :execute "mksession! " . v:this_session<CR>
 
 " mappings for less like behaviour
-map <Space> <C-f>
-map b       <C-b>
-map q       :q<CR>
+"map <Space> <C-f>
+"map b       <C-b>
+"map q       :q<CR>
 
 :imap <A-BS> <ESC>ua|                   " --ditto-- in insert mode
 :imap <C-D> <Esc>ldea|                  " --ditto-- in insert mode
