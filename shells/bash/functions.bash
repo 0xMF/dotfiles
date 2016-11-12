@@ -396,7 +396,7 @@ function ghb {
   done
 }
 
-function ghc {
+function ghd {
   # lines=$(git log --oneline|wc -l)
   # pager=`[ $lines -gt 78 ] && echo "less -R"  || echo "cat"  `
   git log --decorate --abbrev-commit --date=short --all --graph\
