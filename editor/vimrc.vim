@@ -111,9 +111,11 @@ syntax on               " start syntax highlighting
 set nonumber            " hides linenumbers by default
 set history=50          " keep track of last 50 chars
 set textwidth=100       " force text width off (prev at 80 chars/line)
-set colorcolumn=100      " show the last column in colour
+set colorcolumn=100     " show the last column in colour
 "set formatprg=par\ -reqw100 " use external par instead of Vim fmt, still avail with gw
 set formatoptions=tcqnl " include numbered lists when formatting with gq
+set comments-=s1:/*,mb:*,ex:*/  " removes C-style formatting from default
+set comments+=fb:*      " let comments begin with *; meaning lists can now have *
 set autoindent          " set automatic indenting
 set nowrap              " do not force word wrapping on (does not put hard return)
 set linebreak           " does not breakup words
@@ -155,8 +157,8 @@ set clipboard=unnamed   " all yanking goes to clipboard
 :if (version >= 700) && (has("gui_running"))
 :   set nospell
 :   set spelllang=en_ca,en_us       " Canadian and US spelling, ca words
-:   set spellfile=$MYVIM/.vim/spell/latin1.add   " my dictionary
-:   set formatlistpat=^\\s*\\d\\+[\\]:.)}\*\\t\ ]\\s* "also called set flp
+:   set spellfile=$MYVIM/spell/latin1.add   " my dictionary
+:   set formatlistpat=^\\s*\\d*[\\]:.)}*\\t\ ]\\s* "also called set flp
 :   set showtabline=1   " =0 never show tabs, =1 show if 2 or more tabs, =2 always show
 :endif
 
