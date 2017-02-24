@@ -132,13 +132,13 @@ _vim() {
     echo "found, not installing" >&2
   } || {
     installed="vim"
-    ln -s $PWD/editor/vimrc.vim $HOME/.vimrc
+    ln -s $PWD/editors/vim/vimrc.vim $HOME/.vimrc
   }
 
   [[ -d $HOME/.vim || -L $HOME/.vim ]] && { :
   } || {
     installed="vim"
-    ln -s $PWD/editor/vim $HOME/.vim
+    ln -s $PWD/editors/vim $HOME/.vim
   }
 
   [ ! -z "$installed" ] && echo "INSTALLED!" >&2
