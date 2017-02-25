@@ -12,3 +12,5 @@
 (unless (version<= emacs-version "24.2")
   (provide 'init-clojure)
   (provide 'init-clojure-cider))
+
+;;; pre-load-local.el ends here

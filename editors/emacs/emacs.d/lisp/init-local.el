@@ -15,6 +15,14 @@
  ;; If there is more than one, they won't work right.
  '(default ((t (:family "Source Code Pro" :foundry "adobe" :slant normal :weight semi-bold :height 90 :width normal)))))
 
+;; C-h-b: to check keybinding and which functions are bound to which keys
+;; C-h-k: to check which key is bound to which function
+;; C-h-m: to list current major mode's keys
+;; C-g:   to close that opened Bindings window
+;; checkout: http://ergoemacs.org/emacs/keyboard_shortcuts.html
+(global-set-key (kbd "C-;") ctl-x-map)
+(global-set-key (kbd "C-M-;") 'execute-extended-command)
+
 ;; keep purcell's emacs.d settings happy
 (provide 'init-local)
 
@@ -22,3 +30,5 @@
 ;; coding: utf-8
 ;; no-byte-compile: t
 ;; End:
+;;;
+;;; init-local.el ends here
