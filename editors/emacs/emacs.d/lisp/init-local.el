@@ -1,5 +1,16 @@
-;; My configurations to override purcell's settings
+;;; package -- My overrides to purcell's settings
 
+;;; Commentary:
+
+;;  purcell/emacs.d provides basic functionality that I am interested in using
+;;  however not all settings are required by me and so this simple configuration
+;;  setup to include my local settings after purcell/emacs.d has been run.
+
+;;; Code:
+
+;;----------------------------------------------------------------------------
+;; Evil mode settings
+;;----------------------------------------------------------------------------
 (require 'evil)
 (evil-mode 1)
 
@@ -63,6 +74,9 @@ then it takes a second \\[keyboard-quit] to abort the minibuffer."
 (require 'powerline)
 (display-time-mode t)
 
+;;----------------------------------------------------------------------------
+;; User mode settings for UI/keyboard/look and feel
+;;----------------------------------------------------------------------------
 (require 'solarized)
 (add-to-list 'custom-theme-load-path "~/.emacs.d/themes")
 (load-theme 'dakrone t) ; other nice themes: 'grandshell
@@ -82,13 +96,49 @@ then it takes a second \\[keyboard-quit] to abort the minibuffer."
 ;; checkout: http://ergoemacs.org/emacs/keyboard_shortcuts.html
 (global-set-key (kbd "C-;") ctl-x-map)
 (global-set-key (kbd "C-M-;") 'execute-extended-command)
+(global-set-key (kbd "C-x C-b") 'ibuffer)
 
-;; keep purcell's emacs.d settings happy
-(provide 'init-local)
+;;----------------------------------------------------------------------------
+;; Other misc. yet imp stuff goes here. Credit: technomancy/better-defaults
+;;----------------------------------------------------------------------------
+(autoload 'zap-up-to-char "misc"
+  "Kill up to, but not including ARGth occurrence of CHAR." t)
+
+(require 'uniquify)
+(setq uniquify-buffer-name-style 'forward)
+
+(require 'saveplace)
+(setq-default save-place t)
+
+(global-set-key (kbd "M-/") 'hippie-expand)
+(global-set-key (kbd "C-x C-b") 'ibuffer)
+(global-set-key (kbd "M-z") 'zap-up-to-char)
+
+(global-set-key (kbd "C-s") 'isearch-forward-regexp)
+(global-set-key (kbd "C-r") 'isearch-backward-regexp)
+(global-set-key (kbd "C-M-s") 'isearch-forward)
+(global-set-key (kbd "C-M-r") 'isearch-backward)
+
+(show-paren-mode 1)
+(setq-default indent-tabs-mode nil)
+(setq x-select-enable-clipboard t
+      x-select-enable-primary t
+      save-interprogram-paste-before-kill t
+      apropos-do-all t
+      mouse-yank-at-point t
+      require-final-newline t
+      visible-bell t
+      load-prefer-newer t
+      ediff-window-setup-function 'ediff-setup-windows-plain
+      save-place-file (concat user-emacs-directory "places")
+      backup-directory-alist `(("." . ,(concat user-emacs-directory
+                                               "backups"))))
 
 ;; Local Variables:
 ;; coding: utf-8
 ;; no-byte-compile: t
 ;; End:
-;;;
+
+;; keep purcell's emacs.d settings happy
+(provide 'init-local)
 ;;; init-local.el ends here

@@ -1,8 +1,11 @@
-;;; package --- My emacs preferences
+;;; package --- My preferences for .emacs
 
 ;;; Commentary:
-;;; - relies on purcell's .emacs.d to do all the heavy lifting
-;;; - all else is kept to bare minimum.
+
+;;  - relies on purcell's .emacs.d to do all the heavy lifting
+;;  - all else is kept to bare minimum.
+
+;;; Code:
 
 ;; grab all files in lisp and any sub-dirs inside it
 (add-to-list 'load-path (expand-file-name "lisp" user-emacs-directory))
@@ -17,4 +20,5 @@
 ;; no-byte-compile: t
 ;; End:
 
-;;; .emacs ends here
+(provide 'emacs)
+;;; emacs.el ends here
