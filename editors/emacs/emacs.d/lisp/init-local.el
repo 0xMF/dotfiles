@@ -24,9 +24,43 @@
 (global-evil-tabs-mode t)
 
 ;; allows ; to be used a mapper for my keybindings
-(global-evil-leader-mode)
-(evil-leader/set-leader ";")
-(setq evil-leader/in-all-states 1)
+(require 'general)
+;; bind a key globally in normal state; keymaps must be quoted
+(setq general-default-keymaps 'evil-normal-state-map)
+;; bind j and k in normal state globally
+(general-define-key "j" 'evil-next-visual-line
+                    "k" 'evil-previous-visual-line)
+
+;; bind wm and wc
+(general-define-key :prefix "w"
+                    "c" 'whitespace-cleanup
+                    "t" 'whitespace-mode
+                    "w" 'delete-other-windows
+                    "d" 'delete-window)
+
+(general-define-key :prefix "b"
+                    "d" 'kill-buffer
+                    "h" 'previous-buffer
+                    "l" 'next-buffer
+                    "n" 'next-buffer
+                    "p" 'previous-buffer)
+
+;; named prefix key
+(setq my-leader1 ";")
+(general-define-key :prefix my-leader1
+                    "b" 'list-buffers
+                    "j" 'evil-next-line
+                    "k" 'evil-previous-line
+                    "f" 'find-file)
+
+;; a default prefix sequence
+(setq general-default-prefix ";")
+(general-define-key "f" 'find-file)
+
+;; bind a key in multiple states
+(general-define-key :keymaps 'org-mode-map
+                    :states '(insert emacs)
+                    "<tab>" 'org-cycle)
 
 ;; smooth scrolling
 (setq scroll-margin 5
@@ -75,31 +109,6 @@ then it takes a second \\[keyboard-quit] to abort the minibuffer."
 (display-time-mode t)
 
 ;;----------------------------------------------------------------------------
-;; User mode settings for UI/keyboard/look and feel
-;;----------------------------------------------------------------------------
-(add-to-list 'custom-theme-load-path "~/.emacs.d/themes")
-(load-theme 'doom-molokai t) ; other nice themes: 'grandshell 'dakrone
-
-;; Set default font
-;; (used and saved through menu Options->Set Default Font... into cutom.el)
-
-;; C-h-b: to check keybinding and which functions are bound to which keys
-;; C-h-k: to check which key is bound to which function
-;; C-h-m: to list current major mode's keys
-;; C-g:   to close that opened Bindings window
-;; checkout: http://ergoemacs.org/emacs/keyboard_shortcuts.html
-(global-set-key (kbd "C-z") nil)
-(global-set-key (kbd "M-z") nil)
-(global-set-key (kbd "C-;") ctl-x-map)
-(global-set-key (kbd "C-z") ctl-x-map)
-(global-set-key (kbd "M-z") 'execute-extended-command)
-(global-set-key (kbd "C-M-;") 'execute-extended-command)
-(global-set-key (kbd "C-M-k") 'kill-some-buffers)
-(global-set-key (kbd "C-M-<left>") 'previous-buffer)
-(global-set-key (kbd "C-M-<right>") 'next-buffer)
-(global-set-key (kbd "C-x C-b") 'ibuffer)
-
-;;----------------------------------------------------------------------------
 ;; Other misc. yet imp stuff goes here. Credit: technomancy/better-defaults
 ;;----------------------------------------------------------------------------
 (require 'uniquify)
@@ -130,6 +139,35 @@ then it takes a second \\[keyboard-quit] to abort the minibuffer."
       save-place-file (concat user-emacs-directory "places")
       backup-directory-alist `(("." . ,(concat user-emacs-directory
                                                "backups"))))
+
+;;----------------------------------------------------------------------------
+;; User mode settings for UI/keyboard/look and feel
+;;----------------------------------------------------------------------------
+(add-to-list 'custom-theme-load-path "~/.emacs.d/themes")
+(load-theme 'doom-molokai t) ; other nice themes: 'grandshell 'dakrone
+
+;; Set default font
+;; (used and saved through menu Options->Set Default Font... into cutom.el)
+
+;; C-h-b: to check keybinding and which functions are bound to which keys
+;; C-h-k: to check which key is bound to which function
+;; C-h-m: to list current major mode's keys
+;; C-g:   to close that opened Bindings window
+;; checkout: http://ergoemacs.org/emacs/keyboard_shortcuts.html
+(global-set-key (kbd "C-z") nil)
+(global-set-key (kbd "M-z") nil)
+(global-set-key (kbd "C-;") ctl-x-map)
+(global-set-key (kbd "C-z") ctl-x-map)
+(global-set-key (kbd "M-z") 'execute-extended-command)
+(global-set-key (kbd "C-M-;") 'execute-extended-command)
+(global-set-key (kbd "C-M-j") 'list-buffers)
+(global-set-key (kbd "C-M-h") 'previous-buffer)
+(global-set-key (kbd "C-M-k") 'kill-some-buffers)
+(global-set-key (kbd "C-M-l") 'next-buffer)
+(global-set-key (kbd "C-M-<left>") 'previous-buffer)
+(global-set-key (kbd "C-M-<right>") 'next-buffer)
+(global-set-key (kbd "C-M-SPC") 'delete-other-windows)
+(global-set-key (kbd "C-x C-b") 'ibuffer)
 
 ;; Local Variables:
 ;; coding: utf-8
