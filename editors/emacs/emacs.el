@@ -11,6 +11,9 @@
 (add-to-list 'load-path (expand-file-name "lisp" user-emacs-directory))
 (let ((default-directory  "~/.emacs.d/lisp/"))
   (normal-top-level-add-subdirs-to-load-path))
+(add-to-list 'load-path (expand-file-name ".dependencies" user-emacs-directory))
+(let ((default-directory  "~/.emacs.d/lisp/.dependencies"))
+  (normal-top-level-add-subdirs-to-load-path))
 
 ;; silence ad-handle-redefinition warnings
 (setq ad-redefinition-action 'accept)
