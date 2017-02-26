@@ -95,6 +95,8 @@ then it takes a second \\[keyboard-quit] to abort the minibuffer."
 (global-set-key (kbd "M-z") 'execute-extended-command)
 (global-set-key (kbd "C-M-;") 'execute-extended-command)
 (global-set-key (kbd "C-M-k") 'kill-some-buffers)
+(global-set-key (kbd "C-M-<left>") 'previous-buffer)
+(global-set-key (kbd "C-M-<right>") 'next-buffer)
 (global-set-key (kbd "C-x C-b") 'ibuffer)
 
 ;;----------------------------------------------------------------------------
