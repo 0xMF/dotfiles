@@ -12,6 +12,9 @@
 (let ((default-directory  "~/.emacs.d/lisp/"))
   (normal-top-level-add-subdirs-to-load-path))
 
+;; silence ad-handle-redefinition warnings
+(setq ad-redefinition-action 'accept)
+
 ;; my init.el is symlinked to purcell's emacs.d/init.el
 (load "~/.emacs.d/init")
 

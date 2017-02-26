@@ -77,33 +77,29 @@ then it takes a second \\[keyboard-quit] to abort the minibuffer."
 ;;----------------------------------------------------------------------------
 ;; User mode settings for UI/keyboard/look and feel
 ;;----------------------------------------------------------------------------
-(require 'solarized)
 (add-to-list 'custom-theme-load-path "~/.emacs.d/themes")
-(load-theme 'dakrone t) ; other nice themes: 'grandshell
+(load-theme 'doom-molokai t) ; other nice themes: 'grandshell 'dakrone
 
-;; Set default font -- copied from custom.el
-(custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(default ((t (:family "Source Code Pro" :foundry "adobe" :slant normal :weight semi-bold :height 90 :width normal)))))
+;; Set default font
+;; (used and saved through menu Options->Set Default Font... into cutom.el)
 
 ;; C-h-b: to check keybinding and which functions are bound to which keys
 ;; C-h-k: to check which key is bound to which function
 ;; C-h-m: to list current major mode's keys
 ;; C-g:   to close that opened Bindings window
 ;; checkout: http://ergoemacs.org/emacs/keyboard_shortcuts.html
+(global-set-key (kbd "C-z") nil)
+(global-set-key (kbd "M-z") nil)
 (global-set-key (kbd "C-;") ctl-x-map)
+(global-set-key (kbd "C-z") ctl-x-map)
+(global-set-key (kbd "M-z") 'execute-extended-command)
 (global-set-key (kbd "C-M-;") 'execute-extended-command)
+(global-set-key (kbd "C-M-k") 'kill-some-buffers)
 (global-set-key (kbd "C-x C-b") 'ibuffer)
 
 ;;----------------------------------------------------------------------------
 ;; Other misc. yet imp stuff goes here. Credit: technomancy/better-defaults
 ;;----------------------------------------------------------------------------
-(autoload 'zap-up-to-char "misc"
-  "Kill up to, but not including ARGth occurrence of CHAR." t)
-
 (require 'uniquify)
 (setq uniquify-buffer-name-style 'forward)
 
@@ -112,7 +108,6 @@ then it takes a second \\[keyboard-quit] to abort the minibuffer."
 
 (global-set-key (kbd "M-/") 'hippie-expand)
 (global-set-key (kbd "C-x C-b") 'ibuffer)
-(global-set-key (kbd "M-z") 'zap-up-to-char)
 
 (global-set-key (kbd "C-s") 'isearch-forward-regexp)
 (global-set-key (kbd "C-r") 'isearch-backward-regexp)
