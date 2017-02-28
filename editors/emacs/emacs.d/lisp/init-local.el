@@ -21,9 +21,6 @@
 (setq evil-replace-state-cursor '("red" bar))
 (setq evil-operator-state-cursor '("red" hollow))
 
-(global-evil-tabs-mode t)
-
-;; allows ; to be used a mapper for my keybindings
 (require 'general)
 ;; bind a key globally in normal state; keymaps must be quoted
 (setq general-default-keymaps 'evil-normal-state-map)
@@ -45,7 +42,7 @@
                     "n" 'next-buffer
                     "p" 'previous-buffer)
 
-;; named prefix key
+;; named prefix key allows ; to be used a mapper for my keybindings
 (setq my-leader1 ";")
 (general-define-key :prefix my-leader1
                     "b" 'list-buffers
@@ -144,7 +141,7 @@ then it takes a second \\[keyboard-quit] to abort the minibuffer."
 ;; User mode settings for UI/keyboard/look and feel
 ;;----------------------------------------------------------------------------
 (add-to-list 'custom-theme-load-path "~/.emacs.d/themes")
-(load-theme 'doom-molokai t) ; other nice themes: 'grandshell 'dakrone
+(load-theme 'blueknight t) ; other nice themes: 'grandshell 'dakrone 'doom-molokai
 
 ;; Set default font
 ;; (used and saved through menu Options->Set Default Font... into cutom.el)
@@ -167,6 +164,8 @@ then it takes a second \\[keyboard-quit] to abort the minibuffer."
 (global-set-key (kbd "C-M-<left>") 'previous-buffer)
 (global-set-key (kbd "C-M-<right>") 'next-buffer)
 (global-set-key (kbd "C-M-SPC") 'delete-other-windows)
+(global-set-key (kbd "C-M-=") 'default-text-scale-increase)
+(global-set-key (kbd "C-M--") 'default-text-scale-decrease)
 (global-set-key (kbd "C-x C-b") 'ibuffer)
 
 ;; Local Variables:
@@ -176,4 +175,5 @@ then it takes a second \\[keyboard-quit] to abort the minibuffer."
 
 ;; keep purcell's emacs.d settings happy
 (provide 'init-local)
+
 ;;; init-local.el ends here
