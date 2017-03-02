@@ -101,9 +101,15 @@ then it takes a second \\[keyboard-quit] to abort the minibuffer."
 ;; no backups
 (setq make-backup-files nil)
 
+;; important for markdown and GFM export
+(eval-after-load "org"
+  '(require 'ox-md nil t))
+(eval-after-load "org"
+  '(require 'ox-gfm nil t))
+
 ;; yes to powerline
                                         ;(require 'powerline)
-(display-time-mode t)
+                                        ;(display-time-mode t)
 
 ;;----------------------------------------------------------------------------
 ;; Other misc. yet imp stuff goes here. Credit: technomancy/better-defaults
@@ -172,14 +178,14 @@ then it takes a second \\[keyboard-quit] to abort the minibuffer."
 (global-set-key (kbd "C-x C-b") 'ibuffer)
 
 ;; Hide leading stars
-(setq org-startup-indented t)
+(setq org-startup-indented nil)
 (setq org-hide-leading-stars t)
 (setq org-indent-mode-turns-off-org-adapt-indentation nil)
 (setq org-indent-mode-turns-on-hiding-stars nil)
 
 ;; or simply use bullet (default if uncommented)
-(require 'org-bullets)
-(add-hook 'org-mode-hook (lambda () (org-bullets-mode 1)))
+;;(require 'org-bullets)
+;;(add-hook 'org-mode-hook (lambda () (org-bullets-mode 1)))
 
 
 
