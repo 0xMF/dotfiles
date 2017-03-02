@@ -102,7 +102,7 @@ then it takes a second \\[keyboard-quit] to abort the minibuffer."
 (setq make-backup-files nil)
 
 ;; yes to powerline
-(require 'powerline)
+                                        ;(require 'powerline)
 (display-time-mode t)
 
 ;;----------------------------------------------------------------------------
@@ -155,6 +155,9 @@ then it takes a second \\[keyboard-quit] to abort the minibuffer."
 (global-set-key (kbd "M-z") nil)
 (global-set-key (kbd "C-;") ctl-x-map)
 (global-set-key (kbd "C-z") ctl-x-map)
+(global-set-key (kbd "C-j") nil)
+(global-set-key (kbd "C-j") (kbd "C-c")) ; maps one key to another
+(global-set-key (kbd "M-s") 'execute-extended-command)
 (global-set-key (kbd "M-z") 'execute-extended-command)
 (global-set-key (kbd "C-M-;") 'execute-extended-command)
 (global-set-key (kbd "C-M-j") 'list-buffers)
@@ -167,6 +170,18 @@ then it takes a second \\[keyboard-quit] to abort the minibuffer."
 (global-set-key (kbd "C-M-=") 'default-text-scale-increase)
 (global-set-key (kbd "C-M--") 'default-text-scale-decrease)
 (global-set-key (kbd "C-x C-b") 'ibuffer)
+
+;; Hide leading stars
+(setq org-startup-indented t)
+(setq org-hide-leading-stars t)
+(setq org-indent-mode-turns-off-org-adapt-indentation nil)
+(setq org-indent-mode-turns-on-hiding-stars nil)
+
+;; or simply use bullet (default if uncommented)
+(require 'org-bullets)
+(add-hook 'org-mode-hook (lambda () (org-bullets-mode 1)))
+
+
 
 ;; Local Variables:
 ;; coding: utf-8
