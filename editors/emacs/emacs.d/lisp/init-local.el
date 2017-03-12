@@ -177,15 +177,16 @@ then it takes a second \\[keyboard-quit] to abort the minibuffer."
 (global-set-key (kbd "C-M--") 'default-text-scale-decrease)
 (global-set-key (kbd "C-x C-b") 'ibuffer)
 
-;; Hide leading stars
+;; Org mode settings
 (setq org-startup-indented nil)
 (setq org-hide-leading-stars t)
 (setq org-indent-mode-turns-off-org-adapt-indentation nil)
 (setq org-indent-mode-turns-on-hiding-stars nil)
+(setq org-pretty-entities t)
 
-;; or simply use bullet (default if uncommented)
-;;(require 'org-bullets)
-;;(add-hook 'org-mode-hook (lambda () (org-bullets-mode 1)))
+;; Use bullets (default if uncommented)
+(require 'org-bullets)
+(add-hook 'org-mode-hook (lambda () (org-bullets-mode 1)))
 
 
 
