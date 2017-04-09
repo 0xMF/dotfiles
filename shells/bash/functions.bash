@@ -536,4 +536,9 @@ function low() {
   lowriter "$@" 2>/dev/null &
 }
 
+
+function emacs() {
+  /usr/bin/emacs "$@" 2>/dev/null &
+}
+
 # vim:nospell:ft=sh:

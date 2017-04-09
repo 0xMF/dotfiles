@@ -157,6 +157,7 @@ then it takes a second \\[keyboard-quit] to abort the minibuffer."
 ;; C-h-m: to list current major mode's keys
 ;; C-g:   to close that opened Bindings window
 ;; checkout: http://ergoemacs.org/emacs/keyboard_shortcuts.html
+
 (global-set-key (kbd "C-z") nil)
 (global-set-key (kbd "M-z") nil)
 (global-set-key (kbd "C-;") ctl-x-map)
