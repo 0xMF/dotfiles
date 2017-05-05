@@ -536,6 +536,9 @@ function low() {
   lowriter "$@" 2>/dev/null &
 }
 
+function erls() {
+  erl "@" -pa ebin -pa deps/*/ebin
+}
 
 function emacs() {
   /usr/bin/emacs "$@" 2>/dev/null &
