@@ -112,6 +112,58 @@ then it takes a second \\[keyboard-quit] to abort the minibuffer."
                                         ;(display-time-mode t)
 
 ;;----------------------------------------------------------------------------
+;; Language mode settings
+;;----------------------------------------------------------------------------
+
+;; Erlang
+(setq load-path (cons "/usr/lib/erlang/lib/tools-2.9/emacs" load-path))
+(setq erlang-root-dir "/usr/lib/erlang")
+(setq exec-path (cons "/usr/lib/erlang/bin" exec-path))
+(require 'erlang-start)
+
+(add-to-list 'load-path "/home/mark/repos/distel/elisp")
+  (require 'distel)
+  (distel-setup)
+
+(use-package erlang
+  :init
+  (add-to-list 'auto-mode-alist '("\\.P\\'" . erlang-mode))
+  (add-to-list 'auto-mode-alist '("\\.E\\'" . erlang-mode))
+  (add-to-list 'auto-mode-alist '("\\.S\\'" . erlang-mode))
+  :config
+  (add-hook 'erlang-mode-hook
+            (lambda ()
+              (setq mode-name "erl"
+                    erlang-compile-extra-opts '((i . "../include"))
+                    erlang-root-dir "/usr/lib/erlang"))))
+
+(use-package edts
+  :init
+  (setq edts-inhibit-package-check t
+        edts-man-root "~/.emacs.d/edts/doc/18.2.1"))
+
+(use-package flycheck
+  :diminish flycheck-mode
+  :config
+  (add-hook 'after-init-hook 'global-flycheck-mode)
+  (setq flycheck-display-errors-function nil
+        flycheck-erlang-include-path '("../include")
+        flycheck-erlang-library-path '()
+        flycheck-check-syntax-automatically '(save)))
+
+(require 'flymake)
+(defun flymake-erlang-init ()
+  (let* ((temp-file (flymake-init-create-temp-buffer-copy
+                     'flymake-create-temp-inplace))
+         (local-file (file-relative-name temp-file
+                                         (file-name-directory buffer-file-name))))
+    (list "../escript/flymake-local.el" (list local-file))))
+
+(add-to-list 'flymake-allowed-file-name-masks '("\\.erl\\'" flymake-erlang-init))
+
+;;---
+
+;;----------------------------------------------------------------------------
 ;; Other misc. yet imp stuff goes here. Credit: technomancy/better-defaults
 ;;----------------------------------------------------------------------------
 (require 'uniquify)
