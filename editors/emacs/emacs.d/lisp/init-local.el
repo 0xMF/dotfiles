@@ -116,9 +116,9 @@ then it takes a second \\[keyboard-quit] to abort the minibuffer."
 ;;----------------------------------------------------------------------------
 
 ;; Erlang
-(setq load-path (cons "/usr/lib/erlang/lib/tools-2.9/emacs" load-path))
-(setq erlang-root-dir "/usr/lib/erlang")
-(setq exec-path (cons "/usr/lib/erlang/bin" exec-path))
+(setq load-path (cons "/usr/local/lib/erlang/lib/tools-2.9.1/emacs" load-path))
+(setq erlang-root-dir "/usr/local/lib/erlang")
+(setq exec-path (cons "/usr/local/lib/erlang/bin" exec-path))
 (require 'erlang-start)
 
 (add-to-list 'load-path "/home/mark/repos/distel/elisp")
