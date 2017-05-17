@@ -243,6 +243,13 @@ then it takes a second \\[keyboard-quit] to abort the minibuffer."
 (add-hook 'org-mode-hook (lambda () (org-bullets-mode 1)))
 
 
+;; No more *scratch* buffer
+(defun kill-some-buffers()
+  (if (get-buffer "*scratch*")
+      (kill-buffer "*scratch*"))
+  (if (get-buffer "*reg group-leader*")
+      (kill-buffer "*reg group-leader*")))
+(add-hook 'after-change-major-mode-hook 'kill-some-buffers)
 
 ;; Local Variables:
 ;; coding: utf-8
