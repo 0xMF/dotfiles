@@ -14,12 +14,19 @@
 (require 'evil)
 (evil-mode 0)
 
-(setq evil-emacs-state-cursor '("red" box))
+(setq evil-default-state-cursor '("green" box))
 (setq evil-normal-state-cursor '("green" box))
-(setq evil-visual-state-cursor '("orange" box))
 (setq evil-insert-state-cursor '("red" bar))
-(setq evil-replace-state-cursor '("red" bar))
+(setq evil-visual-state-cursor '("orange" box))
+(setq evil-replace-state-cursor '("red" box))
 (setq evil-operator-state-cursor '("red" hollow))
+
+;; setup cursor for evil/non-evil modes
+(defun my-default-cursor()
+  (if (string= (symbol-value 'evil-state) "normal")
+      (set-cursor-color "green")
+    (set-cursor-color "white")))
+(add-hook 'evil-mode-hook 'my-default-cursor)
 
 (require 'general)
 ;; bind a key globally in normal state; keymaps must be quoted
@@ -244,12 +251,12 @@ then it takes a second \\[keyboard-quit] to abort the minibuffer."
 
 
 ;; No more *scratch* buffer
-(defun kill-some-buffers()
+(defun kill-misc-buffers()
   (if (get-buffer "*scratch*")
       (kill-buffer "*scratch*"))
   (if (get-buffer "*reg group-leader*")
       (kill-buffer "*reg group-leader*")))
-(add-hook 'after-change-major-mode-hook 'kill-some-buffers)
+(add-hook 'after-change-major-mode-hook 'kill-misc-buffers)
 
 ;; Local Variables:
 ;; coding: utf-8
