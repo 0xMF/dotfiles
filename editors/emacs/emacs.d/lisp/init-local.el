@@ -12,7 +12,7 @@
 ;; Evil mode settings
 ;;----------------------------------------------------------------------------
 (require 'evil)
-(evil-mode 0)
+(evil-mode 1)
 
 (setq evil-default-state-cursor '("green" box))
 (setq evil-normal-state-cursor '("green" box))
@@ -225,7 +225,10 @@ then it takes a second \\[keyboard-quit] to abort the minibuffer."
 (global-set-key (kbd "C-j") (kbd "C-c")) ; maps one key to another
 (global-set-key (kbd "M-s") 'execute-extended-command)
 (global-set-key (kbd "M-z") 'execute-extended-command)
+
+(global-set-key (kbd "C-<escape>") 'evil-mode)
 (global-set-key (kbd "C-M-;") 'evil-mode)
+
 (global-set-key (kbd "C-M-j") 'list-buffers)
 (global-set-key (kbd "C-M-h") 'previous-buffer)
 (global-set-key (kbd "C-M-k") 'kill-some-buffers)
