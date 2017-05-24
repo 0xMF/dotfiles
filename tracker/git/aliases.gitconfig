@@ -2,9 +2,9 @@
   br        = branch
   ci        = commit
   co        = checkout
-  d         = diff HEAD
-  dc        = diff --cached
-  ds        = diff --staged
+  d         = diff -w HEAD
+  dc        = diff -w --cached
+  ds        = diff -w --staged
   g         = grep --break --heading --line-number
   h         = log --pretty=oneline --decorate --abbrev-commit --date=short
   hist      = log --pretty=format:\"%h %ad | %s%d [%an]\" --graph --date=short
@@ -104,19 +104,23 @@
   mergetrail = log --ancestry-path --merges
   move      = mv
   nevermind = !git reset --hard HEAD && git clean -d -f
+  praise    = blame
   precommit = diff --cached -w --word-diff=color --word-diff-regex='[^[:space:]<>]+'
   prestage  = diff -w --word-diff=color
   remotes   = remote -v
   remove    = rm
   resave    = commit --amend
   rewrite   = rebase -i
+  rushes    = log --since=00:00:00 --all --no-merges --oneline --author="Mark Fernandes"
+  rush      = rushes
+  ru        = rushes
   save      = commit -am
   stashes   = stash list
   summary   = status -u -s
   tags      = tag
   uncommit  = reset --mixed HEAD~
   unmerged  = branch --no-merged
-  unmerged  = diff --name-only --diff-filter=U
+  unmerged  = diff -w --name-only --diff-filter=U
   unstage   = reset -q HEAD --
   unstash   = stash pop
   untrack   = rm -r --cached

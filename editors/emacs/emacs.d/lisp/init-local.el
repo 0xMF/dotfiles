@@ -111,9 +111,9 @@ then it takes a second \\[keyboard-quit] to abort the minibuffer."
 ;; 2 spaces for tabs
 (setq-default tab-width 2 indent-tabs-mode nil)
 (setq-default c-basic-offset 2 c-default-style "bsd")
-(setq tab-width 2)
-(setq tab-stop-list (number-sequence 2 20 2))
-(setq indent-line-function 'tab-to-tab-stop)
+(setq tab-width 2
+      tab-stop-list (number-sequence 2 20 2)
+      indent-line-function 'tab-to-tab-stop)
 
 ;; no backups
 (setq make-backup-files nil)
