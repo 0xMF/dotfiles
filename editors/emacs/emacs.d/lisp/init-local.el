@@ -221,6 +221,13 @@ then it takes a second \\[keyboard-quit] to abort the minibuffer."
 (add-hook 'text-mode-hook 'turn-on-auto-fill)
 (add-hook 'text-mode-hook '(lambda() (set-fill-column 100)))
 
+;;----------------------------------------------------------------------------
+;; Abbreviations
+;;----------------------------------------------------------------------------
+(setq-default abbrev-mode t)
+(read-abbrev-file "~/.abbrev_defs")
+(setq save-abbrevs t)
+
 ;; Set default font
 ;; (used and saved through menu Options->Set Default Font... into cutom.el)
 

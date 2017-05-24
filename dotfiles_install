@@ -39,6 +39,35 @@ _bash() {
   }
 }
 
+# emacs
+_emacs() {
+  installed=
+  echo -n "checking emacs..." >&2
+
+  [[ -e $HOME/.emacs || -L $HOME/.emacs ]] && {
+    echo "found .emacs, not installing" >&2
+  } || {
+    installed=".emacs"
+    ln -s $PWD/editors/emacs/emacs.el $HOME/.emacs
+  }
+
+  echo -n "checking emacs/abbrev_defs..." >&2
+  [[ -e $HOME/.abbrev_defs || -L $HOME/.abbrev_defs ]] && {
+    echo "found .abbrev_defs, not installing" >&2
+  } || {
+    installed=".abbrev_defs"
+    ln -s $PWD/editors/emacs/abbrev_defs $HOME/.abbrev_defs
+  }
+
+  [[ -d $HOME/.emacs.d || -L $HOME/.emacs.d ]] && { :
+  } || {
+    installed="emacs"
+    ln -s $PWD/editors/emacs/emacs.d $HOME/.emacs.d
+  }
+
+  [ ! -z "$installed" ] && echo "INSTALLED!" >&2
+}
+
 # git
 _git() {
   installed=
@@ -145,6 +174,7 @@ _vim() {
 }
 
 _bash
+_emacs
 _git
 _misc
 _pal
