@@ -38,9 +38,9 @@
 ;; bind wm and wc
 (general-define-key :prefix "w"
                     "c" 'whitespace-cleanup
+                    "d" 'delete-window
                     "t" 'whitespace-mode
-                    "w" 'delete-other-windows
-                    "d" 'delete-window)
+                    "w" 'delete-other-windows)
 
 (general-define-key :prefix "b"
                     "d" 'kill-buffer
@@ -53,9 +53,10 @@
 (setq my-leader1 ";")
 (general-define-key :prefix my-leader1
                     "b" 'list-buffers
+                    "f" 'find-file
                     "j" 'evil-next-line
                     "k" 'evil-previous-line
-                    "f" 'find-file)
+                    "q" 'fill-paragraph)
 
 ;; a default prefix sequence
 (setq general-default-prefix ";")
@@ -102,8 +103,15 @@ then it takes a second \\[keyboard-quit] to abort the minibuffer."
 (evil-scroll-down nil)))
 
 ;; 2 spaces for tabs
-(setq-default tab-width 2 indent-tabs-mode nil)
-(setq-default c-basic-offset 2 c-default-style "bsd")
+(setq-default standard-indent 2)
+(setq-default tab-width 2)
+(setq tab-width 2)
+(setq-default indent-tabs-mode nil)
+(setq-default tabs-always-indent t)
+(setq-default c-basic-offset 2)
+(setq-default c-default-style "bsd")
+(setq tab-stop-list (number-sequence 2 20 2))
+(setq indent-line-function 'tab-to-tab-stop)
 
 ;; no backups
 (setq make-backup-files nil)
@@ -168,7 +176,11 @@ then it takes a second \\[keyboard-quit] to abort the minibuffer."
 
 (add-to-list 'flymake-allowed-file-name-masks '("\\.erl\\'" flymake-erlang-init))
 
-;;---
+;;----------------------------------------------------------------------------
+;; Pandoc-mode settings
+;;----------------------------------------------------------------------------
+(add-hook 'markdown-mode-hook 'pandoc-mode)
+(add-hook 'pandoc-mode-hook 'pandoc-load-default-settings)
 
 ;;----------------------------------------------------------------------------
 ;; Other misc. yet imp stuff goes here. Credit: technomancy/better-defaults
@@ -208,6 +220,10 @@ then it takes a second \\[keyboard-quit] to abort the minibuffer."
 (add-to-list 'custom-theme-load-path "~/.emacs.d/themes")
 (load-theme 'blueknight t) ; other nice themes: 'grandshell 'dakrone 'doom-molokai
 
+;; wrap lines (hard return) around column 100
+(add-hook 'text-mode-hook 'turn-on-auto-fill)
+(add-hook 'text-mode-hook '(lambda() (set-fill-column 100)))
+
 ;; Set default font
 ;; (used and saved through menu Options->Set Default Font... into cutom.el)
 
@@ -240,6 +256,7 @@ then it takes a second \\[keyboard-quit] to abort the minibuffer."
 (global-set-key (kbd "C-M--") 'default-text-scale-decrease)
 (global-set-key (kbd "C-x C-b") 'ibuffer)
 (global-set-key (kbd "C-; u") 'undo-tree-visualize)
+(global-set-key (kbd "<tab>") 'tab-to-tab-stop)
 
 ;; Org mode settings
 (setq org-startup-indented nil)
@@ -251,7 +268,6 @@ then it takes a second \\[keyboard-quit] to abort the minibuffer."
 ;; Use bullets (default if uncommented)
 (require 'org-bullets)
 (add-hook 'org-mode-hook (lambda () (org-bullets-mode 1)))
-
 
 ;; No more *scratch* buffer
 (defun kill-misc-buffers()
