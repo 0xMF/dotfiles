@@ -21,16 +21,22 @@
 (setq evil-replace-state-cursor '("red" box))
 (setq evil-operator-state-cursor '("red" hollow))
 
-;; setup cursor for evil/non-evil modes
-(defun my-default-cursor()
-  (if (string= (symbol-value 'evil-state) "normal")
-      (set-cursor-color "green")
-    (set-cursor-color "white")))
+(defun my-default-cursor()  "Cursor color indicates mode: white = emacs, green = evil."
+       (if (string= (symbol-value 'evil-state) "normal")
+           (set-cursor-color "green")
+         (set-cursor-color "white")))
+
 (add-hook 'evil-mode-hook 'my-default-cursor)
 
+
+;;----------------------------------------------------------------------------
+;; General keymap settings
+;;----------------------------------------------------------------------------
 (require 'general)
-;; bind a key globally in normal state; keymaps must be quoted
+
+;; bind a key globally in normal state
 (setq general-default-keymaps 'evil-normal-state-map)
+
 ;; bind j and k in normal state globally
 (general-define-key "j" 'evil-next-visual-line
                     "k" 'evil-previous-visual-line)
@@ -56,6 +62,8 @@
                     "f" 'find-file
                     "j" 'evil-next-line
                     "k" 'evil-previous-line
+                    "l" 'whitespace-mode
+                    "n" 'linum-mode
                     "q" 'fill-paragraph)
 
 ;; a default prefix sequence
@@ -77,15 +85,15 @@
 (define-key evil-normal-state-map (kbd "k") 'evil-previous-visual-line)
 
 ;; esc quits
-(defun minibuffer-keyboard-quit ()
-  "Abort recursive edit.
+(defun minibuffer-keyboard-quit () "Abort recursive edit.
 In Delete Selection mode, if the mark is active, just deactivate it;
 then it takes a second \\[keyboard-quit] to abort the minibuffer."
-  (interactive)
-  (if (and delete-selection-mode transient-mark-mode mark-active)
-      (setq deactivate-mark  t)
-    (when (get-buffer "*Completions*") (delete-windows-on "*Completions*"))
-    (abort-recursive-edit)))
+       (interactive)
+       (if (and delete-selection-mode transient-mark-mode mark-active)
+           (setq deactivate-mark  t)
+         (when (get-buffer "*Completions*") (delete-windows-on "*Completions*"))
+         (abort-recursive-edit)))
+
 (define-key evil-normal-state-map [escape] 'keyboard-quit)
 (define-key evil-visual-state-map [escape] 'keyboard-quit)
 (define-key minibuffer-local-map [escape] 'minibuffer-keyboard-quit)
@@ -95,21 +103,15 @@ then it takes a second \\[keyboard-quit] to abort the minibuffer."
 (define-key minibuffer-local-isearch-map [escape] 'minibuffer-keyboard-quit)
 (global-set-key [escape] 'evil-exit-emacs-state)
 
-(define-key evil-normal-state-map (kbd "C-k") (lambda ()
-(interactive)
-(evil-scroll-up nil)))
-(define-key evil-normal-state-map (kbd "C-j") (lambda ()
-(interactive)
-(evil-scroll-down nil)))
+(define-key evil-normal-state-map (kbd "C-k") (lambda () (interactive)
+                                                (evil-scroll-up nil)))
+(define-key evil-normal-state-map (kbd "C-j") (lambda () (interactive)
+                                                (evil-scroll-down nil)))
 
 ;; 2 spaces for tabs
-(setq-default standard-indent 2)
-(setq-default tab-width 2)
+(setq-default tab-width 2 indent-tabs-mode nil)
+(setq-default c-basic-offset 2 c-default-style "bsd")
 (setq tab-width 2)
-(setq-default indent-tabs-mode nil)
-(setq-default tabs-always-indent t)
-(setq-default c-basic-offset 2)
-(setq-default c-default-style "bsd")
 (setq tab-stop-list (number-sequence 2 20 2))
 (setq indent-line-function 'tab-to-tab-stop)
 
@@ -117,10 +119,8 @@ then it takes a second \\[keyboard-quit] to abort the minibuffer."
 (setq make-backup-files nil)
 
 ;; important for markdown and GFM export
-(eval-after-load "org"
-  '(require 'ox-md nil t))
-(eval-after-load "org"
-  '(require 'ox-gfm nil t))
+(eval-after-load "org" '(require 'ox-md nil t))
+(eval-after-load "org" '(require 'ox-gfm nil t))
 
 ;; yes to powerline
                                         ;(require 'powerline)
@@ -147,10 +147,9 @@ then it takes a second \\[keyboard-quit] to abort the minibuffer."
   (add-to-list 'auto-mode-alist '("\\.S\\'" . erlang-mode))
   :config
   (add-hook 'erlang-mode-hook
-            (lambda ()
-              (setq mode-name "erl"
-                    erlang-compile-extra-opts '((i . "../include"))
-                    erlang-root-dir "/usr/lib/erlang"))))
+            (lambda () (setq mode-name "erl"
+                        erlang-compile-extra-opts '((i . "../include"))
+                        erlang-root-dir "/usr/lib/erlang"))))
 
 (use-package edts
   :init
@@ -167,12 +166,11 @@ then it takes a second \\[keyboard-quit] to abort the minibuffer."
         flycheck-check-syntax-automatically '(save)))
 
 (require 'flymake)
-(defun flymake-erlang-init ()
-  (let* ((temp-file (flymake-init-create-temp-buffer-copy
-                     'flymake-create-temp-inplace))
-         (local-file (file-relative-name temp-file
-                                         (file-name-directory buffer-file-name))))
-    (list "../escript/flymake-local.el" (list local-file))))
+
+(defun flymake-erlang-init () "Compiles Erlang code on-the-fly as it's written."
+       (let* ((temp-file (flymake-init-create-temp-buffer-copy 'flymake-create-temp-inplace))
+              (local-file (file-relative-name temp-file (file-name-directory buffer-file-name))))
+         (list "~/.emacs.d/escript/flymake-erlang" (list local-file))))
 
 (add-to-list 'flymake-allowed-file-name-masks '("\\.erl\\'" flymake-erlang-init))
 
@@ -211,8 +209,7 @@ then it takes a second \\[keyboard-quit] to abort the minibuffer."
       load-prefer-newer t
       ediff-window-setup-function 'ediff-setup-windows-plain
       save-place-file (concat user-emacs-directory "places")
-      backup-directory-alist `(("." . ,(concat user-emacs-directory
-                                               "backups"))))
+      backup-directory-alist `(("." . ,(concat user-emacs-directory "backups"))))
 
 ;;----------------------------------------------------------------------------
 ;; User mode settings for UI/keyboard/look and feel
@@ -269,12 +266,11 @@ then it takes a second \\[keyboard-quit] to abort the minibuffer."
 (require 'org-bullets)
 (add-hook 'org-mode-hook (lambda () (org-bullets-mode 1)))
 
-;; No more *scratch* buffer
-(defun kill-misc-buffers()
-  (if (get-buffer "*scratch*")
-      (kill-buffer "*scratch*"))
-  (if (get-buffer "*reg group-leader*")
-      (kill-buffer "*reg group-leader*")))
+(defun kill-misc-buffers() "Permanently remove some buffers."
+       (if (get-buffer "*scratch*")
+           (kill-buffer "*scratch*"))
+       (if (get-buffer "*reg group-leader*")
+           (kill-buffer "*reg group-leader*")))
 (add-hook 'after-change-major-mode-hook 'kill-misc-buffers)
 
 ;; Local Variables:
