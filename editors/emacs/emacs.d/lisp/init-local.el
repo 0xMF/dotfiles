@@ -46,6 +46,7 @@
                     "c" 'whitespace-cleanup
                     "d" 'delete-window
                     "t" 'whitespace-mode
+                    "o" 'other-window
                     "w" 'delete-other-windows)
 
 (general-define-key :prefix "b"
@@ -54,6 +55,10 @@
                     "l" 'next-buffer
                     "n" 'next-buffer
                     "p" 'previous-buffer)
+
+(general-define-key :prefix "z"
+                    "f" #'vimish-fold
+                    "d" #'vimish-fold-delete)
 
 ;; named prefix key allows ; to be used a mapper for my keybindings
 (setq my-leader1 ";")
@@ -220,6 +225,9 @@ then it takes a second \\[keyboard-quit] to abort the minibuffer."
 ;; wrap lines (hard return) around column 100
 (add-hook 'text-mode-hook 'turn-on-auto-fill)
 (add-hook 'text-mode-hook '(lambda() (set-fill-column 100)))
+
+(require 'vimish-fold)
+
 
 ;;----------------------------------------------------------------------------
 ;; Abbreviations

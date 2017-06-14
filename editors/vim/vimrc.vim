@@ -21,7 +21,7 @@
 :   let $MYVIM=expand("$HOME/.vim")
 :end
 
-set runtimepath=$VIMRUNTIME,$MYVIM
+set runtimepath=$VIMRUNTIME,$MYVIM,$MYVIM/dependencies
 
 "** Keyboard Mappings
 :if filereadable($MYVIM . "/my_settings/keymap.vim")
@@ -196,6 +196,12 @@ set clipboard=unnamed   " all yanking goes to clipboard
     "* options for COLLADA files
     au BufRead,BufNewFile *.dae  setlocal filetype=COLLADA
     au FileType COLLADA          setlocal syntax=xml
+
+    "* Elixir files
+    au FileType ex setlocal syntax=elixir
+    au FileType eex setlocal syntax=eelixir
+    au BufEnter,BufRead,BufNewFile *.ex setlocal filetype=elixir
+    au BufEnter,BufRead,BufNewFile *.eex setlocal filetype=eelixir
 
     "* git commit messages
     au FileType gitcommit setlocal spell textwidth=72
