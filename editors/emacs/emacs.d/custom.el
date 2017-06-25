@@ -29,7 +29,7 @@
  ;; If there is more than one, they won't work right.
  '(org-document-title ((t (:background "#180248" :foreground "#c8c8c8" :weight bold :height 1.2))))
  '(org-hide ((t (:background "#180248" :foreground "#180248"))))
- '(org-level-1 ((t (:background "#180248" :foreground "#d9d900" :weight normal :height 1.2))))
- '(org-level-2 ((t (:background "#180248" :foreground "#daa520" :height 1.1))))
+ '(org-level-1 ((t (:background "#180248" :foreground "#ffffff" :weight normal :height 1.2))))
+ '(org-level-2 ((t (:background "#180248" :foreground "#d9d900" :height 1.1))))
  '(org-level-3 ((t (:background "#180248" :foreground "#9fff90" :slant italic :weight bold :height 1.0))))
  '(org-level-4 ((t (:background "#180248" :foreground "#7fff00" :weight normal :height 1.0)))))
