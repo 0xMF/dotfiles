@@ -8,6 +8,9 @@
 
 ;;; Code:
 
+(show-paren-mode t)
+(setq show-paren-style 'expression)
+
 ;;----------------------------------------------------------------------------
 ;; Evil mode settings
 ;;----------------------------------------------------------------------------
@@ -63,17 +66,17 @@
 ;; named prefix key allows ; to be used a mapper for my keybindings
 (setq my-leader1 ";")
 (general-define-key :prefix my-leader1
+                    "a" 'org-agenda
                     "b" 'list-buffers
+                    "c" 'org-capture
+                    "e" 'org-babel-execute-src-block
                     "f" 'find-file
                     "j" 'evil-next-line
                     "k" 'evil-previous-line
                     "l" 'whitespace-mode
                     "n" 'linum-mode
-                    "q" 'fill-paragraph)
-
-;; a default prefix sequence
-(setq general-default-prefix ";")
-(general-define-key "f" 'find-file)
+                    "q" 'fill-paragraph
+                    "r" 'org-babel-open-src-block-result)
 
 ;; bind a key in multiple states
 (general-define-key :keymaps 'org-mode-map
@@ -226,6 +229,7 @@ then it takes a second \\[keyboard-quit] to abort the minibuffer."
 (add-hook 'text-mode-hook 'turn-on-auto-fill)
 (add-hook 'text-mode-hook '(lambda() (set-fill-column 100)))
 
+(menu-bar-mode 1)
 (require 'vimish-fold)
 
 

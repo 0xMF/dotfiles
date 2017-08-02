@@ -1,0 +1,79 @@
+* Keyboard related commands
+
+** Keymap for C-c
+
+    | Prefix command                          | [!]     |
+    | Prefix command                          | [C-v]   |
+    | Prefix command                          | [C-x]   |
+    | Prefix command                          | [ESC]   |
+    | Prefix command                          | [m]  |
+    | md/duplicate-down                       | [d]     |
+    | md/duplicate-up                         | [D]     |
+    | org-add-note                            | [C-z]   |
+    | org-agenda                              | [a]     |
+    | org-agenda-file-to-front                | [[]     |
+    | org-archive-subtree                     | [$]     |
+    | org-attach                              | [C-a]   |
+    | org-backward-heading-same-level         | [C-b]   |
+    | org-capture                             | [c]     |
+    | org-copy                                | [M-w]   |
+    | org-ctrl-c-ctrl-c                       | [C-c]   |
+    | org-ctrl-c-minus                        | [-]     |
+    | org-ctrl-c-ret                          | [RET]   |
+    | org-ctrl-c-star                         | [*]     |
+    | org-date-from-calendar                  | [<]     |
+    | org-deadline                            | [C-d]   |
+    | org-down-element                        | [C-_ ]  |
+    | org-edit-special                        | [']     |
+    | org-evaluate-time-range                 | [C-y]   |
+    | org-export-dispatch                     | [C-e]   |
+    | org-forward-heading-same-level          | [C-f]   |
+    | org-goto                                | [C-j]   |
+    | org-goto-calendar                       | [>]     |
+    | org-insert-all-links                    | [C-M-l] |
+    | org-insert-link                         | [C-l]   |
+    | org-kill-note-or-show-branches          | [C-k]   |
+    | org-list-make-subtree                   | [C-*]   |
+    | org-mark-ring-goto                      | [&]     |
+    | org-mark-ring-push                      | [% ]    |
+    | org-mark-subtree                        | [@]     |
+    | org-match-sparse-tree                   | [\]     |
+    | org-next-block                          | [M-f]   |
+    | org-open-at-point                       | [C-o]   |
+    | org-outline-show-children               | [TAB]   |
+    | org-previous-block                      | [M-b]   |
+    | org-priority                            | [,]     |
+    | org-refile                              | [C-w]   |
+    | org-remove-file                         | []]     |
+    | org-reveal                              | [C-r]   |
+    | org-schedule                            | [C-s]   |
+    | org-set-tags-command                    | [C-q]   |
+    | org-sort                                | [^ ]    |
+    | org-sparse-tree                         | [/ ]    |
+    | org-store-link                          | [l]     |
+    | org-table-blank-field                   | [SPC]   |
+    | org-table-create-or-convert-from-region | [\vert]     |
+    | org-table-create-with-table.el          | [~]     |
+    | org-table-edit-field                    | [`]     |
+    | org-table-eval-formula                  | [=]     |
+    | org-table-field-info                    | [?]     |
+    | org-table-sum                           | [+]     |
+    | org-table-toggle-coordinate-overlays    | [}]     |
+    | org-table-toggle-formula-debugger       | [{]     |
+    | org-time-stamp                          | [.]     |
+    | org-todo                                | [C-t]   |
+    | org-todo                                | [C-t]   |
+    | org-toggle-comment                      | [;]     |
+    | org-toggle-fixed-width-section          | [:]     |
+    | org-up-element                          | [C-^ ]  |
+    | org-update-statistics-cookies           | [#]     |
+    | outile-up-heading                       | [C-u]   |
+    | outline-demote                          | [C->]   |
+    | outline-next-visible-heading            | [C-n]   |
+    | outline-previous-visible-heading        | [C-p]   |
+    | outline-promote                         | [C-<]   |
+    | outline-show-children                   | [TAB]   |
+    | projectile-command-map                  | [p]     |
+    | toggle-current-window-dedication        | <down>  |
+    | winner-redo                             | <right> |
+    | winner-undo                             | <left>  |
