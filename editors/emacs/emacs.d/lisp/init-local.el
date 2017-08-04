@@ -292,6 +292,12 @@ then it takes a second \\[keyboard-quit] to abort the minibuffer."
            (kill-buffer "*reg group-leader*")))
 (add-hook 'after-change-major-mode-hook 'kill-misc-buffers)
 
+;;----------------------------------------------------------------------------
+;; Miscalleanous settings
+;;----------------------------------------------------------------------------
+(setq browse-url-browser-function 'eww-browse-url)
+
+
 ;; Local Variables:
 ;; coding: utf-8
 ;; no-byte-compile: t
