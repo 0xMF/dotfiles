@@ -69,6 +69,7 @@
                     "a" 'org-agenda
                     "b" 'list-buffers
                     "c" 'org-capture
+                    "d" 'org-todo-list
                     "e" 'org-babel-execute-src-block
                     "f" 'find-file
                     "j" 'evil-next-line
@@ -76,7 +77,12 @@
                     "l" 'whitespace-mode
                     "n" 'linum-mode
                     "q" 'fill-paragraph
-                    "r" 'org-babel-open-src-block-result)
+                    "r" 'org-babel-open-src-block-result
+                    "s" 'org-agenda-list
+                    "t" 'org-set-tags
+                    "/" 'org-tags-view
+                    "." 'org-tags-view
+                    "\\" 'org-match-sparse-tree)
 
 ;; bind a key in multiple states
 (general-define-key :keymaps 'org-mode-map
@@ -94,8 +100,8 @@
 
 ;; esc quits
 (defun minibuffer-keyboard-quit () "Abort recursive edit.
-In Delete Selection mode, if the mark is active, just deactivate it;
-then it takes a second \\[keyboard-quit] to abort the minibuffer."
+            In Delete Selection mode, if the mark is active, just deactivate it;
+            then it takes a second \\[keyboard-quit] to abort the minibuffer."
        (interactive)
        (if (and delete-selection-mode transient-mark-mode mark-active)
            (setq deactivate-mark  t)
@@ -229,7 +235,7 @@ then it takes a second \\[keyboard-quit] to abort the minibuffer."
 (add-hook 'text-mode-hook 'turn-on-auto-fill)
 (add-hook 'text-mode-hook '(lambda() (set-fill-column 100)))
 
-(menu-bar-mode 1)
+(menu-bar-mode -1)
 (require 'vimish-fold)
 
 
@@ -281,6 +287,24 @@ then it takes a second \\[keyboard-quit] to abort the minibuffer."
 (setq org-indent-mode-turns-on-hiding-stars nil)
 (setq org-pretty-entities t)
 
+;; Removes org sparse tree views correctly
+;; Credit: https://stackoverflow.com/a/44158824
+(setq lexical-binding t)
+
+(let ((*outline-data* nil))
+  (defun org-save-outline-state (&optional arg type)
+    (setq *outline-data* (org-outline-overlay-data t)))
+
+  (defun org-restore-outline-state (&optional arg)
+    (when *outline-data*
+      (org-set-outline-overlay-data *outline-data*)
+      (setq *outline-data* nil))))
+
+(advice-add 'org-sparse-tree :before 'org-save-outline-state)
+(advice-add 'org-match-sparse-tree :before 'org-save-outline-state)
+(advice-add 'org-ctrl-c-ctrl-c :after 'org-restore-outline-state)
+;; ---
+
 ;; Use bullets (default if uncommented)
 (require 'org-bullets)
 (add-hook 'org-mode-hook (lambda () (org-bullets-mode 1)))
@@ -296,6 +320,7 @@ then it takes a second \\[keyboard-quit] to abort the minibuffer."
 ;; Miscalleanous settings
 ;;----------------------------------------------------------------------------
 (setq browse-url-browser-function 'eww-browse-url)
+(load-file "~/.emacs.d/lisp/secrets.el")
 
 
 ;; Local Variables:
@@ -306,4 +331,4 @@ then it takes a second \\[keyboard-quit] to abort the minibuffer."
 ;; keep purcell's emacs.d settings happy
 (provide 'init-local)
 
-;;; init-local.el ends here
+        ;;; init-local.el ends here
