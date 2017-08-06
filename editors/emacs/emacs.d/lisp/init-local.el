@@ -69,7 +69,7 @@
                     "a" 'org-agenda
                     "b" 'list-buffers
                     "c" 'org-capture
-                    "d" 'org-todo-list
+                    "d" 'org-agenda-list
                     "e" 'org-babel-execute-src-block
                     "f" 'find-file
                     "j" 'evil-next-line
@@ -78,8 +78,9 @@
                     "n" 'linum-mode
                     "q" 'fill-paragraph
                     "r" 'org-babel-open-src-block-result
-                    "s" 'org-agenda-list
-                    "t" 'org-set-tags
+                    "t" 'org-todo-list
+                    "T" 'org-set-tags
+                    "w" '(lambda () (interactive) (org-agenda-list 7))
                     "/" 'org-tags-view
                     "." 'org-tags-view
                     "\\" 'org-match-sparse-tree)
@@ -137,8 +138,8 @@
 (eval-after-load "org" '(require 'ox-gfm nil t))
 
 ;; yes to powerline
-                                        ;(require 'powerline)
-                                        ;(display-time-mode t)
+(require 'powerline)
+(display-time-mode t)
 
 ;;----------------------------------------------------------------------------
 ;; Language mode settings
@@ -228,8 +229,6 @@
 ;;----------------------------------------------------------------------------
 ;; User mode settings for UI/keyboard/look and feel
 ;;----------------------------------------------------------------------------
-(add-to-list 'custom-theme-load-path "~/.emacs.d/themes")
-(load-theme 'blueknight t) ; other nice themes: 'grandshell 'dakrone 'doom-molokai
 
 ;; wrap lines (hard return) around column 100
 (add-hook 'text-mode-hook 'turn-on-auto-fill)
@@ -280,7 +279,9 @@
 (global-set-key (kbd "C-; u") 'undo-tree-visualize)
 (global-set-key (kbd "<tab>") 'tab-to-tab-stop)
 
+;;----------------------------------------------------------------------------
 ;; Org mode settings
+;;----------------------------------------------------------------------------
 (setq org-startup-indented nil)
 (setq org-hide-leading-stars t)
 (setq org-indent-mode-turns-off-org-adapt-indentation nil)
