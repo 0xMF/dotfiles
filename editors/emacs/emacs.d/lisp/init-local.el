@@ -226,17 +226,6 @@
       save-place-file (concat user-emacs-directory "places")
       backup-directory-alist `(("." . ,(concat user-emacs-directory "backups"))))
 
-;;----------------------------------------------------------------------------
-;; User mode settings for UI/keyboard/look and feel
-;;----------------------------------------------------------------------------
-
-;; wrap lines (hard return) around column 100
-(add-hook 'text-mode-hook 'turn-on-auto-fill)
-(add-hook 'text-mode-hook '(lambda() (set-fill-column 100)))
-
-(menu-bar-mode -1)
-(require 'vimish-fold)
-
 
 ;;----------------------------------------------------------------------------
 ;; Abbreviations
@@ -245,9 +234,10 @@
 (read-abbrev-file "~/.abbrev_defs")
 (setq save-abbrevs t)
 
-;; Set default font
-;; (used and saved through menu Options->Set Default Font... into cutom.el)
-
+;;----------------------------------------------------------------------------
+;; Keybindings
+;;----------------------------------------------------------------------------
+;;
 ;; C-h-b: to check keybinding and which functions are bound to which keys
 ;; C-h-k: to check which key is bound to which function
 ;; C-h-m: to list current major mode's keys
@@ -319,10 +309,23 @@
 
 ;;----------------------------------------------------------------------------
 ;; Miscalleanous settings
+;; User mode settings for UI/keyboard/look and feel
 ;;----------------------------------------------------------------------------
 (setq browse-url-browser-function 'eww-browse-url)
 (load-file "~/.emacs.d/lisp/secrets.el")
 
+;; wrap lines (hard return) around column 100
+(add-hook 'text-mode-hook 'turn-on-auto-fill)
+(add-hook 'text-mode-hook '(lambda() (set-fill-column 100)))
+
+(menu-bar-mode -1)
+(require 'vimish-fold)
+
+;; Set default font
+;; (used and saved through menu Options->Set Default Font... into cutom.el)
+
+;; optionally (set-frame-font "Source Code Pro Semibold 10")
+(set-frame-font "DejaVu Sans Mono 11")
 
 ;; Local Variables:
 ;; coding: utf-8
@@ -332,4 +335,4 @@
 ;; keep purcell's emacs.d settings happy
 (provide 'init-local)
 
-        ;;; init-local.el ends here
+;;; init-local.el ends here
