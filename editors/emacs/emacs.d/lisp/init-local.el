@@ -55,7 +55,8 @@
 (general-define-key :prefix "b"
                     "d" 'kill-buffer
                     "h" 'previous-buffer
-                    "l" 'next-buffer
+                    "k" 'next-buffer
+                    "l" 'list-buffers
                     "n" 'next-buffer
                     "p" 'previous-buffer)
 
