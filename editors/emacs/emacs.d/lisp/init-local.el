@@ -264,6 +264,8 @@
 (global-set-key (kbd "C-M-<left>") 'previous-buffer)
 (global-set-key (kbd "C-M-<right>") 'next-buffer)
 (global-set-key (kbd "C-M-SPC") 'delete-other-windows)
+(global-set-key (kbd "C-M-RET") 'org-insert-heading)
+(global-set-key (kbd "C-M-<return>") 'org-insert-heading)
 (global-set-key (kbd "C-M-=") 'default-text-scale-increase)
 (global-set-key (kbd "C-M--") 'default-text-scale-decrease)
 (global-set-key (kbd "C-x C-b") 'ibuffer)
