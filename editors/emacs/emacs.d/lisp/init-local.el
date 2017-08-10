@@ -310,6 +310,8 @@
            (kill-buffer "*reg group-leader*")))
 (add-hook 'after-change-major-mode-hook 'kill-misc-buffers)
 
+(evil-define-key 'insert org-mode-map (kbd "C-<tab>") #'tab-to-tab-stop)
+
 ;;----------------------------------------------------------------------------
 ;; Miscalleanous settings
 ;; User mode settings for UI/keyboard/look and feel
