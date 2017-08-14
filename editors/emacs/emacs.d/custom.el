@@ -30,6 +30,7 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
+ '(org-code ((t (:background "#180248" :foreground "#ff8c00" :slant italic :weight bold))))
  '(org-document-title ((t (:background "#180248" :foreground "#c8c8c8" :weight bold :height 1.2))))
  '(org-hide ((t (:background "#180248" :foreground "#180248"))))
  '(org-level-1 ((t (:background "#180248" :foreground "#ffffff" :weight normal :height 1.2))))
