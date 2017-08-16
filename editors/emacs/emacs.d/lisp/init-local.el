@@ -77,8 +77,10 @@
                     "k" 'evil-previous-line
                     "l" 'whitespace-mode
                     "n" 'linum-mode
+                    "o" 'org-babel-open-src-block-result
                     "q" 'fill-paragraph
-                    "r" 'org-babel-open-src-block-result
+                    "r" 'undo-tree-redo
+                    "u" 'undo-tree-undo
                     "t" 'org-todo-list
                     "T" 'org-set-tags
                     "w" '(lambda () (interactive) (org-agenda-list 7))
@@ -322,6 +324,10 @@
 ;; wrap lines (hard return) around column 100
 (add-hook 'text-mode-hook 'turn-on-auto-fill)
 (add-hook 'text-mode-hook '(lambda() (set-fill-column 100)))
+
+;; replaces Emacs undo-redo system with something MUCH nicer!
+(global-undo-tree-mode t)
+(setq undo-tree-auto-save-history t)
 
 (menu-bar-mode -1)
 (require 'vimish-fold)
