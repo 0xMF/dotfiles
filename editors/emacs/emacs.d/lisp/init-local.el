@@ -31,7 +31,6 @@
 
 (add-hook 'evil-mode-hook 'my-default-cursor)
 
-
 ;;----------------------------------------------------------------------------
 ;; General keymap settings
 ;;----------------------------------------------------------------------------
@@ -47,17 +46,21 @@
 ;; bind wm and wc
 (general-define-key :prefix "w"
                     "c" 'whitespace-cleanup
-                    "d" 'delete-window
+                    "d" '(lambda () (interactive) (kill-buffer)(delete-window))
+                    "l" 'whitespace-mode
                     "t" 'whitespace-mode
                     "o" 'other-window
                     "w" 'delete-other-windows)
 
 (general-define-key :prefix "b"
                     "d" 'kill-buffer
+                    "f" 'markdown-follow-thing-at-point
                     "h" 'previous-buffer
-                    "k" 'next-buffer
+                    "j" 'next-buffer
+                    "k" 'kill-buffer
                     "l" 'list-buffers
                     "n" 'next-buffer
+                    "o" 'counsel-find-file
                     "p" 'previous-buffer)
 
 (general-define-key :prefix "z"
@@ -72,12 +75,12 @@
                     "c" 'org-capture
                     "d" 'org-agenda-list
                     "e" 'org-babel-execute-src-block
-                    "f" 'find-file
+                    "E" 'org-babel-open-src-block-result
                     "j" 'evil-next-line
                     "k" 'evil-previous-line
-                    "l" 'whitespace-mode
+                    "l" 'org-open-at-point
                     "n" 'linum-mode
-                    "o" 'org-babel-open-src-block-result
+                    "o" 'find-file
                     "q" 'fill-paragraph
                     "r" 'undo-tree-redo
                     "u" 'undo-tree-undo
@@ -229,7 +232,6 @@
       save-place-file (concat user-emacs-directory "places")
       backup-directory-alist `(("." . ,(concat user-emacs-directory "backups"))))
 
-
 ;;----------------------------------------------------------------------------
 ;; Abbreviations
 ;;----------------------------------------------------------------------------
@@ -328,6 +330,11 @@
 ;; replaces Emacs undo-redo system with something MUCH nicer!
 (global-undo-tree-mode t)
 (setq undo-tree-auto-save-history t)
+
+;; M-x slime calls sbcl
+(load (expand-file-name "~/.quicklisp/slime-helper.el"))
+(setq inferior-lisp-program "sbcl")
+(setq slime-default-lisp 'sbcl)
 
 (menu-bar-mode -1)
 (require 'vimish-fold)

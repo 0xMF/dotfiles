@@ -54,6 +54,7 @@ alias perldoc='perldoc -MPod::Text::Color::Delight'
 alias pg='less -Feq'
 alias rehash='hash -r'
 alias reset='reset -e ^?'
+alias sbcl='rlwrap sbcl'
 alias vi='vim'
 alias tmux='tmux -u'
 
