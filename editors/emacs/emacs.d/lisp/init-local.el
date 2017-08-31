@@ -284,6 +284,7 @@
 (setq org-indent-mode-turns-off-org-adapt-indentation nil)
 (setq org-indent-mode-turns-on-hiding-stars nil)
 (setq org-pretty-entities t)
+(setq org-export-with-section-numbers nil)
 
 ;; Removes org sparse tree views correctly
 ;; Credit: https://stackoverflow.com/a/44158824
@@ -338,6 +339,13 @@
 
 (menu-bar-mode -1)
 (require 'vimish-fold)
+
+;; Using mouse to select and copy text to the clipboard
+;; Source: https://stackoverflow.com/questions/13036155/how-to-combine-emacs-primary-clipboard-copy-and-paste-behavior-on-ms-windows
+(setq select-active-regions nil)
+(setq mouse-drag-copy-region t)
+(global-set-key [mouse-2] 'mouse-yank-at-click)
+;;
 
 ;; Set default font
 ;; (used and saved through menu Options->Set Default Font... into cutom.el)
