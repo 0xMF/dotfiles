@@ -321,6 +321,8 @@
 ;; Miscalleanous settings
 ;; User mode settings for UI/keyboard/look and feel
 ;;----------------------------------------------------------------------------
+(require 'mediawiki)
+
 (setq browse-url-browser-function 'eww-browse-url)
 (load-file "~/.emacs.d/lisp/secrets.el")
 
