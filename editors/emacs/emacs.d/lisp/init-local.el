@@ -53,6 +53,7 @@
                     "w" 'delete-other-windows)
 
 (general-define-key :prefix "b"
+                    "c" 'yank
                     "d" 'kill-buffer
                     "f" 'markdown-follow-thing-at-point
                     "h" 'previous-buffer
@@ -61,7 +62,8 @@
                     "l" 'list-buffers
                     "n" 'next-buffer
                     "o" 'counsel-find-file
-                    "p" 'previous-buffer)
+                    "p" 'previous-buffer
+                    "x" 'evil-delete)
 
 (general-define-key :prefix "z"
                     "f" #'vimish-fold
@@ -87,6 +89,7 @@
                     "t" 'org-todo-list
                     "T" 'org-set-tags
                     "w" '(lambda () (interactive) (org-agenda-list 7))
+                    "x" 'evil-delete
                     "/" 'org-tags-view
                     "." 'org-tags-view
                     "\\" 'org-match-sparse-tree)
@@ -266,7 +269,11 @@
 (global-set-key (kbd "C-M-k") 'kill-some-buffers)
 (global-set-key (kbd "C-M-l") 'next-buffer)
 (global-set-key (kbd "C-M-<left>") 'previous-buffer)
+(global-set-key (kbd "C-M-<up>") 'previous-buffer)
+(global-set-key (kbd "C-M-<prior>") 'previous-buffer)
 (global-set-key (kbd "C-M-<right>") 'next-buffer)
+(global-set-key (kbd "C-M-<down>") 'next-buffer)
+(global-set-key (kbd "C-M-<next>") 'next-buffer)
 (global-set-key (kbd "C-M-SPC") 'delete-other-windows)
 (global-set-key (kbd "C-M-RET") 'org-insert-heading)
 (global-set-key (kbd "C-M-<return>") 'org-insert-heading)
