@@ -85,6 +85,7 @@
                     "o" 'find-file
                     "q" 'fill-paragraph
                     "r" 'undo-tree-redo
+                    "s" 'dired-jump
                     "u" 'undo-tree-undo
                     "t" 'org-todo-list
                     "T" 'org-set-tags
@@ -203,6 +204,19 @@
 ;;----------------------------------------------------------------------------
 (add-hook 'markdown-mode-hook 'pandoc-mode)
 (add-hook 'pandoc-mode-hook 'pandoc-load-default-settings)
+
+(use-package markdown-mode)
+:init
+(add-to-list 'auto-mode-alist '("\\.md\\'" . markdown-mode))
+(add-to-list 'auto-mode-alist '("\\.markdown\\'" . markdown-mode))
+(add-hook 'markdown-mode-hook (lambda ()
+                                (set-fill-column 72)))
+
+(require 'mediawiki)
+:init
+;; setup files ending in “.mw” to open in mediwiki-mode
+(add-to-list 'auto-mode-alist '("\\.mw\\'" . mediawiki-mode))
+
 
 ;;----------------------------------------------------------------------------
 ;; Other misc. yet imp stuff goes here. Credit: technomancy/better-defaults
@@ -328,8 +342,6 @@
 ;; Miscalleanous settings
 ;; User mode settings for UI/keyboard/look and feel
 ;;----------------------------------------------------------------------------
-(require 'mediawiki)
-
 (setq browse-url-browser-function 'eww-browse-url)
 (load-file "~/.emacs.d/lisp/secrets.el")
 
