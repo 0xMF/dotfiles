@@ -76,7 +76,7 @@ set runtimepath=$VIMRUNTIME,$MYVIM,$MYVIM/dependencies
     ":   let hostname = substitute(system("uname -n"),"\n","","g")
     ":   if (hostname == 'name')
     " set font and its size
-    :   silent let scp_detected=systemlist("fc-list|grep 'Source Code Pro Medium'|wc -l")[0]
+    :   silent let scp_detected=system("fc-list|grep 'Source Code Pro Medium'|wc -l")[0]
     :   if scp_detected == "2"
     :     set guifont=Source\ Code\ Pro\ Medium\ 12
     :   else

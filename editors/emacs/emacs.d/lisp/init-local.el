@@ -1,3 +1,5 @@
+; -*- mode: Lisp;-*
+
 ;;; package -- My overrides to purcell's settings
 
 ;;; Commentary:
