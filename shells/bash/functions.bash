@@ -210,7 +210,7 @@ function share {
 
 function su {
   SU=$(which su)
-  [ -z "$1" ] && $SU -m || $SU "$1"
+  [ -z "$1" ] && $SU -m || $SU "$@"
 }
 
 function anc {
