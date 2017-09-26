@@ -127,7 +127,11 @@ function ps1 {
   if [ `id -u` -eq 0 ]; then
     PS1="$RED${OSRV}$BLUE:\w $(parse_git_branch_colour)$RED#$NOCOLOR "
   else
-    PS1="$GREEN${OSRV}$BLUE:\w $(parse_git_branch_colour)$NOCOLOR$ "
+    if [ $(/usr/bin/id -u) -eq 1000 ]; then
+      PS1="$GREEN${OSRV}$BLUE:\W$(parse_git_branch_colour 2>/dev/null)$NOCOLOR$ "
+    else
+      PS1="$PURPLE${OSRV}$BLUE:\W$(parse_git_branch_colour 2>/dev/null)$NOCOLOR$ "
+    fi
   fi
   PROMPT_COMMAND="ps1"
 }

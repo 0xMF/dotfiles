@@ -70,7 +70,11 @@ if [ $(/usr/bin/id -u) -ne 0 ]; then
   if [ $? -eq 0 ]; then
     PROMPT_COMMAND="ps1"
   else
-    PS1="$GREEN${OSRV}$BLUE:\W$(parse_git_branch_colour 2>/dev/null)$NOCOLOR$ "
+    if [ $(/usr/bin/id -u) -eq 1000 ]; then
+      PS1="$GREEN${OSRV}$BLUE:\W$(parse_git_branch_colour 2>/dev/null)$NOCOLOR$ "
+    else
+      PS1="$PURPLE${OSRV}$BLUE:\W$(parse_git_branch_colour 2>/dev/null)$NOCOLOR$ "
+    fi
   fi
 else
   PS1="$RED${OSRV}$BLUE:\W$(parse_git_branch_colour 2>/dev/null)$NOCOLOR# "
