@@ -269,6 +269,17 @@ function alarm {
   fi
 }
 
+# jump to EXAMPLES section of man page if exists else quit
+function eman {
+expect -c "
+  set timeout 1
+  spawn man $1
+  send \"/^EXAMPLES\n\"
+  expect \"Pattern not found\" { exit }
+  interact
+"
+}
+
 function g+++ {
   rm -f a.out
   if [ -e /usr/bin/g++-4.9 ];
