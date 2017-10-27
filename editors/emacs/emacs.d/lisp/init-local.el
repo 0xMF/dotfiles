@@ -157,6 +157,47 @@
 ;; Language mode settings
 ;;----------------------------------------------------------------------------
 
+;; Prolog
+(setq prolog-system 'swi
+      prolog-program-switches '((swi ("-G128M" "-T128M" "-L128M" "-O"))
+                                (t nil))
+      prolog-electric-if-then-else-flag t)
+
+(add-hook 'prolog-mode-hook
+          (lambda ()
+            (require 'flymake)
+            (make-local-variable 'flymake-allowed-file-name-masks)
+            (make-local-variable 'flymake-err-line-patterns)
+            (setq flymake-err-line-patterns
+                  '(("ERROR: (?\\(.*?\\):\\([0-9]+\\)" 1 2)
+                    ("Warning: (\\(.*\\):\\([0-9]+\\)" 1 2)))
+            (setq flymake-allowed-file-name-masks
+                  '(("\\.pl\\'" flymake-prolog-init)))
+            (flymake-mode 1)))
+
+(defun flymake-prolog-init ()
+  (let* ((temp-file   (flymake-init-create-temp-buffer-copy
+                       'flymake-create-temp-inplace))
+         (local-file  (file-relative-name
+                       temp-file
+                       (file-name-directory buffer-file-name))))
+    (list "swipl" (list "-q" "-t" "halt" "-s " local-file))))
+
+
+;; Gerbil
+(add-to-list 'load-path "/home/mark/repos/gerbil/etc")
+(add-to-list 'load-path "/home/mark/repos/gambit/misc")
+(autoload 'gerbil-mode "gerbil" "Gerbil editing mode." t)
+
+(require 'gambit)
+(add-hook 'inferior-scheme-mode-hook 'gambit-inferior-mode)
+
+(defvar gsi-options " -:tE8,f8,-8,h2097152")    ; some sensible options for gsi
+(defvar gerbil-program-name
+  (concat (expand-file-name "~/repos/gerbil/bin/gxi") ; Set this for your GERBIL_HOME
+          gsi-options))
+(setq scheme-program-name gerbil-program-name)
+
 ;; Erlang
 (setq load-path (cons "/usr/local/lib/erlang/lib/tools-2.9.1/emacs" load-path))
 (setq erlang-root-dir "/usr/local/lib/erlang")
