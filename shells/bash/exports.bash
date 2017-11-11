@@ -37,4 +37,8 @@ export MANPAGER='less -FeqRSX'
 
 [ `uname` == "CYGWIN_NT-10.0" ] && export DISPLAY=:0.0
 
+
+# build related exports
+export ERL_TOP=$HOME/repos/otp
+
 # vim:nospell:ft=sh:

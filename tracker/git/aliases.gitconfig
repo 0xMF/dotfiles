@@ -142,5 +142,8 @@
   unignore  = update-index --no-assume-changed
   # END HUMAN
 
+	pup       = "!git remote update -p && git merge --ff-only @{u}"
+	pupup     = "!git remote update up -p && git merge --ff-only @{u}"
+
 # vim: et:nonu:nospell:ft=gitconfig
 

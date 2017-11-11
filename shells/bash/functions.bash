@@ -559,4 +559,23 @@ function emacs() {
   /usr/bin/emacs "$@" 2>/dev/null &
 }
 
+function otp() {
+  if [ -d $HOME/repos/otp ];
+  then
+    pushd $HOME/repos/otp > /dev/null
+    if [ ! -z "$ERL_TOP" ];
+    then
+      git remotes | grep "up" > /dev/null
+      do=$([ $? -eq 0 ] && echo pupup || echo pup)
+      git "$do" | grep "^Already up[- ]to[- ]date.$"
+      if [ $? -ne 0 ];
+      then
+        make 2>&1 | tee ../erlang-update.log
+        [ $? -eq 0 ] && make tests 2>&1 | tee ../erlang-make-tests.log
+      fi
+    fi
+    popd > /dev/null
+  fi
+}
+
 # vim:nospell:ft=sh:
