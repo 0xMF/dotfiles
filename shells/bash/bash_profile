@@ -1,2 +1,1 @@
-killall ssh-agent 2>/dev/null
 . $HOME/.bashrc
