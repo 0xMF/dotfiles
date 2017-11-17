@@ -373,11 +373,12 @@ function __gh {
   n=${1:--10}
   git log $n --graph \
               --pretty=format:"%C(red bold)%h%Creset %C(cyan bold)|%Creset %C(auto)%d%Creset %s"
+  git diff --stat HEAD~$((0 - $n)) HEAD
 }
 # queries git log based on arguments
 #   no args : show last 10 one-line commit messages
 #   1 arg   : show that (relative to HEAD~) commit message details
-#   2 arts  : show summary of commit messages within the given numbers
+#   2 args  : show summary of commit messages within the given numbers
 function gh {
   #`echo "$*"|sed -r 's/(,|-|  )/ /g'`
 
