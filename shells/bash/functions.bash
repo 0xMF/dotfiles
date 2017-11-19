@@ -579,4 +579,18 @@ function otp() {
   fi
 }
 
+# filter markdown file given through pandoc and read in w3m
+# else locate [rRiI] (readme/index) markdown files in given path or use pwd
+function lessmd {
+
+  mdfiles=[rRiI]*.md
+  path=${1:-.}
+  files=$(echo "$path"|grep '\.md$' > /dev/null 2>&1; [ $? -ne 0 ] && echo "${path%/}/$mdfiles")
+  file=$([ `echo "$files"` = "${path%/}/$mdfiles" ] && echo "nil")
+
+  [ "$file" = "nil" ] \
+              && echo Usage: lessmd filename.md \
+              || pandoc `echo "$files"` | w3m -num -s -T text/html
+}
+
 # vim:nospell:ft=sh:
