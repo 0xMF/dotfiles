@@ -12,7 +12,7 @@
 "   :echoerr expand("$MYVIM")
 
 :if has ("win32")
-:   let $MYVIM=expand("$HOME/repos/dotfiles/editor/vim")
+:   let $MYVIM=expand("$USERPROFILE/repos/dotfiles/editors/vim")
 :   if filereadable(expand("$MYVIM"))
 :     echoerr $MYVIM
 :   endif
@@ -69,7 +69,7 @@ set runtimepath=$VIMRUNTIME,$MYVIM,$MYVIM/dependencies
     "** check os version where gvim is running
     :if has ("gui_win32")
     :   winpos 0 0          "make window stick to the top left corner
-    :     set guifont=Source_Code_Pro_Medium:h10:cANSI
+    :     set guifont=Source_Code_Pro_Semibold:h10:cANSI
     ":   set guifont=Rod:h10:cHEBREW "set font and its size
     :   set bs=2            "backspace over indent,eol,start
     :elseif has ("gui_gtk")
