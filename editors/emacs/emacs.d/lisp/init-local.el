@@ -185,18 +185,18 @@
 
 
 ;; Gerbil
-(add-to-list 'load-path "/home/mark/repos/gerbil/etc")
-(add-to-list 'load-path "/home/mark/repos/gambit/misc")
-(autoload 'gerbil-mode "gerbil" "Gerbil editing mode." t)
+;; (add-to-list 'load-path "/home/mark/repos/gerbil/etc")
+;; (add-to-list 'load-path "/home/mark/repos/gambit/misc")
+;; (autoload 'gerbil-mode "gerbil" "Gerbil editing mode." t)
 
-(require 'gambit)
-(add-hook 'inferior-scheme-mode-hook 'gambit-inferior-mode)
+;;(require 'gambit)
+;;(add-hook 'inferior-scheme-mode-hook 'gambit-inferior-mode)
 
-(defvar gsi-options " -:tE8,f8,-8,h2097152")    ; some sensible options for gsi
-(defvar gerbil-program-name
-  (concat (expand-file-name "~/repos/gerbil/bin/gxi") ; Set this for your GERBIL_HOME
-          gsi-options))
-(setq scheme-program-name gerbil-program-name)
+;;(defvar gsi-options " -:tE8,f8,-8,h2097152")    ; some sensible options for gsi
+;;(defvar gerbil-program-name
+;;  (concat (expand-file-name "~/repos/gerbil/bin/gxi") ; Set this for your GERBIL_HOME
+;;          gsi-options))
+;;(setq scheme-program-name gerbil-program-name)
 
 ;; Erlang
 (setq load-path (cons "/usr/local/lib/erlang/lib/tools-2.9.1/emacs" load-path))
@@ -204,9 +204,9 @@
 (setq exec-path (cons "/usr/local/lib/erlang/bin" exec-path))
 (require 'erlang-start)
 
-(add-to-list 'load-path "/home/mark/repos/distel/elisp")
-  (require 'distel)
-  (distel-setup)
+;;(add-to-list 'load-path "/home/mark/repos/distel/elisp")
+;;  (require 'distel)
+;;  (distel-setup)
 
 (use-package erlang
   :init
@@ -417,6 +417,8 @@
 ;; optionally (set-frame-font "Source Code Pro Semibold 10")
 (set-frame-font "DejaVu Sans Mono 11")
 
+(setenv "PATH" (concat (getenv "PATH") ":~/bin"))
+(setq exec-path (append exec-path '("~/bin")))
 
 
 ;; Local Variables:
