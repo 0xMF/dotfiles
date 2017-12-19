@@ -420,6 +420,24 @@
 (setenv "PATH" (concat (getenv "PATH") ":~/bin"))
 (setq exec-path (append exec-path '("~/bin")))
 
+(setq org-odt-table-styles
+      (append org-odt-table-styles
+              '(("TableWithHeaderRowAndColumn" "Custom"
+                 ((use-first-row-styles . t)
+                  (use-first-column-styles . t)))
+                ("TableWithFirstRowandLastRow" "Custom"
+                 ((use-first-row-styles . t)
+                  (use-last-row-styles . t))))))
+
+(setq org-odt-schema-dir "~/.emacs.d/my_settings/styles" )
+
+(require 'ox-asciidoc)
+;; (unless (boundp 'org-export-latex-classes)
+;;  (setq org-export-latex-classes nil))
+;; (add-to-list 'org-export-latex-classes
+;; '("article"
+;;"\\documentclass{article}"
+;;("\\section{%s}" . "\\section*{%s}")))
 
 ;; Local Variables:
 ;; coding: utf-8
