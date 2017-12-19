@@ -20,8 +20,10 @@ export HISTCONTROL=$HISTCONTROL${HISTCONTROL+,}ignoredups
 export HISTCONTROL=ignoreboth
 
 # terminal clients need local
-export LC_ALL=en_US.UTF-8
+#export LC_ALL=en_US.UTF-8
+export LC_ALL=C
 export LC_CTYPE=en_US.UTF-8
+export LC_COLLATE=C
 export LANG=en_US.UTF-8
 export LANGUAGE=en_US.UTF-8
 export TODAY=$(date +"%Y-%b-%d")
