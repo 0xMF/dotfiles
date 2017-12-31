@@ -56,6 +56,7 @@ alias pg='less -Feq'
 alias rehash='hash -r'
 alias reset='reset -e ^?'
 alias sbcl='rlwrap sbcl'
+alias tree='tree -I .git --charset UTF-8'
 alias vi='vim'
 alias tmux='tmux -u'
 
