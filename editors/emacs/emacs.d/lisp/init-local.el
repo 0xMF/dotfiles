@@ -82,7 +82,8 @@
                     "E" 'org-babel-open-src-block-result
                     "j" 'evil-next-line
                     "k" 'evil-previous-line
-                    "l" 'org-open-at-point
+                    "l" 'whitespace-mode
+                    "L" 'org-open-at-point
                     "n" 'linum-mode
                     "o" 'find-file
                     "q" 'fill-paragraph
