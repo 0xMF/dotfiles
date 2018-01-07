@@ -1,4 +1,4 @@
-; -*- mode: Lisp;-*
+;;;  -*- mode: Lisp;-*
 
 ;;; package -- My overrides to purcell's settings
 
@@ -9,6 +9,12 @@
 ;;  setup to include my local settings after purcell/emacs.d has been run.
 
 ;;; Code:
+
+;; bring in my preferred packages specified in custom.el/package-selected-packages
+(package-initialize)
+(unless package-archive-contents
+  (package-refresh-contents))
+(package-install-selected-packages)
 
 (show-paren-mode t)
 (setq show-paren-style 'expression)
