@@ -185,29 +185,11 @@
     (list "swipl" (list "-q" "-t" "halt" "-s " local-file))))
 
 
-;; Gerbil
-;; (add-to-list 'load-path "/home/mark/repos/gerbil/etc")
-;; (add-to-list 'load-path "/home/mark/repos/gambit/misc")
-;; (autoload 'gerbil-mode "gerbil" "Gerbil editing mode." t)
-
-;;(require 'gambit)
-;;(add-hook 'inferior-scheme-mode-hook 'gambit-inferior-mode)
-
-;;(defvar gsi-options " -:tE8,f8,-8,h2097152")    ; some sensible options for gsi
-;;(defvar gerbil-program-name
-;;  (concat (expand-file-name "~/repos/gerbil/bin/gxi") ; Set this for your GERBIL_HOME
-;;          gsi-options))
-;;(setq scheme-program-name gerbil-program-name)
-
 ;; Erlang
 (setq load-path (cons "/usr/local/lib/erlang/lib/tools-2.9.1/emacs" load-path))
 (setq erlang-root-dir "/usr/local/lib/erlang")
 (setq exec-path (cons "/usr/local/lib/erlang/bin" exec-path))
 (require 'erlang-start)
-
-;;(add-to-list 'load-path "/home/mark/repos/distel/elisp")
-;;  (require 'distel)
-;;  (distel-setup)
 
 (use-package erlang
   :init
@@ -219,11 +201,6 @@
             (lambda () (setq mode-name "erl"
                         erlang-compile-extra-opts '((i . "../include"))
                         erlang-root-dir "/usr/lib/erlang"))))
-
-(use-package edts
-  :init
-  (setq edts-inhibit-package-check t
-        edts-man-root "~/.emacs.d/edts/doc/18.2.1"))
 
 (use-package flycheck
   :diminish flycheck-mode
@@ -350,6 +327,7 @@
 (setq org-indent-mode-turns-on-hiding-stars nil)
 (setq org-pretty-entities t)
 (setq org-export-with-section-numbers nil)
+(setq org-table-auto-blank-field nil)
 
 ;; Removes org sparse tree views correctly
 ;; Credit: https://stackoverflow.com/a/44158824
@@ -420,25 +398,6 @@
 
 (setenv "PATH" (concat (getenv "PATH") ":~/bin"))
 (setq exec-path (append exec-path '("~/bin")))
-
-(setq org-odt-table-styles
-      (append org-odt-table-styles
-              '(("TableWithHeaderRowAndColumn" "Custom"
-                 ((use-first-row-styles . t)
-                  (use-first-column-styles . t)))
-                ("TableWithFirstRowandLastRow" "Custom"
-                 ((use-first-row-styles . t)
-                  (use-last-row-styles . t))))))
-
-(setq org-odt-schema-dir "~/.emacs.d/my_settings/styles" )
-
-(require 'ox-asciidoc)
-;; (unless (boundp 'org-export-latex-classes)
-;;  (setq org-export-latex-classes nil))
-;; (add-to-list 'org-export-latex-classes
-;; '("article"
-;;"\\documentclass{article}"
-;;("\\section{%s}" . "\\section*{%s}")))
 
 ;; Local Variables:
 ;; coding: utf-8
