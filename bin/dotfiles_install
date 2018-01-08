@@ -46,6 +46,8 @@ _emacs() {
   installed=
   echo -n "checking emacs..." >&2
 
+  EMACS_D=${SCRIPT_DIR%bin}editors/emacs/emacs.d
+
   [[ -e $HOME/.emacs || -L $HOME/.emacs ]] && {
     echo "found .emacs, not installing" >&2
   } || {
@@ -59,12 +61,44 @@ _emacs() {
   } || {
     installed=".abbrev_defs"
     ln -s ${SCRIPT_DIR%bin}editors/emacs/abbrev_defs $HOME/.abbrev_defs
+    touch $HOME/.abbrev_defs
+  }
+
+  [[  -d ${EMACS_D}/lisp/.dependencies/purcell || \
+      -L ${EMACS_D}/lisp/.dependencies/purcell ]] && { :
+        pushd ${EMACS_D}/lisp/.dependencies/purcell > /dev/null
+        git pull
+        popd > /dev/null
+  } || {
+        [ ! -d ${EMACS_D}/lisp/.dependencies ] && mkdir ${EMACS_D}/lisp/.dependencies
+        pushd ${EMACS_D}/lisp/.dependencies
+        git clone https://github.com/purcell/emacs.d purcell
+        popd
+  }
+
+  [[  -d ${EMACS_D}/site-lisp || -L ${EMACS_D}/site-lisp ]] && { :
+  } || {
+    installed="site-lisp"
+    mkdir ${EMACS_D}/site-lisp
+  }
+
+  [[ -d ${EMACS_D}/themes || -L ${EMACS_D}/themes ]] && { :
+  } || {
+    installed="themes"
+    mkdir ${EMACS_D}/themes
+  }
+
+  [[ -d $HOME/.quicklisp || -L $HOME/.quicklisp ]] && { :
+  } || {
+    installed="quicklisp"
+    mkdir $HOME/.quicklisp
+    touch $HOME/.quicklisp/slime-helper.el
   }
 
   [[ -d $HOME/.emacs.d || -L $HOME/.emacs.d ]] && { :
   } || {
     installed="emacs"
-    ln -s ${SCRIPT_DIR%bin}editors/emacs/emacs.d $HOME/.emacs.d
+    ln -s ${EMACS_D} $HOME/.emacs.d
   }
 
   [ ! -z "$installed" ] && echo "INSTALLED!" >&2
