@@ -1,5 +1,3 @@
-;;;  -*- mode: Lisp;-*
-
 ;;; package -- My overrides to purcell's settings
 
 ;;; Commentary:
@@ -164,67 +162,6 @@
 ;; Language mode settings
 ;;----------------------------------------------------------------------------
 
-;; Prolog
-(setq prolog-system 'swi
-      prolog-program-switches '((swi ("-G128M" "-T128M" "-L128M" "-O"))
-                                (t nil))
-      prolog-electric-if-then-else-flag t)
-
-(add-hook 'prolog-mode-hook
-          (lambda ()
-            (require 'flymake)
-            (make-local-variable 'flymake-allowed-file-name-masks)
-            (make-local-variable 'flymake-err-line-patterns)
-            (setq flymake-err-line-patterns
-                  '(("ERROR: (?\\(.*?\\):\\([0-9]+\\)" 1 2)
-                    ("Warning: (\\(.*\\):\\([0-9]+\\)" 1 2)))
-            (setq flymake-allowed-file-name-masks
-                  '(("\\.pl\\'" flymake-prolog-init)))
-            (flymake-mode 1)))
-
-(defun flymake-prolog-init ()
-  (let* ((temp-file   (flymake-init-create-temp-buffer-copy
-                       'flymake-create-temp-inplace))
-         (local-file  (file-relative-name
-                       temp-file
-                       (file-name-directory buffer-file-name))))
-    (list "swipl" (list "-q" "-t" "halt" "-s " local-file))))
-
-
-;; Erlang
-(setq load-path (cons "/usr/local/lib/erlang/lib/tools-2.9.1/emacs" load-path))
-(setq erlang-root-dir "/usr/local/lib/erlang")
-(setq exec-path (cons "/usr/local/lib/erlang/bin" exec-path))
-(require 'erlang-start)
-
-(use-package erlang
-  :init
-  (add-to-list 'auto-mode-alist '("\\.P\\'" . erlang-mode))
-  (add-to-list 'auto-mode-alist '("\\.E\\'" . erlang-mode))
-  (add-to-list 'auto-mode-alist '("\\.S\\'" . erlang-mode))
-  :config
-  (add-hook 'erlang-mode-hook
-            (lambda () (setq mode-name "erl"
-                        erlang-compile-extra-opts '((i . "../include"))
-                        erlang-root-dir "/usr/lib/erlang"))))
-
-(use-package flycheck
-  :diminish flycheck-mode
-  :config
-  (add-hook 'after-init-hook 'global-flycheck-mode)
-  (setq flycheck-display-errors-function nil
-        flycheck-erlang-include-path '("../include")
-        flycheck-erlang-library-path '()
-        flycheck-check-syntax-automatically '(save)))
-
-(require 'flymake)
-
-(defun flymake-erlang-init () "Compiles Erlang code on-the-fly as it's written."
-       (let* ((temp-file (flymake-init-create-temp-buffer-copy 'flymake-create-temp-inplace))
-              (local-file (file-relative-name temp-file (file-name-directory buffer-file-name))))
-         (list "~/.emacs.d/escript/flymake-erlang" (list local-file))))
-
-(add-to-list 'flymake-allowed-file-name-masks '("\\.erl\\'" flymake-erlang-init))
 
 ;;----------------------------------------------------------------------------
 ;; Pandoc-mode settings
@@ -404,6 +341,7 @@
 
 (setenv "PATH" (concat (getenv "PATH") ":~/bin"))
 (setq exec-path (append exec-path '("~/bin")))
+;;(setq-default major-mode 'org-mode)
 
 ;; Local Variables:
 ;; coding: utf-8
@@ -413,4 +351,5 @@
 ;; keep purcell's emacs.d settings happy
 (provide 'init-local)
 
+;;;  -*- mode: Lisp;-*
 ;;; init-local.el ends here
