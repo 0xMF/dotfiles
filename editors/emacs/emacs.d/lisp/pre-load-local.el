@@ -3,14 +3,24 @@
 ;;    settings of languages and platforms I do not presently want of use.
 ;;----------------------------------------------------------------------------
 
-(provide 'init-osx-keys)
-(provide 'init-textile)
-(provide 'init-erlang)
-(provide 'init-php)
-(provide 'init-nxml)
-(provide 'init-rails)
-(unless (version<= emacs-version "24.2")
-  (provide 'init-clojure)
-  (provide 'init-clojure-cider))
+;;(provide 'regex-tool)
+;;(provide 'origami)
+;;(provide 'lua-mode)
+;;(provide 'ledger-mode)
+;;(provide 'htmlize)
+;;(provide 'gnuplot)
+;;(provide 'flycheck-ledger)
+;;(provide 'dsvn)
+;;(provide 'dotenv-mode)
+
+;;(provide 'init-osx-keys)
+;;(provide 'init-textile)
+;;(provide 'init-erlang)
+;;(provide 'init-php)
+;;(provide 'init-nxml)
+;;(provide 'init-rails)
+;; (unless (version<= emacs-version "24.2")
+;;  (provide 'init-clojure)
+;;  (provide 'init-clojure-cider))
 
 ;;; pre-load-local.el ends here

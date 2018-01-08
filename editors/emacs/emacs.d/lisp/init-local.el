@@ -338,7 +338,6 @@
 
 ;; optionally (set-frame-font "Source Code Pro Semibold 10")
 (set-frame-font "DejaVu Sans Mono 11")
-
 (setenv "PATH" (concat (getenv "PATH") ":~/bin"))
 (setq exec-path (append exec-path '("~/bin")))
 (setq-default major-mode 'org-mode)
