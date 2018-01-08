@@ -11,7 +11,7 @@
  '(menu-bar-mode nil)
  '(package-selected-packages
    (quote
-    (uptimes evil-vimish-fold org-bullets mediawiki use-package powerline general evil)))
+    (evil-magit evil-paredit uptimes evil-vimish-fold org-bullets mediawiki use-package powerline general evil)))
  '(safe-local-variable-values
    (quote
     ((no-byte-compile t)

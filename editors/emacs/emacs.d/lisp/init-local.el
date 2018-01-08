@@ -341,7 +341,7 @@
 
 (setenv "PATH" (concat (getenv "PATH") ":~/bin"))
 (setq exec-path (append exec-path '("~/bin")))
-;;(setq-default major-mode 'org-mode)
+(setq-default major-mode 'org-mode)
 
 ;; Local Variables:
 ;; coding: utf-8
