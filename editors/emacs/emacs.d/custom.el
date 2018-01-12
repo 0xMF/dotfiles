@@ -17,7 +17,32 @@
     ("aae169618087752b3d1933b845b7540984ed84a33a92d6e9fc6324a5e0d34575")))
  '(package-selected-packages
    (quote
-    (uptimes evil-vimish-fold org-bullets use-package mediawiki powerline general evil flycheck-clojure cider elein cljsbuild-mode clojure-mode slime-company hippie-expand-slime slime cask-mode flycheck-package highlight-quoted macrostep cl-lib-highlight aggressive-indent immortal-scratch auto-compile ipretty elisp-slime-nav paredit-everywhere paredit company-terraform terraform-mode docker-compose-mode dockerfile-mode docker yaml-mode toml-mode racer rust-mode sql-indent projectile-rails yard-mode bundler goto-gem yari robe ruby-compilation inf-ruby rspec-mode ruby-hash-syntax psc-ide purescript-mode flycheck-elm elm-mode dhall-mode hindent intero haskell-mode company-anaconda anaconda-mode pip-requirements restclient httprepl css-eldoc skewer-less less-css-mode scss-mode sass-mode rainbow-mode tagedit tidy org-pomodoro writeroom-mode org-cliplink org-fstree smarty-mode php-mode add-node-modules-path skewer-mode js-comint prettier-js typescript-mode coffee-mode js2-mode json-mode erlang csv-nav csv-mode markdown-mode textile-mode cmd-to-echo alert magit-gh-pulls github-issues github-clone bug-reference-github yagist git-messenger magit git-timemachine gitconfig-mode gitignore-mode git-blamed vc-darcs darcsum browse-at-remote whitespace-cleanup-mode guide-key highlight-escape-sequences whole-line-or-region move-dup page-break-lines multiple-cursors avy expand-region browse-kill-ring symbol-overlay undo-tree rainbow-delimiters nlinum beacon mode-line-bell vlf dynamic-spaces list-unicode-display unfill mmm-mode default-text-scale session switch-window company-quickhelp company ivy-xref projectile counsel ivy-historian ivy smex flycheck-color-mode-line flycheck ibuffer-vc anzu diff-hl diredfl dired-sort disable-mouse dimmer color-theme-sanityinc-tomorrow color-theme-sanityinc-solarized command-log-mode scratch diminish project-local-variables wgrep exec-path-from-shell fullframe)))
+    (add-node-modules-path aggressive-indent alert anaconda-mode anzu auto-compile avy beacon
+                           browse-at-remote browse-kill-ring bug-reference-github bundler cask-mode cider
+                           cl-lib-highlight cljsbuild-mode clojure-mode cmd-to-echo coffee-mode
+                           color-theme-sanityinc-solarized color-theme-sanityinc-tomorrow command-log-mode
+                           company company-anaconda company-quickhelp company-terraform counsel css-eldoc
+                           csv-mode csv-nav darcsum default-text-scale dhall-mode diff-hl
+                           diminish dimmer dired-sort diredfl disable-mouse docker docker-compose-mode
+                           dockerfile-mode dynamic-spaces elein elisp-slime-nav elm-mode erlang evil
+                           evil-vimish-fold exec-path-from-shell expand-region flycheck flycheck-clojure
+                           flycheck-color-mode-line flycheck-elm flycheck-package fullframe general git-blamed
+                           git-messenger git-timemachine gitconfig-mode github-clone github-issues
+                           gitignore-mode goto-gem guide-key haskell-mode highlight-escape-sequences
+                           highlight-quoted hindent hippie-expand-slime httprepl ibuffer-vc immortal-scratch
+                           inf-ruby intero ipretty ivy ivy-historian ivy-xref js-comint js2-mode json-mode
+                           less-css-mode list-unicode-display macrostep magit magit-gh-pulls markdown-mode
+                           mediawiki mmm-mode mode-line-bell move-dup multiple-cursors nlinum org-bullets
+                           org-cliplink org-fstree org-pomodoro page-break-lines paredit paredit-everywhere
+                           php-mode pip-requirements powerline prettier-js project-local-variables projectile
+                           projectile-rails psc-ide purescript-mode racer rainbow-delimiters rainbow-mode
+                           restclient robe rspec-mode ruby-compilation ruby-hash-syntax rust-mode sass-mode
+                           scratch scss-mode session skewer-less skewer-mode slime slime-company smarty-mode
+                           smex sql-indent switch-window symbol-overlay tagedit terraform-mode textile-mode
+                           tidy toml-mode typescript-mode undo-tree unfill uptimes use-package vc-darcs vlf
+                           wgrep whitespace-cleanup-mode whole-line-or-region writeroom-mode yagist yaml-mode
+                           yard-mode yari)))
+
  '(session-use-package t nil (session)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
@@ -31,3 +56,5 @@
  '(org-level-2 ((t (:background "#180248" :foreground "#ff6347" :weight bold :height 1.09))))
  '(org-level-3 ((t (:background "#180248" :foreground "#9fff90" :slant italic :weight bold :height 1.0))))
  '(org-level-4 ((t (:background "#180248" :foreground "#7fff00" :weight normal :height 1.0)))))
+
+;;; custom.el ends here
