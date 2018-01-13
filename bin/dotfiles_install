@@ -73,6 +73,7 @@ _emacs() {
         [ ! -d ${EMACS_D}/lisp/.dependencies ] && mkdir ${EMACS_D}/lisp/.dependencies
         pushd ${EMACS_D}/lisp/.dependencies
         git clone https://github.com/purcell/emacs.d purcell
+        [ ! -L ${EMACS_}/init.el ] && ln -s ${EMACS_D}/lisp/.dependencies/purcell/init.el ${EMACS_D}/init.el
         popd
   }
 

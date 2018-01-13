@@ -113,9 +113,11 @@
                     "d" 'org-agenda-list
                     "e" 'org-babel-execute-src-block
                     "E" 'org-babel-open-src-block-result
+                    "g" 'magit-status
                     "j" 'evil-next-line
                     "k" 'evil-previous-line
                     "l" 'whitespace-mode
+                    "m" 'magit-mode
                     "L" 'org-open-at-point
                     "n" 'linum-mode
                     "o" 'find-file
