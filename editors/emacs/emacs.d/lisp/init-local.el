@@ -322,6 +322,8 @@ then it takes a second \\[keyboard-quit] to abort the minibuffer."
 (advice-add 'org-ctrl-c-ctrl-c :after 'org-restore-outline-state)
 ;; ---
 
+(setq org-time-stamp-custom-formats '("<%b-%d %a>" "<%m/%d/%y %a>" "<%m/%d/%y %a %H:%M>"))
+
 ;; Use bullets (default if uncommented)
 (require 'org-bullets)
 (add-hook 'org-mode-hook (lambda () (org-bullets-mode 1)))
