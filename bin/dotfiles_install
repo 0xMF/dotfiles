@@ -185,6 +185,16 @@ _misc() {
     ln -s ${SCRIPT_DIR%bin}misc/tmuxinator $HOME/.tmuxinator &&
     echo " - .../INSTALLED .tmuxinator" >&2
   fi
+
+  if [[ -d $HOME/.toprc || -L $HOME/.toprc ]]; then
+    echo " - found .toprc, not installing" >&2
+  else
+    ln -s ${SCRIPT_DIR%bin}misc/toprc $HOME/.toprc &&
+    echo " - .../INSTALLED .toprc" >&2
+  fi
+    
+
+
 }
 
 # pal
