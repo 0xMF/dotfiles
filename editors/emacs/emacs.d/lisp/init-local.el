@@ -129,6 +129,9 @@
                     "T" 'org-set-tags
                     "w" '(lambda () (interactive) (org-agenda-list 7))
                     "x" 'evil-delete
+                    "+" 'text-scale-increase
+                    "=" 'text-scale-increase
+                    "-" 'text-scale-decrease
                     "/" 'org-tags-view
                     "." 'org-tags-view
                     "\\" 'org-match-sparse-tree)
