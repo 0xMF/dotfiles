@@ -82,6 +82,7 @@
 (general-define-key :prefix "w"
                     "c" 'whitespace-cleanup
                     "d" '(lambda () (interactive) (kill-buffer)(delete-window))
+                    "f" 'fci-mode
                     "l" 'whitespace-mode
                     "t" 'whitespace-mode
                     "o" 'other-window
@@ -378,6 +379,8 @@ then it takes a second \\[keyboard-quit] to abort the minibuffer."
 (setenv "PATH" (concat (getenv "PATH") ":~/bin"))
 (setq exec-path (append exec-path '("~/bin")))
 (setq-default major-mode 'org-mode)
+
+(require 'fill-column-indicator)
 
 ;; Local Variables:
 ;; coding: utf-8
