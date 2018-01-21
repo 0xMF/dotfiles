@@ -341,6 +341,9 @@ then it takes a second \\[keyboard-quit] to abort the minibuffer."
 
 (evil-define-key 'insert org-mode-map (kbd "C-<tab>") #'tab-to-tab-stop)
 
+;; Yup we want spell check to be turned on automatically in org mode
+(add-hook 'org-mode-hook 'turn-on-flyspell)
+
 ;;----------------------------------------------------------------------------
 ;; Miscalleanous settings
 ;; User mode settings for UI/keyboard/look and feel
