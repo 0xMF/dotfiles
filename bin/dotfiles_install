@@ -67,7 +67,9 @@ _emacs() {
   [[  -d ${EMACS_D}/lisp/.dependencies/purcell || \
       -L ${EMACS_D}/lisp/.dependencies/purcell ]] && { :
         pushd ${EMACS_D}/lisp/.dependencies/purcell > /dev/null
+        tput bold
         git pull
+        tput sgr0
         popd > /dev/null
   } || {
         [ ! -d ${EMACS_D}/lisp/.dependencies ] && mkdir ${EMACS_D}/lisp/.dependencies
