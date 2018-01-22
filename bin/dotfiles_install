@@ -64,6 +64,17 @@ _emacs() {
     touch $HOME/.abbrev_defs
   }
 
+  echo -n "checking emacs/aspell*..." >&2
+  [[ -e $HOME/.aspell.en.pws || -L $HOME/.aspell.en.pws ]] && {
+    echo "found .aspell files, not installing" >&2
+  } || {
+    installed=".aspell.en.pws"
+    ln -s ${SCRIPT_DIR%bin}editors/emacs/aspell.en.pws $HOME/.aspell.en.pws
+    ln -s ${SCRIPT_DIR%bin}editors/emacs/aspell.en.prepl $HOME/.aspell.en.prepl
+    touch $HOME/.aspell.en.pws
+    touch $HOME/.aspell.en.prepl
+  }
+
   [[  -d ${EMACS_D}/lisp/.dependencies/purcell || \
       -L ${EMACS_D}/lisp/.dependencies/purcell ]] && { :
         pushd ${EMACS_D}/lisp/.dependencies/purcell > /dev/null
