@@ -87,8 +87,10 @@
                     "j" 'next-buffer
                     "k" 'next-buffer
                     "l" 'previous-buffer
+                    "n" 'next-buffer
                     "t" 'whitespace-mode
                     "o" 'other-window
+                    "p" 'previous-buffer
                     "w" 'delete-other-windows)
 
 (general-define-key :prefix "b"
@@ -307,6 +309,8 @@ then it takes a second \\[keyboard-quit] to abort the minibuffer."
 (global-set-key (kbd "C-M-<return>") 'org-insert-heading)
 (global-set-key (kbd "C-M-=") 'default-text-scale-increase)
 (global-set-key (kbd "C-M--") 'default-text-scale-decrease)
+(global-set-key (kbd "C-<prior>") 'previous-buffer)
+(global-set-key (kbd "C-<next>") 'next-buffer)
 (global-set-key (kbd "C-x C-b") 'ibuffer)
 (global-set-key (kbd "C-; u") 'undo-tree-visualize)
 (global-set-key (kbd "<tab>") 'tab-to-tab-stop)
