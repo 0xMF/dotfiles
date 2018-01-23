@@ -104,8 +104,10 @@
                     "x" 'evil-delete)
 
 (general-define-key :prefix "z"
+                    "d" #'vimish-fold-delete
                     "f" #'vimish-fold
-                    "d" #'vimish-fold-delete)
+                    "g" 'save-this-word
+                    "t" 'save-this-word)
 
 ;; named prefix key allows ; to be used a mapper for my keybindings
 (setq my-leader1 ";")
@@ -152,6 +154,16 @@
 ;; jump j/k always even in visual mode
 (define-key evil-normal-state-map (kbd "j") 'evil-next-visual-line)
 (define-key evil-normal-state-map (kbd "k") 'evil-previous-visual-line)
+
+;; Credit: https://stackoverflow.com/questions/22107182/in-emacs-flyspell-mode-how-to-add-new-word-to-dictionary
+(defun save-this-word ()
+  "Save word to personal dict."
+  (interactive)
+  (let ((current-location (point))
+        (word (flyspell-get-word)))
+    (when (consp word)
+      (flyspell-do-correct 'save nil (car word) current-location (cadr word) (caddr word) current-location))))
+;; ---
 
 ;; esc quits
 (defun minibuffer-keyboard-quit ()
@@ -310,6 +322,7 @@ then it takes a second \\[keyboard-quit] to abort the minibuffer."
 (setq org-pretty-entities t)
 (setq org-export-with-section-numbers nil)
 (setq org-table-auto-blank-field nil)
+(setq org-startup-indented t)
 
 ;; Removes org sparse tree views correctly
 ;; Credit: https://stackoverflow.com/a/44158824
