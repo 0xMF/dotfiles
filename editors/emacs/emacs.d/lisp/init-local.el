@@ -83,7 +83,10 @@
                     "c" 'whitespace-cleanup
                     "d" '(lambda () (interactive) (kill-buffer)(delete-window))
                     "f" 'fci-mode
-                    "l" 'whitespace-mode
+                    "h" 'previous-buffer
+                    "j" 'next-buffer
+                    "k" 'next-buffer
+                    "l" 'previous-buffer
                     "t" 'whitespace-mode
                     "o" 'other-window
                     "w" 'delete-other-windows)
@@ -94,7 +97,6 @@
                     "f" 'markdown-follow-thing-at-point
                     "h" 'previous-buffer
                     "j" 'next-buffer
-                    "k" 'kill-buffer
                     "l" 'list-buffers
                     "n" 'next-buffer
                     "o" 'counsel-find-file
@@ -300,6 +302,7 @@ then it takes a second \\[keyboard-quit] to abort the minibuffer."
 ;;----------------------------------------------------------------------------
 ;; Org mode settings
 ;;----------------------------------------------------------------------------
+(add-to-list 'package-archives '("org" . "https://orgmode.org/elpa/") t)
 (setq org-startup-indented nil)
 (setq org-hide-leading-stars t)
 (setq org-indent-mode-turns-off-org-adapt-indentation nil)
