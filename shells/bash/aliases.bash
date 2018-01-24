@@ -60,7 +60,7 @@ alias tree='tree -I .git --charset UTF-8'
 alias vi='vim'
 alias tmux='tmux -u'
 
-# git based aliases 
+# git based aliases
 [ ! -z "`which hub 2>/dev/null`" ] && alias git='hub'
 #alias g='git' # now g() is a function that calls git
 alias gbr='git branch'

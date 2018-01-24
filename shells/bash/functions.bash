@@ -349,7 +349,7 @@ function gmru {
 # show all git commits history
 function ghist {
   git log $* --graph --date=short \
-          --pretty=format:"%C(red bold)%h%Creset %C(blue bold)%ad%Creset %C(cyan bold)|%Creset %C(auto)%d%Creset %s"
+     --pretty=format:"%C(red bold)%h%Creset %C(blue bold)%ad%Creset %C(cyan bold)|%Creset %C(auto)%d%Creset %s"
 }
 
 # completes the triad of:
@@ -367,14 +367,15 @@ function gcr {
 function __gdh {
   n=${1:--10}
   git log $n --graph --date=short \
-              --pretty=format:"%C(red bold)%h%Creset %C(blue bold)%ad%Creset %C(cyan bold)|%Creset %C(auto)%d%Creset %s"
+    --pretty=format:"%C(red bold)%h%Creset %C(blue bold)%ad%Creset %C(cyan bold)|%Creset %C(auto)%d%Creset %s"
 }
+
 function __gh {
   n=${1:--10}
-  git log $n --graph \
-              --pretty=format:"%C(red bold)%h%Creset %C(cyan bold)|%Creset %C(auto)%d%Creset %s"
+  git log $n --graph --pretty=format:"%C(red bold)%h%Creset %C(cyan bold)|%Creset %C(auto)%d%Creset %s"
   git diff --stat HEAD~$((0 - $n)) HEAD
 }
+
 # queries git log based on arguments
 #   no args : show last 10 one-line commit messages
 #   1 arg   : show that (relative to HEAD~) commit message details
@@ -408,7 +409,8 @@ function gha {
 function ghb {
   for c in `seq $(gh|wc -l)`
   do
-    git log --pretty=format:"%C(bold red)%h%Creset %C(bold cyan)%s%Creset%n %C(bold green)%b%Creset" HEAD~$c..HEAD~`expr $c - 1`
+      git log --pretty=format:"%C(bold red)%h%Creset %C(bold cyan)%s%Creset%n %C(bold green)%b%Creset" \
+          HEAD~$c..HEAD~`expr $c - 1`
   done
 }
 
@@ -472,9 +474,11 @@ function glearn {
   fi
 
   if [ ! -z "$1" ]; then
-    man -k git|$GREP  -w git|$GREP "(1)"|sed 's/\(.*\) - \(.*\)/\2 : \1/'|sort|awk -F':' '{printf ("%-80s %s\n", $1,$2)}'|$GREP "$@"
+      man -k git|$GREP  -w git|$GREP "(1)"|sed 's/\(.*\) - \(.*\)/\2 : \1/'|sort| \
+          awk -F':' '{printf ("%-80s %s\n", $1,$2)}'|$GREP "$@"
   else
-    man -k git|$GREP  -w git|$GREP "(1)"|sed 's/\(.*\) - \(.*\)/\2 : \1/'|sort|awk -F':' '{printf ("%-80s %s\n", $1,$2)}'|less
+      man -k git|$GREP  -w git|$GREP "(1)"|sed 's/\(.*\) - \(.*\)/\2 : \1/'|sort| \
+          awk -F':' '{printf ("%-80s %s\n", $1,$2)}'|less
   fi
   rm -f $TFILE
 }
@@ -512,7 +516,7 @@ function gsearch {
   for commit in $(git log --oneline|$GREP "$1"|awk '{print $1}')
   do
     git show --pretty="%h %s %b" --stat $commit
-    git show --pretty="%n        %Cred===%C(yellow)**%Cgreenx%C(yellow)**%Cred===%Creset%n" -s $commit
+    git show --pretty="%n %Cred===%C(yellow)**%Cgreenx%C(yellow)**%Cred===%Creset%n" -s $commit
   done
 }
 
@@ -545,19 +549,19 @@ function g() {
 }
 
 function loc() {
-  localc "$@" 2>/dev/null &
+  `which localc` "$@" 2>/dev/null &
 }
 
 function low() {
-  lowriter "$@" 2>/dev/null &
+  `which lowriter` "$@" 2>/dev/null &
 }
 
 function erls() {
-  erl "@" -pa ebin -pa deps/*/ebin
+  `which erl` "@" -pa ebin -pa deps/*/ebin
 }
 
 function emacs() {
-  /usr/bin/emacs "$@" 2>/dev/null &
+  `which emacs` "$@" 2>/dev/null &
 }
 
 function otp() {
