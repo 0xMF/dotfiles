@@ -115,7 +115,7 @@
 (setq my-leader1 ";")
 (general-define-key :prefix my-leader1
                     "a" 'org-agenda
-                    "b" 'list-buffers
+                    "b" 'switch-to-buffer
                     "c" 'org-capture
                     "d" 'org-agenda-list
                     "e" 'org-babel-execute-src-block
