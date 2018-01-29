@@ -14,7 +14,7 @@
  '(custom-enabled-themes (quote (blueknight)))
  '(custom-safe-themes
    (quote
-    ("b877536cd0ac12cf6ceed5bc29b186caefa4b411f48da9f6c5f0c41cf2dd371e"
+    ("19e548f0fb3baf8d19c2d8ad6ec79998782dfc8fb266cad34ff10bf94ef79a42"
      "bea5410f1c106a2a27e350da4c5c857b3c1a45220985830569f981705bd971f6"
      "39b7e473c397e33e3a8b9506ae8608ca40b49905980e9726be2f15ed01245ac3")))
 

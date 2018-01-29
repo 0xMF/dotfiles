@@ -88,12 +88,15 @@
                     "k" 'next-buffer
                     "l" 'previous-buffer
                     "n" 'next-buffer
+                    "N" 'other-window
                     "t" 'whitespace-mode
                     "o" 'other-window
                     "p" 'previous-buffer
+                    "P" 'other-window
                     "w" 'delete-other-windows)
 
 (general-define-key :prefix "b"
+                    "b" 'describe-bindings
                     "c" 'yank
                     "d" 'kill-buffer
                     "f" 'markdown-follow-thing-at-point
