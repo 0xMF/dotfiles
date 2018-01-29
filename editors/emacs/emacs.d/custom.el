@@ -40,19 +40,20 @@
                                  inf-ruby intero ipretty ivy ivy-historian ivy-xref js-comint
                                  js2-mode json-mode less-css-mode list-unicode-display macrostep
                                  magit magit-gh-pulls markdown-mode mediawiki mmm-mode
-                                 mode-line-bell move-dup multiple-cursors nlinum org-bullets
-                                 org-cliplink org-fstree org-pomodoro page-break-lines paredit
-                                 paredit-everywhere php-mode pip-requirements powerline
-                                 prettier-js project-local-variables projectile projectile-rails
-                                 psc-ide purescript-mode racer rainbow-delimiters rainbow-mode
-                                 restclient robe rspec-mode ruby-compilation ruby-hash-syntax
-                                 rust-mode sass-mode scratch scss-mode session skewer-less
-                                 skewer-mode slime slime-company smarty-mode smex sql-indent
-                                 switch-window symbol-overlay tagedit terraform-mode textile-mode
-                                 tidy toml-mode typescript-mode undo-tree unfill uptimes
-                                 use-package vc-darcs vlf wgrep whitespace-cleanup-mode
-                                 whole-line-or-region writeroom-mode yagist yaml-mode yard-mode
-                                 yari)))
+                                 mode-line-bell move-dup multiple-cursors nix-mode nlinum
+                                 org-bullets org-cliplink org-fstree org-pomodoro
+                                 page-break-lines paredit paredit-everywhere php-mode
+                                 pip-requirements powerline prettier-js project-local-variables
+                                 projectile projectile-rails psc-ide purescript-mode racer
+                                 rainbow-delimiters rainbow-mode restclient robe rspec-mode
+                                 ruby-compilation ruby-hash-syntax rust-mode sass-mode scratch
+                                 scss-mode session skewer-less skewer-mode slime slime-company
+                                 smarty-mode smex sql-indent switch-window symbol-overlay tagedit
+                                 terraform-mode textile-mode tidy toml-mode typescript-mode
+                                 undo-tree unfill uptimes use-package vc-darcs vlf wgrep
+                                 whitespace-cleanup-mode whole-line-or-region writeroom-mode
+                                 yagist yaml-mode yard-mode yari)))
+
  '(session-use-package t nil (session)))
 
 (custom-set-faces
