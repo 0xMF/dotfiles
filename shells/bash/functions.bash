@@ -561,7 +561,7 @@ function erls() {
 }
 
 function emacs() {
-  `which emacs` "$@" 2>/dev/null &
+  `which -a emacs|sed '1q'` "$@" 2>/dev/null &
 }
 
 function otp() {

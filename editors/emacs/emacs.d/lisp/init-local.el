@@ -14,43 +14,44 @@
 (unless package-archive-contents
   (package-refresh-contents))
 
-(setq package-list '( add-node-modules-path aggressive-indent
-                                            alert anaconda-mode anzu auto-compile avy beacon browse-at-remote
-                                            browse-kill-ring bug-reference-github bundler cask-mode cider
-                                            cl-lib-highlight cljsbuild-mode clojure-mode cmd-to-echo
-                                            coffee-mode command-log-mode company company-anaconda
-                                            company-quickhelp company-terraform counsel css-eldoc csv-mode
-                                            darcsum default-text-scale dhall-mode diff-hl diminish diredfl
-                                            disable-mouse docker docker-compose-mode dockerfile-mode
-                                            dynamic-spaces elein elisp-slime-nav elm-mode erlang evil
-                                            evil-vimish-fold exec-path-from-shell expand-region flycheck
-                                            flycheck-clojure flycheck-color-mode-line flycheck-elm
-                                            flycheck-package fullframe general git-blamed git-messenger
-                                            git-timemachine gitconfig-mode github-clone github-issues
-                                            gitignore-mode goto-gem guide-key haskell-mode
-                                            highlight-escape-sequences highlight-quoted hindent
-                                            hippie-expand-slime httprepl ibuffer-vc immortal-scratch inf-ruby
-                                            intero ipretty ivy ivy-historian js-comint js2-mode json-mode
-                                            less-css-mode list-unicode-display macrostep magit magit-gh-pulls
-                                            markdown-mode mediawiki mmm-mode mode-line-bell move-dup
-                                            multiple-cursors nlinum org-bullets org-cliplink org-fstree
-                                            org-pomodoro page-break-lines paredit paredit-everywhere php-mode
-                                            pip-requirements powerline prettier-js projectile
-                                            projectile-rails psc-ide purescript-mode racer rainbow-delimiters
-                                            rainbow-mode restclient robe rspec-mode ruby-compilation
-                                            ruby-hash-syntax rust-mode sass-mode scratch scss-mode session
-                                            skewer-less skewer-mode slime slime-company smarty-mode smex
-                                            sql-indent switch-window symbol-overlay tagedit terraform-mode
-                                            textile-mode toml-mode typescript-mode undo-tree unfill uptimes
-                                            use-package vc-darcs vlf wgrep whitespace-cleanup-mode
-                                            whole-line-or-region writeroom-mode yagist yaml-mode yard-mode
-                                            yari))
+(setq package-list '(add-node-modules-path aggressive-indent
+                                           alert anzu auto-compile avy beacon browse-at-remote
+                                           browse-kill-ring bug-reference-github bundler cask-mode cider
+                                           cl-lib-highlight cljsbuild-mode clojure-mode cmd-to-echo
+                                           coffee-mode command-log-mode company company-quickhelp counsel
+                                           css-eldoc csv-mode darcsum default-text-scale dhall-mode diff-hl
+                                           diminish diredfl disable-mouse docker docker-compose-mode
+                                           dockerfile-mode dynamic-spaces elein elisp-slime-nav elm-mode
+                                           erlang evil evil-vimish-fold exec-path-from-shell expand-region
+                                           flycheck flycheck-clojure flycheck-color-mode-line flycheck-elm
+                                           flycheck-package fullframe general git-blamed git-messenger
+                                           git-timemachine gitconfig-mode github-clone github-issues
+                                           gitignore-mode goto-gem guide-key haskell-mode
+                                           highlight-escape-sequences highlight-quoted hindent
+                                           hippie-expand-slime httprepl ibuffer-vc immortal-scratch inf-ruby
+                                           intero ipretty ivy ivy-historian js-comint js2-mode json-mode
+                                           less-css-mode list-unicode-display macrostep magit magit-gh-pulls
+                                           markdown-mode mediawiki mmm-mode mode-line-bell move-dup
+                                           multiple-cursors nlinum org-bullets org-cliplink org-fstree
+                                           org-pomodoro page-break-lines paredit paredit-everywhere php-mode
+                                           pip-requirements powerline prettier-js projectile
+                                           projectile-rails psc-ide purescript-mode racer rainbow-delimiters
+                                           rainbow-mode restclient robe rspec-mode ruby-compilation
+                                           ruby-hash-syntax rust-mode sass-mode scratch scss-mode session
+                                           skewer-less skewer-mode slime slime-company smarty-mode smex
+                                           sql-indent switch-window symbol-overlay tagedit terraform-mode
+                                           textile-mode toml-mode typescript-mode undo-tree unfill uptimes
+                                           use-package vc-darcs vlf wgrep whitespace-cleanup-mode
+                                           whole-line-or-region writeroom-mode yagist yaml-mode yard-mode
+                                           yari))
 
-; install the missing packages when using emacs 24.5 and below
-(unless (version<= emacs-version "24.5")
+;; install the missing packages when using emacs 24.5.1 and below
+(if (version<= emacs-version "24.6")
   (dolist (package package-list)
     (unless (package-installed-p package)
-        (package-install package)))
+      (package-install package))))
+
+(unless (version<= emacs-version "25")
   (package-install-selected-packages))
 
 (show-paren-mode t)
@@ -382,7 +383,13 @@ then it takes a second \\[keyboard-quit] to abort the minibuffer."
 ;; User mode settings for UI/keyboard/look and feel
 ;;----------------------------------------------------------------------------
 (setq browse-url-browser-function 'eww-browse-url)
-(load-file "~/.emacs.d/lisp/secrets.el")
+
+(defun load-if-file-exists (FILE)
+  "Check if FILE exists before loading it."
+  (if (file-readable-p FILE)
+      (load-file FILE)))
+
+(load-if-file-exists "~/.emacs.d/lisp/secrets.el")
 
 ;; wrap lines (hard return) around column 100
 (add-hook 'text-mode-hook 'turn-on-auto-fill)
@@ -416,7 +423,8 @@ then it takes a second \\[keyboard-quit] to abort the minibuffer."
 (setq exec-path (append exec-path '("~/bin")))
 (setq-default major-mode 'org-mode)
 
-(require 'fill-column-indicator)
+(unless (version<= emacs-version "25")
+  (require 'fill-column-indicator))
 
 ;; Local Variables:
 ;; coding: utf-8
