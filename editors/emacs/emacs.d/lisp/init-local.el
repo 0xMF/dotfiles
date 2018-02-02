@@ -54,6 +54,7 @@
 (unless (version<= emacs-version "25")
   (package-install-selected-packages))
 
+(setq vc-follow-symlinks t)
 (show-paren-mode t)
 (setq show-paren-style 'expression)
 
@@ -377,6 +378,10 @@ then it takes a second \\[keyboard-quit] to abort the minibuffer."
 
 ;; Yup we want spell check to be turned on automatically in org mode
 (add-hook 'org-mode-hook 'turn-on-flyspell)
+
+;; Load agenda files if they exist.
+(when (file-exists-p "~/.emacs.d/agenda")
+  (setq org-agenda-files '("~/.emacs.d/agenda")))
 
 ;;----------------------------------------------------------------------------
 ;; Miscalleanous settings
