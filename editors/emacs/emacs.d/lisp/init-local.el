@@ -40,16 +40,16 @@
                                            ruby-hash-syntax rust-mode sass-mode scratch scss-mode session
                                            skewer-less skewer-mode slime slime-company smarty-mode smex
                                            sql-indent switch-window symbol-overlay tagedit terraform-mode
-                                           textile-mode toml-mode typescript-mode undo-tree unfill uptimes
+                                           textile-mode toml-mode typescript-mode undo-tree unfill
                                            use-package vc-darcs vlf wgrep whitespace-cleanup-mode
                                            whole-line-or-region writeroom-mode yagist yaml-mode yard-mode
                                            yari))
 
 ;; install the missing packages when using emacs 24.5.1 and below
 (if (version<= emacs-version "24.6")
-  (dolist (package package-list)
-    (unless (package-installed-p package)
-      (package-install package))))
+    (dolist (package package-list)
+      (unless (package-installed-p package)
+        (package-install package))))
 
 (unless (version<= emacs-version "25")
   (package-install-selected-packages))
