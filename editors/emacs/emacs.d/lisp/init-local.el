@@ -380,8 +380,10 @@ then it takes a second \\[keyboard-quit] to abort the minibuffer."
 (add-hook 'org-mode-hook 'turn-on-flyspell)
 
 ;; Load agenda files if they exist.
+;; Credit: https://stackoverflow.com/questions/11384516/how-to-make-all-org-files-under-a-folder-added-in-agenda-list-automatically
 (when (file-exists-p "~/.emacs.d/agenda")
-  (setq org-agenda-files '("~/.emacs.d/agenda")))
+  (load-library "find-lisp")
+  (setq org-agenda-files (find-lisp-find-files "~/.emacs.d/agenda" "\.org$")))
 
 ;;----------------------------------------------------------------------------
 ;; Miscalleanous settings
