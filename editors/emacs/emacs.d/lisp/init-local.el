@@ -14,40 +14,12 @@
 (unless package-archive-contents
   (package-refresh-contents))
 
-(setq package-list '(add-node-modules-path aggressive-indent
-                                           alert anzu auto-compile avy beacon browse-at-remote
-                                           browse-kill-ring bug-reference-github bundler cask-mode cider
-                                           cl-lib-highlight cljsbuild-mode clojure-mode cmd-to-echo
-                                           coffee-mode command-log-mode company company-quickhelp counsel
-                                           css-eldoc csv-mode darcsum default-text-scale dhall-mode diff-hl
-                                           diminish diredfl disable-mouse docker docker-compose-mode
-                                           dockerfile-mode dynamic-spaces elein elisp-slime-nav elm-mode
-                                           erlang evil evil-vimish-fold exec-path-from-shell expand-region
-                                           flycheck flycheck-clojure flycheck-color-mode-line flycheck-elm
-                                           flycheck-package fullframe general git-blamed git-messenger
-                                           git-timemachine gitconfig-mode github-clone github-issues
-                                           gitignore-mode goto-gem guide-key haskell-mode
-                                           highlight-escape-sequences highlight-quoted hindent
-                                           hippie-expand-slime httprepl ibuffer-vc immortal-scratch inf-ruby
-                                           intero ipretty ivy ivy-historian js-comint js2-mode json-mode
-                                           less-css-mode list-unicode-display macrostep magit magit-gh-pulls
-                                           markdown-mode mediawiki mmm-mode mode-line-bell move-dup
-                                           multiple-cursors nlinum org-bullets org-cliplink org-fstree
-                                           org-pomodoro page-break-lines paredit paredit-everywhere php-mode
-                                           pip-requirements powerline prettier-js projectile
-                                           projectile-rails psc-ide purescript-mode racer rainbow-delimiters
-                                           rainbow-mode restclient robe rspec-mode ruby-compilation
-                                           ruby-hash-syntax rust-mode sass-mode scratch scss-mode session
-                                           skewer-less skewer-mode slime slime-company smarty-mode smex
-                                           sql-indent switch-window symbol-overlay tagedit terraform-mode
-                                           textile-mode toml-mode typescript-mode undo-tree unfill
-                                           use-package vc-darcs vlf wgrep whitespace-cleanup-mode
-                                           whole-line-or-region writeroom-mode yagist yaml-mode yard-mode
-                                           yari))
+(setq my-required-packages '(evil fill-column-indicator general
+                                  mediawiki org-bullets powerline use-package vimish-fold))
 
 ;; install the missing packages when using emacs 24.5.1 and below
 (if (version<= emacs-version "24.6")
-    (dolist (package package-list)
+    (dolist (package my-required-packages)
       (unless (package-installed-p package)
         (package-install package))))
 

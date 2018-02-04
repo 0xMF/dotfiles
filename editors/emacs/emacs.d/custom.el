@@ -17,34 +17,9 @@
            "d37a1eff1929a1e43cfc0649a0c2abd9b73c9141bf844998bdae553cf8f526f0"
            "bea5410f1c106a2a27e350da4c5c857b3c1a45220985830569f981705bd971f6" default)))
  '(package-selected-packages
-   (quote (hippie-expand-slime nginx-mode magithub yari yard-mode
-                               yagist writeroom-mode whole-line-or-region
-                               whitespace-cleanup-mode wgrep vlf vc-darcs use-package unfill
-                               typescript-mode toml-mode textile-mode tagedit symbol-overlay
-                               switch-window sql-indent smex smarty-mode slime-company
-                               skewer-less session scss-mode scratch sass-mode ruby-hash-syntax
-                               ruby-compilation rspec-mode robe restclient rainbow-mode
-                               rainbow-delimiters racer purescript-mode psc-ide
-                               projectile-rails prettier-js powerline pip-requirements php-mode
-                               paredit-everywhere page-break-lines org-pomodoro org-fstree
-                               org-cliplink org-bullets nlinum multiple-cursors move-dup
-                               mode-line-bell mmm-mode mediawiki markdown-mode magit-gh-pulls
-                               list-unicode-display less-css-mode js-comint ivy-xref
-                               ivy-historian ipretty intero immortal-scratch ibuffer-vc
-                               httprepl hindent highlight-quoted highlight-escape-sequences
-                               guide-key goto-gem gitignore-mode github-issues github-clone
-                               gitconfig-mode git-timemachine git-messenger git-blamed general
-                               fullframe flycheck-package flycheck-elm flycheck-color-mode-line
-                               flycheck-clojure fill-column-indicator expand-region
-                               exec-path-from-shell evil-vimish-fold erlang elm-mode
-                               elisp-slime-nav elein dynamic-spaces dockerfile-mode
-                               docker-compose-mode docker disable-mouse diredfl dimmer diminish
-                               diff-hl dhall-mode default-text-scale darcsum csv-mode css-eldoc
-                               counsel company-quickhelp company-anaconda command-log-mode
-                               coffee-mode cmd-to-echo cljsbuild-mode cl-lib-highlight
-                               cask-mode bundler bug-reference-github browse-kill-ring
-                               browse-at-remote beacon avy auto-compile anzu aggressive-indent
-                               add-node-modules-path)))
+   (quote (evil fill-column-indicator general mediawiki
+                org-bullets powerline use-package vimish-fold)))
+
  '(session-use-package t nil (session)))
 
 (custom-set-faces
