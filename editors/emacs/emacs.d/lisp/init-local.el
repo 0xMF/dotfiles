@@ -151,9 +151,10 @@
                     "T" 'org-set-tags
                     "w" '(lambda () (interactive) (org-agenda-list 7))
                     "x" 'evil-delete
-                    "+" 'text-scale-increase
-                    "=" 'text-scale-increase
+                    "+" '(lambda () (interactive) (text-scale-increase 2))
+                    "=" '(lambda () (interactive) (text-scale-increase 3))
                     "-" 'text-scale-decrease
+                    "0" '(lambda () (interactive) (text-scale-adjust 0))
                     "/" 'org-tags-view
                     "." 'org-tags-view
                     "\\" 'org-match-sparse-tree)
