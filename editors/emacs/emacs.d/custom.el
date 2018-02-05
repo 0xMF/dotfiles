@@ -17,8 +17,8 @@
            "d37a1eff1929a1e43cfc0649a0c2abd9b73c9141bf844998bdae553cf8f526f0"
            "bea5410f1c106a2a27e350da4c5c857b3c1a45220985830569f981705bd971f6" default)))
  '(package-selected-packages
-   (quote (evil fill-column-indicator general mediawiki
-                org-bullets powerline use-package vimish-fold)))
+   (quote (benchmark-init evil fill-column-indicator general
+                          mediawiki org-bullets powerline use-package vimish-fold)))
 
  '(session-use-package t nil (session)))
 

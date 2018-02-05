@@ -14,10 +14,10 @@
 (unless package-archive-contents
   (package-refresh-contents))
 
-(setq my-required-packages '(evil fill-column-indicator general
-                                  mediawiki org-bullets powerline use-package vimish-fold))
+(setq my-required-packages '(benchmark-init evil
+                                            fill-column-indicator general mediawiki org-bullets powerline
+                                            use-package vimish-fold))
 
-;; install the missing packages when using emacs 24.5.1 and below
 (if (version<= emacs-version "24.6")
     (dolist (package my-required-packages)
       (unless (package-installed-p package)
@@ -26,6 +26,10 @@
 (unless (version<= emacs-version "25")
   (package-install-selected-packages))
 
+(require 'benchmark-init)
+(benchmark-init/activate)
+
+;; install the missing packages when using emacs 24.5.1 and below
 (setq vc-follow-symlinks t)
 (show-paren-mode t)
 (setq show-paren-style 'expression)
@@ -405,6 +409,8 @@ then it takes a second \\[keyboard-quit] to abort the minibuffer."
 
 (unless (version<= emacs-version "25")
   (require 'fill-column-indicator))
+
+(benchmark-init/show-durations-tabulated)
 
 ;; Local Variables:
 ;; coding: utf-8
