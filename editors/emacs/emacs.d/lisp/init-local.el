@@ -345,8 +345,8 @@ then it takes a second \\[keyboard-quit] to abort the minibuffer."
 (add-hook 'org-mode-hook (lambda () (org-bullets-mode 1)))
 
 (defun kill-misc-buffers() "Permanently remove some buffers."
-       (if (get-buffer "*scratch*")
-           (kill-buffer "*scratch*"))
+       ;; (if (get-buffer "*scratch*")
+       ;;  (kill-buffer "*scratch*"))
        (if (get-buffer "*reg group-leader*")
            (kill-buffer "*reg group-leader*")))
 (add-hook 'after-change-major-mode-hook 'kill-misc-buffers)
