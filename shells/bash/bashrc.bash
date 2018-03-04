@@ -4,8 +4,8 @@
 # 
 REPO=$HOME/.bash
 
-# don't do anything if we don't have a prompt
-[ -z "$PS1" ] && return
+# don't do anything if we don't have a prompt (not an interactive shell)
+[[ $- != *i* ]] && return || [ -z "$PS1" ] && return
 
 # Source global definitions
 if [ -f /etc/bashrc ]; then
