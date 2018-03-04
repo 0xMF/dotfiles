@@ -46,6 +46,7 @@ alias cd..='cd ..'
 alias cls='clear'
 alias cpi='cp -i'
 alias cpu='cp -u'
+alias dfh="df -h|egrep '^(Filesystem|/)'| sort -hk5"
 alias gnupg='gpg'
 alias grep='grep --color=always -i'
 alias gv='gvim --remote-tab-silent'
