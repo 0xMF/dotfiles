@@ -93,8 +93,10 @@ set runtimepath=$VIMRUNTIME,$MYVIM,$MYVIM/dependencies
     :   let &tags.= tagfiles
     :endif
 
-    "** prefer my colorscheme (nice-gui) for gui (win/gtk)
-    : if filereadable(expand("$MYVIM/colors/nice-gui.vim"))
+    "** use my colorscheme (nice-gui) if midnight is not available (win/gtk)
+    : if filereadable(expand("$MYVIM/colors/midnight.vim"))
+    :   colorscheme midnight    "select colorscheme
+    : elseif filereadable(expand("$MYVIM/colors/nice-gui.vim"))
     :   colorscheme nice-gui     "select colorscheme
     : endif
 :else
