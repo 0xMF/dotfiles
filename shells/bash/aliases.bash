@@ -12,8 +12,8 @@ if [ $OS == "FreeBSD" ]; then
   alias j=jobs
   alias l='ls -lG'
   alias links='elinks'
-  alias ll='ls -laFGo'
-  alias lld='ls -laFodG'
+  alias ll='ls -lAFGo'
+  alias lld='ls -lAFodG'
   alias ls='/bin/ls -FG'
   alias lsof='fstat'
   alias lynx='elinks'
@@ -29,11 +29,11 @@ else
 
   #alias ls='/bin/ls --color=always'
   alias lsn='ls -pF --color=none'
-  alias ls='ls --color=always --ignore="NTUSER.*" --ignore="ntuser.*"'
-  alias la='ls -lah'
-  alias lc='ls -Cp -w 120|less -FRMS'
-  alias ll='ls -lh'
-  alias lld='ls -lhd'
+  alias ls='ls --color=always --ignore="NTUSER.*" --ignore="ntuser.*" -F'
+  alias la='ls -lAhF'
+  alias lc='ls -FCp -w 120|less -FRMS'
+  alias ll='ls -lhF'
+  alias lld='ls -lhdF'
   alias stats="man -k ' ' | grep -Ee 'stat \((1|8)\) '"
 
 fi
