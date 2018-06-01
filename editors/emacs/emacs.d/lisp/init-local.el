@@ -26,8 +26,8 @@
 (unless (version<= emacs-version "25")
   (package-install-selected-packages))
 
-(require 'benchmark-init)
-(benchmark-init/activate)
+;;(require 'benchmark-init)
+;;(benchmark-init/activate)
 
 ;; install the missing packages when using emacs 24.5.1 and below
 (setq vc-follow-symlinks t)
@@ -410,7 +410,7 @@ then it takes a second \\[keyboard-quit] to abort the minibuffer."
 (unless (version<= emacs-version "25")
   (require 'fill-column-indicator))
 
-(benchmark-init/show-durations-tabulated)
+;;(benchmark-init/show-durations-tabulated)
 
 ;; Local Variables:
 ;; coding: utf-8
