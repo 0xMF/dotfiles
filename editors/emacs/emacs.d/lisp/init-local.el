@@ -29,7 +29,7 @@
 ;;(require 'benchmark-init)
 ;;(benchmark-init/activate)
 
-;; install the missing packages when using emacs 24.5.1 and below
+;; install the missing packages when using Emacs 24.5.1 and below
 (setq vc-follow-symlinks t)
 (show-paren-mode t)
 (setq show-paren-style 'expression)
@@ -47,7 +47,7 @@
 (setq evil-replace-state-cursor '("red" box))
 (setq evil-operator-state-cursor '("red" hollow))
 
-(defun my-default-cursor()  "Cursor color indicates mode: white = emacs, green = evil."
+(defun my-default-cursor()  "Cursor color indicates mode: white = Emacs, green = evil (Vi/Vim)."
        (if (string= (symbol-value 'evil-state) "normal")
            (set-cursor-color "green")
          (set-cursor-color "white")))
