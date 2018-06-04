@@ -412,6 +412,12 @@ then it takes a second \\[keyboard-quit] to abort the minibuffer."
 
 ;;(benchmark-init/show-durations-tabulated)
 
+;; hide trailing whitespace in command output from showing up in eshell
+(add-hook 'eshell-mode-hook
+          (defun hide-trailing-whitespace ()
+            (interactive)
+            (setq show-trailing-whitespace nil)))
+
 ;; Local Variables:
 ;; coding: utf-8
 ;; no-byte-compile: t
