@@ -13,7 +13,8 @@
  ;; If there is more than one, they won't work right.
  '(custom-enabled-themes (quote nil))
  '(custom-safe-themes
-   (quote ("b877536cd0ac12cf6ceed5bc29b186caefa4b411f48da9f6c5f0c41cf2dd371e"
+   (quote ("c41f0d2f6fcf80d298fab81e52f615851c56502ece0656fa2542436264d3170d"
+           "b877536cd0ac12cf6ceed5bc29b186caefa4b411f48da9f6c5f0c41cf2dd371e"
            "d37a1eff1929a1e43cfc0649a0c2abd9b73c9141bf844998bdae553cf8f526f0"
            "bea5410f1c106a2a27e350da4c5c857b3c1a45220985830569f981705bd971f6" default)))
  '(package-selected-packages
