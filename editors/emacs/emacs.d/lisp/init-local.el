@@ -418,6 +418,17 @@ then it takes a second \\[keyboard-quit] to abort the minibuffer."
             (interactive)
             (setq show-trailing-whitespace nil)))
 
+(add-hook 'Info-mode-hook
+          (defun set-keys-Info-mode ()
+            (interactive)
+            (turn-off-evil-mode)
+            (local-set-key "b" 'Info-last)
+            (local-set-key "h" 'Info-backward-node)
+            (local-set-key "j" 'next-line)
+            (local-set-key "k" 'previous-line)
+            (local-set-key "l" 'Info-forward-node)
+            (local-set-key "/" 'isearch-forward)))
+
 ;; Local Variables:
 ;; coding: utf-8
 ;; no-byte-compile: t
