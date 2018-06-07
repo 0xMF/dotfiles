@@ -15,8 +15,8 @@
   (package-refresh-contents))
 
 (setq my-required-packages '(benchmark-init evil
-                                            fill-column-indicator general mediawiki org-bullets powerline
-                                            use-package vimish-fold))
+                                            fill-column-indicator general mediawiki org-bullets
+                                            powerline use-package vimish-fold))
 
 (if (version<= emacs-version "24.6")
     (dolist (package my-required-packages)
@@ -149,14 +149,15 @@
 (define-key evil-normal-state-map (kbd "j") 'evil-next-visual-line)
 (define-key evil-normal-state-map (kbd "k") 'evil-previous-visual-line)
 
-;; Credit: https://stackoverflow.com/questions/22107182/in-emacs-flyspell-mode-how-to-add-new-word-to-dictionary
+;; Credit: [StackOverflow] in-emacs-flyspell-mode-how-to-add-new-word-to-dictionary
 (defun save-this-word ()
   "Save word to personal dict."
   (interactive)
   (let ((current-location (point))
         (word (flyspell-get-word)))
     (when (consp word)
-      (flyspell-do-correct 'save nil (car word) current-location (cadr word) (caddr word) current-location))))
+      (flyspell-do-correct 'save nil (car word) current-location
+                           (cadr word) (caddr word) current-location))))
 ;; ---
 
 ;; esc quits
@@ -167,7 +168,8 @@ then it takes a second \\[keyboard-quit] to abort the minibuffer."
   (interactive)
   (if (and delete-selection-mode transient-mark-mode mark-active)
       (setq deactivate-mark  t)
-    (when (get-buffer "*Completions*") (delete-windows-on "*Completions*"))
+    (when (get-buffer "*Completions*")
+      (delete-windows-on "*Completions*"))
     (abort-recursive-edit)))
 
 (define-key evil-normal-state-map [escape] 'keyboard-quit)
@@ -179,10 +181,8 @@ then it takes a second \\[keyboard-quit] to abort the minibuffer."
 (define-key minibuffer-local-isearch-map [escape] 'minibuffer-keyboard-quit)
 (global-set-key [escape] 'evil-exit-emacs-state)
 
-(define-key evil-normal-state-map (kbd "C-k") (lambda () (interactive)
-                                                (evil-scroll-up nil)))
-(define-key evil-normal-state-map (kbd "C-j") (lambda () (interactive)
-                                                (evil-scroll-down nil)))
+(define-key evil-normal-state-map (kbd "C-k") (lambda () (interactive) (evil-scroll-up nil)))
+(define-key evil-normal-state-map (kbd "C-j") (lambda () (interactive) (evil-scroll-down nil)))
 
 ;; 2 spaces for tabs
 (setq-default tab-width 2 indent-tabs-mode nil)
@@ -217,8 +217,7 @@ then it takes a second \\[keyboard-quit] to abort the minibuffer."
 :init
 (add-to-list 'auto-mode-alist '("\\.md\\'" . markdown-mode))
 (add-to-list 'auto-mode-alist '("\\.markdown\\'" . markdown-mode))
-(add-hook 'markdown-mode-hook (lambda ()
-                                (set-fill-column 72)))
+(add-hook 'markdown-mode-hook (lambda () (set-fill-column 72)))
 
 (require 'mediawiki)
 :init
@@ -357,7 +356,7 @@ then it takes a second \\[keyboard-quit] to abort the minibuffer."
 (add-hook 'org-mode-hook 'turn-on-flyspell)
 
 ;; Load agenda files if they exist.
-;; Credit: https://stackoverflow.com/questions/11384516/how-to-make-all-org-files-under-a-folder-added-in-agenda-list-automatically
+;; Credit: [StackOverflow] how-to-make-all-org-files-under-a-folder-added-in-agenda-list-automatically
 (when (file-exists-p "~/.emacs.d/agenda")
   (load-library "find-lisp")
   (setq org-agenda-files (find-lisp-find-files "~/.emacs.d/agenda" "\.org$")))
@@ -392,7 +391,7 @@ then it takes a second \\[keyboard-quit] to abort the minibuffer."
 (require 'vimish-fold)
 
 ;; Using mouse to select and copy text to the clipboard
-;; Source: https://stackoverflow.com/questions/13036155/how-to-combine-emacs-primary-clipboard-copy-and-paste-behavior-on-ms-windows
+;; Source: [StackOverflow] how-to-combine-emacs-primary-clipboard-copy-and-paste-behavior-on-ms-windows
 (setq select-active-regions nil)
 (setq mouse-drag-copy-region t)
 (global-set-key [mouse-2] 'mouse-yank-at-click)
