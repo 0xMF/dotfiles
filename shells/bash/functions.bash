@@ -223,6 +223,11 @@ function anc {
   alias grep='grep --color=none -i'
 }
 
+function apt {
+    echo $1
+    [ "$1" == "info" ] && shift && /usr/bin/apt show $* \
+                       || /usr/bin/apt $*
+}
 function dpkg-get-selections {
   dpkg --get-selections
   >&2 echo
