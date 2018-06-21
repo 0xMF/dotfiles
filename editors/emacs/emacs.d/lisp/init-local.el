@@ -194,9 +194,21 @@ then it takes a second \\[keyboard-quit] to abort the minibuffer."
 ;; no backups
 (setq make-backup-files nil)
 
-;; important for markdown and GFM export
+;; important for markdown, GFM export, and viewing pdfs
 (eval-after-load "org" '(require 'ox-md nil t))
 (eval-after-load "org" '(require 'ox-gfm nil t))
+(eval-after-load 'org '(require 'org-pdfview))
+
+(pdf-tools-install)
+(add-to-list 'pdf-view-mode-hook 'pdf-view-midnight-minor-mode)
+
+(defun disable-blinking-pdf ()
+  "Stop pdf mode blinking."
+  (evil-set-initial-state 'pdf-view-mode 'emacs)
+  (add-hook 'pdf-view-mode-hook
+            (lambda ()
+              (set (make-local-variable 'evil-emacs-state-cursor) (list nil)))))
+(add-hook 'pdf-view-mode-hook 'disable-blinking-pdf)
 
 ;; yes to powerline
 (require 'powerline)
