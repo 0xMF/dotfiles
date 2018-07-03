@@ -1,7 +1,7 @@
-# .bashrc 
+# .bashrc
 #-----------------------------------------------------------------
 
-# 
+#
 REPO=$HOME/.bash
 
 # don't do anything if we don't have a prompt (not an interactive shell)
@@ -9,7 +9,7 @@ REPO=$HOME/.bash
 
 # Source global definitions
 if [ -f /etc/bashrc ]; then
-	source /etc/bashrc
+  source /etc/bashrc
 fi
 
 # source local and private settings
@@ -28,7 +28,7 @@ if [ -f $REPO/aliases.bash ]; then
   source $REPO/aliases.bash
 fi
 
-# source various utility functions 
+# source various utility functions
 if [ -f $REPO/functions.bash ]; then
   source $REPO/functions.bash
 fi
@@ -36,7 +36,7 @@ fi
 
 # setup our prompt PS1, first get OS release+version
 OSRV=
-if [ $(uname -o) == "GNU/Linux" ]; then 
+if [ $(uname -o) == "GNU/Linux" ]; then
   if [ -e /etc/os-release ]; then
     OSRV=$(grep "^ID=" /etc/os-release|awk -F'=' '{ print $NF }')
     OSRV=$(grep "PRETTY_NAME=" /etc/os-release|sed 's/"//g'|awk '{print $NF}')
@@ -56,7 +56,7 @@ if [ $(uname -o) == "GNU/Linux" ]; then
   fi
 fi
 
-OSRVT=$(echo $OSRV|sed 's/[a-zA-Z0-9 	]//g')
+OSRVT=$(echo $OSRV|sed 's/[a-zA-Z0-9  ]//g')
 if [[ "$OSRVT" == "()" || -z "$OSRV" ]]; then
   OSRV=$(hostname)
 fi
