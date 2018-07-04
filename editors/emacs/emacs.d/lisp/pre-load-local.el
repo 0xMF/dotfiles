@@ -3,6 +3,9 @@
 ;;    settings of languages and platforms I do not presently want of use.
 ;;----------------------------------------------------------------------------
 
+;; disable warning message when starting up Emacs via crouton
+(setq exec-path-from-shell-check-startup-files nil)
+
 ;;(provide 'regex-tool)
 ;;(provide 'origami)
 ;;(provide 'lua-mode)

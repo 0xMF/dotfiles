@@ -301,6 +301,8 @@ then it takes a second \\[keyboard-quit] to abort the minibuffer."
 (global-set-key (kbd "C-M-h") 'previous-buffer)
 (global-set-key (kbd "C-M-k") 'kill-some-buffers)
 (global-set-key (kbd "C-M-l") 'next-buffer)
+(global-set-key (kbd "C-M-<") 'previous-buffer)
+(global-set-key (kbd "C-M->") 'next-buffer)
 (global-set-key (kbd "C-M-<left>") 'previous-buffer)
 (global-set-key (kbd "C-M-<up>") 'previous-buffer)
 (global-set-key (kbd "C-M-s-<up>") 'previous-buffer)
