@@ -16,7 +16,8 @@
 
 (setq my-required-packages '(benchmark-init evil
                                             fill-column-indicator general mediawiki org-bullets
-                                            powerline use-package vimish-fold))
+                                            powerline smart-mode-line smart-mode-line-powerline-theme
+                                            use-package vimish-fold))
 
 (if (version<= emacs-version "24.6")
     (dolist (package my-required-packages)
@@ -210,9 +211,18 @@ then it takes a second \\[keyboard-quit] to abort the minibuffer."
               (set (make-local-variable 'evil-emacs-state-cursor) (list nil)))))
 (add-hook 'pdf-view-mode-hook 'disable-blinking-pdf)
 
-;; yes to powerline
+;; yes to powerline on a smart-mode-line
 (require 'powerline)
+(require 'smart-mode-line)
+(require 'smart-mode-line-powerline-theme)
+(setq powerline-arrow-shape 'arrow)
+(powerline-vim-theme)
+(setq sml/theme 'powerline)
+(setq sml/no-confirm-load-theme t)
+(setf rm-blacklist "")
 (display-time-mode t)
+(sml/setup)
+
 
 ;;----------------------------------------------------------------------------
 ;; Language mode settings
@@ -295,6 +305,7 @@ then it takes a second \\[keyboard-quit] to abort the minibuffer."
 (global-set-key (kbd "M-z") 'execute-extended-command)
 
 (global-set-key (kbd "C-<escape>") 'evil-mode)
+(global-set-key (kbd "C-M-<escape>") 'evil-mode)
 (global-set-key (kbd "C-M-;") 'evil-mode)
 
 (global-set-key (kbd "C-M-j") 'list-buffers)
