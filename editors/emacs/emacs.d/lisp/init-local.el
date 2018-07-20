@@ -203,13 +203,52 @@ then it takes a second \\[keyboard-quit] to abort the minibuffer."
 (pdf-tools-install)
 (add-to-list 'pdf-view-mode-hook 'pdf-view-midnight-minor-mode)
 
-(defun disable-blinking-pdf ()
-  "Stop pdf mode blinking."
+(defun my-pdf-view-settings ()
+  "Disable blinking in pdf-view-mode and enable vi-style keybindings."
   (evil-set-initial-state 'pdf-view-mode 'emacs)
   (add-hook 'pdf-view-mode-hook
             (lambda ()
-              (set (make-local-variable 'evil-emacs-state-cursor) (list nil)))))
-(add-hook 'pdf-view-mode-hook 'disable-blinking-pdf)
+              (setq pdf-view-continuous 't)
+              (set (make-local-variable 'evil-emacs-state-cursor) (list nil))
+              (local-set-key "j" 'pdf-view-next-line-or-next-page)
+              (local-set-key "k" 'pdf-view-previous-line-or-previous-page)
+              (local-set-key "n" 'pdf-view-scroll-up-or-next-page)
+              (local-set-key "p" 'pdf-view-scroll-down-or-previous-page)
+              (local-set-key "J" 'pdf-view-next-page)
+              (local-set-key "K" 'pdf-view-previous-page)
+              (local-set-key "g" 'pdf-view-first-page)
+              (local-set-key "G" 'pdf-view-last-page)
+              (local-set-key "l" 'pdf-view-goto-page)
+              (local-set-key "/" 'isearch-forward)
+              (local-set-key "?" 'isearch-backward)
+              (local-set-key (kbd "<mouse-5>") 'pdf-view-next-line-or-next-page)
+              (local-set-key (kbd "<mouse-4>") 'pdf-view-previous-line-or-previous-page))))
+(add-hook 'pdf-view-mode-hook 'my-pdf-view-settings)
+;; (defun enable-evil-in-pdf ()
+;;   "Enable evil in pdfview mode."
+;;   ;;(evil-set-initial-state 'pdf-view-mode 'emacs)
+;;(evil-set-initial-state 'pdf-view-mode 'pdf-view-mode-map)
+;;   (add-hook 'pdf-org-mode-hook (lambda ()
+;;                                  ;; Navigation
+;;                                  "0"  'image-bol
+;;                                  "$"  'image-eol
+;;                                  "l"  'image-forward-hscroll
+;;                                  "h"  'image-backward-hscroll
+;;                                  "gl"  'pdf-view-goto-label
+;;                                  "u" 'pdf-view-scroll-down-or-previous-page
+;;                                  "d" 'pdf-view-scroll-up-or-next-page
+;;                                  (kbd "C-u") 'pdf-view-scroll-down-or-previous-page
+;;                                  (kbd "C-d") 'pdf-view-scroll-up-or-next-page
+;;                                  (kbd "``")  'pdf-history-backward
+;;                                  ;; Search
+;;                                  "/" 'isearch-forward
+;;                                  "?" 'isearch-backward
+;;                                  ;; Actions
+;;                                  "r"   'pdf-view-revert-buffer
+;;                                  "o"   'pdf-links-action-perform
+;;                                  "O"   'pdf-outline
+;;                                  "zr"  'pdf-view-scale-reset)) 'append)
+;;(add-hook 'pdf-view-mode-hook 'enable-evil-in-pdf)
 
 ;; yes to powerline on a smart-mode-line
 (require 'powerline)
