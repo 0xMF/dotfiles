@@ -496,6 +496,15 @@ then it takes a second \\[keyboard-quit] to abort the minibuffer."
             (local-set-key "l" 'Info-forward-node)
             (local-set-key "/" 'isearch-forward)))
 
+(setq counsel-find-file-ignore-regexp (concat "\\(.~undo-tree~\\|"
+                                              ".desktop\\|"
+                                              ".git\\|"
+                                              ".historian\\|"
+                                              ".lock\\|"
+                                              ".*.fasl\\|"
+                                              ".*~\\|"
+                                              "#*#\\)"))
+
 ;; Local Variables:
 ;; coding: utf-8
 ;; no-byte-compile: t
