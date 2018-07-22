@@ -569,6 +569,10 @@ function emacs() {
   `which -a emacs|sed '1q'` "$@" 2>/dev/null &
 }
 
+function end() {
+  `which -a emacs|sed '1q'` "$@" --no-desktop 2>/dev/null &
+}
+
 function otp() {
   if [ -d $HOME/repos/otp ];
   then
