@@ -205,6 +205,16 @@ then it takes a second \\[keyboard-quit] to abort the minibuffer."
 (pdf-tools-install)
 (add-to-list 'pdf-view-mode-hook 'pdf-view-midnight-minor-mode)
 
+(defun my-eww-settings ()
+  "Enable vi-style keybindings."
+  (define-key eww-mode-map "h" 'previous-char)
+  (define-key eww-mode-map "j" 'next-line)
+  (define-key eww-mode-map "k" 'previous-line)
+  (define-key eww-mode-map "l" 'next-char)
+  (define-key evil-normal-state-map "n" 'eww-forward-url)
+  (define-key evil-normal-state-map "p" 'eww-back-url))
+(add-hook 'eww-mode-hook 'my-eww-settings)
+
 (defun my-pdf-view-settings ()
   "Disable blinking in pdf-view-mode and enable vi-style keybindings."
   (evil-set-initial-state 'pdf-view-mode 'emacs)
@@ -443,6 +453,7 @@ then it takes a second \\[keyboard-quit] to abort the minibuffer."
       (load-file FILE)))
 
 (load-if-file-exists "~/.emacs.d/lisp/secrets.el")
+(load-if-file-exists "~/quicklisp/clhs-use-local.el")
 
 ;; wrap lines (hard return) around column 100
 (add-hook 'text-mode-hook 'turn-on-auto-fill)
