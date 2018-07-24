@@ -13,13 +13,14 @@
  ;; If there is more than one, they won't work right.
  '(custom-enabled-themes (quote nil))
  '(custom-safe-themes
-   (quote ("c41f0d2f6fcf80d298fab81e52f615851c56502ece0656fa2542436264d3170d"
+   (quote ("84d2f9eeb3f82d619ca4bfffe5f157282f4779732f48a5ac1484d94d5ff5b279"
+           "c41f0d2f6fcf80d298fab81e52f615851c56502ece0656fa2542436264d3170d"
            "b877536cd0ac12cf6ceed5bc29b186caefa4b411f48da9f6c5f0c41cf2dd371e"
            "d37a1eff1929a1e43cfc0649a0c2abd9b73c9141bf844998bdae553cf8f526f0"
            "bea5410f1c106a2a27e350da4c5c857b3c1a45220985830569f981705bd971f6" default)))
  '(package-selected-packages
    (quote (benchmark-init evil evil-org fill-column-indicator general mediawiki
-                          org-bullets org-pdfview powerline smart-mode-line
+                          org-bullets org-pdfview ox-pandoc powerline smart-mode-line
                           smart-mode-line-powerline-theme use-package vimish-fold)))
  '(pdf-view-midnight-colors (quote ("#0080c0" . "#180248")))
  '(session-use-package t nil (session)))
