@@ -482,7 +482,7 @@ then it takes a second \\[keyboard-quit] to abort the minibuffer."
 ;; (used and saved through menu Options->Set Default Font... into cutom.el)
 
 ;; optionally (set-frame-font "Source Code Pro Semibold 10")
-(set-frame-font "DejaVu Sans Mono 11")
+(set-frame-font "DejaVu Sans Mono 10")
 (setenv "PATH" (concat (getenv "PATH") ":~/bin"))
 (setq exec-path (append exec-path '("~/bin")))
 (setq-default major-mode 'org-mode)
