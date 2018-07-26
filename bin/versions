@@ -1,0 +1,42 @@
+#!/bin/bash
+
+SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+VERSIONS_F="${SCRIPT_DIR%bin}doc/versions"
+
+function cleanup() {
+  [ -e ${VERSIONS_F}.old ] && cat ${VERSIONS_F}.old >> ${VERSIONS_F}.org && rm -rf ${VERSIONS_F}.old
+}
+
+[ -e ${VERSIONS_F}.org ] && mv -f ${VERSIONS_F}.org ${VERSIONS_F}.old
+
+printf "*** %b " $TODAY >> ${VERSIONS_F}.org
+\grep "PRETTY_NAME=" /etc/os-release|cut -d"=" -f2 >> ${VERSIONS_F}.org
+printf "\n" >> ${VERSIONS_F}.org
+
+dotutils="asciidoc bash dash dblatex emacs gcc gem git go ksh pal pandoc\
+          perl pry python2 python3 racket ruby sbcl sh tex tmux tmuxinator vim"
+
+for u in $dotutils
+do
+  echo -n "| " >> ${VERSIONS_F}.org
+
+  which $u > /dev/null
+  if [ $? -eq 0 ]
+  then
+    case "$u" in
+      dash|sh)  echo "$u `dpkg -s dash | grep Version | cut -d: -f2`"                                   ;;
+      gcc)      $u -v 2>&1 | tail -1                                                                    ;;
+      gem)      echo "$u `gem --version 2>&1`"                                                          ;;
+      perl)     echo "$u | `perl --version | head -2 | sed 's/\(.*\) \((.*)\) \(.*\)/\2/' |tr -d '\n'`" ;;
+      python2)  $u --version 2>&1 ;;
+      tmux)     $u -V             ;;
+      *)        $u --version      ;;
+    esac | head -1 | sed -r 's/(,?) version//;s/( [0-9])/ |\1/;s/$/ |/' >> ${VERSIONS_F}.org
+  else
+    echo "$u | not installed |" >> ${VERSIONS_F}.org
+  fi
+done
+
+printf "\n" >> ${VERSIONS_F}.org
+
+trap cleanup EXIT
