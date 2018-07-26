@@ -152,10 +152,13 @@ gir1.2-gdkpixbuf-2.0:amd64			install
 gir1.2-glib-2.0:amd64				install
 gir1.2-gtk-3.0:amd64				install
 gir1.2-harfbuzz-0.0:amd64			install
+gir1.2-javascriptcoregtk-4.0:amd64		install
 gir1.2-pango-1.0:amd64				install
 gir1.2-poppler-0.18:amd64			install
 gir1.2-rsvg-2.0:amd64				install
+gir1.2-soup-2.4:amd64				install
 gir1.2-vte-2.91:amd64				install
+gir1.2-webkit2-4.0:amd64			install
 git						install
 git-doc						install
 git-man						install
@@ -394,6 +397,7 @@ libdjvulibre-dev:amd64				install
 libdjvulibre-text				install
 libdjvulibre21:amd64				install
 libdns-export1100				install
+libdns-export1102				install
 libdpkg-perl					install
 libdrm-amdgpu1:amd64				install
 libdrm-common					install
@@ -584,6 +588,7 @@ libisofs6:amd64					install
 libitm1:amd64					install
 libjack-jackd2-0:amd64				install
 libjavascriptcoregtk-4.0-18:amd64		install
+libjavascriptcoregtk-4.0-dev:amd64		install
 libjbig-dev:amd64				install
 libjbig0:amd64					install
 libjbig2dec0:amd64				install
@@ -648,7 +653,6 @@ libmagickcore-6.q16-dev:amd64			install
 libmagickwand-6-headers				install
 libmagickwand-6.q16-6:amd64			install
 libmagickwand-6.q16-dev:amd64			install
-libmagickwand-dev				deinstall
 libmailtools-perl				install
 libmime-charset-perl				install
 libmms0:amd64					install
@@ -802,6 +806,7 @@ libsndio6.1:amd64				install
 libsombok3:amd64				install
 libsoup-gnome2.4-1:amd64			install
 libsoup2.4-1:amd64				install
+libsoup2.4-dev:amd64				install
 libsoxr0:amd64					install
 libspeex-dev:amd64				install
 libspeex1:amd64					install
@@ -895,6 +900,9 @@ libwayland-dev:amd64				install
 libwayland-egl1:amd64				install
 libwayland-server0:amd64			install
 libwebkit2gtk-4.0-37:amd64			install
+libwebkit2gtk-4.0-37-gtk2:amd64			install
+libwebkit2gtk-4.0-dev:amd64			install
+libwebkit2gtk-4.0-doc				install
 libwebp6:amd64					install
 libwebpdemux2:amd64				install
 libwebpmux3:amd64				install
@@ -1064,7 +1072,6 @@ ncurses-base					install
 ncurses-bin					install
 ncurses-term					install
 netbase						install
-netsurf-gtk					deinstall
 nettle-dev:amd64				install
 notification-daemon				install
 ntfs-3g						install
