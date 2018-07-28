@@ -279,13 +279,6 @@ then it takes a second \\[keyboard-quit] to abort the minibuffer."
 ;; Language mode settings
 ;;----------------------------------------------------------------------------
 
-
-;;----------------------------------------------------------------------------
-;; Pandoc-mode settings
-;;----------------------------------------------------------------------------
-(add-hook 'markdown-mode-hook 'pandoc-mode)
-(add-hook 'pandoc-mode-hook 'pandoc-load-default-settings)
-
 (use-package markdown-mode)
 :init
 (add-to-list 'auto-mode-alist '("\\.md\\'" . markdown-mode))
