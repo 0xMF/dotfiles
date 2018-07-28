@@ -61,7 +61,7 @@ alias sbcl='rlwrap sbcl'
 alias tree='tree -I .git --charset UTF-8 --dirsfirst -F'
 alias tmux='tmux -u'
 alias vi='vim'
-alias vb='vimb 2>/dev/null &'
+alias vb='/usr/local/bin/vimb 2>/dev/null &'
 alias vimb='/usr/local/bin/vimb 2>/dev/null &'
 
 # git based aliases
