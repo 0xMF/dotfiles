@@ -129,6 +129,7 @@ four-in-a-row					install
 fuse						install
 g++						install
 g++-8						install
+gawk						install
 gcc						install
 gcc-7						install
 gcc-7-base:amd64				install
@@ -240,6 +241,7 @@ isc-dhcp-common					install
 iso-codes					install
 ispell						install
 javascript-common				install
+kbd						install
 keyboard-configuration				install
 keychain					install
 kmod						install
@@ -563,7 +565,7 @@ libicu-le-hb0:amd64				install
 libicu60:amd64					install
 libidn11:amd64					install
 libidn2-0:amd64					install
-libidn2-0-dev					install
+libidn2-0-dev:amd64				install
 libidn2-dev:amd64				install
 libiec61883-0:amd64				install
 libijs-0.35:amd64				install
@@ -1053,8 +1055,10 @@ login						install
 logrotate					install
 lsb-base					install
 lsb-release					install
+lsof						install
 lynx						install
 lynx-common					install
+lzop						install
 m17n-db						install
 m4						install
 make						install
@@ -1084,6 +1088,7 @@ openssl						install
 orage						install
 p7zip						install
 p7zip-full					install
+pal						install
 pandoc						install
 pandoc-data					install
 parted						install
@@ -1106,6 +1111,7 @@ popularity-contest				install
 preview-latex-style				install
 procps						install
 pry						install
+psmisc						install
 pulseaudio					install
 pulseaudio-utils				install
 python						install
@@ -1113,6 +1119,7 @@ python-apt					install
 python-apt-common				install
 python-doc					install
 python-minimal					install
+python-pip-whl					install
 python2						install
 python2-doc					install
 python2-minimal					install
@@ -1129,7 +1136,9 @@ python3-examples				install
 python3-gi					install
 python3-lib2to3					install
 python3-minimal					install
+python3-pip					install
 python3-pkg-resources				install
+python3-setuptools				install
 python3-six					install
 python3.6					install
 python3.6-doc					install
@@ -1146,6 +1155,7 @@ rsyslog						install
 rtkit						install
 ruby						install
 ruby-coderay					install
+ruby-dev:amd64					install
 ruby-did-you-mean				install
 ruby-method-source				install
 ruby-minitest					install
@@ -1154,6 +1164,7 @@ ruby-power-assert				install
 ruby-test-unit					install
 ruby-xmlrpc					install
 ruby2.5						install
+ruby2.5-dev:amd64				install
 ruby2.5-doc					install
 rubygems-integration				install
 sbcl						install
