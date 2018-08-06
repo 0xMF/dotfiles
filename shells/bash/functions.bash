@@ -586,7 +586,7 @@ function erls() {
 }
 
 function emacs() {
-  `which -a emacs|sed '1q'` "$@" 2>/dev/null &
+  `which -a emacs|sed '1q'` "$@" 2>/dev/null && [ `which pal 2>/dev/null` ] && pal &
 }
 
 function end() {
