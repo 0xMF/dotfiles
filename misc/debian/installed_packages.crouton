@@ -36,6 +36,8 @@ bsdutils					install
 build-essential					install
 bzip2						install
 ca-certificates					install
+console-setup					install
+console-setup-linux				install
 coreutils					install
 cpio						install
 cpp						install
@@ -43,7 +45,6 @@ cpp-7						install
 cpp-8						install
 cron						install
 crouton-network-manager				install
-crouton-xserver-xorg-legacy			install
 curl						install
 dash						install
 dblatex						install
@@ -78,6 +79,7 @@ desktop-base					install
 desktop-file-utils				install
 developers-reference				install
 dh-autoreconf					install
+dh-python					install
 dh-strip-nondeterminism				install
 dictionaries-common				install
 diffstat					install
@@ -96,6 +98,7 @@ docbook-xsl					install
 dosfstools					install
 dpkg						install
 dpkg-dev					install
+dselect						install
 dwz						install
 e2fsprogs					install
 eject						install
@@ -487,6 +490,7 @@ libgl1:amd64					install
 libgl1-mesa-dri:amd64				install
 libgl1-mesa-glx:amd64				install
 libglapi-mesa:amd64				install
+libgles1:amd64					install
 libgles2:amd64					install
 libglib-perl					install
 libglib2.0-0:amd64				install
@@ -762,8 +766,10 @@ libpython-stdlib:amd64				install
 libpython2-stdlib:amd64				install
 libpython2.7-minimal:amd64			install
 libpython2.7-stdlib:amd64			install
+libpython3-dev:amd64				install
 libpython3-stdlib:amd64				install
 libpython3.6:amd64				install
+libpython3.6-dev:amd64				install
 libpython3.6-minimal:amd64			install
 libpython3.6-stdlib:amd64			install
 libqqwing2v5:amd64				install
@@ -1076,6 +1082,8 @@ ncurses-base					install
 ncurses-bin					install
 ncurses-term					install
 netbase						install
+netsurf-common					install
+netsurf-gtk					install
 nettle-dev:amd64				install
 notification-daemon				install
 ntfs-3g						install
@@ -1130,6 +1138,7 @@ python3						install
 python3-apt					install
 python3-chardet					install
 python3-debian					install
+python3-dev					install
 python3-distutils				install
 python3-doc					install
 python3-examples				install
@@ -1141,6 +1150,7 @@ python3-pkg-resources				install
 python3-setuptools				install
 python3-six					install
 python3.6					install
+python3.6-dev					install
 python3.6-doc					install
 python3.6-examples				install
 python3.6-minimal				install
@@ -1337,7 +1347,6 @@ xserver-xorg-core				install
 xserver-xorg-input-all				install
 xserver-xorg-input-libinput			install
 xserver-xorg-input-wacom			install
-xserver-xorg-legacy				install
 xserver-xorg-video-intel			hold
 xsltproc					install
 xterm						install
