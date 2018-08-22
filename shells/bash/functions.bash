@@ -573,6 +573,10 @@ function g() {
   esac
 }
 
+function gt {
+  git status 2&>/dev/null && [ $? -eq 0 ] && git tags | sort -n | fmt -w 110
+}
+
 function loc() {
   `which localc` "$@" 2>/dev/null &
 }
