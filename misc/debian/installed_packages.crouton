@@ -190,6 +190,14 @@ gnugo						install
 gnupg						install
 gnupg-l10n					install
 gnupg-utils					install
+golang						install
+golang-1.10					install
+golang-1.10-doc					install
+golang-1.10-go					install
+golang-1.10-src					install
+golang-doc					install
+golang-go					install
+golang-src					install
 gpg						install
 gpg-agent					install
 gpg-wks-client					install
@@ -212,6 +220,7 @@ gtk-update-icon-cache				install
 gtk2-engines-pixbuf:amd64			install
 gtk2-engines-xfce				install
 guile-2.0-libs:amd64				install
+guile-2.2-libs:amd64				install
 gvfs:amd64					install
 gvfs-common					install
 gvfs-daemons					install
@@ -481,7 +490,7 @@ libgdbm5:amd64					install
 libgdk-pixbuf2.0-0:amd64			install
 libgdk-pixbuf2.0-bin				install
 libgdk-pixbuf2.0-common				install
-libgdk-pixbuf2.0-dev				install
+libgdk-pixbuf2.0-dev:amd64			install
 libgee-0.8-2:amd64				install
 libgif-dev					install
 libgif7:amd64					install
@@ -810,7 +819,7 @@ libsm6:amd64					install
 libsmartcols1:amd64				install
 libsnappy1v5:amd64				install
 libsndfile1:amd64				install
-libsndio6.1:amd64				install
+libsndio7.0:amd64				install
 libsombok3:amd64				install
 libsoup-gnome2.4-1:amd64			install
 libsoup2.4-1:amd64				install
@@ -1056,6 +1065,7 @@ lintian						install
 linux-libc-dev:amd64				install
 lm-sensors					install
 lmodern						install
+localepurge					install
 locales						install
 login						install
 logrotate					install
@@ -1149,11 +1159,13 @@ python3-pip					install
 python3-pkg-resources				install
 python3-setuptools				install
 python3-six					install
+python3-venv					install
 python3.6					install
 python3.6-dev					install
 python3.6-doc					install
 python3.6-examples				install
 python3.6-minimal				install
+python3.6-venv					install
 quadrapassel					install
 quarry						install
 quilt						install
