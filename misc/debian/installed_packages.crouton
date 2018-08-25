@@ -87,6 +87,7 @@ eject						install
 elfutils					install
 emacsen-common					install
 enchant						install
+ethtool						install
 exfat-fuse					install
 exfat-utils					install
 exim4-base					install
@@ -183,6 +184,7 @@ gvfs-daemons					install
 gvfs-libs:amd64					install
 gyp						install
 gzip						install
+hdparm						install
 hicolor-icon-theme				install
 hoichess					install
 hostname					install
@@ -618,6 +620,7 @@ libpaper-utils					install
 libpaper1:amd64					install
 libparted-fs-resize0:amd64			install
 libparted2:amd64				install
+libpci3:amd64					install
 libpciaccess0:amd64				install
 libpcre16-3:amd64				install
 libpcre2-8-0:amd64				install
@@ -801,6 +804,7 @@ libx32itm1					install
 libx32quadmath0					install
 libx32stdc++6					install
 libx32ubsan1					install
+libx86-1:amd64					install
 libxau-dev:amd64				install
 libxau6:amd64					install
 libxaw7:amd64					install
@@ -1148,8 +1152,10 @@ perl-modules-5.26				install
 perl-openssl-defaults:amd64			install
 pinentry-curses					install
 pkg-config					install
+pm-utils					install
 po-debconf					install
 policykit-1					install
+policykit-1-gnome				install
 poppler-data					install
 popularity-contest				install
 postgresql					install
@@ -1157,6 +1163,7 @@ postgresql-10					install
 postgresql-client-10				install
 postgresql-client-common			install
 postgresql-common				install
+powermgmt-base					install
 preview-latex-style				install
 procps						install
 pry						install
@@ -1266,6 +1273,7 @@ upower						install
 usbmuxd						install
 util-linux					install
 uuid-dev:amd64					install
+vbetool						install
 vim-addon-manager				install
 vim-asciidoc					install
 vim-common					install
@@ -1306,6 +1314,9 @@ xdg-user-dirs					install
 xdg-utils					install
 xfce4-notifyd					install
 xfce4-panel					install
+xfce4-power-manager				install
+xfce4-power-manager-data			install
+xfce4-power-manager-plugins			install
 xfce4-session					install
 xfce4-settings					install
 xfce4-terminal					install
