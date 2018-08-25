@@ -41,7 +41,6 @@ crouton-network-manager				install
 curl						install
 dash						install
 dblatex						install
-dblatex-doc					install
 dbus						install
 dbus-user-session				install
 dbus-x11					install
@@ -55,7 +54,6 @@ debhelper					install
 debian-archive-keyring				install
 debian-faq					install
 debian-goodies					install
-debian-policy					install
 debian-reference-common				install
 debian-reference-en				install
 debianutils					install
@@ -150,8 +148,6 @@ gnome-chess					install
 gnome-icon-theme				install
 gnome-themes-extra:amd64			install
 gnome-themes-extra-data				install
-gnuchess					install
-gnuchess-book					install
 gnupg						install
 gnupg-l10n					install
 gnupg-utils					install
@@ -173,7 +169,6 @@ gpgv						install
 grep						install
 groff-base					install
 gsettings-desktop-schemas			install
-gsfonts						install
 gstreamer1.0-gl:amd64				install
 gstreamer1.0-plugins-base:amd64			install
 gstreamer1.0-plugins-good:amd64			install
@@ -213,6 +208,7 @@ javascript-common				install
 kbd						install
 keyboard-configuration				install
 keychain					install
+keyutils					install
 kmod						install
 krb5-locales					install
 less						install
@@ -513,7 +509,6 @@ libjs-inherits					install
 libjs-is-typedarray				install
 libjs-jquery					install
 libjs-node-uuid					install
-libjs-sphinxdoc					install
 libjs-underscore				install
 libjson-c3:amd64				install
 libjson-glib-1.0-0:amd64			install
@@ -782,7 +777,6 @@ libwayland-server0:amd64			install
 libwebkit2gtk-4.0-37:amd64			install
 libwebkit2gtk-4.0-37-gtk2:amd64			install
 libwebkit2gtk-4.0-dev:amd64			install
-libwebkit2gtk-4.0-doc				install
 libwebp6:amd64					install
 libwebpdemux2:amd64				install
 libwmf-dev					install
@@ -908,7 +902,6 @@ lightdm						install
 lightdm-gtk-greeter				install
 lightsoff					install
 linux-libc-dev:amd64				install
-lm-sensors					install
 lmodern						install
 localepurge					install
 locales						install
@@ -1171,12 +1164,10 @@ psmisc						install
 python						install
 python-apt					install
 python-apt-common				install
-python-doc					install
 python-minimal					install
 python-pip-whl					install
 python-pkg-resources				install
 python2						install
-python2-doc					install
 python2-minimal					install
 python2.7					install
 python2.7-doc					install
@@ -1235,7 +1226,6 @@ systemd						install
 systemd-sysv					install
 sysvinit-utils					install
 t1utils						install
-tali						install
 tar						install
 tasksel						install
 tasksel-data					install
@@ -1253,11 +1243,8 @@ texlive-fonts-recommended			install
 texlive-formats-extra				install
 texlive-lang-greek				install
 texlive-latex-base				install
-texlive-latex-base-doc				install
 texlive-latex-extra				install
-texlive-latex-extra-doc				install
 texlive-latex-recommended			install
-texlive-latex-recommended-doc			install
 texlive-pictures				install
 texlive-plain-generic				install
 texlive-science					install
@@ -1319,7 +1306,6 @@ xdg-user-dirs					install
 xdg-utils					install
 xfce4-notifyd					install
 xfce4-panel					install
-xfce4-sensors-plugin				install
 xfce4-session					install
 xfce4-settings					install
 xfce4-terminal					install
@@ -1348,7 +1334,6 @@ xserver-xorg-input-libinput			install
 xserver-xorg-input-wacom			install
 xserver-xorg-video-intel			hold
 xsltproc					install
-xterm						install
 xtrans-dev					install
 xutils-dev					install
 xxd						install
