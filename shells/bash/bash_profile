@@ -1,3 +1,3 @@
 # ~/.bash_profile: executed by bash(1) when login shell starts.
 
-[[ -f $HOME/.bashrc ]] && . $HOME/.bashrc
+[[ $- == "*i*" && -f $HOME/.bashrc ]] && . $HOME/.bashrc
