@@ -388,7 +388,6 @@ function gcr {
   esac
 }
 
-
 function __gdh {
   n=${1:--10}
   git log $n --graph --date=short \
@@ -398,7 +397,7 @@ function __gdh {
 function __gh {
   n=${1:--10}
   git log $n --graph --pretty=format:"%C(red bold)%h%Creset %C(cyan bold)|%Creset %C(auto)%d%Creset %s"
-  git diff --stat HEAD~$((0 - $n)) HEAD
+  eval "[ `git log --pretty=oneline | wc -l` -gt 10 ] && git diff --stat HEAD~$((0 - $n)) HEAD"
 }
 
 # queries git log based on arguments
