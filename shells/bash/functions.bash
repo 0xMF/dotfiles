@@ -629,4 +629,8 @@ function lessmd {
               || pandoc `echo "$files"` | w3m -num -s -T text/html
 }
 
+function contributors {
+  git shortlog -s -n | sort -b -k1,1nr -k2
+}
+
 # vim:nospell:ft=sh:
