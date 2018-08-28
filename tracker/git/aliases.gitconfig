@@ -88,6 +88,7 @@
   # Blog Post: Human Git Aliases; http://gggritso.com/human-git-aliases
   # https://github.com/gggritso/dotfiles/blob/master/gitconfig.symlink
   # BEGIN HUMAN
+  #----
   amend     = commit --amend
   back      = checkout "-"
   branch-name= rev-parse --abbrev-ref HEAD
@@ -97,7 +98,8 @@
   down      = pull --rebase
   discard   = checkout --
   filetrail = git log --follow -p -w
-  graph     = log --graph -10 --branches --remotes --tags  --format=format:'%Cgreen%h %Creset %<(75,trunc)%s (%cN, %ar) %Cred%d' --date-order
+  graph     = log --graph -10 --branches --remotes --tags\
+              --format=format:'%Cgreen%h %Creset %<(75,trunc)%s (%cN, %ar) %Cred%d' --date-order
   history   = log -10 --format=format:'%Cgreen%h %Creset %s (%cN, %ar)'
   invert    = revert
   last      = log -1 HEAD --format=format:"%Cred%H"
@@ -126,7 +128,6 @@
   untrack   = rm -r --cached
   up        = push up master
   what      = show -w
-  #----
 
   dump      = cat-file -p
   history   = log --pretty=format:"%C(yellow)%h\\ %ad%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --graph --date=short
@@ -140,10 +141,11 @@
   type      = cat-file -t
   undo      = reset --soft HEAD~1
   unignore  = update-index --no-assume-changed
+  #----
   # END HUMAN
 
-	pup       = "!git remote update -p && git merge --ff-only @{u}"
-	pupup     = "!git remote update up -p && git merge --ff-only @{u}"
+  pup       = "!git remote update -p && git merge --ff-only @{u}"
+  pupup     = "!git remote update up -p && git merge --ff-only @{u}"
 
 # vim: et:nonu:nospell:ft=gitconfig
 
