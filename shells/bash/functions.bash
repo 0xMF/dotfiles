@@ -40,6 +40,15 @@ function light {
   export LS_COLORS
 }
 
+function parse_git_repo {
+  [ -z "$(parse_git_branch)" ] && return
+
+  is_bare=$(git rev-parse --is-bare-repository)
+  [ "$is_bare" == "true" ] \
+  && echo "$BLUE($CYAN"bare $YELLOW⚙"$BLUE)" \
+  || parse_git_branch_colour
+}
+
 function parse_git_branch {
   ref=$(git symbolic-ref HEAD 2> /dev/null) || return
   echo ${ref#refs/heads/}
@@ -145,12 +154,12 @@ function todo(){
 
 function ps1 {
   if [ `id -u` -eq 0 ]; then
-    PS1="$RED${OSRV}$BLUE:\w $(parse_git_branch_colour)$RED#$NOCOLOR "
+    PS1="$RED${OSRV}$BLUE:\w $(parse_git_repo)$RED#$NOCOLOR "
   else
     if [ $(/usr/bin/id -u) -eq 1000 ]; then
-      PS1="$GREEN${OSRV}$BLUE:\W$(parse_git_branch_colour 2>/dev/null)$NOCOLOR$ "
+      PS1="$GREEN${OSRV}$BLUE:\W$(parse_git_repo 2>/dev/null)$NOCOLOR$ "
     else
-      PS1="$PURPLE${OSRV}$BLUE:\W$(parse_git_branch_colour 2>/dev/null)$NOCOLOR$ "
+      PS1="$PURPLE${OSRV}$BLUE:\W$(parse_git_repo 2>/dev/null)$NOCOLOR$ "
     fi
   fi
   PROMPT_COMMAND="ps1"
@@ -158,27 +167,27 @@ function ps1 {
 
 function psh {
   if [ `id -u` -eq 0 ]; then
-    PS1="$RED\h:\W $(parse_git_branch_colour)$RED#$NOCOLOR "
+    PS1="$RED\h:\W $(parse_git_repo)$RED#$NOCOLOR "
   else
-    PS1="$BLUE\h:\W $(parse_git_branch_colour)$NOCOLOR$ "
+    PS1="$BLUE\h:\W $(parse_git_repo)$NOCOLOR$ "
   fi
   PROMPT_COMMAND="psh"
 }
 
 function pss {
   if [ `id -u` -eq 0 ]; then
-    PS1="$RED\W $(parse_git_branch_colour)$RED#$NOCOLOR "
+    PS1="$RED\W $(parse_git_repo)$RED#$NOCOLOR "
   else
-    PS1="$BLUE\W $(parse_git_branch_colour)$NOCOLOR$ "
+    PS1="$BLUE\W $(parse_git_repo)$NOCOLOR$ "
   fi
   PROMPT_COMMAND="pss"
 }
 
 function psl {
   if [ `id -u` -eq 0 ]; then
-    PS1="$PURPLE\W $(parse_git_branch_colour)$RED#$NOCOLOR "
+    PS1="$PURPLE\W $(parse_git_repo)$RED#$NOCOLOR "
   else
-    PS1="$CYAN\W $(parse_git_branch_colour)$NOCOLOR$ "
+    PS1="$CYAN\W $(parse_git_repo)$NOCOLOR$ "
   fi
   PROMPT_COMMAND="psl"
 }
@@ -189,9 +198,9 @@ function psd {
 
 function psm {
   if [ `id -u` -eq 0 ]; then
-    PS1="$(parse_git_branch_colour)$RED#$NOCOLOR "
+    PS1="$(parse_git_repo)$RED#$NOCOLOR "
   else
-    PS1="$(parse_git_branch_colour)$NOCOLOR$ "
+    PS1="$(parse_git_repo)$NOCOLOR$ "
   fi
   PROMPT_COMMAND="psm"
 }
