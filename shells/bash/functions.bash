@@ -642,4 +642,11 @@ function contributors {
   git shortlog -s -n | sort -b -k1,1nr -k2
 }
 
+function ds {
+  h=$(df -hTxtmpfs -xdevtmpfs | head -1)
+  b=$(df -hTxtmpfs -xdevtmpfs | sed -n '2,$p'| sort -hk6)
+  printf "%s\n%s\n" "$h" "$b"
+  dpigs -H
+}
+
 # vim:nospell:ft=sh:
