@@ -89,58 +89,58 @@
   # https://github.com/gggritso/dotfiles/blob/master/gitconfig.symlink
   # BEGIN HUMAN
   #----
-  amend     = commit --amend
-  back      = checkout "-"
-  branch-name= rev-parse --abbrev-ref HEAD
-  branches  = branch -a
-  branchout = checkout -b
-  contributors = shortlog -s -n
-  down      = pull --rebase
-  discard   = checkout --
-  filetrail = git log --follow -p -w
-  graph     = log --graph -10 --branches --remotes --tags\
-              --format=format:'%Cgreen%h %Creset %<(75,trunc)%s (%cN, %ar) %Cred%d' --date-order
-  history   = log -10 --format=format:'%Cgreen%h %Creset %s (%cN, %ar)'
-  invert    = revert
-  last      = log -1 HEAD --format=format:"%Cred%H"
-  mergetrail = log --ancestry-path --merges
-  move      = mv
-  nevermind = !git reset --hard HEAD && git clean -d -f
-  praise    = blame
-  precommit = diff --cached -w --word-diff=color --word-diff-regex='[^[:space:]<>]+'
-  prestage  = diff -w --word-diff=color
-  remotes   = remote -v
-  remove    = rm
-  resave    = commit --amend
-  rewrite   = rebase -i
-  rushes    = log --since=00:00:00 --all --no-merges --oneline --author="Mark Fernandes"
-  rush      = rushes
-  ru        = rushes
-  save      = commit -am
-  stashes   = stash list
-  summary   = status -u -s
-  tags      = tag
-  uncommit  = reset --mixed HEAD~
-  unmerged  = branch --no-merged
-  unmerged  = diff -w --name-only --diff-filter=U
-  unstage   = reset -q HEAD --
-  unstash   = stash pop
-  untrack   = rm -r --cached
-  up        = push up master
-  what      = show -w
+  amend       = commit --amend
+  back        = checkout "-"
+  branches    = branch -a
+  branchout   = checkout -b
+  branch-name = rev-parse --abbrev-ref HEAD
+  contributors= shortlog -s -n
+  down        = pull --rebase
+  discard     = checkout --
+  dump        = cat-file -p
+  filetrail   = git log --follow -p -w
+  graph       = log --graph -10 --branches --remotes --tags\
+                    --format=format:'%Cgreen%h %Creset %<(75,trunc)%s (%cN, %ar) %Cred%d' --date-order
 
-  dump      = cat-file -p
-  history   = log --pretty=format:"%C(yellow)%h\\ %ad%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --graph --date=short
-  ignore    = update-index --assume-unchanged
-  ignored   = ls-files -o -i --exclude-standard   # Show files ignored by git:
-  incoming  = log orgin/master ^master            # show only what is in orgin/master that isn't in master
-  logs      = log --stat
-  outgoing  = log master ^orgin/master            # show only what is in master that isn't in orgin/master
-  show-all  = log --follow
-  shop-all  = log --follow -p
-  type      = cat-file -t
-  undo      = reset --soft HEAD~1
-  unignore  = update-index --no-assume-changed
+  hist        = log -10 --format=format:'%Cgreen%h %Creset %s (%cN, %ar)'
+  history     = log --pretty=format:"%C(yellow)%h\\ %ad%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --graph --date=short
+  ignore      = update-index --assume-unchanged
+  ignored     = ls-files -o -i --exclude-standard   # Show files ignored by git:
+  invert      = revert
+  incoming    = log orgin/master ^master            # show only what is in orgin/master that isn't in master
+  last        = log -1 HEAD --format=format:"%Cred%H"
+  logs        = log --stat
+  mergetrail  = log --ancestry-path --merges
+  move        = mv
+  nevermind   = !git reset --hard HEAD && git clean -d -f
+  outgoing    = log master ^orgin/master            # show only what is in master that isn't in orgin/master
+  praise      = blame
+  precommit   = diff --cached -w --word-diff=color --word-diff-regex='[^[:space:]<>]+'
+  prestage    = diff -w --word-diff=color
+  remotes     = remote -v
+  remove      = rm
+  resave      = commit --amend
+  rewrite     = rebase -i
+  ru          = rushes
+  rush        = rushes
+  rushes      = log --since=00:00:00 --all --no-merges --oneline --author="Mark Fernandes"
+  save        = commit -am
+  show-all    = log --follow
+  shop-all    = log --follow -p
+  stashes     = stash list
+  summary     = status -u -s
+  tags        = tag
+  type        = cat-file -t
+  uncommit    = reset --mixed HEAD~
+  undo        = reset --soft HEAD~1
+  unignore    = update-index --no-assume-changed
+  unmerged    = branch --no-merged
+  unmerged    = diff -w --name-only --diff-filter=U
+  unstage     = reset -q HEAD --
+  unstash     = stash pop
+  untrack     = rm -r --cached
+  up          = push up master
+  what        = show -w
   #----
   # END HUMAN
 
