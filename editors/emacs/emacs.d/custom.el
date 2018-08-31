@@ -19,8 +19,8 @@
            "d37a1eff1929a1e43cfc0649a0c2abd9b73c9141bf844998bdae553cf8f526f0"
            "bea5410f1c106a2a27e350da4c5c857b3c1a45220985830569f981705bd971f6" default)))
  '(package-selected-packages
-   (quote (benchmark-init evil evil-org fill-column-indicator general mediawiki
-                          org-bullets org-pdfview ox-pandoc powerline smart-mode-line
+   (quote (benchmark-init evil evil-org fill-column-indicator general org-bullets
+                          org-pdfview ox-pandoc powerline smart-mode-line
                           smart-mode-line-powerline-theme use-package vimish-fold)))
  '(pdf-view-midnight-colors (quote ("#0080c0" . "#180248")))
  '(session-use-package t nil (session)))

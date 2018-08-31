@@ -11,7 +11,7 @@
 ;; installed packages.  Don't delete this line.  If you don't want it,
 ;; just comment it out by adding a semicolon to the start of the line.
 ;; You may delete these explanatory comments.
-(package-initialize)
+;(package-initialize)
 
 ;; grab all files in lisp and any sub-dirs inside it
 (add-to-list 'load-path (expand-file-name "lisp" user-emacs-directory))
@@ -23,6 +23,10 @@
 
 ;; silence ad-handle-redefinition warnings
 (setq ad-redefinition-action 'accept)
+
+(setq package-archives '(("gnu" . "https://elpa.gnu.org/packages/")
+                         ("marmalade" . "https://marmalade-repo.org/packages/")
+                         ("melpa" . "https://melpa.org/packages/")))
 
 ;; my init.el is symlinked to purcell's emacs.d/init.el
 (load "~/.emacs.d/init")

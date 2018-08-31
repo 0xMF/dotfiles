@@ -9,13 +9,13 @@
 ;;; Code:
 
 ;; bring in my preferred packages specified in custom.el/package-selected-packages
-(package-initialize)
+;(package-initialize)
 
 (unless package-archive-contents
   (package-refresh-contents))
 
 (setq my-required-packages '(benchmark-init evil
-                                            fill-column-indicator general mediawiki org-bullets
+                                            fill-column-indicator general org-bullets
                                             powerline smart-mode-line smart-mode-line-powerline-theme
                                             use-package vimish-fold))
 
@@ -260,10 +260,10 @@ then it takes a second \\[keyboard-quit] to abort the minibuffer."
 (add-to-list 'auto-mode-alist '("\\.markdown\\'" . markdown-mode))
 (add-hook 'markdown-mode-hook (lambda () (set-fill-column 72)))
 
-(require 'mediawiki)
-:init
-;; setup files ending in “.mw” to open in mediwiki-mode
-(add-to-list 'auto-mode-alist '("\\.mw\\'" . mediawiki-mode))
+;;(require 'mediawiki)
+;;:init
+;;setup files ending in “.mw” to open in mediwiki-mode
+;;(add-to-list 'auto-mode-alist '("\\.mw\\'" . mediawiki-mode))
 
 
 ;;----------------------------------------------------------------------------
