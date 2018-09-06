@@ -402,8 +402,10 @@ libgdk-pixbuf2.0-0:amd64			install
 libgdk-pixbuf2.0-bin				install
 libgdk-pixbuf2.0-common				install
 libgdk-pixbuf2.0-dev:amd64			install
+libgee-0.8-2:amd64				install
 libgif-dev					install
 libgif7:amd64					install
+libgirara-gtk3-3:amd64				install
 libgirepository-1.0-1:amd64			install
 libgl1:amd64					install
 libgl1-mesa-dri:amd64				install
@@ -425,6 +427,8 @@ libglx0:amd64					install
 libgmp-dev:amd64				install
 libgmp10:amd64					install
 libgmpxx4ldbl:amd64				install
+libgnome-games-support-1-3:amd64		install
+libgnome-games-support-common			install
 libgnutls-dane0:amd64				install
 libgnutls-openssl27:amd64			install
 libgnutls28-dev:amd64				install
@@ -528,7 +532,7 @@ liblcms2-2:amd64				install
 liblcms2-dev:amd64				install
 libldap-2.4-2:amd64				install
 libldap-common					install
-liblightdm-gobject-1-0				install
+liblightdm-gobject-1-0:amd64			install
 libllvm6.0:amd64				install
 liblocale-gettext-perl				install
 liblockfile-bin					install
@@ -1349,6 +1353,8 @@ xtrans-dev					install
 xutils-dev					install
 xxd						install
 xz-utils					install
+zathura						install
+zathura-pdf-poppler				install
 zip						install
 zlib1g:amd64					install
 zlib1g-dev:amd64				install

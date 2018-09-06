@@ -11,7 +11,7 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(custom-enabled-themes (quote nil))
+ '(custom-enabled-themes '(smart-mode-line-powerline))
  '(custom-safe-themes
    (quote ("84d2f9eeb3f82d619ca4bfffe5f157282f4779732f48a5ac1484d94d5ff5b279"
            "c41f0d2f6fcf80d298fab81e52f615851c56502ece0656fa2542436264d3170d"
