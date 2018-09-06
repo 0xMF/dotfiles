@@ -24,9 +24,10 @@
 ;; silence ad-handle-redefinition warnings
 (setq ad-redefinition-action 'accept)
 
-(setq package-archives '(("gnu" . "https://elpa.gnu.org/packages/")
-                         ("marmalade" . "https://marmalade-repo.org/packages/")
-                         ("melpa" . "https://melpa.org/packages/")))
+;;
+(setq package-archives '(
+("gnu" . "https://elpa.gnu.org/packages/")
+("melpa" . "https://melpa.org/packages/")))
 
 ;; my init.el is symlinked to purcell's emacs.d/init.el
 (load "~/.emacs.d/init")
