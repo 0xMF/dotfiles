@@ -260,11 +260,13 @@ then it takes a second \\[keyboard-quit] to abort the minibuffer."
 (add-to-list 'auto-mode-alist '("\\.markdown\\'" . markdown-mode))
 (add-hook 'markdown-mode-hook (lambda () (set-fill-column 72)))
 
-(if (version<= emacs-version "27")
-    ((require 'mediawiki)
-     :init
-     ;;setup files ending in “.mw” to open in mediwiki-mode
-     (add-to-list 'auto-mode-alist '("\\.mw\\'" . mediawiki-mode))))
+(unless (version< emacs-version "27")
+  (setq url-http-referer 'nil))
+
+(require 'mediawiki)
+:init
+ ;;setup files ending in “.mw” to open in mediwiki-mode
+(add-to-list 'auto-mode-alist '("\\.mw\\'" . mediawiki-mode))
 
 
 ;;----------------------------------------------------------------------------
