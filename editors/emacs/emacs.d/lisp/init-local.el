@@ -15,17 +15,13 @@
   (package-refresh-contents))
 
 (setq my-required-packages '(benchmark-init evil
-                                            fill-column-indicator general org-bullets
+                                            fill-column-indicator general mediawiki org-bullets org-pdfview
                                             powerline smart-mode-line smart-mode-line-powerline-theme
                                             use-package vimish-fold))
 
-(if (version<= emacs-version "24.6")
-    (dolist (package my-required-packages)
-      (unless (package-installed-p package)
-        (package-install package))))
-
-(unless (version<= emacs-version "25")
-  (package-install-selected-packages))
+(dolist (package my-required-packages)
+    (unless (package-installed-p package)
+      (package-install package)))
 
 ;;(require 'benchmark-init)
 ;;(benchmark-init/activate)
