@@ -475,6 +475,20 @@ function gshow {
                || _gshow $1
 }
 
+# goto any repo which is below pwd and show commits from there; pop back when done
+function rshow {
+  if [ "$1" == "" ]; then
+    gshow
+  else
+    oldpwd="."
+    repo=$(find . -type d -name "$1")
+    pushd $repo
+    shift
+    gshow $*
+    popd
+  fi
+}
+
 # help learning git, without arguments shows a list, with arguments works like grep
 function glearn {
 
