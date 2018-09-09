@@ -114,6 +114,7 @@
                     "d" 'org-agenda-list
                     "e" 'org-babel-execute-src-block
                     "E" 'org-babel-open-src-block-result
+                    "f" 'file-reload
                     "g" 'magit-status
                     "j" 'evil-next-line
                     "k" 'evil-previous-line
@@ -488,6 +489,11 @@ then it takes a second \\[keyboard-quit] to abort the minibuffer."
                                               ".*.fasl\\|"
                                               ".*~\\|"
                                               "#*#\\)"))
+
+(defun file-reload ()
+  "Reload file without confirmation."
+  (interactive)
+  (revert-buffer :ignore-auto :noconfirm))
 
 ;; Local Variables:
 ;; coding: utf-8
