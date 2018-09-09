@@ -459,9 +459,11 @@ function ghd {
 # if $1 is 1 'git show HEAD' otherwise 'git show $1'
 function _gshow {
   case $# in
-    1) [ "$1" == "1" ] && git show HEAD \
-                       || git show HEAD~$1 2>/dev/null ;;
-    *) git show HEAD ;;
+    0) git show HEAD~11..HEAD --minimal 2>/dev/null ;;
+    1) [ $1 == 1 ] \
+           && git show HEAD~2..HEAD 2>/dev/null \
+           || git show HEAD~$1      2>/dev/null ;;
+    *) n=$(( `echo $2` + 1 )); git show HEAD~$n..HEAD~$1 --minimal;;
   esac
 
   # unknown error, probably a SHA1, so git show $1
@@ -470,9 +472,7 @@ function _gshow {
 
 # if $1 contains alphabets (HEAD,SHA1 commits) 'git show $1' otherwise call _gshow
 function gshow {
-  echo $1|$GREP '[a-zA-Z]' > /dev/null
-  [ $? -eq 0 ] && git show $1 \
-               || _gshow $1
+  _gshow $*
 }
 
 # goto any repo which is below pwd and show commits from there; pop back when done
@@ -480,7 +480,6 @@ function rshow {
   if [ "$1" == "" ]; then
     gshow
   else
-    oldpwd="."
     repo=$(find . -type d -name "$1")
     pushd $repo
     shift
