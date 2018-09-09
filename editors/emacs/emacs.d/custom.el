@@ -41,7 +41,7 @@
                                      ibuffer-vc immortal-scratch inf-ruby intero ipretty ivy
                                      ivy-historian ivy-xref js-comint js2-mode json-mode ledger-mode
                                      list-unicode-display lua-mode macrostep magit magit-todos
-                                     magithub markdown-mode mmm-mode mode-line-bell move-dup
+                                     magithub markdown-mode mediawiki mmm-mode mode-line-bell move-dup
                                      multiple-cursors nginx-mode org-bullets org-cliplink org-pdfview
                                      org-pomodoro origami ox-pandoc page-break-lines paredit
                                      paredit-everywhere php-mode pip-requirements powerline
