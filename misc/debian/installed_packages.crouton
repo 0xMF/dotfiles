@@ -901,6 +901,7 @@ libxvmc1:amd64					install
 libxxf86dga1:amd64				install
 libxxf86vm-dev:amd64				install
 libxxf86vm1:amd64				install
+libxxhash0:amd64				install
 libyaml-0-2:amd64				install
 libyaml-tiny-perl				install
 libzstd1:amd64					install
