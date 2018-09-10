@@ -460,7 +460,7 @@ function ghd {
 function _gshow {
   case $# in
     0) git show HEAD~11..HEAD --minimal 2>/dev/null ;;
-    1) [ $1 == 1 ] \
+    1) [ $1 -eq 1 ] \
            && git show HEAD~2..HEAD 2>/dev/null \
            || git show HEAD~$1      2>/dev/null ;;
     *) n=$(( `echo $2` + 1 )); git show HEAD~$n..HEAD~$1 --minimal;;
@@ -483,7 +483,12 @@ function rshow {
     repo=$(find . -type d -name "$1")
     pushd $repo
     shift
-    gshow $*
+
+    n=$(git rev-list HEAD --count)
+    [ $n -gt 11 ] && n=11 || n=$(($n-1))
+
+    #git show HEAD~11..HEAD --pretty=short --abbrev-commit
+    git show HEAD~$n..HEAD --abbrev-commit
     popd
   fi
 }
