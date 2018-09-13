@@ -15,9 +15,9 @@
   (package-refresh-contents))
 
 (setq my-required-packages '(benchmark-init evil
-                                            fill-column-indicator general mediawiki org-bullets org-pdfview
-                                            powerline smart-mode-line smart-mode-line-powerline-theme
-                                            use-package vimish-fold))
+                                            fill-column-indicator general mediawiki org-beautify-theme
+                                            org-bullets org-pdfview powerline smart-mode-line
+                                            smart-mode-line-powerline-theme use-package vimish-fold))
 
 (dolist (package my-required-packages)
     (unless (package-installed-p package)
