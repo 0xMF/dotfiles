@@ -14,14 +14,15 @@
 (unless package-archive-contents
   (package-refresh-contents))
 
-(setq my-required-packages '(benchmark-init evil
-                                            fill-column-indicator general mediawiki org-beautify-theme
-                                            org-bullets org-pdfview powerline smart-mode-line
-                                            smart-mode-line-powerline-theme use-package vimish-fold))
+(setq my-required-packages '(auto-yasnippet benchmark-init
+                                            demo-it evil fill-column-indicator general mediawiki
+                                            org-beautify-theme org-bullets org-pdfview powerline
+                                            smart-mode-line smart-mode-line-powerline-theme use-package
+                                            vimish-fold))
 
 (dolist (package my-required-packages)
-    (unless (package-installed-p package)
-      (package-install package)))
+  (unless (package-installed-p package)
+    (package-install package)))
 
 ;;(require 'benchmark-init)
 ;;(benchmark-init/activate)
