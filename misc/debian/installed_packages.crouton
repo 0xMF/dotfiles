@@ -515,7 +515,6 @@ libjpeg-progs					install
 libjpeg62-turbo:amd64				install
 libjpeg62-turbo-dev:amd64			install
 libjpeg9:amd64					install
-libjs-async					install
 libjs-inherits					install
 libjs-jquery					install
 libjs-node-uuid					install
@@ -951,7 +950,7 @@ node-ansistyles					install
 node-aproba					install
 node-archy					install
 node-are-we-there-yet				install
-node-async					install
+node-asynckit					install
 node-balanced-match				install
 node-bluebird					install
 node-boom					install
@@ -1046,6 +1045,7 @@ node-marked					install
 node-marked-man					install
 node-mem					install
 node-mime					install
+node-mime-types					install
 node-mimic-fn					install
 node-mimic-response				install
 node-minimatch					install
