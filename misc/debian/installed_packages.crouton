@@ -754,9 +754,10 @@ libtwolame0:amd64				install
 libubsan1:amd64					install
 libudev1:amd64					install
 libudisks2-0:amd64				install
-libunbound2:amd64				install
+libunbound8:amd64				install
 libunicode-linebreak-perl			install
 libunistring2:amd64				install
+libunwind8:amd64				install
 libupower-glib3:amd64				install
 liburi-perl					install
 libusb-1.0-0:amd64				install
@@ -987,6 +988,7 @@ node-detect-newline				install
 node-duplexer3					install
 node-duplexify					install
 node-editor					install
+node-encoding					install
 node-end-of-stream				install
 node-escape-string-regexp			install
 node-execa					install
@@ -1013,6 +1015,7 @@ node-has-unicode				install
 node-hawk					install
 node-hoek					install
 node-hosted-git-info				install
+node-iconv-lite					install
 node-iferr					install
 node-import-lazy				install
 node-imurmurhash				install
@@ -1054,6 +1057,7 @@ node-mute-stream				install
 node-node-uuid					install
 node-nopt					install
 node-normalize-package-data			install
+node-npm-package-arg				install
 node-npm-run-path				install
 node-npmlog					install
 node-object-assign				install
@@ -1073,6 +1077,7 @@ node-path-is-absolute				install
 node-path-is-inside				install
 node-prepend-http				install
 node-promise-inflight				install
+node-promzard					install
 node-proto-list					install
 node-pseudomap					install
 node-pump					install
@@ -1099,6 +1104,7 @@ node-sha					install
 node-shebang-command				install
 node-shebang-regex				install
 node-signal-exit				install
+node-slash					install
 node-slide					install
 node-sntp					install
 node-sorted-object				install
