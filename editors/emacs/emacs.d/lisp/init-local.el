@@ -450,10 +450,14 @@ then it takes a second \\[keyboard-quit] to abort the minibuffer."
 ;; Set default font
 ;; (used and saved through menu Options->Set Default Font... into cutom.el)
 
-;; optionally (set-frame-font "Source Code Pro Semibold 10")
-(if (member "Source Code Variable" (font-family-list))
-    (set-frame-font "Source Code Variable:style=Semibold 10" nil t)
-  (set-frame-font "DejaVu Sans Mono 10"))
+;; optionally (set-frame-font "Source Code Pro Semibold-10")
+(cond
+ ((member "Source Code Variable" (font-family-list))
+  (set-frame-font "Source Code Variable-10:style=Semibold" nil t))
+ ((member "Source Code Pro" (font-family-list))
+  (set-frame-font "Source Code Pro-10:style=Semibold" nil t))
+ ((member "DejaVu Sans Mono" (font-family-list))
+  (set-frame-font "DejaVu Sans Mono-10")))
 
 (setenv "PATH" (concat (getenv "PATH") ":~/bin"))
 (setq exec-path (append exec-path '("~/bin")))
