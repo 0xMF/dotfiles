@@ -463,6 +463,8 @@ then it takes a second \\[keyboard-quit] to abort the minibuffer."
   (require 'fill-column-indicator))
 
 ;;(benchmark-init/show-durations-tabulated)
+;; show battery indicator on mode
+(display-battery-mode t)
 
 ;; hide trailing whitespace in command output from showing up in eshell
 (add-hook 'eshell-mode-hook
