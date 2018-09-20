@@ -200,7 +200,8 @@ then it takes a second \\[keyboard-quit] to abort the minibuffer."
 ;; important for markdown, GFM export, and viewing pdfs
 (eval-after-load "org" '(require 'ox-md nil t))
 (eval-after-load "org" '(require 'ox-gfm nil t))
-(eval-after-load 'org '(require 'org-pdfview))
+(eval-after-load "org" '(require 'org-pdfview))
+(eval-after-load "org" '(require 'htmlize))
 
 (pdf-tools-install)
 (add-to-list 'pdf-view-mode-hook 'pdf-view-midnight-minor-mode)
