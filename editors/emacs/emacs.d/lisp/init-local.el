@@ -68,6 +68,7 @@
 
 ;; bind wm and wc
 (general-define-key :prefix "w"
+                    "a" 'org-toggle-link-display
                     "c" 'whitespace-cleanup
                     "d" '(lambda () (interactive) (kill-buffer)(delete-window))
                     "f" 'fci-mode
@@ -105,7 +106,8 @@
 ;; named prefix key allows ; to be used a mapper for my keybindings
 (setq my-leader1 ";")
 (general-define-key :prefix my-leader1
-                    "a" 'org-agenda
+                    "a" 'org-toggle-link-display
+                    "A" 'org-agenda
                     "b" 'switch-to-buffer
                     "c" 'org-capture
                     "d" 'org-agenda-list
@@ -370,20 +372,20 @@ then it takes a second \\[keyboard-quit] to abort the minibuffer."
 
 ;; Removes org sparse tree views correctly
 ;; Credit: https://stackoverflow.com/a/44158824
-(setq lexical-binding t)
+;;(setq lexical-binding t)
 
-(let ((*outline-data* nil))
-  (defun org-save-outline-state (&optional arg type)
-    (setq *outline-data* (org-outline-overlay-data t)))
+;; (let ((*outline-data* nil))
+;; (defun org-save-outline-state (&optional arg type)
+;;(setq *outline-data* (org-outline-overlay-data t)))
 
-  (defun org-restore-outline-state (&optional arg)
-    (when *outline-data*
-      (org-set-outline-overlay-data *outline-data*)
-      (setq *outline-data* nil))))
+;; (defun org-restore-outline-state (&optional arg)
+;; (when *outline-data*
+;;(org-set-outline-overlay-data *outline-data*)
+;;(setq *outline-data* nil))))
 
-(advice-add 'org-sparse-tree :before 'org-save-outline-state)
-(advice-add 'org-match-sparse-tree :before 'org-save-outline-state)
-(advice-add 'org-ctrl-c-ctrl-c :after 'org-restore-outline-state)
+;;(advice-add 'org-sparse-tree :before 'org-save-outline-state)
+;;(advice-add 'org-match-sparse-tree :before 'org-save-outline-state)
+;;(advice-add 'org-ctrl-c-ctrl-c :after 'org-restore-outline-state)
 ;; ---
 
 (setq org-time-stamp-custom-formats '("<%b-%d %a>" "<%m/%d/%y %a>" "<%m/%d/%y %a %H:%M>"))
@@ -393,10 +395,10 @@ then it takes a second \\[keyboard-quit] to abort the minibuffer."
 (add-hook 'org-mode-hook (lambda () (org-bullets-mode 1)))
 
 (defun kill-misc-buffers() "Permanently remove some buffers."
-       ;; (if (get-buffer "*scratch*")
-       ;;  (kill-buffer "*scratch*"))
-       (if (get-buffer "*reg group-leader*")
-           (kill-buffer "*reg group-leader*")))
+;; (if (get-buffer "*scratch*")
+;;  (kill-buffer "*scratch*"))
+(if (get-buffer "*reg group-leader*")
+    (kill-buffer "*reg group-leader*")))
 (add-hook 'after-change-major-mode-hook 'kill-misc-buffers)
 
 (evil-define-key 'insert org-mode-map (kbd "C-<tab>") #'tab-to-tab-stop)
