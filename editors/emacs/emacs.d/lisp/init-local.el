@@ -413,6 +413,13 @@ then it takes a second \\[keyboard-quit] to abort the minibuffer."
   (load-library "find-lisp")
   (setq org-agenda-files (find-lisp-find-files "~/.emacs.d/agenda" "\.org$")))
 
+;; do not ask before prompting
+(setq org-confirm-babel-evaluate nil)
+
+;; output htmlize as css
+;; refer: https://github.com/gongzhitaao/orgcss
+(setq org-html-htmlize-output-type 'css)
+
 ;;----------------------------------------------------------------------------
 ;; Miscalleanous settings
 ;; User mode settings for UI/keyboard/look and feel
