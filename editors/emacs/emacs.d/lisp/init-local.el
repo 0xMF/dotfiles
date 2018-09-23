@@ -14,11 +14,10 @@
 (unless package-archive-contents
   (package-refresh-contents))
 
-(setq my-required-packages '(auto-yasnippet benchmark-init
-                                            demo-it evil fill-column-indicator general mediawiki
-                                            org-beautify-theme org-bullets org-pdfview powerline
-                                            smart-mode-line smart-mode-line-powerline-theme use-package
-                                            vimish-fold))
+(setq my-required-packages '(benchmark-init demo-it evil
+                                            fill-column-indicator general mediawiki org-beautify-theme
+                                            org-bullets org-pdfview powerline smart-mode-line
+                                            smart-mode-line-powerline-theme use-package vimish-fold))
 
 (dolist (package my-required-packages)
   (unless (package-installed-p package)
@@ -87,7 +86,7 @@
 (general-define-key :prefix "b"
                     "b" 'describe-bindings
                     "c" 'yank
-                    "d" 'kill-buffer
+                    "d" 'sanityinc/toggle-delete-other-windows
                     "f" 'markdown-follow-thing-at-point
                     "h" 'previous-buffer
                     "j" 'next-buffer
