@@ -165,6 +165,24 @@ function ps1 {
   PROMPT_COMMAND="ps1"
 }
 
+function psc {
+  if [ `id -u` -eq 0 ]; then
+    PS1="$RED\h:\W $(parse_git_repo)$RED#$NOCOLOR "
+  else
+    PS1="$GREEN\u$YELLOW@$CYAN\h$YELLOW:$GREEN\W $(parse_git_repo)$NOCOLOR$ "
+  fi
+  PROMPT_COMMAND="psc"
+}
+
+function pssc {
+  if [ `id -u` -eq 0 ]; then
+    PS1="$RED\W $(parse_git_repo)$RED#$NOCOLOR "
+  else
+    PS1="$GREEN\h$YELLOW@\W $(parse_git_repo)$NOCOLOR$ "
+  fi
+  PROMPT_COMMAND="pssc"
+}
+
 function psh {
   if [ `id -u` -eq 0 ]; then
     PS1="$RED\h:\W $(parse_git_repo)$RED#$NOCOLOR "
