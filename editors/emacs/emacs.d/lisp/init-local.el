@@ -94,6 +94,7 @@
                     "n" 'next-buffer
                     "o" 'counsel-find-file
                     "p" 'previous-buffer
+                    "t" '(lambda () (interactive) (kill-buffer)(delete-window))
                     "x" 'evil-delete)
 
 (general-define-key :prefix "z"

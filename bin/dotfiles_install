@@ -116,6 +116,12 @@ _emacs() {
     ln -s ${EMACS_D} $HOME/.emacs.d
   }
 
+  EMACS_D_DOTFILES=".custom.el.~undo-tree~ .emacs.desktop .historian .session .smex-items .uptimes.el"
+  for f in ${EMACS_D_DOTFILES}
+  do
+    [ -e ${EMACS_D}/$f ] && echo deleting ${EMACS_D}/$f && rm -f ${EMACS_D}/$f
+  done
+
   [ ! -z "$installed" ] && echo "INSTALLED!" >&2
 }
 
