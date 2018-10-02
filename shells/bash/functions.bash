@@ -256,7 +256,14 @@ fi
 export DISPLAY
 
 function share {
-  sudo mount -t vboxsf -o uid=1000,gid=1000,dmode=700,fmode=600,umask=077 share /home/mark/share
+  mkdir -p $HOME/share
+  sudo mount -t vboxsf -o uid=$UID,gid=$(id -g),dmode=700,fmode=600,umask=077 share $HOME/share
+  [ $? -eq 0 ] \
+    && echo "Successfully mounted $HOME/share" \
+    || ( \
+        sudo mount -t vboxsf -o uid=$UID,gid=$(id -g),dmode=700,fmode=600,umask=077 eshare $HOME/share; \
+        [ $? -eq 0 ] && echo "Successfully mounted $HOME/share" \
+      )
 }
 
 function su {
