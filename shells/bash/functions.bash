@@ -178,7 +178,7 @@ function pssc {
   if [ `id -u` -eq 0 ]; then
     PS1="$RED\W $(parse_git_repo)$RED#$NOCOLOR "
   else
-    PS1="$GREEN\h$YELLOW@\W $(parse_git_repo)$NOCOLOR$ "
+    PS1="$CYAN\h$YELLOW:\W $(parse_git_repo)$NOCOLOR$ "
   fi
   PROMPT_COMMAND="pssc"
 }
