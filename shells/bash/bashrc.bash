@@ -57,7 +57,7 @@ if [ $(uname -o) == "GNU/Linux" ]; then
 fi
 
 OSRVT=$(echo $OSRV|sed 's/[a-zA-Z0-9  ]//g')
-if [[ "$OSRVT" == "()" || -z "$OSRV" ]]; then
+if [[ "$OSRVT" == "()" || -z "$OSRV" || "`hostname`" != "localhost" ]]; then
   OSRV=$(hostname)
 fi
 if [ $(uname -o) == "FreeBSD" ]; then
