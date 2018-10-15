@@ -243,17 +243,18 @@ function get_xserver ()
   esac
 }
 
-if [ -z ${DISPLAY:=""} ]; then
-  get_xserver
-  if [[ -z ${XSERVER} || ${XSERVER} == $(hostname) || \
-    ${XSERVER} == "unix" ]]; then
+function set_display_env ()
+{
+  if [ -z ${DISPLAY:=""} ]; then
+    get_xserver
+    if [[ -z ${XSERVER} || ${XSERVER} == $(hostname) || ${XSERVER} == "unix" ]]; then
       DISPLAY=":0.0" # Display on local host.
-  else
-      DISPLAY=${XSERVER}:0.0 # Display on remote host.
+    else
+       DISPLAY=${XSERVER}:0.0 # Display on remote host.
+    fi
   fi
-fi
-
-export DISPLAY
+  export DISPLAY
+}
 
 function share {
   mkdir -p $HOME/share
