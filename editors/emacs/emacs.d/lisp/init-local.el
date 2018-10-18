@@ -31,6 +31,9 @@
 (show-paren-mode t)
 (setq show-paren-style 'expression)
 
+;; prefer newer source instead of older bytecode
+(setq load-prefer-newer t)
+
 ;;----------------------------------------------------------------------------
 ;; Evil mode settings
 ;;----------------------------------------------------------------------------
