@@ -83,7 +83,7 @@
                     "t" 'whitespace-mode
                     "o" 'other-window
                     "p" 'previous-buffer
-                    "P" 'other-window
+                    ;; "P" 'other-window
                     "w" 'delete-other-windows)
 
 (general-define-key :prefix "b"
