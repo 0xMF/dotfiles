@@ -373,6 +373,8 @@ then it takes a second \\[keyboard-quit] to abort the minibuffer."
 (setq org-export-with-section-numbers nil)
 (setq org-table-auto-blank-field nil)
 (setq org-startup-indented t)
+(setq org-list-allow-alphabetical t)
+
 
 ;; Removes org sparse tree views correctly
 ;; Credit: https://stackoverflow.com/a/44158824
