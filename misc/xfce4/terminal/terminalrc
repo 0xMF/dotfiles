@@ -2,8 +2,8 @@
 MiscAlwaysShowTabs=FALSE
 MiscBell=FALSE
 MiscBellUrgent=FALSE
-MiscBordersDefault=TRUE
-MiscCursorBlinks=TRUE
+MiscBordersDefault=FALSE
+MiscCursorBlinks=FALSE
 MiscCursorShape=TERMINAL_CURSOR_SHAPE_BLOCK
 MiscDefaultGeometry=80x24
 MiscInheritGeometry=FALSE
@@ -25,6 +25,5 @@ MiscUseShiftArrowsToScroll=FALSE
 MiscSlimTabs=FALSE
 MiscNewTabAdjacent=FALSE
 ScrollingBar=TERMINAL_SCROLLBAR_NONE
-Encoding=UTF-8
-FontName=Source Code Variable Semi-Bold 12
+FontName=Monospace 10
 
