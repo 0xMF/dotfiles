@@ -2,7 +2,7 @@
 
 <channel name="xfce4-session" version="1.0">
   <property name="splash" type="empty">
-    <property name="Engine" type="string" value=""/>
+    <property name="Engine" type="empty"/>
     <property name="engines" type="empty">
       <property name="simple" type="empty">
         <property name="Font" type="empty"/>
