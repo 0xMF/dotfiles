@@ -1,0 +1,153 @@
+fd3a48fcd8bb212ec12b9b10a79de0ae605ee93b		branch 'master' of git://git.sv.gnu.org/emacs
+f4d5b687150810129b7a1d5b006e31ccf82b691b	not-for-merge	branch 'comment-cache' of git://git.sv.gnu.org/emacs
+a5a67c21d3be71c8545828b184dfef2c814fa141	not-for-merge	branch 'concurrency-libtask' of git://git.sv.gnu.org/emacs
+ab34aca3834c3485b9117b0750e87e090f79232c	not-for-merge	branch 'dima_regex_embedded_modifiers' of git://git.sv.gnu.org/emacs
+1775ea9040059b4cece1c67a16ff8faba862d7b3	not-for-merge	branch 'elparized-core' of git://git.sv.gnu.org/emacs
+c7205e538701bcfe2718e97429127a3a066d86c7	not-for-merge	branch 'emacs-23' of git://git.sv.gnu.org/emacs
+a27ae9d7650a1230d4359eaf0a949f827315a6d2	not-for-merge	branch 'emacs-24' of git://git.sv.gnu.org/emacs
+c3ff6712ad24fcf45874dc0665a8606e9b2208a4	not-for-merge	branch 'emacs-25' of git://git.sv.gnu.org/emacs
+19f705c438034d10bd206c142faea83a02c8a885	not-for-merge	branch 'emacs-26' of git://git.sv.gnu.org/emacs
+0d3c0f6f906d5494f76b8b686bae72853b1f729c	not-for-merge	branch 'feature/async-dns' of git://git.sv.gnu.org/emacs
+14ff8b1fb60459c4c5cb147e07e3902dc569f8e0	not-for-merge	branch 'feature/auth-source-pass' of git://git.sv.gnu.org/emacs
+cb410433e069b5bb450193353c3fea8593a643a9	not-for-merge	branch 'feature/byte-switch' of git://git.sv.gnu.org/emacs
+ca611bda9cd462aa6d92cdaad1db9783afb27e8e	not-for-merge	branch 'feature/byte-tail-recursion' of git://git.sv.gnu.org/emacs
+916094a84f0ab31be31aa6c3632f14176b4e882a	not-for-merge	branch 'feature/byte-unwind-protect' of git://git.sv.gnu.org/emacs
+9c1176247b107fd6e1845618b78ad56b5d57ddd9	not-for-merge	branch 'feature/deps-download' of git://git.sv.gnu.org/emacs
+117361321fc38ad4534e25b7614e4b72dd3daff5	not-for-merge	branch 'feature/etags-update' of git://git.sv.gnu.org/emacs
+459d4eed3406b3f8af4badf7526f7dae66600426	not-for-merge	branch 'feature/gnus-select' of git://git.sv.gnu.org/emacs
+10599e4a603d7e23bc5d80070e9c851d84b3f334	not-for-merge	branch 'feature/integrated-elpa' of git://git.sv.gnu.org/emacs
+a25a9896d51bbf340675713bc45d15e3846fb816	not-for-merge	branch 'feature/libjit' of git://git.sv.gnu.org/emacs
+349991544b12d6ad06be189b66969752f051cd4a	not-for-merge	branch 'feature/mhtml-mode' of git://git.sv.gnu.org/emacs
+7812f5eff4f39377f051fcc37182af44bab3328e	not-for-merge	branch 'feature/new-tutorial' of git://git.sv.gnu.org/emacs
+8869332684c2302b5ba1ead4568bbc7ba1c0183e	not-for-merge	branch 'feature/noverlay' of git://git.sv.gnu.org/emacs
+40ac52e24d20c091deb2cc7595079742facd6842	not-for-merge	branch 'feature/parsable-ert-output' of git://git.sv.gnu.org/emacs
+86a2c93b3b62a1decad326fd66ed5cc1a9e64d5f	not-for-merge	branch 'feature/stdout-stderr-stream' of git://git.sv.gnu.org/emacs
+fb67b1275fe6e473e70de247c6340cba0e9a50dc	not-for-merge	branch 'feature/temacs-for-bootstrap' of git://git.sv.gnu.org/emacs
+c8ca97af3851188acd5934968672462d7ca7d926	not-for-merge	branch 'feature/tramp-thread-safe' of git://git.sv.gnu.org/emacs
+aa6bcdf0c33ff86eb92794202ee5bd70f6d9bde3	not-for-merge	branch 'features/erc-message-tags' of git://git.sv.gnu.org/emacs
+f9d857766cc53835488fff78364669b045a66950	not-for-merge	branch 'fix/bootstrap-build-minimize' of git://git.sv.gnu.org/emacs
+0f07c30b6af3d9aa0a6a034099aa384daf0a10d6	not-for-merge	branch 'fix/bootstrap-build-minimize-squash' of git://git.sv.gnu.org/emacs
+9823f299bd556010b4cd8c4093c7b9f408fa5ff7	not-for-merge	branch 'fix/bug-2034' of git://git.sv.gnu.org/emacs
+1ad94a126b7e3bf9c3fbafde567eb8e1f7613ef0	not-for-merge	branch 'fix/bug-20871' of git://git.sv.gnu.org/emacs
+aa779b0f15faa114fa5e3f59b17e628b1a837af8	not-for-merge	branch 'fix/bug-21072' of git://git.sv.gnu.org/emacs
+10f869f2966af5e26033202e6f757dbba41f1ad3	not-for-merge	branch 'fix/bug-31311-pcase-doc' of git://git.sv.gnu.org/emacs
+9d6a3ac73af66184e5bb23555b93833f6a4d9f2e	not-for-merge	branch 'fix/bug-31311-pcase-doc-squash' of git://git.sv.gnu.org/emacs
+5b1253cab52f0fe04e6088db5330f1c88a05dee1	not-for-merge	branch 'fix/eieio-persistent' of git://git.sv.gnu.org/emacs
+be85e271db465bdd4366761e3901f817cf701463	not-for-merge	branch 'fix/great-revert-bill' of git://git.sv.gnu.org/emacs
+4b3b524080aa897a39b20d1ff671af6d47ebd547	not-for-merge	branch 'fix/htmlfontify-21990' of git://git.sv.gnu.org/emacs
+ab4df9ce7d57bb391e56ddd5feee3d227bfce76d	not-for-merge	branch 'fix/not-defined-at-runtime' of git://git.sv.gnu.org/emacs
+df68b7080ffc59c18f3289a3d4eb157f7c111454	not-for-merge	branch 'gtk-tabs' of git://git.sv.gnu.org/emacs
+bd299e7629b76c6d4f053dd9c8fb94987f63b460	not-for-merge	branch 'heads/emacs-25.3' of git://git.sv.gnu.org/emacs
+742c2344bf076040f9c57f37b2220410f9e27304	not-for-merge	branch 'netsec' of git://git.sv.gnu.org/emacs
+9a15b5509abb49a11c97c1101ad216f4ef258368	not-for-merge	branch 'nick.lloyd-bytecode-jit' of git://git.sv.gnu.org/emacs
+a95cdb2dad2693068a2a6c88f7dd68e48eb16405	not-for-merge	branch 'old-branches/EMACS_21_1_RC' of git://git.sv.gnu.org/emacs
+4f5a643807ba3f3b2dc611acdadb796e5fa19c86	not-for-merge	branch 'old-branches/EMACS_22_BASE' of git://git.sv.gnu.org/emacs
+8d3803dfa7baf0c2f05e39c77a3392ee8ca7d058	not-for-merge	branch 'old-branches/EMACS_23_1_RC' of git://git.sv.gnu.org/emacs
+6db762b6bf2e760e45ec1de2a69554ac9999cd3e	not-for-merge	branch 'old-branches/NewVC-fileset' of git://git.sv.gnu.org/emacs
+f4c1c47c5b311c19b4cd0c3296783fc83b6c19b9	not-for-merge	branch 'old-branches/branch-5_8' of git://git.sv.gnu.org/emacs
+ee14727ce033bae3bc11af35e7843604e5a5e635	not-for-merge	branch 'old-branches/cairo' of git://git.sv.gnu.org/emacs
+a2095e2edba95e01f3be50ead7cc4b1c53bd40f3	not-for-merge	branch 'old-branches/cedet-branch' of git://git.sv.gnu.org/emacs
+e7bde34e939451d87fb42a36195086bdbe48b5e1	not-for-merge	branch 'old-branches/concurrency' of git://git.sv.gnu.org/emacs
+ae901ddbfff04e8b1b0d63c452a6ca3f4c81fb17	not-for-merge	branch 'old-branches/dynamic-modules-rc2' of git://git.sv.gnu.org/emacs
+9d4807432a01f9b3cc519fcfa3ea92a70ffa7f43	not-for-merge	branch 'old-branches/emacs-unicode' of git://git.sv.gnu.org/emacs
+20b326c4b147e676c1e0bdb92f3109939225988c	not-for-merge	branch 'old-branches/emacs-unicode-2' of git://git.sv.gnu.org/emacs
+9bb7c0068c5e1c4cc4d8f25ad6ead6f1747d2c33	not-for-merge	branch 'old-branches/font-backend' of git://git.sv.gnu.org/emacs
+1cda365bcc8ffdc03ea705be1ca0860e56149944	not-for-merge	branch 'old-branches/gerd_defvaralias' of git://git.sv.gnu.org/emacs
+84ef9e9fb100fe7c5515b1eaff8a6a7749d229ed	not-for-merge	branch 'old-branches/gnus-5_10-branch' of git://git.sv.gnu.org/emacs
+1c53fde4e2b3987dff87c7a2f8953398b7aadcd9	not-for-merge	branch 'old-branches/imagemagick' of git://git.sv.gnu.org/emacs
+fe9326c7a29fbc66ea42bb9f54b50d7b32babdf5	not-for-merge	branch 'old-branches/lexbind' of git://git.sv.gnu.org/emacs
+7200d79c65c65686495dd95e9f6dd436cf6db55e	not-for-merge	branch 'old-branches/lexbind-new' of git://git.sv.gnu.org/emacs
+faece65ecfc9d48a1ddaa360038177cc5c5681c6	not-for-merge	branch 'old-branches/multi-tty' of git://git.sv.gnu.org/emacs
+bbbab483c46a346ce665230ad31dc2a6fb73641f	not-for-merge	branch 'old-branches/pending' of git://git.sv.gnu.org/emacs
+234148bf943ffce55121aefc8694889eb08b0daa	not-for-merge	branch 'old-branches/profiler' of git://git.sv.gnu.org/emacs
+2d7b84eab6a10752713af889f291c046eed33677	not-for-merge	branch 'old-branches/python' of git://git.sv.gnu.org/emacs
+04c2b755a93a6e14742b0226558a6bb7f495335c	not-for-merge	branch 'old-branches/rmail-mbox-branch' of git://git.sv.gnu.org/emacs
+045ebffad708384e739218e56c3807e0c39ffcb0	not-for-merge	branch 'old-branches/unicode-xft' of git://git.sv.gnu.org/emacs
+1d00388aae9e39ceb8e520b5f227c21fdd219a20	not-for-merge	branch 'old-branches/window-pub' of git://git.sv.gnu.org/emacs
+ffd9295047d643ff8bbb89a679062c5eed7fff7c	not-for-merge	branch 'other-branches/Boehm-GC' of git://git.sv.gnu.org/emacs
+edff1322fb55cb7363c8ddc3c8eb1ef019428ce3	not-for-merge	branch 'other-branches/Boehm-versions' of git://git.sv.gnu.org/emacs
+b7ad691a798cfcbefb1b073eb74750f93edf7872	not-for-merge	branch 'other-branches/DAVELOVE' of git://git.sv.gnu.org/emacs
+f0801847d3f0503f0e14b930f0ae38ca8a29fa7c	not-for-merge	branch 'other-branches/FLYSPELL' of git://git.sv.gnu.org/emacs
+565bb227093683334f55c0cbadf8192abd4e30b9	not-for-merge	branch 'other-branches/ILYA' of git://git.sv.gnu.org/emacs
+7d49e53b2dffd9e29bff2dd78825e1d51bc5b697	not-for-merge	branch 'other-branches/VENDOR' of git://git.sv.gnu.org/emacs
+f57c4de274087f802f52587b362acc2cee4c7833	not-for-merge	branch 'other-branches/custom_themes' of git://git.sv.gnu.org/emacs
+2c92b538e6b484cc731fa8d2225ed16459e9848c	not-for-merge	branch 'other-branches/fx-branch' of git://git.sv.gnu.org/emacs
+71c9ec5139c8cacdcdcc499a72f3800f1b84000a	not-for-merge	branch 'other-branches/gerd_0001' of git://git.sv.gnu.org/emacs
+3efcf1ddcd36f63a94845e8df2135ad02706fe8e	not-for-merge	branch 'other-branches/gerd_big' of git://git.sv.gnu.org/emacs
+f0643701da91a91f0c36dc356e00070f38af9ebe	not-for-merge	branch 'other-branches/gerd_dbe' of git://git.sv.gnu.org/emacs
+f1f65349f47be2982fc2dfb3847c730e520703f6	not-for-merge	branch 'other-branches/gerd_int' of git://git.sv.gnu.org/emacs
+5448c0cce64b7f5277c820dcd3cd839f9388e241	not-for-merge	branch 'other-branches/miles-orphaned-changes' of git://git.sv.gnu.org/emacs
+19b7ce59b208e558ef8267c39e74220ae203793b	not-for-merge	branch 'other-branches/old-bidi' of git://git.sv.gnu.org/emacs
+38dba5e8d27b7504ac29b7d1f92b3478995204f1	not-for-merge	branch 'other-branches/old-concurrency' of git://git.sv.gnu.org/emacs
+086514436a4cbc004a43a4ab331e29e3ad9da835	not-for-merge	branch 'other-branches/patches_21_0' of git://git.sv.gnu.org/emacs
+b7c46cf04a7794814ee328482d366d48aa19c59d	not-for-merge	branch 'other-branches/test2' of git://git.sv.gnu.org/emacs
+631e464e000997793d766a9eb3e5a49d16b2a7c8	not-for-merge	branch 'other-branches/ttn-vms-21-2-stash' of git://git.sv.gnu.org/emacs
+bad36438b2a1ce7e697f1ee44f2ea16352e3973b	not-for-merge	branch 'other-branches/ttn-vms-21-3-stash' of git://git.sv.gnu.org/emacs
+d958487e8a24b5596c19eef9bdb263aaebca92da	not-for-merge	branch 'pdumper' of git://git.sv.gnu.org/emacs
+699c782b7668c44d0fa4446331b0590a6d5dac82	not-for-merge	branch 'pending' of git://git.sv.gnu.org/emacs
+e4c190b28d658d92f8c19799b19f8263650687e0	not-for-merge	branch 'project-next' of git://git.sv.gnu.org/emacs
+76523866743f39b508e64c34a61af638a4a306b5	not-for-merge	branch 'scratch/add-jsonrpc' of git://git.sv.gnu.org/emacs
+16a7bce700f4b90bd6b2d7ab4bb860a3c29cb764	not-for-merge	branch 'scratch/allow-custom-null-and-false-objects-in-jsonc' of git://git.sv.gnu.org/emacs
+08919524eb7a623cd383258e4ff26bb607a62ccb	not-for-merge	branch 'scratch/api.el' of git://git.sv.gnu.org/emacs
+ce44e9a2fd5aaa7ea8e428d0031eb15dc1f65043	not-for-merge	branch 'scratch/build-test' of git://git.sv.gnu.org/emacs
+6d596ff94b63c919c104cbfd406bd35c09f760c1	not-for-merge	branch 'scratch/customize-quotes' of git://git.sv.gnu.org/emacs
+47b70267213517f95283fd6b71e51ab0fef7454e	not-for-merge	branch 'scratch/dbusbind-type' of git://git.sv.gnu.org/emacs
+def5829c0769b142b3cc0d69a9ad58935a9f237f	not-for-merge	branch 'scratch/dbusbind-type-tests' of git://git.sv.gnu.org/emacs
+3d4fdb9f59731113f467b3705c8346b1ee8d2d81	not-for-merge	branch 'scratch/dir-local-wildcard' of git://git.sv.gnu.org/emacs
+f128e085bc0674967b988a72f8074a7d0cc8eba3	not-for-merge	branch 'scratch/dynamic-modules-2' of git://git.sv.gnu.org/emacs
+e355a6536108d5ed5e90b693835849935883b479	not-for-merge	branch 'scratch/eudc-bbdb-3' of git://git.sv.gnu.org/emacs
+63161721fe696508d91425a9429c048c72f9f801	not-for-merge	branch 'scratch/fix-info-dups' of git://git.sv.gnu.org/emacs
+e10fb2f5e4f23c96dc275fbecfe7e610ac7b2f1a	not-for-merge	branch 'scratch/fix-snapshot-building' of git://git.sv.gnu.org/emacs
+46366c45cb1cef5c0cc88bb9a868df88f4ed5c1a	not-for-merge	branch 'scratch/flymake-augment-api' of git://git.sv.gnu.org/emacs
+786b892d410e6fb00ff43d34a1fafd21e50c1625	not-for-merge	branch 'scratch/flymake-diagnostics-buffer' of git://git.sv.gnu.org/emacs
+b80d29d15e8bfd4c8594e0cf6cf42733dc308f13	not-for-merge	branch 'scratch/flymake-refactor-cleaner-for-emacs-26' of git://git.sv.gnu.org/emacs
+a72a9fbbbc9cd5f5933719b11489c2578eb0aa59	not-for-merge	branch 'scratch/follow' of git://git.sv.gnu.org/emacs
+4a9b24e1780c980d033b44f3c86133bbab691ebe	not-for-merge	branch 'scratch/fontify-open-string' of git://git.sv.gnu.org/emacs
+73dda4e0b45a1f831d5f990fb29e958a76ccc518	not-for-merge	branch 'scratch/gnus-docs' of git://git.sv.gnu.org/emacs
+64980da486ded023311852cf1522483f3be79af2	not-for-merge	branch 'scratch/gnus-roadmap' of git://git.sv.gnu.org/emacs
+9dae21a63195cefb0dc31200cd052bccb857f9d9	not-for-merge	branch 'scratch/gnus-search' of git://git.sv.gnu.org/emacs
+7068e4c811f7530e14d2684fea68499418642b33	not-for-merge	branch 'scratch/hard-narrow' of git://git.sv.gnu.org/emacs
+193183e28125b9aba51ea3676b899e72de33b54d	not-for-merge	branch 'scratch/highlight-n-windows' of git://git.sv.gnu.org/emacs
+0ff31454a58d5f8f31744f02f5aafdf5fc220a21	not-for-merge	branch 'scratch/isearch-show-toggles' of git://git.sv.gnu.org/emacs
+e604e6a66e52377151ec7865530f31b1493bc1ef	not-for-merge	branch 'scratch/kqueue' of git://git.sv.gnu.org/emacs
+d2a57bdfec4758cf7607e7976106cd1bfee5f6d7	not-for-merge	branch 'scratch/last-cedet-merge' of git://git.sv.gnu.org/emacs
+b6e82486ce426181925d0901f8bdf16b948cdb3e	not-for-merge	branch 'scratch/merge-cedet-tests' of git://git.sv.gnu.org/emacs
+1fece3ebd1514717b0b7f19cf06c9f59ffdb0041	not-for-merge	branch 'scratch/multi-level-test-makefile' of git://git.sv.gnu.org/emacs
+93ed67c11fafd3f3b5fb1d6b160a79aa6d2d18ed	not-for-merge	branch 'scratch/nonspecial-handlers' of git://git.sv.gnu.org/emacs
+2305ee79080ca45856c6ac5de536f537a21384a6	not-for-merge	branch 'scratch/np/backports-26.2' of git://git.sv.gnu.org/emacs
+e39f975ee9e0b9f3682ee4b86800821d2e40aaa8	not-for-merge	branch 'scratch/ns-drawing' of git://git.sv.gnu.org/emacs
+eaefbc26d5c6cffbe4a22d3a9f4c7e6209a7b5a7	not-for-merge	branch 'scratch/org-mode-merge' of git://git.sv.gnu.org/emacs
+160a8cc37bb0a0f45ffa62a658a1d75a79757eb3	not-for-merge	branch 'scratch/project' of git://git.sv.gnu.org/emacs
+b0c90851ab7d58625015fef0b990a49b5a85f682	not-for-merge	branch 'scratch/project-auto-tags' of git://git.sv.gnu.org/emacs
+87f5f31ee43bcf773da5ea765ecdf1a499fd8920	not-for-merge	branch 'scratch/project-directories' of git://git.sv.gnu.org/emacs
+1b2b62da565244e8e5feb15287d3dcb603b117fb	not-for-merge	branch 'scratch/project-directories-filtering-in-backend' of git://git.sv.gnu.org/emacs
+5edb06e1e6aa09e0a997fff73dd914bc3f723630	not-for-merge	branch 'scratch/project-directories-with-shallow' of git://git.sv.gnu.org/emacs
+be582b5e52180f4f25dbba73221d092e28ae68cc	not-for-merge	branch 'scratch/quote-escaping' of git://git.sv.gnu.org/emacs
+13f3370400031e2ac1c9be0932f411370fc6984e	not-for-merge	branch 'scratch/raeburn-startup' of git://git.sv.gnu.org/emacs
+390612eb7ab8ccf0792fda7c48b7056c5cda9b06	not-for-merge	branch 'scratch/record' of git://git.sv.gnu.org/emacs
+5da3780604802ba86625dac927f8f6a48b6df2cc	not-for-merge	branch 'scratch/remove-internal-field' of git://git.sv.gnu.org/emacs
+506d38434b54a3999163a78c91fb06a524a5cad2	not-for-merge	branch 'scratch/support-plists-in-jsonc' of git://git.sv.gnu.org/emacs
+984d4effd62fbc5b496cd0d730fd316bc56b4092	not-for-merge	branch 'scratch/support-plists-in-jsonc-autodetect' of git://git.sv.gnu.org/emacs
+aced8e8482f93683d7f1299782901e8c2990c704	not-for-merge	branch 'scratch/touch' of git://git.sv.gnu.org/emacs
+adebcb647abd82564f0e245974f74f05c9b4cd2e	not-for-merge	branch 'scratch/tzz/gnus-cloud-aead' of git://git.sv.gnu.org/emacs
+710aa042c16c550f1cace936078148d45a405712	not-for-merge	branch 'scratch/tzz/import-pl' of git://git.sv.gnu.org/emacs
+6e75a6316fb7dcf1e089a063c83afffee2f160b7	not-for-merge	branch 'scratch/widen-less' of git://git.sv.gnu.org/emacs
+c331b6626a427fb89303fea75faebd8c39d343a8	not-for-merge	branch 'scratch/widen-limits' of git://git.sv.gnu.org/emacs
+acd190e0c0138357df59f803e130b9bf612efd18	not-for-merge	branch 'scratch/windows-branch-build-2' of git://git.sv.gnu.org/emacs
+ee89dea0e8da6a7dc6321d19f1ec3443b2c2465a	not-for-merge	branch 'scratch/with-fetched-url' of git://git.sv.gnu.org/emacs
+835f0c2c26909c4799f715817693a292bd08df21	not-for-merge	branch 'scratch/xref' of git://git.sv.gnu.org/emacs
+61dbe7654eeb732bf7b3128554f86bbba69245f9	not-for-merge	branch 'scratch/xref-next' of git://git.sv.gnu.org/emacs
+f149da7e9517d2fc6825e6235b3bcbbc68122d2b	not-for-merge	branch 'shr-fontified' of git://git.sv.gnu.org/emacs
+418d2ecc04ade5885526b128ae5de2b418c2ba34	not-for-merge	branch 'stream' of git://git.sv.gnu.org/emacs
+ae31a7fac5c1cb8d5d3cb3238d15a5e3b791fd69	not-for-merge	branch 'test-concurrency' of git://git.sv.gnu.org/emacs
+b9fbc03b862413bfee2728b1760f959bfc912e56	not-for-merge	branch 'widen-less' of git://git.sv.gnu.org/emacs
+157eaca5524d5931c71d84905ad41bd4327d49e1	not-for-merge	branch 'x-tabs' of git://git.sv.gnu.org/emacs
+5e1d5ef39ca0d2fbff26d659f2ec6ce863b14529	not-for-merge	branch 'xwidget' of git://git.sv.gnu.org/emacs
+4b73dac2885aa7eb23b66c299065e19bd118a4fb	not-for-merge	branch 'xwidget_mvp' of git://git.sv.gnu.org/emacs
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            DIRC      D[¨ô;;4È[¨ô;;4È   úş  ¤  è  è  âäNt\Ñœá±ªİ@lòİ5¿Æ LICENSE   [¨ô;;4È[¨ô;;4È   û  ¤  è  è  ¥¸…á¶»¿Ú4n) ¦*sN®¾ ± 	README.md [®²^>S?[®²^>S?   ö  í  è  è  Mv‘>zx,¡Vs–Ş[èv¸ pJ bin/dotfiles_install      [¨ô;;4È[¨ô;;4È   û  ¤  è  è   pø‡…¶ß£öjh')?´èX¦ bin/gvim.bat      [¨ô;;4È[¨ô;;4È   û  í  è  è  İx¶DíJÓ$Z¨$ö
+±[ë¤Åì§ bin/versions      [¨ô;;4È[¨ô;;4È   û  ¤  è  è  áø¦bnz ı?ñÍÅN%óÇÑ0Â doc/versions.org  [¨ô;;4È[¨ô;;4È   û  ¤  è  è   gì#[Ÿa/VÎ›<†SÍ
+ƒ÷ editors/drracket/keys.rkt [¾gÓu[¾gÓu   t  ¤  è  è   4›;ÛwÙã6ByY%®—,ÿ¿µE editors/emacs/emacs.d/custom.el   [¨ô;;4È[¨ô;;4È   û  í  è  è  1Ìë·ÛM“4…‚’GÛ¦Û¼WkÇÇH ,editors/emacs/emacs.d/escript/flymake-erlang      [®²^>S?[®²^>S?   ú  ¤  è  è  N©•÷z½Ô£V*sÊyM}¼õ¥y (editors/emacs/emacs.d/lisp/init-local.el  [¨ô;;4È[¨ô;;4È   û  ¤  è  è  –^Ïh¤%ÎRo­¯æŞØ­s8¨ôÁ ,editors/emacs/emacs.d/lisp/pre-load-local.el      [¨ô;;4È[¨ô;;4È   û  ¤  è  è  L;Ey‹àYŞàû×Q3­:Š editors/emacs/emacs.el    [¨ô;;4È[¨ô;;4È   û   ¤  è  è  /EÂBœMkäß lw2É©µÙù1 editors/emacs/keyboard.org        [¨ô;;4È[¨ô;;4È   û"  ¤  è  è   KVñøpùiÁû+q‡‚‚lköç editors/vim/_vimrc.vim    [¨ô;;4È[¨ô;;4È   û$  ¤  è  è    æâ›²ÑÖCK‹)®wZØÂäŒS‘ editors/vim/backup/.empty [¨ô;;4È[¨ô;;4È   û&  ¤  è  è  ®Û‰ÉööñÛÎ˜²S¬h„èÕ±ø2 editors/vim/colors/nice-gui.vim   [¨ô;;4È[¨ô;;4È   û'  ¤  è  è  ¶£”¦Hz¶¹~î_ÂÒŞP(ò  editors/vim/colors/nice-term.vim  [¨ô;;4È[¨ô;;4È   û)  ¤  è  è  ?¿_s@mC5IÜò»ì1X  editors/vim/my_settings/abbr.vim  [¨ô;;4È[¨ô;;4È   û*  ¤  è  è  —·Xıò÷Ø¡{Ëœeh¼y "editors/vim/my_settings/keymap.vim        [¨ô;;4È[¨ô;;4È   û+  ¤  è  è  	¯·˜&4e~Rîs‹ÇÉĞŠëôÔ- #editors/vim/my_settings/scripts.vim       [¨ô;;4È[¨ô;;4È   û-  ¤  è  è   "‚Õ$Ùw™;Ò#Ë¹H_(>k editors/vim/spell/en.utf-8.add    [¨ô;;4È[¨ô;;4È   û.  ¤  è  è   „È0Q	pQ_Aè(¿&w0`?” "editors/vim/spell/en.utf-8.add.spl        [¨ô;;4È[¨ô;;4È   û/  ¤  è  è   “RğÜ‡N”ØL)bÓ™ÔøKW editors/vim/spell/latin1.add      [¨ô;;4È[¨ô;;4È   û0  ¤  è  è   / N°6b õ…™=±óÖ¾`½Xœ©  editors/vim/spell/latin1.add.spl  [¨ô;;4È[¨ô;;4È   û1  ¤  è  è  :ßŠMOF¡]2éÙßél|¶-"hÊ editors/vim/vimrc.vim     [¨ô;;4È[¨ô;;4È   û2  ¤  è  è  æü3´Äw®¬Ù<Ã²]óÕu
+0" 
+issues.org        [¨ô;;4È[¨ô;;4È   û5  ¤  è  è  é|LQ%¢ú‰šzéee´zİL misc/debian/debconf_selections    [¨ô;;4È[¨ô;;4È   û8  ¤  è  è  ÈV3”Ÿm…jô±1&k‡ÑD  misc/debian/etc/apt/sources.list  [¨ô;;4È[¨ô;;4È   û9  ¤  è  è  wZc÷§‚•yRpE¯àâ¯_fZ misc/debian/etc/fstab     [¨ô;;4È[¨ô;;4È   û:  ¤  è  è  ™éÕ±Ä 
+1 ÊÍqÈS¿JW  misc/debian/etc/fstab.boot        [¨ô;;4È[¨ô;;4È   û<  ¤  è  è  É˜ÒÂxóLC¬=UE·ßü$G™†  misc/debian/etc/lvm/debian-vg     [¨ô;;4È[¨ô;;4È   û=  ¤  è  è Fô­CÓ?ƒ8èKØŸÕÃÿÿÁj misc/debian/etc/lvm/lvm.conf      [¨ô;;4È[¨ô;;4È   û>  ¤  è  è  ¼`qËQÌ´Ér5èa†°K$1rğ misc/debian/installed_packages    [¨ô;;M=Ò[¨ô;;M=Ò   û?  ¤  è  è  •ÈqÆzl:‡W³8";¶I›°Ú &misc/debian/installed_packages.crouton    [¨ô;;M=Ò[¨ô;;M=Ò   ûA  ¤  è  è  £«9¿XIÇÈìWû¢îdèÊ Hmisc/debian/post-chroot-updates/installed_packages.crouton-updated-Aug25  [¨ô;;M=Ò[¨ô;;M=Ò   ûB  ¤  è  è  Æµ„£QáÔºaŞ ®)ê,ğÚÜ Lmisc/debian/post-chroot-updates/installed_packages.crouton-updated-Aug25.log      [¨ô;;M=Ò[¨ô;;M=Ò   ûC  ¤  è  è   .»Ÿ=iÈCÎÌ	¨í#
+Oúp¶P‚ misc/desktop.ini  [¨ô;;M=Ò[¨ô;;M=Ò   ûD  ¤  è  è   ¬£”Ê@Ë²+ìº•Mî¿2Ê misc/inputrc      [¨ô;;M=Ò[¨ô;;M=Ò   ûF  ¤  è  è  ]¿Ñ3T²âĞğŠÛJë‡Å misc/pal/Canada.pal       [¨ô;;M=Ò[¨ô;;M=Ò   ûG  ¤  è  è   ]'œ;î… 	×>dĞ=Ô~-Ô misc/pal/pal.conf [¨ô;;M=Ò[¨ô;;M=Ò   ûH  ¤  è  è  Ai@êJ=gÅ»€¾ÔÛRàçu misc/pal/saints.pal       [¨ô;;M=Ò[¨ô;;M=Ò   ûI  ¤  è  è   j›–3§˜FjÚ#]g†’µ±Z¥ misc/post-commit.hook     [¨ô;;M=Ò[¨ô;;M=Ò   ûK  ¤  è  è   8ïl4”©mæÉ²È¾êÃ®æ misc/ruby/gemrc   [¨ô;;M=Ò[¨ô;;M=Ò   ûL  ¤  è  è   2(Â½ïL:aWæŸ¯û|ê¬ÎÓ; misc/ruby/pryrc   [¨ô;;M=Ò[¨ô;;M=Ò  
