@@ -696,4 +696,15 @@ function ds {
   dpigs -H
 }
 
+function recent {
+  OLDPWD=$(pwd)
+  cd $HOME
+  find . -atime 0 -ctime 0 -mtime 0 -type f |\
+    \grep -vEe ".ICEauthority|.Xauthority"\
+          -vEe ".bash_history|.git|.keychain|.viminfo|.xsession-errors"\
+          -vEe "dbus|icons|fontconfig|gvfs-metadata|vimb|webkitgtk|WebKitCache"\
+          -vEe "repos"
+  cd $OLDPWD
+}
+
 # vim:nospell:ft=sh:
