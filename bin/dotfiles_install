@@ -240,11 +240,25 @@ _vim() {
   [ ! -z "$installed" ] && echo "INSTALLED!" >&2
 }
 
+_xfce4() {
+  installed=
+  echo -n "checking xfce4..." >&2
+
+  [[ -d $HOME/.config/xfce4 || -L $HOME/.config/xfce4 ]] && { :
+  } || {
+    installed="xfce4"
+    ln -s ${SCRIPT_DIR%bin}misc/xfce4 $HOME/.config/xfce4
+  }
+
+  [ ! -z "$installed" ] && echo "INSTALLED!" >&2
+}
+
 _bash
 _emacs
 _git
 _misc
 _pal
 _vim
+_xfce4
 
 # vim: nonu:nowrap:nospell:ft=sh
