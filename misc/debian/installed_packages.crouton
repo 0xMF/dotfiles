@@ -203,6 +203,9 @@ hunspell-en-us					install
 i965-va-driver:amd64				install
 icu-devtools					install
 ifupdown					install
+imagemagick					install
+imagemagick-6-common				install
+imagemagick-6.q16				install
 info						install
 init						install
 init-system-helpers				install
@@ -348,6 +351,9 @@ libdbus-glib-1-2:amd64				install
 libdconf1:amd64					install
 libdebconfclient0:amd64				install
 libdevmapper1.02.1:amd64			install
+libdjvulibre-dev:amd64				install
+libdjvulibre-text				install
+libdjvulibre21:amd64				install
 libdns-export1100				install
 libdns-export1102				install
 libdpkg-perl					install
@@ -386,6 +392,7 @@ libfakeroot:amd64				install
 libfastjson4:amd64				install
 libfdisk1:amd64					install
 libffi6:amd64					install
+libfftw3-double3:amd64				install
 libfftw3-single3:amd64				install
 libfile-homedir-perl				install
 libfile-stripnondeterminism-perl		install
@@ -505,6 +512,8 @@ libidn2-0-dev:amd64				install
 libidn2-dev:amd64				install
 libiec61883-0:amd64				install
 libijs-0.35:amd64				install
+libilmbase-dev					install
+libilmbase23:amd64				install
 libimlib2:amd64					install
 libimobiledevice6:amd64				install
 libindicator3-7:amd64				install
@@ -548,6 +557,7 @@ libkrb5-3:amd64					install
 libkrb5support0:amd64				install
 libksba8:amd64					install
 liblcms2-2:amd64				install
+liblcms2-dev:amd64				install
 libldap-2.4-2:amd64				install
 libldap-common					install
 liblightdm-gobject-1-0:amd64			install
@@ -559,6 +569,8 @@ liblockfile-bin					install
 liblockfile-dev:amd64				install
 liblockfile1:amd64				install
 liblognorm5:amd64				install
+liblqr-1-0:amd64				install
+liblqr-1-0-dev:amd64				install
 liblsan0:amd64					install
 libltdl-dev:amd64				install
 libltdl7:amd64					install
@@ -573,6 +585,17 @@ libm17n-0:amd64					install
 libm17n-dev:amd64				install
 libmagic-mgc					install
 libmagic1:amd64					install
+libmagick++-6-headers				install
+libmagick++-6.q16-8:amd64			install
+libmagick++-6.q16-dev:amd64			install
+libmagickcore-6-arch-config:amd64		install
+libmagickcore-6-headers				install
+libmagickcore-6.q16-6:amd64			install
+libmagickcore-6.q16-6-extra:amd64		install
+libmagickcore-6.q16-dev:amd64			install
+libmagickwand-6-headers				install
+libmagickwand-6.q16-6:amd64			install
+libmagickwand-6.q16-dev:amd64			install
 libmime-charset-perl				install
 libmnl0:amd64					install
 libmount1:amd64					install
@@ -602,8 +625,11 @@ libnss3:amd64					install
 libntfs-3g88					install
 libnuma1:amd64					install
 libogg0:amd64					install
+libopenexr-dev					install
+libopenexr23:amd64				install
 libopengl0:amd64				install
 libopenjp2-7:amd64				install
+libopenjp2-7-dev				install
 libopus0:amd64					install
 liborc-0.4-0:amd64				install
 libosp5						install
@@ -739,6 +765,7 @@ libtexlua52:amd64				install
 libtexlua53:amd64				install
 libtexluajit2:amd64				install
 libtext-iconv-perl				install
+libtext-unidecode-perl				install
 libthai-data					install
 libthai-dev:amd64				install
 libthai0:amd64					install
@@ -803,6 +830,8 @@ libwebp6:amd64					install
 libwebpdemux2:amd64				install
 libwebpmux3:amd64				install
 libwebrtc-audio-processing1:amd64		install
+libwmf-dev					install
+libwmf0.2-7:amd64				install
 libwnck-3-0:amd64				install
 libwnck-3-common				install
 libwnck-common					install
@@ -885,6 +914,10 @@ libxkbcommon-dev:amd64				install
 libxkbcommon0:amd64				install
 libxkbfile1:amd64				install
 libxklavier16:amd64				install
+libxml-libxml-perl				install
+libxml-namespacesupport-perl			install
+libxml-sax-base-perl				install
+libxml-sax-perl					install
 libxml2:amd64					install
 libxml2-dev:amd64				install
 libxml2-utils					install
@@ -1329,6 +1362,7 @@ tcl						install
 tcl8.6						install
 tex-common					install
 tex-gyre					install
+texinfo						install
 texlive						install
 texlive-base					install
 texlive-bibtex-extra				install
