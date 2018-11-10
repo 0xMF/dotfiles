@@ -273,6 +273,14 @@ then it takes a second \\[keyboard-quit] to abort the minibuffer."
 (add-to-list 'auto-mode-alist '("\\.mw\\'" . mediawiki-mode))
 
 
+;; elm-mode
+(setq elm-interactive-command '("elm" "repl")
+      elm-reactor-command '("elm" "reactor")
+      elm-reactor-arguments '("--port" "8000")
+      elm-compile-command '("elm" "make")
+      elm-compile-arguments '("--output=elm.js" "--debug")
+      elm-package-command '("elm" "package"))
+
 ;;----------------------------------------------------------------------------
 ;; Other misc. yet imp stuff goes here. Credit: technomancy/better-defaults
 ;;----------------------------------------------------------------------------
