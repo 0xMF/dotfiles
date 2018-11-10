@@ -542,7 +542,6 @@ libjpeg9:amd64					install
 libjs-inherits					install
 libjs-is-typedarray				install
 libjs-jquery					install
-libjs-node-uuid					install
 libjs-underscore				install
 libjson-c3:amd64				install
 libjson-glib-1.0-0:amd64			install
@@ -761,6 +760,7 @@ libtasn1-6:amd64				install
 libtasn1-6-dev:amd64				install
 libtcl8.6:amd64					install
 libtdb1:amd64					install
+libteckit0:amd64				install
 libtexlua52:amd64				install
 libtexlua53:amd64				install
 libtexluajit2:amd64				install
@@ -1215,6 +1215,7 @@ node-unique-filename				install
 node-unpipe					install
 node-url-parse-lax				install
 node-url-to-options				install
+node-uuid					install
 node-validate-npm-package-license		install
 node-validate-npm-package-name			install
 node-verror					install
@@ -1344,6 +1345,7 @@ sgml-data					install
 sgmlspl						install
 shared-mime-info				install
 sharutils					install
+sl						install
 sound-theme-freedesktop				install
 ssh						install
 ssl-cert					install
@@ -1360,6 +1362,7 @@ tasksel						install
 tasksel-data					install
 tcl						install
 tcl8.6						install
+teckit						install
 tex-common					install
 tex-gyre					install
 texinfo						install
