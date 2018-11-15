@@ -14,7 +14,7 @@
 (unless package-archive-contents
   (package-refresh-contents))
 
-(setq my-required-packages '(benchmark-init demo-it evil
+(setq my-required-packages '(benchmark-init evil
                                             fill-column-indicator general mediawiki org-beautify-theme
                                             org-bullets org-pdfview powerline smart-mode-line
                                             smart-mode-line-powerline-theme use-package vimish-fold))
