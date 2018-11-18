@@ -433,6 +433,11 @@ then it takes a second \\[keyboard-quit] to abort the minibuffer."
 ;; refer: https://github.com/gongzhitaao/orgcss
 (setq org-html-htmlize-output-type 'css)
 
+;; make org-mode default for scratch (new) buffers
+(setq initial-major-mode 'org-mode)
+(setq initial-scratch-message
+      (concat "# Happy hacking, " user-login-name " - Emacs ♥ you!\n\n"))
+
 ;;----------------------------------------------------------------------------
 ;; Miscalleanous settings
 ;; User mode settings for UI/keyboard/look and feel
