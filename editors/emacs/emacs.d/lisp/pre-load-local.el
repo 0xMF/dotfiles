@@ -5,8 +5,6 @@
 
 ;; disable warning message when starting up Emacs via crouton
 (setq exec-path-from-shell-check-startup-files nil)
-;; evil, evil-collection, and evil-magit should play nice with each other
-(setq evil-want-keybinding 'nil)
 
 ;;(provide 'regex-tool)
 ;;(provide 'origami)
