@@ -14,9 +14,9 @@
 (unless package-archive-contents
   (package-refresh-contents))
 
-(setq my-required-packages '(evil evil-collection
-                                  fill-column-indicator general org-beautify-theme
-                                  org-bullets org-pdfview powerline smart-mode-line
+(setq my-required-packages '(evil evil-collection evil-magit
+                                  fill-column-indicator general org-beautify-theme org-bullets
+                                  org-pdfview powerline smart-mode-line
                                   smart-mode-line-powerline-theme use-package vimish-fold))
 (dolist (package my-required-packages)
   (unless (package-installed-p package)
@@ -43,8 +43,8 @@
 (require 'evil-magit)
 
 (evil-mode 1)
-;;(evil-collection-init)
-;;(evil-magit-init)
+(evil-collection-init)
+(evil-magit-init)
 
 (setq evil-default-state-cursor '("green" box))
 (setq evil-normal-state-cursor '("green" box))
