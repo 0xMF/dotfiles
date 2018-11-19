@@ -14,15 +14,15 @@
 (unless package-archive-contents
   (package-refresh-contents))
 
-(setq my-required-packages '(benchmark-init evil
-                                            fill-column-indicator general mediawiki org-beautify-theme
-                                            org-bullets org-pdfview powerline smart-mode-line
-                                            smart-mode-line-powerline-theme use-package vimish-fold))
-
+(setq my-required-packages '(evil evil-collection
+                                  fill-column-indicator general org-beautify-theme
+                                  org-bullets org-pdfview powerline smart-mode-line
+                                  smart-mode-line-powerline-theme use-package vimish-fold))
 (dolist (package my-required-packages)
   (unless (package-installed-p package)
     (package-install package)))
 
+;; remember to add benchmark-init to my-required-packages if reusing
 ;;(require 'benchmark-init)
 ;;(benchmark-init/activate)
 
@@ -37,8 +37,14 @@
 ;;----------------------------------------------------------------------------
 ;; Evil mode settings
 ;;----------------------------------------------------------------------------
+(setq evil-want-keybinding 'nil)
 (require 'evil)
+(require 'evil-collection)
+(require 'evil-magit)
+
 (evil-mode 1)
+;;(evil-collection-init)
+;;(evil-magit-init)
 
 (setq evil-default-state-cursor '("green" box))
 (setq evil-normal-state-cursor '("green" box))
@@ -137,6 +143,7 @@
                     "=" '(lambda () (interactive) (text-scale-increase 3))
                     "-" 'text-scale-decrease
                     "0" '(lambda () (interactive) (text-scale-adjust 0))
+                    "$" 'toggle-truncate-lines
                     "/" 'org-tags-view
                     "." 'org-tags-view
                     "\\" 'org-match-sparse-tree)
@@ -267,10 +274,11 @@ then it takes a second \\[keyboard-quit] to abort the minibuffer."
 (unless (version< emacs-version "27")
   (setq url-http-referer 'nil))
 
-(require 'mediawiki)
-:init
- ;;setup files ending in “.mw” to open in mediwiki-mode
-(add-to-list 'auto-mode-alist '("\\.mw\\'" . mediawiki-mode))
+;; remember to add mediawiki to my-required-packages if using mediawiki
+;;(require 'mediawiki)
+;;:init
+;;setup files ending in “.mw” to open in mediwiki-mode
+;;(add-to-list 'auto-mode-alist '("\\.mw\\'" . mediawiki-mode))
 
 
 ;; elm-mode
@@ -445,6 +453,7 @@ then it takes a second \\[keyboard-quit] to abort the minibuffer."
 ;; Miscalleanous settings
 ;; User mode settings for UI/keyboard/look and feel
 ;;----------------------------------------------------------------------------
+(set-default 'truncate-lines t)
 (setq browse-url-browser-function 'eww-browse-url)
 
 (defun load-if-file-exists (FILE)
