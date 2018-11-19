@@ -438,6 +438,9 @@ then it takes a second \\[keyboard-quit] to abort the minibuffer."
 (setq initial-scratch-message
       (concat "# Happy hacking, " user-login-name " - Emacs ♥ you!\n\n"))
 
+;; make EWW default browser for html files
+(setq browse-url-browser-function 'eww-browse-url)
+
 ;;----------------------------------------------------------------------------
 ;; Miscalleanous settings
 ;; User mode settings for UI/keyboard/look and feel
