@@ -37,7 +37,6 @@
 ;;----------------------------------------------------------------------------
 ;; Evil mode settings
 ;;----------------------------------------------------------------------------
-(setq evil-want-keybinding 'nil)
 (require 'evil)
 (require 'evil-collection)
 (require 'evil-magit)
