@@ -89,6 +89,7 @@
                     "o" 'other-window
                     "p" 'previous-buffer
                     ;; "P" 'other-window
+                    "r" '0xMF/reset
                     "w" 'delete-other-windows)
 
 (general-define-key :prefix "b"
@@ -102,6 +103,7 @@
                     "n" 'next-buffer
                     "o" 'counsel-find-file
                     "p" 'previous-buffer
+                    "r" '0xMF/reset
                     "t" '(lambda () (interactive) (kill-buffer)(delete-window))
                     "x" 'evil-delete)
 
