@@ -528,6 +528,14 @@ then it takes a second \\[keyboard-quit] to abort the minibuffer."
             (local-set-key "l" 'Info-forward-node)
             (local-set-key "/" 'isearch-forward)))
 
+(defun my-info-settings ()
+  "Enable vi-style keybindings."
+  (local-set-key (kbd "C-b") 'next-buffer)
+  (define-key evil-normal-state-map (kbd "C-b") 'next-buffer)
+  (define-key evil-normal-state-map (kbd "C-p") 'previous-buffer)
+  (define-key evil-normal-state-map (kbd "C-n") 'next-buffer))
+(add-hook 'Info-mode-hook 'my-info-settings)
+
 (setq counsel-find-file-ignore-regexp (concat "\\(.~undo-tree~\\|"
                                               ".desktop\\|"
                                               ".git\\|"
