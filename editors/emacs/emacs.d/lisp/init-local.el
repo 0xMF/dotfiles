@@ -133,7 +133,8 @@
                     "n" 'linum-mode
                     "o" 'find-file
                     "q" 'fill-paragraph
-                    "r" 'undo-tree-redo
+                    "r" '0xMF/reset
+                    "R" 'undo-tree-redo
                     "s" 'dired-jump
                     "u" 'undo-tree-undo
                     "t" 'org-todo-list
@@ -225,8 +226,8 @@ then it takes a second \\[keyboard-quit] to abort the minibuffer."
   (define-key eww-mode-map "j" 'next-line)
   (define-key eww-mode-map "k" 'previous-line)
   (define-key eww-mode-map "l" 'next-char)
-  (local-set-key "n" 'eww-forward-url)
-  (local-set-key "p" 'eww-back-url))
+  (define-key eww-mode-map "n" 'eww-forward-url)
+  (define-key eww-mode-map "p" 'eww-back-url))
 ;; -- DANGER: avoid setting keys in evil-normal-map.
 ;;(define-key evil-normal-state-map "n" 'eww-forward-url)
 ;;(define-key evil-normal-state-map "p" 'eww-back-url))
@@ -343,6 +344,8 @@ then it takes a second \\[keyboard-quit] to abort the minibuffer."
 (global-set-key (kbd "C-j") (kbd "C-c")) ; maps one key to another
 (global-set-key (kbd "M-s") 'execute-extended-command)
 (global-set-key (kbd "M-z") 'execute-extended-command)
+(global-set-key (kbd "C-n") 'next-buffer)
+(global-set-key (kbd "C-p") 'previous-buffer)
 
 (global-set-key (kbd "C-<escape>") 'evil-mode)
 (global-set-key (kbd "C-M-<escape>") 'evil-mode)
@@ -523,7 +526,8 @@ then it takes a second \\[keyboard-quit] to abort the minibuffer."
             (setq show-trailing-whitespace nil)))
 
 (add-hook 'Info-mode-hook
-          (defun set-keys-Info-mode ()
+          (defun 0xMF/Info-mode-settings ()
+            "Enable vi-style keybindings."
             (interactive)
             (turn-off-evil-mode)
             (local-set-key "b" 'Info-last)
@@ -531,20 +535,12 @@ then it takes a second \\[keyboard-quit] to abort the minibuffer."
             (local-set-key "j" 'next-line)
             (local-set-key "k" 'previous-line)
             (local-set-key "l" 'Info-forward-node)
-            (define-key isearch-mode-map "n" nil)
+            (local-set-key "/" 'isearch-forward)
             (local-set-key "n" 'Info-forward-node)
             (local-set-key "p" 'Info-backward-node)
-            (local-set-key "/" 'isearch-forward)))
+            (define-key Info-mode-map "n" 'Info-forward-node)
+            (define-key Info-mode-map "p" 'Info-backward-node)))
 
-(defun my-info-settings ()
-  "Enable vi-style keybindings."
-  (local-set-key (kbd "C-b") 'next-buffer)
-  (local-set-key (kbd "C-n") 'next-buffer)
-  (local-set-key (kbd "C-p") 'previous-buffer)
-  (local-set-key (kbd "M-n") 'isearch-repeat-forward)
-  (local-set-key (kbd "M-N") 'isearch-repeat-backward)
-  (define-key evil-normal-state-map (kbd "C-b") 'next-buffer)
-  (add-hook 'Info-mode-hook 'my-info-settings))
 
 (setq counsel-find-file-ignore-regexp (concat "\\(.~undo-tree~\\|"
                                               ".desktop\\|"
