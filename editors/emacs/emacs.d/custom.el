@@ -29,9 +29,6 @@
  '(org-document-title ((t (:foreground "#c8c8c8" :weight bold :height 1.2))))
  '(org-hide ((t (:foreground "#180248"))))
  '(org-level-1 ((t (:foreground "#0080c0" :weight bold :height 1.15))))
- '(org-level-2 ((t (:foreground "#ffe802" :weight bold :height 1.09))))
- '(org-level-3 ((t (:foreground "#9fff90" :slant italic :weight bold :height 1.0))))
- '(org-level-4 ((t (:foreground "#7fff00" :weight normal :height 1.0))))
  '(org-level-5 ((t (:foreground "#ff6200" :weight normal :height 1.0))))
  '(org-tag ((t (:foreground "#b8860b" :weight bold)))))
 
