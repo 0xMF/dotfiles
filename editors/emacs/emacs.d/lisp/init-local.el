@@ -9,7 +9,7 @@
 ;;; Code:
 
 ;; bring in my preferred packages specified in custom.el/package-selected-packages
-;(package-initialize)
+;;(package-initialize)
 
 (unless package-archive-contents
   (package-refresh-contents))
@@ -174,6 +174,8 @@
 
 (define-key evil-normal-state-map (kbd "C-k") (lambda () (interactive) (evil-scroll-up nil)))
 (define-key evil-normal-state-map (kbd "C-j") (lambda () (interactive) (evil-scroll-down nil)))
+(define-key evil-normal-state-map (kbd "C-n") 'next-buffer)
+(define-key evil-normal-state-map (kbd "C-p") 'previous-buffer)
 
 ;; Credit: [StackOverflow] in-emacs-flyspell-mode-how-to-add-new-word-to-dictionary
 (defun save-this-word ()
@@ -223,8 +225,11 @@ then it takes a second \\[keyboard-quit] to abort the minibuffer."
   (define-key eww-mode-map "j" 'next-line)
   (define-key eww-mode-map "k" 'previous-line)
   (define-key eww-mode-map "l" 'next-char)
-  (define-key evil-normal-state-map "n" 'eww-forward-url)
-  (define-key evil-normal-state-map "p" 'eww-back-url))
+  (local-set-key "n" 'eww-forward-url)
+  (local-set-key "p" 'eww-back-url))
+;; -- DANGER: avoid setting keys in evil-normal-map.
+;;(define-key evil-normal-state-map "n" 'eww-forward-url)
+;;(define-key evil-normal-state-map "p" 'eww-back-url))
 (add-hook 'eww-mode-hook 'my-eww-settings)
 
 (defun my-pdf-view-settings ()
@@ -526,6 +531,9 @@ then it takes a second \\[keyboard-quit] to abort the minibuffer."
             (local-set-key "j" 'next-line)
             (local-set-key "k" 'previous-line)
             (local-set-key "l" 'Info-forward-node)
+            (define-key isearch-mode-map "n" nil)
+            (local-set-key "n" 'Info-forward-node)
+            (local-set-key "p" 'Info-backward-node)
             (local-set-key "/" 'isearch-forward)))
 
 (defun my-info-settings ()
@@ -533,10 +541,10 @@ then it takes a second \\[keyboard-quit] to abort the minibuffer."
   (local-set-key (kbd "C-b") 'next-buffer)
   (local-set-key (kbd "C-n") 'next-buffer)
   (local-set-key (kbd "C-p") 'previous-buffer)
+  (local-set-key (kbd "M-n") 'isearch-repeat-forward)
+  (local-set-key (kbd "M-N") 'isearch-repeat-backward)
   (define-key evil-normal-state-map (kbd "C-b") 'next-buffer)
-  (define-key evil-normal-state-map (kbd "C-n") 'next-buffer)
-  (define-key evil-normal-state-map (kbd "C-p") 'previous-buffer))
-(add-hook 'Info-mode-hook 'my-info-settings)
+  (add-hook 'Info-mode-hook 'my-info-settings))
 
 (setq counsel-find-file-ignore-regexp (concat "\\(.~undo-tree~\\|"
                                               ".desktop\\|"
