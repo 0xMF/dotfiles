@@ -94,10 +94,10 @@ set runtimepath=$VIMRUNTIME,$MYVIM,$MYVIM/dependencies
     :endif
 
     "** use my colorscheme (nice-gui) if midnight is not available (win/gtk)
-    : if filereadable(expand("$MYVIM/colors/midnight.vim"))
-    :   colorscheme midnight    "select colorscheme
-    : elseif filereadable(expand("$MYVIM/colors/nice-gui.vim"))
+    : if filereadable(expand("$MYVIM/colors/nice-gui.vim"))
     :   colorscheme nice-gui     "select colorscheme
+    : elseif filereadable(expand("$MYVIM/colors/midnight.vim"))
+    :   colorscheme midnight    "select colorscheme
     : endif
 :else
 
