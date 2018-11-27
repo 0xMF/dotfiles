@@ -450,11 +450,6 @@ then it takes a second \\[keyboard-quit] to abort the minibuffer."
 ;; refer: https://github.com/gongzhitaao/orgcss
 (setq org-html-htmlize-output-type 'css)
 
-;; make org-mode default for scratch (new) buffers
-(setq initial-major-mode 'org-mode)
-(setq initial-scratch-message
-      (concat "# Happy hacking, " user-login-name " - Emacs ♥ you!\n\n"))
-
 ;; make EWW default browser for html files
 (setq browse-url-browser-function 'eww-browse-url)
 
@@ -550,6 +545,29 @@ then it takes a second \\[keyboard-quit] to abort the minibuffer."
                                               ".*.fasl\\|"
                                               ".*~\\|"
                                               "#*#\\)"))
+
+(defun 0xMF/my-orgmode-settings ()
+  "My Orgmode settings."
+  ;; make org-mode default for scratch (new) buffers
+  (setq initial-major-mode 'org-mode)
+  (setq initial-scratch-message
+        (concat "# Happy hacking, " user-login-name " - Emacs ♥ you!\n\n")))
+
+(defun recreate-scratch-buffer ()
+  "Overrides default scratch bufer settings and call my own function."
+  (when (get-buffer "*scratch*")
+    (kill-buffer "*scratch*"))
+  (0xMF/my-orgmode-settings)
+  (get-buffer-create "*scratch*"))
+
+(defun 0xMF/startup ()
+  "Start Emacs the way I like it ;-)."
+  (interactive)
+  (recreate-scratch-buffer)
+  (message "0xMF/startup"))
+
+(add-hook 'after-init-hook '0xMF/startup)
+
 
 (defun file-reload ()
   "Reload file without confirmation."
