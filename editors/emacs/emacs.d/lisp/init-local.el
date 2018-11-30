@@ -553,17 +553,17 @@ then it takes a second \\[keyboard-quit] to abort the minibuffer."
   (setq initial-scratch-message
         (concat "# Happy hacking, " user-login-name " - Emacs ♥ you!\n\n")))
 
-(defun recreate-scratch-buffer ()
-  "Overrides default scratch bufer settings and call my own function."
-  (when (get-buffer "*scratch*")
-    (kill-buffer "*scratch*"))
+(defun cleanup-initial-buffer-list ()
+  "Reset initial bufer list to the way I like it."
+  (when (get-buffer "*Compile-Log*")
+    (kill-buffer "*Compile-Log*"))
   (0xMF/my-orgmode-settings)
   (get-buffer-create "*scratch*"))
 
 (defun 0xMF/startup ()
   "Start Emacs the way I like it ;-)."
   (interactive)
-  (recreate-scratch-buffer)
+  (cleanup-initial-buffer-list)
   (message "0xMF/startup"))
 
 (add-hook 'after-init-hook '0xMF/startup)
