@@ -174,6 +174,7 @@
 (global-set-key [escape] 'evil-exit-emacs-state)
 
 (define-key evil-normal-state-map (kbd "C-k") (lambda () (interactive) (evil-scroll-up nil)))
+(global-set-key (kbd "S-SPC") 'evil-scroll-up)
 (define-key evil-normal-state-map (kbd "C-j") (lambda () (interactive) (evil-scroll-down nil)))
 (define-key evil-normal-state-map (kbd "C-n") 'next-buffer)
 (define-key evil-normal-state-map (kbd "C-p") 'previous-buffer)
