@@ -564,6 +564,8 @@ then it takes a second \\[keyboard-quit] to abort the minibuffer."
   "Reset initial bufer list to the way I like it."
   (when (get-buffer "*Compile-Log*")
     (kill-buffer "*Compile-Log*"))
+  (when ( get-buffer "*magit-todos--scan-with-git-grep*")
+    (kill-buffer "*magit-todos--scan-with-git-grep*"))
   (0xMF/my-orgmode-settings)
   (get-buffer-create "*scratch*"))
 
