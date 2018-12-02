@@ -57,6 +57,11 @@
            (set-cursor-color "green")
          (set-cursor-color "white")))
 
+;; set Tab key to work correctly with Org-mode tables and headings.
+;;(setq evil-want-C-i-jump nil)
+;;(when evil-want-C-i-jump
+;;      (define-key evil-motion-state-map (kbd "C-i") 'evil-jump-forward))
+
 (add-hook 'evil-mode-hook 'my-default-cursor)
 
 ;;----------------------------------------------------------------------------
@@ -135,7 +140,7 @@
                     "q" 'fill-paragraph
                     "r" '0xMF/reset
                     "R" 'undo-tree-redo
-                    "s" 'dired-jump
+                    "s" '0xMF/startup
                     "u" 'undo-tree-undo
                     "t" 'org-todo-list
                     "T" 'org-set-tags
@@ -530,11 +535,12 @@ then it takes a second \\[keyboard-quit] to abort the minibuffer."
             (local-set-key "h" 'Info-backward-node)
             (local-set-key "j" 'next-line)
             (local-set-key "k" 'previous-line)
-            (local-set-key "l" 'Info-forward-node)
             (local-set-key "/" 'isearch-forward)
-            (local-set-key "n" 'Info-forward-node)
-            (local-set-key "p" 'Info-backward-node)
+            ;(local-set-key "l" 'Info-forward-node)
+            ;(local-set-key "n" 'Info-forward-node)
+            ;(local-set-key "p" 'Info-backward-node)
             (define-key Info-mode-map "n" 'Info-forward-node)
+            (define-key Info-mode-map "l" 'Info-forward-node)
             (define-key Info-mode-map "p" 'Info-backward-node)))
 
 
