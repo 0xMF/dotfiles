@@ -574,6 +574,7 @@ then it takes a second \\[keyboard-quit] to abort the minibuffer."
   (0xMF/kill-buffers "^\\*magit")
   (0xMF/kill-buffers "^\\magit")
   (0xMF/kill-buffers "^\\*Backtrace*")
+  (0xMF/kill-buffers "^\\*Calculator*")
   (0xMF/kill-buffers "^\\*Help*")
   (0xMF/kill-buffers "^\\*PP Eval Output*")
   (0xMF/kill-buffers "^\\*Flycheck error messages*")
