@@ -182,7 +182,6 @@
 (global-set-key (kbd "S-SPC") 'evil-scroll-up)
 (define-key evil-normal-state-map (kbd "C-j") (lambda () (interactive) (evil-scroll-down nil)))
 (define-key evil-normal-state-map (kbd "C-n") 'next-buffer)
-;(define-key evil-normal-state-map (kbd "C-[") 'previous-buffer)
 (define-key evil-normal-state-map (kbd "C-p") 'previous-buffer)
 
 ;; Credit: [StackOverflow] in-emacs-flyspell-mode-how-to-add-new-word-to-dictionary
