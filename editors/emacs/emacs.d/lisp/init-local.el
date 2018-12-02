@@ -567,8 +567,8 @@ then it takes a second \\[keyboard-quit] to abort the minibuffer."
              (lambda (buffer) (kill-buffer buffer))))
     (kill-matching-buffers regexp)))
 
-(defun cleanup-initial-buffer-list ()
-  "Reset initial bufer list to the way I like it."
+(defun cleanup-Emacs-buffer-list ()
+  "Remove all kinds of needless buffers."
   (when (get-buffer "*Compile-Log*")
     (kill-buffer "*Compile-Log*"))
   (0xMF/kill-buffers "^\\*magit")
@@ -581,9 +581,9 @@ then it takes a second \\[keyboard-quit] to abort the minibuffer."
   (get-buffer-create "*scratch*"))
 
 (defun 0xMF/startup ()
-  "Start Emacs the way I like it ;-)."
+  "Start/reset Emacs the way I like it ;-)."
   (interactive)
-  (cleanup-initial-buffer-list)
+  (cleanup-Emacs-buffer-list)
   (message "0xMF/startup"))
 
 (add-hook 'after-init-hook '0xMF/startup)
