@@ -560,12 +560,23 @@ then it takes a second \\[keyboard-quit] to abort the minibuffer."
   (setq initial-scratch-message
         (concat "# Happy hacking, " user-login-name " - Emacs ♥ you!\n\n")))
 
+(defun 0xMF/kill-buffers (regexp)
+  "Kill buffers matching REGEXP without confirmation."
+  (interactive "sKill buffers matching the regex given: ")
+  (cl-letf (((symbol-function 'kill-buffer-ask)
+             (lambda (buffer) (kill-buffer buffer))))
+    (kill-matching-buffers regexp)))
+
 (defun cleanup-initial-buffer-list ()
   "Reset initial bufer list to the way I like it."
   (when (get-buffer "*Compile-Log*")
     (kill-buffer "*Compile-Log*"))
-  (when ( get-buffer "*magit-todos--scan-with-git-grep*")
-    (kill-buffer "*magit-todos--scan-with-git-grep*"))
+  (0xMF/kill-buffers "^\\*magit")
+  (0xMF/kill-buffers "^\\magit")
+  (0xMF/kill-buffers "^\\*Backtrace*")
+  (0xMF/kill-buffers "^\\*Help*")
+  (0xMF/kill-buffers "^\\*PP Eval Output*")
+  (0xMF/kill-buffers "^\\*Flycheck error messages*")
   (0xMF/my-orgmode-settings)
   (get-buffer-create "*scratch*"))
 
