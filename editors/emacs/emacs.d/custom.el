@@ -11,7 +11,7 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(custom-enabled-themes '(smart-mode-line-powerline))
+ '(custom-enabled-themes '(smart-mode-line-powerline blueknight))
  '(custom-safe-themes
    '("84d2f9eeb3f82d619ca4bfffe5f157282f4779732f48a5ac1484d94d5ff5b279" "91a888509f39590578a0511fe96fa28de615646e5a154bfe53b026b70d2e194e" "c56fa13c44e3406f3d28da82d4ae08ea171ef96fec978e9d95c40ed759a3c6d8" default))
  '(package-selected-packages
