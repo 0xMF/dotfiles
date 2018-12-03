@@ -173,11 +173,20 @@ function ps1 {
   PROMPT_COMMAND="ps1"
 }
 
-function psc {
+function pscs {
   if [ `id -u` -eq 0 ]; then
     PS1="$RED\h:\W $(parse_git_repo)$RED#$NOCOLOR "
   else
     PS1="$GREEN\u$YELLOW@$CYAN\h$YELLOW:$GREEN\W $(parse_git_repo)$NOCOLOR$ "
+  fi
+  PROMPT_COMMAND="pscs"
+}
+
+function psc {
+  if [ `id -u` -eq 0 ]; then
+    PS1="$RED\h:\W $(parse_git_repo)$RED#$NOCOLOR "
+  else
+    PS1="$(parse_git_repo)$CYAN\$$NOCOLOR "
   fi
   PROMPT_COMMAND="psc"
 }
