@@ -42,6 +42,12 @@ function light {
   export LS_COLORS
 }
 
+function gcoe {
+  pushd ~/repos/dotfiles > /dev/null
+  git checkout ~/repos/dotfiles/editors/emacs/emacs.d/custom.el
+  popd > /dev/null
+}
+
 function parse_git_repo {
   [ -z "$(parse_git_branch)" ] && return
 

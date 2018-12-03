@@ -1,0 +1,4 @@
+;; --*--
+
+(let* ((cfg-file "elesscfg"))
+  (load-theme 'tango-dark :no-confirm))
