@@ -261,6 +261,9 @@ then it takes a second \\[keyboard-quit] to abort the minibuffer."
               (local-set-key (kbd "<mouse-4>") 'pdf-view-previous-line-or-previous-page))))
 (add-hook 'pdf-view-mode-hook 'my-pdf-view-settings)
 
+;; better clipboard copy-paste with evil
+(fset 'evil-visual-update-x-selection 'ignore)
+
 ;; yes to powerline on a smart-mode-line
 (require 'powerline)
 (require 'smart-mode-line)
