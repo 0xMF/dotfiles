@@ -576,9 +576,11 @@ then it takes a second \\[keyboard-quit] to abort the minibuffer."
   "Remove all kinds of needless buffers."
   (when (get-buffer "*Compile-Log*")
     (kill-buffer "*Compile-Log*"))
-  (0xMF/kill-buffers "^\\*magit")
+  (0xMF/kill-buffers "*Packages*")
+  (0xMF/kill-buffers "^\\magit:")
+  (0xMF/kill-buffers "magit-diff:")
+  (0xMF/kill-buffers "*magit-todos--scan-with-git-grep")
   (0xMF/kill-buffers "^\\*vc-diff*")
-  (0xMF/kill-buffers "^\\magit")
   (0xMF/kill-buffers "^\\*Backtrace*")
   (0xMF/kill-buffers "^\\*Calculator*")
   (0xMF/kill-buffers "^\\*Help*")
