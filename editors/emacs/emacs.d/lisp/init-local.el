@@ -579,6 +579,7 @@ then it takes a second \\[keyboard-quit] to abort the minibuffer."
   (0xMF/kill-buffers "*Packages*")
   (0xMF/kill-buffers "^\\magit:")
   (0xMF/kill-buffers "magit-diff:")
+  (0xMF/kill-buffers "magit-merge-preview:")
   (0xMF/kill-buffers "*magit-todos--scan-with-git-grep")
   (0xMF/kill-buffers "^\\*vc-diff*")
   (0xMF/kill-buffers "^\\*Backtrace*")
