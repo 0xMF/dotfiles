@@ -98,7 +98,8 @@
                     "w" 'delete-other-windows)
 
 (general-define-key :prefix "b"
-                    "b" 'describe-bindings
+                    "a" 'describe-bindings
+                    "b" 'evil-scroll-up
                     "c" 'yank
                     "d" 'sanityinc/toggle-delete-other-windows
                     "f" 'markdown-follow-thing-at-point

@@ -80,7 +80,7 @@ map <F3>  :execute "mksession! " . v:this_session<CR>
 " mappings for less like behaviour
 map <Space> <C-f>
 map <S-Space> <C-b>
-"map b       <C-b>
+map b       <C-b>
 "map q       :q<CR>
 
 :imap <A-BS> <ESC>ua|                   " --ditto-- in insert mode
