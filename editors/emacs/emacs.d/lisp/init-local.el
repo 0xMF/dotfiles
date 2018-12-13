@@ -99,7 +99,7 @@
 
 (general-define-key :prefix "b"
                     "a" 'describe-bindings
-                    "b" 'evil-scroll-up
+                    "b" 'evil-scroll-page-up
                     "c" 'yank
                     "d" 'sanityinc/toggle-delete-other-windows
                     "f" 'markdown-follow-thing-at-point
@@ -180,7 +180,7 @@
 (global-set-key [escape] 'evil-exit-emacs-state)
 
 (define-key evil-normal-state-map (kbd "C-k") (lambda () (interactive) (evil-scroll-up nil)))
-(global-set-key (kbd "S-SPC") 'evil-scroll-up)
+(global-set-key (kbd "S-SPC") 'evil-scroll-page-up)
 (define-key evil-normal-state-map (kbd "C-j") (lambda () (interactive) (evil-scroll-down nil)))
 (define-key evil-normal-state-map (kbd "C-d") 'save-buffer)
 (define-key evil-normal-state-map (kbd "C-n") 'next-buffer)
