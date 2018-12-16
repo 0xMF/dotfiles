@@ -197,6 +197,7 @@ gir1.2-glib-2.0:amd64				install
 gir1.2-gtk-3.0:amd64				install
 gir1.2-harfbuzz-0.0:amd64			install
 gir1.2-pango-1.0:amd64				install
+gir1.2-poppler-0.18:amd64			install
 gir1.2-rsvg-2.0:amd64				install
 gir1.2-vte-2.91:amd64				install
 git						install
@@ -349,7 +350,6 @@ libbdplus0:amd64				install
 libbinutils:amd64				install
 libblas3:amd64					install
 libblkid1:amd64					install
-libblockdev-crypto2:amd64			install
 libblockdev-fs2:amd64				install
 libblockdev-loop2:amd64				install
 libblockdev-part-err2:amd64			install
@@ -464,6 +464,7 @@ libegl1:amd64					install
 libegl1-mesa:amd64				install
 libegl1-mesa-dev:amd64				install
 libehcache-java					install
+libel-api-java					install
 libelf1:amd64					install
 libenchant1c2a:amd64				install
 libeot0:amd64					install
@@ -665,6 +666,7 @@ libjs-underscore				install
 libjson-c3:amd64				install
 libjson-glib-1.0-0:amd64			install
 libjson-glib-1.0-common				install
+libjsp-api-java					install
 libjte1						install
 libk5crypto3:amd64				install
 libkate1:amd64					install
@@ -824,6 +826,7 @@ libpolkit-agent-1-0:amd64			install
 libpolkit-backend-1-0:amd64			install
 libpolkit-gobject-1-0:amd64			install
 libpoppler-dev:amd64				install
+libpoppler-glib-dev				install
 libpoppler-glib8:amd64				install
 libpoppler-private-dev:amd64			install
 libpoppler80:amd64				install
@@ -1007,7 +1010,6 @@ libvisio-0.1-1:amd64				install
 libvisual-0.4-0:amd64				install
 libvo-aacenc0:amd64				install
 libvo-amrwbenc0:amd64				install
-libvolume-key1					install
 libvorbis0a:amd64				install
 libvorbisenc2:amd64				install
 libvorbisfile3:amd64				install
@@ -1032,6 +1034,7 @@ libwebp6:amd64					install
 libwebpdemux2:amd64				install
 libwebpmux3:amd64				install
 libwebrtc-audio-processing1:amd64		install
+libwebsocket-api-java				install
 libwildmidi-config				install
 libwildmidi2:amd64				install
 libwmf-dev					install
