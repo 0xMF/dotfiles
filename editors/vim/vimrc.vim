@@ -76,12 +76,13 @@ set runtimepath=$VIMRUNTIME,$MYVIM,$MYVIM/dependencies
     ":   let hostname = substitute(system("uname -n"),"\n","","g")
     ":   if (hostname == 'name')
     " set font and its size
-    :   silent let scp_detected=system("fc-list|grep 'Source Code Pro Medium'|wc -l")[0]
-    :   if scp_detected == "2"
-    :     set guifont=Source\ Code\ Pro\ Medium\ 12
-    :   else
-    :     set guifont=Monospace\ 12
-    :   endif
+    ":   silent let scp_detected=system("fc-list|grep 'Source Code Pro Medium'|wc -l")[0]
+    ":   if scp_detected == "2"
+    ":     set guifont=Source\ Code\ Pro\ Medium\ 12
+    :     set guifont=Source\ Code\ Pro\ Semibold\ 14
+    ":   else
+    ":     set guifont=Monospace\ 12
+    ":   endif
     ":  set guifont=Nimbus\ Mono\ L\ Bold\ 13 "set font and its size
     :   set guioptions+=a   " visual selection can copy to clipboard
     :   set guioptions+=i   " show gvim color icon, instead of default
@@ -95,7 +96,8 @@ set runtimepath=$VIMRUNTIME,$MYVIM,$MYVIM/dependencies
 
     "** use my colorscheme (nice-gui) if midnight is not available (win/gtk)
     : if filereadable(expand("$MYVIM/colors/nice-gui.vim"))
-    :   colorscheme nice-gui     "select colorscheme
+    ":   colorscheme nice-gui     "select colorscheme
+    :   colorscheme ron     "select colorscheme
     : elseif filereadable(expand("$MYVIM/colors/midnight.vim"))
     :   colorscheme midnight    "select colorscheme
     : endif
