@@ -609,7 +609,7 @@ libharfbuzz0b:amd64				install
 libhogweed4:amd64				install
 libhsqldb1.8.0-java				install
 libhttp-parser2.8:amd64				install
-libhunspell-1.6-0:amd64				install
+libhunspell-1.7-0:amd64				install
 libhyphen0:amd64				install
 libib-util:amd64				install
 libical3:amd64					install
@@ -624,7 +624,6 @@ libid3tag0:amd64				install
 libidn11:amd64					install
 libidn2-0:amd64					install
 libidn2-0:i386					install
-libidn2-0-dev:amd64				install
 libidn2-dev:amd64				install
 libiec61883-0:amd64				install
 libijs-0.35:amd64				install
@@ -780,7 +779,7 @@ libopenjp2-7-dev				install
 libopenmpt0:amd64				install
 libopus0:amd64					install
 liborc-0.4-0:amd64				install
-liborcus-0.13-0:amd64				install
+liborcus-0.14-0:amd64				install
 libosp5						install
 libostyle1c2					install
 libotf-dev:amd64				install
@@ -847,8 +846,6 @@ libpython2.7-minimal:amd64			install
 libpython2.7-stdlib:amd64			install
 libpython3-dev:amd64				install
 libpython3-stdlib:amd64				install
-libpython3.6-minimal:amd64			install
-libpython3.6-stdlib:amd64			install
 libpython3.7:amd64				install
 libpython3.7-dev:amd64				install
 libpython3.7-minimal:amd64			install
@@ -1534,8 +1531,6 @@ python3-setuptools				install
 python3-six					install
 python3-uno					install
 python3-venv					install
-python3.6					install
-python3.6-minimal				install
 python3.7					install
 python3.7-dev					install
 python3.7-doc					install
