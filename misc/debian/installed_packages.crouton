@@ -762,7 +762,7 @@ libnotify4:amd64				install
 libnpth0:amd64					install
 libnspr4:amd64					install
 libnss3:amd64					install
-libntfs-3g88					install
+libntfs-3g883					install
 libnuma1:amd64					install
 libnumbertext-1.0-0:amd64			install
 libnumbertext-data				install
@@ -907,7 +907,8 @@ libselinux1:amd64				install
 libselinux1-dev:amd64				install
 libsemanage-common				install
 libsemanage1:amd64				install
-libsensors4:amd64				install
+libsensors-config				install
+libsensors5:amd64				install
 libsepol1:amd64					install
 libsepol1-dev:amd64				install
 libserd-0-0:amd64				install
@@ -981,6 +982,7 @@ libtsan0:amd64					install
 libtumbler-1-0					install
 libtwolame0:amd64				install
 libubsan1:amd64					install
+libuchardet0:amd64				install
 libudev1:amd64					install
 libudisks2-0:amd64				install
 libunbound8:amd64				install
