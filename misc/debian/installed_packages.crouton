@@ -217,10 +217,10 @@ gnupg						install
 gnupg-l10n					install
 gnupg-utils					install
 golang						install
-golang-1.10					install
-golang-1.10-doc					install
-golang-1.10-go					install
-golang-1.10-src					install
+golang-1.11					install
+golang-1.11-doc					install
+golang-1.11-go					install
+golang-1.11-src					install
 golang-doc					install
 golang-go					install
 golang-src					install
@@ -612,7 +612,6 @@ libhttp-parser2.8:amd64				install
 libhunspell-1.7-0:amd64				install
 libhyphen0:amd64				install
 libib-util:amd64				install
-libical3:amd64					install
 libice-dev:amd64				install
 libice6:amd64					install
 libicu-dev					install
@@ -645,6 +644,7 @@ libisofs6:amd64					install
 libitext-java					install
 libitm1:amd64					install
 libjack-jackd2-0:amd64				install
+libjansson4:amd64				install
 libjavascriptcoregtk-4.0-18:amd64		install
 libjaxen-java					install
 libjbig-dev:amd64				install
@@ -754,6 +754,7 @@ libnetfilter-conntrack3:amd64			install
 libnettle6:amd64				install
 libnewt0.52:amd64				install
 libnfnetlink0:amd64				install
+libnftables0:amd64				install
 libnftnl11:amd64				install
 libnghttp2-14:amd64				install
 libnice10:amd64					install
@@ -1216,6 +1217,7 @@ netbase						install
 netsurf-common					install
 netsurf-gtk					install
 nettle-dev:amd64				install
+nftables					install
 nmap						install
 nmap-common					install
 node-abbrev					install
@@ -1468,7 +1470,6 @@ openssh-client					install
 openssh-server					install
 openssh-sftp-server				install
 openssl						install
-orage						install
 p7zip						install
 p7zip-full					install
 pal						install
@@ -1687,7 +1688,6 @@ xfce4-fsguard-plugin				install
 xfce4-genmon-plugin				install
 xfce4-goodies					install
 xfce4-mailwatch-plugin				install
-xfce4-mount-plugin				install
 xfce4-netload-plugin				install
 xfce4-notes					install
 xfce4-notes-plugin				install
