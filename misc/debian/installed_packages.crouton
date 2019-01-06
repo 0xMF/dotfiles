@@ -37,6 +37,8 @@ bzip2						install
 ca-certificates					install
 ca-certificates-java				install
 cabextract					install
+cargo						install
+cargo-doc					install
 cm-super					install
 cm-super-minimal				install
 coinor-libcbc3					install
@@ -157,8 +159,11 @@ fonts-linuxlibertine				install
 fonts-lmodern					install
 fonts-lobster					install
 fonts-lobstertwo				install
+fonts-mathjax					install
+fonts-noto-core					install
 fonts-noto-hinted				install
 fonts-noto-mono					install
+fonts-noto-ui-core				install
 fonts-oflb-asana-math				install
 fonts-open-sans					install
 fonts-opensymbol				install
@@ -182,6 +187,7 @@ gcc-8-base:amd64				install
 gcc-8-base:i386					install
 gcc-8-multilib					install
 gcc-multilib					install
+gdb						install
 gdbm-l10n					install
 gdebi						install
 gdebi-core					install
@@ -342,6 +348,7 @@ libavc1394-0:amd64				install
 libavcodec58:amd64				install
 libavresample4:amd64				install
 libavutil56:amd64				install
+libbabeltrace1:amd64				install
 libbase-java					install
 libbcmail-java					install
 libbcpkix-java					install
@@ -349,6 +356,7 @@ libbcprov-java					install
 libbdplus0:amd64				install
 libbinutils:amd64				install
 libblas3:amd64					install
+libblkid-dev:amd64				install
 libblkid1:amd64					install
 libblockdev-fs2:amd64				install
 libblockdev-loop2:amd64				install
@@ -379,6 +387,7 @@ libc-dev-bin					install
 libc-l10n					install
 libc6:amd64					install
 libc6:i386					install
+libc6-dbg:amd64					install
 libc6-dev:amd64					install
 libc6-dev-i386					install
 libc6-dev-x32					install
@@ -491,6 +500,7 @@ libfaad2:amd64					install
 libfastjson4:amd64				install
 libfbclient2:amd64				install
 libfdisk1:amd64					install
+libffi-dev:amd64				install
 libffi6:amd64					install
 libfftw3-double3:amd64				install
 libfftw3-single3:amd64				install
@@ -540,6 +550,7 @@ libgif-dev					install
 libgif7:amd64					install
 libgirara-gtk3-3:amd64				install
 libgirepository-1.0-1:amd64			install
+libgit2-27:amd64				install
 libgl1:amd64					install
 libgl1-mesa-dev:amd64				install
 libgl1-mesa-dri:amd64				install
@@ -615,9 +626,7 @@ libib-util:amd64				install
 libice-dev:amd64				install
 libice6:amd64					install
 libicu-dev					install
-libicu-le-hb0:amd64				install
 libicu4j-java					install
-libicu60:amd64					install
 libicu63:amd64					install
 libid3tag0:amd64				install
 libidn11:amd64					install
@@ -636,6 +645,7 @@ libinput10:amd64				install
 libintellij-annotations-java			install
 libip4tc0:amd64					install
 libip6tc0:amd64					install
+libipt2						install
 libiptc0:amd64					install
 libisc-export1100:amd64				install
 libisc-export169:amd64				install
@@ -658,9 +668,11 @@ libjpeg-progs					install
 libjpeg62-turbo:amd64				install
 libjpeg62-turbo-dev:amd64			install
 libjpeg9:amd64					install
+libjs-highlight.js				install
 libjs-inherits					install
 libjs-is-typedarray				install
 libjs-jquery					install
+libjs-mathjax					install
 libjs-underscore				install
 libjson-c3:amd64				install
 libjson-glib-1.0-0:amd64			install
@@ -723,12 +735,16 @@ libmagickwand-6-headers				install
 libmagickwand-6.q16-6:amd64			install
 libmagickwand-6.q16-dev:amd64			install
 libmail-java					install
+libmbedcrypto3:amd64				install
+libmbedtls12:amd64				install
+libmbedx509-0:amd64				install
 libmhash2:amd64					install
 libmime-charset-perl				install
 libmjpegutils-2.1-0				install
 libmms0:amd64					install
 libmnl0:amd64					install
 libmodplug1:amd64				install
+libmount-dev:amd64				install
 libmount1:amd64					install
 libmp3lame0:amd64				install
 libmpc3:amd64					install
@@ -758,6 +774,8 @@ libnftables0:amd64				install
 libnftnl11:amd64				install
 libnghttp2-14:amd64				install
 libnice10:amd64					install
+libnode-dev					install
+libnode64:amd64					install
 libnotify-bin					install
 libnotify4:amd64				install
 libnpth0:amd64					install
@@ -873,7 +891,6 @@ libreoffice-java-common				install
 libreoffice-librelogo				install
 libreoffice-math				install
 libreoffice-nlpsolver				install
-libreoffice-ogltrans				install
 libreoffice-report-builder			install
 libreoffice-report-builder-bin			install
 libreoffice-script-provider-bsh			install
@@ -948,6 +965,8 @@ libssl-dev:amd64				install
 libssl1.1:amd64					install
 libstaroffice-0.0-0:amd64			install
 libstartup-notification0:amd64			install
+libstd-rust-1.31:amd64				install
+libstd-rust-dev:amd64				install
 libstdc++-8-dev:amd64				install
 libstdc++6:amd64				install
 libsuitesparseconfig5:amd64			install
@@ -1561,6 +1580,9 @@ ruby2.5						install
 ruby2.5-dev:amd64				install
 ruby2.5-doc					install
 rubygems-integration				install
+rust-doc					install
+rust-gdb					install
+rustc						install
 sbcl						install
 sbcl-doc					install
 sed						install
