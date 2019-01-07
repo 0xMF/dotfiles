@@ -30,10 +30,10 @@ else
   #alias ls='/bin/ls --color=always'
   alias lsn='ls -pF --color=none'
   alias ls='ls --color=always --ignore="NTUSER.*" --ignore="ntuser.*" -F'
-  alias la='ls -lAhF --time-style=long-iso'
+  alias la='ls -lAhFt --time-style=long-iso'
   alias lc='ls -FCp -w 120|less -FRMS'
-  alias ll='ls -lhF --time-style=long-iso'
-  alias lld='ls -lhdF --time-style=long-iso'
+  alias ll='ls -lhFt --time-style=long-iso'
+  alias lld='ls -lhdFt --time-style=long-iso'
   alias stats="man -k ' ' | grep -Ee 'stat \((1|8)\) '"
 
 fi
