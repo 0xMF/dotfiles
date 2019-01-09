@@ -588,6 +588,7 @@ then it takes a second \\[keyboard-quit] to abort the minibuffer."
   (0xMF/kill-buffers "^\\*Backtrace*")
   (0xMF/kill-buffers "^\\*Buffer List*")
   (0xMF/kill-buffers "^\\*Calculator*")
+  (0xMF/kill-buffers "^\\*Command Line*")
   (0xMF/kill-buffers "^\\*Help*")
   (0xMF/kill-buffers "^\\*Org-Babel Error Output*")
   (0xMF/kill-buffers "^\\*PP Eval Output*")
