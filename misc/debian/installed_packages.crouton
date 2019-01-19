@@ -32,7 +32,6 @@ binutils-x86-64-linux-gnu			install
 bsd-mailx					install
 bsdmainutils					install
 bsdutils					install
-build-essential					install
 bzip2						install
 ca-certificates					install
 ca-certificates-java				install
@@ -178,8 +177,6 @@ fonts-texgyre					install
 freepats					install
 freetype2-doc					install
 fuse						install
-g++						install
-g++-8						install
 gawk						install
 gcc						install
 gcc-8						install
@@ -202,10 +199,13 @@ gir1.2-gdkpixbuf-2.0:amd64			install
 gir1.2-glib-2.0:amd64				install
 gir1.2-gtk-3.0:amd64				install
 gir1.2-harfbuzz-0.0:amd64			install
+gir1.2-javascriptcoregtk-4.0:amd64		install
 gir1.2-pango-1.0:amd64				install
 gir1.2-poppler-0.18:amd64			install
 gir1.2-rsvg-2.0:amd64				install
+gir1.2-soup-2.4:amd64				install
 gir1.2-vte-2.91:amd64				install
+gir1.2-webkit2-4.0:amd64			install
 git						install
 git-doc						install
 git-man						install
@@ -425,6 +425,7 @@ libcolord2:amd64				install
 libcom-err2:amd64				install
 libcommons-codec-java				install
 libcommons-collections3-java			install
+libcommons-collections4-java			install
 libcommons-lang3-java				install
 libcommons-logging-java				install
 libcommons-parent-java				install
@@ -436,6 +437,7 @@ libcupsfilters1:amd64				install
 libcupsimage2:amd64				install
 libcurl3-gnutls:amd64				install
 libcurl4:amd64					install
+libcurvesapi-java				install
 libdatrie-dev:amd64				install
 libdatrie1:amd64				install
 libdb5.3:amd64					install
@@ -521,7 +523,7 @@ libformula-java					install
 libfreehand-0.1-1				install
 libfreetype6:amd64				install
 libfreetype6-dev:amd64				install
-libfribidi-dev					install
+libfribidi-dev:amd64				install
 libfribidi0:amd64				install
 libfuse2:amd64					install
 libgail-common:amd64				install
@@ -617,6 +619,7 @@ libharfbuzz-dev:amd64				install
 libharfbuzz-gobject0:amd64			install
 libharfbuzz-icu0:amd64				install
 libharfbuzz0b:amd64				install
+libheif1:amd64					install
 libhogweed4:amd64				install
 libhsqldb1.8.0-java				install
 libhttp-parser2.8:amd64				install
@@ -656,6 +659,7 @@ libitm1:amd64					install
 libjack-jackd2-0:amd64				install
 libjansson4:amd64				install
 libjavascriptcoregtk-4.0-18:amd64		install
+libjavascriptcoregtk-4.0-dev:amd64		install
 libjaxen-java					install
 libjbig-dev:amd64				install
 libjbig0:amd64					install
@@ -847,7 +851,7 @@ libpoppler-dev:amd64				install
 libpoppler-glib-dev				install
 libpoppler-glib8:amd64				install
 libpoppler-private-dev:amd64			install
-libpoppler80:amd64				install
+libpoppler82:amd64				install
 libpopt0:amd64					install
 libpotrace0:amd64				install
 libpq5:amd64					install
@@ -931,6 +935,7 @@ libsepol1:amd64					install
 libsepol1-dev:amd64				install
 libserd-0-0:amd64				install
 libserializer-java				install
+libservlet-api-java				install
 libservlet3.1-java				install
 libsgmls-perl					install
 libshine3:amd64					install
@@ -949,6 +954,7 @@ libsord-0-0:amd64				install
 libsoundtouch1:amd64				install
 libsoup-gnome2.4-1:amd64			install
 libsoup2.4-1:amd64				install
+libsoup2.4-dev:amd64				install
 libsoxr0:amd64					install
 libspandsp2:amd64				install
 libspeex-dev:amd64				install
@@ -967,7 +973,6 @@ libstaroffice-0.0-0:amd64			install
 libstartup-notification0:amd64			install
 libstd-rust-1.31:amd64				install
 libstd-rust-dev:amd64				install
-libstdc++-8-dev:amd64				install
 libstdc++6:amd64				install
 libsuitesparseconfig5:amd64			install
 libswresample3:amd64				install
@@ -1048,6 +1053,7 @@ libwayland-egl1:amd64				install
 libwayland-server0:amd64			install
 libwebkit2gtk-4.0-37:amd64			install
 libwebkit2gtk-4.0-37-gtk2:amd64			install
+libwebkit2gtk-4.0-dev:amd64			install
 libwebkit2gtk-4.0-doc				install
 libwebp6:amd64					install
 libwebpdemux2:amd64				install
@@ -1227,6 +1233,7 @@ mesa-vdpau-drivers:amd64			install
 mime-support					install
 mount						install
 mousepad					install
+mupdf						install
 nano						install
 nautilus-extension-gnome-terminal		install
 ncurses-base					install
@@ -1342,6 +1349,7 @@ node-is-plain-obj				install
 node-is-retry-allowed				install
 node-is-stream					install
 node-is-typedarray				install
+node-isarray					install
 node-isexe					install
 node-isstream					install
 node-isurl					install
@@ -1396,11 +1404,11 @@ node-path-is-absolute				install
 node-path-is-inside				install
 node-performance-now				install
 node-prepend-http				install
+node-process-nextick-args			install
 node-promise-inflight				install
 node-promzard					install
 node-proto-list					install
 node-prr					install
-node-pseudomap					install
 node-pump					install
 node-pumpify					install
 node-punycode					install
@@ -1409,6 +1417,7 @@ node-qw						install
 node-rc						install
 node-read					install
 node-read-package-json				install
+node-readable-stream				install
 node-registry-auth-token			install
 node-registry-url				install
 node-request					install
@@ -1437,6 +1446,7 @@ node-ssri					install
 node-stream-each				install
 node-stream-iterate				install
 node-stream-shift				install
+node-string-decoder				install
 node-string-width				install
 node-strip-ansi					install
 node-strip-eof					install
@@ -1457,6 +1467,7 @@ node-unique-filename				install
 node-unpipe					install
 node-url-parse-lax				install
 node-url-to-options				install
+node-util-deprecate				install
 node-uuid					install
 node-validate-npm-package-license		install
 node-validate-npm-package-name			install
@@ -1513,6 +1524,7 @@ po-debconf					install
 policykit-1					install
 policykit-1-gnome				install
 poppler-data					install
+poppler-utils					install
 popularity-contest				install
 postgresql-client-11				install
 postgresql-client-common			install
@@ -1564,6 +1576,7 @@ rake						install
 readline-common					install
 ristretto					install
 rlwrap						install
+rsync						install
 rsyslog						install
 rtkit						install
 ruby						install
