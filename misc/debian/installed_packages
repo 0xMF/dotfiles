@@ -150,8 +150,10 @@ fonts-liberation2				install
 fonts-linuxlibertine				install
 fonts-lmodern					install
 fonts-mathjax					install
+fonts-noto-core					install
 fonts-noto-hinted				install
 fonts-noto-mono					install
+fonts-noto-ui-core				install
 fonts-opensymbol				install
 fonts-roboto-slab				install
 fonts-sil-gentium				install
@@ -217,10 +219,10 @@ gnupg						install
 gnupg-l10n					install
 gnupg-utils					install
 golang						install
-golang-1.10					install
-golang-1.10-doc					install
-golang-1.10-go					install
-golang-1.10-src					install
+golang-1.11					install
+golang-1.11-doc					install
+golang-1.11-go					install
+golang-1.11-src					install
 golang-doc					install
 golang-go					install
 golang-src					install
@@ -303,6 +305,7 @@ libabw-0.1-1:amd64				install
 libacl1:amd64					install
 libacl1-dev					install
 libactivation-java				install
+libaio1:amd64					install
 libalgorithm-diff-perl				install
 libalgorithm-diff-xs-perl			install
 libalgorithm-merge-perl				install
@@ -373,6 +376,7 @@ libbdplus0:amd64				install
 libbind9-161:amd64				install
 libbinutils:amd64				install
 libblas3:amd64					install
+libblkid-dev:amd64				install
 libblkid1:amd64					install
 libblockdev-crypto2:amd64			install
 libblockdev-fs2:amd64				install
@@ -554,7 +558,7 @@ libformula-java					install
 libfreehand-0.1-1				install
 libfreetype6:amd64				install
 libfreetype6-dev:amd64				install
-libfribidi-dev					install
+libfribidi-dev:amd64				install
 libfribidi0:amd64				install
 libfstrm0:amd64					install
 libfuse2:amd64					install
@@ -684,6 +688,7 @@ libharfbuzz-dev:amd64				install
 libharfbuzz-gobject0:amd64			install
 libharfbuzz-icu0:amd64				install
 libharfbuzz0b:amd64				install
+libheif1:amd64					install
 libhogweed4:amd64				install
 libhsqldb1.8.0-java				install
 libhtml-form-perl				install
@@ -696,7 +701,6 @@ libhttp-daemon-perl				install
 libhttp-date-perl				install
 libhttp-message-perl				install
 libhttp-negotiate-perl				install
-libhunspell-1.6-0:amd64				install
 libhunspell-1.7-0:amd64				install
 libhyphen0:amd64				install
 libib-util:amd64				install
@@ -708,7 +712,6 @@ libicu4j-java					install
 libicu63:amd64					install
 libidn11:amd64					install
 libidn2-0:amd64					install
-libidn2-0-dev:amd64				install
 libidn2-dev:amd64				install
 libiec61883-0:amd64				install
 libieee1284-3:amd64				install
@@ -792,7 +795,7 @@ liblockfile1:amd64				install
 liblog4j1.2-java				install
 liblognorm5:amd64				install
 liblouis-data					install
-liblouis16:amd64				install
+liblouis17:amd64				install
 liblqr-1-0:amd64				install
 liblqr-1-0-dev:amd64				install
 liblsan0:amd64					install
@@ -800,8 +803,7 @@ libltdl-dev:amd64				install
 libltdl7:amd64					install
 liblua5.1-0:amd64				install
 liblua5.2-0:amd64				install
-liblvm2app2.2:amd64				install
-liblvm2cmd2.02:amd64				install
+liblvm2cmd2.03:amd64				install
 liblwp-mediatypes-perl				install
 liblwp-protocol-https-perl			install
 liblwres161:amd64				install
@@ -826,6 +828,7 @@ libmagickwand-6.q16-6:amd64			install
 libmagickwand-6.q16-dev:amd64			install
 libmail-java					install
 libmailtools-perl				install
+libmariadb3:amd64				install
 libmbim-glib4:amd64				install
 libmbim-proxy					install
 libmetis5:amd64					install
@@ -836,6 +839,7 @@ libmm-glib0:amd64				install
 libmms0:amd64					install
 libmnl0:amd64					install
 libmodplug1:amd64				install
+libmount-dev:amd64				install
 libmount1:amd64					install
 libmp3lame0:amd64				install
 libmpc3:amd64					install
@@ -867,6 +871,7 @@ libnetfilter-conntrack3:amd64			install
 libnettle6:amd64				install
 libnewt0.52:amd64				install
 libnfnetlink0:amd64				install
+libnftables0:amd64				install
 libnftnl11:amd64				install
 libnghttp2-14:amd64				install
 libnice10:amd64					install
@@ -881,7 +886,7 @@ libnpth0:amd64					install
 libnspr4:amd64					install
 libnss-mdns:amd64				install
 libnss3:amd64					install
-libntfs-3g88					install
+libntfs-3g883					install
 libnuma1:amd64					install
 libnumbertext-1.0-0:amd64			install
 libnumbertext-data				install
@@ -892,8 +897,6 @@ libopenal-data					install
 libopenal1:amd64				install
 libopencore-amrnb0:amd64			install
 libopencore-amrwb0:amd64			install
-libopencv-core3.2:amd64				install
-libopencv-imgproc3.2:amd64			install
 libopenexr-dev					install
 libopenexr23:amd64				install
 libopengl0:amd64				install
@@ -902,7 +905,7 @@ libopenjp2-7-dev				install
 libopenmpt0:amd64				install
 libopus0:amd64					install
 liborc-0.4-0:amd64				install
-liborcus-0.13-0:amd64				install
+liborcus-0.14-0:amd64				install
 libosp5						install
 libostyle1c2					install
 libotf-dev:amd64				install
@@ -957,7 +960,7 @@ libpoppler-dev:amd64				install
 libpoppler-glib-dev				install
 libpoppler-glib8:amd64				install
 libpoppler-private-dev:amd64			install
-libpoppler80:amd64				install
+libpoppler82:amd64				install
 libpopt0:amd64					install
 libpostproc55:amd64				install
 libpotrace0:amd64				install
@@ -1009,7 +1012,6 @@ libreoffice-java-common				install
 libreoffice-librelogo				install
 libreoffice-math				install
 libreoffice-nlpsolver				install
-libreoffice-ogltrans				install
 libreoffice-report-builder			install
 libreoffice-report-builder-bin			install
 libreoffice-script-provider-bsh			install
@@ -1048,11 +1050,13 @@ libselinux1:amd64				install
 libselinux1-dev:amd64				install
 libsemanage-common				install
 libsemanage1:amd64				install
-libsensors4:amd64				install
+libsensors-config				install
+libsensors5:amd64				install
 libsepol1:amd64					install
 libsepol1-dev:amd64				install
 libserd-0-0:amd64				install
 libserializer-java				install
+libservlet-api-java				install
 libservlet3.1-java				install
 libsgmls-perl					install
 libshine3:amd64					install
@@ -1107,7 +1111,6 @@ libtagc0:amd64					install
 libtalloc2:amd64				install
 libtasn1-6:amd64				install
 libtasn1-6-dev:amd64				install
-libtbb2:amd64					install
 libtcl8.6:amd64					install
 libtdb1:amd64					install
 libteamdctl0:amd64				install
@@ -1141,6 +1144,7 @@ libtwolame0:amd64				install
 libu2f-udev					install
 libubsan0:amd64					install
 libubsan1:amd64					install
+libuchardet0:amd64				install
 libudev1:amd64					install
 libudisks2-0:amd64				install
 libumfpack5:amd64				install
@@ -1341,15 +1345,17 @@ lightdm						install
 lightdm-gtk-greeter				install
 linux-base					install
 linux-compiler-gcc-7-x86			install
-linux-headers-4.18.0-2-amd64			install
-linux-headers-4.18.0-2-common			install
+linux-compiler-gcc-8-x86			install
 linux-headers-4.18.0-3-amd64			install
 linux-headers-4.18.0-3-common			install
+linux-headers-4.19.0-1-amd64			install
+linux-headers-4.19.0-1-common			install
 linux-headers-amd64				install
-linux-image-4.18.0-2-amd64			install
 linux-image-4.18.0-3-amd64			install
+linux-image-4.19.0-1-amd64			install
 linux-image-amd64				install
 linux-kbuild-4.18				install
+linux-kbuild-4.19				install
 linux-libc-dev:amd64				install
 lm-sensors					install
 lmodern						install
@@ -1389,6 +1395,7 @@ netcat-traditional				install
 nettle-dev:amd64				install
 network-manager					install
 network-manager-gnome				install
+nftables					install
 node-normalize.css				install
 notification-daemon				install
 ntfs-3g						install
@@ -1403,6 +1410,7 @@ openssh-server					install
 openssh-sftp-server				install
 openssl						install
 orage						install
+orage-data					install
 orca						install
 os-prober					install
 p11-kit						install
@@ -1504,6 +1512,7 @@ rsync						install
 rsyslog						install
 rtkit						install
 ruby						install
+ruby-dev:amd64					install
 ruby-did-you-mean				install
 ruby-minitest					install
 ruby-net-telnet					install
@@ -1511,6 +1520,8 @@ ruby-power-assert				install
 ruby-test-unit					install
 ruby-xmlrpc					install
 ruby2.5						install
+ruby2.5-dev:amd64				install
+ruby2.5-doc					install
 rubygems-integration				install
 samba-libs:amd64				install
 sane-utils					install
@@ -1657,7 +1668,6 @@ xfce4-fsguard-plugin				install
 xfce4-genmon-plugin				install
 xfce4-goodies					install
 xfce4-mailwatch-plugin				install
-xfce4-mount-plugin				install
 xfce4-netload-plugin				install
 xfce4-notes					install
 xfce4-notes-plugin				install
