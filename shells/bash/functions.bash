@@ -659,14 +659,25 @@ function erls() {
 }
 
 function emacs() {
-  `which -a emacs|sed '1q'` "$@" 2>/dev/null && [ `which pal 2>/dev/null` ] && pal &
+  EMACS=$(which -a emacs|sed '1q')
+  if [ -z "${EMACS}" ]
+  then
+    EMACS="$HOME/repos/gnu/emacs/src/emacs"
+  fi
+  ${EMACS} "$@" &
+  if [ $? -eq 0 ]
+  then
+   which pal 2>/dev/null
+   [ $? -eq 0 ] && pal
+  fi
 }
 function ew() {
   `which -a emacs-works|sed '1q'` "$@" 2>/dev/null && [ `which pal 2>/dev/null` ] && pal &
 }
 
 function end() {
-  `which -a emacs|sed '1q'` "$@" --no-desktop 2>/dev/null &
+  #`which -a emacs|sed '1q'` "$@" --no-desktop 2>/dev/null &
+  emacs "$@" --no-desktop &
 }
 
 function otp() {
