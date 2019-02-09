@@ -51,9 +51,9 @@ cpp-8						install
 cron						install
 crouton-network-manager				install
 crouton-xserver-xorg-legacy			install
+cups-pk-helper					install
 curl						install
 dash						install
-dblatex						install
 dbus						install
 dbus-user-session				install
 dbus-x11					install
@@ -108,10 +108,6 @@ fdisk						install
 feh						install
 file						install
 findutils					install
-firebird3.0-common				install
-firebird3.0-common-doc				install
-firebird3.0-server-core:amd64			install
-firebird3.0-utils				install
 five-or-more					install
 fontconfig					install
 fontconfig-config				install
@@ -129,7 +125,6 @@ fonts-linuxlibertine				install
 fonts-lmodern					install
 fonts-mathjax					install
 fonts-noto-core					install
-fonts-noto-hinted				install
 fonts-noto-mono					install
 fonts-noto-ui-core				install
 fonts-open-sans					install
@@ -166,9 +161,13 @@ gir1.2-glib-2.0:amd64				install
 gir1.2-gtk-3.0:amd64				install
 gir1.2-harfbuzz-0.0:amd64			install
 gir1.2-javascriptcoregtk-4.0:amd64		install
+gir1.2-notify-0.7:amd64				install
+gir1.2-packagekitglib-1.0			install
 gir1.2-pango-1.0:amd64				install
+gir1.2-polkit-1.0				install
 gir1.2-poppler-0.18:amd64			install
 gir1.2-rsvg-2.0:amd64				install
+gir1.2-secret-1:amd64				install
 gir1.2-soup-2.4:amd64				install
 gir1.2-vte-2.91:amd64				install
 gir1.2-webkit2-4.0:amd64			install
@@ -269,6 +268,7 @@ libaopalliance-java				install
 libapache-poi-java				install
 libapache-pom-java				install
 libapparmor1:amd64				install
+libappstream4:amd64				install
 libapt-inst2.0:amd64				install
 libapt-pkg5.0:amd64				install
 libarchive-zip-perl				install
@@ -472,7 +472,6 @@ libexttextcat-data				install
 libfaad2:amd64					install
 libfastinfoset-java				install
 libfastjson4:amd64				install
-libfbclient2:amd64				install
 libfdisk1:amd64					install
 libffi-dev:amd64				install
 libffi6:amd64					install
@@ -601,7 +600,6 @@ libhttpclient-java				install
 libhttpcore-java				install
 libhunspell-1.7-0:amd64				install
 libhyphen0:amd64				install
-libib-util:amd64				install
 libice-dev:amd64				install
 libice6:amd64					install
 libicu-dev:amd64				install
@@ -684,10 +682,12 @@ liblcms2-2:amd64				install
 liblcms2-dev:amd64				install
 libldap-2.4-2:amd64				install
 libldap-common					install
+libldb1:amd64					install
 liblightdm-gobject-1-0:amd64			install
 liblilv-0-0:amd64				install
 liblinear3:amd64				install
 libllvm7:amd64					install
+liblmdb0:amd64					install
 libloader-java					install
 liblocale-gettext-perl				install
 liblockfile-bin					install
@@ -793,6 +793,7 @@ libotf-dev:amd64				install
 libotf0:amd64					install
 libp11-kit-dev:amd64				install
 libp11-kit0:amd64				install
+libpackagekit-glib2-18:amd64			install
 libpagemaker-0.0-0:amd64			install
 libpam-modules:amd64				install
 libpam-modules-bin				install
@@ -857,6 +858,7 @@ libpulse0:amd64					install
 libpulsedsp:amd64				install
 libpython-stdlib:amd64				install
 libpython2-stdlib:amd64				install
+libpython2.7:amd64				install
 libpython2.7-minimal:amd64			install
 libpython2.7-stdlib:amd64			install
 libpython3-dev:amd64				install
@@ -893,7 +895,6 @@ libreoffice-report-builder-bin			install
 libreoffice-script-provider-bsh			install
 libreoffice-script-provider-js			install
 libreoffice-script-provider-python		install
-libreoffice-sdbc-firebird			install
 libreoffice-sdbc-hsqldb				install
 libreoffice-sdbc-postgresql			install
 libreoffice-style-colibre			install
@@ -944,6 +945,7 @@ libslf4j-java					install
 libsm-dev:amd64					install
 libsm6:amd64					install
 libsmartcols1:amd64				install
+libsmbclient:amd64				install
 libsnappy-java					install
 libsnappy-jni					install
 libsnappy1v5:amd64				install
@@ -966,12 +968,14 @@ libsratom-0-0:amd64				install
 libsrtp2-1:amd64				install
 libss2:amd64					install
 libssh2-1:amd64					install
+libssl-dev:amd64				install
 libssl1.1:amd64					install
 libstaroffice-0.0-0:amd64			install
 libstartup-notification0:amd64			install
 libstax-ex-java					install
 libstdc++-8-dev:amd64				install
 libstdc++6:amd64				install
+libstemmer0d:amd64				install
 libstreambuffer-java				install
 libsuitesparseconfig5:amd64			install
 libswresample3:amd64				install
@@ -980,15 +984,18 @@ libsystemd0:amd64				install
 libtag1v5:amd64					install
 libtag1v5-vanilla:amd64				install
 libtagc0:amd64					install
+libtalloc2:amd64				install
 libtasn1-6:amd64				install
 libtasn1-6-dev:amd64				install
 libtcl8.6:amd64					install
 libtdb1:amd64					install
 libteckit0:amd64				install
+libtevent0:amd64				install
 libtexlua52:amd64				install
 libtexlua53:amd64				install
 libtexluajit2:amd64				install
 libtext-iconv-perl				install
+libtext-unidecode-perl				install
 libthai-data					install
 libthai-dev:amd64				install
 libthai0:amd64					install
@@ -999,7 +1006,6 @@ libtiff5:amd64					install
 libtiffxx5:amd64				install
 libtinfo6:amd64					install
 libtk8.6:amd64					install
-libtommath1:amd64				install
 libtool						install
 libtsan0:amd64					install
 libtumbler-1-0					install
@@ -1051,6 +1057,7 @@ libwayland-cursor0:amd64			install
 libwayland-dev:amd64				install
 libwayland-egl1:amd64				install
 libwayland-server0:amd64			install
+libwbclient0:amd64				install
 libwebkit2gtk-4.0-37:amd64			install
 libwebkit2gtk-4.0-37-gtk2:amd64			install
 libwebkit2gtk-4.0-dev:amd64			install
@@ -1153,6 +1160,7 @@ libxklavier16:amd64				install
 libxml-commons-external-java			install
 libxml-commons-resolver1.1-java			install
 libxml-java					install
+libxml-libxml-perl				install
 libxml-namespacesupport-perl			install
 libxml-sax-base-perl				install
 libxml-sax-perl					install
@@ -1499,6 +1507,8 @@ openssh-sftp-server				install
 openssl						install
 p7zip						install
 p7zip-full					install
+packagekit					install
+packagekit-tools				install
 pal						install
 pandoc						install
 pandoc-data					install
@@ -1537,6 +1547,7 @@ python-apt-common				install
 python-minimal					install
 python-pip-whl					install
 python-pkg-resources				install
+python-talloc:amd64				install
 python2						install
 python2-minimal					install
 python2.7					install
@@ -1544,7 +1555,12 @@ python2.7-doc					install
 python2.7-minimal				install
 python3						install
 python3-apt					install
+python3-cairo:amd64				install
+python3-certifi					install
 python3-chardet					install
+python3-cups					install
+python3-cupshelpers				install
+python3-dbus					install
 python3-debian					install
 python3-dev					install
 python3-distro					install
@@ -1552,13 +1568,17 @@ python3-distutils				install
 python3-doc					install
 python3-examples				install
 python3-gi					install
+python3-idna					install
 python3-lib2to3					install
 python3-minimal					install
 python3-pip					install
 python3-pkg-resources				install
+python3-requests				install
 python3-setuptools				install
 python3-six					install
+python3-smbc					install
 python3-uno					install
+python3-urllib3					install
 python3-venv					install
 python3.7					install
 python3.7-dev					install
@@ -1589,6 +1609,7 @@ ruby2.5-dev:amd64				install
 ruby2.5-doc					install
 rubygems-integration				install
 rust-doc					install
+samba-libs:amd64				install
 sbcl						install
 sbcl-doc					install
 sed						install
@@ -1601,6 +1622,9 @@ ssh						install
 ssl-cert					install
 sudo						install
 swell-foop					install
+system-config-printer				install
+system-config-printer-common			install
+system-config-printer-udev			install
 systemd						install
 systemd-sysv					install
 sysvinit-utils					install
@@ -1614,6 +1638,7 @@ tcl8.6						install
 teckit						install
 tex-common					install
 tex-gyre					install
+texinfo						install
 texlive						install
 texlive-base					install
 texlive-binaries				install
@@ -1749,7 +1774,7 @@ xserver-xorg-core				install
 xserver-xorg-input-all				install
 xserver-xorg-input-libinput			install
 xserver-xorg-input-wacom			install
-xserver-xorg-video-intel			install
+xserver-xorg-video-intel			hold
 xtrans-dev					install
 xutils-dev					install
 xxd						install
