@@ -655,7 +655,7 @@ function low() {
 }
 
 function erls() {
-  `which erl` "@" -pa ebin -pa deps/*/ebin
+  `which erl` "$@" -pa ebin -pa deps/*/ebin
 }
 
 function emacs() {
