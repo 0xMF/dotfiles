@@ -662,7 +662,7 @@ function emacs() {
   EMACS=$(which -a emacs|sed '1q')
   if [ -z "${EMACS}" ]
   then
-    EMACS="$HOME/repos/gnu/emacs/src/emacs"
+    EMACS="$HOME/repos/x/emacs/src/emacs"
   fi
   ${EMACS} "$@" &
   if [ $? -eq 0 ]
