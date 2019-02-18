@@ -671,6 +671,7 @@ function emacs() {
    [ $? -eq 0 ] && pal
   fi
 }
+
 function ew() {
   `which -a emacs-works|sed '1q'` "$@" 2>/dev/null && [ `which pal 2>/dev/null` ] && pal &
 }
@@ -696,6 +697,15 @@ function otp() {
       fi
     fi
     popd > /dev/null
+  fi
+}
+
+function sl() {
+  SL=$(which -a sl|sed '1q')
+  echo ${SL}
+  if [ -n "${SL}" ]
+  then
+    ${SL} -ale
   fi
 }
 
