@@ -129,7 +129,8 @@
                     "d" 'org-agenda-list
                     "e" 'org-babel-execute-src-block
                     "E" 'org-babel-open-src-block-result
-                    "f" 'file-reload
+                    "f" 'set-fill-column
+                    "F" 'file-reload
                     "g" 'magit-status
                     "j" 'evil-next-line
                     "k" 'evil-previous-line
