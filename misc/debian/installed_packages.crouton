@@ -36,6 +36,7 @@ bzip2						install
 ca-certificates					install
 ca-certificates-java				install
 cabextract					install
+clojure						install
 coinor-libcbc3					install
 coinor-libcgl1					install
 coinor-libclp1					install
@@ -261,7 +262,7 @@ libaa1:amd64					install
 libaacs0:amd64					install
 libabw-0.1-1:amd64				install
 libacl1:amd64					install
-libacl1-dev					install
+libacl1-dev:amd64				install
 libactivation-java				install
 libaom0:amd64					install
 libaopalliance-java				install
@@ -374,6 +375,7 @@ libcdparanoia0:amd64				install
 libcdr-0.1-1:amd64				install
 libcglib-java					install
 libchromaprint1:amd64				install
+libclojure-java					install
 libclucene-contribs1v5:amd64			install
 libclucene-core1v5:amd64			install
 libclutter-1.0-0:amd64				install
@@ -399,6 +401,7 @@ libcommons-lang3-java				install
 libcommons-logging-java				install
 libcommons-math3-java				install
 libcommons-parent-java				install
+libcore-specs-alpha-clojure			install
 libcroco3:amd64					install
 libcryptsetup12:amd64				install
 libcrystalhd3:amd64				install
@@ -663,6 +666,7 @@ libjson-glib-1.0-0:amd64			install
 libjson-glib-1.0-common				install
 libjsoup-java					install
 libjsp-api-java					install
+libjsr166y-java					install
 libjsr305-java					install
 libjte1						install
 libk5crypto3:amd64				install
@@ -958,6 +962,7 @@ libsoup2.4-1:amd64				install
 libsoup2.4-dev:amd64				install
 libsoxr0:amd64					install
 libspandsp2:amd64				install
+libspec-alpha-clojure				install
 libspeex-dev:amd64				install
 libspeex1:amd64					install
 libspeexdsp-dev:amd64				install
