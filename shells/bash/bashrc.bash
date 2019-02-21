@@ -66,9 +66,9 @@ fi
 
 # next vary prompt according to regular user or root
 if [ $(/usr/bin/id -u) -ne 0 ]; then
-  ps1 2>/dev/null
+  psl 2>/dev/null
   if [ $? -eq 0 ]; then
-    PROMPT_COMMAND="ps1"
+    PROMPT_COMMAND="psl"
   else
     if [ $(/usr/bin/id -u) -eq 1000 ]; then
       PS1="$GREEN${OSRV}$BLUE:\W$(parse_git_branch_colour 2>/dev/null)$NOCOLOR$ "
