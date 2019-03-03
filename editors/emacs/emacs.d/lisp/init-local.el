@@ -481,9 +481,9 @@ then it takes a second \\[keyboard-quit] to abort the minibuffer."
 (load-if-file-exists "~/.emacs.d/lisp/secrets.el")
 (load-if-file-exists "~/quicklisp/clhs-use-local.el")
 
-;; wrap lines (hard return) around column 100
+;; wrap lines (hard return) around column 90
 (add-hook 'text-mode-hook 'turn-on-auto-fill)
-(add-hook 'text-mode-hook '(lambda() (set-fill-column 100)))
+(add-hook 'text-mode-hook '(lambda() (set-fill-column 90)))
 
 ;; replaces Emacs undo-redo system with something MUCH nicer!
 (global-undo-tree-mode t)
