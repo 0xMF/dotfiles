@@ -105,4 +105,9 @@ else
   echo "    https://github.com/0xMF/catholic"  >&2
 fi
 
+if declare -f done_init > /dev/null
+then
+  done_init
+fi
+
 # vim:nospell:ft=sh:
