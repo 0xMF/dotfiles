@@ -157,7 +157,9 @@ function trd() {
 
 # Edit your current day's todo list.
 function todo(){
-  ${EDITOR:-/usr/local/bin/vim} + ~/$(date +todolist-%Y%m%d);
+  [[ -n "`command -v task`" ]] \
+    && { [[ -z "$@" ]] && task -waiting list || task "$@"; return; } \
+    || ${EDITOR:-/usr/local/bin/vim} + ~/$(date +todolist-%Y%m%d);
 }
 
 function ps1 {
