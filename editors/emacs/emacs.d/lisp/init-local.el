@@ -603,7 +603,7 @@ then it takes a second \\[keyboard-quit] to abort the minibuffer."
   (cleanup-Emacs-buffer-list)
   (global-display-line-numbers-mode -1)
   (display-line-numbers-mode -1)
-  (line-number-mode -1)
+  (line-number-mode t)
   (message "0xMF/startup"))
 
 (add-hook 'after-init-hook '0xMF/startup)
