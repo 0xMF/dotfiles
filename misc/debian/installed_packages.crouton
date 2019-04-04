@@ -64,7 +64,6 @@ dconf-service					install
 dctrl-tools					install
 debconf						install
 debconf-doc					install
-debhelper					install
 debian-archive-keyring				install
 debian-faq					install
 debian-goodies					install
@@ -76,14 +75,13 @@ default-jre-headless				install
 desktop-base					install
 desktop-file-utils				install
 developers-reference				install
-dh-autoreconf					install
 dh-python					install
-dh-strip-nondeterminism				install
 dictionaries-common				install
 diffstat					install
 diffutils					install
 dirmngr						install
 distro-info-data				install
+dmeventd					install
 dmidecode					install
 dmsetup						install
 dmz-cursor-theme				install
@@ -92,7 +90,6 @@ dosfstools					install
 dpkg						install
 dpkg-dev					install
 dselect						install
-dwz						install
 e2fsprogs					install
 eject						install
 elfutils					install
@@ -118,7 +115,6 @@ fonts-dejavu					install
 fonts-dejavu-core				install
 fonts-dejavu-extra				install
 fonts-droid-fallback				install
-fonts-font-awesome				install
 fonts-lato					install
 fonts-liberation				install
 fonts-liberation2				install
@@ -128,7 +124,6 @@ fonts-mathjax					install
 fonts-noto-core					install
 fonts-noto-mono					install
 fonts-noto-ui-core				install
-fonts-open-sans					install
 fonts-opensymbol				install
 fonts-sil-gentium				install
 fonts-sil-gentium-basic				install
@@ -137,16 +132,11 @@ fonts-texgyre					install
 freepats					install
 freetype2-doc					install
 fuse						install
-g++						install
-g++-8						install
 gawk						install
 gcc						install
 gcc-8						install
 gcc-8-base:amd64				install
 gcc-8-base:i386					install
-gcc-8-multilib					install
-gcc-multilib					install
-gdb						install
 gdbm-l10n					install
 gdebi						install
 gdebi-core					install
@@ -248,22 +238,13 @@ keyutils					install
 kmod						install
 krb5-locales					install
 less						install
-lib32asan5					install
-lib32atomic1					install
-lib32gcc-8-dev					install
-lib32gcc1					install
-lib32gomp1					install
-lib32itm1					install
-lib32mpx2					install
-lib32quadmath0					install
-lib32stdc++6					install
-lib32ubsan1					install
 libaa1:amd64					install
 libaacs0:amd64					install
 libabw-0.1-1:amd64				install
 libacl1:amd64					install
 libacl1-dev:amd64				install
 libactivation-java				install
+libaio1:amd64					install
 libaom0:amd64					install
 libaopalliance-java				install
 libapache-poi-java				install
@@ -312,7 +293,6 @@ libavc1394-0:amd64				install
 libavcodec58:amd64				install
 libavresample4:amd64				install
 libavutil56:amd64				install
-libbabeltrace1:amd64				install
 libbase-java					install
 libbcmail-java					install
 libbcpkix-java					install
@@ -351,12 +331,7 @@ libc-dev-bin					install
 libc-l10n					install
 libc6:amd64					install
 libc6:i386					install
-libc6-dbg:amd64					install
 libc6-dev:amd64					install
-libc6-dev-i386					install
-libc6-dev-x32					install
-libc6-i386					install
-libc6-x32					install
 libcaca0:amd64					install
 libcairo-gobject2:amd64				install
 libcairo-script-interpreter2:amd64		install
@@ -422,6 +397,7 @@ libdca0:amd64					install
 libdconf1:amd64					install
 libde265-0:amd64				install
 libdebconfclient0:amd64				install
+libdevmapper-event1.02.1:amd64			install
 libdevmapper1.02.1:amd64			install
 libdjvulibre-dev:amd64				install
 libdjvulibre-text				install
@@ -626,7 +602,6 @@ libinput10:amd64				install
 libintellij-annotations-java			install
 libip4tc0:amd64					install
 libip6tc0:amd64					install
-libipt2						install
 libiptc0:amd64					install
 libisc-export1100:amd64				install
 libisc-export169:amd64				install
@@ -655,7 +630,6 @@ libjpeg-progs					install
 libjpeg62-turbo:amd64				install
 libjpeg62-turbo-dev:amd64			install
 libjpeg9:amd64					install
-libjs-highlight.js				install
 libjs-inherits					install
 libjs-is-typedarray				install
 libjs-jquery					install
@@ -707,6 +681,7 @@ libltdl7:amd64					install
 liblua5.1-0:amd64				install
 liblua5.2-0:amd64				install
 liblua5.3-0:amd64				install
+liblvm2cmd2.03:amd64				install
 liblz4-1:amd64					install
 liblzma-dev:amd64				install
 liblzma5:amd64					install
@@ -878,6 +853,7 @@ libraptor2-0:amd64				install
 librasqal3:amd64				install
 libraw1394-11:amd64				install
 librdf0:amd64					install
+libreadline5:amd64				install
 libreadline7:amd64				install
 librelaxng-datatype-java			install
 libreoffice					install
@@ -978,7 +954,6 @@ libssl1.1:amd64					install
 libstaroffice-0.0-0:amd64			install
 libstartup-notification0:amd64			install
 libstax-ex-java					install
-libstdc++-8-dev:amd64				install
 libstdc++6:amd64				install
 libstemmer0d:amd64				install
 libstreambuffer-java				install
@@ -1011,7 +986,6 @@ libtiff5:amd64					install
 libtiffxx5:amd64				install
 libtinfo6:amd64					install
 libtk8.6:amd64					install
-libtool						install
 libtsan0:amd64					install
 libtumbler-1-0					install
 libtwolame0:amd64				install
@@ -1092,15 +1066,6 @@ libx11-xcb-dev:amd64				install
 libx11-xcb1:amd64				install
 libx264-155:amd64				install
 libx265-165:amd64				install
-libx32asan5					install
-libx32atomic1					install
-libx32gcc-8-dev					install
-libx32gcc1					install
-libx32gomp1					install
-libx32itm1					install
-libx32quadmath0					install
-libx32stdc++6					install
-libx32ubsan1					install
 libx86-1:amd64					install
 libxau-dev:amd64				install
 libxau6:amd64					install
@@ -1230,6 +1195,7 @@ lp-solve					install
 lsb-base					install
 lsb-release					install
 lsof						install
+lvm2						install
 lynx						install
 lynx-common					install
 lzop						install
@@ -1330,7 +1296,6 @@ node-from2					install
 node-fs-vacuum					install
 node-fs-write-stream-atomic			install
 node-fs.realpath				install
-node-fstream					install
 node-gauge					install
 node-get-caller-file				install
 node-get-stream					install
@@ -1613,7 +1578,6 @@ ruby2.5						install
 ruby2.5-dev:amd64				install
 ruby2.5-doc					install
 rubygems-integration				install
-rust-doc					install
 samba-libs:amd64				install
 sbcl						install
 sbcl-doc					install
@@ -1638,6 +1602,7 @@ tango-icon-theme				install
 tar						install
 tasksel						install
 tasksel-data					install
+taskwarrior					install
 tcl						install
 tcl8.6						install
 teckit						install
@@ -1654,6 +1619,7 @@ texlive-latex-recommended			install
 texlive-pictures				install
 texlive-plain-generic				install
 texlive-xetex					install
+thin-provisioning-tools				install
 thunar						install
 thunar-archive-plugin				install
 thunar-data					install
