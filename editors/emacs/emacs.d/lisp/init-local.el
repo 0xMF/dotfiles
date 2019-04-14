@@ -403,7 +403,6 @@ then it takes a second \\[keyboard-quit] to abort the minibuffer."
 ;; Org mode settings
 ;;----------------------------------------------------------------------------
 (add-to-list 'package-archives '("org" . "https://orgmode.org/elpa/") t)
-(setq org-startup-indented nil)
 (setq org-hide-leading-stars t)
 (setq org-indent-mode-turns-off-org-adapt-indentation nil)
 (setq org-indent-mode-turns-on-hiding-stars nil)
@@ -411,6 +410,7 @@ then it takes a second \\[keyboard-quit] to abort the minibuffer."
 (setq org-export-with-section-numbers nil)
 (setq org-table-auto-blank-field nil)
 (setq org-startup-indented nil)
+(setq org-startup-folded 'content)
 (setq org-list-allow-alphabetical t)
 
 
