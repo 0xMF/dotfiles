@@ -410,7 +410,7 @@ then it takes a second \\[keyboard-quit] to abort the minibuffer."
 (setq org-pretty-entities t)
 (setq org-export-with-section-numbers nil)
 (setq org-table-auto-blank-field nil)
-(setq org-startup-indented t)
+(setq org-startup-indented nil)
 (setq org-list-allow-alphabetical t)
 
 
