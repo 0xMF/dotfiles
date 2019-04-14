@@ -448,7 +448,7 @@ then it takes a second \\[keyboard-quit] to abort the minibuffer."
 (evil-define-key 'insert org-mode-map (kbd "C-<tab>") #'tab-to-tab-stop)
 
 ;; Yup we want spell check to be turned on automatically in org mode
-(add-hook 'org-mode-hook 'turn-on-flyspell)
+;;(add-hook 'org-mode-hook 'turn-on-flyspell)
 
 ;; Load agenda files if they exist.
 ;; Credit: [StackOverflow] how-to-make-all-org-files-under-a-folder-added-in-agenda-list-automatically
