@@ -28,8 +28,8 @@
     </property>
     <property name="VGA-1" type="string" value="1. VirtualBox ">
       <property name="Active" type="bool" value="true"/>
-      <property name="Resolution" type="string" value="1680x1050"/>
-      <property name="RefreshRate" type="double" value="59.998114"/>
+      <property name="Resolution" type="string" value="1024x1280"/>
+      <property name="RefreshRate" type="double" value="59.993362"/>
       <property name="Rotation" type="int" value="0"/>
       <property name="Reflection" type="string" value="0"/>
       <property name="Primary" type="bool" value="true"/>
