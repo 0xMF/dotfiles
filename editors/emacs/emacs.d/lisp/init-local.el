@@ -604,6 +604,8 @@ then it takes a second \\[keyboard-quit] to abort the minibuffer."
   (global-display-line-numbers-mode -1)
   (display-line-numbers-mode -1)
   (line-number-mode t)
+  (when (equal major-mode 'org-mode)
+    (org-set-visibility-according-to-property))
   (message "0xMF/startup"))
 
 (add-hook 'after-init-hook '0xMF/startup)
