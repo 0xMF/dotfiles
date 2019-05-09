@@ -1,0 +1,5 @@
+# bring packages with their dependencies up-to-date
+pacman -Syu
+
+# check orphans
+pacmang -Qdt
