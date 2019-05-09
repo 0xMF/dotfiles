@@ -2,4 +2,14 @@
 pacman -Syu
 
 # check orphans
-pacmang -Qdt
+pacman -Qdt
+
+# search for packages
+pacman -Ss
+
+# build and install locally built package (2 step)
+makepkg -s
+pacman -U some.pkg.tar.gz
+
+# build and install packages from AUR
+makepkg -si
