@@ -747,4 +747,22 @@ function recent {
   cd $OLDPWD
 }
 
+function sadu {
+  if [[ "`\grep -w ID /etc/os-release | cut -d= -f2`" == "arch" ]]; then
+    sudo pacman -Syu
+  else
+    sudo apt update
+    sudo apt dist-upgrade
+  fi
+}
+
+function saru {
+  if [[ "`\grep -w ID /etc/os-release | cut -d= -f2`" == "arch" ]]; then
+    unneeded=`pacman -Qdtq`
+    [[ -n "$unneeded" ]] && sudo pacman -Rsn "$unneeded"
+  else
+    sudo apt autoremove
+  fi
+}
+
 # vim:nospell:ft=sh:
