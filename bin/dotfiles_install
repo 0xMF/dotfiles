@@ -51,7 +51,7 @@ _config_dconf() {
     echo "found, not installing" >&2
   } || {
     installed="dconf"
-    ln -s ${SCRIPT_DIR%bin}misc/dconf $HOME/.config/dconf
+    ln -s ${SCRIPT_DIR%bin}misc/config/dconf $HOME/.config/dconf
   }
 
   [ ! -z "$installed" ] && echo "INSTALLED!" >&2
@@ -66,7 +66,7 @@ _config_xfce4() {
     echo "found, not installing" >&2
   } || {
     installed="xfce4"
-    ln -s ${SCRIPT_DIR%bin}misc/xfce4 $HOME/.config/xfce4
+    ln -s ${SCRIPT_DIR%bin}misc/config/xfce4 $HOME/.config/xfce4
   }
 
   [ ! -z "$installed" ] && echo "INSTALLED!" >&2
