@@ -7,14 +7,17 @@ pacman -Qdt
 # remove packages
 pacman -Rs
 
-# search for packages
-pacman -Ss
+# search for all packages named
+pacman -Ss texlive
+
+# get info on package before installing it
+pacman -Si texlive-bin
 
 # get list of installed packages
-pacman -Qqe > pkglist.txt
+pacman -Qqe > installed_packages
 
 # install packages from a list
-pacman -S --needed - < pkglist.txt
+pacman -S --needed - < installed_packages
 
 # build and install locally built package (2 step)
 makepkg -s

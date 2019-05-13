@@ -23,7 +23,12 @@ flex
 garcon
 gawk
 gcc
+gcc-gcj-ecj
 gcc-libs
+gcc6
+gcc6-fortran
+gcc6-gcj
+gcc6-libs
 gettext
 git
 glibc
@@ -56,6 +61,7 @@ man-db
 man-pages
 mdadm
 mousepad
+mupdf
 nano
 ncurses5-compat-libs
 netctl
@@ -65,10 +71,12 @@ ntfs-3g
 openssh
 orage
 pacman
+pandoc
 parole
 pavucontrol
 pciutils
 pcsclite
+pdftk
 perl
 pkgconf
 poppler-glib
@@ -85,6 +93,8 @@ sysfsutils
 systemd-sysvcompat
 tar
 texinfo
+texlive-core
+texlive-latexextra
 thunar
 thunar-archive-plugin
 thunar-media-tags-plugin
