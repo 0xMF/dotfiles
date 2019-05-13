@@ -4,6 +4,9 @@ pacman -Syu
 # check orphans
 pacman -Qdt
 
+# remove packages
+pacman -Rs
+
 # search for packages
 pacman -Ss
 
@@ -13,3 +16,9 @@ pacman -U some.pkg.tar.gz
 
 # build and install packages from AUR
 makepkg -si
+
+# If you get an error
+libutf8proc: /usr/lib/libutf8proc.so.2 exists in filesystem
+
+# use
+pacman -Suy --overwrite usr/lib/libutf8proc.so.2
