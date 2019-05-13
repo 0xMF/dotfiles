@@ -57,6 +57,20 @@ _config_dconf() {
   [ ! -z "$installed" ] && echo "INSTALLED!" >&2
 }
 
+# config/misc
+_config_misc() {
+  installed=
+  echo -n "checking config/chromium-flags.conf..." >&2
+  [[ -L $HOME/.config/chromium-flags.conf ]] && { :
+    echo "found, not installing" >&2
+  } || {
+    installed="chromium-flags.conf"
+    ln -s ${SCRIPT_DIR%bin}misc/config/chromium-flags.conf $HOME/.config/chromium-flags.conf
+  }
+
+  [ ! -z "$installed" ] && echo "INSTALLED!" >&2
+}
+
 # config/xfce4
 _config_xfce4() {
   installed=
@@ -272,6 +286,7 @@ _vim() {
 
 _bash
 _config_dconf
+_config_misc
 _config_xfce4
 _emacs
 _git
