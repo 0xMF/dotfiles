@@ -10,6 +10,12 @@ pacman -Rs
 # search for packages
 pacman -Ss
 
+# get list of installed packages
+pacman -Qqe > pkglist.txt
+
+# install packages from a list
+pacman -S --needed - < pkglist.txt
+
 # build and install locally built package (2 step)
 makepkg -s
 pacman -U some.pkg.tar.gz
