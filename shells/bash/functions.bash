@@ -759,7 +759,7 @@ function sadu {
 function saru {
   if [[ "`\grep -w ID /etc/os-release | cut -d= -f2`" == "arch" ]]; then
     unneeded=`pacman -Qdtq`
-    [[ -n "$unneeded" ]] && sudo pacman -Rsn "$unneeded"
+    [[ -n "$unneeded" ]] && sudo pacman -Rsn `echo $unneeded`
   else
     sudo apt autoremove
   fi
