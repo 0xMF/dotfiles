@@ -748,12 +748,18 @@ function recent {
 }
 
 function sadu {
-  if [[ "`\grep -w ID /etc/os-release | cut -d= -f2`" == "arch" ]]; then
-    sudo pacman -Syu
-  else
-    sudo apt update
-    sudo apt dist-upgrade
-  fi
+  distro=$(\grep -w ID /etc/os-release | cut -d= -f2 | tr -d '"')
+  case "${distro}" in
+    arch)
+      sudo pacman -Syu
+        ;;
+    centos)
+      yum update
+        ;;
+    *)
+      sudo apt update
+      sudo apt dist-upgrade
+  esac
 }
 
 function saru {
