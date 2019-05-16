@@ -96,22 +96,21 @@ _emacs() {
   [[ -e $HOME/.emacs || -L $HOME/.emacs ]] && {
     echo "found .emacs, not installing" >&2
   } || {
-    installed=".emacs"
+    echo >&2
+    installed=".emacs/emacs.el"
     ln -s ${SCRIPT_DIR%bin}editors/emacs/emacs.el $HOME/.emacs
-    echo
+    echo " - ...INSTALLED $installed" >&2
   }
 
-  echo -n "checking emacs/abbrev_defs..." >&2
   [[ -e $HOME/.abbrev_defs || -L $HOME/.abbrev_defs ]] && {
     echo "found .abbrev_defs, not installing" >&2
   } || {
     installed=".abbrev_defs"
     ln -s ${SCRIPT_DIR%bin}editors/emacs/abbrev_defs $HOME/.abbrev_defs
     touch $HOME/.abbrev_defs
-    echo
+    echo " - ...INSTALLED $installed" >&2
   }
 
-  echo -n "checking emacs/aspell..." >&2
   [[ -e $HOME/.aspell.en.pws || -L $HOME/.aspell.en.pws ]] && {
     echo "found .aspell files, not installing" >&2
   } || {
@@ -120,9 +119,10 @@ _emacs() {
     ln -s ${SCRIPT_DIR%bin}editors/emacs/aspell.en.prepl $HOME/.aspell.en.prepl
     touch $HOME/.aspell.en.pws
     touch $HOME/.aspell.en.prepl
-    echo
+    echo " - ...INSTALLED $installed" >&2
   }
 
+  echo "checking emacs/lisp/.dependencies..."
   [[  -d ${EMACS_D}/lisp/.dependencies/purcell || \
       -L ${EMACS_D}/lisp/.dependencies/purcell ]] && { :
         pushd ${EMACS_D}/lisp/.dependencies/purcell > /dev/null
@@ -133,10 +133,10 @@ _emacs() {
         popd > /dev/null
   } || {
         [ ! -d ${EMACS_D}/lisp/.dependencies ] && mkdir ${EMACS_D}/lisp/.dependencies
-        pushd ${EMACS_D}/lisp/.dependencies
+        pushd ${EMACS_D}/lisp/.dependencies >/dev/null
         git clone https://github.com/purcell/emacs.d purcell
         [ ! -L ${EMACS_}/init.el ] && ln -s ${EMACS_D}/lisp/.dependencies/purcell/init.el ${EMACS_D}/init.el
-        popd
+        popd > /dev/null
   }
 
   [[  -d ${EMACS_D}/site-lisp || -L ${EMACS_D}/site-lisp ]] && { :
@@ -147,20 +147,20 @@ _emacs() {
 
   [[ -d ${EMACS_D}/themes || -L ${EMACS_D}/themes ]] && { :
   } || {
-    installed="themes"
+    installed="$installed themes"
     mkdir ${EMACS_D}/themes
   }
 
   [[ -d $HOME/.quicklisp || -L $HOME/.quicklisp ]] && { :
   } || {
-    installed="quicklisp"
+    installed="$installed quicklisp"
     mkdir $HOME/.quicklisp
     touch $HOME/.quicklisp/slime-helper.el
   }
 
   [[ -d $HOME/.emacs.d || -L $HOME/.emacs.d ]] && { :
   } || {
-    installed="emacs"
+    installed="$installed in .emacs.d"
     ln -s ${EMACS_D} $HOME/.emacs.d
   }
 
@@ -170,7 +170,7 @@ _emacs() {
     [ -e ${EMACS_D}/$f ] && echo deleting ${EMACS_D}/$f && rm -f ${EMACS_D}/$f
   done
 
-  [ ! -z "$installed" ] && echo "INSTALLED!" >&2
+  [ ! -z "$installed" ] && echo " - ...INSTALLED $installed" >&2
 }
 
 # git
@@ -238,14 +238,14 @@ _misc() {
     echo " - found .tmuxinator, not installing" >&2
   else
     ln -s ${SCRIPT_DIR%bin}misc/tmuxinator $HOME/.tmuxinator &&
-    echo " - .../INSTALLED .tmuxinator" >&2
+    echo " - ...INSTALLED .tmuxinator" >&2
   fi
 
   if [[ -d $HOME/.toprc || -L $HOME/.toprc ]]; then
     echo " - found .toprc, not installing" >&2
   else
     ln -s ${SCRIPT_DIR%bin}misc/toprc $HOME/.toprc &&
-    echo " - .../INSTALLED .toprc" >&2
+    echo " - ...INSTALLED .toprc" >&2
   fi
     
 }
