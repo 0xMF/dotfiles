@@ -747,7 +747,7 @@ function recent {
   cd $OLDPWD
 }
 
-function sadu {
+sadu () {
   distro=$(\grep -w ID /etc/os-release | cut -d= -f2 | tr -d '"')
   case "${distro}" in
     arch)
@@ -762,13 +762,19 @@ function sadu {
   esac
 }
 
-function saru {
-  if [[ "`\grep -w ID /etc/os-release | cut -d= -f2`" == "arch" ]]; then
-    unneeded=`pacman -Qdtq`
-    [[ -n "$unneeded" ]] && sudo pacman -Rsn `echo $unneeded`
-  else
-    sudo apt autoremove
-  fi
+saru () {
+  distro=$(\grep -w ID /etc/os-release | cut -d= -f2 | tr -d '"')
+  case "${distro}" in
+    arch)
+      unneeded=`pacman -Qdtq`
+      [[ -n "$unneeded" ]] && sudo pacman -Rsn `echo $unneeded`
+      ;;
+    centos)
+      yum autoremove "$@"
+      ;;
+    *)
+      sudo apt autoremove
+  esac
 }
 
 # vim:nospell:ft=sh:
