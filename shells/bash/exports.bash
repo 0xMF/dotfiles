@@ -8,7 +8,7 @@ if [ $OS == "FreeBSD" ]; then
   export GREP=/usr/bin/grep
 else
   export GREP=/bin/grep
-  export TERM=tmux-256color
+  [[ -n ${TMUX} ]] && export TERM=tmux-256color || export TERM=xterm-256color
   export EMACS=emacs26
   export INFOPATH=~/.local/share/eless/info:$INFOPATH
   if [ ${TERM} != "dumb" ]; then
