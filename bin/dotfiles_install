@@ -98,6 +98,7 @@ _emacs() {
   } || {
     installed=".emacs"
     ln -s ${SCRIPT_DIR%bin}editors/emacs/emacs.el $HOME/.emacs
+    echo
   }
 
   echo -n "checking emacs/abbrev_defs..." >&2
@@ -107,6 +108,7 @@ _emacs() {
     installed=".abbrev_defs"
     ln -s ${SCRIPT_DIR%bin}editors/emacs/abbrev_defs $HOME/.abbrev_defs
     touch $HOME/.abbrev_defs
+    echo
   }
 
   echo -n "checking emacs/aspell..." >&2
@@ -118,6 +120,7 @@ _emacs() {
     ln -s ${SCRIPT_DIR%bin}editors/emacs/aspell.en.prepl $HOME/.aspell.en.prepl
     touch $HOME/.aspell.en.pws
     touch $HOME/.aspell.en.prepl
+    echo
   }
 
   [[  -d ${EMACS_D}/lisp/.dependencies/purcell || \
