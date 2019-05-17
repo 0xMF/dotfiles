@@ -754,7 +754,7 @@ sadu () {
       sudo pacman -Syu
         ;;
     centos)
-      yum update
+      sudo yum update
         ;;
     *)
       sudo apt update
@@ -770,7 +770,7 @@ saru () {
       [[ -n "$unneeded" ]] && sudo pacman -Rsn `echo $unneeded`
       ;;
     centos)
-      yum autoremove "$@"
+      sudo yum autoremove "$@"
       ;;
     *)
       sudo apt autoremove
