@@ -3,6 +3,7 @@ arch-wiki-lite
 autoconf
 automake
 bash
+bash-completion
 bison
 bzip2
 chromium
@@ -26,7 +27,6 @@ gcc
 gcc-gcj-ecj
 gcc-libs
 gcc6
-gcc6-fortran
 gcc6-gcj
 gcc6-libs
 gettext
@@ -70,6 +70,7 @@ networkmanager
 ntfs-3g
 openssh
 orage
+p7zip
 pacman
 pandoc
 parole
