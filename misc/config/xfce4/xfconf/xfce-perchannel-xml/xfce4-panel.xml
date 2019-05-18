@@ -16,6 +16,7 @@
         <value type="int" value="4"/>
         <value type="int" value="5"/>
         <value type="int" value="6"/>
+        <value type="int" value="7"/>
         <value type="int" value="2"/>
       </property>
       <property name="autohide-behavior" type="uint" value="1"/>
@@ -43,6 +44,9 @@
         <value type="string" value="task manager"/>
         <value type="string" value="otter browser"/>
       </property>
+    </property>
+    <property name="plugin-7" type="string" value="pulseaudio">
+      <property name="enable-keyboard-shortcuts" type="bool" value="true"/>
     </property>
   </property>
 </channel>
