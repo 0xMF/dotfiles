@@ -32,10 +32,14 @@ binutils-x86-64-linux-gnu			install
 bsd-mailx					install
 bsdmainutils					install
 bsdutils					install
+busybox						install
 bzip2						install
 ca-certificates					install
 ca-certificates-java				install
 cabextract					install
+chromium					install
+chromium-common					install
+chromium-sandbox				install
 clojure						install
 coinor-libcbc3					install
 coinor-libcgl1					install
@@ -125,6 +129,7 @@ fonts-noto-core					install
 fonts-noto-mono					install
 fonts-noto-ui-core				install
 fonts-opensymbol				install
+fonts-quicksand					install
 fonts-sil-gentium				install
 fonts-sil-gentium-basic				install
 fonts-stix					install
@@ -137,6 +142,8 @@ gcc						install
 gcc-8						install
 gcc-8-base:amd64				install
 gcc-8-base:i386					install
+gcc-8-multilib					install
+gcc-multilib					install
 gdbm-l10n					install
 gdebi						install
 gdebi-core					install
@@ -219,6 +226,8 @@ imagemagick-6.q16				install
 info						install
 init						install
 init-system-helpers				install
+initramfs-tools					install
+initramfs-tools-core				install
 install-info					install
 intel-media-va-driver:amd64			install
 intltool-debian					install
@@ -235,9 +244,20 @@ kbd						install
 keyboard-configuration				install
 keychain					install
 keyutils					install
+klibc-utils					install
 kmod						install
 krb5-locales					install
 less						install
+lib32asan5					install
+lib32atomic1					install
+lib32gcc-8-dev					install
+lib32gcc1					install
+lib32gomp1					install
+lib32itm1					install
+lib32mpx2					install
+lib32quadmath0					install
+lib32stdc++6					install
+lib32ubsan1					install
 libaa1:amd64					install
 libaacs0:amd64					install
 libabw-0.1-1:amd64				install
@@ -291,6 +311,7 @@ libavahi-common-data:amd64			install
 libavahi-common3:amd64				install
 libavc1394-0:amd64				install
 libavcodec58:amd64				install
+libavformat58:amd64				install
 libavresample4:amd64				install
 libavutil56:amd64				install
 libbase-java					install
@@ -332,6 +353,10 @@ libc-l10n					install
 libc6:amd64					install
 libc6:i386					install
 libc6-dev:amd64					install
+libc6-dev-i386					install
+libc6-dev-x32					install
+libc6-i386					install
+libc6-x32					install
 libcaca0:amd64					install
 libcairo-gobject2:amd64				install
 libcairo-script-interpreter2:amd64		install
@@ -638,6 +663,7 @@ libjs-underscore				install
 libjson-c3:amd64				install
 libjson-glib-1.0-0:amd64			install
 libjson-glib-1.0-common				install
+libjsoncpp1:amd64				install
 libjsoup-java					install
 libjsp-api-java					install
 libjsr166y-java					install
@@ -647,6 +673,7 @@ libk5crypto3:amd64				install
 libkate1:amd64					install
 libkeybinder-3.0-0:amd64			install
 libkeyutils1:amd64				install
+libklibc:amd64					install
 libkmod2:amd64					install
 libkpathsea6:amd64				install
 libkrb5-3:amd64					install
@@ -709,6 +736,7 @@ libmaven-shared-io-java				install
 libmaven-shared-utils-java			install
 libmaven3-core-java				install
 libmhash2:amd64					install
+libminizip1:amd64				install
 libmjpegutils-2.1-0				install
 libmms0:amd64					install
 libmnl0:amd64					install
@@ -814,6 +842,7 @@ libplexus-io-java				install
 libplexus-sec-dispatcher-java			install
 libplexus-utils2-java				install
 libplist3:amd64					install
+libplymouth4:amd64				install
 libpng-dev:amd64				install
 libpng16-16:amd64				install
 libpolkit-agent-1-0:amd64			install
@@ -853,6 +882,7 @@ libraptor2-0:amd64				install
 librasqal3:amd64				install
 libraw1394-11:amd64				install
 librdf0:amd64					install
+libre2-5:amd64					install
 libreadline5:amd64				install
 libreadline7:amd64				install
 librelaxng-datatype-java			install
@@ -948,6 +978,7 @@ libsqlite3-0:amd64				install
 libsratom-0-0:amd64				install
 libsrtp2-1:amd64				install
 libss2:amd64					install
+libssh-gcrypt-4:amd64				install
 libssh2-1:amd64					install
 libssl-dev:amd64				install
 libssl1.1:amd64					install
@@ -990,6 +1021,7 @@ libtsan0:amd64					install
 libtumbler-1-0					install
 libtwolame0:amd64				install
 libtxw2-java					install
+libu2f-udev					install
 libubsan1:amd64					install
 libuchardet0:amd64				install
 libudev1:amd64					install
@@ -1066,6 +1098,15 @@ libx11-xcb-dev:amd64				install
 libx11-xcb1:amd64				install
 libx264-155:amd64				install
 libx265-165:amd64				install
+libx32asan5					install
+libx32atomic1					install
+libx32gcc-8-dev					install
+libx32gcc1					install
+libx32gomp1					install
+libx32itm1					install
+libx32quadmath0					install
+libx32stdc++6					install
+libx32ubsan1					install
 libx86-1:amd64					install
 libxau-dev:amd64				install
 libxau6:amd64					install
@@ -1184,6 +1225,7 @@ light-locker					install
 lightdm						install
 lightdm-gtk-greeter				install
 lightsoff					install
+linux-base					install
 linux-libc-dev:amd64				install
 lm-sensors					install
 lmodern						install
@@ -1493,8 +1535,11 @@ perl						install
 perl-base					install
 perl-doc					install
 perl-modules-5.28				install
+pigz						install
 pinentry-curses					install
 pkg-config					install
+plymouth					install
+plymouth-label					install
 pm-utils					install
 po-debconf					install
 policykit-1					install
