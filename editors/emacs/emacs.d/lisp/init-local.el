@@ -16,7 +16,7 @@
 
 (setq my-required-packages '(evil evil-collection evil-magit
                                   fill-column-indicator general org-beautify-theme org-bullets
-                                  org-pdfview powerline smart-mode-line
+                                  org-gcal org-pdfview powerline smart-mode-line
                                   smart-mode-line-powerline-theme use-package vimish-fold))
 (dolist (package my-required-packages)
   (unless (package-installed-p package)
@@ -448,13 +448,7 @@ then it takes a second \\[keyboard-quit] to abort the minibuffer."
 (evil-define-key 'insert org-mode-map (kbd "C-<tab>") #'tab-to-tab-stop)
 
 ;; Yup we want spell check to be turned on automatically in org mode
-;;(add-hook 'org-mode-hook 'turn-on-flyspell)
-
-;; Load agenda files if they exist.
-;; Credit: [StackOverflow] how-to-make-all-org-files-under-a-folder-added-in-agenda-list-automatically
-(when (file-exists-p "~/.emacs.d/agenda")
-  (load-library "find-lisp")
-  (setq org-agenda-files (find-lisp-find-files "~/.emacs.d/agenda" "\.org$")))
+(add-hook 'org-mode-hook 'turn-on-flyspell)
 
 ;; do not ask before prompting
 (setq org-confirm-babel-evaluate nil)
