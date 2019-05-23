@@ -464,6 +464,9 @@ then it takes a second \\[keyboard-quit] to abort the minibuffer."
 ;; Miscalleanous settings
 ;; User mode settings for UI/keyboard/look and feel
 ;;----------------------------------------------------------------------------
+(require 'org-gcal)
+(require 'vimish-fold)
+
 (set-default 'truncate-lines t)
 (setq browse-url-browser-function 'eww-browse-url)
 
@@ -489,7 +492,6 @@ then it takes a second \\[keyboard-quit] to abort the minibuffer."
 (setq slime-default-lisp 'sbcl)
 
 (menu-bar-mode -1)
-(require 'vimish-fold)
 
 ;; Using mouse to select and copy text to the clipboard
 ;; Source: [StackOverflow] how-to-combine-emacs-primary-clipboard-copy-and-paste-behavior-on-ms-windows
