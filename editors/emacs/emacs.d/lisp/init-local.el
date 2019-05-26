@@ -565,7 +565,7 @@ then it takes a second \\[keyboard-quit] to abort the minibuffer."
 
 (defun 0xMF/kill-buffers (regexp)
   "Kill buffers matching REGEXP without confirmation."
-  (interactive "sKill buffers matching the regex given: ")
+  (interactive "Kill buffers matching the regex given: ")
   (cl-letf (((symbol-function 'kill-buffer-ask)
              (lambda (buffer) (kill-buffer buffer))))
     (kill-matching-buffers regexp)))
@@ -602,6 +602,8 @@ then it takes a second \\[keyboard-quit] to abort the minibuffer."
   (line-number-mode t)
   (when (equal major-mode 'org-mode)
     (org-set-visibility-according-to-property))
+  (when (fboundp '0xMF/local)
+    (0xMF/local))
   (message "0xMF/startup"))
 
 (add-hook 'after-init-hook '0xMF/startup)
