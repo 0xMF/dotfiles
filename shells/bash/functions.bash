@@ -155,12 +155,6 @@ function trd() {
     eval "tree $level $path $*"
 }
 
-# Edit your current day's todo list.
-function todo(){
-  [[ -n "`command -v task`" ]] \
-    && { [[ -z "$@" ]] && task -waiting list || task "$@"; return; } \
-    || ${EDITOR:-/usr/local/bin/vim} + ~/$(date +todolist-%Y%m%d);
-}
 
 function ps1 {
   if [ `id -u` -eq 0 ]; then
