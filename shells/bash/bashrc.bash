@@ -12,12 +12,6 @@ if [ -f /etc/bashrc ]; then
   source /etc/bashrc
 fi
 
-# source local and private settings
-# changes to local.bash should not be publicly tracked and shared (recommended)
-if [ -f $REPO/local.bash ]; then
-  source $REPO/local.bash
-fi
-
 # source environment variables exported
 if [ -f $REPO/exports.bash ]; then
   source $REPO/exports.bash
@@ -109,5 +103,13 @@ if declare -f done_init > /dev/null
 then
   done_init
 fi
+
+# source local and private settings last so they take precedence over everything
+# changes to local.bash should not be publicly tracked and shared (recommended)
+if [ -f $REPO/local.bash ]; then
+  source $REPO/local.bash
+fi
+
+ps1
 
 # vim:nospell:ft=sh:
