@@ -34,7 +34,9 @@
     <property name="plugin-4" type="string" value="pager">
       <property name="rows" type="uint" value="1"/>
     </property>
-    <property name="plugin-5" type="string" value="clock"/>
+    <property name="plugin-5" type="string" value="clock">
+      <property name="digital-format" type="string" value="%l:%M %p"/>
+    </property>
     <property name="plugin-6" type="string" value="systray">
       <property name="names-visible" type="array">
         <value type="string" value="networkmanager applet"/>
@@ -42,10 +44,19 @@
         <value type="string" value="task manager"/>
         <value type="string" value="thunar"/>
         <value type="string" value="vmware-tray"/>
+        <value type="string" value="notes"/>
       </property>
     </property>
     <property name="plugin-7" type="string" value="pulseaudio">
       <property name="enable-keyboard-shortcuts" type="bool" value="true"/>
+      <property name="mpris-players" type="string" value="chromium.instance13237;chromium.instance2611;chromium.instance7303"/>
+    </property>
+    <property name="notes" type="empty">
+      <property name="global" type="empty">
+        <property name="skip-taskbar-hint" type="bool" value="true"/>
+        <property name="tabs-position" type="int" value="1"/>
+        <property name="background-color" type="string" value="#F7EB96"/>
+      </property>
     </property>
   </property>
 </channel>
