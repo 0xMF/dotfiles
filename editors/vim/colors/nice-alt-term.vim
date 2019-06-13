@@ -97,7 +97,7 @@ hi Scrollbar    cterm=none  ctermbg=none   ctermfg=Cyan
 hi Tooltip      cterm=none  ctermbg=none   ctermfg=Brown
 
 " syntax highlighting groups
-hi Comment      cterm=none  ctermbg=none   ctermfg=DarkMagenta
+hi Comment      cterm=standout  ctermbg=none   ctermfg=DarkCyan
 hi Constant     cterm=none  ctermbg=none   ctermfg=DarkYellow
 hi Identifier   cterm=none  ctermbg=none   ctermfg=DarkCyan
 hi Statement    cterm=none  ctermbg=none   ctermfg=Blue
