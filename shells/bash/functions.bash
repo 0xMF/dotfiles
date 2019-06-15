@@ -20,25 +20,25 @@ NOCOLOR="\[\033[00m\]"
 
 function dark {
   # blue dir
-  LS_COLORS="`echo $LS_COLORS|sed 's/di=0[01];3[0-9]/di=01;34:/'`"
+  LS_COLORS="`echo $LS_COLORS|sed 's/di=0[01];3[0-9]/di=01;34/'`"
   # cyan link
-  LS_COLORS="`echo $LS_COLORS|sed 's/ln=0[01];3[0-9]/ln=00;36:/'`"
+  LS_COLORS="`echo $LS_COLORS|sed 's/ln=-1[01];3[0-9]/ln=00;36/'`"
   # green executables
-  LS_COLORS="`echo $LS_COLORS|sed 's/ex=0[01];3[0-9]/ex=00;32:/'`"
+  LS_COLORS="`echo $LS_COLORS|sed 's/ex=0[01];3[0-9]/ex=00;32/'`"
   export LS_COLORS
 }
 
 function light {
   # black dir
-  # LS_COLORS="`echo $LS_COLORS|sed 's/di=01;33/di=00;30:/'`"
+  #LS_COLORS="`echo $LS_COLORS|sed 's/di=01;33/di=00;30/'`"
   # brown dir
-  # LS_COLORS="`echo $LS_COLORS|sed 's/di=0[01];3[0-9]/di=00;34:/'`"
+  #LS_COLORS="`echo $LS_COLORS|sed 's/di=0[01];3[0-9]/di=00;34/'`"
   # yellow dir
-  LS_COLORS="`echo $LS_COLORS|sed 's/di=0[01];3[0-9]/di=01;33:/'`"
+  LS_COLORS="`echo $LS_COLORS|sed 's/di=0[01];3[0-9]/di=01;33/'`"
   # purple link
-  LS_COLORS="`echo $LS_COLORS|sed 's/ln=0[01];3[0-9]/ln=01;35:/'`"
+  LS_COLORS="`echo $LS_COLORS|sed 's/ln=0[01];3[0-9]/ln=01;35/'`"
   # green executables
-  LS_COLORS="`echo $LS_COLORS|sed 's/ex=0[01];3[0-9]/ex=00;32:/'`"
+  LS_COLORS="`echo $LS_COLORS|sed 's/ex=0[01];3[0-9]/ex=00;32/'`"
   export LS_COLORS
 }
 
@@ -239,11 +239,18 @@ function psl {
   else
     PS1="$CYAN\W $(parse_git_repo)$NOCOLOR$ "
   fi
+  light
   PROMPT_COMMAND="psl"
 }
 
 function psd {
+  if [ `id -u` -eq 0 ]; then
+    PS1="$PURPLE\W $(parse_git_repo)$RED#$NOCOLOR "
+  else
+    PS1="$CYAN\W $(parse_git_repo)$NOCOLOR$ "
+  fi
   dark
+  PROMPT_COMMAND="psd"
 }
 
 function psm {
