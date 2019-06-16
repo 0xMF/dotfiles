@@ -247,7 +247,7 @@ function psd {
   if [ `id -u` -eq 0 ]; then
     PS1="$PURPLE\W $(parse_git_repo)$RED#$NOCOLOR "
   else
-    PS1="$BLUE\W $(parse_git_repo)$NOCOLOR$ "
+    PS1="$GREEN\W $(parse_git_repo)$NOCOLOR$ "
   fi
   dark
   PROMPT_COMMAND="psd"
