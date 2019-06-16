@@ -21,10 +21,10 @@ NOCOLOR="\[\033[00m\]"
 function dark {
   # blue dir
   LS_COLORS="`echo $LS_COLORS|sed 's/di=0[01];3[0-9]/di=01;34/'`"
-  # cyan link
-  LS_COLORS="`echo $LS_COLORS|sed 's/ln=-1[01];3[0-9]/ln=00;36/'`"
-  # green executables
-  LS_COLORS="`echo $LS_COLORS|sed 's/ex=0[01];3[0-9]/ex=00;32/'`"
+  # green link
+  LS_COLORS="`echo $LS_COLORS|sed 's/ln=[01][01];3[0-9]/ln=00;32/'`"
+  # light green executables
+  LS_COLORS="`echo $LS_COLORS|sed 's/ex=0[01];3[0-9]/ex=01;32/'`"
   export LS_COLORS
 }
 
@@ -36,9 +36,11 @@ function light {
   # yellow dir
   LS_COLORS="`echo $LS_COLORS|sed 's/di=0[01];3[0-9]/di=01;33/'`"
   # purple link
-  LS_COLORS="`echo $LS_COLORS|sed 's/ln=0[01];3[0-9]/ln=01;35/'`"
-  # green executables
-  LS_COLORS="`echo $LS_COLORS|sed 's/ex=0[01];3[0-9]/ex=00;32/'`"
+  #LS_COLORS="`echo $LS_COLORS|sed 's/ln=0[01];3[0-9]/ln=01;35/'`"
+  # cyan link
+  LS_COLORS="`echo $LS_COLORS|sed 's/ln=[01][01];3[0-9]/ln=01;36/'`"
+  # light green executables
+  LS_COLORS="`echo $LS_COLORS|sed 's/ex=0[01];3[0-9]/ex=01;32/'`"
   export LS_COLORS
 }
 
