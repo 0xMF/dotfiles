@@ -110,6 +110,7 @@ if [ -f $REPO/local.bash ]; then
   source $REPO/local.bash
 fi
 
-ps1
+#ps1
+green
 
 # vim:nospell:ft=sh:

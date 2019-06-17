@@ -5,7 +5,7 @@
 #
 
 OS=$(uname -s)
-export PROMPT_COMMAND="ps1"
+export PROMPT_COMMAND="green"
 
 BLACK="\[\033[30m\]"
 GREY="\[\033[1;30m\]"
@@ -20,6 +20,9 @@ NOCOLOR="\[\033[00m\]"
 
 green () {
   LS_COLORS="`echo $LS_COLORS|sed 's/di=0[01];3[0-9]/di=01;33/'`"
+  LS_COLORS="`echo $LS_COLORS|sed 's/ln=[01][01];3[0-9]/ln=00;32/'`"
+  LS_COLORS="`echo $LS_COLORS|sed 's/ex=0[01];3[0-9]/ex=01;32/'`"
+  export LS_COLORS
   PS1="$GREEN\W $(parse_git_repo)$NOCOLOR$ "
   PROMPT_COMMAND="green"
 }
