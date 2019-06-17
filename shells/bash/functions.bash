@@ -5,7 +5,7 @@
 #
 
 OS=$(uname -s)
-export PROMPT_COMMAND="ps1;$PROMPT_COMMAND"
+export PROMPT_COMMAND="ps1"
 
 BLACK="\[\033[30m\]"
 GREY="\[\033[1;30m\]"
@@ -17,6 +17,12 @@ PURPLE="\[\033[1;35m"
 CYAN="\[\033[1;36m\]"
 WHITE="\[\033[1;37m\]"
 NOCOLOR="\[\033[00m\]"
+
+green () {
+  LS_COLORS="`echo $LS_COLORS|sed 's/di=0[01];3[0-9]/di=01;33/'`"
+  PS1="$GREEN\W $(parse_git_repo)$NOCOLOR$ "
+  PROMPT_COMMAND="green"
+}
 
 function dark {
   # blue dir
