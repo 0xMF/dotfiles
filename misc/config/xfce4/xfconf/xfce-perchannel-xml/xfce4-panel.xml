@@ -49,7 +49,6 @@
     </property>
     <property name="plugin-7" type="string" value="pulseaudio">
       <property name="enable-keyboard-shortcuts" type="bool" value="true"/>
-      <property name="mpris-players" type="string" value="chromium.instance13237;chromium.instance2611;chromium.instance7303"/>
     </property>
     <property name="notes" type="empty">
       <property name="global" type="empty">
