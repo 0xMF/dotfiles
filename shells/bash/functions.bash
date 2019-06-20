@@ -23,8 +23,12 @@ green () {
   LS_COLORS="`echo $LS_COLORS|sed 's/ln=[01][01];3[0-9]/ln=00;32/'`"
   LS_COLORS="`echo $LS_COLORS|sed 's/ex=0[01];3[0-9]/ex=01;32/'`"
   export LS_COLORS
-  PS1="$GREEN\W $(parse_git_repo)$NOCOLOR$ "
-  PROMPT_COMMAND="green"
+  if [ `id -u` -eq 0 ]; then
+    PS1="$RED\W $(parse_git_repo)$RED#$NOCOLOR "
+  else
+    PS1="$GREEN\W $(parse_git_repo)$NOCOLOR$ "
+    PROMPT_COMMAND="green"
+  fi
 }
 
 function dark {
