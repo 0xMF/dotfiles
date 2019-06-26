@@ -121,6 +121,8 @@ alias gsh='gshow'
 alias gst='git status'
 alias gsts='git status -s'
 alias gtype='git cat-file -t'
+alias gua='git update-index --assume-unchanged'
+alias guna='git update-index --no-assume-unchanged'
 alias gundo='git reset --soft HEAD~1'
 alias gwc='git whatchanged -p --abbrev-commit --pretty=medium'
 

@@ -82,6 +82,26 @@ function gcoe {
   popd > /dev/null
 }
 
+function xfci {
+  git update-index --assume-unchanged $HOME/repos/dotfiles/misc/config/xfce4/terminal/terminalrc
+  pushd $HOME/repos/dotfiles/misc/config/xfce4/xfconf/xfce-perchannel-xml  > /dev/null
+  for f in `echo *`
+  do
+    git update-index --assume-unchanged $f
+  done
+  popd > /dev/null
+}
+
+function xfcni {
+  git update-index --no-assume-unchanged $HOME/repos/dotfiles/misc/config/xfce4/terminal/terminalrc
+  pushd $HOME/repos/dotfiles/misc/config/xfce4/xfconf/xfce-perchannel-xml  > /dev/null
+  for f in `echo *`
+  do
+    git update-index --no-assume-unchanged $f
+  done
+  popd > /dev/null
+}
+
 function parse_git_repo {
   [ -z "$(parse_git_branch)" ] && return
 
@@ -625,12 +645,20 @@ function gman {
   cd $old_pwd
 }
 
+function jc {
+  case "$1" in
+    "" ) journalctl -xe |less -FeqRSX ;;
+    "help"|"h"|"-h"|"--help") journalctl --help $* ;;
+    * ) journalctl $* ;;
+  esac
+}
 function sc {
   case "$1" in
     "help"|"h"|"-h"|"--help") systemctl --help $* ;;
     * ) systemctl $* ;;
   esac
 }
+
 
 function ghw {
   echo -e "my git workflow\n\
