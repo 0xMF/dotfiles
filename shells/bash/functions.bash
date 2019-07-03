@@ -57,6 +57,10 @@ function light {
   export LS_COLORS
 }
 
+function lsc {
+  ls "$@" | cut -c1-44 | column -c "${COLUMNS:-88}"
+}
+
 # a useful function about formatting bash from git output
 function gcoe {
   pushd $HOME/repos/dotfiles > /dev/null
