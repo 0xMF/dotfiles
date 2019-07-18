@@ -39,16 +39,19 @@
     </property>
     <property name="plugin-6" type="string" value="systray">
       <property name="names-visible" type="array">
-        <value type="string" value="networkmanager applet"/>
-        <value type="string" value="xfce4-power-manager"/>
+        <value type="string" value="blueman-tray"/>
         <value type="string" value="task manager"/>
-        <value type="string" value="thunar"/>
+        <value type="string" value="blueman"/>
+        <value type="string" value="networkmanager applet"/>
         <value type="string" value="vmware-tray"/>
+        <value type="string" value="thunar"/>
+        <value type="string" value="xfce4-power-manager"/>
         <value type="string" value="notes"/>
       </property>
     </property>
     <property name="plugin-7" type="string" value="pulseaudio">
       <property name="enable-keyboard-shortcuts" type="bool" value="true"/>
+      <property name="mpris-players" type="string" value="chromium.instance3963"/>
     </property>
     <property name="notes" type="empty">
       <property name="global" type="empty">
