@@ -29,7 +29,7 @@ else
 
   #alias ls='/bin/ls --color=always'
   alias lsn='ls -pF --color=none'
-  alias ls='ls --color=always --ignore="NTUSER.*" --ignore="ntuser.*" -F'
+  alias ls='ls --color=always --ignore="NTUSER.*" --ignore="ntuser.*" -F --group-directories-first'
   alias la='ls -lAhFt --time-style=+"%Y-%b-%d %H:%S"'
   alias lc='ls -FCp -w 120|less -FRMS'
   alias ll='ls -lhFt --time-style=+"%Y-%b-%d %H:%S"'
