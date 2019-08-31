@@ -57,6 +57,7 @@ alias gv='gvim --remote-tab-silent'
 alias make='make -j `grep -c "^processor" /proc/cpuinfo`'
 alias mvi='mv -i'
 alias pacman='sudo pacman'
+alias pacdoc="cat $HOME/repos/dotfiles/doc/pacman-tips"
 alias perldoc='perldoc -MPod::Text::Color::Delight'
 alias pg='less -Feq'
 alias python='/usr/bin/python3'

@@ -1,0 +1,34 @@
+pacman -h                                 # -F:files -Q:query -R:remove -S:sync -T:deptest -U:upgrade
+pacman -Dh                                # ... individual options for -D: database
+pacman -Dk                                # CHECK package database for consistency
+
+pacman -Qdt                               # QUERY orphans
+pacman -Qg | cut -f1 -d' ' | sort -u      # QUERY and list as group
+pacman -Qk | grep -ve '0 missing'         # QUERY installed packages for broken installs
+pacman -Ql emacs                          # QUERY-list files belonging to package
+pacman -Qqe > installed_packages          # QUERY LIST of installed packages
+                                          # QUERY list of installed packages (sorted by size)
+pacman -Qi | awk '/^Name/{name=$3} /^Installed Size/{print $4$5, name}' | sort -h
+
+pacman -Rs                                # REMOVE packages
+
+pacman -S --needed - < installed_packages # SYNC-INSTALL packages from a list
+pacman -Si texlive-bin                    # get SYNC-INFO on package before installing it
+                                          # GET all packages that depend on package
+pacman -Si packages | awk -F'[:<=>]' '/^Depends/ {print $2}' | xargs -n1 | sort -u
+
+pacman -Ss texlive                        # SYNC-SEARCH for all packages named texlive
+pacman -Syu                               # SYNC-UPDATE ALL packages with their dependencies
+
+
+makepkg -s                                # build and install locally built package (2 step)
+pacman  -U some.pkg.tar.gz
+makepkg -si                               # build and install packages from AUR
+
+# If you get error
+libutf8proc: /usr/lib/libutf8proc.so.2 exists in filesystem
+# use
+pacman -Suy --overwrite usr/lib/libutf8proc.so.2
+
+# get a list of packages installed by pacman
+grep -i installed /var/log/pacman.log
