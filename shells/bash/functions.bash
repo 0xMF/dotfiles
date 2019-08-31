@@ -741,7 +741,9 @@ function emacs() {
   EMACS=$(which -a emacs|sed '1q')
   if [ -z "${EMACS}" ]
   then
-    EMACS="$HOME/repos/x/emacs/src/emacs"
+    [[ -e "$HOME/repos/x/emacs/src/emacs" ]] \
+      &&  EMACS="$HOME/repos/x/emacs/src/emacs" \
+      ||  EMACS="/usr/local/share/emacs/src/emacs"
   fi
   ${EMACS} "$@" &
   if [ $? -eq 0 ]
