@@ -1,0 +1,19 @@
+
+#####################################################################
+  systemd related tips
+#####################################################################
+
+# get service-specific errors
+systemctl status some.service
+journalctl -u some.service
+
+# general errors
+journalctl -xe
+
+# start/stop service
+systemctl start some.service
+systemttl stop some.service
+
+# automatically start/stop service at boot time
+systemctl enable some.service
+systemttl disable some.service

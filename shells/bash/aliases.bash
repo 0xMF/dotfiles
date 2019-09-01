@@ -41,6 +41,7 @@ fi
 alias ..='cd ..'
 alias ...='cd ../..'
 alias ack='ack-grep'
+alias alldoc="cat $HOME/repos/dotfiles/doc/*-tips"
 alias cd..='cd ..'
 alias cls='clear'
 alias cpi='cp -i'
@@ -65,6 +66,7 @@ alias re='recent'
 alias rehash='hash -r'
 alias reset='reset -e ^?'
 alias sau='sudo apt update'
+alias sysdoc="cat $HOME/repos/dotfiles/doc/systemd-tips"
 #alias sadu='sudo apt update; sudo apt dist-upgrade'
 #alias saru='sudo apt autoremove'
 alias sbcl='rlwrap sbcl'
