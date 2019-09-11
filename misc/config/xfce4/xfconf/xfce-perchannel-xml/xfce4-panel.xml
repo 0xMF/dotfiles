@@ -36,6 +36,7 @@
     </property>
     <property name="plugin-5" type="string" value="clock">
       <property name="digital-format" type="string" value="%l:%M %p"/>
+      <property name="timezone" type="string" value="America/Toronto"/>
     </property>
     <property name="plugin-6" type="string" value="systray">
       <property name="names-visible" type="array">
@@ -47,6 +48,12 @@
         <value type="string" value="thunar"/>
         <value type="string" value="xfce4-power-manager"/>
         <value type="string" value="notes"/>
+      </property>
+      <property name="names-ordered" type="array">
+        <value type="string" value="blueman"/>
+        <value type="string" value="blueman-tray"/>
+        <value type="string" value="xfce4-power-manager"/>
+        <value type="string" value="networkmanager applet"/>
       </property>
     </property>
     <property name="plugin-7" type="string" value="pulseaudio">

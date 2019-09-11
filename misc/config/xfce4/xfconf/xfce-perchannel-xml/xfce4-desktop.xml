@@ -125,6 +125,30 @@
           <property name="last-image" type="string" value="/usr/share/backgrounds/xfce/xfce-teal.jpg"/>
         </property>
       </property>
+      <property name="monitoreDP" type="empty">
+        <property name="workspace0" type="empty">
+          <property name="color-style" type="int" value="2"/>
+          <property name="image-style" type="int" value="0"/>
+          <property name="last-image" type="string" value="/usr/share/backgrounds/xfce/xfce-stripes.png"/>
+          <property name="rgba1" type="array">
+            <value type="double" value="0.094102"/>
+            <value type="double" value="0.007828"/>
+            <value type="double" value="0.282353"/>
+            <value type="double" value="1.000000"/>
+          </property>
+          <property name="rgba2" type="array">
+            <value type="double" value="0.000000"/>
+            <value type="double" value="0.000000"/>
+            <value type="double" value="0.000000"/>
+            <value type="double" value="1.000000"/>
+          </property>
+        </property>
+        <property name="workspace1" type="empty">
+          <property name="color-style" type="int" value="0"/>
+          <property name="image-style" type="int" value="5"/>
+          <property name="last-image" type="string" value="/usr/share/backgrounds/xfce/xfce-stripes.png"/>
+        </property>
+      </property>
     </property>
   </property>
   <property name="desktop-icons" type="empty">

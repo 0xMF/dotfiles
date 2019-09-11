@@ -2,12 +2,12 @@
 MiscAlwaysShowTabs=FALSE
 MiscBell=FALSE
 MiscBellUrgent=FALSE
-MiscBordersDefault=FALSE
+MiscBordersDefault=TRUE
 MiscCursorBlinks=FALSE
 MiscCursorShape=TERMINAL_CURSOR_SHAPE_BLOCK
 MiscDefaultGeometry=80x24
 MiscInheritGeometry=FALSE
-MiscMenubarDefault=FALSE
+MiscMenubarDefault=TRUE
 MiscMouseAutohide=FALSE
 MiscMouseWheelZoom=TRUE
 MiscToolbarDefault=FALSE
@@ -24,8 +24,8 @@ MiscRewrapOnResize=TRUE
 MiscUseShiftArrowsToScroll=FALSE
 MiscSlimTabs=FALSE
 MiscNewTabAdjacent=FALSE
+MiscSearchDialogOpacity=100
+MiscShowUnsafePasteDialog=TRUE
 ScrollingBar=TERMINAL_SCROLLBAR_NONE
-FontName=Source Code Pro Semi-Bold 9
-ColorForeground=#55555555ffff
-ColorBackground=#181702014848
+FontName=Source Code Pro Semi-Bold 11
 

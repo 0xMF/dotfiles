@@ -40,4 +40,5 @@
     </property>
   </property>
   <property name="Notify" type="bool" value="false"/>
+  <property name="ActiveProfile" type="string" value="Default"/>
 </channel>
