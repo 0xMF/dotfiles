@@ -506,7 +506,7 @@ then it takes a second \\[keyboard-quit] to abort the minibuffer."
 ;; optionally (set-frame-font "Source Code Pro Semibold-10")
 (cond
  ((member "Source Code Pro" (font-family-list))
-  (set-frame-font "Source Code Pro-9:style=Semibold" nil t))
+  (set-frame-font "Source Code Pro-11:style=Semibold" nil t))
  ((member "Source Code Variable" (font-family-list))
   (set-frame-font "Source Code Variable-13:style=Semibold" nil t))
  ((member "DejaVu Sans Mono" (font-family-list))
