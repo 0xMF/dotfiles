@@ -78,21 +78,9 @@ function gcoe {
   o=$(git checkout $HOME/repos/dotfiles/editors/emacs/emacs.d/custom.el 2>&1)
   printf "%-30s: %s\n" $f "$o"
 
-  f=$(echo terminalrc)
-  o=$(git checkout $HOME/repos/dotfiles/misc/config/xfce4/terminal/terminalrc  2>&1)
-  printf "%-30s: %s\n" $f "$o"
-
-  pushd $HOME/repos/dotfiles/misc/config/xfce4/xfconf/xfce-perchannel-xml  > /dev/null
-  for f in `echo *`
-  do
-    o=$(git checkout $f 2>&1)
-    printf "%-30s: %s\n" $f "$o"
-  done
-
   f=$(echo dconf/user)
   o=$(git checkout $HOME/repos/dotfiles/misc/config/dconf/user 2>&1)
   printf "%-30s: %s\n" $f "$o"
-  popd > /dev/null
   popd > /dev/null
 }
 
