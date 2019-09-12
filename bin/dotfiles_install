@@ -71,21 +71,6 @@ _config_misc() {
   [ ! -z "$installed" ] && echo "INSTALLED!" >&2
 }
 
-# config/xfce4
-_config_xfce4() {
-  installed=
-  echo -n "checking config/xfce4..." >&2
-
-  [[ -d $HOME/.config/xfce4 || -L $HOME/.config/xfce4 ]] && { :
-    echo "found, not installing" >&2
-  } || {
-    installed="xfce4"
-    ln -s ${SCRIPT_DIR%bin}misc/config/xfce4 $HOME/.config/xfce4
-  }
-
-  [ ! -z "$installed" ] && echo "INSTALLED!" >&2
-}
-
 # emacs
 _emacs() {
   installed=
@@ -290,7 +275,6 @@ _vim() {
 _bash
 _config_dconf
 _config_misc
-_config_xfce4
 _emacs
 _git
 _misc
