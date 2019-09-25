@@ -31,7 +31,7 @@ green () {
   fi
 }
 
-function dark {
+function psdark {
   # blue dir
   LS_COLORS="`echo $LS_COLORS|sed 's/di=0[01];3[0-9]/di=01;34/'`"
   # green link
@@ -41,7 +41,7 @@ function dark {
   export LS_COLORS
 }
 
-function light {
+function pslight {
   # black dir
   #LS_COLORS="`echo $LS_COLORS|sed 's/di=01;33/di=00;30/'`"
   # brown dir
@@ -276,7 +276,7 @@ function psl {
   else
     PS1="$CYAN\W $(parse_git_repo)$NOCOLOR$ "
   fi
-  light
+  pslight
   PROMPT_COMMAND="psl"
 }
 
@@ -286,7 +286,7 @@ function psd {
   else
     PS1="$GREEN\W $(parse_git_repo)$NOCOLOR$ "
   fi
-  dark
+  psdark
   PROMPT_COMMAND="psd"
 }
 
