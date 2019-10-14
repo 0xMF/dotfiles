@@ -17,7 +17,8 @@
 (setq my-required-packages '(evil evil-collection evil-magit
                                   fill-column-indicator general org-beautify-theme org-bullets
                                   org-gcal org-pdfview powerline smart-mode-line
-                                  smart-mode-line-powerline-theme use-package vimish-fold))
+                                  smart-mode-line-powerline-theme ssh-agency use-package
+                                  vimish-fold))
 (dolist (package my-required-packages)
   (unless (package-installed-p package)
     (package-install package)))
