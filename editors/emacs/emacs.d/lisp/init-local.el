@@ -138,7 +138,7 @@
                     "l" 'whitespace-mode
                     "m" 'magit-mode
                     "L" 'org-open-at-point
-                    "n" 'linum-mode
+                    "n" 'display-line-numbers-mode
                     "o" 'find-file
                     "q" 'fill-paragraph
                     "r" '0xMF/reset
