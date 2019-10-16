@@ -14,7 +14,7 @@
  '(custom-enabled-themes (quote (smart-mode-line-powerline blueknight)))
  '(custom-safe-themes
    (quote
-    ("3d4efeae6570361aa0f7fdd3c19e62efe21e8d78350b154a950e80b990e7568f" "7c605bb846a2fd1252c86e50549294ccf71a1e81f58bc595731c321131a7e219" "f46a0a0800bbb265b9cf3bae797137d35705bdca8ae59d2606d984e2dad86723" "84d2f9eeb3f82d619ca4bfffe5f157282f4779732f48a5ac1484d94d5ff5b279" default)))
+    ("82d2cac368ccdec2fcc7573f24c3f79654b78bf133096f9b40c20d97ec1d8016" "3d4efeae6570361aa0f7fdd3c19e62efe21e8d78350b154a950e80b990e7568f" "7c605bb846a2fd1252c86e50549294ccf71a1e81f58bc595731c321131a7e219" "f46a0a0800bbb265b9cf3bae797137d35705bdca8ae59d2606d984e2dad86723" "84d2f9eeb3f82d619ca4bfffe5f157282f4779732f48a5ac1484d94d5ff5b279" default)))
  '(evil-shift-width 2)
  '(package-selected-packages
    (quote
@@ -29,6 +29,7 @@
  ;; If there is more than one, they won't work right.
  '(org-document-title ((t (:foreground "#c8c8c8" :weight bold :height 1.2))))
  '(org-hide ((t (:foreground "#180248"))))
+ '(org-link ((t (:underline nil))))
  '(org-tag ((t (:foreground "#b8860b" :weight bold)))))
 
 ;;; custom.el ends here
