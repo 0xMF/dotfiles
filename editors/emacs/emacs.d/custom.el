@@ -11,10 +11,10 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(custom-enabled-themes (quote (smart-mode-line-powerline blueknight)))
+ '(custom-enabled-themes (quote (smart-mode-line-powerline org-beautify)))
  '(custom-safe-themes
    (quote
-    ("4639288d273cbd3dc880992e6032f9c817f17c4a91f00f3872009a099f5b3f84" "06f0b439b62164c6f8f84fdda32b62fb50b6d00e8b01c2208e55543a6337433a" "628278136f88aa1a151bb2d6c8a86bf2b7631fbea5f0f76cba2a0079cd910f7d" "1b8d67b43ff1723960eb5e0cba512a2c7a2ad544ddb2533a90101fd1852b426e" "82d2cac368ccdec2fcc7573f24c3f79654b78bf133096f9b40c20d97ec1d8016" "b877536cd0ac12cf6ceed5bc29b186caefa4b411f48da9f6c5f0c41cf2dd371e" "7c605bb846a2fd1252c86e50549294ccf71a1e81f58bc595731c321131a7e219" "3d4efeae6570361aa0f7fdd3c19e62efe21e8d78350b154a950e80b990e7568f" "02a726b82bb0c966b8a2e199d6af59b72371d953f0e3ecbe89907870cc9b859d" "4abfc83e813466863f9803ba26dfc0f5b8f8c4856aa54028532e7f6fc0866d47" "84d2f9eeb3f82d619ca4bfffe5f157282f4779732f48a5ac1484d94d5ff5b279" default)))
+    ("06f0b439b62164c6f8f84fdda32b62fb50b6d00e8b01c2208e55543a6337433a" "bb08c73af94ee74453c90422485b29e5643b73b05e8de029a6909af6a3fb3f58" "1b8d67b43ff1723960eb5e0cba512a2c7a2ad544ddb2533a90101fd1852b426e" "82d2cac368ccdec2fcc7573f24c3f79654b78bf133096f9b40c20d97ec1d8016" "4cf3221feff536e2b3385209e9b9dc4c2e0818a69a1cdb4b522756bcdf4e00a4" "4aee8551b53a43a883cb0b7f3255d6859d766b6c5e14bcb01bed572fcbef4328" "628278136f88aa1a151bb2d6c8a86bf2b7631fbea5f0f76cba2a0079cd910f7d" "b877536cd0ac12cf6ceed5bc29b186caefa4b411f48da9f6c5f0c41cf2dd371e" "7c605bb846a2fd1252c86e50549294ccf71a1e81f58bc595731c321131a7e219" "02a726b82bb0c966b8a2e199d6af59b72371d953f0e3ecbe89907870cc9b859d" "3d4efeae6570361aa0f7fdd3c19e62efe21e8d78350b154a950e80b990e7568f" "9aa03e314f07aa8cbcd85a386387eaa4fb09b36aa5cba1a40feedab33274aca6" "84d2f9eeb3f82d619ca4bfffe5f157282f4779732f48a5ac1484d94d5ff5b279" "4639288d273cbd3dc880992e6032f9c817f17c4a91f00f3872009a099f5b3f84" default)))
  '(evil-shift-width 2)
  '(package-selected-packages
    (quote
@@ -27,6 +27,8 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
+ '(org-block ((t (:foreground "Orange1" :box nil :weight bold))))
+ '(org-code ((t (:foreground "Orange1" :box nil :weight bold))))
  '(org-document-title ((t (:foreground "#c8c8c8" :weight bold :height 1.2))))
  '(org-hide ((t (:foreground "#180248"))))
  '(org-link ((t (:underline nil))))
