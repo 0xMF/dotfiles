@@ -18,7 +18,7 @@
                                   fill-column-indicator general org-beautify-theme org-bullets
                                   org-gcal org-pdfview powerline smart-mode-line
                                   smart-mode-line-powerline-theme ssh-agency use-package
-                                  vimish-fold))
+                                  yafolding))
 (dolist (package my-required-packages)
   (unless (package-installed-p package)
     (package-install package)))
@@ -115,8 +115,8 @@
                     "x" 'evil-delete)
 
 (general-define-key :prefix "z"
-                    "d" #'vimish-fold-delete
-                    "f" #'vimish-fold
+                    "d" #'yafolding-toggle-all
+                    "f" #'yafolding-toggle-element
                     "g" 'save-this-word
                     "t" 'save-this-word)
 
@@ -466,7 +466,10 @@ then it takes a second \\[keyboard-quit] to abort the minibuffer."
 ;; User mode settings for UI/keyboard/look and feel
 ;;----------------------------------------------------------------------------
 (require 'org-gcal)
-(require 'vimish-fold)
+(require 'yafolding)
+
+(add-hook 'prog-mode-hook
+          (lambda () (yafolding-mode)))
 
 (set-default 'truncate-lines t)
 (setq browse-url-browser-function 'eww-browse-url)
