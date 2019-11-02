@@ -559,6 +559,7 @@ then it takes a second \\[keyboard-quit] to abort the minibuffer."
                                               ".*.fasl\\|"
                                               ".*~\\|"
                                               "#*#\\)"))
+(add-hook 'text-mode-hook 'turn-on-visual-line-mode)
 
 (defun 0xMF/my-orgmode-settings ()
   "My Orgmode settings."
