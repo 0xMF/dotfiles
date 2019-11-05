@@ -140,6 +140,7 @@
                     "L" 'org-open-at-point
                     "n" 'display-line-numbers-mode
                     "o" 'find-file
+                    "p" 'org-present
                     "q" 'fill-paragraph
                     "r" '0xMF/reset
                     "R" 'undo-tree-redo
@@ -182,7 +183,8 @@
 (global-set-key [escape] 'evil-exit-emacs-state)
 
 (define-key evil-normal-state-map (kbd "C-k") (lambda () (interactive) (evil-scroll-up nil)))
-(global-set-key (kbd "S-SPC") 'evil-scroll-page-up)
+;;(global-set-key (kbd "S-SPC") 'evil-scroll-page-up)
+(global-set-key [?\S- ] 'evil-scroll-page-up)
 (define-key evil-normal-state-map (kbd "C-j") (lambda () (interactive) (evil-scroll-down nil)))
 (define-key evil-normal-state-map (kbd "C-d") 'save-buffer)
 (define-key evil-normal-state-map (kbd "C-n") 'next-buffer)
@@ -543,13 +545,53 @@ then it takes a second \\[keyboard-quit] to abort the minibuffer."
             (local-set-key "j" 'next-line)
             (local-set-key "k" 'previous-line)
             (local-set-key "/" 'isearch-forward)
-            ;(local-set-key "l" 'Info-forward-node)
-            ;(local-set-key "n" 'Info-forward-node)
-            ;(local-set-key "p" 'Info-backward-node)
+            ;;(local-set-key "l" 'Info-forward-node)
+            ;;(local-set-key "n" 'Info-forward-node)
+            ;;(local-set-key "p" 'Info-backward-node)
             (define-key Info-mode-map "n" 'Info-forward-node)
             (define-key Info-mode-map "l" 'Info-forward-node)
             (define-key Info-mode-map "p" 'Info-backward-node)))
 
+(defun hide-mode-line-toggle ()
+  (interactive)
+  (hide-mode-line-mode (if hide-mode-line-mode -1 +1))
+  (unless hide-mode-line-mode
+    (redraw-display)))
+
+(require 'org-present)
+(require 'hide-mode-line)
+(autoload 'org-present "org-present" nil t)
+(eval-after-load "org-present"
+  '(progn
+     (add-hook 'org-present-mode-hook
+               (lambda ()
+                 (org-present-big)
+                 (turn-off-evil-mode)
+                 (org-display-inline-images)
+                 (org-present-hide-cursor)
+                 (local-set-key "n" 'org-present-next)
+                 (local-set-key "SPC" 'org-present-next)
+                 (local-set-key "p" 'org-present-prev)
+                 (local-set-key "q" 'org-present-quit)
+                 (local-set-key "<" 'org-present-beginning)
+                 (local-set-key "G" 'org-present-end)
+                 (local-set-key ">" 'org-present-end)
+                 (define-key org-present-mode-keymap (kbd "gg")  'org-present-beginning)
+                 (define-key org-present-mode-keymap [backspace]      'org-present-prev)
+                 (define-key org-present-mode-keymap [?\S- ]  'org-present-prev)
+                 (define-key org-present-mode-keymap [up]      'org-present-prev)
+                 (define-key org-present-mode-keymap [down]      'org-present-next)
+                 (org-present-read-only)))
+     (add-hook 'org-present-mode-quit-hook
+               (lambda ()
+                 (org-present-small)
+                 (turn-on-evil-mode)
+                 (org-remove-inline-images)
+                 (org-present-show-cursor)
+                 (hide-mode-line-mode -1)
+                 (org-present-read-write)))))
+
+(add-hook 'org-present-mode-hook #'hide-mode-line-mode)
 
 (setq counsel-find-file-ignore-regexp (concat "\\(.~undo-tree~\\|"
                                               ".desktop\\|"

@@ -44,32 +44,32 @@
                                     counsel css-eldoc csv-mode daemons darcsum default-text-scale
                                     dhall-mode diff-hl diminish dimmer diredfl disable-mouse docker
                                     docker-compose-mode dockerfile-mode dotenv-mode dsvn elein
-                                    elisp-slime-nav elm-mode erlang evil evil-collection evil-magit evil-org
-                                    exec-path-from-shell expand-region fill-column-indicator flycheck
-                                    flycheck-clojure flycheck-color-mode-line flycheck-elm
+                                    elisp-slime-nav elm-mode erlang evil evil-collection evil-magit
+                                    evil-org exec-path-from-shell expand-region fill-column-indicator
+                                    flycheck flycheck-clojure flycheck-color-mode-line flycheck-elm
                                     flycheck-ledger flycheck-package flycheck-rust fullframe general
                                     git-blamed git-commit git-messenger git-timemachine
                                     gitconfig-mode github-clone gitignore-mode gnuplot goto-gem
-                                    guide-key haml-mode haskell-mode highlight-escape-sequences
-                                    highlight-quoted hindent hippie-expand-slime htmlize httprepl
-                                    ibuffer-vc immortal-scratch inf-ruby intero ipretty ivy
-                                    ivy-historian ivy-xref js-comint js2-mode json-mode ledger-mode
-                                    list-unicode-display lua-mode macrostep magit magit-todos
-                                    magithub markdown-mode mediawiki mmm-mode mode-line-bell move-dup
-                                    multiple-cursors nginx-mode org-bullets org-cliplink org-pdfview
-                                    org-pomodoro origami ox-pandoc page-break-lines paredit
-                                    paredit-everywhere php-mode pip-requirements powerline
-                                    prettier-js projectile projectile-rails psc-ide purescript-mode
-                                    racer rainbow-delimiters rainbow-mode regex-tool restclient robe
-                                    rspec-mode ruby-compilation ruby-hash-syntax ruby-mode rust-mode
-                                    sass-mode scratch seq session skewer-less skewer-mode slime
-                                    slime-company smart-mode-line smart-mode-line-powerline-theme
-                                    smarty-mode smex swiper switch-window symbol-overlay tagedit
-                                    terraform-mode textile-mode toml-mode typescript-mode undo-tree
-                                    unfill uptimes use-package vc-darcs vimish-fold vlf wgrep
+                                    guide-key haml-mode haskell-mode hide-mode-line
+                                    highlight-escape-sequences highlight-quoted hindent
+                                    hippie-expand-slime htmlize httprepl ibuffer-vc immortal-scratch
+                                    inf-ruby intero ipretty ivy ivy-historian ivy-xref js-comint
+                                    js2-mode json-mode ledger-mode list-unicode-display lua-mode
+                                    macrostep magit magit-todos magithub markdown-mode mediawiki
+                                    mmm-mode mode-line-bell move-dup multiple-cursors nginx-mode
+                                    org-bullets org-cliplink org-pdfview org-present org-pomodoro
+                                    origami ox-pandoc page-break-lines paredit paredit-everywhere
+                                    php-mode pip-requirements powerline prettier-js projectile
+                                    projectile-rails psc-ide purescript-mode racer rainbow-delimiters
+                                    rainbow-mode regex-tool restclient robe rspec-mode
+                                    ruby-compilation ruby-hash-syntax ruby-mode rust-mode sass-mode
+                                    scratch seq session skewer-less skewer-mode slime slime-company
+                                    smart-mode-line smart-mode-line-powerline-theme smarty-mode smex
+                                    swiper switch-window symbol-overlay tagedit terraform-mode
+                                    textile-mode toml-mode typescript-mode undo-tree unfill uptimes
+                                    use-package vc-darcs vimish-fold vlf wgrep
                                     whitespace-cleanup-mode whole-line-or-region writeroom-mode
                                     yagist yaml-mode yard-mode yari)))
-
 ;; Local Variables:
 ;; coding: utf-8
 ;; no-byte-compile: t
