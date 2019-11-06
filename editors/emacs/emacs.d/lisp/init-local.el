@@ -647,6 +647,7 @@ then it takes a second \\[keyboard-quit] to abort the minibuffer."
   (global-display-line-numbers-mode -1)
   (display-line-numbers-mode -1)
   (line-number-mode t)
+  (org-toggle-pretty-entities)
   (when (equal major-mode 'org-mode)
     (org-set-visibility-according-to-property))
   (when (fboundp '0xMF/local)
