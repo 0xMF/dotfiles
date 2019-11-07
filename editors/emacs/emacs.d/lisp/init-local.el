@@ -125,6 +125,7 @@
 (general-define-key :prefix my-leader1
                     "a" 'org-toggle-link-display
                     "A" 'org-agenda
+                    "P" '0xMF/start-slideshow
                     "b" 'switch-to-buffer
                     "c" 'org-capture
                     "d" 'org-agenda-list
