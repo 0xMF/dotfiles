@@ -125,7 +125,6 @@
 (general-define-key :prefix my-leader1
                     "a" 'org-toggle-link-display
                     "A" 'org-agenda
-                    "P" '0xMF/start-slideshow
                     "b" 'switch-to-buffer
                     "c" 'org-capture
                     "d" 'org-agenda-list
@@ -141,7 +140,8 @@
                     "L" 'org-open-at-point
                     "n" 'display-line-numbers-mode
                     "o" 'find-file
-                    "p" 'org-present
+                    "p" '0xMF/start-slideshow
+                    "P" 'org-present
                     "q" 'fill-paragraph
                     "r" '0xMF/reset
                     "R" 'undo-tree-redo
@@ -571,7 +571,7 @@ then it takes a second \\[keyboard-quit] to abort the minibuffer."
                  (org-display-inline-images)
                  (org-present-hide-cursor)
                  (local-set-key "n" 'org-present-next)
-                 (local-set-key "SPC" 'org-present-next)
+                 (local-set-key (kbd [space]) 'org-present-next)
                  (local-set-key "p" 'org-present-prev)
                  (local-set-key "q" 'org-present-quit)
                  (local-set-key "<" 'org-present-beginning)
@@ -586,6 +586,9 @@ then it takes a second \\[keyboard-quit] to abort the minibuffer."
      (add-hook 'org-present-mode-quit-hook
                (lambda ()
                  (org-present-small)
+                 (local-unset-key "n")
+                 (local-unset-key "p")
+                 (local-unset-key "G")
                  (turn-on-evil-mode)
                  (org-remove-inline-images)
                  (org-present-show-cursor)
