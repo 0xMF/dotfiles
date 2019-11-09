@@ -554,6 +554,7 @@ then it takes a second \\[keyboard-quit] to abort the minibuffer."
             (define-key Info-mode-map "p" 'Info-backward-node)))
 
 (defun hide-mode-line-toggle ()
+  "Toggle mode line visibility."
   (interactive)
   (hide-mode-line-mode (if hide-mode-line-mode -1 +1))
   (unless hide-mode-line-mode
