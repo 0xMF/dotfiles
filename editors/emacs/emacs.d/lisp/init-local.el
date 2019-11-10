@@ -640,6 +640,7 @@ then it takes a second \\[keyboard-quit] to abort the minibuffer."
   (0xMF/kill-some-buffers "^\\*Calculator*")
   (0xMF/kill-some-buffers "^\\*Command Line*")
   (0xMF/kill-some-buffers "^\\*Help*")
+  (0xMF/kill-some-buffers "^\\*List of Slides*")
   (0xMF/kill-some-buffers "^\\*Org-Babel Error Output*")
   (0xMF/kill-some-buffers "^\\*PP Eval Output*")
   (0xMF/kill-some-buffers "^\\*Flycheck error messages*")
