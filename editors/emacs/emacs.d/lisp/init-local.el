@@ -15,10 +15,10 @@
   (package-refresh-contents))
 
 (setq my-required-packages '(evil evil-collection evil-magit
-                                  fill-column-indicator general org-beautify-theme org-bullets
-                                  org-gcal org-pdfview powerline smart-mode-line
-                                  smart-mode-line-powerline-theme ssh-agency use-package
-                                  yafolding))
+                                  fill-column-indicator general hide-mode-line org-beautify-theme
+                                  org-bullets org-gcal org-pdfview org-present powerline
+                                  smart-mode-line smart-mode-line-powerline-theme ssh-agency
+                                  use-package yafolding))
 (dolist (package my-required-packages)
   (unless (package-installed-p package)
     (package-install package)))
@@ -173,6 +173,7 @@
 ;; jump j/k always even in visual mode
 (define-key evil-normal-state-map (kbd "j") 'evil-next-visual-line)
 (define-key evil-normal-state-map (kbd "k") 'evil-previous-visual-line)
+(define-key evil-normal-state-map (kbd "q") 'keyboard-quit)
 
 (define-key evil-normal-state-map [escape] 'keyboard-quit)
 (define-key evil-visual-state-map [escape] 'keyboard-quit)
@@ -554,7 +555,7 @@ then it takes a second \\[keyboard-quit] to abort the minibuffer."
             (define-key Info-mode-map "p" 'Info-backward-node)))
 
 (defun hide-mode-line-toggle ()
-  "Toggle mode line visibility."
+  "Toggle mode line toggle."
   (interactive)
   (hide-mode-line-mode (if hide-mode-line-mode -1 +1))
   (unless hide-mode-line-mode
