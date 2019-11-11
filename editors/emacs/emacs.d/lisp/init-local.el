@@ -65,6 +65,11 @@
 
 (add-hook 'evil-mode-hook 'my-default-cursor)
 
+;; Switch to Emacs automatically in these modes
+;;(add-to-list 'evil-emacs-state-modes o-mode)
+(dolist (emacs-only-modes '(Info-mode isearch-mode
+                                      org-show-mode))
+  (add-to-list 'evil-emacs-state-modes emacs-only-modes))
 ;;----------------------------------------------------------------------------
 ;; General keymap settings
 ;;----------------------------------------------------------------------------
@@ -398,9 +403,9 @@ then it takes a second \\[keyboard-quit] to abort the minibuffer."
 (global-set-key (kbd "M-/") 'hippie-expand)
 (global-set-key (kbd "C-x C-b") 'ibuffer)
 
-(global-set-key (kbd "C-s") 'save-buffer)
-(global-set-key (kbd "C-d") 'save-buffer)
-(global-set-key (kbd "C-r") 'isearch-backward-regexp)
+;;(global-set-key (kbd "C-s") 'save-buffer)
+;;(global-set-key (kbd "C-d") 'save-buffer)
+;;(global-set-key (kbd "C-r") 'isearch-backward-regexp)
 (global-set-key (kbd "C-M-s") 'isearch-forward)
 (global-set-key (kbd "C-M-r") 'isearch-backward)
 
@@ -443,11 +448,12 @@ then it takes a second \\[keyboard-quit] to abort the minibuffer."
 (require 'org-bullets)
 (add-hook 'org-mode-hook (lambda () (org-bullets-mode 1)))
 
-(defun kill-misc-buffers() "Permanently remove some buffers."
-;; (if (get-buffer "*scratch*")
-;;  (kill-buffer "*scratch*"))
-(if (get-buffer "*reg group-leader*")
-    (kill-buffer "*reg group-leader*")))
+(defun kill-misc-buffers()
+  "Permanently remove some buffers."
+  ;; (if (get-buffer "*scratch*")
+  ;;  (kill-buffer "*scratch*"))
+  (if (get-buffer "*reg group-leader*")
+      (kill-buffer "*reg group-leader*")))
 (add-hook 'after-change-major-mode-hook 'kill-misc-buffers)
 
 (evil-define-key 'insert org-mode-map (kbd "C-<tab>") #'tab-to-tab-stop)
@@ -477,6 +483,9 @@ then it takes a second \\[keyboard-quit] to abort the minibuffer."
 
 (set-default 'truncate-lines t)
 (setq browse-url-browser-function 'eww-browse-url)
+
+;; Do not ceate backups.
+(setq  make-backup-files nil)
 
 (defun load-if-file-exists (FILE)
   "Check if FILE exists before loading it."
@@ -542,17 +551,19 @@ then it takes a second \\[keyboard-quit] to abort the minibuffer."
             "Enable vi-style keybindings."
             (interactive)
             (turn-off-evil-mode)
-            (local-set-key "b" 'Info-last)
-            (local-set-key "h" 'Info-backward-node)
+            ;; -- these lines below do not work nicely in all modes
+            ;;(define-key "Info-mode-map" "/" 'isearch-forward)
+            ;;(define-key "Info-mode-map" "b" 'Info-last)
+            ;;(define-key "Info-mode-map" "h" 'Info-backward-node)
+            ;;(define-key "Info-mode-map" "j" 'next-line)
+            ;;(define-key "Info-mode-map" "k" 'previous-line)
+            ;; -- but these do...for now :)
             (local-set-key "j" 'next-line)
             (local-set-key "k" 'previous-line)
             (local-set-key "/" 'isearch-forward)
-            ;;(local-set-key "l" 'Info-forward-node)
-            ;;(local-set-key "n" 'Info-forward-node)
-            ;;(local-set-key "p" 'Info-backward-node)
-            (define-key Info-mode-map "n" 'Info-forward-node)
-            (define-key Info-mode-map "l" 'Info-forward-node)
-            (define-key Info-mode-map "p" 'Info-backward-node)))
+            (define-key "Info-mode-map" "m" 'Info-menu)
+            (define-key "Info-mode-map" "n" 'Info-forward-node)
+            (define-key "Info-mode-map" "p" 'Info-backward-node)))
 
 (defun hide-mode-line-toggle ()
   "Toggle mode line toggle."
@@ -648,7 +659,7 @@ then it takes a second \\[keyboard-quit] to abort the minibuffer."
   (get-buffer-create "*scratch*"))
 
 (defun 0xMF/startup ()
-  "Start/reset Emacs the way I like it ;-)."
+  "Start/reset Emacs the way like it ;-)."
   (interactive)
   (cleanup-Emacs-buffer-list)
   (global-display-line-numbers-mode -1)
