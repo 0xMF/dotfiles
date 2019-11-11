@@ -671,6 +671,8 @@ then it takes a second \\[keyboard-quit] to abort the minibuffer."
     (org-set-visibility-according-to-property))
   (when (fboundp '0xMF/local)
     (0xMF/local))
+  (when (equal major-mode 'Info-mode)
+    (0xMF/Info-mode-settings))
   (message "0xMF/startup"))
 
 (add-hook 'after-init-hook '0xMF/startup)
