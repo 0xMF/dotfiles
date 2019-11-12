@@ -23,10 +23,6 @@
   (unless (package-installed-p package)
     (package-install package)))
 
-;; remember to add benchmark-init to my-required-packages if reusing
-;;(require 'benchmark-init)
-;;(benchmark-init/activate)
-
 ;; install the missing packages when using Emacs 24.5.1 and below
 (setq vc-follow-symlinks t)
 (show-paren-mode t)
@@ -41,6 +37,12 @@
 (require 'evil)
 (require 'evil-collection)
 (require 'evil-magit)
+(require 'general)
+
+(defun my-default-cursor()  "Cursor color indicates mode: white = Emacs, green = evil (Vi/Vim)."
+       (if (string= (symbol-value 'evil-state) "normal")
+           (set-cursor-color "green")
+         (set-cursor-color "white")))
 
 (evil-mode 1)
 (evil-collection-init)
@@ -53,27 +55,15 @@
 (setq evil-replace-state-cursor '("red" box))
 (setq evil-operator-state-cursor '("red" hollow))
 
-(defun my-default-cursor()  "Cursor color indicates mode: white = Emacs, green = evil (Vi/Vim)."
-       (if (string= (symbol-value 'evil-state) "normal")
-           (set-cursor-color "green")
-         (set-cursor-color "white")))
+;; better clipboard copy-paste with evil
+(fset 'evil-visual-update-x-selection 'ignore)
 
-;; set Tab key to work correctly with Org-mode tables and headings.
-;;(setq evil-want-C-i-jump nil)
-;;(when evil-want-C-i-jump
-;;      (define-key evil-motion-state-map (kbd "C-i") 'evil-jump-forward))
 
 (add-hook 'evil-mode-hook 'my-default-cursor)
 
-;; Switch to Emacs automatically in these modes
-;;(add-to-list 'evil-emacs-state-modes o-mode)
-(dolist (emacs-only-modes '(Info-mode isearch-mode
-                                      org-show-mode))
-  (add-to-list 'evil-emacs-state-modes emacs-only-modes))
 ;;----------------------------------------------------------------------------
 ;; General keymap settings
 ;;----------------------------------------------------------------------------
-(require 'general)
 
 ;; bind a key globally in normal state
 (setq general-default-keymaps 'evil-normal-state-map)
@@ -102,7 +92,6 @@
                     ;; "P" 'other-window
                     "r" '0xMF/reset
                     "w" 'delete-other-windows)
-
 (general-define-key :prefix "b"
                     "a" 'describe-bindings
                     "b" 'evil-scroll-page-up
@@ -118,7 +107,6 @@
                     "r" '0xMF/reset
                     "t" '(lambda () (interactive) (kill-buffer)(delete-window))
                     "x" 'evil-delete)
-
 (general-define-key :prefix "z"
                     "d" #'yafolding-toggle-all
                     "f" #'yafolding-toggle-element
@@ -175,29 +163,35 @@
       scroll-conservatively 9999
       scroll-step 1)
 
-;; jump j/k always even in visual mode
-(dolist (map  (list evil-normal-state-map))
-  (define-key map (kbd "j") 'evil-next-visual-line)
-  (define-key map (kbd "k") 'evil-previous-visual-line)
-  (define-key map (kbd "q") 'keyboard-quit)
-  (define-key map [escape] 'keyboard-quit)
-  (define-key map [escape] 'keyboard-quit)
-  (define-key map (kbd "C-j") (lambda () (interactive) (evil-scroll-down nil)))
-  (define-key map (kbd "C-d") 'save-buffer)
-  (define-key map (kbd "C-n") 'next-buffer)
-  (define-key map (kbd "C-p") 'previous-buffer))
+(defun 0xMF/my-vi-settings ()
+  "My Vi-settings."
+  ;; jump j/k always even in visual mode
+  (turn-on-evil-mode)
+  (dolist (map  (list evil-normal-state-map))
+    (define-key map (kbd "j") 'evil-next-visual-line)
+    (define-key map (kbd "k") 'evil-previous-visual-line)
+    (define-key map (kbd "p") 'evil-paste-after)
+    (define-key map (kbd "q") 'keyboard-quit)
+    (define-key map [escape] 'keyboard-quit)
+    (define-key map [escape] 'keyboard-quit)
+    (define-key map (kbd "C-j") (lambda () (interactive) (evil-scroll-down nil)))
+    (define-key map (kbd "C-d") 'save-buffer)
+    (define-key map (kbd "C-n") 'next-buffer)
+    (define-key map (kbd "C-p") 'previous-buffer))
 
-(define-key minibuffer-local-map [escape] 'minibuffer-keyboard-quit)
-(define-key minibuffer-local-ns-map [escape] 'minibuffer-keyboard-quit)
-(define-key minibuffer-local-completion-map [escape] 'minibuffer-keyboard-quit)
-(define-key minibuffer-local-must-match-map [escape] 'minibuffer-keyboard-quit)
-(define-key minibuffer-local-isearch-map [escape] 'minibuffer-keyboard-quit)
+  (define-key minibuffer-local-map [escape] 'minibuffer-keyboard-quit)
+  (define-key minibuffer-local-ns-map [escape] 'minibuffer-keyboard-quit)
+  (define-key minibuffer-local-completion-map [escape] 'minibuffer-keyboard-quit)
+  (define-key minibuffer-local-must-match-map [escape] 'minibuffer-keyboard-quit)
+  (define-key minibuffer-local-isearch-map [escape] 'minibuffer-keyboard-quit)
 
-(global-set-key [escape] 'evil-exit-emacs-state)
+  (dolist (map  (list minibuffer-local-isearch-map))
+    (define-key map (kbd "n") 'isearch-printing-char))
+  (global-set-key [escape] 'evil-exit-emacs-state)
 
-(define-key evil-normal-state-map (kbd "C-k") (lambda () (interactive) (evil-scroll-up nil)))
-;;(global-set-key (kbd "S-SPC") 'evil-scroll-page-up)
-(global-set-key [?\S- ] 'evil-scroll-page-up)
+  (define-key evil-normal-state-map (kbd "C-k") (lambda () (interactive) (evil-scroll-up nil)))
+  ;;(global-set-key (kbd "S-SPC") 'evil-scroll-page-up)
+  (global-set-key [?\S- ] 'evil-scroll-page-up))
 
 ;; Credit: [StackOverflow] in-emacs-flyspell-mode-how-to-add-new-word-to-dictionary
 (defun save-this-word ()
@@ -250,9 +244,6 @@ then it takes a second \\[keyboard-quit] to abort the minibuffer."
     (define-key map "l" 'next-char)
     (define-key map "n" 'eww-forward-url)
     (define-key map "p" 'eww-back-url)))
-;; -- DANGER: avoid setting keys in evil-normal-map.
-;;(define-key evil-normal-state-map "n" 'eww-forward-url)
-;;(define-key evil-normal-state-map "p" 'eww-back-url))
 (add-hook 'eww-mode-hook 'my-eww-settings)
 
 (defun my-pdf-view-settings ()
@@ -276,9 +267,6 @@ then it takes a second \\[keyboard-quit] to abort the minibuffer."
               (local-set-key (kbd "<mouse-5>") 'pdf-view-next-line-or-next-page)
               (local-set-key (kbd "<mouse-4>") 'pdf-view-previous-line-or-previous-page))))
 (add-hook 'pdf-view-mode-hook 'my-pdf-view-settings)
-
-;; better clipboard copy-paste with evil
-(fset 'evil-visual-update-x-selection 'ignore)
 
 ;; yes to powerline on a smart-mode-line
 (require 'powerline)
@@ -305,13 +293,6 @@ then it takes a second \\[keyboard-quit] to abort the minibuffer."
 
 (unless (version< emacs-version "27")
   (setq url-http-referer 'nil))
-
-;; remember to add mediawiki to my-required-packages if using mediawiki
-;;(require 'mediawiki)
-;;:init
-;;setup files ending in “.mw” to open in mediwiki-mode
-;;(add-to-list 'auto-mode-alist '("\\.mw\\'" . mediawiki-mode))
-
 
 ;; elm-mode
 (setq elm-interactive-command '("elm" "repl")
@@ -427,24 +408,6 @@ then it takes a second \\[keyboard-quit] to abort the minibuffer."
 (setq org-list-allow-alphabetical t)
 
 
-;; Removes org sparse tree views correctly
-;; Credit: https://stackoverflow.com/a/44158824
-;;(setq lexical-binding t)
-
-;; (let ((*outline-data* nil))
-;; (defun org-save-outline-state (&optional arg type)
-;;(setq *outline-data* (org-outline-overlay-data t)))
-
-;; (defun org-restore-outline-state (&optional arg)
-;; (when *outline-data*
-;;(org-set-outline-overlay-data *outline-data*)
-;;(setq *outline-data* nil))))
-
-;;(advice-add 'org-sparse-tree :before 'org-save-outline-state)
-;;(advice-add 'org-match-sparse-tree :before 'org-save-outline-state)
-;;(advice-add 'org-ctrl-c-ctrl-c :after 'org-restore-outline-state)
-;; ---
-
 (setq org-time-stamp-custom-formats '("<%b-%d %a>" "<%m/%d/%y %a>" "<%m/%d/%y %a %H:%M>"))
 
 ;; Use bullets (default if uncommented)
@@ -554,20 +517,13 @@ then it takes a second \\[keyboard-quit] to abort the minibuffer."
             "Enable vi-style keybindings."
             (interactive)
             (turn-off-evil-mode)
-            ;; -- these lines below do not work nicely in all modes
-            ;;(define-key "Info-mode-map" "/" 'isearch-forward)
-            ;;(define-key "Info-mode-map" "b" 'Info-last)
-            ;;(define-key "Info-mode-map" "h" 'Info-backward-node)
-            ;;(define-key "Info-mode-map" "j" 'next-line)
-            ;;(define-key "Info-mode-map" "k" 'previous-line)
-            ;; -- but these do...for now :)
             (local-set-key "j" 'next-line)
             (local-set-key "k" 'previous-line)
-            (local-set-key "/" 'isearch-forward)
             (dolist (map  (list Info-mode-map))
-              (define-key map "m" 'Info-menu)
               (define-key map "n" 'Info-forward-node)
-              (define-key map "p" 'Info-backward-node))))
+              (define-key map "p" 'Info-backward-node)
+              (define-key map "m" 'Info-menu))
+            (message "0xMF/Info-mode-settings")))
 
 (defun hide-mode-line-toggle ()
   "Toggle mode line toggle."
@@ -674,14 +630,14 @@ then it takes a second \\[keyboard-quit] to abort the minibuffer."
   (org-toggle-pretty-entities)
   (when (equal major-mode 'org-mode)
     (org-set-visibility-according-to-property))
-  (when (fboundp '0xMF/local)
-    (0xMF/local))
   (when (equal major-mode 'Info-mode)
     (0xMF/Info-mode-settings))
+  (when (fboundp '0xMF/local)
+    (0xMF/local))
+  (0xMF/my-vi-settings)
   (message "0xMF/startup"))
 
 (add-hook 'after-init-hook '0xMF/startup)
-
 
 (defun file-reload ()
   "Reload file without confirmation."
