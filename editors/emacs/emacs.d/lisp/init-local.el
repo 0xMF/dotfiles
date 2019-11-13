@@ -111,6 +111,7 @@
                     "d" #'yafolding-toggle-all
                     "f" #'yafolding-toggle-element
                     "g" 'save-this-word
+                    "x" '0xMF/orgmode-remove-tag
                     "t" 'save-this-word)
 
 ;; named prefix key allows ; to be used a mapper for my keybindings
@@ -238,12 +239,12 @@ then it takes a second \\[keyboard-quit] to abort the minibuffer."
 (defun my-eww-settings ()
   "Enable vi-style keybindings."
   (dolist (map  (list eww-mode-map))
-    (define-key map "h" 'previous-char)
-    (define-key map "j" 'next-line)
-    (define-key map "k" 'previous-line)
-    (define-key map "l" 'next-char)
-    (define-key map "n" 'eww-forward-url)
-    (define-key map "p" 'eww-back-url)))
+    (define-key map (kbd "h") 'previous-char)
+    (define-key map (kbd "j") 'next-line)
+    (define-key map (kbd "k") 'previous-line)
+    (define-key map (kbd "l") 'next-char)
+    (define-key map (kbd "n") 'eww-forward-url)
+    (define-key map (kbd "p") 'eww-back-url)))
 (add-hook 'eww-mode-hook 'my-eww-settings)
 
 (defun my-pdf-view-settings ()
@@ -253,17 +254,17 @@ then it takes a second \\[keyboard-quit] to abort the minibuffer."
             (lambda ()
               (setq pdf-view-continuous 't)
               (set (make-local-variable 'evil-emacs-state-cursor) (list nil))
-              (local-set-key "j" 'pdf-view-next-line-or-next-page)
-              (local-set-key "k" 'pdf-view-previous-line-or-previous-page)
-              (local-set-key "n" 'pdf-view-scroll-up-or-next-page)
-              (local-set-key "p" 'pdf-view-scroll-down-or-previous-page)
-              (local-set-key "J" 'pdf-view-next-page)
-              (local-set-key "K" 'pdf-view-previous-page)
-              (local-set-key "g" 'pdf-view-first-page)
-              (local-set-key "G" 'pdf-view-last-page)
-              (local-set-key "l" 'pdf-view-goto-page)
-              (local-set-key "/" 'isearch-forward)
-              (local-set-key "?" 'isearch-backward)
+              (local-set-key (kbd  "j") 'pdf-view-next-line-or-next-page)
+              (local-set-key (kbd "k") 'pdf-view-previous-line-or-previous-page)
+              (local-set-key (kbd "n") 'pdf-view-scroll-up-or-next-page)
+              (local-set-key (kbd "p") 'pdf-view-scroll-down-or-previous-page)
+              (local-set-key (kbd "J") 'pdf-view-next-page)
+              (local-set-key (kbd "K") 'pdf-view-previous-page)
+              (local-set-key (kbd "g") 'pdf-view-first-page)
+              (local-set-key (kbd "G") 'pdf-view-last-page)
+              (local-set-key (kbd "l") 'pdf-view-goto-page)
+              (local-set-key (kbd "/") 'isearch-forward)
+              (local-set-key (kbd "?") 'isearch-backward)
               (local-set-key (kbd "<mouse-5>") 'pdf-view-next-line-or-next-page)
               (local-set-key (kbd "<mouse-4>") 'pdf-view-previous-line-or-previous-page))))
 (add-hook 'pdf-view-mode-hook 'my-pdf-view-settings)
@@ -517,12 +518,12 @@ then it takes a second \\[keyboard-quit] to abort the minibuffer."
             "Enable vi-style keybindings."
             (interactive)
             (turn-off-evil-mode)
-            (local-set-key "j" 'next-line)
-            (local-set-key "k" 'previous-line)
+            (local-set-key (kbd "j") 'next-line)
+            (local-set-key (kbd "k") 'previous-line)
             (dolist (map  (list Info-mode-map))
-              (define-key map "n" 'Info-forward-node)
-              (define-key map "p" 'Info-backward-node)
-              (define-key map "m" 'Info-menu))
+              (define-key map (kbd "n") 'Info-forward-node)
+              (define-key map (kbd "p") 'Info-backward-node)
+              (define-key map (kbd "m") 'Info-menu))
             (message "0xMF/Info-mode-settings")))
 
 (defun hide-mode-line-toggle ()
@@ -543,13 +544,13 @@ then it takes a second \\[keyboard-quit] to abort the minibuffer."
                  (turn-off-evil-mode)
                  (org-display-inline-images)
                  (org-present-hide-cursor)
-                 (local-set-key "n" 'org-present-next)
+                 (local-set-key (kbd "n") 'org-present-next)
                  (local-set-key (kbd [space]) 'org-present-next)
-                 (local-set-key "p" 'org-present-prev)
-                 (local-set-key "q" 'org-present-quit)
-                 (local-set-key "<" 'org-present-beginning)
-                 (local-set-key "G" 'org-present-end)
-                 (local-set-key ">" 'org-present-end)
+                 (local-set-key (kbd "p") 'org-present-prev)
+                 (local-set-key (kbd "q") 'org-present-quit)
+                 (local-set-key (kbd "<") 'org-present-beginning)
+                 (local-set-key (kbd "G") 'org-present-end)
+                 (local-set-key (kbd ">") 'org-present-end)
                  (dolist (map  (list org-present-mode-map))
                    (define-key map (kbd "gg")  'org-present-beginning)
                    (define-key map [backspace]      'org-present-prev)
@@ -560,9 +561,9 @@ then it takes a second \\[keyboard-quit] to abort the minibuffer."
      (add-hook 'org-present-mode-quit-hook
                (lambda ()
                  (org-present-small)
-                 (local-unset-key "n")
-                 (local-unset-key "p")
-                 (local-unset-key "G")
+                 (local-unset-key (kbd "n"))
+                 (local-unset-key (kbd "p"))
+                 (local-unset-key (kbd "G"))
                  (turn-on-evil-mode)
                  (org-remove-inline-images)
                  (org-present-show-cursor)
@@ -587,6 +588,11 @@ then it takes a second \\[keyboard-quit] to abort the minibuffer."
   (setq initial-major-mode 'org-mode)
   (setq initial-scratch-message
         (concat "# Happy hacking, " user-login-name " - Emacs ♥ you!\n\n")))
+
+(defun 0xMF/orgmode-remove-tag (tag)
+  "Remove TAG from line."
+  (interactive "sTag:")
+  (org-toggle-tag tag 'off))
 
 (defun 0xMF/kill-some-buffers (regexp)
   "Kill buffers matching REGEXP without confirmation."
