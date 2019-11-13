@@ -79,7 +79,8 @@
                     "a" 'org-toggle-link-display
                     "c" 'whitespace-cleanup
                     "d" '(lambda () (interactive) (kill-buffer)(delete-window))
-                    "f" 'fci-mode
+                    "f" '0xMF/toggle-font-large-normal
+                    "|" 'fci-mode
                     "h" 'previous-buffer
                     "j" 'next-buffer
                     "k" 'next-buffer
@@ -582,6 +583,25 @@ then it takes a second \\[keyboard-quit] to abort the minibuffer."
                                               ".*~\\|"
                                               "#*#\\)"))
 (add-hook 'text-mode-hook 'turn-on-visual-line-mode)
+
+(setq 0xMF/toggle-font-large-normal nil)
+(defun 0xMF/toggle-font-large-normal ()
+  "Toggle font sizes between large/normal."
+  (interactive)
+  (if (get '0xMF/toggle-font-large-normal 'state)
+      (progn
+        (set-frame-font "Source Code Pro-13:style=Semibold" nil t)
+        (put '0xMF/toggle-font-large-normal 'state nil))
+    (progn
+      (set-frame-font "Source Code Pro-15:style=Semibold" nil t)
+      (put '0xMF/toggle-font-large-normal 'state t)))
+  (message 0xMF/toggle-font-large-normal))
+
+(defun 0xMF/normal-font ()
+  "Increase font size."
+  (interactive)
+  (when (member "Source Code Pro" (font-family-list))
+    (set-frame-font "Source Code Pro-13:style=Semibold" nil t)))
 
 (defun 0xMF/my-orgmode-settings ()
   "My Orgmode settings."
