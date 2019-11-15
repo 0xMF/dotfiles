@@ -396,6 +396,10 @@ then it takes a second \\[keyboard-quit] to abort the minibuffer."
 (global-set-key (kbd "C-M-s") 'isearch-forward)
 (global-set-key (kbd "C-M-r") 'isearch-backward)
 
+(global-set-key (kbd "M-[") 'insert-pair)
+(global-set-key (kbd "M-{") '0xMF/my-insert-braces)
+(global-set-key (kbd "M-\"") 'insert-pair)
+
 ;;----------------------------------------------------------------------------
 ;; Org mode settings
 ;;----------------------------------------------------------------------------
@@ -614,6 +618,14 @@ then it takes a second \\[keyboard-quit] to abort the minibuffer."
   "Remove TAG from line."
   (interactive "sTag:")
   (org-toggle-tag tag 'off))
+
+(defun 0xMF/my-insert-braces ()
+  "Source: stackoverflow.com/questions/2951797/wrapping-selecting-text-in-enclosing-characters-in-emacs."
+  (interactive)
+  (if (region-active-p)
+      (insert-pair 1 ?{ ?})
+    (insert "{}")
+    (backward-char)))
 
 (defun 0xMF/kill-some-buffers (regexp)
   "Kill buffers matching REGEXP without confirmation."
