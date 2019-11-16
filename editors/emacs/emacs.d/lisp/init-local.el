@@ -128,9 +128,7 @@
                     "f" 'set-fill-column
                     "F" 'file-reload
                     "g" 'magit-status
-                    "j" 'evil-next-line
-                    "k" 'evil-previous-line
-                    "K" 'kill-this-buffer
+                    "k" 'kill-this-buffer
                     "l" 'whitespace-mode
                     "m" 'magit-mode
                     "L" 'org-open-at-point
