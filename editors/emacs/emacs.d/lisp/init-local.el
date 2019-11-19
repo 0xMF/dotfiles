@@ -128,6 +128,7 @@
                     "f" 'set-fill-column
                     "F" 'file-reload
                     "g" 'magit-status
+                    "i" '0xMF/Info-mode-settings
                     "k" 'kill-this-buffer
                     "l" 'whitespace-mode
                     "m" 'magit-mode
