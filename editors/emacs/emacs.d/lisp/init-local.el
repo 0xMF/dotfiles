@@ -17,7 +17,7 @@
 (setq my-required-packages '(evil evil-collection evil-magit
                                   fill-column-indicator general hide-mode-line org-beautify-theme
                                   org-bullets org-gcal org-pdfview org-present powerline
-                                  smart-mode-line smart-mode-line-powerline-theme ssh-agency
+                                  racket-mode smart-mode-line smart-mode-line-powerline-theme ssh-agency
                                   use-package yafolding))
 (dolist (package my-required-packages)
   (unless (package-installed-p package)
