@@ -538,6 +538,14 @@ then it takes a second \\[keyboard-quit] to abort the minibuffer."
   (unless hide-mode-line-mode
     (redraw-display)))
 
+(defun 0xMF/ivy-minibuffer-settings ()
+  "Bring sanity back to up/down keybindings."
+  (interactive)
+  (dolist (map  (list ivy-minibuffer-map))
+    (define-key map [up] 'ivy-previous-line)))
+(add-hook 'ivy-minibuffer-hook '0xMF/ivy-minibuffer-settings)
+(add-hook 'ivy-mode-hook '0xMF/ivy-minibuffer-settings)
+
 (require 'org-present)
 (require 'hide-mode-line)
 (autoload 'org-present "org-present" nil t)
@@ -673,6 +681,8 @@ then it takes a second \\[keyboard-quit] to abort the minibuffer."
     (org-set-visibility-according-to-property))
   (when (equal major-mode 'Info-mode)
     (0xMF/Info-mode-settings))
+  (when (fboundp 'ivy-minibuffer-map)
+    (0xMF/ivy-minibuffer-settings))
   (when (fboundp '0xMF/local)
     (0xMF/local))
   (0xMF/my-vi-settings)
