@@ -83,7 +83,7 @@
                     "|" 'fci-mode
                     "h" 'previous-buffer
                     "j" 'next-buffer
-                    "k" 'next-buffer
+                    "k" 'kill-this-buffer
                     "l" 'previous-buffer
                     "n" 'next-buffer
                     "N" 'other-window
