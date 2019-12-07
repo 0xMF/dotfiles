@@ -646,6 +646,7 @@ then it takes a second \\[keyboard-quit] to abort the minibuffer."
   "Remove all kinds of needless buffers."
   (when (get-buffer "*Compile-Log*")
     (kill-buffer "*Compile-Log*"))
+  (0xMF/kill-some-buffers "*Calculator*")
   (0xMF/kill-some-buffers "*Packages*")
   (0xMF/kill-some-buffers "^\\magit:")
   (0xMF/kill-some-buffers "*compilation*")
