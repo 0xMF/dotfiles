@@ -476,7 +476,7 @@ then it takes a second \\[keyboard-quit] to abort the minibuffer."
 (setq undo-tree-auto-save-history t)
 
 ;; M-x slime calls sbcl
-;;(load (expand-file-name "~/.quicklisp/slime-helper.el"))
+(load (expand-file-name "~/.quicklisp/slime-helper.el"))
 (setq inferior-lisp-program "sbcl")
 (setq slime-default-lisp 'sbcl)
 
