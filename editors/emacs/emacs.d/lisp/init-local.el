@@ -15,10 +15,15 @@
   (package-refresh-contents))
 
 (setq my-required-packages '(evil evil-collection evil-magit
-                                  fill-column-indicator general hide-mode-line org-beautify-theme
-                                  org-bullets org-gcal org-pdfview org-present powerline
-                                  racket-mode smart-mode-line smart-mode-line-powerline-theme ssh-agency
-                                  use-package yafolding))
+                                  fill-column-indicator general
+                                  hide-mode-line
+                                  org-beautify-theme org-bullets
+                                  org-gcal org-pdfview
+                                  org-present powerline
+                                  racket-mode smart-mode-line
+                                  smart-mode-line-powerline-theme
+                                  ssh-agency use-package
+                                  yafolding))
 (dolist (package my-required-packages)
   (unless (package-installed-p package)
     (package-install package)))
@@ -39,10 +44,11 @@
 (require 'evil-magit)
 (require 'general)
 
-(defun my-default-cursor()  "Cursor color indicates mode: white = Emacs, green = evil (Vi/Vim)."
-       (if (string= (symbol-value 'evil-state) "normal")
-           (set-cursor-color "green")
-         (set-cursor-color "white")))
+(defun my-default-cursor()
+  "Cursor color indicates mode: white = Emacs, green = evil (Vi/Vim)."
+  (if (string= (symbol-value 'evil-state) "normal")
+      (set-cursor-color "green")
+      (set-cursor-color "white")))
 
 (evil-mode 1)
 (evil-collection-init)
@@ -189,6 +195,7 @@
 
   (dolist (map  (list minibuffer-local-isearch-map))
     (define-key map (kbd "n") 'isearch-printing-char))
+
   (global-set-key [escape] 'evil-exit-emacs-state)
 
   (define-key evil-normal-state-map (kbd "C-k") (lambda () (interactive) (evil-scroll-up nil)))
@@ -209,14 +216,15 @@
 ;; esc quits
 (defun minibuffer-keyboard-quit ()
   "Abort recursive edit.
-In Delete Selection mode, if the mark is active, just deactivate it;
-then it takes a second \\[keyboard-quit] to abort the minibuffer."
+In Delete Selection mode, if the mark is active,just deactivate
+it; then it takes a second \\[keyboard-quit] to abort the
+minibuffer."
   (interactive)
   (if (and delete-selection-mode transient-mark-mode mark-active)
       (setq deactivate-mark  t)
-    (when (get-buffer "*Completions*")
-      (delete-windows-on "*Completions*"))
-    (abort-recursive-edit)))
+      (when (get-buffer "*Completions*")
+        (delete-windows-on "*Completions*"))
+      (abort-recursive-edit)))
 
 ;; 2 spaces for tabs
 (setq-default tab-width 2 indent-tabs-mode nil)
@@ -477,8 +485,20 @@ then it takes a second \\[keyboard-quit] to abort the minibuffer."
 
 ;; M-x slime calls sbcl
 (load (expand-file-name "~/.quicklisp/slime-helper.el"))
+(require 'slime-autoloads)
 (setq inferior-lisp-program "sbcl")
 (setq slime-default-lisp 'sbcl)
+(setq slime-contribs '(slime-scratch slime-editing-commands slime-fancy))
+(add-hook 'lisp-mode-hook
+          (lambda ()
+            (set (make-local-variable 'lisp-indent-function)
+                 'common-lisp-indent-function)))
+(put 'lambda 'lisp-indent-function 'defun)
+(put 'while 'lisp-indent-function 1)
+(put 'unless 'lisp-indent-function 1)
+(put 'if 'lisp-indent-function nil)
+(put 'do 'lisp-indent-function 2)
+(put 'do* 'lisp-indent-function 2)
 
 (menu-bar-mode -1)
 
