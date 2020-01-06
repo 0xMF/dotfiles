@@ -53,6 +53,7 @@
   glp       = _git_log_prettily
   gm        = merge
   gmt       = mergetool --no-prompt
+  gpot      = push origin --tags
   gpoat     = push origin --all && git push origin --tags
   gr        = remote
   grba      = rebase --abort
@@ -114,6 +115,7 @@
   move        = mv
   nevermind   = !git reset --hard HEAD && git clean -d -f
   outgoing    = log master ^orgin/master            # show only what is in master that isn't in orgin/master
+  pot         = push origin --tags
   praise      = blame
   precommit   = diff --cached -w --word-diff=color --word-diff-regex='[^[:space:]<>]+'
   prestage    = diff -w --word-diff=color
