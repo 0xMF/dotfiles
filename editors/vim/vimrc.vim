@@ -171,6 +171,11 @@ set clipboard=unnamed   " all yanking goes to clipboard
     : let autocommands_loaded =1
     :filetype on        " enables file type detection.
 
+    " enable completion, so in insert mode: CTRL+X CTRL+O
+    :filetype plugin on
+    :set omnifunc=syntaxcomplete#Complete
+    :set wildmode=list
+
     "* BibTeX  and LaTeX
     au BufNewFile,BufRead *.bib setlocal nospell
     au BufNewFile,BufRead *.bib setlocal tw=0

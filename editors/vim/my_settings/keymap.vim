@@ -131,6 +131,9 @@ map b       <C-b>
 :map <F11> :set report=0<CR>:set nohls<CR>:'t,.s/\i\+/&/g<CR>| " from mark t to current line wordcount
 :map <F12> :set report=0<CR>:set nohls<CR>:%s/\i\+/&/g<CR>| " entire file wordcount
 
+" used for completion
+:imap <Tab><Tab> <C-P>
+
 " FAILED COPY ATTEMPTS
 "map <C-C>  vgG
 "imap <C-C>  <Esc>vgG
