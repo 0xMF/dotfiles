@@ -649,15 +649,15 @@ function gman {
 
 function jc {
   case "$1" in
-    "" ) journalctl -xe |less -FeqRSX ;;
-    "help"|"h"|"-h"|"--help") journalctl --help $* ;;
-    * ) journalctl $* ;;
+    "" ) /sbin/journalctl -xe |less -FeqRSX ;;
+    "help"|"h"|"-h"|"--help") /sbin/journalctl --help $* ;;
+    * ) /sbin/journalctl $* ;;
   esac
 }
 function sc {
   case "$1" in
-    "help"|"h"|"-h"|"--help") systemctl --help $* ;;
-    * ) systemctl $* ;;
+    "help"|"h"|"-h"|"--help") /sbin/systemctl --help $* ;;
+    * ) /sbin/systemctl $* ;;
   esac
 }
 
