@@ -595,15 +595,15 @@ function _gshow {
   if _is_git_repo -eq 0
   then
     case $# in
-      0) git show HEAD~11..HEAD --minimal 2>/dev/null ;;
+      0) git show --color=always HEAD~11..HEAD --minimal 2>/dev/null ;;
       1) [ $1 -eq 1 ] \
-             && git show HEAD~2..HEAD 2>/dev/null \
-             || git show HEAD~$1      2>/dev/null ;;
-      *) n=$(( `echo $2` + 1 )); git show HEAD~$n..HEAD~$1 --minimal;;
+             && git show --color=always HEAD~2..HEAD 2>/dev/null \
+             || git show --color=always HEAD~$1      2>/dev/null ;;
+      *) n=$(( `echo $2` + 1 )); git show --color=always HEAD~$n..HEAD~$1 --minimal;;
     esac
 
     # unknown error, probably a SHA1, so git show $1
-    [ $? -ne 0 ] && git show $1
+    [ $? -ne 0 ] && git show --color=always $1
   fi
 }
 
@@ -630,7 +630,7 @@ function rshow {
       [ $n -gt 11 ] && n=11 || n=$(($n-1))
 
       #git show HEAD~11..HEAD --pretty=short --abbrev-commit
-      git show HEAD~$n..HEAD --abbrev-commit
+      git show --color=always HEAD~$n..HEAD --abbrev-commit
       popd
     fi
   fi
@@ -717,8 +717,8 @@ function gsearch {
   [ -z "$1" ] && echo Usage: gsearch search_term && return
   for commit in $(git log --color=always --oneline|$GREP "$1"|awk '{print $1}')
   do
-    git show --pretty="%h %s %b" --stat $commit
-    git show --pretty="%n %Cred===%C(yellow)**%Cgreenx%C(yellow)**%Cred===%Creset%n" -s $commit
+    git show --color=always --pretty="%h %s %b" --stat $commit
+    git show --color=always --pretty="%n %Cred===%C(yellow)**%Cgreenx%C(yellow)**%Cred===%Creset%n" -s $commit
   done
 }
 
