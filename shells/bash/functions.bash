@@ -459,8 +459,10 @@ function ghelp() {
   if [ -z "$1" ]; then
     ghuman
     echo
+    echo -e "\nUsage: ghelp my_git_alias\n\n"\
+            " where\n\n my_git_alias is any of the following (some aliases are shown above):\n"
     sed -r '/#/d;/^$/d;/^\[/d;s/ *=.*//;s/ *--[a-z].*//;/^\s*$/d' $HOME/.git/aliases.gitconfig | sort | fmt
-    echo -e "\nUsage:ghelp search_term\n"
+    echo
   else
     expand=$(alias "$1" 2>/dev/null)
     [ $? -eq 0 ] && echo "$expand" && return
