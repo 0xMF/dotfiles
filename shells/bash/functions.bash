@@ -459,7 +459,7 @@ function ghelp() {
   if [ -z "$1" ]; then
     ghuman
     echo
-    sed -r '/#/d;/^$/d;/^\[/d;s/ *=.*//' $HOME/.git/aliases.gitconfig|sort |fmt
+    sed -r '/#/d;/^$/d;/^\[/d;s/ *=.*//;s/ *--[a-z].*//;/^\s*$/d' $HOME/.git/aliases.gitconfig | sort | fmt
     echo -e "\nUsage:ghelp search_term\n"
   else
     expand=$(alias "$1" 2>/dev/null)
