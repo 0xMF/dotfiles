@@ -2,17 +2,18 @@
   br        = branch
   ci        = commit
   co        = checkout
-  d         = diff -w HEAD
-  dc        = diff -w --cached
-  ds        = diff -w --staged
+  d         = diff --color=always -w HEAD
+  dc        = diff --color=always -w --cached
+  diff      = diff --color=always
+  ds        = diff --color=always -w --staged
   g         = grep --break --heading --line-number
-  h         = log --pretty=oneline --decorate --abbrev-commit --date=short
-  hist      = log --pretty=format:\"%h %ad | %s%d [%an]\" --graph --date=short
-  lgp       = log -p
-  lgs       = log --stat
-  lol       = log --graph --decorate --pretty=oneline --abbrev-commit
-  lola      = log --graph --decorate --pretty=oneline --abbrev-commit --all
-  lolar     = log --decorate --pretty=oneline --abbrev-commit --all --reverse
+  h         = log --color=always --pretty=oneline --decorate --abbrev-commit --date=short
+  hist      = log --color=always --pretty=format:\"%h %ad | %s%d [%an]\" --graph --date=short
+  lgp       = log --color=always -p
+  lgs       = log --color=always --stat
+  lol       = log --color=always --graph --decorate --pretty=oneline --abbrev-commit
+  lola      = log --color=always --graph --decorate --pretty=oneline --abbrev-commit --all
+  lolar     = log --color=always --decorate --pretty=oneline --abbrev-commit --all --reverse
   ls        = ls-files
   p         = push
   pr        = pull --rebase
@@ -32,7 +33,7 @@
   gcm       = checkout master
   gcmsg     = commit -m
   gco       = checkout
-  gcount    = shortlog -sn
+  gcount    = shortlog --color=always -sn
   gcp       = cherry-pick
   gf        = fetch
   gfr       = fetch && git rebase remotes/origin/master
@@ -45,11 +46,11 @@
   gignore   = update-index --assume-unchanged
   gignored  = ls-files -v | grep "^[[:lower:]]"
   gl        = pull
-  glg       = log --stat --max-count=10
-  glgg      = log --graph --max-count=10
-  glgga     = log --graph --decorate --all
-  glo       = log --oneline --decorate --color
-  glog      = log --oneline --decorate --color --graph
+  glg       = log --color=always --stat --max-count=10
+  glgg      = log --color=always --graph --max-count=10
+  glgga     = log --color=always --graph --decorate --all
+  glo       = log --color=always --oneline --decorate --color
+  glog      = log --color=always --oneline --decorate --color --graph
   glp       = _git_log_prettily
   gm        = merge
   gmt       = mergetool --no-prompt
@@ -79,7 +80,7 @@
   # 'gc!'    = commit -v --amend
   # 'gca!'   = commit -v -a --amend
   # gk        = k --all --branches
-  # gunwip   = log -n 1 | grep -q -c "\-\-wip\-\-" && git reset HEAD~1
+  # gunwip   = log --color=always -n 1 | grep -q -c "\-\-wip\-\-" && git reset HEAD~1
   # gwip     = add -A; git ls-files --deleted -z | xargs -r0 git rm; git commit -m "--wip--"
 
   gsd       = svn dcommit
@@ -95,40 +96,40 @@
   branches    = branch -a
   branchout   = checkout -b
   branch-name = rev-parse --abbrev-ref HEAD
-  contributors= shortlog -s -n
+  contributors= shortlog --color=always -s -n
   down        = pull --rebase
   discard     = checkout --
   dump        = cat-file -p
-  filetrail   = git log --follow -p -w
-  graph       = log --graph -10 --branches --remotes --tags\
+  filetrail   = git log --color=always --follow -p -w
+  graph       = log --color=always --graph -10 --branches --remotes --tags\
                     --format=format:'%Cgreen%h %Creset %<(75,trunc)%s (%cN, %ar) %Cred%d' --date-order
 
-  hist        = log -10 --format=format:'%Cgreen%h %Creset %s (%cN, %ar)'
-  history     = log --pretty=format:"%C(yellow)%h\\ %ad%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --graph --date=short
+  hist        = log --color=always -10 --format=format:'%Cgreen%h %Creset %s (%cN, %ar)'
+  history     = log --color=always --pretty=format:"%C(yellow)%h\\ %ad%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --graph --date=short
   ignore      = update-index --assume-unchanged
   ignored     = ls-files -o -i --exclude-standard   # Show files ignored by git:
   invert      = revert
-  incoming    = log orgin/master ^master            # show only what is in orgin/master that isn't in master
-  last        = log -1 HEAD --format=format:"%Cred%H"
-  logs        = log --stat
-  mergetrail  = log --ancestry-path --merges
+  incoming    = log --color=always orgin/master ^master            # show only what is in orgin/master that isn't in master
+  last        = log --color=always -1 HEAD --format=format:"%Cred%H"
+  logs        = log --color=always --stat
+  mergetrail  = log --color=always --ancestry-path --merges
   move        = mv
   nevermind   = !git reset --hard HEAD && git clean -d -f
-  outgoing    = log master ^orgin/master            # show only what is in master that isn't in orgin/master
+  outgoing    = log --color=always master ^orgin/master            # show only what is in master that isn't in orgin/master
   pot         = push origin --tags
   praise      = blame
-  precommit   = diff --cached -w --word-diff=color --word-diff-regex='[^[:space:]<>]+'
-  prestage    = diff -w --word-diff=color
+  precommit   = diff --color=always --cached -w --word-diff=color --word-diff-regex='[^[:space:]<>]+'
+  prestage    = diff --color=always -w --word-diff=color
   remotes     = remote -v
   remove      = rm
   resave      = commit --amend
   rewrite     = rebase -i
-  ru          = log --since=\"one week ago\" --all --no-merges --oneline #--author=\"Mark Fernandes\"
-  #rushes      = log --since=\"1970-01-01 00:00:00\" --all --no-merges --oneline #--author=\"Mark Fernandes\"
-  rushes      = log --since=\"one week ago\" --all --no-merges --oneline #--author=\"Mark Fernandes\"
+  ru          = log --color=always --since=\"one week ago\" --all --no-merges --oneline #--author=\"Mark Fernandes\"
+  #rushes      = log --color=always --since=\"1970-01-01 00:00:00\" --all --no-merges --oneline #--author=\"Mark Fernandes\"
+  rushes      = log --color=always --since=\"one week ago\" --all --no-merges --oneline #--author=\"Mark Fernandes\"
   save        = commit -am
-  show-all    = log --follow
-  shop-all    = log --follow -p
+  show-all    = log --color=always --follow
+  shop-all    = log --color=always --follow -p
   stashes     = stash list
   summary     = status -u -s
   tags        = tag
@@ -137,7 +138,7 @@
   undo        = reset --soft HEAD~1
   unignore    = update-index --no-assume-changed
   unmerged    = branch --no-merged
-  unmerged    = diff -w --name-only --diff-filter=U
+  unmerged    = diff --color=always -w --name-only --diff-filter=U
   unstage     = reset -q HEAD --
   unstash     = stash pop
   untrack     = rm -r --cached

@@ -493,7 +493,7 @@ function ghist {
   if _is_git_repo -eq 0
   then
     git log \
-      --graph --date=short \
+      --color=always --graph --date=short \
       --pretty=format:"%C(red bold)%h%Creset %C(blue bold)%ad%Creset %C(cyan bold)|%Creset %C(auto)%d%Creset %s" \
       "$@"
   fi
@@ -517,7 +517,7 @@ function __gdh {
   if _is_git_repo -eq 0
   then
     n=${1:--10}
-    git log $n --graph --date=short \
+    git log --color=always -$n --graph --date=short \
       --pretty=format:"%C(red bold)%h%Creset %C(blue bold)%ad%Creset %C(cyan bold)|%Creset %C(auto)%d%Creset %s"
   fi
 }
@@ -526,8 +526,8 @@ function __gh {
   if _is_git_repo -eq 0
   then
     n=${1:--10}
-    git log $n --graph --pretty=format:"%C(red bold)%h%Creset %C(cyan bold)|%Creset %C(auto)%d%Creset %s"
-    eval "[ `git log --pretty=oneline | wc -l` -gt 10 ] && git diff --stat HEAD~$((0 - $n)) HEAD"
+    git log --color=always $n --graph --pretty=format:"%C(red bold)%h%Creset %C(cyan bold)|%Creset %C(auto)%d%Creset %s"
+    eval "[ `git log --color=always --pretty=oneline | wc -l` -gt 10 ] && git diff --color=always --stat HEAD~$((0 - $n)) HEAD"
   fi
 }
 
@@ -544,10 +544,10 @@ function gh {
 
     [ "$1" == "d" ] && shift
     case $# in
-      1) [ $1 -eq 1 ] && git log -p --stat HEAD...HEAD~1 \
-                      || git log -p --stat HEAD~`expr $1 - 1`...HEAD~$1 ;;
-      2) [ $1 -eq 1 ] && git log --stat  HEAD...HEAD~$2 \
-                      || git log --stat  HEAD~$1...HEAD~$2 ;;
+      1) [ $1 -eq 1 ] && git log --color=always -p --stat HEAD...HEAD~1 \
+                      || git log --color=always -p --stat HEAD~`expr $1 - 1`...HEAD~$1 ;;
+      2) [ $1 -eq 1 ] && git log --color=always --stat  HEAD...HEAD~$2 \
+                      || git log --color=always --stat  HEAD~$1...HEAD~$2 ;;
       *) $e;;
          #br_name=`git rev-parse --abbrev-ref HEAD`
          #br_all=`git branch -a|$GREP HEAD|cut -d'>' -f2`
@@ -572,18 +572,18 @@ function ghb {
   then
     for c in `seq $(gh|wc -l)`
     do
-        git log --pretty=format:"%C(bold red)%h%Creset %C(bold cyan)%s%Creset %C(bold green)%b%Creset" \
+        git log --color=always --pretty=format:"%C(bold red)%h%Creset %C(bold cyan)%s%Creset %C(bold green)%b%Creset" \
             HEAD~$c..HEAD~`expr $c - 1`
     done
   fi
 }
 
 function ghd {
-  # lines=$(git log --oneline|wc -l)
+  # lines=$(git log --color=always --oneline|wc -l)
   # pager=`[ $lines -gt 78 ] && echo "less -R"  || echo "cat"  `
   if _is_git_repo -eq 0
   then
-    git log --decorate --abbrev-commit --date=short --all --graph\
+    git log --color=always --decorate --abbrev-commit --date=short --all --graph\
             --pretty=format:"%C(red bold)%h%Creset %C(green bold)%s%Creset" #|\
     #cut -c1-64 | less #eval "$pager"
   fi
@@ -715,7 +715,7 @@ function ghw {
 function gsearch {
 
   [ -z "$1" ] && echo Usage: gsearch search_term && return
-  for commit in $(git log --oneline|$GREP "$1"|awk '{print $1}')
+  for commit in $(git log --color=always --oneline|$GREP "$1"|awk '{print $1}')
   do
     git show --pretty="%h %s %b" --stat $commit
     git show --pretty="%n %Cred===%C(yellow)**%Cgreenx%C(yellow)**%Cred===%Creset%n" -s $commit
@@ -834,7 +834,7 @@ function lessmd {
 }
 
 function contributors {
-  git shortlog -s -n | sort -b -k1,1nr -k2
+  git shortlog --color=always -s -n | sort -b -k1,1nr -k2
 }
 
 function ds {
