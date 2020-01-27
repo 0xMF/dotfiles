@@ -208,7 +208,7 @@ function trd() {
 
     [[ "$1" == "$path" && -n "$1" ]] && shift
 
-    eval "tree $level $path $*"
+    eval "tree $level $path $@"
 }
 
 
@@ -356,8 +356,8 @@ function anc {
 
 function apt {
     echo $1
-    [ "$1" == "info" ] && shift && /usr/bin/apt show $* \
-                       || /usr/bin/apt $*
+    [ "$1" == "info" ] && shift && /usr/bin/apt show "$@" \
+                       || /usr/bin/apt "$@"
 }
 function dpkg-get-selections {
   dpkg --get-selections
@@ -420,9 +420,9 @@ function g+++ {
   rm -f a.out
   if [ -e /usr/bin/g++-4.9 ];
   then
-    /usr/bin/g++-4.9 -std=c++1y -Wall $*
+    /usr/bin/g++-4.9 -std=c++1y -Wall "$@"
   else
-    /usr/bin/g++ -std=c++0x -Wall $*
+    /usr/bin/g++ -std=c++0x -Wall "$@"
   fi
 
   if [ -e a.out ]
@@ -484,8 +484,9 @@ function gmru {
 
 # show all git commits history
 function ghist {
-  git log $* --graph --date=short \
-     --pretty=format:"%C(red bold)%h%Creset %C(blue bold)%ad%Creset %C(cyan bold)|%Creset %C(auto)%d%Creset %s"
+  git log --graph --date=short \
+     --pretty=format:"%C(red bold)%h%Creset %C(blue bold)%ad%Creset %C(cyan bold)|%Creset %C(auto)%d%Creset %s" \
+     "$@"
 }
 
 # completes the triad of:
@@ -516,7 +517,7 @@ function __gh {
 #   1 arg   : show that (relative to HEAD~) commit message details
 #   2 args  : show summary of commit messages within the given numbers
 function gh {
-  #`echo "$*"|sed -r 's/(,|-|  )/ /g'`
+  #`echo "$@"|sed -r 's/(,|-|  )/ /g'`
 
   e=$([ "$1" == "d" ] && echo __gdh || echo __gh)
 
@@ -574,7 +575,7 @@ function _gshow {
 
 # if $1 contains alphabets (HEAD,SHA1 commits) 'git show $1' otherwise call _gshow
 function gshow {
-  _gshow $*
+  _gshow "$@"
 }
 
 # goto any repo which is below pwd and show commits from there; pop back when done
@@ -649,15 +650,15 @@ function gman {
 
 function jc {
   case "$1" in
-    "" ) /sbin/journalctl -xe |less -FeqRSX ;;
-    "help"|"h"|"-h"|"--help") /sbin/journalctl --help $* ;;
-    * ) /sbin/journalctl $* ;;
+    "" ) /sbin/journalctl -xe | less -FeqRSX ;;
+    "help"|"h"|"-h"|"--help") /sbin/journalctl --help "$@" ;;
+    * ) /sbin/journalctl "$@" ;;
   esac
 }
 function sc {
   case "$1" in
-    "help"|"h"|"-h"|"--help") /sbin/systemctl --help $* ;;
-    * ) /sbin/systemctl $* ;;
+    "help"|"h"|"-h"|"--help") /sbin/systemctl --help "$@" ;;
+    * ) /sbin/systemctl "$@" ;;
   esac
 }
 
