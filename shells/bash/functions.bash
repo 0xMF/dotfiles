@@ -482,11 +482,19 @@ function gmru {
    history|awk '{$1="";print $0}'|sort|uniq -c|sort -n|$GREP '[0-9] *g[a-zA-Z]'
 }
 
+function _is_git_repo {
+  git status >/dev/null 2>&1
+  return $?
+}
 # show all git commits history
 function ghist {
-  git log --graph --date=short \
-     --pretty=format:"%C(red bold)%h%Creset %C(blue bold)%ad%Creset %C(cyan bold)|%Creset %C(auto)%d%Creset %s" \
-     "$@"
+  if _is_git_repo -eq 0
+  then
+    git log \
+      --graph --date=short \
+      --pretty=format:"%C(red bold)%h%Creset %C(blue bold)%ad%Creset %C(cyan bold)|%Creset %C(auto)%d%Creset %s" \
+      "$@"
+  fi
 }
 
 # completes the triad of:
@@ -494,22 +502,31 @@ function ghist {
 #   * alias gcs for git commit --squash
 #   * function gcr for git commit --reword
 function gcr {
-  case $# in
-    1)  git add . ;  git commit -vac $1  ;;
-    *) echo "Usage: gcr <commit>" >&2 ;;
-  esac
+  if _is_git_repo -eq 0
+  then
+    case $# in
+      1)  git add . ;  git commit -vac $1  ;;
+      *) echo "Usage: gcr <commit>" >&2 ;;
+    esac
+  fi
 }
 
 function __gdh {
-  n=${1:--10}
-  git log $n --graph --date=short \
-    --pretty=format:"%C(red bold)%h%Creset %C(blue bold)%ad%Creset %C(cyan bold)|%Creset %C(auto)%d%Creset %s"
+  if _is_git_repo -eq 0
+  then
+    n=${1:--10}
+    git log $n --graph --date=short \
+      --pretty=format:"%C(red bold)%h%Creset %C(blue bold)%ad%Creset %C(cyan bold)|%Creset %C(auto)%d%Creset %s"
+  fi
 }
 
 function __gh {
-  n=${1:--10}
-  git log $n --graph --pretty=format:"%C(red bold)%h%Creset %C(cyan bold)|%Creset %C(auto)%d%Creset %s"
-  eval "[ `git log --pretty=oneline | wc -l` -gt 10 ] && git diff --stat HEAD~$((0 - $n)) HEAD"
+  if _is_git_repo -eq 0
+  then
+    n=${1:--10}
+    git log $n --graph --pretty=format:"%C(red bold)%h%Creset %C(cyan bold)|%Creset %C(auto)%d%Creset %s"
+    eval "[ `git log --pretty=oneline | wc -l` -gt 10 ] && git diff --stat HEAD~$((0 - $n)) HEAD"
+  fi
 }
 
 # queries git log based on arguments
@@ -519,80 +536,101 @@ function __gh {
 function gh {
   #`echo "$@"|sed -r 's/(,|-|  )/ /g'`
 
-  e=$([ "$1" == "d" ] && echo __gdh || echo __gh)
+  if _is_git_repo -eq 0
+  then
+    e=$([ "$1" == "d" ] && echo __gdh || echo __gh)
 
-  [ "$1" == "d" ] && shift
-  case $# in
-    1) [ $1 -eq 1 ] && git log -p --stat HEAD...HEAD~1 \
-                    || git log -p --stat HEAD~`expr $1 - 1`...HEAD~$1 ;;
-    2) [ $1 -eq 1 ] && git log --stat  HEAD...HEAD~$2 \
-                    || git log --stat  HEAD~$1...HEAD~$2 ;;
-    *) $e;;
-       #br_name=`git rev-parse --abbrev-ref HEAD`
-       #br_all=`git branch -a|$GREP HEAD|cut -d'>' -f2`
-       #case "origin/$br_name" in
-       #  "$br_all") $e HEAD...origin/$br_name;;
-       #  *)
-       #esac
-  esac
+    [ "$1" == "d" ] && shift
+    case $# in
+      1) [ $1 -eq 1 ] && git log -p --stat HEAD...HEAD~1 \
+                      || git log -p --stat HEAD~`expr $1 - 1`...HEAD~$1 ;;
+      2) [ $1 -eq 1 ] && git log --stat  HEAD...HEAD~$2 \
+                      || git log --stat  HEAD~$1...HEAD~$2 ;;
+      *) $e;;
+         #br_name=`git rev-parse --abbrev-ref HEAD`
+         #br_all=`git branch -a|$GREP HEAD|cut -d'>' -f2`
+         #case "origin/$br_name" in
+         #  "$br_all") $e HEAD...origin/$br_name;;
+         #  *)
+         #esac
+    esac
+  fi
 }
 
 function gha {
+  if _is_git_repo -eq 0
+  then
    eval ` [ -z "$1" ] && echo __gh || echo __gdh ` --all
+  fi
 }
 
 
 function ghb {
-  for c in `seq $(gh|wc -l)`
-  do
-      git log --pretty=format:"%C(bold red)%h%Creset %C(bold cyan)%s%Creset%n %C(bold green)%b%Creset" \
-          HEAD~$c..HEAD~`expr $c - 1`
-  done
+  if _is_git_repo -eq 0
+  then
+    for c in `seq $(gh|wc -l)`
+    do
+        git log --pretty=format:"%C(bold red)%h%Creset %C(bold cyan)%s%Creset %C(bold green)%b%Creset" \
+            HEAD~$c..HEAD~`expr $c - 1`
+    done
+  fi
 }
 
 function ghd {
   # lines=$(git log --oneline|wc -l)
   # pager=`[ $lines -gt 78 ] && echo "less -R"  || echo "cat"  `
-  git log --decorate --abbrev-commit --date=short --all --graph\
-          --pretty=format:"%C(red bold)%h%Creset %C(green bold)%s%Creset" #|\
-  #cut -c1-64 | less #eval "$pager"
+  if _is_git_repo -eq 0
+  then
+    git log --decorate --abbrev-commit --date=short --all --graph\
+            --pretty=format:"%C(red bold)%h%Creset %C(green bold)%s%Creset" #|\
+    #cut -c1-64 | less #eval "$pager"
+  fi
 }
 
 
 # if $1 is 1 'git show HEAD' otherwise 'git show $1'
 function _gshow {
-  case $# in
-    0) git show HEAD~11..HEAD --minimal 2>/dev/null ;;
-    1) [ $1 -eq 1 ] \
-           && git show HEAD~2..HEAD 2>/dev/null \
-           || git show HEAD~$1      2>/dev/null ;;
-    *) n=$(( `echo $2` + 1 )); git show HEAD~$n..HEAD~$1 --minimal;;
-  esac
+  if _is_git_repo -eq 0
+  then
+    case $# in
+      0) git show HEAD~11..HEAD --minimal 2>/dev/null ;;
+      1) [ $1 -eq 1 ] \
+             && git show HEAD~2..HEAD 2>/dev/null \
+             || git show HEAD~$1      2>/dev/null ;;
+      *) n=$(( `echo $2` + 1 )); git show HEAD~$n..HEAD~$1 --minimal;;
+    esac
 
-  # unknown error, probably a SHA1, so git show $1
-  [ $? -ne 0 ] && git show $1
+    # unknown error, probably a SHA1, so git show $1
+    [ $? -ne 0 ] && git show $1
+  fi
 }
 
 # if $1 contains alphabets (HEAD,SHA1 commits) 'git show $1' otherwise call _gshow
 function gshow {
-  _gshow "$@"
+  if _is_git_repo -eq 0
+  then
+    _gshow "$@"
+  fi
 }
 
 # goto any repo which is below pwd and show commits from there; pop back when done
 function rshow {
-  if [ "$1" == "" ]; then
-    gshow
-  else
-    repo=$(find . -type d -name "$1")
-    pushd $repo
-    shift
+  if _is_git_repo -eq 0
+  then
+    if [ "$1" == "" ]; then
+      gshow
+    else
+      repo=$(find . -type d -name "$1")
+      pushd $repo
+      shift
 
-    n=$(git rev-list HEAD --count)
-    [ $n -gt 11 ] && n=11 || n=$(($n-1))
+      n=$(git rev-list HEAD --count)
+      [ $n -gt 11 ] && n=11 || n=$(($n-1))
 
-    #git show HEAD~11..HEAD --pretty=short --abbrev-commit
-    git show HEAD~$n..HEAD --abbrev-commit
-    popd
+      #git show HEAD~11..HEAD --pretty=short --abbrev-commit
+      git show HEAD~$n..HEAD --abbrev-commit
+      popd
+    fi
   fi
 }
 
