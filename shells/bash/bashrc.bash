@@ -110,7 +110,13 @@ if [ -f $REPO/local.bash ]; then
   source $REPO/local.bash
 fi
 
-#ps1
-green
+if [[ `type -t green` == "function" ]]
+then
+  #ps1
+  green
+else
+  PS1="$ "
+  PROMPT_COMMAND=""
+fi
 
 # vim:nospell:ft=sh:

@@ -18,6 +18,13 @@ CYAN="\[\033[1;36m\]"
 WHITE="\[\033[1;37m\]"
 NOCOLOR="\[\033[00m\]"
 
+record() {
+  if [[ `type -t termtosvg` == "file" ]]
+  then
+    termtosvg -c '/bin/bash --init-file ~/.bash/minimal.bash' -g "80x24" -t putty "$@"
+  fi
+}
+
 green () {
   LS_COLORS="`echo $LS_COLORS|sed 's/di=0[01];3[0-9]/di=01;33/'`"
   LS_COLORS="`echo $LS_COLORS|sed 's/ln=[01][01];3[0-9]/ln=00;32/'`"
