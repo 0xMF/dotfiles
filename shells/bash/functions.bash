@@ -21,7 +21,8 @@ NOCOLOR="\[\033[00m\]"
 record() {
   if [[ `type -t termtosvg` == "file" ]]
   then
-    termtosvg -c '/bin/bash --init-file ~/.bash/minimal.bash' -g "80x24" -t putty "$@"
+    termtosvg -c '/bin/bash --init-file ~/.bash/minimal.bash' \
+              -g "80x24" "$@"
   fi
 }
 
