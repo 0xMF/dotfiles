@@ -1,4 +1,3 @@
-
 #####################################################################
   systemd related tips
 #####################################################################
@@ -16,4 +15,8 @@ systemttl stop some.service
 
 # automatically start/stop service at boot time
 systemctl enable some.service
-systemttl disable some.service
+systemctl disable some.service
+
+# suspend/hibernate
+systemctl suspend
+systemctl hibernate
