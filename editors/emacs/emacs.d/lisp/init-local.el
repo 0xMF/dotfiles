@@ -148,7 +148,7 @@
                     "R" 'undo-tree-redo
                     "s" '0xMF/startup
                     "u" 'undo-tree-undo
-                    "t" 'org-todo-list
+                    "t" '0xMF/my-theme-settings
                     "T" 'org-set-tags
                     "w" '(lambda () (interactive) (org-agenda-list 7))
                     "x" 'evil-delete
@@ -560,10 +560,19 @@ minibuffer."
   (unless hide-mode-line-mode
     (redraw-display)))
 
-(defun 0xMF/light-mode-settings ()
-  "Bring sanity back to light-theme after all custom.el is done."
+(defvar 0xMF-current-theme "dark")
+(defun 0xMF/my-theme-settings ()
+  "Bring sanity back to my current theme after changing themes."
   (interactive)
-  (custom-set-faces '(org-checkbox ((t (:background "#f5f5dc" :foreground "NavyBlue" :box (:line-width -3 :color "#f5f5dc" :style "released-button")))))))
+  (load-theme 'org-beautify)
+  (org-toggle-pretty-entities)
+  (if (string= 0xMF-current-theme "dark")
+      (progn
+        (custom-set-faces '(org-checkbox ((t (:background "#f5f5dc" :foreground "NavyBlue" :box (:line-width -3 :color "#f5f5dc" :style "released-button"))))))
+        (setq 0xMF-current-theme "light"))
+      (progn
+        (custom-set-faces '(org-checkbox ((t (:background "#180248" :foreground "Yellow" :box (:line-width -3 :color "#180248" :style "released-button"))))))
+        (setq 0xMF-current-theme "dark"))))
 
 (defun 0xMF/ivy-minibuffer-settings ()
   "Bring sanity back to up/down keybindings."
