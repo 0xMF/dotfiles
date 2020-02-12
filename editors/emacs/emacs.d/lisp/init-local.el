@@ -560,6 +560,11 @@ minibuffer."
   (unless hide-mode-line-mode
     (redraw-display)))
 
+(defun 0xMF/light-mode-settings ()
+  "Bring sanity back to light-theme after all custom.el is done."
+  (interactive)
+  (custom-set-faces '(org-checkbox ((t (:background "#f5f5dc" :foreground "NavyBlue" :box (:line-width -3 :color "#f5f5dc" :style "released-button")))))))
+
 (defun 0xMF/ivy-minibuffer-settings ()
   "Bring sanity back to up/down keybindings."
   (interactive)
