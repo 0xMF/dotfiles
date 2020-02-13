@@ -132,7 +132,7 @@ map b       <C-b>
 :map <F12> :set report=0<CR>:set nohls<CR>:%s/\i\+/&/g<CR>| " entire file wordcount
 
 " used for completion
-:imap <Tab><Tab> <C-P>
+:imap <C-Tab> <C-P>
 
 " FAILED COPY ATTEMPTS
 "map <C-C>  vgG
