@@ -5,6 +5,7 @@
   path      = ~/.git/aliases.gitconfig
 
 [core]
+  attributesfile = ~/.gitattributes
   editor    = vim
   excludesfile = ~/.gitignore
   pager     = less -FEqRSX

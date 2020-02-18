@@ -1,0 +1,2 @@
+# Treat these files as binary, do not show their changes
+*.html -diff

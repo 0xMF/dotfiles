@@ -161,29 +161,38 @@ _emacs() {
 # git
 _git() {
   installed=
-  echo -n "checking git..." >&2
+  echo "checking git..." >&2
 
   [[ -e $HOME/.gitconfig || -L $HOME/.gitconfig ]] && {
-    echo "found .gitconfig, not installing" >&2
+    echo " - found .gitconfig, not installing" >&2
   } || {
-    installed="git"
+    installed="gitconfig"
     ln -s ${SCRIPT_DIR%bin}tracker/gitrc.gitconfig $HOME/.gitconfig
   }
 
   [[ -d $HOME/.git || -L $HOME/.git ]] && { :
+    echo " - found .git, not installing" >&2
   } || {
     installed="git"
     ln -s ${SCRIPT_DIR%bin}tracker/git $HOME/.git
   }
 
-  [[ -e $HOME/.gitignore || -L $HOME/.gitignore ]] && { :
+  [[ -e $HOME/.gitattributes || -L $HOME/.gitattributes ]] && { :
+    echo " - found .gitattributes, not installing" >&2
   } || {
-    installed="git"
+    installed="gitattirbutes"
+    ln -s ${SCRIPT_DIR%bin}tracker/git/gitattributes $HOME/.gitattributes
+  }
+
+  [[ -e $HOME/.gitignore || -L $HOME/.gitignore ]] && { :
+    echo " - found .gitignore, not installing" >&2
+  } || {
+    installed="gitignore"
     ln -s ${SCRIPT_DIR%bin}tracker/git/ignore.conf $HOME/.gitignore
   }
 
   [ ! -z "$installed" ] && {
-    echo "INSTALLED!" >&2
+    echo "INSTALLED git!" >&2
     echo "Don't forget to install local.gitconfig and ignore.conf" >&2
   }
 }
