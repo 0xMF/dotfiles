@@ -115,9 +115,13 @@
                     "t" '(lambda () (interactive) (kill-buffer)(delete-window))
                     "x" 'evil-delete)
 (general-define-key :prefix "z"
+                    "b" 'paredit-forward-barf-sexp
+                    "B" 'paredit-backward-barf-sexp
                     "d" #'yafolding-toggle-all
                     "f" #'yafolding-toggle-element
                     "g" 'save-this-word
+                    "s" 'paredit-forward-slurp-sexp
+                    "S" 'paredit-backward-slurp-sexp
                     "x" '0xMF/orgmode-remove-tag
                     "t" 'save-this-word)
 
