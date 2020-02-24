@@ -570,16 +570,16 @@ minibuffer."
   (interactive)
   (load-theme 'org-beautify)
   (org-toggle-pretty-entities)
-  (mapcar #'(lambda (f) (set-face-background f (face-background 'default))) '(org-checkbox org-macro))
   (if (string= 0xMF-current-theme "dark")
       (progn
-        (custom-set-faces '(org-checkbox ((t (:foreground "NavyBlue" :box (:line-width -3 :color "#f5f5dc" :style "released-button"))))))
+        (custom-set-faces '(org-checkbox ((t (:foreground "NavyBlue" :box (:line-width -3  :color "#f5f5dc" :style "released-button"))))))
         (custom-set-faces '(org-macro ((t (:foreground "DarkOliveGreen" :bold t)))))
         (setq 0xMF-current-theme "light"))
       (progn
-        (custom-set-faces '(org-checkbox ((t (:foreground "Yellow" :box (:line-width -3 :color "#180248" :style "released-button"))))))
+        (custom-set-faces '(org-checkbox ((t (:foreground "Yellow" :box (:line-width -3  :color "#180248" :style "released-button"))))))
         (custom-set-faces '(org-macro ((t (:foreground "burlywood")))))
-        (setq 0xMF-current-theme "dark"))))
+        (setq 0xMF-current-theme "dark")))
+  (mapcar #'(lambda (f) (set-face-background f (face-background 'default))) '(org-checkbox org-macro)))
 
 (defun 0xMF/ivy-minibuffer-settings ()
   "Bring sanity back to up/down keybindings."
