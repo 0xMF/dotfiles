@@ -188,6 +188,7 @@
     (define-key map [escape] 'keyboard-quit)
     (define-key map [prior] 'evil-scroll-page-up)
     (define-key map [next] 'evil-scroll-page-down)
+    (define-key map (kbd "C-a") 'mark-whole-buffer)
     (define-key map (kbd "C-j") (lambda () (interactive) (evil-scroll-down nil)))
     (define-key map (kbd "C-d") 'save-buffer)
     (define-key map (kbd "C-n") 'next-buffer)
