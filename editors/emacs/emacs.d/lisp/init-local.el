@@ -564,22 +564,29 @@ minibuffer."
   (unless hide-mode-line-mode
     (redraw-display)))
 
-(defvar 0xMF-current-theme "dark")
+;; Helpful links:
+;;  https://emacs.stackexchange.com/questions/7748/why-cant-i-use-a-variable-when-defining-the-color-to-draw-a-box-with
+;;  https://ftp.gnu.org/old-gnu/Manuals/elisp-manual-21-2.8/html_node/elisp_634.html
+(defvar 0xMF-current-theme "dark" "Value of current theme: dark mode or light.")
 (defun 0xMF/my-theme-settings ()
   "Bring sanity back to my current theme after changing themes."
   (interactive)
   (load-theme 'org-beautify)
   (org-toggle-pretty-entities)
-  (if (string= 0xMF-current-theme "dark")
-      (progn
-        (custom-set-faces '(org-checkbox ((t (:foreground "NavyBlue" :box (:line-width -3  :color "#f5f5dc" :style "released-button"))))))
-        (custom-set-faces '(org-macro ((t (:foreground "DarkOliveGreen" :bold t)))))
-        (setq 0xMF-current-theme "light"))
-      (progn
-        (custom-set-faces '(org-checkbox ((t (:foreground "Yellow" :box (:line-width -3  :color "#180248" :style "released-button"))))))
-        (custom-set-faces '(org-macro ((t (:foreground "burlywood")))))
-        (setq 0xMF-current-theme "dark")))
-  (mapcar #'(lambda (f) (set-face-background f (face-background 'default))) '(org-checkbox org-macro)))
+  (let ((bg (face-background 'default)))
+    (if (string= 0xMF-current-theme "dark")
+        (progn
+          (set-face-attribute 'org-checkbox nil :inherit 'default :background bg :foreground "NavyBlue" :box `(:line-width -3 :color ,bg :style "released-button"))
+          (custom-set-faces '(org-macro ((t (:foreground "DarkOliveGreen" :bold t)))))
+          (setq 0xMF-current-theme "light"))
+        (progn
+          (set-face-attribute 'org-checkbox nil :inherit 'default :background bg :foreground "Yellow" :box `(:line-width -3 :color ,bg :style "released-button"))
+          (custom-set-faces '(org-macro ((t (:foreground "burlywood")))))
+          (setq 0xMF-current-theme "dark"))
+        (mapcar #'(lambda (f) (set-face-background f bg)
+                    (set-border-color bg))
+                '(org-checkbox org-macro))))
+  (message "changed to %s mode" 0xMF-current-theme))
 
 (defun 0xMF/ivy-minibuffer-settings ()
   "Bring sanity back to up/down keybindings."
