@@ -97,8 +97,13 @@
                     "o" 'other-window
                     "p" 'previous-buffer
                     ;; "P" 'other-window
-                    "r" '0xMF/reset
-                    "w" 'delete-other-windows)
+                    "r" 'evil-window-rotate-upwards
+                    "R" 'evil-window-rotate-downwards
+                    "u" 'winner-undo
+                    "U" 'winner-redo
+                    "w" 'delete-other-windows
+                    "0" 'delete-window
+                    "1" 'delete-window)
 (general-define-key :prefix "b"
                     "a" 'describe-bindings
                     "b" 'evil-scroll-page-up
@@ -109,7 +114,7 @@
                     "j" 'next-buffer
                     "l" 'list-buffers
                     "n" 'next-buffer
-                    "o" 'counsel-find-file
+                    "o" 'org-open-at-point
                     "p" 'previous-buffer
                     "r" '0xMF/reset
                     "t" '(lambda () (interactive) (kill-buffer)(delete-window))
@@ -120,6 +125,7 @@
                     "d" #'yafolding-toggle-all
                     "f" #'yafolding-toggle-element
                     "g" 'save-this-word
+                    "o" 'org-open-at-point
                     "s" 'paredit-forward-slurp-sexp
                     "S" 'paredit-backward-slurp-sexp
                     "x" '0xMF/orgmode-remove-tag
