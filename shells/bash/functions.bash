@@ -92,6 +92,19 @@ function gcoe {
   popd > /dev/null
 }
 
+gbruh () {
+  if [ -z "$1" ]; then
+    echo "Usage: git push -u origin branch-name" >&2
+    return
+  fi
+  if [ `git branch --list "$1" | wc -c` -eq 0 ]; then
+    echo "branch: $1 not found!" >&2
+    return 1
+  else
+    git push -u origin $1
+  fi
+}
+
 function xfci {
   git update-index --assume-unchanged $HOME/repos/dotfiles/misc/config/xfce4/terminal/terminalrc
   pushd $HOME/repos/dotfiles/misc/config/xfce4/xfconf/xfce-perchannel-xml  > /dev/null
