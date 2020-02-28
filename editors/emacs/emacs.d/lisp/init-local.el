@@ -15,7 +15,8 @@
   (package-refresh-contents))
 
 (setq my-required-packages '(evil evil-collection evil-magit
-                                  fill-column-indicator general
+                                  fill-column-indicator geiser
+                                  general go-mode
                                   hide-mode-line
                                   org-beautify-theme org-bullets
                                   org-gcal org-pdfview
@@ -703,16 +704,16 @@ minibuffer."
   "Remove all kinds of needless buffers."
   (when (get-buffer "*Compile-Log*")
     (kill-buffer "*Compile-Log*"))
-  (0xMF/kill-some-buffers "*Calculator*")
-  (0xMF/kill-some-buffers "*Packages*")
-  (0xMF/kill-some-buffers "^\\magit:")
-  (0xMF/kill-some-buffers "*compilation*")
-  (0xMF/kill-some-buffers "magit-diff:")
-  (0xMF/kill-some-buffers "magit-merge-preview:")
+  (0xMF/kill-some-buffers "^\\*Calculator*")
+  (0xMF/kill-some-buffers "^\\*Packages*")
+  (0xMF/kill-some-buffers "^\\*compilation*")
   (when (bound-and-true-p 0xMF/kill-all-magit)
-    (0xMF/kill-some-buffers "magit-process:"))
-  (0xMF/kill-some-buffers "*magit-todos--scan-with-git-grep")
-  (0xMF/kill-some-buffers "popup-win-dummy")
+    (0xMF/kill-some-buffers "^magit:")
+    (0xMF/kill-some-buffers "^magit-diff:")
+    (0xMF/kill-some-buffers "^magit-merge-preview:")
+    (0xMF/kill-some-buffers "^magit-process:")
+    (0xMF/kill-some-buffers "^\\*magit-todos--scan-with-git-grep"))
+  (0xMF/kill-some-buffers "^popup-win-dummy")
   (0xMF/kill-some-buffers "^\\*vc-diff*")
   (0xMF/kill-some-buffers "^\\*Backtrace*")
   (0xMF/kill-some-buffers "^\\*Buffer List*")
