@@ -159,6 +159,7 @@
                     "R" 'undo-tree-redo
                     "s" '0xMF/startup
                     "u" 'undo-tree-undo
+                    "v" '0xMF/vi
                     "t" '0xMF/my-theme-settings
                     "T" 'org-set-tags
                     "w" '(lambda () (interactive) (org-agenda-list 7))
@@ -746,6 +747,17 @@ minibuffer."
     (0xMF/local))
   (0xMF/my-vi-settings)
   (message "0xMF/startup"))
+
+(defun 0xMF/wrap ()
+  "toggle line wrapping."
+  (interactive)
+  (toggle-truncate-lines))
+
+(defun 0xMF/vi ()
+  "Reset/set settings to vim."
+  (interactive)
+  (turn-on-evil-mode)
+  (toggle-truncate-lines))
 
 (add-hook 'after-init-hook '0xMF/startup)
 
