@@ -152,8 +152,8 @@
                     "L" 'org-open-at-point
                     "n" 'display-line-numbers-mode
                     "o" 'find-file
-                    "p" '0xMF/start-slideshow
-                    "P" 'org-present
+                    "p" '0xMF/my-theme-settings
+                    "P" '0xMF/start-slideshow ;;'org-present
                     "q" 'fill-paragraph
                     "r" '0xMF/reset
                     "R" 'undo-tree-redo
