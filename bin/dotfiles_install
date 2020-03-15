@@ -284,7 +284,7 @@ _vim() {
 _bash
 _config_dconf
 _config_misc
-_emacs
+[[ "$1" == "--with-emacs" ]] && _emacs
 _git
 _misc
 _pal
