@@ -594,7 +594,7 @@ minibuffer."
           (setq 0xMF-current-theme "dark"))
         (mapcar #'(lambda (f) (set-face-background f bg)
                     (set-border-color bg))
-                '(org-checkbox org-macro))))
+                '(org-checkbox org-macro org-hide))))
   (message "changed to %s mode" 0xMF-current-theme))
 
 (defun 0xMF/ivy-minibuffer-settings ()
