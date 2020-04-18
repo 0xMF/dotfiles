@@ -314,7 +314,7 @@ minibuffer."
 :init
 (add-to-list 'auto-mode-alist '("\\.md\\'" . markdown-mode))
 (add-to-list 'auto-mode-alist '("\\.markdown\\'" . markdown-mode))
-(add-hook 'markdown-mode-hook (lambda () (set-fill-column 72)))
+(add-hook 'markdown-mode-hook (lambda () (set-fill-column 99)))
 
 (unless (version< emacs-version "27")
   (setq url-http-referer 'nil))
@@ -453,8 +453,9 @@ minibuffer."
 
 (evil-define-key 'insert org-mode-map (kbd "C-<tab>") #'tab-to-tab-stop)
 
-;; Yup we want spell check to be turned on automatically in org mode
+;; Yup we want spell check to be turned on automatically in org mode and text wrap at 99.
 (add-hook 'org-mode-hook 'turn-on-flyspell)
+(add-hook 'org-mode-hook '(lambda() (set-fill-column 99)))
 
 ;; do not ask before prompting
 (setq org-confirm-babel-evaluate nil)
@@ -490,9 +491,9 @@ minibuffer."
 (load-if-file-exists "~/.emacs.d/lisp/secrets.el")
 (load-if-file-exists "~/quicklisp/clhs-use-local.el")
 
-;; wrap lines (hard return) around column 90
+;; wrap lines (hard return) around column 99
 (add-hook 'text-mode-hook 'turn-on-auto-fill)
-(add-hook 'text-mode-hook '(lambda() (set-fill-column 90)))
+(add-hook 'text-mode-hook '(lambda() (set-fill-column 99)))
 
 ;; replaces Emacs undo-redo system with something MUCH nicer!
 (global-undo-tree-mode t)

@@ -116,7 +116,7 @@ set nocompatible        " Use VIM not vi
 syntax on               " start syntax highlighting
 set nonumber            " hides linenumbers by default
 set history=50          " keep track of last 50 chars
-set textwidth=100       " force text width off (prev at 80 chars/line)
+set textwidth=99        " force text width off (prev at 80 chars/line)
 set colorcolumn=100     " show the last column in colour
 "set formatprg=par\ -reqw100 " use external par instead of Vim fmt, still avail with gw
 set formatoptions=tcqnl " include numbered lists when formatting with gq
@@ -224,16 +224,16 @@ set clipboard=unnamed   " all yanking goes to clipboard
     "au BufRead,BufNewFile *.go setlocal bomb
     au BufRead,BufNewFile *.go setlocal fileencoding=utf-8
     au BufRead,BufNewFile *.go setlocal spell
-    au BufRead,BufNewFile *.go setlocal textwidth=85
+    au BufRead,BufNewFile *.go setlocal textwidth=99
     "au BufRead,BufNewFile *.go setlocal formatprg=par\ -reqw85
-    au BufRead,BufNewFile *.go setlocal colorcolumn=85
+    au BufRead,BufNewFile *.go setlocal colorcolumn=100
     au BufRead,BufNewFile *.go setlocal noexpandtab
 
     "* Markdown
     au BufRead,BufNewFile *.md setlocal filetype=markdown
     au BufRead,BufNewFile *.md setlocal spell
-    au BufRead,BufNewFile *.md setlocal colorcolumn=70
-    au BufRead,BufNewFile *.md setlocal textwidth=72
+    au BufRead,BufNewFile *.md setlocal colorcolumn=100
+    au BufRead,BufNewFile *.md setlocal textwidth=99
     au BufRead,BufNewFile *.md setlocal nowrap
     au BufRead,BufNewFile *.md setlocal nonumber
     au BufRead,BufNewFile *.md setlocal guioptions-=r
@@ -277,8 +277,8 @@ set clipboard=unnamed   " all yanking goes to clipboard
     "* Text file
     "au BufRead,BufNewFile   *.txt setlocal formatprg=par\ -reqw100
     au BufRead,BufNewFile   *.txt setlocal syntax=asciidoc
-    au BufRead,BufNewFile   *.txt setlocal colorcolumn=70
-    au BufRead,BufNewFile   *.txt setlocal textwidth=72
+    au BufRead,BufNewFile   *.txt setlocal colorcolumn=100
+    au BufRead,BufNewFile   *.txt setlocal textwidth=99
     au BufRead,BufNewFile   *.txt setlocal nowrap
     au BufRead,BufNewFile   *.txt setlocal nonumber
     au BufRead,BufNewFile   *.txt setlocal guioptions-=r
