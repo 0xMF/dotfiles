@@ -85,7 +85,7 @@
 (general-define-key :prefix "w"
                     "a" 'org-toggle-link-display
                     "c" 'whitespace-cleanup
-                    "d" '(lambda () (interactive) (kill-buffer)(delete-window))
+                    "d" '(lambda () (interactive) (kill-buffer) (unless (one-window-p)(delete-window)))
                     "f" '0xMF/toggle-font-large-normal
                     "|" 'fci-mode
                     "h" 'previous-buffer
