@@ -156,7 +156,7 @@
                     "P" '0xMF/start-slideshow ;;'org-present
                     "q" 'fill-paragraph
                     "r" '0xMF/reset
-                    "R" 'undo-tree-redo
+                    "R" 'file-reload ;;'undo-tree-redo
                     "s" '0xMF/startup
                     "u" 'undo-tree-undo
                     "v" '0xMF/vi
