@@ -96,6 +96,7 @@
                     "N" 'other-window
                     "t" 'whitespace-mode
                     "o" 'other-window
+                    "O" 'org-open-at-point
                     "p" 'previous-buffer
                     ;; "P" 'other-window
                     "r" 'evil-window-rotate-upwards
