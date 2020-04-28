@@ -15,16 +15,12 @@
   (package-refresh-contents))
 
 (setq my-required-packages '(evil evil-collection evil-magit
-                                  fill-column-indicator geiser
-                                  general go-mode
-                                  hide-mode-line
-                                  org-beautify-theme org-bullets
-                                  org-gcal org-pdfview
-                                  org-present powerline
-                                  racket-mode smart-mode-line
-                                  smart-mode-line-powerline-theme
-                                  ssh-agency use-package
+                                  fill-column-indicator geiser general go-mode hide-mode-line
+                                  org-beautify-theme org-bullets org-gcal org-pdfview org-present
+                                  org-static-blog powerline racket-mode smart-mode-line
+                                  smart-mode-line-powerline-theme ssh-agency use-package
                                   yafolding))
+
 (dolist (package my-required-packages)
   (unless (package-installed-p package)
     (package-install package)))
