@@ -885,6 +885,13 @@ function recent {
   cd $OLDPWD
 }
 
+mouse-reset () {
+  sudo modprobe -r psmouse
+  sleep 1
+  sudo modprobe psmouse
+  [[ -e ~/.right-mouseconfig ]] && xmodmap ~/.right-mouseconfig
+}
+
 sadu () {
   distro=$(\grep -w ID /etc/os-release | cut -d= -f2 | tr -d '"')
   case "${distro}" in
