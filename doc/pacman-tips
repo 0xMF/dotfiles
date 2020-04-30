@@ -30,10 +30,15 @@ makepkg -s                                # build and install locally built pack
 pacman  -U some.pkg.tar.gz
 makepkg -si                               # build and install packages from AUR
 
-# If you get error
+# If you get errors like
 libutf8proc: /usr/lib/libutf8proc.so.2 exists in filesystem
+# or
+nss: /usr/lib/p11-kit-trust.so exists in filesystem
+
 # use
-pacman -Suy --overwrite usr/lib/libutf8proc.so.2
+pacman -Suy --overwrite /usr/lib/libutf8proc.so.2
+# or
+pacman -Suy --overwrite /usr/lib/p11-kit-trust.so
 
 # get a list of packages installed by pacman
 grep -i installed /var/log/pacman.log
