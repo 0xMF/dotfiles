@@ -26,6 +26,5 @@ MiscUseShiftArrowsToScroll=FALSE
 MiscSlimTabs=FALSE
 MiscNewTabAdjacent=FALSE
 ScrollingBar=TERMINAL_SCROLLBAR_NONE
-FontName=Source Code Variable Semi-Bold 9
+FontName=Source Code Variable Semi-Bold 12
 ScrollingLines=999
-
