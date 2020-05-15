@@ -149,6 +149,7 @@
                     "L" 'org-open-at-point
                     "n" 'display-line-numbers-mode
                     "o" 'find-file
+                    "O" 'org-open-at-point
                     "p" '0xMF/my-theme-settings
                     "P" '0xMF/start-slideshow ;;'org-present
                     "q" 'fill-paragraph
