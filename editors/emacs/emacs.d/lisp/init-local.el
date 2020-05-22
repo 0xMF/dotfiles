@@ -16,10 +16,10 @@
 
 (setq my-required-packages '(evil evil-collection evil-magit
                                   fill-column-indicator geiser general go-mode hide-mode-line
-                                  org-beautify-theme org-bullets org-gcal org-pdfview org-present
-                                  org-static-blog powerline racket-mode smart-mode-line
-                                  smart-mode-line-powerline-theme ssh-agency use-package
-                                  yafolding))
+                                  org-beautify-theme org-bullets org-gcal org-noter-pdftools
+                                  org-pdftools org-present org-static-blog powerline racket-mode
+                                  smart-mode-line smart-mode-line-powerline-theme ssh-agency
+                                  use-package yafolding))
 
 (dolist (package my-required-packages)
   (unless (package-installed-p package)
@@ -252,7 +252,7 @@ minibuffer."
 ;; important for markdown, GFM export, and viewing pdfs
 (eval-after-load "org" '(require 'ox-md nil t))
 (eval-after-load "org" '(require 'ox-gfm nil t))
-(eval-after-load "org" '(require 'org-pdfview))
+(eval-after-load "org" '(require 'org-pdftools))
 (eval-after-load "org" '(require 'htmlize))
 
 (pdf-tools-install)
