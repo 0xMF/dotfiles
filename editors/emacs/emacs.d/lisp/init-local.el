@@ -256,6 +256,14 @@ minibuffer."
 (eval-after-load "org" '(require 'htmlize))
 
 (pdf-tools-install)
+(use-package org-pdftools
+  :hook (org-load . org-pdftools-setup-link))
+
+(use-package org-noter-pdftools
+  :after org-noter
+  :config
+  (with-eval-after-load 'pdf-annot
+    (add-hook 'pdf-annot-activate-handler-functions #'org-noter-pdftools-jump-to-note)))
 (add-to-list 'pdf-view-mode-hook 'pdf-view-midnight-minor-mode)
 
 (defun my-eww-settings ()
