@@ -55,6 +55,7 @@ set runtimepath=$VIMRUNTIME,$MYVIM,$MYVIM/dependencies
 
 "** check if gvim is running and set its options accordingly
 :if has ("gui_running")
+    :syntax on               " start syntax highlighting
     "** only initialize window size if has not been initialized yet
     :if !exists ("s:my_windowInitialized_variable")
     :   let s:my_windowInitialized_variable=1
@@ -113,7 +114,6 @@ set runtimepath=$VIMRUNTIME,$MYVIM,$MYVIM/dependencies
 
 "** Custom Settings
 set nocompatible        " Use VIM not vi
-syntax on               " start syntax highlighting
 set nonumber            " hides linenumbers by default
 set history=50          " keep track of last 50 chars
 set textwidth=99        " force text width off (prev at 80 chars/line)

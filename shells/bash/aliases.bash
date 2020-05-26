@@ -28,6 +28,8 @@ if [ $OS == "FreeBSD" ]; then
 else
 
   #alias ls='/bin/ls --color=always'
+  alias vibb='vim.tiny -u ~/.vim/vim-bare-bones.vim'
+  alias bbvi='vim.tiny -u ~/.vim/vim-bare-bones.vim'
   alias lsn='ls -pF --color=none'
   alias ls='ls --color=always --ignore="NTUSER.*" --ignore="ntuser.*" -F --group-directories-first'
   alias la='ls -lAhFt --time-style=+"%Y-%b-%d %H:%S"'
