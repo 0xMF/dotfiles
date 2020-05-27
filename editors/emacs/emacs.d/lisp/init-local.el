@@ -449,6 +449,8 @@ minibuffer."
 (require 'org-bullets)
 (add-hook 'org-mode-hook (lambda () (org-bullets-mode 1)))
 
+(require 'org-tempo)
+
 (defun kill-misc-buffers()
   "Permanently remove some buffers."
   ;; (if (get-buffer "*scratch*")
