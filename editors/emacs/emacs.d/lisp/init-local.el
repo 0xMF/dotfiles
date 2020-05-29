@@ -747,7 +747,8 @@ minibuffer."
   (org-toggle-pretty-entities)
   (org-toggle-pretty-entities)
   (when (equal major-mode 'org-mode)
-    (org-set-visibility-according-to-property))
+    (org-set-visibility-according-to-property)
+    (setq electric-pair-mode nil))
   (when (equal major-mode 'Info-mode)
     (0xMF/Info-mode-settings))
   (when (fboundp 'ivy-minibuffer-map)
@@ -758,7 +759,7 @@ minibuffer."
   (message "0xMF/startup"))
 
 (defun 0xMF/wrap ()
-  "toggle line wrapping."
+  "Toggle line wrapping."
   (interactive)
   (toggle-truncate-lines))
 
