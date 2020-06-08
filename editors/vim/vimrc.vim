@@ -109,6 +109,7 @@ set runtimepath=$VIMRUNTIME,$MYVIM,$MYVIM/dependencies
     "** prefer my colorscheme (nice-term) for conosole
     : if filereadable(expand("$MYVIM/colors/nice-term.vim"))
     :   colorscheme nice-term
+    :   syntax on               " start syntax highlighting
     : endif
 :endif
 
