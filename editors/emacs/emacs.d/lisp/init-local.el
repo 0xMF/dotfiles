@@ -735,6 +735,8 @@ minibuffer."
   (0xMF/kill-some-buffers "^\\*PP Eval Output*")
   (0xMF/kill-some-buffers "^\\*Flycheck error messages*")
   (0xMF/my-orgmode-settings)
+  (when (fboundp '0xMF/local)
+    (0xMF/local))
   (get-buffer-create "*scratch*"))
 
 (defun 0xMF/startup ()
