@@ -472,8 +472,6 @@ minibuffer."
 ;; refer: https://github.com/gongzhitaao/orgcss
 (setq org-html-htmlize-output-type 'css)
 
-;; make EWW default browser for html files
-(setq browse-url-browser-function 'eww-browse-url)
 
 ;;----------------------------------------------------------------------------
 ;; Miscalleanous settings
@@ -486,7 +484,6 @@ minibuffer."
           (lambda () (yafolding-mode)))
 
 (set-default 'truncate-lines t)
-(setq browse-url-browser-function 'eww-browse-url)
 
 ;; Do not ceate backups.
 (setq  make-backup-files nil)
@@ -663,6 +660,15 @@ minibuffer."
                                               "#*#\\)"))
 (add-hook 'text-mode-hook 'turn-on-visual-line-mode)
 
+(defun 0xMF/toggle-browser-eww ()
+  "Toggle between eww and chromium as default browser for html files."
+  (interactive)
+  (setq browse-url-browser-function
+        (if (equal browse-url-browser-function 'eww-browse-url)
+            'browse-url-chromium
+            'eww-browse-url))
+  (message "setting browser to '%s'" browse-url-browser-function))
+
 (setq 0xMF/toggle-font-large-normal nil)
 (defun 0xMF/toggle-font-large-normal ()
   "Toggle font sizes between large/normal."
@@ -671,9 +677,9 @@ minibuffer."
       (progn
         (set-frame-font "Source Code Pro-13:style=Semibold" nil t)
         (put '0xMF/toggle-font-large-normal 'state nil))
-    (progn
-      (set-frame-font "Source Code Pro-15:style=Semibold" nil t)
-      (put '0xMF/toggle-font-large-normal 'state t)))
+      (progn
+        (set-frame-font "Source Code Pro-15:style=Semibold" nil t)
+        (put '0xMF/toggle-font-large-normal 'state t)))
   (message 0xMF/toggle-font-large-normal))
 
 (defun 0xMF/normal-font ()
