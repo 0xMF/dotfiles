@@ -107,7 +107,8 @@
                     "a" 'describe-bindings
                     "b" 'evil-scroll-page-up
                     "c" 'yank
-                    "d" 'sanityinc/toggle-delete-other-windows
+                    "d" 'org-time-stamp-inactive
+                    "D" 'org-time-stamp
                     "f" 'markdown-follow-thing-at-point
                     "h" 'previous-buffer
                     "j" 'next-buffer
@@ -117,6 +118,7 @@
                     "p" 'previous-buffer
                     "r" '0xMF/reset
                     "t" '(lambda () (interactive) (kill-buffer)(delete-window))
+                    "T" 'sanityinc/toggle-delete-other-windows
                     "x" 'evil-delete)
 (general-define-key :prefix "z"
                     "b" 'paredit-forward-barf-sexp
