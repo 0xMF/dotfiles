@@ -69,28 +69,6 @@ function lsc {
   ls "$@" | cut -c1-44 | column -c "${COLUMNS:-88}"
 }
 
-# a useful function about formatting bash from git output
-function gcoe {
-
-  pushd $HOME/repos/dotfiles > /dev/null
-
-  if [[ -n "$1" ]]
-  then
-    o="$HOME/repos/dotfiles/$1"
-    [[ -e "$o" ]] && git checkout "$o" 2>&1
-    popd > /dev/null
-    return
-  fi
-
-  f=$(echo custom.el)
-  o=$(git checkout $HOME/repos/dotfiles/editors/emacs/emacs.d/custom.el 2>&1)
-  printf "%-30s: %s\n" $f "$o"
-
-  f=$(echo dconf/user)
-  o=$(git checkout $HOME/repos/dotfiles/misc/config/dconf/user 2>&1)
-  printf "%-30s: %s\n" $f "$o"
-  popd > /dev/null
-}
 
 gbruh () {
   if [ -z "$1" ]; then
