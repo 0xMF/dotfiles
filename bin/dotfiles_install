@@ -38,37 +38,24 @@ _bash() {
 
   [ ! -z "$installed" ] && {
     echo "INSTALLED!" >&2
-    echo "Don't forget to install local.bash and secrets.bash" >&2
+    echo " - Don't forget to install local.bash and secrets.bash" >&2
   }
-}
-
-# config/dconf
-_config_dconf() {
-  installed=
-  echo -n "checking config/dconf..." >&2
-
-  [[ -d $HOME/.config/dconf || -L $HOME/.config/dconf ]] && { :
-    echo "found, not installing" >&2
-  } || {
-    installed="dconf"
-    ln -s ${SCRIPT_DIR%bin}misc/config/dconf $HOME/.config/dconf
-  }
-
-  [ ! -z "$installed" ] && echo "INSTALLED!" >&2
 }
 
 # config/misc
 _config_misc() {
-  installed=
-  echo -n "checking config/chromium-flags.conf..." >&2
-  [[ -L $HOME/.config/chromium-flags.conf ]] && { :
-    echo "found, not installing" >&2
-  } || {
-    installed="chromium-flags.conf"
-    ln -s ${SCRIPT_DIR%bin}misc/config/chromium-flags.conf $HOME/.config/chromium-flags.conf
-  }
+  [[ -e $HOME/.config ]] && {
+    installed=
+    echo -n "checking config/chromium-flags.conf..." >&2
+    [[ -L $HOME/.config/chromium-flags.conf ]] && { :
+      echo "found, not installing" >&2
+    } || {
+      installed="chromium-flags.conf"
+      ln -s ${SCRIPT_DIR%bin}misc/config/chromium-flags.conf $HOME/.config/chromium-flags.conf
+    }
 
-  [ ! -z "$installed" ] && echo "INSTALLED!" >&2
+    [ ! -z "$installed" ] && echo "INSTALLED!" >&2
+  }
 }
 
 # emacs
@@ -192,8 +179,8 @@ _git() {
   }
 
   [ ! -z "$installed" ] && {
-    echo "INSTALLED git!" >&2
-    echo "Don't forget to install local.gitconfig and ignore.conf" >&2
+    echo " - ...INSTALLED git!" >&2
+    echo "   Don't forget to install local.gitconfig and ignore.conf" >&2
   }
 }
 
@@ -282,7 +269,6 @@ _vim() {
 
 
 _bash
-_config_dconf
 _config_misc
 [[ "$1" == "--with-emacs" ]] && _emacs
 _git
