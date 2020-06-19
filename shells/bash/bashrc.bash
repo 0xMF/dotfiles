@@ -88,11 +88,9 @@ umask 0022
 # make less more friendly for non-text input files, see lesspipe(1)
 [ -x /usr/bin/lesspipe ] && eval "$(SHELL=/bin/sh lesspipe)"
 
-# command line calendar
-# https://github.com/0xMF/catholic/calendar
-pal 2> /dev/null
-if [ $? -ne 0 ]; then
-  echo "Missing pal - the command line calendar." >&2
+# call command line calendar if pal installed
+if [[ "`type -t pal`" == "file" ]] ; then
+  pal
 fi
 
 # source local and private settings last so they take precedence over everything
