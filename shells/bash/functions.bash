@@ -255,7 +255,7 @@ function psh {
   if [ `id -u` -eq 0 ]; then
     PS1="$RED\h:\W $(parse_git_repo)$RED#$NOCOLOR "
   else
-    PS1="$BLUE\h:\W $(parse_git_repo)$NOCOLOR$ "
+    PS1="$PURPLE\h:$CYAN\W $(parse_git_repo)$NOCOLOR$ "
   fi
   PROMPT_COMMAND="psh"
 }
