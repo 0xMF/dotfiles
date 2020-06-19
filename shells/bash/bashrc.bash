@@ -93,30 +93,12 @@ umask 0022
 pal 2> /dev/null
 if [ $? -ne 0 ]; then
   echo "Missing pal - the command line calendar." >&2
-else
-  echo "Ah! Good. You've got pal - the command line calendar." >&2
-  echo "If you'd like a Catholic saints calendar, check out saints.pal in" >&2
-  echo "    https://github.com/0xMF/catholic"  >&2
-fi
-
-if declare -f done_init > /dev/null
-then
-  done_init
 fi
 
 # source local and private settings last so they take precedence over everything
 # changes to local.bash should not be publicly tracked and shared (recommended)
 if [ -f $REPO/local.bash ]; then
   source $REPO/local.bash
-fi
-
-if [[ `type -t green` == "function" ]]
-then
-  #ps1
-  green
-else
-  PS1="$ "
-  PROMPT_COMMAND=""
 fi
 
 # vim:nospell:ft=sh:
