@@ -56,7 +56,7 @@ FCEDIT='/usr/bin/vim'    # fc usese vi too
 
 # resembles the bash equivalent of '\w$ ' with green colour highlighting
 # next vary prompt according to regular user or root
-export PS1=`print '\e[0m\e[32;1m$(basename $(echo $PWD|sed "s,^$HOME$,~," ))\e[0m$ '`
+export PS1=`print '\e[0m\e[32;1m$(basename $(echo $PWD|sed "s,^$HOME$,~," ))\e[0m% '`
 
 # command line calendar
 # https://github.com/0xMF/catholic/calendar

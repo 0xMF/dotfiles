@@ -2,7 +2,10 @@
 #
 # User defined aliases
 
-OS=$(uname -s)
+export OS=
+[[ "$(uname -s)" == "FreeBSD" ]] && OS="BSD"
+[[ "$OSRV" == "OpenBSD" ]] && OS="BSD"
+echo $OS
 
 bsd() {
   alias eg='egrep -i'
@@ -38,12 +41,16 @@ linux() {
   alias stats="man -k ' ' | grep -Ee 'stat \((1|8)\) '"
 }
 
-[[ "$OS" == "FreeBSD" ]] && bsd
-case "$OSRV" in
-  "OpenBSD")    bsd ;;
-  "GNU/Linux")  linux ;;
-  *) ;;
-esac
+[[ "$OS" == "BSD" ]] \
+  && bsd \
+  || {
+        case "$OSRV" in
+          "OpenBSD")    bsd ;;
+          "GNU/Linux")  linux ;;
+          *) ;;
+        esac;
+     }
+
 
 
 alias ..='cd ..'

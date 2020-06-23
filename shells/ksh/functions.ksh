@@ -1,7 +1,8 @@
 #!/usr/bin/env ksh
 #
 
-OS=$(uname -s)
+[[ "$(uname -s)" == "FreeBSD" ]] && OS="BSD"
+[[ "$(uname)" == "OpenBSD" ]] && OS="BSD"
 export PROMPT_COMMAND="ps1;$PROMPT_COMMAND"
 
 BLACK="\[\033[30m\]"
@@ -10,7 +11,7 @@ RED="\[\033[1;31m\]"
 GREEN="\[\033[1;32m\]"
 YELLOW="\[\033[1;33m\]"
 BLUE="\[\033[1;34m\]"
-PURPLE="\[\033[1;35m" 
+PURPLE="\[\033[1;35m"
 CYAN="\[\033[1;36m\]"
 WHITE="\[\033[1;37m\]"
 NOCOLOR="\[\033[00m\]"
@@ -65,11 +66,11 @@ function parse_git_dirty {
 
   # (slower) check for large repo in filenames of all large repos
   /bin/grep -qw "$PWD$" $large_repos 2>/dev/null
-  if [ $? -eq 0 ]; then 
+  if [ $? -eq 0 ]; then
     echo $sts_skip
   else
     # not in list of large repos, run a one time check for this being a large repo
-    if [ $OS == "FreeBSD" ]; then
+    if [ $OS == "BSD" ]; then
       sts=$(/usr/bin/time -p git status --porcelain 2>&1)
       echo -e '\b'
     else
@@ -83,15 +84,15 @@ function parse_git_dirty {
           export GIT_LARGE_REPO="$PWD"
           echo $sts_skip && return
       fi
-      
+
       if [ $lns -eq 1 ]; then
         echo $unchanged
       else
         echo $changed
-        # no then 
+        # no then
         #echo "$sts"|head -1|grep -Ee '^[0-9]:[0-9][0-9].[0-9][0-9]$' 2>&1 >/dev/null
         #if [ $? -eq 0 ]; then
-        #  echo $unchanged 
+        #  echo $unchanged
         #fi
       fi
     fi
@@ -107,25 +108,32 @@ function ghist {
   git log --pretty=format:"%h %ad | %s" --graph --date=short
 }
 
-# Edit your current day's todo list. 
+# Edit your current day's todo list.
 function todo {
-  ${EDITOR:-/usr/local/bin/vim} + ~/$(date +todolist-%Y%m%d); 
+  ${EDITOR:-/usr/local/bin/vim} + ~/$(date +todolist-%Y%m%d);
 }
-  
+
 function ps1 {
-  PS1="$GREEN${OSRV}$BLUE:\w$(parse_git_branch_colour)$NOCOLOR$ "
+  PS1="$GREEN${OSRV}$BLUE:\w$(parse_git_branch_colour)$NOCOLOR% "
   PROMPT_COMMAND="ps1"
 }
 
 function psh {
-  PS1="$BLUE\h:\W$(parse_git_branch_colour)$NOCOLOR$ "
+  PS1="$BLUE\h:\W$(parse_git_branch_colour)$NOCOLOR% "
   PROMPT_COMMAND="psh"
 }
 
 function pss {
-  PS1="$BLUE\W$(parse_git_branch_colour)$NOCOLOR$ "
+  PS1="$BLUE\W$(parse_git_branch_colour)$NOCOLOR% "
   PROMPT_COMMAND="pss"
 }
+
+function psm {
+  #PS1=`print '\e[0m\e[32;1m$(basename $(echo $PWD|sed "s,^$HOME$,~," ))\e[0m% '`
+  PS1="$GREEN\W$(parse_git_branch_colour)$NOCOLOR% "
+  PROMPT_COMMAND="psm"
+}
+
 
 function anc {
   alias ls='lsn'
