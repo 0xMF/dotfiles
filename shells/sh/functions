@@ -96,6 +96,7 @@ function parse_git_dirty {
         #fi
       fi
     fi
+    fi
   fi
 }
 
