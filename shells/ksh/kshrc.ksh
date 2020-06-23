@@ -7,6 +7,9 @@ REPO=~/.ksh
 #
 print .kshrc called ...
 
+# don't do anything if we don't have a prompt (not an interactive shell)
+#[[ $- != *i* ]] && return || [ -z "$PS1" ] && return
+
 [ -f $HOME/.profile ] && . ~/.profile
 PATH=$PATH:/usr/local/bin:.:~/bin
 
@@ -29,7 +32,6 @@ fi
 if [ -f $REPO/functions.ksh ]; then
   . $REPO/functions.ksh
 fi
-
 
 # setup our prompt PS1, first get OS release+version
 OSRV=
@@ -59,14 +61,17 @@ FCEDIT='/usr/bin/vim'    # fc usese vi too
 export PS1=`print '\e[0m\e[32;1m$(basename $(echo $PWD|sed "s,^$HOME$,~," ))\e[0m% '`
 
 # command line calendar
-# https://github.com/0xMF/catholic/calendar
 pal 2> /dev/null
-if [ $? -ne 0 ]; then
-  echo "Missing pal - the command line calendar." >&2
-else
+if [ $? -eq 0 ]; then
   echo "Ah! Good. You've got pal - the command line calendar." >&2
   echo "If you'd like a Catholic saints calendar, check out" >&2
   echo "   misc/pal/saints.pal"  >&2
+fi
+
+# source local and private settings last so they take precedence over everything
+# changes to local.bash should not be publicly tracked and shared (recommended)
+if [ -f $REPO/local.ksh ]; then
+  source $REPO/local.ksh
 fi
 
 # vim:nospell:ft=sh:

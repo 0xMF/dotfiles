@@ -27,16 +27,12 @@ if [ -f $REPO/functions.bash ]; then
   source $REPO/functions.bash
 fi
 
-
 # setup our prompt PS1, first get OS release+version
 OSRV=
 if [ $(uname -o) == "GNU/Linux" ]; then
   if [ -e /etc/os-release ]; then
     OSRV=$(grep "^ID=" /etc/os-release|awk -F'=' '{ print $NF }')
     OSRV=$(grep "PRETTY_NAME=" /etc/os-release|sed 's/"//g'|awk '{print $NF}')
-    #OSRV=${OSRV}$(grep "^VERSION_ID=" /etc/os-release|awk -F'=' '{ print $NF }'|sed 's/"//g;s/^/ /')
-    #OSRV=$(grep "^PRETTY_NAME=" /etc/os-release|awk -F' '  '{$1=""; print $0}'|sed 's/^ //;s/"$//')
-    #OSRV=$(grep "^PRETTY_NAME=" /etc/os-release|awk -F' ' '{$1=""; ($2 == "GNU/Linux") && $2=""; print $0}'|sed 's/^ *//g;s/"$//')
     PRETTY_NAME=$(grep ^PRETTY_NAME /etc/os-release|cut -d'=' -f2|sed 's/"//g')
     NAME=$(grep ^NAME /etc/os-release|cut -d'=' -f2|sed 's/"//g')
     OSRV=$(echo ${PRETTY_NAME#${NAME}})
@@ -91,6 +87,14 @@ umask 0022
 # call command line calendar if pal installed
 if [[ "`type -t pal`" == "file" ]] ; then
   pal
+fi
+
+# command line calendar
+pal 2> /dev/null
+if [ $? -eq 0 ]; then
+  echo "Ah! Good. You've got pal - the command line calendar." >&2
+  echo "If you'd like a Catholic saints calendar, check out" >&2
+  echo "   misc/pal/saints.pal"  >&2
 fi
 
 # source local and private settings last so they take precedence over everything
