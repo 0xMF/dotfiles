@@ -35,6 +35,7 @@ fi
 OSRV=
 if [ $(uname) == "OpenBSD" ]; then
     OSRV=$(uname)
+    /usr/local/bin/keychain ~/.ssh/id_rsa
 else
   if [ $(uname -o) == "GNU/Linux" ]; then
     if [ $(cat /etc/*-release|wc -l) -eq 1 ]; then
@@ -63,8 +64,8 @@ if [ $? -ne 0 ]; then
   echo "Missing pal - the command line calendar." >&2
 else
   echo "Ah! Good. You've got pal - the command line calendar." >&2
-  echo "If you'd like a Catholic saints calendar, check out saints.pal in" >&2
-  echo "    https://github.com/0xMF/catholic"  >&2
+  echo "If you'd like a Catholic saints calendar, check out" >&2
+  echo "   misc/pal/saints.pal"  >&2
 fi
 
 # vim:nospell:ft=sh:

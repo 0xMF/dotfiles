@@ -4,8 +4,7 @@
 
 OS=$(uname -s)
 
-if [ $OS == "FreeBSD" ]; then
-
+bsd() {
   alias eg='egrep -i'
   alias h='fc -l'
   alias iotop='top -mio -ototal'
@@ -25,9 +24,9 @@ if [ $OS == "FreeBSD" ]; then
   alias portaudit='/usr/sbin/pkg audit -F'
   alias su='su -l'
   alias stats="man -k '*' | grep -Ee 'stat\((1|8)\) '"
+}
 
-else
-
+linux() {
   alias ls='/bin/ls --color=always'
   alias lsn='ls -pF --color=none'
   alias la='ls -lah'
@@ -36,8 +35,10 @@ else
   alias lld='ls -lhd'
   alias su='su -'
   alias stats="man -k ' ' | grep -Ee 'stat \((1|8)\) '"
+}
 
-fi
+[[ "$OS" == "FreeBSD" ]] && bsd
+[[ "$OSRV" == "OpenBSD" ]] && bsd
 
 alias ..='cd ..'
 alias ack='ack-grep'
@@ -54,7 +55,7 @@ alias reset='reset -e ^?'
 alias vi='vim'
 
 # git based aliases
-type hub 2>/dev/null
+type hub 2>&1 >/dev/null
 [[ $? -eq 0 ]] && alias git='hub'
 alias g='git'
 alias gbr='g branch'
