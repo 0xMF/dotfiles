@@ -1,4 +1,4 @@
-# .kshrc 
+# .kshrc
 #-----------------------------------------------------------------
 
 #
@@ -33,15 +33,19 @@ fi
 
 # setup our prompt PS1, first get OS release+version
 OSRV=
-if [ $(uname -o) == "GNU/Linux" ]; then
-  if [ $(cat /etc/*-release|wc -l) -eq 1 ]; then
+if [ $(uname) == "OpenBSD" ]; then
+    OSRV=$(uname)
+else
+  if [ $(uname -o) == "GNU/Linux" ]; then
+    if [ $(cat /etc/*-release|wc -l) -eq 1 ]; then
       OSRV=$(cat /etc/*-release)
-  else
+    else
       OSRV=$(cat /etc/lsb-release|grep DESCRIPTION|sed -e 's/.*=//;s/\"//g')
+    fi
   fi
-fi
-if [ $(uname -o) == "FreeBSD" ]; then
+  if [ $(uname -o) == "FreeBSD" ]; then
     OSRV=$(uname -sr)
+  fi
 fi
 
 set -o emacs             # vi-style editing

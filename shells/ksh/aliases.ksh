@@ -1,10 +1,10 @@
 #!/usr/bin/env bash
 #
-# User defined aliases 
+# User defined aliases
 
 OS=$(uname -s)
 
-if [ $OS == "FreeBSD" ]; then 
+if [ $OS == "FreeBSD" ]; then
 
   alias eg='egrep -i'
   alias h='fc -l'
@@ -53,8 +53,9 @@ alias rehash='hash -r'
 alias reset='reset -e ^?'
 alias vi='vim'
 
-# git based aliases 
-alias git='hub'
+# git based aliases
+type hub 2>/dev/null
+[[ $? -eq 0 ]] && alias git='hub'
 alias g='git'
 alias gbr='g branch'
 alias gc='g commit -v'
@@ -74,7 +75,7 @@ alias glol='g log --graph --decorate --pretty=oneline --abbrev-commit'
 alias glola='g log --graph --decorate --pretty=oneline --abbrev-commit --all'
 alias glolar='g log --decorate --pretty=oneline --abbrev-commit --all --reverse'
 alias gls='g ls-files'
-alias gst='git status' 
+alias gst='git status'
 alias gsta='g status'
 alias gsts='g status -s'
 alias gtype='g cat-file -t'
