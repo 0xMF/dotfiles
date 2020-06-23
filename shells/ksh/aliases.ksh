@@ -33,12 +33,18 @@ linux() {
   alias lc='ls -Cp -w 120|less -FRMS'
   alias ll='ls -lh'
   alias lld='ls -lhd'
+  alias grep='grep --color=always -i'
   alias su='su -'
   alias stats="man -k ' ' | grep -Ee 'stat \((1|8)\) '"
 }
 
 [[ "$OS" == "FreeBSD" ]] && bsd
-[[ "$OSRV" == "OpenBSD" ]] && bsd
+case "$OSRV" in
+  "OpenBSD")    bsd ;;
+  "GNU/Linux")  linux ;;
+  *) ;;
+esac
+
 
 alias ..='cd ..'
 alias ack='ack-grep'
@@ -47,7 +53,6 @@ alias cls='clear'
 alias cpi='cp -i'
 alias cpu='cp -u'
 alias gnupg='gpg'
-alias grep='grep --color=always -i'
 alias mvi='mv -i'
 alias pg='vi -R'
 alias rehash='hash -r'
