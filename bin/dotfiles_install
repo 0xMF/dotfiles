@@ -5,7 +5,6 @@ EXPERIMENTAL="N"
 _FULL_PATH="$( cd "$( dirname "$0" )" && pwd -P )"
 _REAL_HOME="$( cd ~  && pwd -P )"
 _SCRIPTDIR="$( echo .${_FULL_PATH#$_REAL_HOME} )"
-echo $_SCRIPTDIR
 
 [ -z "$BASH_VERSION" ] && {
   if [[ "$SHELL" == "/bin/ksh" && "`uname`" == "OpenBSD" ]]
