@@ -7,7 +7,6 @@
 export OS=
 
 bsd() {
-  echo aliases for bsd
   alias eg='egrep -i'
   alias h='fc -l'
   alias iotop='top -mio -ototal'
@@ -30,7 +29,6 @@ bsd() {
 }
 
 linux() {
-  echo aliases for linux
   alias ls='/bin/ls --color=always'
   alias lsn='ls -pF --color=none'
   alias la='ls -lah'
