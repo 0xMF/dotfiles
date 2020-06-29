@@ -4,7 +4,8 @@
 
 [[ "$(uname -s)" == "FreeBSD" ]] && OS="BSD"
 [[ "$OSRV" == "OpenBSD" ]] && OS="BSD"
-export OS=
+export OS
+echo $OS
 
 bsd() {
   alias eg='egrep -i'
@@ -43,7 +44,7 @@ linux() {
 case "$OSRV" in
   "OpenBSD" )    bsd ;;
   "GNU/Linux" )  linux ;;
-  * ) if [ "$OS" = "BSD" ]; then { linux; } else { bsd; } fi ;;
+  * ) [[ "$OS" == "BSD" ]] && { bsd; } || { bsd; } ;;
 esac
 
 
@@ -62,7 +63,7 @@ alias reset='reset -e ^?'
 alias vi='vim'
 
 # git based aliases
-type hub 2>&1 >/dev/null
+type hub 2>/dev/null
 [[ $? -eq 0 ]] && alias git='hub'
 alias g='git'
 alias gbr='g branch'

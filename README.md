@@ -29,6 +29,6 @@ along - consider yourself adequately forewarned. Heh! ;)
 
 [ISC License](LICENSE)
 
-<!--- 
-vim: spell:ft=markdown:tw=72:nonu 
+<!---
+vim: spell:ft=markdown:tw=72:nonu
 -->
