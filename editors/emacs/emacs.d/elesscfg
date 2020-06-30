@@ -1,9 +1,0 @@
-; -*- mode: lisp -*-
-
-(let* ((cfg-file "elesscfg"))
-  (add-to-list 'custom-theme-load-path "~/.emacs.d/themes")
-  (load-theme 'blueknight-console :no-confirm))
-
-(local-set-key "j" 'next-line)
-(local-unset-key "k")
-(local-set-key (kbd "k") 'forward-line)

@@ -83,66 +83,29 @@ _config_misc() {
 # emacs
 _emacs() {
   installed=
-  echo -n "checking emacs..." >&2
 
-  EMACS_D=${SCRIPT_DIR%bin}editors/emacs/emacs.d
+  EMACS_D=${HOME}/.emacs.d
 
-  [[ -e $HOME/.emacs || -L $HOME/.emacs ]] && {
-    echo "found .emacs, not installing" >&2
+  echo "checking emacs.d..."
+  [[ -d ${EMACS_D} || -L ${EMACS_D} || -d ${HOME}/repos/emacs.d ]] && {
+    echo "found .emacs.d, not installing" >&2
   } || {
-    echo >&2
-    installed=".emacs/emacs.el"
-    ln -s ${SCRIPT_DIR%bin}editors/emacs/emacs.el $HOME/.emacs
-    echo " - ...INSTALLED $installed" >&2
-  }
 
-  [[ -e $HOME/.abbrev_defs || -L $HOME/.abbrev_defs ]] && {
-    echo "found .abbrev_defs, not installing" >&2
-  } || {
-    installed=".abbrev_defs"
-    ln -s ${SCRIPT_DIR%bin}editors/emacs/abbrev_defs $HOME/.abbrev_defs
-    touch $HOME/.abbrev_defs
-    echo " - ...INSTALLED $installed" >&2
-  }
+    mkdir -p ${HOME}/repos
+    tput bold
+    git clone https://github.com/0xMF/emacs.d.git ${HOME}/repos/emacs.d
+    tput sgr0
+    ln -s $HOME/repos/emacs.d ${EMACS_D}
+    installed="$installed ~/repos/.emacs.d"
 
-  [[ -e $HOME/.aspell.en.pws || -L $HOME/.aspell.en.pws ]] && {
-    echo "found .aspell files, not installing" >&2
-  } || {
-    installed=".aspell.en.pws"
-    ln -s ${SCRIPT_DIR%bin}editors/emacs/aspell.en.pws $HOME/.aspell.en.pws
-    ln -s ${SCRIPT_DIR%bin}editors/emacs/aspell.en.prepl $HOME/.aspell.en.prepl
-    touch $HOME/.aspell.en.pws
-    touch $HOME/.aspell.en.prepl
-    echo " - ...INSTALLED $installed" >&2
-  }
-
-  echo "checking emacs/lisp/.dependencies..."
-  [[  -d ${EMACS_D}/lisp/.dependencies/purcell || \
-      -L ${EMACS_D}/lisp/.dependencies/purcell ]] && { :
-        pushd ${EMACS_D}/lisp/.dependencies/purcell > /dev/null
-        tput bold
-        git pull
-        git log --pretty=format:"%C(red bold)%h %C(yellow)%ad%Creset %C(cyan bold)|%Creset %C(auto)%d%Creset %s%Cgreen[%cn]" --date=short -n 10
-        tput sgr0
-        popd > /dev/null
-  } || {
-        [ ! -d ${EMACS_D}/lisp/.dependencies ] && mkdir ${EMACS_D}/lisp/.dependencies
-        pushd ${EMACS_D}/lisp/.dependencies >/dev/null
-        git clone https://github.com/purcell/emacs.d purcell
-        [ ! -L ${EMACS_}/init.el ] && ln -s ${EMACS_D}/lisp/.dependencies/purcell/init.el ${EMACS_D}/init.el
-        popd > /dev/null
-  }
-
-  [[  -d ${EMACS_D}/site-lisp || -L ${EMACS_D}/site-lisp ]] && { :
-  } || {
-    installed="site-lisp"
-    mkdir ${EMACS_D}/site-lisp
-  }
-
-  [[ -d ${EMACS_D}/themes || -L ${EMACS_D}/themes ]] && { :
-  } || {
-    installed="$installed themes"
-    mkdir ${EMACS_D}/themes
+    echo -n "checking emacs..." >&2
+    [[ -e $HOME/.emacs || -L $HOME/.emacs ]] && {
+      echo "found .emacs, not installing" >&2
+    } || {
+      ln -s ${EMACS_D}/emacs.el $HOME/.emacs
+      echo >&2
+      installed=".emacs/emacs.el"
+    }
   }
 
   [[ -d $HOME/.quicklisp || -L $HOME/.quicklisp ]] && { :
@@ -150,12 +113,6 @@ _emacs() {
     installed="$installed quicklisp"
     mkdir $HOME/.quicklisp
     touch $HOME/.quicklisp/slime-helper.el
-  }
-
-  [[ -d $HOME/.emacs.d || -L $HOME/.emacs.d ]] && { :
-  } || {
-    installed="$installed in .emacs.d"
-    ln -s ${EMACS_D} $HOME/.emacs.d
   }
 
   EMACS_D_DOTFILES=".custom.el.~undo-tree~ .emacs.desktop .historian .session .smex-items .uptimes.el"
