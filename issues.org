@@ -1,9 +1,13 @@
 *** Known Issues
 **** Which OSes are supported with this dotfiles repo?
 In order of preference my most used to least used operating systems are as follows:
-   1. Linux: tested on Debian (sid). Occasionally I also use CentOS and ArchLinux; other Linux-based
-      systems should work as expected. Mostly I keep up-to-date with the latest versions of bash,
-      Emacs, Vim and Git. Other Linux distros should work as expected but there could be issues with
-      older versions of Emacs/Vim/Bash/Git. So, essentially, don't expect backward compatibility.
-   2. BSD/Windows: initially tested on FreeBSD but that has long since changed as I mostly use Debian
-      sid. Minimal testing was done on WSL (Windows Sub-system for Linux) and Cygwin.
+   1. Linux: primarily ArchLinux as Arch is my primary distro of choice (I started using Arch since
+      late 2017/early 2018) and Debian Testing (sid/buster). Occasionally I do use CentOS so expect
+      some of these scripts and settings to work on CentOS and on other Linux distros too, however,
+      as far as possible, I keep up-to-date with the latest versions of Bash, Ksh, Emacs, Vim and
+      Git. There could be issues with older versions of Emacs/Vim/Bash/Ksh/Git so do not expect
+      these settings to work on older/legacy versions of those packages.
+   2. BSD: Mostly OpenBSD (since June 2020), however, earlier versions of this repo tested and
+      developed on FreeBSD but that was a very long time back. FreeBSD is no longer my primary BSD.
+   3. Windows: Minimal testing was done a very long back on WSL (Windows Sub-system for Linux ver1)
+      and Cygwin.

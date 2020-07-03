@@ -1,9 +1,0 @@
-** editors
-*** Emacs
-**** [[file:editors/emacs/emacs.d/custom.el][custom.el]]
-**** [[file:editors/emacs/emacs.el][emacs.el]]
-**** [[file:editors/emacs/emacs.d/lisp/init-local.el][init-local.el]]
-*** Vim
-** misc
-** shells
-** tracker
