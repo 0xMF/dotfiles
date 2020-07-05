@@ -71,7 +71,7 @@ fi
 # source local and private settings last so they take precedence over everything
 # changes to local.bash should not be publicly tracked and shared (recommended)
 if [ -f $REPO/local.ksh ]; then
-  source $REPO/local.ksh
+  . $REPO/local.ksh
 fi
 
 # vim:nospell:ft=sh:
