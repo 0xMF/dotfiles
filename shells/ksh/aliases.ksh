@@ -8,6 +8,7 @@ export OS
 echo $OS
 
 bsd() {
+  alias declare='bashism-declare'
   alias eg='egrep -i'
   alias h='fc -l'
   alias iotop='top -mio -ototal'

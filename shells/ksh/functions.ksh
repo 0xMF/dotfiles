@@ -16,6 +16,13 @@ CYAN="\[\033[1;36m\]"
 WHITE="\[\033[1;37m\]"
 NOCOLOR="\[\033[00m\]"
 
+function bashism-declare {
+  case "$1" in
+    "-f") typeset -f $2 ;;
+    "-F" | "*" | "" ) functions ;;
+  esac
+}
+
 function dark {
   # yellow dir
   LS_COLORS="`echo $LS_COLORS|sed 's/di=0[01];3[0-9]/di=01;34:/'`"
