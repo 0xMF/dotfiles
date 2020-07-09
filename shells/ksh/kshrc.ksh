@@ -5,7 +5,7 @@
 REPO=~/.ksh
 
 #
-print .kshrc called ...
+#print .kshrc called ...
 
 # don't do anything if we don't have a prompt (not an interactive shell)
 #[[ $- != *i* ]] && return || [ -z "$PS1" ] && return
@@ -13,11 +13,6 @@ print .kshrc called ...
 [ -f $HOME/.profile ] && . ~/.profile
 PATH=$PATH:/usr/local/bin:.:~/bin
 
-# source local and private settings
-# changes to local.bash should not be publicly tracked and shared (recommended)
-if [ -f $REPO/local.ksh ]; then
-  . $REPO/local.ksh
-fi
 # source common aliases used by power users
 if [ -f $REPO/aliases.ksh ]; then
   . $REPO/aliases.ksh
@@ -69,7 +64,7 @@ if [ $? -eq 0 ]; then
 fi
 
 # source local and private settings last so they take precedence over everything
-# changes to local.bash should not be publicly tracked and shared (recommended)
+# changes to local.ksh should not be publicly tracked and shared (recommended)
 if [ -f $REPO/local.ksh ]; then
   . $REPO/local.ksh
 fi

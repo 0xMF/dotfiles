@@ -5,7 +5,6 @@
 [[ "$(uname -s)" == "FreeBSD" ]] && OS="BSD"
 [[ "$OSRV" == "OpenBSD" ]] && OS="BSD"
 export OS
-echo $OS
 
 bsd() {
   alias declare='bashism-declare'
@@ -64,7 +63,7 @@ alias reset='reset -e ^?'
 alias vi='vim'
 
 # git based aliases
-type hub 2>/dev/null
+type hub >/dev/null
 [[ $? -eq 0 ]] && alias git='hub'
 alias g='git'
 alias gbr='g branch'
