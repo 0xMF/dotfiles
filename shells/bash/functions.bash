@@ -480,7 +480,7 @@ function ghuman() {
 
 # git most-recently-used aliases and bash-functions
 function gmru {
-   history|awk '{$1="";print $0}'|sort|uniq -c|sort -n|$GREP '[0-9] *g[a-zA-Z]'
+   history|awk '{$1="";print $0}'|sort|uniq -c|sort -n|$GREP  '[0-9] *g[a-zA-Z]'
 }
 
 function _is_git_repo {
@@ -855,11 +855,12 @@ function ds {
 function recent {
   OLDPWD=$(pwd)
   cd $HOME
-  find . -atime 0 -ctime 0 -mtime 0 -type f |\
-    \grep -vEe ".ICEauthority|.Xauthority"\
-          -vEe ".bash_history|.git|.keychain|mesa_shader_cache|.viminfo|.xsession-errors"\
-          -vEe "dbus|icons|fontconfig|gvfs-metadata|vimb|webkitgtk|WebKitCache"\
-          -vEe "repos"
+  find ~ -atime 0 -ctime 0 -mtime 0 -type f |\
+    \grep -vwEe ".ICEauthority|.Xauthority"\
+          -vwEe ".bash_history|.git|.keychain|mesa_shader_cache|.viminfo|.xsession-errors"\
+          -vwEe "dbus|icons|fontconfig|gvfs-metadata|vimb|webkitgtk|WebKitCache"\
+          -vwEe "elpa|chromium|pulse|swp$" |\
+    \grep -vEe  "emacs\.d\/(auto-|\.)" -ve "~$"
   cd $OLDPWD
 }
 

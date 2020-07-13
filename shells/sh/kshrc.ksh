@@ -38,7 +38,7 @@ if [ $(uname -o) == "GNU/Linux" ]; then
   if [ $(cat /etc/*-release|wc -l) -eq 1 ]; then
       OSRV=$(cat /etc/*-release)
   else
-      OSRV=$(cat /etc/lsb-release|grep DESCRIPTION|sed -e 's/.*=//;s/\"//g')
+      OSRV=$(cat /etc/lsb-release|grep -w DESCRIPTION|sed -e 's/.*=//;s/\"//g')
   fi
 fi
 if [ $(uname -o) == "FreeBSD" ]; then

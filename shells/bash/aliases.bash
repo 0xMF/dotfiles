@@ -57,7 +57,7 @@ alias gnupg='gpg'
 alias grep='grep --color=always -i'
 alias gv='gvim --remote-tab-silent'
 #alias lsc='ls | cut -c1-50 | column -c "${COLUMNS:-80}"'
-alias make='make -j `grep -c "^processor" /proc/cpuinfo`'
+alias make='make -j `grep -wc "^processor" /proc/cpuinfo`'
 alias mvi='mv -i'
 alias pacman='sudo pacman'
 alias pacdoc="cat $HOME/repos/dotfiles/doc/pacman-tips"

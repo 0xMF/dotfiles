@@ -31,17 +31,17 @@ fi
 OSRV=
 if [ $(uname -o) == "GNU/Linux" ]; then
   if [ -e /etc/os-release ]; then
-    OSRV=$(grep "^ID=" /etc/os-release|awk -F'=' '{ print $NF }')
-    OSRV=$(grep "PRETTY_NAME=" /etc/os-release|sed 's/"//g'|awk '{print $NF}')
-    PRETTY_NAME=$(grep ^PRETTY_NAME /etc/os-release|cut -d'=' -f2|sed 's/"//g')
-    NAME=$(grep ^NAME /etc/os-release|cut -d'=' -f2|sed 's/"//g')
+    OSRV=$(grep -w "^ID=" /etc/os-release|awk -F'=' '{ print $NF }')
+    OSRV=$(grep -w "PRETTY_NAME=" /etc/os-release|sed 's/"//g'|awk '{print $NF}')
+    PRETTY_NAME=$(grep -w ^PRETTY_NAME /etc/os-release|cut -d'=' -f2|sed 's/"//g')
+    NAME=$(grep -w ^NAME /etc/os-release|cut -d'=' -f2|sed 's/"//g')
     OSRV=$(echo ${PRETTY_NAME#${NAME}})
 
   else
     if [ $(cat /etc/*-release|wc -l) -eq 1 ]; then
         OSRV=$(cat /etc/*-release)
     else
-        OSRV=$(cat /etc/lsb-release|grep DESCRIPTION|sed -e 's/.*=//;s/\"//g')
+        OSRV=$(cat /etc/lsb-release|grep -w DESCRIPTION|sed -e 's/.*=//;s/\"//g')
     fi
   fi
 fi
