@@ -17,9 +17,10 @@ WHITE="\[\033[1;37m\]"
 NOCOLOR="\[\033[00m\]"
 
 function 0xMF-sudo {
-  echo 'default to doas instead of sudo'
+  print 'default to doas instead of sudo' >&2
   doas "$@"
 }
+
 function 0xMF-declare {
   case "$1" in
     "-f") typeset -f $2 ;;
