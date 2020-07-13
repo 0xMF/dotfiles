@@ -16,7 +16,11 @@ CYAN="\[\033[1;36m\]"
 WHITE="\[\033[1;37m\]"
 NOCOLOR="\[\033[00m\]"
 
-function bashism-declare {
+function 0xMF-sudo {
+  echo 'default to doas instead of sudo'
+  doas "$@"
+}
+function 0xMF-declare {
   case "$1" in
     "-f") typeset -f $2 ;;
     "-F" | "*" | "" ) functions ;;

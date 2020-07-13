@@ -7,7 +7,7 @@
 export OS
 
 bsd() {
-  alias declare='bashism-declare'
+  alias declare='0xMF-declare'
   alias eg='egrep -i'
   alias h='fc -l'
   alias iotop='top -mio -ototal'
@@ -26,6 +26,7 @@ bsd() {
   alias pkg_locate="echo /usr/ports/*/*|tr ' ' '\n'"
   alias portaudit='/usr/sbin/pkg audit -F'
   alias su='su -l'
+  alias sudo='0xMF-sudo'
   alias stats="man -k '*' | grep -Ee 'stat\((1|8)\) '"
 }
 
