@@ -18,7 +18,9 @@ NOCOLOR="\[\033[00m\]"
 
 function 0xMF-sudo {
   print 'default to doas instead of sudo' >&2
-  doas "$@"
+  [[ "$1" == "-i" ]] \
+    && doas su - \
+    || doas "$@"
 }
 
 function 0xMF-declare {
