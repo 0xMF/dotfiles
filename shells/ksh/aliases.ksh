@@ -42,6 +42,8 @@ linux() {
   alias stats="man -k ' ' | grep -Ee 'stat \((1|8)\) '"
 }
 
+alias lsd='ls -d *'
+
 case "$OSRV" in
   "OpenBSD" )    bsd ;;
   "GNU/Linux" )  linux ;;
