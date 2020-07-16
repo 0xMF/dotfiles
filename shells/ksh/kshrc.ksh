@@ -32,8 +32,6 @@ fi
 OSRV=
 if [ $(uname) == "OpenBSD" ]; then
     OSRV=$(uname)
-    /usr/local/bin/keychain ~/.ssh/id_rsa
-    . ~/.keychain/$(hostname)-sh
 else
   if [ $(uname -o) == "GNU/Linux" ]; then
     if [ $(cat /etc/*-release|wc -l) -eq 1 ]; then
