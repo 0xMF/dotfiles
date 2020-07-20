@@ -127,7 +127,7 @@ alias guna='git update-index --no-assume-unchanged'
 alias gundo='git reset --soft HEAD~1'
 alias gwc='git whatchanged -p --abbrev-commit --pretty=medium'
 
-alias incoming='git log --color=always orgin/master ^master'
-alias outgoing='git log --color=always master ^orgin/master'
+alias incoming='git log --color=always origin/master ^master'
+alias outgoing='git log --color=always master ^origin/master'
 
 # vim:nospell:ft=sh:
