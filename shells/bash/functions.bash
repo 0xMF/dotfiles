@@ -698,15 +698,16 @@ function gman {
 
 function jc {
   case "$1" in
-    "" ) /sbin/journalctl -xe | less -FeqRSX ;;
-    "help"|"h"|"-h"|"--help") /sbin/journalctl --help "$@" ;;
-    * ) /sbin/journalctl "$@" ;;
+    "" ) /usr/bin/journalctl -xe | less -FeqRSX ;;
+    "help"|"h"|"-h"|"--help") /usr/bin/journalctl --help "$@" ;;
+    * ) /usr/bin/journalctl "$@" ;;
   esac
 }
+
 function sc {
   case "$1" in
-    "help"|"h"|"-h"|"--help") /sbin/systemctl --help "$@" ;;
-    * ) /sbin/systemctl "$@" ;;
+    "help"|"h"|"-h"|"--help") /usr/bin/systemctl --help "$@" ;;
+    * ) /usr/bin/systemctl "$@" ;;
   esac
 }
 
