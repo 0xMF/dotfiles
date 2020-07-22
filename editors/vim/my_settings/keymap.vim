@@ -101,7 +101,8 @@ map b       <C-b>
 :map ;' i'<Esc>Ea'<Esc>|              " ' ' around a word
 :map ;* i*<Esc>Ea*<Esc>|              " * * around a word
 :map ;+ i+<Esc>Ea+<Esc>|              " + + around a word
-:map ;a i<<Esc>Ea><Esc>|              " angles <> around a word
+":map ;a i<<Esc>Ea><Esc>|              " angles <> around a word
+:map ;a  <Esc>magq}``|                " par command  paragraph formatting
 :map ;b i*<Esc>Ea*<Esc>|              " * * around a word
 :map ;c i{<Esc>Ea}<Esc>|              " curlies {} around a word
 :map ;cc <Esc>:call My_Colours_Change()<CR>|
