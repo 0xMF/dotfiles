@@ -73,6 +73,7 @@ alias sau='sudo apt update'
 #alias saru='sudo apt autoremove'
 alias sbcl='rlwrap sbcl'
 alias sus='/usr/bin/systemctl hybrid-sleep -i'
+alias ssh-add-fingerprint='ssh-add -l -E md5'
 alias sysdoc="cat $HOME/repos/dotfiles/doc/systemd-tips"
 #alias tree='tree -I .git --charset UTF-8 -push'
 alias tree='tree -I .git --charset UTF-8 --dirsfirst -F'
