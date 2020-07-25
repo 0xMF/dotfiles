@@ -6,6 +6,9 @@
 systemctl status some.service
 journalctl -u some.service
 
+# simulate tail -f
+journalctl -fu some.service
+
 # general errors
 journalctl -xe
 
