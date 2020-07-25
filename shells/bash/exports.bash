@@ -33,9 +33,6 @@ if [[ -t 0 ]]; then
   export TODAY=$(date +"%Y-%b-%d")
 fi
 
-# required for hub (cli tool for github management)
-#export BROWSER='links2 -no-g'
-export BROWSER='w3m -v -no-mouse -s -cookie -no-proxy'
 
 # Handles: (-R) ANSI colors with ESC, (-FX) quit on one screen without destroying text, 
 #          (-q) quiet mode and (-e) terminate after second encounter with EOF
