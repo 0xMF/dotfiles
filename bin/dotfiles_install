@@ -177,9 +177,9 @@ _ksh() {
   echo -n "checking ksh..." >&2
 
   [[ -e $HOME/.kshrc || -L $HOME/.kshrc ]] && {
-    echo "found, not installing" >&2
+    echo "found .kshrc, not installing" >&2
   } || {
-    installed="ksh"
+    installed="kshrc"
     [[ "$EXPERIMENTAL" == "yes" ]] \
       && { ln -s ${_SCRIPTDIR%bin}shells/ksh/kshrc.ksh ~/.kshrc; } \
       || { ln -s ${SCRIPT_DIR%bin}shells/ksh/kshrc.ksh $HOME/.kshrc; }
@@ -194,8 +194,16 @@ _ksh() {
       || { ln -s ${SCRIPT_DIR%bin}shells/ksh $HOME/.ksh; }
   }
 
+  [[ -e $HOME/.profile || -L $HOME/.profile ]] && { :
+  } || {
+    installed="$installed ksh_profile"
+    [[ "$EXPERIMENTAL" == "yes" ]] \
+      && { ln -s ${_SCRIPTDIR%bin}shells/ksh/ksh_profile ~/.profile; } \
+      || { ln -s ${SCRIPT_DIR%bin}shells/ksh/ksh_profile $HOME/.ksh_profile; }
+  }
+
   [ ! -z "$installed" ] && {
-    echo "INSTALLED!" >&2
+    echo "INSTALLED! $installed" >&2
     echo " - Don't forget to install local.ksh and secrets.ksh in $HOME/.ksh" >&2
   }
 }
