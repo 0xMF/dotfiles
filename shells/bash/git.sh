@@ -49,6 +49,144 @@ alias gout='git log --color=always master ^origin/master'
 # required for hub (cli tool for github management)
 #export BROWSER='links2 -no-g'
 export BROWSER='w3m -v -no-mouse -s -cookie -no-proxy'
+export PROMPT_COMMAND="green"
+
+BLACK="\[\033[30m\]"
+GREY="\[\033[1;30m\]"
+RED="\[\033[1;31m\]"
+GREEN="\[\033[1;32m\]"
+YELLOW="\[\033[1;33m\]"
+BLUE="\[\033[1;34m\]"
+PURPLE="\[\033[1;35m"
+CYAN="\[\033[1;36m\]"
+WHITE="\[\033[1;37m\]"
+NOCOLOR="\[\033[00m\]"
+
+green () {
+  LS_COLORS="`echo $LS_COLORS|sed 's/di=0[01];3[0-9]/di=01;33/'`"
+  LS_COLORS="`echo $LS_COLORS|sed 's/ln=[01][01];3[0-9]/ln=00;32/'`"
+  LS_COLORS="`echo $LS_COLORS|sed 's/ex=0[01];3[0-9]/ex=01;32/'`"
+  export LS_COLORS
+  if [ `id -u` -eq 0 ]; then
+    PS1="$RED\W $(parse_git_repo)$RED#$NOCOLOR "
+  else
+    PS1="$GREEN\W $(parse_git_repo)$NOCOLOR$ "
+    PROMPT_COMMAND="green"
+  fi
+}
+
+function psdark {
+  # blue dir
+  LS_COLORS="`echo $LS_COLORS|sed 's/di=0[01];3[0-9]/di=01;34/'`"
+  # green link
+  LS_COLORS="`echo $LS_COLORS|sed 's/ln=[01][01];3[0-9]/ln=00;32/'`"
+  # light green executables
+  LS_COLORS="`echo $LS_COLORS|sed 's/ex=0[01];3[0-9]/ex=01;32/'`"
+  export LS_COLORS
+}
+
+function pslight {
+  # black dir
+  #LS_COLORS="`echo $LS_COLORS|sed 's/di=01;33/di=00;30/'`"
+  # brown dir
+  #LS_COLORS="`echo $LS_COLORS|sed 's/di=0[01];3[0-9]/di=00;34/'`"
+  # yellow dir
+  LS_COLORS="`echo $LS_COLORS|sed 's/di=0[01];3[0-9]/di=01;33/'`"
+  # purple link
+  #LS_COLORS="`echo $LS_COLORS|sed 's/ln=0[01];3[0-9]/ln=01;35/'`"
+  # cyan link
+  LS_COLORS="`echo $LS_COLORS|sed 's/ln=[01][01];3[0-9]/ln=01;36/'`"
+  # light green executables
+  LS_COLORS="`echo $LS_COLORS|sed 's/ex=0[01];3[0-9]/ex=01;32/'`"
+  export LS_COLORS
+}
+
+function ps1 {
+  if [ `id -u` -eq 0 ]; then
+    PS1="$RED${OSRV}$BLUE:\w $(parse_git_repo)$RED#$NOCOLOR "
+  else
+    if [ $(/usr/bin/id -u) -eq 1000 ]; then
+      PS1="$GREEN${OSRV}$BLUE:\W$(parse_git_repo 2>/dev/null)$NOCOLOR$ "
+    else
+      PS1="$PURPLE${OSRV}$BLUE:\W$(parse_git_repo 2>/dev/null)$NOCOLOR$ "
+    fi
+  fi
+  PROMPT_COMMAND="ps1"
+}
+
+function pscs {
+  if [ `id -u` -eq 0 ]; then
+    PS1="$RED\h:\W $(parse_git_repo)$RED#$NOCOLOR "
+  else
+    PS1="$GREEN\u$YELLOW@$CYAN\h$YELLOW:$GREEN\W $(parse_git_repo)$NOCOLOR$ "
+  fi
+  PROMPT_COMMAND="pscs"
+}
+
+function psc {
+  if [ `id -u` -eq 0 ]; then
+    PS1="$RED\h:\W $(parse_git_repo)$RED#$NOCOLOR "
+  else
+    PS1="$(parse_git_repo)$CYAN\$$NOCOLOR "
+  fi
+  PROMPT_COMMAND="psc"
+}
+
+function pssc {
+  if [ `id -u` -eq 0 ]; then
+    PS1="$RED\W $(parse_git_repo)$RED#$NOCOLOR "
+  else
+    PS1="$CYAN\h$YELLOW:\W $(parse_git_repo)$NOCOLOR$ "
+  fi
+  PROMPT_COMMAND="pssc"
+}
+
+function psh {
+  if [ `id -u` -eq 0 ]; then
+    PS1="$RED\h:\W $(parse_git_repo)$RED#$NOCOLOR "
+  else
+    PS1="$PURPLE\h:$CYAN\W $(parse_git_repo)$NOCOLOR$ "
+  fi
+  PROMPT_COMMAND="psh"
+}
+
+function pss {
+  if [ `id -u` -eq 0 ]; then
+    PS1="$RED\W $(parse_git_repo)$RED#$NOCOLOR "
+  else
+    PS1="$BLUE\W $(parse_git_repo)$NOCOLOR$ "
+  fi
+  PROMPT_COMMAND="pss"
+}
+
+function psl {
+  if [ `id -u` -eq 0 ]; then
+    PS1="$PURPLE\W $(parse_git_repo)$RED#$NOCOLOR "
+  else
+    PS1="$CYAN\W $(parse_git_repo)$NOCOLOR$ "
+  fi
+  pslight
+  PROMPT_COMMAND="psl"
+}
+
+function psd {
+  if [ `id -u` -eq 0 ]; then
+    PS1="$PURPLE\W $(parse_git_repo)$RED#$NOCOLOR "
+  else
+    PS1="$GREEN\W $(parse_git_repo)$NOCOLOR$ "
+  fi
+  psdark
+  PROMPT_COMMAND="psd"
+}
+
+function psm {
+  if [ `id -u` -eq 0 ]; then
+    PS1="$(parse_git_repo)$RED#$NOCOLOR "
+  else
+    PS1="$(parse_git_repo)$NOCOLOR$ "
+  fi
+  PROMPT_COMMAND="psm"
+}
 
 gbruh () {
   if [ -z "$1" ]; then
