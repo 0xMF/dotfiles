@@ -5,14 +5,14 @@
 
 [[ -s ~/.bash/git.sh ]] \
   && . ~/.bash/git.sh \
-  ||  >&2 echo "WARNING! Missing dependency: git.sh"  
+  ||  >&2 echo "WARNING! Missing dependency: git.sh"
 
 # user defined aliases .bash
 #
 
 OS=$(uname -s)
 
-record() {
+function record {
   if [[ `type -t termtosvg` == "file" ]]
   then
     termtosvg -c '/bin/bash --init-file ~/.bash/minimal.bash' \
@@ -44,9 +44,8 @@ function xfcni {
   popd > /dev/null
 }
 
-
 # show directory tree
-function trd() {
+function trd {
     depth="$1"
     level="-L 1"
     path="$2"
@@ -73,8 +72,7 @@ function poof {
 }
 
 # Environment variable settings for setting DISPLAY to local or remote
-function get_xserver ()
-{
+function get_xserver {
   case $TERM in
     xterm )
         XSERVER=$(who am i | awk '{print $NF}' | tr -d ')''(' )
@@ -85,8 +83,7 @@ function get_xserver ()
   esac
 }
 
-function set_display_env ()
-{
+function set_display_env {
   if [ -z ${DISPLAY:=""} ]; then
     get_xserver
     if [[ -z ${XSERVER} || ${XSERVER} == $(hostname) || ${XSERVER} == "unix" ]]; then
@@ -229,19 +226,19 @@ function sdate {
   fi
 }
 
-function loc() {
+function loc {
   `which localc` "$@" 2>/dev/null &
 }
 
-function low() {
+function low {
   `which lowriter` "$@" 2>/dev/null &
 }
 
-function erls() {
+function erls {
   `which erl` "$@" -pa ebin -pa deps/*/ebin
 }
 
-function emacs() {
+function emacs {
   EMACS=$(which -a emacs|sed '1q')
   if [ -z "${EMACS}" ]
   then
@@ -257,16 +254,16 @@ function emacs() {
   fi
 }
 
-function ew() {
+function ew {
   `which -a emacs-works|sed '1q'` "$@" 2>/dev/null && [ `which pal 2>/dev/null` ] && pal &
 }
 
-function end() {
+function end {
   #`which -a emacs|sed '1q'` "$@" --no-desktop 2>/dev/null &
   emacs "$@" --no-desktop &
 }
 
-function otp() {
+function otp {
   if [ -d $HOME/repos/otp ];
   then
     pushd $HOME/repos/otp > /dev/null
@@ -285,7 +282,7 @@ function otp() {
   fi
 }
 
-function sl() {
+function sl {
   SL=$(which -a sl|sed '1q')
   echo ${SL}
   if [ -n "${SL}" ]
@@ -327,14 +324,14 @@ function recent {
   cd $OLDPWD
 }
 
-mouse-reset () {
+function mouse-reset {
   sudo modprobe -r psmouse
   sleep 1
   sudo modprobe psmouse
   [[ -e ~/.right-mouseconfig ]] && xmodmap ~/.right-mouseconfig
 }
 
-sadu () {
+function sadu {
   distro=$(\grep -w ID /etc/os-release | cut -d= -f2 | tr -d '"')
   case "${distro}" in
     arch)
@@ -349,7 +346,7 @@ sadu () {
   esac
 }
 
-saru () {
+function saru {
   distro=$(\grep -w ID /etc/os-release | cut -d= -f2 | tr -d '"')
   case "${distro}" in
     arch)

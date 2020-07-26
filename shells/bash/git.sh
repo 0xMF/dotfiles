@@ -62,7 +62,7 @@ CYAN="\[\033[1;36m\]"
 WHITE="\[\033[1;37m\]"
 NOCOLOR="\[\033[00m\]"
 
-green () {
+function green {
   LS_COLORS="`echo $LS_COLORS|sed 's/di=0[01];3[0-9]/di=01;33/'`"
   LS_COLORS="`echo $LS_COLORS|sed 's/ln=[01][01];3[0-9]/ln=00;32/'`"
   LS_COLORS="`echo $LS_COLORS|sed 's/ex=0[01];3[0-9]/ex=01;32/'`"
@@ -86,14 +86,11 @@ function psdark {
 }
 
 function pslight {
-  # black dir
-  #LS_COLORS="`echo $LS_COLORS|sed 's/di=01;33/di=00;30/'`"
-  # brown dir
-  #LS_COLORS="`echo $LS_COLORS|sed 's/di=0[01];3[0-9]/di=00;34/'`"
+  # black dir   #LS_COLORS="`echo $LS_COLORS|sed 's/di=01;33/di=00;30/'`"
+  # brown dir   #LS_COLORS="`echo $LS_COLORS|sed 's/di=0[01];3[0-9]/di=00;34/'`"
+  # purple link #LS_COLORS="`echo $LS_COLORS|sed 's/ln=0[01];3[0-9]/ln=01;35/'`"
   # yellow dir
   LS_COLORS="`echo $LS_COLORS|sed 's/di=0[01];3[0-9]/di=01;33/'`"
-  # purple link
-  #LS_COLORS="`echo $LS_COLORS|sed 's/ln=0[01];3[0-9]/ln=01;35/'`"
   # cyan link
   LS_COLORS="`echo $LS_COLORS|sed 's/ln=[01][01];3[0-9]/ln=01;36/'`"
   # light green executables
@@ -188,7 +185,7 @@ function psm {
   PROMPT_COMMAND="psm"
 }
 
-gbruh () {
+function gbruh {
   if [ -z "$1" ]; then
     echo "Usage: git push -u origin branch-name" >&2
     return
@@ -256,7 +253,6 @@ function old_parse_git_dirty {
       return
   }
 
-
   # (slower) check for large repo in filenames of all large repos
   $GREP -qw "$PWD$" $large_repos 2>/dev/null
   if [ $? -eq 0 ]; then
@@ -289,7 +285,7 @@ function old_parse_git_dirty {
 }
 
 # show all git aliases
-function gits() {
+function gits {
   # get all git-aliases and git-functions; filter out non-git; sort
   {
     alias|sed 's/alias //' | $GREP '^g[a-zA-Z]'
@@ -365,13 +361,13 @@ function gcr {
 }
 
 # formerly aliases, now rewritten as functions
-gd    () { if _is_git_repo -eq 0; then git diff --color=always -w; fi }
-gdc   () { if _is_git_repo -eq 0; then git diff --color=always -w --cached; fi }
-gdh   () { if _is_git_repo -eq 0; then git diff --color=always -w HEAD; fi }
-gds   () { if _is_git_repo -eq 0; then git diff --color=always -w --staged; fi }
-gdiff () { if _is_git_repo -eq 0; then git diff --color=always -w HEAD | grep -v binary; fi }
-gst   () { if _is_git_repo -eq 0; then git status ; fi }
-gsts  () { if _is_git_repo -eq 0; then git status -s; fi }
+function gd    { if _is_git_repo -eq 0; then git diff --color=always -w; fi }
+function gdc   { if _is_git_repo -eq 0; then git diff --color=always -w --cached; fi }
+function gdh   { if _is_git_repo -eq 0; then git diff --color=always -w HEAD; fi }
+function gds   { if _is_git_repo -eq 0; then git diff --color=always -w --staged; fi }
+function gdiff { if _is_git_repo -eq 0; then git diff --color=always -w HEAD | grep -v binary; fi }
+function gst   { if _is_git_repo -eq 0; then git status ; fi }
+function gsts  { if _is_git_repo -eq 0; then git status -s; fi }
 
 function __gdh {
   if _is_git_repo -eq 0
@@ -426,7 +422,6 @@ function gha {
   fi
 }
 
-
 function ghb {
   if _is_git_repo -eq 0
   then
@@ -448,7 +443,6 @@ function ghd {
     #cut -c1-64 | less #eval "$pager"
   fi
 }
-
 
 # if $1 is 1 'git show HEAD' otherwise 'git show $1'
 function _gshow {
@@ -574,7 +568,7 @@ function glast {
   [ -z "$1" ] && echo "Usage: glast my_git_command/alias" >&2 || "$1"
 }
 
-function g() {
+function g {
 
   aliases=$(git config --get-regexp alias.*|cut -d'.' -f2-|awk '{f=$1; $1=""; printf("%-15s %s\n", f, $0)}')
   case "$1" in
