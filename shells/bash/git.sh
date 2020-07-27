@@ -50,6 +50,7 @@ alias gout='git log --color=always master ^origin/master'
 #export BROWSER='links2 -no-g'
 export BROWSER='w3m -v -no-mouse -s -cookie -no-proxy'
 export PROMPT_COMMAND="green"
+export SHELL_PROMPT=$( [[ "$(basename `echo $SHELL`)" == "bash" ]] && echo $ || echo %)
 
 BLACK="\[\033[30m\]"
 GREY="\[\033[1;30m\]"
@@ -70,7 +71,7 @@ function green {
   if [ `id -u` -eq 0 ]; then
     PS1="$RED\W $(parse_git_repo)$RED#$NOCOLOR "
   else
-    PS1="$GREEN\W $(parse_git_repo)$NOCOLOR$ "
+    PS1="$GREEN\W $(parse_git_repo)$NOCOLOR$SHELL_PROMPT "
     PROMPT_COMMAND="green"
   fi
 }
@@ -103,9 +104,9 @@ function ps1 {
     PS1="$RED${OSRV}$BLUE:\w $(parse_git_repo)$RED#$NOCOLOR "
   else
     if [ $(/usr/bin/id -u) -eq 1000 ]; then
-      PS1="$GREEN${OSRV}$BLUE:\W$(parse_git_repo 2>/dev/null)$NOCOLOR$ "
+      PS1="$GREEN${OSRV}$BLUE:\W$(parse_git_repo 2>/dev/null)$NOCOLOR$SHELL_PROMPT "
     else
-      PS1="$PURPLE${OSRV}$BLUE:\W$(parse_git_repo 2>/dev/null)$NOCOLOR$ "
+      PS1="$PURPLE${OSRV}$BLUE:\W$(parse_git_repo 2>/dev/null)$NOCOLOR$SHELL_PROMPT "
     fi
   fi
   PROMPT_COMMAND="ps1"
@@ -115,7 +116,7 @@ function pscs {
   if [ `id -u` -eq 0 ]; then
     PS1="$RED\h:\W $(parse_git_repo)$RED#$NOCOLOR "
   else
-    PS1="$GREEN\u$YELLOW@$CYAN\h$YELLOW:$GREEN\W $(parse_git_repo)$NOCOLOR$ "
+    PS1="$GREEN\u$YELLOW@$CYAN\h$YELLOW:$GREEN\W $(parse_git_repo)$NOCOLOR$SHELL_PROMPT "
   fi
   PROMPT_COMMAND="pscs"
 }
@@ -124,7 +125,7 @@ function psc {
   if [ `id -u` -eq 0 ]; then
     PS1="$RED\h:\W $(parse_git_repo)$RED#$NOCOLOR "
   else
-    PS1="$(parse_git_repo)$CYAN\$$NOCOLOR "
+    PS1="$(parse_git_repo)$CYAN$SHELL_PROMPT$NOCOLOR "
   fi
   PROMPT_COMMAND="psc"
 }
@@ -133,7 +134,7 @@ function pssc {
   if [ `id -u` -eq 0 ]; then
     PS1="$RED\W $(parse_git_repo)$RED#$NOCOLOR "
   else
-    PS1="$CYAN\h$YELLOW:\W $(parse_git_repo)$NOCOLOR$ "
+    PS1="$CYAN\h$YELLOW:\W $(parse_git_repo)$NOCOLOR$SHELL_PROMPT "
   fi
   PROMPT_COMMAND="pssc"
 }
@@ -142,7 +143,7 @@ function psh {
   if [ `id -u` -eq 0 ]; then
     PS1="$RED\h:\W $(parse_git_repo)$RED#$NOCOLOR "
   else
-    PS1="$PURPLE\h:$CYAN\W $(parse_git_repo)$NOCOLOR$ "
+    PS1="$PURPLE\h:$CYAN\W $(parse_git_repo)$NOCOLOR$SHELL_PROMPT "
   fi
   PROMPT_COMMAND="psh"
 }
@@ -151,7 +152,7 @@ function pss {
   if [ `id -u` -eq 0 ]; then
     PS1="$RED\W $(parse_git_repo)$RED#$NOCOLOR "
   else
-    PS1="$BLUE\W $(parse_git_repo)$NOCOLOR$ "
+    PS1="$BLUE\W $(parse_git_repo)$NOCOLOR$SHELL_PROMPT "
   fi
   PROMPT_COMMAND="pss"
 }
@@ -160,7 +161,7 @@ function psl {
   if [ `id -u` -eq 0 ]; then
     PS1="$PURPLE\W $(parse_git_repo)$RED#$NOCOLOR "
   else
-    PS1="$CYAN\W $(parse_git_repo)$NOCOLOR$ "
+    PS1="$CYAN\W $(parse_git_repo)$NOCOLOR$SHELL_PROMPT "
   fi
   pslight
   PROMPT_COMMAND="psl"
@@ -170,7 +171,7 @@ function psd {
   if [ `id -u` -eq 0 ]; then
     PS1="$PURPLE\W $(parse_git_repo)$RED#$NOCOLOR "
   else
-    PS1="$GREEN\W $(parse_git_repo)$NOCOLOR$ "
+    PS1="$GREEN\W $(parse_git_repo)$NOCOLOR$SHELL_PROMPT "
   fi
   psdark
   PROMPT_COMMAND="psd"
@@ -180,7 +181,7 @@ function psm {
   if [ `id -u` -eq 0 ]; then
     PS1="$(parse_git_repo)$RED#$NOCOLOR "
   else
-    PS1="$(parse_git_repo)$NOCOLOR$ "
+    PS1="$(parse_git_repo)$NOCOLOR$SHELL_PROMPT "
   fi
   PROMPT_COMMAND="psm"
 }
