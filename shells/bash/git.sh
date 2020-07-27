@@ -455,8 +455,15 @@ function __gh {
   if _is_git_repo -eq 0
   then
     n=${1:--10}
-    git log --color=always $n --graph --pretty=format:"%C(red bold)%h%Creset %C(cyan bold)|%Creset %C(auto)%d%Creset %s"
-    eval "[ `git log --color=always --pretty=oneline | wc -l` -gt 10 ] && git diff --color=always --stat HEAD~$((0 - $n)) HEAD"
+    if [[ "$n" == "--all" ]]; then
+      git log --color=always $n --graph --pretty=format:"%C(red bold)%h%Creset %C(cyan bold)|%Creset %C(auto)%d%Creset %s"
+    else
+      git --no-pager log --color=always $n --graph --pretty=format:"%C(red bold)%h%Creset %C(cyan bold)|%Creset %C(auto)%d%Creset %s"
+      echo
+    fi
+    if [[ "$SHELL_PROMPT" == "$" ]]; then
+      eval "[ `git log --color=always --pretty=oneline | wc -l` -gt 10 ] && git diff --color=always --stat HEAD~$((0 - $n)) HEAD"
+    fi
   fi
 }
 
