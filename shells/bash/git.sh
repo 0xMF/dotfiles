@@ -1,4 +1,4 @@
-# git based aliases
+# gith based aliases
 [ ! -z "`which hub 2>/dev/null`" ] && alias git='hub'
 #alias g='git' # now g() is a function that calls git
 alias gbr='git branch'
@@ -177,6 +177,21 @@ function psh {
     else
       print "$PURPLE\h:$CYAN\W $(parse_git_repo)$NOCOLOR$SHELL_PROMPT "
       PS1='$(psh)'
+    fi
+  fi
+}
+
+function psept {
+  if [ `id -u` -eq 0 ]; then
+    PS1="$RED\h:\W $(parse_git_repo)$RED#$NOCOLOR "
+    PROMPT_COMMAND="psept"
+  else
+    if [[ "$SHELL_PROMPT" == "$" ]]; then
+      PS1="$YELLOW\h:$CYAN\W $(parse_git_repo)$NOCOLOR$SHELL_PROMPT "
+      PROMPT_COMMAND="psept"
+    else
+      print "$YELLOW\h:$CYAN\W $(parse_git_repo)$NOCOLOR$SHELL_PROMPT "
+      PS1='$(psept)'
     fi
   fi
 }
