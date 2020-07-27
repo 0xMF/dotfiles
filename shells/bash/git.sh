@@ -51,6 +51,7 @@ alias gout='git log --color=always master ^origin/master'
 export BROWSER='w3m -v -no-mouse -s -cookie -no-proxy'
 export PROMPT_COMMAND="green"
 export SHELL_PROMPT=$( [[ "$(basename `echo $SHELL`)" == "bash" ]] && echo $ || echo %)
+echo $SHELL_PROMPT
 
 BLACK="\[\033[30m\]"
 GREY="\[\033[1;30m\]"
@@ -71,8 +72,13 @@ function green {
   if [ `id -u` -eq 0 ]; then
     PS1="$RED\W $(parse_git_repo)$RED#$NOCOLOR "
   else
-    PS1="$GREEN\W $(parse_git_repo)$NOCOLOR$SHELL_PROMPT "
-    PROMPT_COMMAND="green"
+    if [[ "$SHELL_PROMPT" == "$" ]]; then
+      PS1="$GREEN\W $(parse_git_repo)$NOCOLOR$SHELL_PROMPT "
+      PROMPT_COMMAND="green"
+    else
+      print "$GREEN\W $(parse_git_repo)$NOCOLOR$SHELL_PROMPT "
+      PS1='$(green)'
+    fi
   fi
 }
 
