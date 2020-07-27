@@ -51,7 +51,6 @@ alias gout='git log --color=always master ^origin/master'
 export BROWSER='w3m -v -no-mouse -s -cookie -no-proxy'
 export PROMPT_COMMAND="green"
 export SHELL_PROMPT=$( [[ "$(basename `echo $SHELL`)" == "bash" ]] && echo $ || echo %)
-echo $SHELL_PROMPT
 
 BLACK="\[\033[30m\]"
 GREY="\[\033[1;30m\]"
@@ -71,6 +70,7 @@ function green {
   export LS_COLORS
   if [ `id -u` -eq 0 ]; then
     PS1="$RED\W $(parse_git_repo)$RED#$NOCOLOR "
+    PROMPT_COMMAND="green"
   else
     if [[ "$SHELL_PROMPT" == "$" ]]; then
       PS1="$GREEN\W $(parse_git_repo)$NOCOLOR$SHELL_PROMPT "
@@ -83,11 +83,9 @@ function green {
 }
 
 function psdark {
-  # blue dir
+  # blue dir, green link, light green executables
   LS_COLORS="`echo $LS_COLORS|sed 's/di=0[01];3[0-9]/di=01;34/'`"
-  # green link
   LS_COLORS="`echo $LS_COLORS|sed 's/ln=[01][01];3[0-9]/ln=00;32/'`"
-  # light green executables
   LS_COLORS="`echo $LS_COLORS|sed 's/ex=0[01];3[0-9]/ex=01;32/'`"
   export LS_COLORS
 }
@@ -96,11 +94,10 @@ function pslight {
   # black dir   #LS_COLORS="`echo $LS_COLORS|sed 's/di=01;33/di=00;30/'`"
   # brown dir   #LS_COLORS="`echo $LS_COLORS|sed 's/di=0[01];3[0-9]/di=00;34/'`"
   # purple link #LS_COLORS="`echo $LS_COLORS|sed 's/ln=0[01];3[0-9]/ln=01;35/'`"
-  # yellow dir
+
+  # yellow dir, cyan link, light green executables
   LS_COLORS="`echo $LS_COLORS|sed 's/di=0[01];3[0-9]/di=01;33/'`"
-  # cyan link
   LS_COLORS="`echo $LS_COLORS|sed 's/ln=[01][01];3[0-9]/ln=01;36/'`"
-  # light green executables
   LS_COLORS="`echo $LS_COLORS|sed 's/ex=0[01];3[0-9]/ex=01;32/'`"
   export LS_COLORS
 }
@@ -108,88 +105,142 @@ function pslight {
 function ps1 {
   if [ `id -u` -eq 0 ]; then
     PS1="$RED${OSRV}$BLUE:\w $(parse_git_repo)$RED#$NOCOLOR "
+    PROMPT_COMMAND="ps1"
   else
     if [ $(/usr/bin/id -u) -eq 1000 ]; then
       PS1="$GREEN${OSRV}$BLUE:\W$(parse_git_repo 2>/dev/null)$NOCOLOR$SHELL_PROMPT "
     else
-      PS1="$PURPLE${OSRV}$BLUE:\W$(parse_git_repo 2>/dev/null)$NOCOLOR$SHELL_PROMPT "
+      if [[ "$SHELL_PROMPT" == "$" ]]; then
+        PS1="$PURPLE${OSRV}$BLUE:\W$(parse_git_repo 2>/dev/null)$NOCOLOR$SHELL_PROMPT "
+        PROMPT_COMMAND="ps1"
+      else
+        print "$PURPLE${OSRV}$BLUE:\W$(parse_git_repo 2>/dev/null)$NOCOLOR$SHELL_PROMPT "
+        PS1='$(ps1)'
+      fi
     fi
   fi
-  PROMPT_COMMAND="ps1"
 }
 
 function pscs {
   if [ `id -u` -eq 0 ]; then
     PS1="$RED\h:\W $(parse_git_repo)$RED#$NOCOLOR "
+    PROMPT_COMMAND="pscs"
   else
-    PS1="$GREEN\u$YELLOW@$CYAN\h$YELLOW:$GREEN\W $(parse_git_repo)$NOCOLOR$SHELL_PROMPT "
+    if [[ "$SHELL_PROMPT" == "$" ]]; then
+      PS1="$GREEN\u$YELLOW@$CYAN\h$YELLOW:$GREEN\W $(parse_git_repo)$NOCOLOR$SHELL_PROMPT "
+      PROMPT_COMMAND="pscs"
+    else
+      print "$GREEN\u$YELLOW@$CYAN\h$YELLOW:$GREEN\W $(parse_git_repo)$NOCOLOR$SHELL_PROMPT "
+      PS1='$(pscs)'
+    fi
   fi
-  PROMPT_COMMAND="pscs"
 }
 
 function psc {
   if [ `id -u` -eq 0 ]; then
     PS1="$RED\h:\W $(parse_git_repo)$RED#$NOCOLOR "
+    PROMPT_COMMAND="psc"
   else
-    PS1="$(parse_git_repo)$CYAN$SHELL_PROMPT$NOCOLOR "
+    if [[ "$SHELL_PROMPT" == "$" ]]; then
+      PS1="$(parse_git_repo)$CYAN$SHELL_PROMPT$NOCOLOR "
+      PROMPT_COMMAND="psc"
+    else
+      print "$(parse_git_repo)$CYAN$SHELL_PROMPT$NOCOLOR "
+      PS1='$(pscs)'
+    fi
   fi
-  PROMPT_COMMAND="psc"
 }
 
 function pssc {
   if [ `id -u` -eq 0 ]; then
     PS1="$RED\W $(parse_git_repo)$RED#$NOCOLOR "
+    PROMPT_COMMAND="pssc"
   else
-    PS1="$CYAN\h$YELLOW:\W $(parse_git_repo)$NOCOLOR$SHELL_PROMPT "
+    if [[ "$SHELL_PROMPT" == "$" ]]; then
+      PS1="$CYAN\h$YELLOW:\W $(parse_git_repo)$NOCOLOR$SHELL_PROMPT "
+      PROMPT_COMMAND="pssc"
+    else
+      print "$CYAN\h$YELLOW:\W $(parse_git_repo)$NOCOLOR$SHELL_PROMPT "
+      PS1='$(pssc)'
+    fi
   fi
-  PROMPT_COMMAND="pssc"
 }
 
 function psh {
   if [ `id -u` -eq 0 ]; then
     PS1="$RED\h:\W $(parse_git_repo)$RED#$NOCOLOR "
+    PROMPT_COMMAND="psh"
   else
-    PS1="$PURPLE\h:$CYAN\W $(parse_git_repo)$NOCOLOR$SHELL_PROMPT "
+    if [[ "$SHELL_PROMPT" == "$" ]]; then
+      PS1="$PURPLE\h:$CYAN\W $(parse_git_repo)$NOCOLOR$SHELL_PROMPT "
+      PROMPT_COMMAND="psh"
+    else
+      print "$PURPLE\h:$CYAN\W $(parse_git_repo)$NOCOLOR$SHELL_PROMPT "
+      PS1='$(psh)'
+    fi
   fi
-  PROMPT_COMMAND="psh"
 }
 
 function pss {
   if [ `id -u` -eq 0 ]; then
     PS1="$RED\W $(parse_git_repo)$RED#$NOCOLOR "
+    PROMPT_COMMAND="pss"
   else
-    PS1="$BLUE\W $(parse_git_repo)$NOCOLOR$SHELL_PROMPT "
+    if [[ "$SHELL_PROMPT" == "$" ]]; then
+      PS1="$BLUE\W $(parse_git_repo)$NOCOLOR$SHELL_PROMPT "
+      PROMPT_COMMAND="pss"
+    else
+      print "$BLUE\W $(parse_git_repo)$NOCOLOR$SHELL_PROMPT "
+      PS1='$(pss)'
+    fi
   fi
-  PROMPT_COMMAND="pss"
 }
 
 function psl {
   if [ `id -u` -eq 0 ]; then
     PS1="$PURPLE\W $(parse_git_repo)$RED#$NOCOLOR "
+    PROMPT_COMMAND="psl"
   else
-    PS1="$CYAN\W $(parse_git_repo)$NOCOLOR$SHELL_PROMPT "
+    if [[ "$SHELL_PROMPT" == "$" ]]; then
+      PS1="$CYAN\W $(parse_git_repo)$NOCOLOR$SHELL_PROMPT "
+      PROMPT_COMMAND="psl"
+    else
+      print "$CYAN\W $(parse_git_repo)$NOCOLOR$SHELL_PROMPT "
+      PS1='$(psl)'
+    fi
   fi
   pslight
-  PROMPT_COMMAND="psl"
 }
 
 function psd {
   if [ `id -u` -eq 0 ]; then
     PS1="$PURPLE\W $(parse_git_repo)$RED#$NOCOLOR "
+    PROMPT_COMMAND="psd"
   else
-    PS1="$GREEN\W $(parse_git_repo)$NOCOLOR$SHELL_PROMPT "
+    if [[ "$SHELL_PROMPT" == "$" ]]; then
+      PS1="$GREEN\W $(parse_git_repo)$NOCOLOR$SHELL_PROMPT "
+      PROMPT_COMMAND="psd"
+    else
+      print "$GREEN\W $(parse_git_repo)$NOCOLOR$SHELL_PROMPT "
+      PS1='$(psd)'
+    fi
   fi
   psdark
-  PROMPT_COMMAND="psd"
 }
 
 function psm {
   if [ `id -u` -eq 0 ]; then
     PS1="$(parse_git_repo)$RED#$NOCOLOR "
+    PROMPT_COMMAND="psm"
   else
-    PS1="$(parse_git_repo)$NOCOLOR$SHELL_PROMPT "
+    if [[ "$SHELL_PROMPT" == "$" ]]; then
+      PS1="$(parse_git_repo)$NOCOLOR$SHELL_PROMPT "
+      PROMPT_COMMAND="psm"
+    else
+      print "$(parse_git_repo)$NOCOLOR$SHELL_PROMPT "
+      PS1='$(psm)'
+    fi
   fi
-  PROMPT_COMMAND="psm"
 }
 
 function gbruh {
