@@ -6,6 +6,7 @@ REPO=$HOME/.bash
 
 # don't do anything if we don't have a prompt (not an interactive shell)
 [[ $- != *i* ]] && return || [ -z "$PS1" ] && return
+[[ "`uname`" != "Linux" ]] && { >&2 echo "Sorry! These Bash settings were tested on Linux only."; return ; }
 
 # Source global definitions
 if [ -f /etc/bashrc ]; then

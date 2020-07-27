@@ -9,6 +9,7 @@ REPO=~/.ksh
 
 # don't do anything if we don't have a prompt (not an interactive shell)
 #[[ $- != *i* ]] && return || [ -z "$PS1" ] && return
+[[ "`uname`" != "OpenBSD" ]] && { >&2 echo "Sorry! These KSH settings were tested on OpenBSD only."; return ; }
 
 [ -f $HOME/.profile ] && . ~/.profile
 PATH=$PATH:/usr/local/bin:.:~/bin
