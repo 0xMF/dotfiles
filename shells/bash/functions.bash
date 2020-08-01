@@ -159,13 +159,19 @@ function pkg {
   esac
 }
 
+function beep {
+  paplay /usr/share/sounds/freedesktop/stereo/service-login.oga
+  paplay /usr/share/sounds/freedesktop/stereo/service-logout.oga
+}
+
 function alarm {
   if [ ! -z "$1" ]
   then
-    echo "alarm will go off in $1"
-    sleep $1 && while true; do espeak "Time's up!"; done &
+    echo "alarm will go off in $1 minutes"
+    sleep $(( 60 * $1 )) && beep &
   else
-    sleep 1m && while true; do espeak "Time's up!"; done &
+    echo "alarm will go off in 30 seconds"
+    sleep 30 && beep &
   fi
 }
 
