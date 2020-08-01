@@ -171,13 +171,8 @@ function alarm {
 
 # jump to EXAMPLES section of man page if exists else quit
 function eman {
-expect -c "
-  set timeout 1
-  spawn man $1
-  send \"/^EXAMPLES\n\"
-  expect \"Pattern not found\" { exit }
-  interact
-"
+  [[ -z "$1" ]] && { >&2 echo "Usage: eman man-page-with-EXAMPLES-section"; return; }
+  man "$1" | sed -n '/^EXAMPLES/,/^[A-Z]/p' | sed -nr '/^(EXAMPLES| |$)/p' | less -FeqRSX
 }
 
 function g+++ {
