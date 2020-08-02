@@ -461,9 +461,11 @@ function __gh {
       git --no-pager log --color=always $n --graph --pretty=format:"%C(red bold)%h%Creset %C(cyan bold)|%Creset %C(auto)%d%Creset %s"
       echo
     fi
-    if [[ "$SHELL_PROMPT" == "$" ]]; then
+    # default pager must handle less than one screen correctly (bash/Linux with less, ksh/OpenBSD with less -c are ok)
+    # else uncomment line below when only on bash/Linux
+    #if [[ "$SHELL_PROMPT" == "$" ]]; then
       eval "[ `git log --color=always --pretty=oneline | wc -l` -gt 10 ] && git diff --color=always --stat HEAD~$((0 - $n)) HEAD"
-    fi
+    #fi
   fi
 }
 

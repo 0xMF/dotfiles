@@ -24,6 +24,11 @@ function anc {
   alias grep='grep --color=none -i'
 }
 
+function eman {
+  [[ -z "$1" ]] && { print >&2 "Usage: eman man-page-with-EXAMPLES-section"; return; }
+  man -Tascii $1 | col -bx | sed -n '/^EXAMPLES/,/^[A-Z]/p' | sed -nr '/^(EXAMPLES| |$)/p'
+}
+
 function dpkg-list {
 dpkg-query --list|awk -F' ' '{printf("%s\t%-32s\t",$1,substr($2,0,40));$1=$2=$3=$4=""; print $0}'
 }

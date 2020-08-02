@@ -22,9 +22,9 @@ export BROWSER='w3m -v -no-mouse -s -cookie -no-proxy'
 
 # Handles: (-R) ANSI colors with ESC, (-FX) quit on one screen without destroying text,
 #          (-q) quiet mode and (-e) terminate after second encounter with EOF
-export LESS='FeqRSX'
-export MANPAGER='less -FeqRSX'
-export EDITOR='less -FeqRSX'
+export LESS='FceqRSX'
+export EDITOR="less -$LESS"
+export MANPAGER=$EDITOR
 #export LESS='-iMRS -x2'
 
 export FCEDIT=$EDITOR
