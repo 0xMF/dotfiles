@@ -178,7 +178,7 @@ function alarm {
 # jump to EXAMPLES section of man page if exists else quit
 function eman {
   [[ -z "$1" ]] && { >&2 echo "Usage: eman man-page-with-EXAMPLES-section"; return; }
-  man "$1" | sed -n '/^EXAMPLES/,/^[A-Z]/p' | sed -nr '/^(EXAMPLES| |$)/p' | less -FeqRSX
+  man -Tascii $1 | col -bx | sed -n '/^EXAMPLES/,/^[A-Z]/p' | sed -nr '/^(EXAMPLES| |$)/p' | less -FeqRSX
 }
 
 function g+++ {
