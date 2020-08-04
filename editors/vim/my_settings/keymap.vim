@@ -116,7 +116,7 @@ map b       <C-b>
 :map ;m i+<Esc>Ea+<Esc>|                " + + around a word
 :map ;n <Esc>:set nu!<CR>|              " toggle line-numbers
 :map ;nu <Esc>:set nu!<CR>|             " toggle line-numbers
-:map ;p i(<Esc>Ea)<Esc>|                " parens () around a word
+:map ;p mpi(<Esc>Ea)<Esc>`p|            " parens () around a word
 :map ;q  <Esc>magq}``|                  " par command  paragraph formatting
 :map ;qw <Esc>magw}``|                  " Vim's paragraph formatting
 :map ;tp gT|                            " tabprevious for console vim
