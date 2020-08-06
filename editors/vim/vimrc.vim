@@ -96,12 +96,14 @@ set runtimepath=$VIMRUNTIME,$MYVIM,$MYVIM/dependencies
     :endif
 
     "** use my colorscheme (nice-gui) if midnight is not available (win/gtk)
-    : if filereadable(expand("$MYVIM/colors/midnight.vim"))
-    :   colorscheme midnight
-    : elseif filereadable(expand("$MYVIM/colors/nice-gui.vim"))
-    :   colorscheme nice-gui
-    : else
-    :   colorscheme ron
+    : if "g:colors_name" != "industry"
+    :   if filereadable(expand("$MYVIM/colors/midnight.vim"))
+    :     colorscheme midnight
+    :   elseif filereadable(expand("$MYVIM/colors/nice-gui.vim"))
+    :     colorscheme nice-gui
+    :   else
+    :     colorscheme ron
+    :   endif
     : endif
 
 :else
@@ -160,7 +162,11 @@ set smartcase           " ...if it didn't have a capital letter
 "** Make unnamed buffer the default for clipboard (see line below)
 set clipboard=unnamed   " all yanking goes to clipboard
 
-"** Vim70 features
+"** Vim74 features
+:if (version >= 740)
+:     colorscheme industry  " Wow!! Thank you Shian Lee!
+:endif
+"** Vim7 features
 :if (version >= 700) && (has("gui_running"))
 :   set nospell
 :   set spelllang=en_ca,en_us       " Canadian and US spelling, ca words
