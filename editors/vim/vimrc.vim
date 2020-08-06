@@ -1,4 +1,3 @@
-
 "** Global variables for this script
 
 " MYVIM variable used to handle different OS repos/conf locations
@@ -53,6 +52,18 @@ set runtimepath=$VIMRUNTIME,$MYVIM,$MYVIM/dependencies
 :   echoerr "cannot create backups"
 :endif
 
+"** hopefully we are running a fairly modern version of vim (Vim7). If so, use its features
+:if (version >= 700) && (has("gui_running"))
+    :set nospell
+    :set spelllang=en_ca,en_us                " Canadian and US spelling, ca words
+    :set spellfile=$MYVIM/spell/latin1.add    " my dictionary
+    :set formatlistpat=^\\s*\\d*[\\]:.)}*\\t\ ]\\s*
+    :set showtabline=1   " =0 never show tabs, =1 show if 2 or more tabs, =2 always show
+    :if (version >= 740)                      " features with Vim74 or better
+    :   colorscheme industry                  " Wow!! Thank you Shian Lee!
+    :endif
+:endif
+
 "** check if gvim is running and set its options accordingly
 :if has ("gui_running")
     :syntax on               " start syntax highlighting
@@ -95,8 +106,8 @@ set runtimepath=$VIMRUNTIME,$MYVIM,$MYVIM/dependencies
     :   let &tags.= tagfiles
     :endif
 
-    "** use my colorscheme (nice-gui) if midnight is not available (win/gtk)
-    : if "g:colors_name" != "industry"
+    "** use my colorscheme (nice-gui) if both industry and midnight are not available (win/gtk)
+    :if expand(g:colors_name) != "industry"
     :   if filereadable(expand("$MYVIM/colors/midnight.vim"))
     :     colorscheme midnight
     :   elseif filereadable(expand("$MYVIM/colors/nice-gui.vim"))
@@ -105,9 +116,7 @@ set runtimepath=$VIMRUNTIME,$MYVIM,$MYVIM/dependencies
     :     colorscheme ron
     :   endif
     : endif
-
 :else
-
     "** prefer my colorscheme (nice-term) for conosole
     : if filereadable(expand("$MYVIM/colors/nice-term.vim"))
     :   colorscheme nice-term
@@ -162,17 +171,6 @@ set smartcase           " ...if it didn't have a capital letter
 "** Make unnamed buffer the default for clipboard (see line below)
 set clipboard=unnamed   " all yanking goes to clipboard
 
-"** Vim7 features
-:if (version >= 700) && (has("gui_running"))
-:   set nospell
-:   set spelllang=en_ca,en_us       " Canadian and US spelling, ca words
-:   set spellfile=$MYVIM/spell/latin1.add   " my dictionary
-:   set formatlistpat=^\\s*\\d*[\\]:.)}*\\t\ ]\\s* "also called set flp
-:   set showtabline=1   " =0 never show tabs, =1 show if 2 or more tabs, =2 always show
-    :if (version >= 740)      " features tha require Vim74 or better
-    :   colorscheme industry  " Wow!! Thank you Shian Lee!
-    :endif
-:endif
 
 "** Simple scripts for autocommands on file type detectiong
 :if !exists("autocommands_loaded")
