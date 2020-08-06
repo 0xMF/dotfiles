@@ -162,10 +162,6 @@ set smartcase           " ...if it didn't have a capital letter
 "** Make unnamed buffer the default for clipboard (see line below)
 set clipboard=unnamed   " all yanking goes to clipboard
 
-"** Vim74 features
-:if (version >= 740)
-:     colorscheme industry  " Wow!! Thank you Shian Lee!
-:endif
 "** Vim7 features
 :if (version >= 700) && (has("gui_running"))
 :   set nospell
@@ -173,6 +169,9 @@ set clipboard=unnamed   " all yanking goes to clipboard
 :   set spellfile=$MYVIM/spell/latin1.add   " my dictionary
 :   set formatlistpat=^\\s*\\d*[\\]:.)}*\\t\ ]\\s* "also called set flp
 :   set showtabline=1   " =0 never show tabs, =1 show if 2 or more tabs, =2 always show
+    :if (version >= 740)      " features tha require Vim74 or better
+    :   colorscheme industry  " Wow!! Thank you Shian Lee!
+    :endif
 :endif
 
 "** Simple scripts for autocommands on file type detectiong
