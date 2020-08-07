@@ -34,7 +34,6 @@ else
   alias ls='ls --color=always --ignore="NTUSER.*" --ignore="ntuser.*" -F --group-directories-first'
   alias la='ls -lAhFt --time-style=+"%Y-%b-%d %H:%S"'
   alias lc='ls -FCp -w 120|less -FRMS'
-  alias ll='ls -lhFt --time-style=+"%Y-%b-%d %H:%S"|sed "/^total /d"'
   alias lld='ls -lhdFt --time-style=+"%Y-%b-%d %H:%S"'
   alias stats="man -k ' ' | grep -Ee 'stat \((1|8)\) '"
 
@@ -48,6 +47,8 @@ alias cd..='cd ..'
 alias cls='clear'
 alias cpi='cp -i'
 alias cpu='cp -u'
+alias cpr='cp -r'
+alias cv='type -a'
 alias dfh="df -h|egrep '^(Filesystem|/)'| sort -hk5"
 alias e='emacs'
 alias em='emacs'

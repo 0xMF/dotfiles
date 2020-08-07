@@ -12,6 +12,13 @@
 
 OS=$(uname -s)
 
+function  ll {
+
+  [[ -z "$1" ]]\
+    && ls -lhFt --time-style=+"%Y-%b-%d %H:%S" | sed "/^total /d"\
+    || ls -lhFt --time-style=+"%Y-%b-%d %H:%S" "$@" | sed "/^total /d"
+}
+
 function record {
   if [[ `type -t termtosvg` == "file" ]]
   then
