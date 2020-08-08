@@ -48,6 +48,7 @@ alias cls='clear'
 alias cpi='cp -i'
 alias cpu='cp -u'
 alias cpr='cp -r'
+alias cpa='cp -a'
 alias cv='type -a'
 alias dfh="df -h|egrep '^(Filesystem|/)'| sort -hk5"
 alias e='emacs'

@@ -226,17 +226,6 @@ function sc {
   esac
 }
 
-function sdate {
-  if [ `id -u` -eq 0 ]; then
-    date `cat /tmp/date`
-    rm -f /tmp/date
-  else
-    rm -f /tmp/date
-    date "+%Y%m%d%H%M.%S" >/tmp/date
-    scp /tmp/date mark@$VM:/tmp/date
-  fi
-}
-
 function loc {
   `which localc` "$@" 2>/dev/null &
 }
