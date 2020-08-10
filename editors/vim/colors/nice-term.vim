@@ -109,14 +109,18 @@ hi Type         cterm=none  ctermbg=none   ctermfg=Blue
 hi Special      cterm=none  ctermbg=none   ctermfg=DarkYellow
 hi Underlined   cterm=none  ctermbg=none   ctermfg=Blue
 hi Ignore       cterm=none  ctermbg=none   ctermfg=DarkGray
-hi Error        cterm=none  ctermbg=none   ctermfg=White
+hi Error        cterm=bold  ctermbg=none   ctermfg=Red
 hi Todo         cterm=none  ctermbg=none   ctermfg=Brown
 
 " make even rare occurrences readable
-hi SpellBad    cterm=reverse ctermbg=none  ctermfg=White
+hi SpellBad    cterm=reverse ctermbg=Black  ctermfg=LightYellow
 hi SpellLocal  cterm=reverse ctermbg=none  ctermfg=White
 hi PmenuThumb  cterm=none   ctermbg=none   ctermfg=White
 hi CursorLineNr  cterm=bold ctermfg=red
 hi Italic      cterm=italic ctermbg=none   ctermfg=Blue
+hi Bold        cterm=bold ctermbg=none   ctermfg=Red
 hi asciidocQuotedEmphasized2 cterm=italic ctermbg=none   ctermfg=Blue
 hi asciidocQuotedUnconstrainedEmphasized cterm=italic ctermbg=none   ctermfg=Blue
+hi asciidocQuotedBold cterm=bold ctermbg=none   ctermfg=Red
+hi asciidocQuotedUnconstrainedBold cterm=bold ctermbg=none   ctermfg=Red
+hi link Bold markdownBold

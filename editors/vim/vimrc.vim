@@ -223,6 +223,10 @@ set clipboard=unnamed   " all yanking goes to clipboard
     au BufEnter,BufRead,BufNewFile */COMMIT_EDITMSG setlocal filetype=gitcommit
     au BufEnter,BufRead,BufNewFile */MERGE_MSG      setlocal filetype=gitcommit
 
+    "* Vim help files
+    au FileType help setlocal nospell spelllang=
+    au BufEnter,BufRead,BufNewFile *.vim setlocal nospell spelllang=
+
     "* Go
     au BufRead,BufNewFile *.go setlocal filetype=go
     "au BufRead,BufNewFile *.go setlocal bomb
