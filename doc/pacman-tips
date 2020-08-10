@@ -42,3 +42,6 @@ pacman -Suy --overwrite /usr/lib/p11-kit-trust.so
 
 # get a list of packages installed by pacman
 grep -i installed /var/log/pacman.log
+
+# for package followed by description use
+pacman -Ss ruby |  perl -pe 's/\n// if $. % 2 == 1' | sed 's/\t//g'

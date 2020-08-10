@@ -361,4 +361,9 @@ function saru {
   esac
 }
 
+function pacsearch {
+  [[ -z "$1" ]] && { >&2 echo "Usage: pacsearch SEARCH_TERM"; return 1; }
+  pacman -Ss "$1" |  perl -pe 's/\n// if $. % 2 == 1' | sed 's/\t//g'
+}
+
 # vim:nospell:ft=sh:
