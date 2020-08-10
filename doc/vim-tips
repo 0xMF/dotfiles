@@ -2,9 +2,11 @@ Help
 ----
 
  - Use `CTRL-[` to delve into a topic, and `CTRL-O` to back into previous help history
+ - fold-behavior fold-:
  - The : line is called command-line (:help command-line)
  - Use | bar to send multiple commands at the same time, the example below is two commands
 
     :set tw=100 | colorscheme murphy
+
 
 # vim: filetype=asciidoc: textwidth=100

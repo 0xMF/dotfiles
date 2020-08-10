@@ -1,11 +1,13 @@
-"--------------------------------------------------------------------
+"------------------------------------------------------------------------------
 " Filename:     nice-term.vim
 " Purpose:      Vim color file
 " Maintainer:   Mark Fernandes
-" Last Change: 23 Feb 2008 
+" Last Change:  10 Aug 2020
 "   - added detection of xterm for termcap/terminfo
 "   - changed none to none to get it to work correctly on gnone-terminal
-"--------------------------------------------------------------------
+"   - $VIMRUNTIME/syntax/hitest.vim corrected many unreadable bg/fg combos
+"   - tested on dark (none) background only, light background still pending
+"------------------------------------------------------------------------------
 
 " Read help on the following topics
 " cool help screens
@@ -16,23 +18,23 @@
 " termcap/terminfo detection
 :if &term =~ "xterm"
 :  if has("terminfo")
-:	set t_Co=8
-:	set t_Sf=<Esc>[3%p1%dm
-:	set t_Sb=<Esc>[4%p1%dm
+:  set t_Co=8
+:  set t_Sf=<Esc>[3%p1%dm
+:  set t_Sb=<Esc>[4%p1%dm
 ":   echo "terminfo"
 :  else
-:	set t_Co=8
-:	set t_Sf=<Esc>[3%dm
-:	set t_Sb=<Esc>[4%dm
+:  set t_Co=8
+:  set t_Sf=<Esc>[3%dm
+:  set t_Sb=<Esc>[4%dm
 ":   echo "termcap"
 :  endif
 :endif
 ":set t_ti= t_te=
 
 " your pick:
-"set background=dark	" or light
+"set background=dark  " or light
 :set background=dark
-:highlight  clear 
+:highlight  clear
 if exists("syntax_on")
     syntax reset
 endif
@@ -54,17 +56,18 @@ let g:colors_name="nice-term"
 " endif
 
 " A good way to see what your colorscheme does is to follow this procedure:
-" :w 
-" :so % 
+" :w
+" :so %
 "
-" Then to see what the current setting is use the highlight command.  
+" Then to see what the current setting is use the highlight command.
 " For example,
-" 	:hi Cursor
+" :hi Cursor
 " gives
-"	Cursor         xxx guifg=bg guibg=fg 
- 	
+" Cursor         xxx guifg=bg guibg=fg
+
 " Uncomment and complete the commands you want to change from the default.
 
+hi Normal      cterm=none   ctermbg=none   ctermfg=White
 
 hi Cursor       cterm=none  ctermbg=none   ctermfg=Red
 hi CursorIM     cterm=none  ctermbg=none   ctermfg=Red
@@ -83,13 +86,13 @@ hi ModeMsg      cterm=none  ctermbg=none   ctermfg=DarkRed
 hi MoreMsg      cterm=none  ctermbg=none   ctermfg=Cyan
 hi NonText      cterm=none  ctermbg=none   ctermfg=DarkRed
 hi Question     cterm=none  ctermbg=none   ctermfg=Cyan
-hi Search       cterm=none  ctermbg=White   ctermfg=none
+hi Search       cterm=bold  ctermbg=White  ctermfg=Black
 hi SpecialKey   cterm=none  ctermbg=none   ctermfg=Cyan
 hi StatusLine   cterm=none  ctermbg=none   ctermfg=DarkYellow
 hi StatusLineNC cterm=none  ctermbg=none   ctermfg=Cyan
 hi Title        cterm=none  ctermbg=none   ctermfg=Cyan
-hi Visual       cterm=none  ctermbg=White   ctermfg=none
-hi VisualNOS    cterm=none  ctermbg=White   ctermfg=none
+hi Visual       cterm=bold  ctermbg=White  ctermfg=Black
+hi VisualNOS    cterm=bold  ctermbg=White  ctermfg=Black
 hi WarningMsg   cterm=none  ctermbg=none   ctermfg=DarkRed
 hi WildMenu     cterm=none  ctermbg=none   ctermfg=Cyan
 hi Menu         cterm=none  ctermbg=none   ctermfg=DarkBlue
@@ -108,3 +111,9 @@ hi Underlined   cterm=none  ctermbg=none   ctermfg=Blue
 hi Ignore       cterm=none  ctermbg=none   ctermfg=DarkGray
 hi Error        cterm=none  ctermbg=none   ctermfg=White
 hi Todo         cterm=none  ctermbg=none   ctermfg=Brown
+
+" make even rare occurrences readable
+hi SpellBad    cterm=reverse ctermbg=none  ctermfg=White
+hi SpellLocal  cterm=reverse ctermbg=none  ctermfg=White
+hi PmenuThumb  cterm=none   ctermbg=none   ctermfg=White
+hi CursorLineNr  cterm=bold ctermfg=red
