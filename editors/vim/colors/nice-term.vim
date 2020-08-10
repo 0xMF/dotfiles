@@ -117,3 +117,6 @@ hi SpellBad    cterm=reverse ctermbg=none  ctermfg=White
 hi SpellLocal  cterm=reverse ctermbg=none  ctermfg=White
 hi PmenuThumb  cterm=none   ctermbg=none   ctermfg=White
 hi CursorLineNr  cterm=bold ctermfg=red
+hi Italic      cterm=italic ctermbg=none   ctermfg=Blue
+hi asciidocQuotedEmphasized2 cterm=italic ctermbg=none   ctermfg=Blue
+hi asciidocQuotedUnconstrainedEmphasized cterm=italic ctermbg=none   ctermfg=Blue
