@@ -59,6 +59,7 @@ alias gnupg='gpg'
 alias grep='grep --color=always -i'
 alias gvim-server='gvim --servername GVIM'
 alias gvim-send-to-remote-server='gvim --remote-tab-silent'
+alias heman='eman'
 #alias lsc='ls | cut -c1-50 | column -c "${COLUMNS:-80}"'
 alias lsd='ls -d *'
 alias ls-files-only="\ls -dF * | sed '\|/|d'"
