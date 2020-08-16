@@ -12,6 +12,14 @@
 
 OS=$(uname -s)
 
+function vimdoc {
+
+  local src=$HOME/repos/dotfiles/doc/vim-tips
+  typeset -a vimpager > /dev/null 2>&1
+  [[ $? -eq 0 ]] && vimpager $src || cat $src
+
+}
+
 function  ll {
 
   [[ -z "$1" ]]\
