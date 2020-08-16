@@ -63,6 +63,7 @@ alias heman='eman'
 #alias lsc='ls | cut -c1-50 | column -c "${COLUMNS:-80}"'
 alias lsd='ls -d *'
 alias ls-files-only="\ls -dF * | sed '\|/|d'"
+alias lsf="\ls -dF * | sed '\|/|d'"
 alias make='make -j `grep -wc "^processor" /proc/cpuinfo`'
 alias mvi='mv -i'
 alias pacman='sudo pacman'
