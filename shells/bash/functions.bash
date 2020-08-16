@@ -12,12 +12,11 @@
 
 OS=$(uname -s)
 
-function vimdoc {
+function showdoc {
 
-  local src=$HOME/repos/dotfiles/doc/vim-tips
+  [[ ! -s "$1" ]] && { 2>&1 echo "Usage: showdoc FILE from dotfiles/doc"; return 1; }
   typeset -a vimpager > /dev/null 2>&1
-  [[ $? -eq 0 ]] && vimpager $src || cat $src
-
+  [[ $? -eq 0 ]] && vimpager $1 || cat $1
 }
 
 function  ll {

@@ -67,7 +67,6 @@ alias lsaf='ls-all-files-only'
 alias make='make -j `grep -wc "^processor" /proc/cpuinfo`'
 alias mvi='mv -i'
 alias pacman='sudo pacman'
-alias pacdoc="cat $HOME/repos/dotfiles/doc/pacman-tips"
 alias perldoc='perldoc -MPod::Text::Color::Delight'
 alias pg='less -Feq'
 alias python='/usr/bin/python3'
@@ -90,5 +89,8 @@ alias tmux='TERM=tmux-256color tmux -u'
 alias vi='vim'
 alias vb='/usr/local/bin/vimb 2>/dev/null &'
 alias vimb='/usr/local/bin/vimb 2>/dev/null &'
+
+alias pacdoc="showdoc $HOME/repos/dotfiles/doc/pacman-tips"
+alias vimdoc="showdoc $HOME/repos/dotfiles/doc/vim-tips"
 
 # vim:nospell:ft=sh:
