@@ -15,7 +15,7 @@ OS=$(uname -s)
 function showdoc {
 
   [[ ! -s "$1" ]] && { 2>&1 echo "Usage: showdoc FILE from dotfiles/doc"; return 1; }
-  typeset -a vimpager > /dev/null 2>&1
+  which -a vimpager > /dev/null 2>&1
   [[ $? -eq 0 ]] && vimpager $1 || cat $1
 }
 
