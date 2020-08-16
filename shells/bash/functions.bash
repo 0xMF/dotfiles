@@ -19,6 +19,14 @@ function  ll {
     || ls -lhFt --time-style=+"%Y-%b-%d %H:%S" "$@" | sed "/^total /d"
 }
 
+function ls-files-only {
+  eval '[[ $# -eq 0 ]] && \ls -dF * || { for d in "$@"; do \ls -dF ${d}/*; done } | sed "\|/$|d"'
+}
+
+function ls-all-files-only {
+  find "$@" -maxdepth 1 -type f
+}
+
 function record {
   if [[ `type -t termtosvg` == "file" ]]
   then
