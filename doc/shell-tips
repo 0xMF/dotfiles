@@ -1,0 +1,12 @@
+#!/bin/bash
+
+# while read ln; do if ! grep -q $ln bfile; then echo $ln; fi; done < afile
+while read ln; 
+do 
+  if ! grep -q $ln bfile
+  then 
+    echo $ln
+  fi
+done < afile
+
+# vim: filetype=bash
