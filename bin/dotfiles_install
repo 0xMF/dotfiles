@@ -208,6 +208,19 @@ _ksh() {
   }
 }
 
+# lisps
+_lisp() {
+  echo "checking lisps..." >&2
+  if [[ -e $HOME/.sbclrc || -L $HOME/.sbclrc ]]; then
+    echo " - found sbclrc, not installing" >&2
+  else
+    [[ "$EXPERIMENTAL" == "yes" ]] \
+     && { ln -s ${_SCRIPTDIR%bin}lisps/sbclrc ~/.sbclrc; } \
+     || { ln -s ${SCRIPT_DIR%bin}lisps/sbclrc $HOME/.sbclrc; }
+    echo " - ...INSTALLED sbclrc" >&2
+  fi
+}
+
 # misc
 _misc() {
   echo "checking misc dotfiles..." >&2
@@ -314,6 +327,7 @@ _vim() {
   _git
   _bash
   _ksh
+  _lisp
   _misc
   _pal
   _vim
@@ -324,6 +338,7 @@ _bash
 _config_misc
 [[ "$1" == "--with-emacs" ]] && _emacs
 _git
+_lisp
 _misc
 _pal
 _vim
