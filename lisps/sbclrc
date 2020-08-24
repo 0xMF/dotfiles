@@ -6,3 +6,6 @@
   (when (probe-file quicklisp-init)
     (load quicklisp-init)))
 
+(ql:quickload "fiveam")
+(ql:quickload "trivial-ssh")
+
