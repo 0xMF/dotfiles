@@ -1,5 +1,9 @@
 #!/bin/bash
 
+# want to know more about user-defined/built-in shell functions/aliases, use cv
+$ cv
+$ cv !!
+
 # while read ln; do if ! grep -q $ln bfile; then echo $ln; fi; done < afile
 while read ln; 
 do 
