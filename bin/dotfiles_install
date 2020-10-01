@@ -334,6 +334,30 @@ _vim() {
   return
 }
 
+# zsh
+_zsh() {
+  installed=
+  echo -n "checking zsh..." >&2
+
+  [[ -e $HOME/.zshrc || -L $HOME/.zshrc ]] && {
+    echo "found, not installing" >&2
+  } || {
+    installed="zshrc"
+    [[ "$EXPERIMENTAL" == "yes" ]] \
+      && { ln -s ${_SCRIPTDIR%bin}shells/zsh/zshrc.zsh ~/.zshrc; } \
+      || { ln -s ${SCRIPT_DIR%bin}shells/zsh/zshrc.zsh $HOME/.zshrc; }
+  }
+
+  [[ -e $HOME/.zcompdump || -L $HOME/.zcompdump ]] && { :
+  } || {
+    [[ "$EXPERIMENTAL" == "yes" ]] \
+      && { ln -s ${_SCRIPTDIR%bin}shells/zsh/zcompdump.zsh ~/.zcompdump; } \
+      || { ln -s ${SCRIPT_DIR%bin}shells/zsh/zcompdump.zsh $HOME/.zcompdump; }
+  }
+
+  [ ! -z "$installed" ] && echo "INSTALLED!" >&2
+}
+
 _bash
 _config_misc
 [[ "$1" == "--with-emacs" ]] && _emacs
@@ -342,5 +366,6 @@ _lisp
 _misc
 _pal
 _vim
+_zsh
 
 # vim: nonu:nowrap:nospell:ft=sh
