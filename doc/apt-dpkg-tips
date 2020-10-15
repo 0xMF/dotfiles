@@ -1,0 +1,11 @@
+# show list of all files in an installed package
+dpkg-query -L virtualbox-guest-additions-iso
+dpkg --listfiles virtualbox-guest-additions-iso
+
+# files in a debian package
+dpkg-deb -c some-pkg.deb
+
+# list/search for/show contents of package
+apt list virtualbox-guest-additions-iso
+apt search virtualbox-guest-additions-iso
+apt show virtualbox-guest-additions-iso
