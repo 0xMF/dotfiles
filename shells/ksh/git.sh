@@ -492,7 +492,9 @@ function gh {
                       || git log --color=always -p --stat HEAD~`expr $1 - 1`...HEAD~$1 ;;
       2) [ $1 -eq 1 ] && git log --color=always --stat  HEAD...HEAD~$2 \
                       || git log --color=always --stat  HEAD~$1...HEAD~$2 ;;
-      *) $e;;
+      *) [[ `$e | wc -l` -gt 50 ]] \
+                      && { $e | head -30; echo -e "\n   ...[snip]...\nremoved listings! use gha if you want it all\n"; }\
+                      || $e ;;
          #br_name=`git rev-parse --abbrev-ref HEAD`
          #br_all=`git branch -a|$GREP HEAD|cut -d'>' -f2`
          #case "origin/$br_name" in

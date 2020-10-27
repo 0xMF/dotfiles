@@ -60,3 +60,4 @@
 
 [diff]
 	tool = less -FEqRSX
+  renameLimit = 1742
