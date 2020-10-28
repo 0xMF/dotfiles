@@ -31,20 +31,18 @@ fi
 
 # setup our prompt PS1, first get OS release+version
 OSRV=
-if [ $(uname) == "OpenBSD" ]; then
-    OSRV=$(uname)
-else
-  if [ $(uname -o) == "GNU/Linux" ]; then
-    if [ $(cat /etc/*-release|wc -l) -eq 1 ]; then
-      OSRV=$(cat /etc/*-release)
-    else
-      OSRV=$(cat /etc/lsb-release|grep -w DESCRIPTION|sed -e 's/.*=//;s/\"//g')
-    fi
-  fi
-  if [ $(uname -o) == "FreeBSD" ]; then
-    OSRV=$(uname -sr)
-  fi
-fi
+case "$(uname)" in
+  "OpenBSD" ) OSRV=$(uname) ;;
+  * ) case "$(uname -o)" in
+        "FreeBSD"   ) OSRV=$(uname -sr) ;;
+        "GNU/Linux" ) if [[ $(cat /etc/*-release|wc -l) -eq 1 ]]; then
+                        OSRV=$(cat /etc/*-release)
+                      else
+                        OSRV=$(cat /etc/lsb-release|grep -w DESCRIPTION|sed -e 's/.*=//;s/\"//g')
+                      fi ;;
+        * ) ;;
+      esac
+esac
 
 set -o emacs             # vi-style editing
 bind -m '^L'=clear'^J'   # clear the screen
