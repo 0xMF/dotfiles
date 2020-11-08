@@ -1,6 +1,10 @@
 # gith based aliases
 [ ! -z "`which hub 2>/dev/null`" ] && alias git='hub'
 #alias g='git' # now g() is a function that calls git
+alias gam='git amend'
+alias game='git amend'
+alias gamen='git amend'
+alias gamend='git amend'
 alias gbr='git branch'
 alias gbrn='git rev-parse --abbrev-ref HEAD'
 alias gc='git commit -v'
