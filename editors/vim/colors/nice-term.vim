@@ -67,7 +67,7 @@ let g:colors_name="nice-term"
 
 " Uncomment and complete the commands you want to change from the default.
 
-hi Normal      cterm=none   ctermbg=none   ctermfg=White
+hi Normal      cterm=none   ctermbg=none   ctermfg=none
 
 hi Cursor       cterm=none  ctermbg=none   ctermfg=Red
 hi CursorIM     cterm=none  ctermbg=none   ctermfg=Red
