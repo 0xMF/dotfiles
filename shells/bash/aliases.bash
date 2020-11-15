@@ -35,6 +35,9 @@ else
   alias la='ls -lAhFt --time-style=+"%Y-%b-%d %H:%S"'
   alias lc='ls -FCp -w 120|less -FRMS'
   alias lld='ls -lhdFt --time-style=+"%Y-%b-%d %H:%S"'
+  alias later='ll -tr'
+  alias lltr='ll -tr'
+  alias ltr='ll -tr'
   alias stats="man -k ' ' | grep -Ee 'stat \((1|8)\) '"
 
 fi
