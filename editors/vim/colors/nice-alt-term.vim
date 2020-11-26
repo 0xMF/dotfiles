@@ -7,11 +7,14 @@
 "   - changed none to none to get it to work correctly on gnone-terminal
 "--------------------------------------------------------------------
 
-" Read help on the following topics
-" cool help screens
-" :he group-name
-" :he highlight-groups
-" :he cterm-colors
+" First, read help on the following topics
+"   :help group-name
+"   :help highlight-groups
+"   :help cterm-colors
+"
+" Then to see existing setup, run
+"   :highlight
+"
 
 " termcap/terminfo detection
 :if &term =~ "xterm"

@@ -5,6 +5,16 @@
 " Modified By:  Mark Fernandes
 " Last Change:  2010 Mar 28
 "--------------------------------------------------------------------
+
+" First, read help on the following topics
+"   :help group-name
+"   :help highlight-groups
+"   :help cterm-colors
+"
+" Then to see existing setup, run
+"   :highlight
+"
+
 set background=light
 hi clear
 if exists("syntax_on")
