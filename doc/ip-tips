@@ -1,0 +1,19 @@
+ip - address link
+ip -4 -brief address
+ip -4 -brief link
+
+ip neighbor
+
+ip link set up dev enp0s8
+ip link set down dev enp0s8
+
+ip address
+ip address show
+ip address add dev enp0s8 192.168.99.2/30
+ip address del dev enp0s8 192.168.99.2
+
+ip route
+ip route add default via 192.168.99.1 dev enp0s8
+ip route del 192.168.99.1
+
+
