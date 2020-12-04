@@ -1,14 +1,20 @@
 ip - address link
-ip -4 -brief address
-ip -4 -brief link
+ip -0 -brief address    # mac addresses
+ip -4 -brief address    # ipv4
+ip -6 -brief address    # ipv6
+ip -4 -brief link       # link status UP/DOWN
 
-ip neighbor
+ip (neighbor|neighbour)
 
 ip link set up dev enp0s8
 ip link set down dev enp0s8
 
 ip address
 ip address show
+ip address show dynamic     # DHCP
+ip address show permanent   # non-DHCP, static, permanent
+ip -4 -brief address show (dynamic|permanent)
+
 ip address  add 192.168.99.2/30 dev enp0s8
 ip address (del|delete) 192.168.99.2/20 dev enp0s8
 
