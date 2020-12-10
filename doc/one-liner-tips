@@ -1,6 +1,13 @@
-# show lines that match
+# show matched lines
 awk      '/mark/'           /etc/passwd
 grep     "mark"             /etc/passwd
 perl -ne 'print if /mark/'  /etc/passwd
 ruby -ne 'print if /mark/'  /etc/passwd
 sed  -n  '/mark/p'          /etc/passwd
+
+# show lines that did not match
+awk      '!/mark/'              /etc/passwd
+grep -ve "mark"                 /etc/passwd
+perl -ne 'print unless /mark/'  /etc/passwd
+ruby -ne 'print unless /mark/'  /etc/passwd
+sed      '/mark/d'              /etc/passwd
