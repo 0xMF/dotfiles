@@ -17,5 +17,9 @@ sed  -ne  '/root/,/mark/p' /etc/passwd
 perl -wne '/root/../mark/p' /etc/passwd
 
 sed  -ne  '/\/bin\/bash/,/\/bin\/nologin/p'         /etc/passwd
+
+# for more regex, specifically three dot and flip-flop, see: 
+#    perldoc perlre, perlop 
 perl -wne 'm|/bin/bash|..m|/bin/nologin| and print' /etc/passwd
 perl -wne 'm|/bin/bash|../^$/ and print'            /etc/passwd
+perl -wne 'm|/bin/bash|.../^mark/ and print'        /etc/passwd
