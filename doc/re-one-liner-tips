@@ -1,0 +1,20 @@
+# show matched lines
+awk       '/mark/'           /etc/passwd
+grep      "mark"             /etc/passwd
+perl -wne 'print if /mark/'  /etc/passwd
+ruby -wne 'print if /mark/'  /etc/passwd
+sed  -n   '/mark/p'          /etc/passwd
+
+# show lines that did not match
+awk       '!/mark/'              /etc/passwd
+grep -ve  "mark"                 /etc/passwd
+perl -wne 'print unless /mark/'  /etc/passwd
+ruby -wne 'print unless /mark/'  /etc/passwd
+sed       '/mark/d'              /etc/passwd
+
+# show matched lines betwen two patterns
+sed  -ne  '/root/,/mark/p' /etc/passwd
+perl -wne '/root/../mark/p' /etc/passwd
+
+sed  -ne  '/\/bin\/bash/,/\/bin\/nologin/p'         /etc/passwd
+perl -wne 'm|/bin/bash|..m|/bin/nologin| and print' /etc/passwd
