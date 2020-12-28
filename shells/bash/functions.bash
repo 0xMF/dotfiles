@@ -349,7 +349,7 @@ function mouse-reset {
 function sadu {
   distro=$(\grep -w ID /etc/os-release | cut -d= -f2 | tr -d '"')
   case "${distro}" in
-    arch)
+    arch|manjaro)
       sudo pacman -Syu
         ;;
     centos)
