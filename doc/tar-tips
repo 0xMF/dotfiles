@@ -1,4 +1,4 @@
 # tar saves time in nanoseconds but that does not help when using git,
 # so to create and store timestamps with posix-based time resolution:
 
-tar cvzHF posix dotgit.tgz .git/*
+tar cvzHf posix dotgit.tgz .git/*
