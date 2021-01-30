@@ -106,6 +106,8 @@
 
   hist        = log --color=always -10 --format=format:'%Cgreen%h %Creset %s (%cN, %ar)'
   history     = log --color=always --pretty=format:"%C(yellow)%h\\ %ad%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --graph --date=short
+  hist-all    = log --color=always --pretty=format:'%C(cyan bold)%h%Creset | %C(red bold)%ad%Creset %d %Creset%s%Cgreen [%cn]' --date=short --follow
+  history-all = log --color=always --pretty=format:'%C(cyan bold)%h%Creset | %C(red bold)%ad%Creset %d %Creset%s%Cgreen [%cn]' --date=short --follow
   ignore      = update-index --assume-unchanged
   ignored     = ls-files -o -i --exclude-standard   # Show files ignored by git:
   invert      = revert

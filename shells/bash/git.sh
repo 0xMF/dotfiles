@@ -429,6 +429,17 @@ function ghist {
   fi
 }
 
+function ghist-all {
+  if _is_git_repo -eq 0
+  then
+    [[ -n "$1" && -f "$1" ]] \
+      && git log --color=always --pretty=format:'%C(cyan bold)%h%Creset | %C(red bold)%ad%Creset %d %Creset%s%Cgreen [%cn]' --date=short --follow -- "$1" \
+      || { >&2 echo "Usage ghist-all filename"; return; }
+  fi
+}
+
+
+
 # completes the triad of:
 #   * alias gcf for git commit --fixup
 #   * alias gcs for git commit --squash
