@@ -74,6 +74,9 @@ WHITE="\[\033[1;37m\]"
 NOCOLOR="\[\033[00m\]"
 
 function green {
+  # only call when bash isn't called from zsh login shell
+  [[ -n "$ZSH" ]] && { unset PROMPT_COMMAND; return; }
+
   LS_COLORS="`echo $LS_COLORS|sed 's/di=0[01];3[0-9]/di=01;33/'`"
   LS_COLORS="`echo $LS_COLORS|sed 's/ln=[01][01];3[0-9]/ln=00;32/'`"
   LS_COLORS="`echo $LS_COLORS|sed 's/ex=0[01];3[0-9]/ex=01;32/'`"
@@ -93,6 +96,9 @@ function green {
 }
 
 function psdark {
+  # only call when bash isn't called from zsh login shell
+  [[ -n "$ZSH" ]] && { unset PROMPT_COMMAND; return; }
+
   # blue dir, green link, light green executables
   LS_COLORS="`echo $LS_COLORS|sed 's/di=0[01];3[0-9]/di=01;34/'`"
   LS_COLORS="`echo $LS_COLORS|sed 's/ln=[01][01];3[0-9]/ln=00;32/'`"
@@ -101,6 +107,9 @@ function psdark {
 }
 
 function pslight {
+  # only call when bash isn't called from zsh login shell
+  [[ -n "$ZSH" ]] && { unset PROMPT_COMMAND; return; }
+
   # black dir   #LS_COLORS="`echo $LS_COLORS|sed 's/di=01;33/di=00;30/'`"
   # brown dir   #LS_COLORS="`echo $LS_COLORS|sed 's/di=0[01];3[0-9]/di=00;34/'`"
   # purple link #LS_COLORS="`echo $LS_COLORS|sed 's/ln=0[01];3[0-9]/ln=01;35/'`"
@@ -112,7 +121,11 @@ function pslight {
   export LS_COLORS
 }
 
+
 function ps1 {
+  # only call when bash isn't called from zsh login shell
+  [[ -n "$ZSH" ]] && { unset PROMPT_COMMAND; return; }
+
   if [ `id -u` -eq 0 ]; then
     PS1="$RED${OSRV}$BLUE:\w $(parse_git_repo)$RED#$NOCOLOR "
     PROMPT_COMMAND="ps1"
@@ -132,6 +145,9 @@ function ps1 {
 }
 
 function pscs {
+  # only call when bash isn't called from zsh login shell
+  [[ -n "$ZSH" ]] && { unset PROMPT_COMMAND; return; }
+
   if [ `id -u` -eq 0 ]; then
     PS1="$RED\h:\W $(parse_git_repo)$RED#$NOCOLOR "
     PROMPT_COMMAND="pscs"
@@ -147,6 +163,9 @@ function pscs {
 }
 
 function psc {
+  # only call when bash isn't called from zsh login shell
+  [[ -n "$ZSH" ]] && { unset PROMPT_COMMAND; return; }
+
   if [ `id -u` -eq 0 ]; then
     PS1="$RED\h:\W $(parse_git_repo)$RED#$NOCOLOR "
     PROMPT_COMMAND="psc"
@@ -162,6 +181,9 @@ function psc {
 }
 
 function pssc {
+  # only call when bash isn't called from zsh login shell
+  [[ -n "$ZSH" ]] && { unset PROMPT_COMMAND; return; }
+
   if [ `id -u` -eq 0 ]; then
     PS1="$RED\W $(parse_git_repo)$RED#$NOCOLOR "
     PROMPT_COMMAND="pssc"
@@ -177,6 +199,9 @@ function pssc {
 }
 
 function psh {
+  # only call when bash isn't called from zsh login shell
+  [[ -n "$ZSH" ]] && { unset PROMPT_COMMAND; return; }
+
   if [ `id -u` -eq 0 ]; then
     PS1="$RED\h:\W $(parse_git_repo)$RED#$NOCOLOR "
     PROMPT_COMMAND="psh"
@@ -192,6 +217,9 @@ function psh {
 }
 
 function psept {
+  # only call when bash isn't called from zsh login shell
+  [[ -n "$ZSH" ]] && { unset PROMPT_COMMAND; return; }
+
   if [ `id -u` -eq 0 ]; then
     PS1="$RED\h:\W $(parse_git_repo)$RED#$NOCOLOR "
     PROMPT_COMMAND="psept"
@@ -207,6 +235,9 @@ function psept {
 }
 
 function pss {
+  # only call when bash isn't called from zsh login shell
+  [[ -n "$ZSH" ]] && { unset PROMPT_COMMAND; return; }
+
   if [ `id -u` -eq 0 ]; then
     PS1="$RED\W $(parse_git_repo)$RED#$NOCOLOR "
     PROMPT_COMMAND="pss"
@@ -222,6 +253,9 @@ function pss {
 }
 
 function psl {
+  # only call when bash isn't called from zsh login shell
+  [[ -n "$ZSH" ]] && { unset PROMPT_COMMAND; return; }
+
   if [ `id -u` -eq 0 ]; then
     PS1="$PURPLE\W $(parse_git_repo)$RED#$NOCOLOR "
     PROMPT_COMMAND="psl"
@@ -238,6 +272,9 @@ function psl {
 }
 
 function psd {
+  # only call when bash isn't called from zsh login shell
+  [[ -n "$ZSH" ]] && { unset PROMPT_COMMAND; return; }
+
   if [ `id -u` -eq 0 ]; then
     PS1="$PURPLE\W $(parse_git_repo)$RED#$NOCOLOR "
     PROMPT_COMMAND="psd"
@@ -254,6 +291,9 @@ function psd {
 }
 
 function psm {
+  # only call when bash isn't called from zsh login shell
+  [[ -n "$ZSH" ]] && { unset PROMPT_COMMAND; return; }
+
   if [ `id -u` -eq 0 ]; then
     PS1="$(parse_git_repo)$RED#$NOCOLOR "
     PROMPT_COMMAND="psm"
