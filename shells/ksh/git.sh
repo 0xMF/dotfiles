@@ -1,7 +1,9 @@
 # gith based aliases
 [ ! -z "`which hub 2>/dev/null`" ] && alias git='hub'
 #alias g='git' # now g() is a function that calls git
-alias gam='git amend'
+alias ga='git add'
+alias gaa='git add --all'
+alias gam='git am'
 alias game='git amend'
 alias gamen='git amend'
 alias gamend='git amend'
@@ -22,7 +24,8 @@ alias gfr='git fetch;git rebase remotes/origin/master'
 alias ghe='ghelp'
 alias ghista='ghist --all'
 alias ghumans="ghuman|sort -t'=' -k2 |cut -c1-120"
-alias gl='git log --color=always -p -1'
+alias g1='git log --color=always -p -1'
+alias gl='git pull'
 alias gla='git log --color=always -p --all'
 alias glar='git log --color=always -p --all --reverse'
 alias glf='git log --color=always -p --follow'
@@ -35,15 +38,15 @@ alias glola='gld --all --graph'
 alias glolar='gld --all --reverse'
 alias glp='git log --color=always -p'
 alias gls='git ls-files'
-alias gp='git pull'
-alias gpu='git push'
-alias gpus='git push'
+alias gp='git push'
+alias gpd='git push --dry-run'
+alias gpf='git push --force-with-lease'
+alias gpu='git push upstream'
 alias gpush='git push'
-alias gpuf='git push -f'
 alias gpot='git push origin --tags'
 alias gpr='git pull --rebase'
 alias gredo='gundo; gca -c ORIG_HEAD'
-alias gri='git rebase --interactive'
+alias grbi='git rebase --interactive'
 alias gsh='gshow'
 alias gtype='git cat-file -t'
 alias gua='git update-index --assume-unchanged'
@@ -60,7 +63,7 @@ alias gout='git log --color=always master ^origin/master'
 #export BROWSER='links2 -no-g'
 export BROWSER='w3m -v -no-mouse -s -cookie -no-proxy'
 export PROMPT_COMMAND="green"
-export SHELL_PROMPT=$( [[ "$(basename `echo $SHELL`)" == "bash" ]] && echo $ || echo %)
+export SHELL_PROMPT=$( [[ "$(basename `echo $SHELL`)" == "ksh" ]] && echo % || echo $)
 
 BLACK="\[\033[30m\]"
 GREY="\[\033[1;30m\]"
@@ -461,7 +464,7 @@ function gdh   { if _is_git_repo -eq 0; then git diff --color=always -w HEAD; fi
 function gds   { if _is_git_repo -eq 0; then git diff --color=always -w --staged; fi }
 function gdiff { if _is_git_repo -eq 0; then git diff --color=always -w HEAD | grep -v binary; fi }
 function gst   { if _is_git_repo -eq 0; then git status ; fi }
-function gsts  { if _is_git_repo -eq 0; then git status -s; fi }
+function gss   { if _is_git_repo -eq 0; then git status -s; fi }
 
 function __gdh {
   if _is_git_repo -eq 0
