@@ -13,9 +13,9 @@ if [ -f /etc/bashrc ]; then
   source /etc/bashrc
 fi
 
-# source environment variables exported
-if [ -f $REPO/exports.bash ]; then
-  source $REPO/exports.bash
+# source various utility functions
+if [ -f $REPO/functions.bash ]; then
+  source $REPO/functions.bash
 fi
 
 # source common aliases used by power users
@@ -23,9 +23,9 @@ if [ -f $REPO/aliases.bash ]; then
   source $REPO/aliases.bash
 fi
 
-# source various utility functions
-if [ -f $REPO/functions.bash ]; then
-  source $REPO/functions.bash
+# source environment variables exported
+if [ -f $REPO/exports.bash ]; then
+  source $REPO/exports.bash
 fi
 
 # setup our prompt PS1, first get OS release+version

@@ -1,19 +1,18 @@
-# .kshrc 
+# .shrc
 #-----------------------------------------------------------------
 
 #
 export SHELL_REPO=~/.sh
 
 #
-print .kshrc called ...
+print .shrc called ...
 
 [ -f $HOME/.profile ] && . ~/.profile
 PATH=$PATH:/usr/local/bin:.:~/bin
 
-# source local and private settings
-# changes to local.sh should not be publicly tracked and shared (recommended)
-if [ -f $SHELL_REPO/local.sh ]; then
-  . $SHELL_REPO/local.sh
+# source various utility functions
+if [ -f $SHELL_REPO/functions ]; then
+  . $SHELL_REPO/functions
 fi
 
 # source common aliases used by power users
@@ -26,12 +25,7 @@ if [ -f $SHELL_REPO/exports ]; then
   . $SHELL_REPO/exports
 fi
 
-# source various utility functions
-if [ -f $SHELL_REPO/functions ]; then
-  . $SHELL_REPO/functions
-fi
-
-
+# source local and private settings
 # setup our prompt PS1, first get OS release+version
 OSRV=
 if [ $(uname -o) == "GNU/Linux" ]; then
@@ -62,6 +56,11 @@ else
   echo "Ah! Good. You've got pal - the command line calendar." >&2
   echo "If you'd like a Catholic saints calendar, check out saints.pal in" >&2
   echo "    https://github.com/0xMF/catholic"  >&2
+fi
+
+# changes to local.sh should not be publicly tracked and shared (recommended)
+if [ -f $SHELL_REPO/local.sh ]; then
+  . $SHELL_REPO/local.sh
 fi
 
 # vim:nospell:ft=sh:

@@ -14,6 +14,11 @@ REPO=~/.ksh
 [ -f $HOME/.profile ] && . ~/.profile
 PATH=$PATH:/usr/local/bin:.:~/bin
 
+# source various utility functions
+if [ -f $REPO/functions.ksh ]; then
+  . $REPO/functions.ksh
+fi
+
 # source common aliases used by power users
 if [ -f $REPO/aliases.ksh ]; then
   . $REPO/aliases.ksh
@@ -22,11 +27,6 @@ fi
 # source environment variables exported
 if [ -f $REPO/exports.ksh ]; then
   . $REPO/exports.ksh
-fi
-
-# source various utility functions
-if [ -f $REPO/functions.ksh ]; then
-  . $REPO/functions.ksh
 fi
 
 # setup our prompt PS1, first get OS release+version

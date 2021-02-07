@@ -78,7 +78,9 @@ map <C-F12> :!ctags -R --c++-kinds=+p --fields=+iaS --extra=+q .<CR>
 map <F3>  :execute "mksession! " . v:this_session<CR>
 
 " mappings for less like behaviour
-map <Space> <C-f>
+" for behave xterm use
+"map <Space> <C-f>
+map <Space> <PageDown>
 map <S-Space> <C-b>
 map b       <C-b>
 "map q       :q<CR>
