@@ -43,12 +43,22 @@ function green {
     [ "$shell" = "zsh" ] &&  { 0xMF-zsh-prompt; return; }
     if [ "$SHELL_PROMPT" = "$" ]; then
       [ "$shell" = "bash" ] && {
-        PS1="$GREEN\W $(parse_git_repo)$NOCOLOR$SHELL_PROMPT " ;
+        PS1="$GREEN\W $(parse_git_repo)"
+        if _is_git_repo; then
+           PS1="$PS1$NOCOLOR $SHELL_PROMPT "
+        else
+           PS1="$PS1$NOCOLOR$SHELL_PROMPT "
+        fi
         PROMPT_COMMAND="green" ;
       }
     else
       [ "$shell" = "ksh" ] && {
-        print "$GREEN\W $(parse_git_repo)$NOCOLOR$SHELL_PROMPT " ;
+        prompt="$GREEN\W $(parse_git_repo)" ;
+        if _is_git_repo; then
+          print "$prompt$NOCOLOR $SHELL_PROMPT "
+        else
+          print "$prompt$NOCOLOR$SHELL_PROMPT "
+        fi
         PS1='$(green)' ;
       }
     fi
@@ -382,21 +392,22 @@ function _is_git_repo {
   git status >/dev/null 2>&1
   return $?
 }
+
 # show all git commits history
 function ghist {
   if _is_git_repo -eq 0
   then
-    git log \
-      --color=always --graph --date=short \
-      --pretty=format:"%C(red bold)%h%Creset %C(blue bold)%ad%Creset %C(cyan bold)|%Creset %C(auto)%d%Creset %s" \
-      "$@"
+    [ "$1" = "--all" ] \
+      && { shift; ghist-all "$@"; } \
+      || git log --color=always --graph --date=short --pretty=format:"%C(red bold)%h%Creset %C(blue bold)%ad%Creset %C(cyan bold)|%Creset %C(auto)%d%Creset %s" \
+            "$@"
   fi
 }
 
 function ghist-all {
   if _is_git_repo -eq 0
   then
-    [[ -n "$1" && -f "$1" ]] \
+    [[ -n "$1" && -s "$1" ]] \
       && git log --color=always --pretty=format:'%C(cyan bold)%h%Creset | %C(red bold)%ad%Creset %d %Creset%s%Cgreen [%cn]' --date=short --follow -- "$1" \
       || { >&2 echo "Usage ghist-all filename"; return; }
   fi
@@ -689,7 +700,7 @@ alias gcs='git add .;git commit --squash'
 alias gdump='git cat-file -p'
 alias gfr='git fetch;git rebase remotes/origin/master'
 alias ghe='ghelp'
-alias ghista='ghist --all'
+alias ghista='ghist-all'
 alias ghumans="ghuman|sort -t'=' -k2 |cut -c1-120"
 alias g1='git log --color=always -p -1'
 alias gl='git pull'
