@@ -1,5 +1,6 @@
-# gith based aliases
-[ ! -z "`which hub 2>/dev/null`" ] && alias git='hub'
+# git based aliases
+which hub >/dev/null 2>&1
+[ $? -eq  0 ] && alias git='hub'
 #alias g='git' # now g() is a function that calls git
 alias ga='git add'
 alias gaa='git add --all'
@@ -66,16 +67,45 @@ export BROWSER='w3m -v -no-mouse -s -cookie -no-proxy'
 export PROMPT_COMMAND="green"
 export SHELL_PROMPT=$( [[ "$(basename `echo $SHELL`)" == "ksh" ]] && echo % || echo $)
 
-BLACK="\[\033[30m\]"
-GREY="\[\033[1;30m\]"
-RED="\[\033[1;31m\]"
-GREEN="\[\033[1;32m\]"
-YELLOW="\[\033[1;33m\]"
-BLUE="\[\033[1;34m\]"
-PURPLE="\[\033[1;35m"
-CYAN="\[\033[1;36m\]"
-WHITE="\[\033[1;37m\]"
-NOCOLOR="\[\033[00m\]"
+# %(?:%{%}➜ :%{%}➜ ) %{$fg[cyan]%}%c%{$reset_color%} $(git_prompt_info)
+shell=$(basename $SHELL)
+[ "$BASH" = "/usr/bin/bash" ] && shell="bash"
+
+if [ "$shell" = "zsh" ]; then
+  BLACK="%{$fg[black]%}"
+  GREY="%{$fg_bold[grey]%}"
+  RED="%{$fg_bold[red]%}"
+  GREEN="%{$fg_bold[green]%}"
+  YELLOW="%{$fg_bold[yellow]%}"
+  BLUE="%{$fg_bold[blue]%}"
+  PURPLE="%{$fg_bold[purple]%}"
+  CYAN="%{$fg_bold[cyan]%}"
+  WHITE="%{$fg_bold[white]%}"
+  NOCOLOR="%{$reset_color%}"
+else
+  BLACK="\[\033[30m\]"
+  GREY="\[\033[1;30m\]"
+  RED="\[\033[1;31m\]"
+  GREEN="\[\033[1;32m\]"
+  YELLOW="\[\033[1;33m\]"
+  BLUE="\[\033[1;34m\]"
+  PURPLE="\[\033[1;35m"
+  CYAN="\[\033[1;36m\]"
+  WHITE="\[\033[1;37m\]"
+  NOCOLOR="\[\033[00m\]"
+fi
+
+# Credit: oh-my-zsh/lib/git.zsh and oh-my-zsh/themes/robbyrussell.zsh-theme
+function precmd {
+  [ "$shell" = "zsh" ] && my-simple-zsh-prompt
+}
+function my-simple-zsh-prompt {
+  [ "$shell" = "zsh" ] && {
+    PROMPT="%(?:%{$fg_bold[green]%}➜ :%{$fg_bold[red]%}➜ )"
+    PROMPT+=' %{$fg[cyan]%}%c%{$reset_color%} $(parse_git_repo 2>/dev/null)'
+    PROMPT+=" %{$fg_bold[green]%}%%$NOCOLOR "
+  }
+}
 
 function green {
   LS_COLORS="`echo $LS_COLORS|sed 's/di=0[01];3[0-9]/di=01;33/'`"
@@ -86,12 +116,17 @@ function green {
     PS1="$RED\W $(parse_git_repo)$RED#$NOCOLOR "
     PROMPT_COMMAND="green"
   else
-    if [[ "$SHELL_PROMPT" == "$" ]]; then
-      PS1="$GREEN\W $(parse_git_repo)$NOCOLOR$SHELL_PROMPT "
-      PROMPT_COMMAND="green"
+    [ "$shell" = "zsh" ] &&  { my-simple-zsh-prompt; return; }
+    if [ "$SHELL_PROMPT" = "$" ]; then
+      [ "$shell" = "bash" ] && {
+        PS1="$GREEN\W $(parse_git_repo)$NOCOLOR$SHELL_PROMPT " ;
+        PROMPT_COMMAND="green" ;
+      }
     else
-      print "$GREEN\W $(parse_git_repo)$NOCOLOR$SHELL_PROMPT "
-      PS1='$(green)'
+      [ "$shell" = "ksh" ] && {
+        print "$GREEN\W $(parse_git_repo)$NOCOLOR$SHELL_PROMPT " ;
+        PS1='$(green)' ;
+      }
     fi
   fi
 }
@@ -289,7 +324,7 @@ function parse_git_repo {
   [ -z "$(parse_git_branch)" ] && return
 
   is_bare=$(git rev-parse --is-bare-repository)
-  [ "$is_bare" == "true" ] \
+  [ "$is_bare" = "true" ] \
   && echo "$BLUE($CYAN"bare $YELLOW⚙"$BLUE)" \
   || parse_git_branch_colour
 }
@@ -301,9 +336,10 @@ function parse_git_branch {
 
 function parse_git_branch_colour {
   br=$(parse_git_branch)
+
   if [ -z "$br" ]; then
     return
-  elif [ "$br" == "master" ]; then
+  elif [ "$br" = "master" ]; then
     echo "$BLUE($RED"$br"$BLUE $(parse_git_dirty)$BLUE)"
   else
     echo "$BLUE($YELLOW"$br"$BLUE $(parse_git_dirty)$BLUE)"

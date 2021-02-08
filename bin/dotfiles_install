@@ -1,5 +1,6 @@
 # DOTF_DIR="$( find -L ~ -maxdepth 2 -type d -name dotfiles | head -1 )"
-SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+#SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+SCRIPT_DIR="$( cd "$( dirname "$0" )" && pwd )"
 
 EXPERIMENTAL="N"
 _FULL_PATH="$( cd "$( dirname "$0" )" && pwd -P )"
@@ -7,13 +8,18 @@ _REAL_HOME="$( cd ~  && pwd -P )"
 _SCRIPTDIR="$( echo .${_FULL_PATH#$_REAL_HOME} )"
 
 [ -z "$BASH_VERSION" ] && {
-  if [[ "$SHELL" == "/bin/ksh" && "`uname`" == "OpenBSD" ]]
-  then
-    echo  "Usage: run `basename $SCRIPT_DIR` from a bash shell"
-    echo  "       you are running $SHELL"
-    echo -n 'Do you want to continue with EXPERIMENTAL features of OpenBSD? (yes/No) '
-    read EXPERIMENTAL
-    [[ "$EXPERIMENTAL" != "yes" ]] && return
+  if [ "$(basename $SHELL)" = "ksh" ]; then
+    if  [ "`uname`" == "OpenBSD" ];  then
+      echo  "Usage: run `basename $SCRIPT_DIR` from a bash shell"
+      echo  "       you are running $SHELL"
+      echo -n 'Do you want to continue with EXPERIMENTAL features of OpenBSD? (yes/No) '
+      read EXPERIMENTAL
+      [ "$EXPERIMENTAL" != "yes" ] && exit 1
+    fi
+  else
+    echo 'ERROR: installer tested with #!/bin/bash but may work with #!/bin/ksh'
+    echo '       try #!/bin/bash as the first line if you have Bash installed.'
+    exit 1
   fi
 }
 

@@ -3,8 +3,8 @@
 
 # dependencies
 
-[[ -s ~/.bash/git.sh ]] \
-  && . ~/.bash/git.sh \
+[[ -s ~/.bash/all/git.sh ]] \
+  && . ~/.bash/all/git.sh \
   ||  >&2 echo "WARNING! Missing dependency: git.sh"
 
 # user defined aliases .bash
