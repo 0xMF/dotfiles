@@ -48,14 +48,16 @@ set -o emacs             # vi-style editing
 bind -m '^L'=clear'^J'   # clear the screen
 FCEDIT='/usr/bin/vim'    # fc usese vi too
 
+
 # resembles the bash equivalent of '\w$ ' with green colour highlighting
 # next vary prompt according to regular user or root
-if [ -f $REPO/git.sh ]; then
-  . $REPO/git.sh
+if [ -f $REPO/all/git.sh ]; then
+  . $REPO/all/git.sh
   psl
 else
   export PS1=`print '\e[0m\e[32;1m$(basename $(echo $PWD|sed "s,^$HOME$,~," ))\e[0m% '`
   export PROMPT_COMMAND="ps1;$PROMPT_COMMAND"
+  print "WARNING: Missing critical dependency git.sh!" >&2
 fi
 
 # command line calendar
