@@ -1,75 +1,11 @@
-# git based aliases
-which hub >/dev/null 2>&1
-[ $? -eq  0 ] && alias git='hub'
-#alias g='git' # now g() is a function that calls git
-alias ga='git add'
-alias gaa='git add --all'
-alias gam='git am'
-alias game='git amend'
-alias gamen='git amend'
-alias gamend='git amend'
-alias gbr='git branch'
-alias gbrn='git rev-parse --abbrev-ref HEAD'
-alias gc='git commit -v'
-alias gca='git commit -v -a -t ~/.git/commit.txt'
-alias gcam='git commit -am'
-alias gcb='git checkout'
-alias gcf='git add .;git commit --fixup'
-#alias gci='git commit'
-alias gcm='git checkout master'
-alias gcmsg='git commit -m'
-alias gco='git checkout'
-alias gcs='git add .;git commit --squash'
-alias gdump='git cat-file -p'
-alias gfr='git fetch;git rebase remotes/origin/master'
-alias ghe='ghelp'
-alias ghista='ghist --all'
-alias ghumans="ghuman|sort -t'=' -k2 |cut -c1-120"
-alias g1='git log --color=always -p -1'
-alias gl='git pull'
-alias gla='git log --color=always -p --all'
-alias glar='git log --color=always -p --all --reverse'
-alias glf='git log --color=always -p --follow'
-alias glog='git log --color=always -p'
-alias glogs='git log --color=always --stat'
-#alias gld='git log --color=always --decorate --abbrev-commit --date=short --pretty=format:"%C(red bold)%h%Creset %C(dim green)%ad%Creset %C(cyan bold)|%Creset %s"'
-alias gld='git log --color=always --decorate --abbrev-commit --date=short --pretty=format:"%C(red bold)%h%Creset %C(cyan bold)|%Creset %C(auto)%d%Creset%s"'
-alias glol='gld --graph'
-alias glola='gld --all --graph'
-alias glolar='gld --all --reverse'
-alias glp='git log --color=always -p'
-alias gls='git ls-files'
-alias glum='git pull upstream master'
-alias gp='git push'
-alias gpd='git push --dry-run'
-alias gpf='git push --force-with-lease'
-alias gpu='git push upstream'
-alias gpush='git push'
-alias gpot='git push origin --tags'
-alias gpr='git pull --rebase'
-alias gredo='gundo; gca -c ORIG_HEAD'
-alias grbi='git rebase --interactive'
-alias gsh='gshow'
-alias gtype='git cat-file -t'
-alias gua='git update-index --assume-unchanged'
-alias guna='git update-index --no-assume-unchanged'
-alias gundo='git reset --soft HEAD~1'
-alias gwc='git whatchanged -p --abbrev-commit --pretty=medium'
-
-alias incoming='git log --color=always origin/master ^master'
-alias gin='git log --color=always origin/master ^master'
-alias outgoing='git log --color=always master ^origin/master'
-alias gout='git log --color=always master ^origin/master'
+shell=$(basename $SHELL)
+[ "$BASH" = "/usr/bin/bash" ] && shell="bash"
 
 # required for hub (cli tool for github management)
 #export BROWSER='links2 -no-g'
 export BROWSER='w3m -v -no-mouse -s -cookie -no-proxy'
 export PROMPT_COMMAND="green"
-export SHELL_PROMPT=$( [[ "$(basename `echo $SHELL`)" == "ksh" ]] && echo % || echo $)
-
-# %(?:%{%}➜ :%{%}➜ ) %{$fg[cyan]%}%c%{$reset_color%} $(git_prompt_info)
-shell=$(basename $SHELL)
-[ "$BASH" = "/usr/bin/bash" ] && shell="bash"
+export SHELL_PROMPT=$( [ "$shell" = "bash" ] && echo $ || echo %)
 
 if [ "$shell" = "zsh" ]; then
   BLACK="%{$fg[black]%}"
@@ -95,18 +31,6 @@ else
   NOCOLOR="\[\033[00m\]"
 fi
 
-# Credit: oh-my-zsh/lib/git.zsh and oh-my-zsh/themes/robbyrussell.zsh-theme
-function precmd {
-  [ "$shell" = "zsh" ] && my-simple-zsh-prompt
-}
-function my-simple-zsh-prompt {
-  [ "$shell" = "zsh" ] && {
-    PROMPT="%(?:%{$fg_bold[green]%}➜ :%{$fg_bold[red]%}➜ )"
-    PROMPT+=' %{$fg[cyan]%}%c%{$reset_color%} $(parse_git_repo 2>/dev/null)'
-    PROMPT+=" %{$fg_bold[green]%}%%$NOCOLOR "
-  }
-}
-
 function green {
   LS_COLORS="`echo $LS_COLORS|sed 's/di=0[01];3[0-9]/di=01;33/'`"
   LS_COLORS="`echo $LS_COLORS|sed 's/ln=[01][01];3[0-9]/ln=00;32/'`"
@@ -116,7 +40,7 @@ function green {
     PS1="$RED\W $(parse_git_repo)$RED#$NOCOLOR "
     PROMPT_COMMAND="green"
   else
-    [ "$shell" = "zsh" ] &&  { my-simple-zsh-prompt; return; }
+    [ "$shell" = "zsh" ] &&  { 0xMF-zsh-prompt; return; }
     if [ "$SHELL_PROMPT" = "$" ]; then
       [ "$shell" = "bash" ] && {
         PS1="$GREEN\W $(parse_git_repo)$NOCOLOR$SHELL_PROMPT " ;
@@ -478,8 +402,6 @@ function ghist-all {
   fi
 }
 
-
-
 # completes the triad of:
 #   * alias gcf for git commit --fixup
 #   * alias gcs for git commit --squash
@@ -681,7 +603,7 @@ function gman {
   old_pwd=`pwd`
   which adsf > /dev/null
   [ $? -eq 0 ] && {
-    cd /usr/share/doc/git/html i
+    cd /usr/share/doc/git/html
     adsf 2> /dev/null &
   }
   cd $old_pwd
@@ -706,7 +628,6 @@ function gsearch {
   done
 }
 
-
 function glast {
   mru_repo=$(cat $HOME/repos/mru_repo)
   cd $HOME/repos/$mru_repo
@@ -730,5 +651,80 @@ function gt {
 function contributors {
   git shortlog --color=always -s -n | sort -b -k1,1nr -k2
 }
+
+# Credit: oh-my-zsh/lib/git.zsh and oh-my-zsh/themes/robbyrussell.zsh-theme
+function precmd {
+  [ "$shell" = "zsh" ] && 0xMF-zsh-prompt
+}
+function 0xMF-zsh-prompt {
+  [ "$shell" = "zsh" ] && {
+    PROMPT="%(?:%{$fg_bold[green]%}➜ :%{$fg_bold[red]%}➜ )"
+    PROMPT+=' %{$fg[cyan]%}%c%{$reset_color%} $(parse_git_repo 2>/dev/null)'
+    PROMPT+=" %{$fg_bold[green]%}%%$NOCOLOR "
+  }
+}
+
+# git based aliases
+which hub >/dev/null 2>&1
+[ $? -eq  0 ] && alias git='hub'
+#alias g='git' # now g() is a function that calls git
+alias ga='git add'
+alias gaa='git add --all'
+alias gam='git am'
+alias game='git amend'
+alias gamen='git amend'
+alias gamend='git amend'
+alias gbr='git branch'
+alias gbrn='git rev-parse --abbrev-ref HEAD'
+alias gc='git commit -v'
+alias gca='git commit -v -a -t ~/.git/commit.txt'
+alias gcam='git commit -am'
+alias gcb='git checkout'
+alias gcf='git add .;git commit --fixup'
+#alias gci='git commit'
+alias gcm='git checkout master'
+alias gcmsg='git commit -m'
+alias gco='git checkout'
+alias gcs='git add .;git commit --squash'
+alias gdump='git cat-file -p'
+alias gfr='git fetch;git rebase remotes/origin/master'
+alias ghe='ghelp'
+alias ghista='ghist --all'
+alias ghumans="ghuman|sort -t'=' -k2 |cut -c1-120"
+alias g1='git log --color=always -p -1'
+alias gl='git pull'
+alias gla='git log --color=always -p --all'
+alias glar='git log --color=always -p --all --reverse'
+alias glf='git log --color=always -p --follow'
+alias glog='git log --color=always -p'
+alias glogs='git log --color=always --stat'
+#alias gld='git log --color=always --decorate --abbrev-commit --date=short --pretty=format:"%C(red bold)%h%Creset %C(dim green)%ad%Creset %C(cyan bold)|%Creset %s"'
+alias gld='git log --color=always --decorate --abbrev-commit --date=short --pretty=format:"%C(red bold)%h%Creset %C(cyan bold)|%Creset %C(auto)%d%Creset%s"'
+alias glol='gld --graph'
+alias glola='gld --all --graph'
+alias glolar='gld --all --reverse'
+alias glp='git log --color=always -p'
+alias gls='git ls-files'
+alias glum='git pull upstream master'
+alias gp='git push'
+alias gpd='git push --dry-run'
+alias gpf='git push --force-with-lease'
+alias gpu='git push upstream'
+alias gpush='git push'
+alias gpot='git push origin --tags'
+alias gpr='git pull --rebase'
+alias gredo='gundo; gca -c ORIG_HEAD'
+alias grbi='git rebase --interactive'
+alias gsh='gshow'
+alias gtype='git cat-file -t'
+alias gua='git update-index --assume-unchanged'
+alias guna='git update-index --no-assume-unchanged'
+alias gundo='git reset --soft HEAD~1'
+alias gwc='git whatchanged -p --abbrev-commit --pretty=medium'
+
+alias incoming='git log --color=always origin/master ^master'
+alias gin='git log --color=always origin/master ^master'
+alias outgoing='git log --color=always master ^origin/master'
+alias gout='git log --color=always master ^origin/master'
 
 # vim:nospell:ft=sh:

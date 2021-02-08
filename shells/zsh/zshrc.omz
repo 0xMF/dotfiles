@@ -100,4 +100,4 @@ source $ZSH/oh-my-zsh.sh
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 #
-[[ -e ~/.zlocal.zsh ]] && source ~/.zlocal.zsh
+[[ -s ~/.zlocal.zsh ]] && source ~/.zlocal.zsh
