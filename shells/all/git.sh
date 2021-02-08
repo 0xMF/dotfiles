@@ -173,7 +173,13 @@ function psept {
       PS1="$YELLOW\h:$CYAN\W $(parse_git_repo)$NOCOLOR$SHELL_PROMPT "
       PROMPT_COMMAND="psept"
     else
-      print "$YELLOW\h:$CYAN\W $(parse_git_repo)$NOCOLOR$SHELL_PROMPT "
+      #print "$YELLOW\h:$CYAN\W $(parse_git_repo)$NOCOLOR$SHELL_PROMPT "
+      prompt="$YELLOW\h:$CYAN\W $(parse_git_repo)" ;
+      if _is_git_repo; then
+        print "$prompt$NOCOLOR $SHELL_PROMPT "
+      else
+        print "$prompt$NOCOLOR$SHELL_PROMPT "
+      fi
       PS1='$(psept)'
     fi
   fi
