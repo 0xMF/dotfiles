@@ -77,13 +77,21 @@ map <C-Down> :cnext<CR>
 map <C-F12> :!ctags -R --c++-kinds=+p --fields=+iaS --extra=+q .<CR>
 map <F3>  :execute "mksession! " . v:this_session<CR>
 
-" mappings for less like behaviour
-" for behave xterm use
-"map <Space> <C-f>
-map <Space> <PageDown>
-map <S-Space> <C-b>
-map b       <C-b>
+" mappings for less like behaviour (works with behave msvim)
+" page down
+map <Space>   <PageDown>
+map f         <PageDown>
+" page up
+map <S-Space> <PageUp>
+map <C-Space> <C-b>
+map b         <C-b>
 "map q       :q<CR>
+
+" Solves the C-Space problem when using terminal vim insert/normal mode
+" Credit: https://shallowsky.com/blog/linux/editors/vim-ctrl-space.html
+map <Nul>    <PageUp>
+imap <Nul>    <Space>
+"#-
 
 :imap <A-BS> <ESC>ua|                   " --ditto-- in insert mode
 :imap <C-D> <Esc>ldea|                  " --ditto-- in insert mode
