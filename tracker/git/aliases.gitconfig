@@ -105,7 +105,7 @@
                     --format=format:'%Cgreen%h %Creset %<(75,trunc)%s (%cN, %ar) %Cred%d' --date-order
 
   hist        = log --color=always -10 --format=format:'%Cgreen%h %Creset %s (%cN, %ar)'
-  history     = log --color=always --pretty=format:"%C(yellow)%h\\ %ad%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --graph --date=short
+  history     = log --color=always --pretty=format:'%C(red bold)%h%Creset %C(blue bold)%ad%C(red bold)%d %Creset%s%C(cyan) [%cn]' --graph --date=short
   hist-all    = log --color=always --pretty=format:'%C(cyan bold)%h%Creset | %C(red bold)%ad%Creset %d %Creset%s%Cgreen [%cn]' --date=short --follow
   history-all = log --color=always --pretty=format:'%C(cyan bold)%h%Creset | %C(red bold)%ad%Creset %d %Creset%s%Cgreen [%cn]' --date=short --follow
   ignore      = update-index --assume-unchanged

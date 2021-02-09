@@ -1,5 +1,5 @@
 shell=$(basename $SHELL)
-[ "$BASH" = "/usr/bin/bash" ] && shell="bash"
+[[ "$BASH" = "/usr/bin/bash" || "$BASH" = "/bin/bash" ]] && shell="bash"
 
 # required for hub (cli tool for github management)
 #export BROWSER='links2 -no-g'
@@ -14,7 +14,7 @@ if [ "$shell" = "zsh" ]; then
   GREEN="%{$fg_bold[green]%}"
   YELLOW="%{$fg_bold[yellow]%}"
   BLUE="%{$fg_bold[blue]%}"
-  PURPLE="%{$fg_bold[purple]%}"
+  MAGENTA="%{$fg_bold[magenta]%}"
   CYAN="%{$fg_bold[cyan]%}"
   WHITE="%{$fg_bold[white]%}"
   NOCOLOR="%{$reset_color%}"
@@ -36,11 +36,11 @@ function green {
   LS_COLORS="`echo $LS_COLORS|sed 's/ln=[01][01];3[0-9]/ln=00;32/'`"
   LS_COLORS="`echo $LS_COLORS|sed 's/ex=0[01];3[0-9]/ex=01;32/'`"
   export LS_COLORS
+  [ "$shell" = "zsh" ] &&  { 0xMF-zsh-prompt; return; }
   if [ `id -u` -eq 0 ]; then
     PS1="$RED\W $(parse_git_repo)$RED#$NOCOLOR "
     PROMPT_COMMAND="green"
   else
-    [ "$shell" = "zsh" ] &&  { 0xMF-zsh-prompt; return; }
     if [ "$SHELL_PROMPT" = "$" ]; then
       [ "$shell" = "bash" ] && {
         PS1="$GREEN\W $(parse_git_repo)"
@@ -93,7 +93,7 @@ function ps1 {
     if [ $(/usr/bin/id -u) -eq 1000 ]; then
       PS1="$GREEN${OSRV}$BLUE:\W$(parse_git_repo 2>/dev/null)$NOCOLOR$SHELL_PROMPT "
     else
-      if [[ "$SHELL_PROMPT" == "$" ]]; then
+      if [[ "$SHELL_PROMPT" = "$" ]]; then
         PS1="$PURPLE${OSRV}$BLUE:\W$(parse_git_repo 2>/dev/null)$NOCOLOR$SHELL_PROMPT "
         PROMPT_COMMAND="ps1"
       else
@@ -109,7 +109,7 @@ function pscs {
     PS1="$RED\h:\W $(parse_git_repo)$RED#$NOCOLOR "
     PROMPT_COMMAND="pscs"
   else
-    if [[ "$SHELL_PROMPT" == "$" ]]; then
+    if [[ "$SHELL_PROMPT" = "$" ]]; then
       PS1="$GREEN\u$YELLOW@$CYAN\h$YELLOW:$GREEN\W $(parse_git_repo)$NOCOLOR$SHELL_PROMPT "
       PROMPT_COMMAND="pscs"
     else
@@ -124,7 +124,7 @@ function psc {
     PS1="$RED\h:\W $(parse_git_repo)$RED#$NOCOLOR "
     PROMPT_COMMAND="psc"
   else
-    if [[ "$SHELL_PROMPT" == "$" ]]; then
+    if [[ "$SHELL_PROMPT" = "$" ]]; then
       PS1="$(parse_git_repo)$CYAN$SHELL_PROMPT$NOCOLOR "
       PROMPT_COMMAND="psc"
     else
@@ -139,7 +139,7 @@ function pssc {
     PS1="$RED\W $(parse_git_repo)$RED#$NOCOLOR "
     PROMPT_COMMAND="pssc"
   else
-    if [[ "$SHELL_PROMPT" == "$" ]]; then
+    if [[ "$SHELL_PROMPT" = "$" ]]; then
       PS1="$CYAN\h$YELLOW:\W $(parse_git_repo)$NOCOLOR$SHELL_PROMPT "
       PROMPT_COMMAND="pssc"
     else
@@ -154,7 +154,7 @@ function psh {
     PS1="$RED\h:\W $(parse_git_repo)$RED#$NOCOLOR "
     PROMPT_COMMAND="psh"
   else
-    if [[ "$SHELL_PROMPT" == "$" ]]; then
+    if [[ "$SHELL_PROMPT" = "$" ]]; then
       PS1="$PURPLE\h:$CYAN\W $(parse_git_repo)$NOCOLOR$SHELL_PROMPT "
       PROMPT_COMMAND="psh"
     else
@@ -169,7 +169,7 @@ function psept {
     PS1="$RED\h:\W $(parse_git_repo)$RED#$NOCOLOR "
     PROMPT_COMMAND="psept"
   else
-    if [[ "$SHELL_PROMPT" == "$" ]]; then
+    if [[ "$SHELL_PROMPT" = "$" ]]; then
       PS1="$YELLOW\h:$CYAN\W $(parse_git_repo)$NOCOLOR$SHELL_PROMPT "
       PROMPT_COMMAND="psept"
     else
@@ -190,7 +190,7 @@ function pss {
     PS1="$RED\W $(parse_git_repo)$RED#$NOCOLOR "
     PROMPT_COMMAND="pss"
   else
-    if [[ "$SHELL_PROMPT" == "$" ]]; then
+    if [[ "$SHELL_PROMPT" = "$" ]]; then
       PS1="$BLUE\W $(parse_git_repo)$NOCOLOR$SHELL_PROMPT "
       PROMPT_COMMAND="pss"
     else
@@ -205,7 +205,7 @@ function psl {
     PS1="$PURPLE\W $(parse_git_repo)$RED#$NOCOLOR "
     PROMPT_COMMAND="psl"
   else
-    if [[ "$SHELL_PROMPT" == "$" ]]; then
+    if [[ "$SHELL_PROMPT" = "$" ]]; then
       PS1="$CYAN\W $(parse_git_repo)$NOCOLOR$SHELL_PROMPT "
       PROMPT_COMMAND="psl"
     else
@@ -221,7 +221,7 @@ function psd {
     PS1="$PURPLE\W $(parse_git_repo)$RED#$NOCOLOR "
     PROMPT_COMMAND="psd"
   else
-    if [[ "$SHELL_PROMPT" == "$" ]]; then
+    if [[ "$SHELL_PROMPT" = "$" ]]; then
       PS1="$GREEN\W $(parse_git_repo)$NOCOLOR$SHELL_PROMPT "
       PROMPT_COMMAND="psd"
     else
@@ -233,11 +233,14 @@ function psd {
 }
 
 function psm {
+  [ "$shell" = "zsh" ] && { eval "precmd() { PROMPT='$MAGENTA%%$NOCOLOR ' }"; return; }
+  WHITE="%{$fg_bold[white]%}"
+
   if [ `id -u` -eq 0 ]; then
     PS1="$(parse_git_repo)$RED#$NOCOLOR "
     PROMPT_COMMAND="psm"
   else
-    if [[ "$SHELL_PROMPT" == "$" ]]; then
+    if [[ "$SHELL_PROMPT" = "$" ]]; then
       PS1="$(parse_git_repo)$NOCOLOR$SHELL_PROMPT "
       PROMPT_COMMAND="psm"
     else
@@ -322,7 +325,7 @@ function old_parse_git_dirty {
     echo $sts_skip
   else
     # not in list of large repos, run a one time check for this being a large repo
-    if [ $OS == "FreeBSD" ]; then
+    if [ "$OS" = "FreeBSD" ]; then
       sts=$(/usr/bin/time -p git status --porcelain 2>&1)
       echo $sts
     else
@@ -455,7 +458,7 @@ function __gh {
   if _is_git_repo -eq 0
   then
     n=${1:--10}
-    if [[ "$n" == "--all" ]]; then
+    if [[ "$n" = "--all" ]]; then
       git log --color=always $n --graph --pretty=format:"%C(red bold)%h%Creset %C(cyan bold)|%Creset %C(auto)%d%Creset %s"
     else
       git --no-pager log --color=always $n --graph --pretty=format:"%C(red bold)%h%Creset %C(cyan bold)|%Creset %C(auto)%d%Creset %s"
@@ -463,7 +466,7 @@ function __gh {
     fi
     # default pager must handle less than one screen correctly (bash/Linux with less, ksh/OpenBSD with less -c are ok)
     # else uncomment line below when only on bash/Linux
-    #if [[ "$SHELL_PROMPT" == "$" ]]; then
+    #if [[ "$SHELL_PROMPT" = "$" ]]; then
       eval "[ `git log --color=always --pretty=oneline | wc -l` -gt 10 ] && git diff --color=always --stat HEAD~$((0 - $n)) HEAD"
     #fi
   fi
@@ -478,9 +481,9 @@ function gh {
 
   if _is_git_repo -eq 0
   then
-    e=$([ "$1" == "d" ] && echo __gdh || echo __gh)
+    e=$([ "$1" = "d" ] && echo __gdh || echo __gh)
 
-    [ "$1" == "d" ] && shift
+    [ "$1" = "d" ] && shift
     case $# in
       1) [ $1 -eq 1 ] && git log --color=always -p --stat HEAD...HEAD~1 \
                       || git log --color=always -p --stat HEAD~`expr $1 - 1`...HEAD~$1 ;;
@@ -557,7 +560,7 @@ function gshow {
 function rshow {
   if _is_git_repo -eq 0
   then
-    if [ "$1" == "" ]; then
+    if [ "$1" = "" ]; then
       gshow
     else
       repo=$(find . -type d -name "$1")
@@ -588,7 +591,7 @@ function glearn {
     if [[ `wc -l $TFILE|awk '{print $1}'` -eq 1 ]]; then
       echo
       read -p 'Show man page? (Y/y/q): ' key
-      [[ "$key" == "q" || "$key" == "Q" ]] && return
+      [[ "$key" = "q" || "$key" = "Q" ]] && return
       man `awk '{print $1}' $TFILE|sed 's/([0-9])//'`
     fi
   else
@@ -601,7 +604,7 @@ function glearn {
     if [ -t 0 ]; then
       echo
       read -p 'Any key to continue or q to quit: ' key
-      [[ "$key" == "q" || "$key" == "Q" ]] && return
+      [[ "$key" = "q" || "$key" = "Q" ]] && return
     fi
   fi
 
@@ -636,8 +639,8 @@ function ghw {
 }
 
 function gsearch {
-
   [ -z "$1" ] && echo Usage: gsearch search_term && return
+
   for commit in $(git log --color=always --oneline|$GREP "$1"|awk '{print $1}')
   do
     git show --color=always --pretty="%h %s %b" --stat $commit
@@ -652,13 +655,19 @@ function glast {
 }
 
 function g {
-
   aliases=$(git config --get-regexp alias.*|cut -d'.' -f2-|awk '{f=$1; $1=""; printf("%-15s %s\n", f, $0)}')
   case "$1" in
     "alias"|"a")  echo "$aliases"|sort -bk2,2|less ;;
     "ar")         echo "$aliases"|sort -rbk2,2|less ;;
     *)            git "$@" ;;
   esac
+}
+
+function gsts {
+  if _is_git_repo; then
+    git stash show --text
+    git status -s
+  fi
 }
 
 function gt {
@@ -678,7 +687,14 @@ function 0xMF-zsh-prompt {
     PROMPT="%(?:%{$fg_bold[green]%}➜ :%{$fg_bold[red]%}➜ )"
     PROMPT+=' %{$fg[cyan]%}%c%{$reset_color%} $(parse_git_repo 2>/dev/null)'
     PROMPT+=" %{$fg_bold[green]%}%%$NOCOLOR "
+    eval "function precmd { 0xMF-zsh-prompt }"
   }
+}
+
+function git-use-mine {
+  [[ -d ~/.oh-my-zsh || -f ~/.oh-my-zsh ]] && {
+    unalias gsts
+  } 2>/dev/null
 }
 
 # git based aliases
@@ -731,6 +747,7 @@ alias gpush='git push'
 alias gpot='git push origin --tags'
 alias gpr='git pull --rebase'
 alias gredo='gundo; gca -c ORIG_HEAD'
+alias gri='git rebase --interactive'
 alias grbi='git rebase --interactive'
 alias gsh='gshow'
 alias gtype='git cat-file -t'
@@ -743,5 +760,8 @@ alias incoming='git log --color=always origin/master ^master'
 alias gin='git log --color=always origin/master ^master'
 alias outgoing='git log --color=always master ^origin/master'
 alias gout='git log --color=always master ^origin/master'
+
+
+git-use-mine
 
 # vim:nospell:ft=sh:
