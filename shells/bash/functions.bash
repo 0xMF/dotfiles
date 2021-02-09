@@ -3,9 +3,11 @@
 
 # dependencies
 
-[[ -s ~/.bash/all/git.sh ]] \
-  && . ~/.bash/all/git.sh \
-  ||  >&2 echo "WARNING! Missing dependency: git.sh"
+if [ -s ~/.bash/all/git.sh ]; then
+  source ~/.bash/all/git.sh
+else
+  >&2 echo "WARNING! Missing dependency: git.sh"
+fi
 
 # user defined aliases .bash
 #
