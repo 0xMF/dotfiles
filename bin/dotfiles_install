@@ -12,7 +12,7 @@ if [ "$MY_SHELL" != "bash" ]; then
   if  [ "`uname`" = "OpenBSD" ];  then
     >&2 echo  "Usage: run `basename $SCRIPT_DIR` from a bash shell"
     >&2 echo  "       you are running $SHELL"
-    >&2 echo -n 'Do you want to continue with EXPERIMENTAL features of OpenBSD? (yes/No) '
+    >&2 echo -n 'Do you want to continue with EXPERIMENTAL features of ksh on OpenBSD? (yes/No) '
     read EXPERIMENTAL
     [ "$EXPERIMENTAL" != "yes" ] && exit 1
  else
