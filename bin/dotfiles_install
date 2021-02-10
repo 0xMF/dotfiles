@@ -31,19 +31,21 @@ if [ "$1" = "--with-emacs" ]; then
   EMACS_D_DOTFILES=".custom.el.~undo-tree~ .emacs.desktop .historian .session .smex-items .uptimes.el"
 
   if [[ -d ${EMACS_D} || -L ${EMACS_D} || -d ${HOME}/repos/emacs.d ]]; then
-    echo "Do you want to remove ONLY these files from ~/.emacs.d: " >&2
-    echo -ne "  $(echo $EMACS_D_DOTFILES | perl -pe 's| |\n  |g')\n\n (yes/N)? " >&2
-    read EMACS_D_REFRESH
-    if [ "$EMACS_D_REFRESH" = "yes" ]; then
-      for f in ${EMACS_D_DOTFILES}
-      do
-        if [ -e ${EMACS_D}/$f ]; then
-          echo "  - deleting ${EMACS_D}/$f"
-          rm -f ${EMACS_D}/$f
-        fi
-      done
-    fi
-    echo
+    [[ -s /usr/bin/perl ]] && {
+      echo "Do you want to remove ONLY these files from ~/.emacs.d: " >&2
+      echo -ne "  $(echo $EMACS_D_DOTFILES | perl -pe 's| |\n  |g')\n\n (yes/N)? " >&2
+      read EMACS_D_REFRESH
+      if [ "$EMACS_D_REFRESH" = "yes" ]; then
+        for f in ${EMACS_D_DOTFILES}
+        do
+          if [ -e ${EMACS_D}/$f ]; then
+            echo "  - deleting ${EMACS_D}/$f"
+            rm -f ${EMACS_D}/$f
+          fi
+        done
+      fi
+      echo
+    }
   fi
 fi
 
