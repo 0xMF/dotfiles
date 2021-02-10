@@ -1,3 +1,4 @@
+MY_SHELL=$(ps -o command -p $$ |grep -v "^COMMAND$")
 SCRIPT_DIR="$( cd "$( dirname "$0" )" && pwd )"
 
 EXPERIMENTAL="N"
@@ -7,21 +8,23 @@ _FULL_PATH="$( cd "$( dirname "$0" )" && pwd -P )"
 _REAL_HOME="$( cd ~  && pwd -P )"
 _SCRIPTDIR="$( echo .${_FULL_PATH#$_REAL_HOME} )"
 
-[ -z "$BASH_VERSION" ] && {
-  if [ "$(basename $SHELL)" = "ksh" ]; then
-    if  [ "`uname`" = "OpenBSD" ];  then
-      echo  "Usage: run `basename $SCRIPT_DIR` from a bash shell"
-      echo  "       you are running $SHELL"
-      echo -n 'Do you want to continue with EXPERIMENTAL features of OpenBSD? (yes/No) '
-      read EXPERIMENTAL
-      [ "$EXPERIMENTAL" != "yes" ] && exit 1
-    fi
-  else
-    echo "ERROR: installer tested with #!/bin/bash but may work with #!/bin/ksh."
-    echo "       If you have Bash installed, use #!/bin/bash as this script's first line."
+if [ "$MY_SHELL" != "bash" ]; then
+  if  [ "`uname`" = "OpenBSD" ];  then
+    >&2 echo  "Usage: run `basename $SCRIPT_DIR` from a bash shell"
+    >&2 echo  "       you are running $SHELL"
+    >&2 echo -n 'Do you want to continue with EXPERIMENTAL features of OpenBSD? (yes/No) '
+    read EXPERIMENTAL
+    [ "$EXPERIMENTAL" != "yes" ] && exit 1
+ else
+    >&2 echo "The command line used to run this script was:"
+    >&2 echo
+    >&2 echo "  $MY_SHELL"
+    >&2 echo
+    >&2 echo "ERROR: installer tested with #!/bin/bash but may work with #!/bin/ksh."
+    >&2 echo "       If you have Bash installed, put #!/bin/bash as this script's first line."
     exit 1
   fi
-}
+fi
 
 if [ "$1" = "--with-emacs" ]; then
   EMACS_D_REFRESH="N"
