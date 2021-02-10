@@ -17,8 +17,8 @@ _SCRIPTDIR="$( echo .${_FULL_PATH#$_REAL_HOME} )"
       [ "$EXPERIMENTAL" != "yes" ] && exit 1
     fi
   else
-    echo 'ERROR: installer tested with #!/bin/bash but may work with #!/bin/ksh'
-    echo '       try #!/bin/bash as the first line if you have Bash installed.'
+    echo "ERROR: installer tested with #!/bin/bash but may work with #!/bin/ksh."
+    echo "       If you have Bash installed, use #!/bin/bash as this script's first line."
     exit 1
   fi
 }
