@@ -350,8 +350,8 @@ _zsh() {
   } || {
     installed="zshrc"
     [[ "$EXPERIMENTAL" == "yes" ]] \
-      && { ln -s ${_SCRIPTDIR%bin}shells/zsh/zshrc.omz ~/.zshrc; } \
-      || { ln -s ${SCRIPT_DIR%bin}shells/zsh/zshrc.omz $HOME/.zshrc; }
+      && { ln -s ${_SCRIPTDIR%bin}shells/zsh/zshrc.zsh ~/.zshrc; } \
+      || { ln -s ${SCRIPT_DIR%bin}shells/zsh/zshrc.zsh $HOME/.zshrc; }
   }
 
   [[ -e $HOME/.zcompdump || -L $HOME/.zcompdump ]] && { :
