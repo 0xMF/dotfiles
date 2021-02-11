@@ -1,3 +1,39 @@
+help() {
+  installer=$(basename $0)
+  >&2 echo "$installer:"
+  >&2 echo
+  >&2 echo "installs dotfiles without overwriting existing files, directories, or links."
+  >&2 echo "does not have option to uninstall links/files that were created by $installer."
+  >&2 echo
+  >&2 echo "  by default $installer does all but emacs"
+  >&2 echo "     [bash,config,git,lisp,ksh,misc,pal,ruby,tmux,vim,zsh]"
+  >&2 echo
+  >&2 echo "  --minimal: install for Linux server [bash,git,misc,ruby,vim]"
+  >&2 echo
+  >&2 echo "  --with-emacs: does everything including emacs"
+  >&2 echo "    [bash,config,emacs,git,lisp,ksh,misc,pal,ruby,tmux,vim,zsh]"
+  >&2 echo
+  >&2 echo "  --with-emacs --minimal: install for Linux server with emacs"
+  >&2 echo "     [bash,emacs,git,misc,ruby,vim]"
+  >&2 echo
+  >&2 echo "  when run from OpenBSD (ksh) by default $installer uses ksh"
+  >&2 echo "     [ksh,git,misc,ruby,vim]"
+  >&2 echo
+  >&2 echo "  when run from OpenBSD (ksh) --with-emacs installs both ksh and emacs"
+  >&2 echo "     [emacs,ksh,git,misc,ruby,vim]"
+  >&2 echo
+  >&2 echo "  -h | --help: this message"
+  >&2 echo
+  >&2 echo "Operating Systems:   Arch (default), Debian, Kali, and OpenBSD"
+  >&2 echo "Shells:              Bash, ksh, Zsh (default)"
+  >&2 echo "Editors (term/gui):  DrRacket, Emacs, Vim (default)"
+  >&2 echo "Languages:           sbcl, Racket, Perl, Ruby"
+  >&2 echo "Version Control:     Git (default)"
+  >&2 echo
+}
+
+[ "$1" = "-h" ] || [ "$1" = "--help" ] && { help; exit; }
+
 MY_SHELL=$(ps -o command -p $$ | grep -v "^COMMAND$" | tr -d '-' | cut -d' ' -f1)
 SCRIPT_DIR="$( cd "$( dirname "$0" )" && pwd )"
 
@@ -223,7 +259,7 @@ _ksh() {
   }
 }
 
-# lisps
+# lisp
 _lisp() {
   installed=
   echo "checking lisps..." >&2
@@ -378,7 +414,7 @@ _zsh() {
 }
 
 
-[[ "$1" = "--with-emacs" ]] && _emacs
+[[ "$1" = "--with-emacs" ]] && { _emacs; shift; }
 
  _git
 
@@ -386,6 +422,9 @@ if [[ "$EXPERIMENTAL" = "yes" ]]; then
   _ksh
 else
   _bash
+fi
+
+if [[ "$1" != "--minimal" ]]; then
   _config_misc
   _lisp
   _pal
