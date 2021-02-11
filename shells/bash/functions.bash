@@ -1,14 +1,6 @@
 #!/usr/bin/env bash
 #
 
-# dependencies
-
-if [ -s ~/.bash/all/git.sh ]; then
-  source ~/.bash/all/git.sh
-else
-  >&2 echo "WARNING! Missing dependency: git.sh"
-fi
-
 # user defined aliases .bash
 #
 

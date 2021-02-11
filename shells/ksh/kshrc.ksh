@@ -60,6 +60,10 @@ else
   print "WARNING: Missing critical dependency git.sh!" >&2
 fi
 
+[ -f $REPO/all/pleasure.sh ] \
+  && . $REPO/all/pleasure.sh \
+  || print "WARNING: Missing critical dependency pleasure.sh!" >&2
+
 # command line calendar
 pal 2> /dev/null
 if [ $? -eq 0 ]; then

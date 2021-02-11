@@ -28,6 +28,20 @@ if [ -f $REPO/exports.bash ]; then
   source $REPO/exports.bash
 fi
 
+#
+# source stuff kept common across all shells  (dependencies)
+if [ -f $REPO/all/git.sh ]; then
+  source $REPO/all/git.sh
+else
+  >&2 echo "WARNING! Missing dependency: git.sh"
+fi
+
+if [ -f $REPO/all/pleasure.sh ]; then
+  source $REPO/all/pleasure.sh
+else
+  >&2 print "WARNING: Missing critical dependency pleasure.sh!"
+fi
+
 # setup our prompt PS1, first get OS release+version
 OSRV=
 if [ $(uname -o) == "GNU/Linux" ]; then
