@@ -54,24 +54,23 @@ _bash() {
   installed=
   echo "checking bash..." >&2
 
-  [[ -e $HOME/.bashrc || -L $HOME/.bashrc ]] && {
-    echo " - found .bashrc, not installing" >&2
-  } || {
-    installed=".bashrc"
-    [[ "$EXPERIMENTAL" = "yes" ]] \
-      && { ln -s ${_SCRIPTDIR%bin}shells/bash/bashrc.bash ~/.bashrc; } \
-      || { ln -s ${SCRIPT_DIR%bin}shells/bash/bashrc.bash $HOME/.bashrc; }
-  }
-
   # install .bash if not present else do nothing
   [[ -d $HOME/.bash || -L $HOME/.bash ]] && {
     echo " - found .bash/ not installing" >&2
   } || {
-    installed="bash"
-    installed="$installed .bash/"
+    installed="bash/"
     [[ "$EXPERIMENTAL" = "yes" ]] \
       && { ln -s ${_SCRIPTDIR%bin}shells/bash ~/.bash; } \
       || { ln -s ${SCRIPT_DIR%bin}shells/bash $HOME/.bash; }
+  }
+
+  [[ -e $HOME/.bashrc || -L $HOME/.bashrc ]] && {
+    echo " - found .bashrc, not installing" >&2
+  } || {
+    installed="$installed .bashrc"
+    [[ "$EXPERIMENTAL" = "yes" ]] \
+      && { ln -s ${_SCRIPTDIR%bin}shells/bash/bashrc.bash ~/.bashrc; } \
+      || { ln -s ${SCRIPT_DIR%bin}shells/bash/bashrc.bash $HOME/.bashrc; }
   }
 
   [[ -e $HOME/.bash_profile || -L $HOME/.bash_profile ]] && {
