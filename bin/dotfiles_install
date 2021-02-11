@@ -1,4 +1,4 @@
-MY_SHELL=$(ps -o command -p $$ | grep -v "^COMMAND$" | tr -d '-')
+MY_SHELL=$(ps -o command -p $$ | grep -v "^COMMAND$" | tr -d '-' | cut -d' ' -f1)
 SCRIPT_DIR="$( cd "$( dirname "$0" )" && pwd )"
 
 EXPERIMENTAL="N"
@@ -19,7 +19,8 @@ if [ "$MY_SHELL" != "bash" ]; then
     >&2 echo "  $MY_SHELL"
     >&2 echo
     >&2 echo "ERROR: installer tested with #!/bin/bash but may work with #!/bin/ksh."
-    >&2 echo "       If you have Bash installed, put #!/bin/bash as this script's first line."
+    >&2 echo "       If you have Bash installed, put #!/bin/bash as this script's first line"
+    >&2 echo "       or, preferably, run this script using: bash path/to/dotfiles_install."
     exit 1
   fi
 fi
