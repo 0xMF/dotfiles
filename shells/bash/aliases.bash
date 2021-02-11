@@ -94,5 +94,6 @@ alias vimb='/usr/local/bin/vimb 2>/dev/null &'
 
 alias pacdoc="showdoc $HOME/repos/dotfiles/doc/pacman-tips"
 alias vimdoc="showdoc $HOME/repos/dotfiles/doc/vim-tips"
+alias reload=". ~/.bashrc"
 
 # vim:nospell:ft=sh:
