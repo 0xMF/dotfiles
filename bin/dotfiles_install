@@ -6,17 +6,20 @@ help() {
   >&2 echo "does not have option to uninstall links/files that were created by $installer."
   >&2 echo
   >&2 echo "  by default $installer does all but emacs"
-  >&2 echo "     [bash,config,git,lisp,ksh,misc,pal,ruby,tmux,vim,zsh]"
+  >&2 echo "     [bash,config,git,lisp,misc,pal,ruby,tmux,vim,zsh]"
   >&2 echo
   >&2 echo "  --minimal: install for Linux server [bash,git,misc,ruby,vim]"
   >&2 echo
   >&2 echo "  --with-emacs: does everything including emacs"
-  >&2 echo "    [bash,config,emacs,git,lisp,ksh,misc,pal,ruby,tmux,vim,zsh]"
+  >&2 echo "    [bash,config,emacs,git,lisp,misc,pal,ruby,tmux,vim,zsh]"
   >&2 echo
   >&2 echo "  --with-emacs --minimal: install for Linux server with emacs"
   >&2 echo "     [bash,emacs,git,misc,ruby,vim]"
   >&2 echo
   >&2 echo "  when run from OpenBSD (ksh) by default $installer uses ksh"
+  >&2 echo "     [ksh,config,git,lisp,misc,pal,ruby,tmux,vim,zsh]"
+  >&2 echo
+  >&2 echo "  --minimal: install for OpenBSD server [ksh,git,misc,ruby,vim]"
   >&2 echo "     [ksh,git,misc,ruby,vim]"
   >&2 echo
   >&2 echo "  when run from OpenBSD (ksh) --with-emacs installs both ksh and emacs"
