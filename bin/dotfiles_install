@@ -41,8 +41,8 @@ if [ "$1" = "--with-emacs" ]; then
             rm -f ${EMACS_D}/$f
           fi
         done
+        echo
       fi
-      echo
     }
   fi
 fi
@@ -116,8 +116,6 @@ _config_misc() {
 
 # emacs
 _emacs() {
-  installed=
-
   echo "checking emacs.d..."
 
   [[ -d ${EMACS_D} || -L ${EMACS_D} || -d ${HOME}/repos/emacs.d ]] && {
@@ -128,26 +126,15 @@ _emacs() {
     git clone https://github.com/0xMF/emacs.d.git ${HOME}/repos/emacs.d
     tput sgr0
     ln -s $HOME/repos/emacs.d ${EMACS_D}
-    installed="$installed ~/repos/.emacs.d"
+    echo " - ...INSTALLED .emacs.d/" >&2
+  }
 
-    echo "checking emacs..." >&2
-    [[ -e $HOME/.emacs || -L $HOME/.emacs ]] && {
+  [[ -e $HOME/.emacs || -L $HOME/.emacs ]] && {
       echo " - found .emacs, not installing" >&2
-    } || {
-      ln -s ${EMACS_D}/emacs.el $HOME/.emacs
-      echo >&2
-      installed=".emacs/emacs.el"
-    }
-  }
-
-  [[ -d $HOME/.quicklisp || -L $HOME/.quicklisp ]] && { :
   } || {
-    installed="$installed quicklisp"
-    mkdir $HOME/.quicklisp
-    touch $HOME/.quicklisp/slime-helper.el
+    ln -s ${EMACS_D}/emacs.el $HOME/.emacs
+    echo " - ...INSTALLED .emacs" >&2
   }
-
-  [ ! -z "$installed" ] && echo " - ...INSTALLED $installed" >&2
 }
 
 # git
@@ -240,6 +227,15 @@ _ksh() {
 _lisp() {
   installed=
   echo "checking lisps..." >&2
+
+  [[ -d $HOME/.quicklisp || -L $HOME/.quicklisp ]] && {
+    echo " - found .quicklisp, not installing" >&2
+  } || {
+    installed="$installed quicklisp"
+    mkdir $HOME/.quicklisp
+    touch $HOME/.quicklisp/slime-helper.el
+    installed="$installed .quicklisp"
+  }
 
   if [[ -e $HOME/.sbclrc || -L $HOME/.sbclrc ]]; then
     echo " - found .sbclrc, not installing" >&2
