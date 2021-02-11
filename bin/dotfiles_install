@@ -1,4 +1,4 @@
-MY_SHELL=$(ps -o command -p $$ |grep -v "^COMMAND$")
+MY_SHELL=$(ps -o command -p $$ | grep -v "^COMMAND$" | tr -d '-')
 SCRIPT_DIR="$( cd "$( dirname "$0" )" && pwd )"
 
 EXPERIMENTAL="N"
@@ -278,12 +278,13 @@ _pal() {
   echo "checking pal..." >&2
 
   [[ -d $HOME/.pal || -L $HOME/.pal ]] && {
-    echo "found .pal, not installing" >&2
+    echo " - found .pal, not installing" >&2
   } || {
     installed=".pal"
     [[ "$EXPERIMENTAL" = "yes" ]] \
      && { ln -s ${_SCRIPTDIR%bin}misc/pal ~/.pal; } \
      || { ln -s ${SCRIPT_DIR%bin}misc/pal $HOME/.pal; }
+    echo " - ...INSTALLED .pal" >&2
   }
 }
 
@@ -309,7 +310,7 @@ _ruby() {
   fi
 }
 
-# pal
+# tmux
 _tmux() {
   echo "checking tmux..." >&2
 
