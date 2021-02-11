@@ -1,3 +1,9 @@
+# use my aliases for perl like grep/sed/awk
+ple     '/regex/ and print'                             # output match lines
+ple     'print unless /regex/'                          # output non-match lines
+please  '/(regex) (and) (capture)/ and print "$1 $3"'   # outputs contents of (regex) (capture)
+
+#
 # show matched lines
 awk       '/mark/'           /etc/passwd
 grep      "mark"             /etc/passwd
