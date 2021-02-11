@@ -10,8 +10,6 @@ _SCRIPTDIR="$( echo .${_FULL_PATH#$_REAL_HOME} )"
 
 if [ "$MY_SHELL" != "bash" ]; then
   if  [ "`uname`" = "OpenBSD" ];  then
-    >&2 echo  "Usage: run `basename $SCRIPT_DIR` from a bash shell"
-    >&2 echo  "       you are running $SHELL"
     >&2 echo -n 'Do you want to continue with EXPERIMENTAL features of ksh on OpenBSD? (yes/No) '
     read EXPERIMENTAL
     [ "$EXPERIMENTAL" != "yes" ] && exit 1
@@ -54,45 +52,49 @@ installed=
 # bash
 _bash() {
   installed=
-  echo -n "checking bash..." >&2
+  echo "checking bash..." >&2
 
   [[ -e $HOME/.bashrc || -L $HOME/.bashrc ]] && {
-    echo "found, not installing" >&2
+    echo " - found .bashrc, not installing" >&2
   } || {
-    installed="bash"
+    installed=".bashrc"
     [[ "$EXPERIMENTAL" = "yes" ]] \
       && { ln -s ${_SCRIPTDIR%bin}shells/bash/bashrc.bash ~/.bashrc; } \
       || { ln -s ${SCRIPT_DIR%bin}shells/bash/bashrc.bash $HOME/.bashrc; }
   }
 
   # install .bash if not present else do nothing
-  [[ -d $HOME/.bash || -L $HOME/.bash ]] && { :
+  [[ -d $HOME/.bash || -L $HOME/.bash ]] && {
+    echo " - found .bash/ not installing" >&2
   } || {
     installed="bash"
+    installed="$installed .bash/"
     [[ "$EXPERIMENTAL" = "yes" ]] \
       && { ln -s ${_SCRIPTDIR%bin}shells/bash ~/.bash; } \
       || { ln -s ${SCRIPT_DIR%bin}shells/bash $HOME/.bash; }
   }
 
-  [[ -e $HOME/.bash_profile || -L $HOME/.bash_profile ]] && { :
+  [[ -e $HOME/.bash_profile || -L $HOME/.bash_profile ]] && {
+    echo " - found .bash_profile, not installing" >&2
   } || {
-    installed="bash"
+    installed="$installed .bash_profile"
     [[ "$EXPERIMENTAL" = "yes" ]] \
       && { ln -s ${_SCRIPTDIR%bin}shells/bash/bash_profile ~/.bash_profile; } \
       || { ln -s ${SCRIPT_DIR%bin}shells/bash/bash_profile $HOME/.bash_profile; }
   }
 
-  [[ -e $HOME/.bash_logout || -L $HOME/.bash_logout ]] && { :
+  [[ -e $HOME/.bash_logout || -L $HOME/.bash_logout ]] && {
+    echo " - found .bash_logout, not installing" >&2
   } || {
-    installed="bash"
+    installed="$installed .bash_logout"
     [[ "$EXPERIMENTAL" = "yes" ]] \
       && { ln -s ${_SCRIPTDIR%bin}shells/bash/bash_logout ~/.bash_logout; } \
       || { ln -s ${SCRIPT_DIR%bin}shells/bash/bash_logout $HOME/.bash_logout; }
   }
 
   [ ! -z "$installed" ] && {
-    echo "INSTALLED!" >&2
-    echo " - Don't forget to install local.bash and secrets.bash in $HOME/.bash" >&2
+    echo " - ...INSTALLED $installed" >&2
+    echo "   install your custom settings in $HOME/.bash/local.bash" >&2
   }
 }
 
@@ -100,9 +102,9 @@ _bash() {
 _config_misc() {
   [[ -e $HOME/.config ]] && {
     installed=
-    echo -n "checking config/chromium-flags.conf..." >&2
+    echo "checking .config/chromium-flags.conf..." >&2
     [[ -L $HOME/.config/chromium-flags.conf ]] && { :
-      echo "found, not installing" >&2
+      echo " - found .config/chromium-flags.conf, not installing" >&2
     } || {
       installed="chromium-flags.conf"
       ln -s ${SCRIPT_DIR%bin}misc/config/chromium-flags.conf $HOME/.config/chromium-flags.conf
@@ -119,7 +121,7 @@ _emacs() {
   echo "checking emacs.d..."
 
   [[ -d ${EMACS_D} || -L ${EMACS_D} || -d ${HOME}/repos/emacs.d ]] && {
-    echo  " -found .emacs.d, not installing" >&2
+    echo  " - found .emacs.d, not installing" >&2
   } || {
     mkdir -p ${HOME}/repos
     tput bold
@@ -130,7 +132,7 @@ _emacs() {
 
     echo "checking emacs..." >&2
     [[ -e $HOME/.emacs || -L $HOME/.emacs ]] && {
-      echo " -found .emacs, not installing" >&2
+      echo " - found .emacs, not installing" >&2
     } || {
       ln -s ${EMACS_D}/emacs.el $HOME/.emacs
       echo >&2
@@ -153,28 +155,28 @@ _git() {
   installed=
   echo "checking git..." >&2
 
-  [[ -e $HOME/.gitconfig || -L $HOME/.gitconfig ]] && {
-    echo " - found .gitconfig, not installing" >&2
-  } || {
-    installed="gitconfig"
-    [[ "$EXPERIMENTAL" = "yes" ]] \
-      && { ln -s ${_SCRIPTDIR%bin}tracker/gitrc.gitconfig ~/.gitconfig; } \
-      || { ln -s ${SCRIPT_DIR%bin}tracker/gitrc.gitconfig $HOME/.gitconfig; }
-  }
-
   [[ -d $HOME/.git || -L $HOME/.git ]] && { :
     echo " - found .git, not installing" >&2
   } || {
-    installed="git"
+    installed=".git/"
     [[ "$EXPERIMENTAL" = "yes" ]] \
       && { ln -s ${_SCRIPTDIR%bin}tracker/git ~/.git; } \
       || { ln -s ${SCRIPT_DIR%bin}tracker/git $HOME/.git; }
   }
 
+  [[ -e $HOME/.gitconfig || -L $HOME/.gitconfig ]] && {
+    echo " - found .gitconfig, not installing" >&2
+  } || {
+    installed="$installed .gitconfig"
+    [[ "$EXPERIMENTAL" = "yes" ]] \
+      && { ln -s ${_SCRIPTDIR%bin}tracker/gitrc.gitconfig ~/.gitconfig; } \
+      || { ln -s ${SCRIPT_DIR%bin}tracker/gitrc.gitconfig $HOME/.gitconfig; }
+  }
+
   [[ -e $HOME/.gitattributes || -L $HOME/.gitattributes ]] && { :
     echo " - found .gitattributes, not installing" >&2
   } || {
-    installed="gitattirbutes"
+    installed="$installed .gitattirbutes"
     [[ "$EXPERIMENTAL" = "yes" ]] \
       && { ln -s ${_SCRIPTDIR%bin}tracker/git/gitattributes ~/.gitattributes; } \
       || { ln -s ${SCRIPT_DIR%bin}tracker/git/gitattributes $HOME/.gitattributes; }
@@ -183,27 +185,27 @@ _git() {
   [[ -e $HOME/.gitignore || -L $HOME/.gitignore ]] && { :
     echo " - found .gitignore, not installing" >&2
   } || {
-    installed="gitignore"
+    installed="$installed .gitignore"
     [[ "$EXPERIMENTAL" = "yes" ]] \
       && { ln -s ${_SCRIPTDIR%bin}tracker/git/ignore.conf ~/.gitignore; } \
       || { ln -s ${SCRIPT_DIR%bin}tracker/git/ignore.conf $HOME/.gitignore; }
   }
 
   [ ! -z "$installed" ] && {
-    echo " - ...INSTALLED git!" >&2
-    echo "   Don't forget to install local.gitconfig and ignore.conf in $HOME/.git" >&2
+    echo " - ...INSTALLED $installed" >&2
+    echo "   install local.gitconfig and ignore.conf in $HOME/.git" >&2
   }
 }
 
 # ksh
 _ksh() {
   installed=
-  echo -n "checking ksh..." >&2
+  echo "checking ksh..." >&2
 
   [[ -e $HOME/.kshrc || -L $HOME/.kshrc ]] && {
-    echo "found .kshrc, not installing" >&2
+    echo " - found .kshrc, not installing" >&2
   } || {
-    installed="kshrc"
+    installed=".kshrc"
     [[ "$EXPERIMENTAL" = "yes" ]] \
       && { ln -s ${_SCRIPTDIR%bin}shells/ksh/kshrc.ksh ~/.kshrc; } \
       || { ln -s ${SCRIPT_DIR%bin}shells/ksh/kshrc.ksh $HOME/.kshrc; }
@@ -211,14 +213,16 @@ _ksh() {
 
   # install .ksh if not present else do nothing
   [[ -d $HOME/.ksh || -L $HOME/.ksh ]] && { :
+    echo " - found .ksh/, not installing" >&2
   } || {
-    installed="ksh"
+    installed=".ksh/"
     [[ "$EXPERIMENTAL" = "yes" ]] \
       && { ln -s ${_SCRIPTDIR%bin}shells/ksh ~/.ksh; } \
       || { ln -s ${SCRIPT_DIR%bin}shells/ksh $HOME/.ksh; }
   }
 
   [[ -e $HOME/.profile || -L $HOME/.profile ]] && { :
+    echo " - found .profile, not installing" >&2
   } || {
     installed="$installed ksh_profile"
     [[ "$EXPERIMENTAL" = "yes" ]] \
@@ -227,70 +231,40 @@ _ksh() {
   }
 
   [ ! -z "$installed" ] && {
-    echo "INSTALLED! $installed" >&2
-    echo " - Don't forget to install local.ksh and secrets.ksh in $HOME/.ksh" >&2
+    echo " - ...INSTALLED $installed" >&2
+    echo "   install your custom settings in $HOME/.ksh/local.ksh" >&2
   }
 }
 
 # lisps
 _lisp() {
+  installed=
   echo "checking lisps..." >&2
+
   if [[ -e $HOME/.sbclrc || -L $HOME/.sbclrc ]]; then
-    echo " - found sbclrc, not installing" >&2
+    echo " - found .sbclrc, not installing" >&2
   else
     [[ "$EXPERIMENTAL" = "yes" ]] \
      && { ln -s ${_SCRIPTDIR%bin}lisps/sbclrc ~/.sbclrc; } \
      || { ln -s ${SCRIPT_DIR%bin}lisps/sbclrc $HOME/.sbclrc; }
-    echo " - ...INSTALLED sbclrc" >&2
+    echo " - ...INSTALLED .sbclrc" >&2
+    installed="$installed .sbclrc"
   fi
+
+  [ ! -z "$installed" ] && echo " - ...INSTALLED $installed" >&2
 }
 
 # misc
 _misc() {
   echo "checking misc dotfiles..." >&2
 
-  if [[ -e $HOME/.tmux.conf || -L $HOME/.tmux.conf ]]; then
-    echo " - found tmux.conf, not installing" >&2
-  else
-    [[ "$EXPERIMENTAL" = "yes" ]] \
-     && { ln -s ${_SCRIPTDIR%bin}misc/tmux.conf ~/.tmux.conf; } \
-     || { ln -s ${SCRIPT_DIR%bin}misc/tmux.conf $HOME/.tmux.conf; }
-    echo " - ...INSTALLED tmux.conf" >&2
-  fi
-
-  if [[ -e $HOME/.gemrc || -L $HOME/.gemrc ]]; then
-    echo " - found gemrc, not installing" >&2
-  else
-    [[ "$EXPERIMENTAL" = "yes" ]] \
-     && { ln -s ${_SCRIPTDIR%bin}misc/gemrc ~/.gemrc; } \
-     || { ln -s ${SCRIPT_DIR%bin}misc/ruby/gemrc $HOME/.gemrc; }
-    echo " - ...INSTALLED gemrc" >&2
-  fi
-  if [[ -e $HOME/.pryrc || -L $HOME/.pryrc ]]; then
-    echo " - found pryrc, not installing" >&2
-  else
-    [[ "$EXPERIMENTAL" = "yes" ]] \
-     && { ln -s ${_SCRIPTDIR%bin}misc/pryrc ~/.pryrc; } \
-     || { ln -s ${SCRIPT_DIR%bin}misc/ruby/pryrc $HOME/.pryrc; }
-    echo " - ...INSTALLED pryrc" >&2
-  fi
-
   if [[ -e $HOME/.inputrc || -L $HOME/.inputrc ]]; then
-    echo " - found inputrc, not installing" >&2
+    echo " - found .inputrc, not installing" >&2
   else
     [[ "$EXPERIMENTAL" = "yes" ]] \
      && { ln -s ${_SCRIPTDIR%bin}misc/inputrc ~/.inputrc; } \
      || { ln -s ${SCRIPT_DIR%bin}misc/inputrc $HOME/.inputrc; }
-    echo " - ...INSTALLED inputrc" >&2
-  fi
-
-  if [[ -d $HOME/.tmuxinator || -L $HOME/.tmuxinator ]]; then
-    echo " - found .tmuxinator, not installing" >&2
-  else
-    [[ "$EXPERIMENTAL" = "yes" ]] \
-     && { ln -s ${_SCRIPTDIR%bin}misc/tmuxinator ~/.tmuxinator; } \
-     || { ln -s ${SCRIPT_DIR%bin}misc/tmuxinator $HOME/.tmuxinator; }
-    echo " - ...INSTALLED .tmuxinator" >&2
+    echo " - ...INSTALLED .inputrc" >&2
   fi
 
   if [[ -d $HOME/.toprc || -L $HOME/.toprc ]]; then
@@ -305,53 +279,97 @@ _misc() {
 
 # pal
 _pal() {
-  installed=
-  echo -n "checking pal..." >&2
+  echo "checking pal..." >&2
 
   [[ -d $HOME/.pal || -L $HOME/.pal ]] && {
-    echo "found, not installing" >&2
+    echo "found .pal, not installing" >&2
   } || {
-    installed="pal"
+    installed=".pal"
     [[ "$EXPERIMENTAL" = "yes" ]] \
      && { ln -s ${_SCRIPTDIR%bin}misc/pal ~/.pal; } \
      || { ln -s ${SCRIPT_DIR%bin}misc/pal $HOME/.pal; }
   }
-
-  [ ! -z "$installed" ] && echo "INSTALLED!" >&2
 }
+
+# ruby
+_ruby() {
+  echo "checking ruby..." >&2
+
+  if [[ -e $HOME/.gemrc || -L $HOME/.gemrc ]]; then
+    echo " - found .gemrc, not installing" >&2
+  else
+    [[ "$EXPERIMENTAL" = "yes" ]] \
+     && { ln -s ${_SCRIPTDIR%bin}misc/gemrc ~/.gemrc; } \
+     || { ln -s ${SCRIPT_DIR%bin}misc/ruby/gemrc $HOME/.gemrc; }
+    echo " - ...INSTALLED .gemrc" >&2
+  fi
+  if [[ -e $HOME/.pryrc || -L $HOME/.pryrc ]]; then
+    echo " - found pryrc, not installing" >&2
+  else
+    [[ "$EXPERIMENTAL" = "yes" ]] \
+     && { ln -s ${_SCRIPTDIR%bin}misc/pryrc ~/.pryrc; } \
+     || { ln -s ${SCRIPT_DIR%bin}misc/ruby/pryrc $HOME/.pryrc; }
+    echo " - ...INSTALLED .pryrc" >&2
+  fi
+}
+
+# pal
+_tmux() {
+  echo "checking tmux..." >&2
+
+  if [[ -e $HOME/.tmux.conf || -L $HOME/.tmux.conf ]]; then
+    echo " - found .tmux.conf, not installing" >&2
+  else
+    [[ "$EXPERIMENTAL" = "yes" ]] \
+     && { ln -s ${_SCRIPTDIR%bin}misc/tmux.conf ~/.tmux.conf; } \
+     || { ln -s ${SCRIPT_DIR%bin}misc/tmux.conf $HOME/.tmux.conf; }
+    echo " - ...INSTALLED .tmux.conf" >&2
+  fi
+
+  if [[ -d $HOME/.tmuxinator || -L $HOME/.tmuxinator ]]; then
+    echo " - found .tmuxinator, not installing" >&2
+  else
+    [[ "$EXPERIMENTAL" = "yes" ]] \
+     && { ln -s ${_SCRIPTDIR%bin}misc/tmuxinator ~/.tmuxinator; } \
+     || { ln -s ${SCRIPT_DIR%bin}misc/tmuxinator $HOME/.tmuxinator; }
+    echo " - ...INSTALLED .tmuxinator" >&2
+  fi
+}
+
 
 # vim
 _vim() {
   installed=
-  echo -n "checking vim..." >&2
+  echo "checking vim..." >&2
 
   [[ -e $HOME/.vimrc || -L $HOME/.vimrc ]] && {
-    echo "found, not installing" >&2
+    echo " - found .vimrc, not installing" >&2
   } || {
-    installed="vimrc"
+    installed=".vimrc"
     [[ "$EXPERIMENTAL" = "yes" ]] \
       && { ln -s ${_SCRIPTDIR%bin}editors/vim/vimrc.vim ~/.vimrc; } \
       || { ln -s ${SCRIPT_DIR%bin}editors/vim/vimrc.vim $HOME/.vimrc; }
   }
 
   [[ -d $HOME/.vim || -L $HOME/.vim ]] && { :
+    echo " - found .vim/ not installing" >&2
   } || {
-    installed=" vim directory"
+    installed="$installed .vim/"
     [[ "$EXPERIMENTAL" = "yes" ]] \
       && { ln -s ${_SCRIPTDIR%bin}editors/vim ~/.vim; } \
       || { ln -s ${SCRIPT_DIR%bin}editors/vim $HOME/.vim; }
   }
 
-  [ ! -z "$installed" ] && echo "INSTALLED!" >&2
+  [ ! -z "$installed" ] && echo " - ...INSTALLED $installed" >&2
 }
 
 # zsh
 _zsh() {
   installed=
-  echo -n "checking zsh..." >&2
+  echo "checking zsh..." >&2
 
   [[ -e $HOME/.zshrc || -L $HOME/.zshrc ]] && {
-    echo "found, not installing" >&2
+    echo " - found .zshrc, not installing" >&2
   } || {
     installed="zshrc"
     [[ "$EXPERIMENTAL" = "yes" ]] \
@@ -359,30 +377,27 @@ _zsh() {
       || { ln -s ${SCRIPT_DIR%bin}shells/zsh/zshrc.zsh $HOME/.zshrc; }
   }
 
-  [[ -e $HOME/.zcompdump || -L $HOME/.zcompdump ]] && { :
-  } || {
-    [[ "$EXPERIMENTAL" = "yes" ]] \
-      && { ln -s ${_SCRIPTDIR%bin}shells/zsh/zcompdump.zsh ~/.zcompdump; } \
-      || { ln -s ${SCRIPT_DIR%bin}shells/zsh/zcompdump.zsh $HOME/.zcompdump; }
-  }
-
-  [ ! -z "$installed" ] && echo "INSTALLED!" >&2
+  [ ! -z "$installed" ] && echo " - ...INSTALLED $installed" >&2
 }
 
-_bash
-_config_misc
+
 [[ "$1" = "--with-emacs" ]] && _emacs
-_git
 
-[[ "$EXPERIMENTAL" = "yes" ]] && {
-  echo "installing EXPERIMENTAL features in $HOME for ksh on `uname`"
-  echo " relative to ${_SCRIPTDIR}"
-}
+ _git
 
-_lisp
-_misc
-_pal
-_vim
-_zsh
+if [[ "$EXPERIMENTAL" = "yes" ]]; then
+  _ksh
+else
+  _bash
+  _config_misc
+  _lisp
+  _pal
+  _tmux
+  _zsh
+fi
+
+ _misc
+ _ruby
+ _vim
 
 # vim: nonu:nowrap:nospell:ft=sh
