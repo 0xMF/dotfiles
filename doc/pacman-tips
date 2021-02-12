@@ -4,6 +4,7 @@
 #####################################################################
 
 pacman -h                                 # -F:files -Q:query -R:remove -S:sync -T:deptest -U:upgrade
+pacman -Sc(c)                             # ..clean up unused packages (and unused repos)
 pacman -Dh                                # ... individual options for -D: database
 pacman -Dk                                # CHECK package database for consistency
 
