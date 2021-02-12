@@ -42,6 +42,12 @@ else
   >&2 print "WARNING: Missing critical dependency pleasure.sh!"
 fi
 
+if [ -f $REPO/all/sysadmin.sh ]; then
+  source $REPO/all/sysadmin.sh
+else
+  >&2 print "WARNING: Missing critical dependency sysadmin.sh!"
+fi
+
 # setup our prompt PS1, first get OS release+version
 OSRV=
 if [ $(uname -o) == "GNU/Linux" ]; then
