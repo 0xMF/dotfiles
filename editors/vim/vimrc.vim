@@ -178,6 +178,9 @@ set clipboard=unnamed   " all yanking goes to clipboard
     : let autocommands_loaded =1
     :filetype on        " enables file type detection.
 
+    " remove trailing spaces on save
+    au FileWritePre   * call DeleteTrailingSpaces()
+
     " enable completion, so in insert mode: CTRL+X CTRL+O
     :filetype plugin on
     :set omnifunc=syntaxcomplete#Complete

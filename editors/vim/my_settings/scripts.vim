@@ -9,7 +9,7 @@ function! WordCount()
 endfunction
 
 function! DeleteTrailingSpaces()
-  :%s/ *$//g
+  :%g/ *$/:s/ *$//
 endfunction
 
 function! OBS()

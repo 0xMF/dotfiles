@@ -1,6 +1,31 @@
+MINIMAL=
+W_EMACS=
+
+EXPERIMENTAL="N"
+EMACS_D=${HOME}/.emacs.d
+
+MY_SHELL=$(ps -o command -p $$ | grep -v "^COMMAND$" | tr -d '-' | cut -d' ' -f1)
+SCRIPT_DIR="$( cd "$( dirname "$0" )" && pwd )"
+
+_FULL_PATH="$( cd "$( dirname "$0" )" && pwd -P )"
+_REAL_HOME="$( cd ~  && pwd -P )"
+_SCRIPTDIR="$( echo .${_FULL_PATH#$_REAL_HOME} )"
+
+check_args() {
+  for i in "$@"; do
+    case "$i" in
+      "--minimal"     ) MINIMAL="Y" ;;
+      "--with-emacs"  ) W_EMACS="Y" ;;
+      "-h" | "--help" ) help; exit  ;;
+      *               ) die "$@"    ;;
+    esac
+  done
+}
+
 help() {
   installer=$(basename $0)
-  >&2 echo "$installer:"
+  >&2 echo
+  >&2 echo "$installer install [OPTIONS]"
   >&2 echo
   >&2 echo "installs dotfiles without overwriting existing files, directories, or links."
   >&2 echo "does not have option to uninstall links/files that were created by $installer."
@@ -35,57 +60,49 @@ help() {
   >&2 echo
 }
 
-[ "$1" = "-h" ] || [ "$1" = "--help" ] && { help; exit; }
+check_installer_shell() {
+  if [ "$MY_SHELL" != "bash" ]; then
+    if  [ "`uname`" = "OpenBSD" ];  then
+      >&2 echo -n 'Do you want to continue with EXPERIMENTAL features of ksh on OpenBSD? (yes/No) '
+      read EXPERIMENTAL
+      [ "$EXPERIMENTAL" != "yes" ] && exit 1
+   else
+      [ "$MY_SHELL" = "ksh" ] && return
 
-MY_SHELL=$(ps -o command -p $$ | grep -v "^COMMAND$" | tr -d '-' | cut -d' ' -f1)
-SCRIPT_DIR="$( cd "$( dirname "$0" )" && pwd )"
-
-EXPERIMENTAL="N"
-EMACS_D=${HOME}/.emacs.d
-
-_FULL_PATH="$( cd "$( dirname "$0" )" && pwd -P )"
-_REAL_HOME="$( cd ~  && pwd -P )"
-_SCRIPTDIR="$( echo .${_FULL_PATH#$_REAL_HOME} )"
-
-if [ "$MY_SHELL" != "bash" ]; then
-  if  [ "`uname`" = "OpenBSD" ];  then
-    >&2 echo -n 'Do you want to continue with EXPERIMENTAL features of ksh on OpenBSD? (yes/No) '
-    read EXPERIMENTAL
-    [ "$EXPERIMENTAL" != "yes" ] && exit 1
- else
-    >&2 echo "The command line used to run this script was:"
-    >&2 echo
-    >&2 echo "  $MY_SHELL"
-    >&2 echo
-    >&2 echo "ERROR: installer tested with #!/bin/bash but may work with #!/bin/ksh."
-    >&2 echo "       If you have Bash installed, put #!/bin/bash as this script's first line"
-    >&2 echo "       or, preferably, run this script using: bash path/to/dotfiles_install."
-    exit 1
+      >&2 echo "The command line used to run this script was:"
+      >&2 echo
+      >&2 echo "  $MY_SHELL"
+      >&2 echo
+      >&2 echo "ERROR: installer tested with #!/bin/bash but may work with #!/bin/ksh."
+      >&2 echo "       If you have Bash installed, put #!/bin/bash as this script's first line"
+      >&2 echo "       or, preferably, run this script using: bash path/to/dotfiles_install."
+      exit 1
+    fi
   fi
-fi
 
-if [ "$1" = "--with-emacs" ]; then
-  EMACS_D_REFRESH="N"
-  EMACS_D_DOTFILES=".custom.el.~undo-tree~ .emacs.desktop .historian .session .smex-items .uptimes.el"
+  if [ "$1" = "--with-emacs" ]; then
+    EMACS_D_REFRESH="N"
+    EMACS_D_DOTFILES=".custom.el.~undo-tree~ .emacs.desktop .historian .session .smex-items .uptimes.el"
 
-  if [[ -d ${EMACS_D} || -L ${EMACS_D} || -d ${HOME}/repos/emacs.d ]]; then
-    [[ -s /usr/bin/perl ]] && {
-      echo "Do you want to remove ONLY these files from ~/.emacs.d: " >&2
-      echo -ne "  $(echo $EMACS_D_DOTFILES | perl -pe 's| |\n  |g')\n\n (yes/N)? " >&2
-      read EMACS_D_REFRESH
-      if [ "$EMACS_D_REFRESH" = "yes" ]; then
-        for f in ${EMACS_D_DOTFILES}
-        do
-          if [ -e ${EMACS_D}/$f ]; then
-            echo "  - deleting ${EMACS_D}/$f"
-            rm -f ${EMACS_D}/$f
-          fi
-        done
-        echo
-      fi
-    }
+    if [[ -d ${EMACS_D} || -L ${EMACS_D} || -d ${HOME}/repos/emacs.d ]]; then
+      [[ -s /usr/bin/perl ]] && {
+        echo "Do you want to remove ONLY these files from ~/.emacs.d: " >&2
+        echo -ne "  $(echo $EMACS_D_DOTFILES | perl -pe 's| |\n  |g')\n\n (yes/N)? " >&2
+        read EMACS_D_REFRESH
+        if [ "$EMACS_D_REFRESH" = "yes" ]; then
+          for f in ${EMACS_D_DOTFILES}
+          do
+            if [ -e ${EMACS_D}/$f ]; then
+              echo "  - deleting ${EMACS_D}/$f"
+              rm -f ${EMACS_D}/$f
+            fi
+          done
+          echo
+        fi
+      }
+    fi
   fi
-fi
+}
 
 installed=
 
@@ -416,27 +433,54 @@ _zsh() {
   [ ! -z "$installed" ] && echo " - ...INSTALLED $installed" >&2
 }
 
+die() {
+  >&2 echo
+  >&2 echo Unknown option detected: "$@"
+  help
+  exit 1
+}
 
-[[ "$1" = "--with-emacs" ]] && { _emacs; shift; }
+install() {
 
- _git
+  check_args "$@" || die "$@"
+  check_installer_shell
 
-if [[ "$EXPERIMENTAL" = "yes" ]]; then
-  _ksh
+  [ "$W_EMACS" = "--with-emacs" ] && _emacs
+
+   _git
+
+  if [ "$EXPERIMENTAL" = "yes" ]; then
+    _ksh
+  else
+    _bash
+  fi
+
+  if [ "$MINIMAL" != "--minimal" ]; then
+    _config_misc
+    _lisp
+    _pal
+    _tmux
+    _zsh
+  fi
+
+   _misc
+   _ruby
+   _vim
+}
+
+if [ -z "$1" ]; then
+  help
 else
-  _bash
+  if [ "$1" = "install" ]; then
+    shift
+    if [ -z "$1" ] || [ "$1" = "--minimal" ] || [ "$1" = "--with-emacs" ]; then
+      install "$@"
+    else
+      die "$@"
+    fi
+  else
+    help
+  fi
 fi
-
-if [[ "$1" != "--minimal" ]]; then
-  _config_misc
-  _lisp
-  _pal
-  _tmux
-  _zsh
-fi
-
- _misc
- _ruby
- _vim
 
 # vim: nonu:nowrap:nospell:ft=sh
