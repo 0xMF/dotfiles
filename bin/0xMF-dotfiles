@@ -11,6 +11,8 @@ _FULL_PATH="$( cd "$( dirname "$0" )" && pwd -P )"
 _REAL_HOME="$( cd ~  && pwd -P )"
 _SCRIPTDIR="$( echo .${_FULL_PATH#$_REAL_HOME} )"
 
+installer=$(basename $0)
+
 check_args() {
   for i in "$@"; do
     case "$i" in
@@ -23,33 +25,35 @@ check_args() {
 }
 
 help() {
-  installer=$(basename $0)
   >&2 echo
   >&2 echo "$installer install [OPTIONS]"
   >&2 echo
-  >&2 echo "installs dotfiles without overwriting existing files, directories, or links."
-  >&2 echo "OPTIONS can be none (empty string) or one or more of the following:"
-  >&2 echo "  --minimal, --with-emacs as described below" 
+  >&2 echo "installs $installer without overwriting existing files, directories, or links"
   >&2 echo
-  >&2 echo "  by default $installer will install all but Emacs"
-  >&2 echo "     [bash,config,git,lisp,misc,pal,ruby,tmux,vim,zsh]"
+  >&2 echo "install OPTIONS:"
+  >&2 echo "  [ none |empty string ] (default) --minimal --with-emacs"
   >&2 echo
-  >&2 echo "  --minimal: install for Linux server [bash,git,misc,ruby,vim]"
+  >&2 echo " $installer on Linux: default install Bash and all but 0xMF/emacs.d"
+  >&2 echo "        [bash,config,git,lisp,misc,pal,ruby,tmux,vim,zsh]"
   >&2 echo
-  >&2 echo "  --with-emacs: installs everything including Emacs"
-  >&2 echo "    [bash,config,emacs,git,lisp,misc,pal,ruby,tmux,vim,zsh]"
+  >&2 echo "    --minimal: a minimal setup for a typical Linux (bash+vim) server"
+  >&2 echo "        [bash,git,misc,ruby,vim]"
   >&2 echo
-  >&2 echo "  --with-emacs --minimal: install for Linux server with Emacs"
-  >&2 echo "     [bash,emacs,git,misc,ruby,vim]"
+  >&2 echo "    --with-emacs: installs everything including Emacs"
+  >&2 echo "        [bash,config,emacs,git,lisp,misc,pal,ruby,tmux,vim,zsh]"
   >&2 echo
-  >&2 echo "  when run from OpenBSD (ksh) by default $installer uses ksh"
-  >&2 echo "     [ksh,config,git,lisp,misc,pal,ruby,tmux,vim,zsh]"
+  >&2 echo "    --with-emacs --minimal: install for Linux server with Emacs"
+  >&2 echo "        [bash,emacs,git,misc,ruby,vim]"
   >&2 echo
-  >&2 echo "  --minimal: install for OpenBSD server [ksh,git,misc,ruby,vim]"
-  >&2 echo "     [ksh,git,misc,ruby,vim]"
+  >&2 echo " $installer on OpenBSD: default install ksh and all but 0xMF/emacs.d"
+  >&2 echo "        [ksh,config,git,lisp,misc,pal,ruby,tmux,vim,zsh]"
   >&2 echo
-  >&2 echo "  when run from OpenBSD (ksh) --with-emacs installs both ksh and emacs"
-  >&2 echo "     [emacs,ksh,git,misc,ruby,vim]"
+  >&2 echo "    --minimal: a minimal setup for an OpenBSD (ksh+vim) server"
+  >&2 echo "        [ksh,git,misc,ruby,vim]"
+  >&2 echo
+  >&2 echo "  when run from OpenBSD (ksh shell)"
+  >&2 echo "    --with-emacs installs both ksh and emacs"
+  >&2 echo "        [emacs,ksh,git,misc,ruby,vim]"
   >&2 echo
   >&2 echo "  -h | --help: this message"
   >&2 echo
@@ -58,8 +62,7 @@ help() {
   >&2 echo "Editors (term/gui):  DrRacket, Emacs, Vim (default)"
   >&2 echo "Languages:           sbcl, Racket, Perl, Ruby"
   >&2 echo "Version Control:     Git (default)"
-  >&2 echo
-  >&2 echo "Known Issues:"  
+  >&2 echo "Known Issues:"
   >&2 echo
   >&2 echo "   $installer does not uninstall links, files, or directories created during install"
   >&2 echo
@@ -74,13 +77,14 @@ check_installer_shell() {
    else
       [ "$MY_SHELL" = "ksh" ] && return
 
-      >&2 echo "The command line used to run this script was:"
+      >&2 echo "The shell used to run this script was: $MY_SHELL"
       >&2 echo
-      >&2 echo "  $MY_SHELL"
+      >&2 echo "ERROR: $installer installation was tested using #!/bin/bash and #!/bin/ksh"
       >&2 echo
-      >&2 echo "ERROR: installer tested with #!/bin/bash but may work with #!/bin/ksh."
-      >&2 echo "       If you have Bash installed, put #!/bin/bash as this script's first line"
-      >&2 echo "       or, preferably, run this script using: bash path/to/dotfiles_install."
+      >&2 echo "you could try running this script with:"
+      >&2 echo "   bash path/to/$installer"
+      >&2 echo "   ksh  path/to/$installer"
+      >&2 echo
       exit 1
     fi
   fi
@@ -474,6 +478,7 @@ install() {
 }
 
 if [ -z "$1" ]; then
+  check_installer_shell
   help
 else
   if [ "$1" = "install" ]; then
