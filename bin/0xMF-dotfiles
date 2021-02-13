@@ -27,9 +27,9 @@ check_args() {
 help() {
   >&2 echo
   >&2 echo "installs $installer without overwriting existing files, directories, or links"
-  >&2 echo "Usage:"
-  >&2 echo " $installer install [OPTIONS] where supported OPTIONS are:"
-  >&2 echo "    [ none | empty string ] (default) --minimal --with-emacs"
+  >&2 echo
+  >&2 echo "Usage: $installer install [OPTIONS] where supported OPTIONS are:"
+  >&2 echo "        [ none | empty string ] (default) --minimal --with-emacs"
   >&2 echo
   >&2 echo " $installer on Linux: default install Bash and all but 0xMF/emacs.d"
   >&2 echo "        [bash,config,git,lisp,misc,pal,ruby,tmux,vim,zsh]"
