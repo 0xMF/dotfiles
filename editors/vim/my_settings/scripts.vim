@@ -9,7 +9,9 @@ function! WordCount()
 endfunction
 
 function! DeleteTrailingSpaces()
+  let l:savecursor = winsaveview()
   :%g/ *$/:s/ *$//
+  call winrestview(l:savecursor)
 endfunction
 
 function! OBS()

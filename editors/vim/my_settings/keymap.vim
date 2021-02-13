@@ -117,7 +117,7 @@ imap <Nul>    <Space>
 :map ;c i{<Esc>Ea}<Esc>|              " curlies {} around a word
 :map ;cc <Esc>:call My_Colours_Change()<CR>|
 :map ;cf <Esc>:call My_Fonts_Change()<CR>|
-:map ;d <Esc>ma:call DeleteTrailingSpaces()<CR>``|
+:map ;d :call DeleteTrailingSpaces()<CR>|
 :map ;e :set spell!<CR>|                " toggle spell checking
 :map ;ea i</<Esc>ea><Esc>|              " add end tags <> around a word
 :map ;fo <Esc>:call My_Convert()<CR>|   " removes dos formatting

@@ -28,17 +28,18 @@ help() {
   >&2 echo "$installer install [OPTIONS]"
   >&2 echo
   >&2 echo "installs dotfiles without overwriting existing files, directories, or links."
-  >&2 echo "does not have option to uninstall links/files that were created by $installer."
+  >&2 echo "OPTIONS can be none (empty string) or one or more of the following:"
+  >&2 echo "  --minimal, --with-emacs as described below" 
   >&2 echo
-  >&2 echo "  by default $installer does all but emacs"
+  >&2 echo "  by default $installer will install all but Emacs"
   >&2 echo "     [bash,config,git,lisp,misc,pal,ruby,tmux,vim,zsh]"
   >&2 echo
   >&2 echo "  --minimal: install for Linux server [bash,git,misc,ruby,vim]"
   >&2 echo
-  >&2 echo "  --with-emacs: does everything including emacs"
+  >&2 echo "  --with-emacs: installs everything including Emacs"
   >&2 echo "    [bash,config,emacs,git,lisp,misc,pal,ruby,tmux,vim,zsh]"
   >&2 echo
-  >&2 echo "  --with-emacs --minimal: install for Linux server with emacs"
+  >&2 echo "  --with-emacs --minimal: install for Linux server with Emacs"
   >&2 echo "     [bash,emacs,git,misc,ruby,vim]"
   >&2 echo
   >&2 echo "  when run from OpenBSD (ksh) by default $installer uses ksh"
@@ -57,6 +58,10 @@ help() {
   >&2 echo "Editors (term/gui):  DrRacket, Emacs, Vim (default)"
   >&2 echo "Languages:           sbcl, Racket, Perl, Ruby"
   >&2 echo "Version Control:     Git (default)"
+  >&2 echo
+  >&2 echo "Known Issues:"  
+  >&2 echo
+  >&2 echo "   $installer does not uninstall links, files, or directories created during install"
   >&2 echo
 }
 
