@@ -4,3 +4,5 @@ alias please='perl -wnle'
 alias pd='perldoc -MPod::Text::Color::Delight'
 alias perldoc='perldoc -MPod::Text::Color::Delight'
 
+alias tmux='tmux -u'
+
