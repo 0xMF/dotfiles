@@ -10,7 +10,7 @@ endfunction
 
 function! DeleteTrailingSpaces()
   let l:savecursor = winsaveview()
-  :%g/ *$/:s/ *$//
+  :silent :%g/ *$/:s/ *$//
   call winrestview(l:savecursor)
 endfunction
 
