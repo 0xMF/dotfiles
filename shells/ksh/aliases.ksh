@@ -7,7 +7,7 @@
 export OS
 
 bsd() {
-  alias cv='command -v'
+  alias cv='0xMF-cv'
   alias declare='0xMF-declare'
   alias eg='egrep -i'
   alias h='fc -l'

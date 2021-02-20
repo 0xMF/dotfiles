@@ -4,6 +4,11 @@
 [[ "$(uname -s)" == "FreeBSD" ]] && OS="BSD"
 [[ "$(uname)" == "OpenBSD" ]] && OS="BSD"
 
+function 0xMF-cv {
+  command -V "$1"
+  typeset -f "$1"
+}
+
 function 0xMF-sudo {
   print 'default to doas instead of sudo' >&2
   [[ "$1" == "-i" ]] \
