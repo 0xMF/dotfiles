@@ -5,4 +5,5 @@ alias pd='perldoc -MPod::Text::Color::Delight'
 alias perldoc='perldoc -MPod::Text::Color::Delight'
 
 alias tmux='tmux -u'
-
+alias http-serve="echo starting...port 221b is now \\\\0/; ruby -run -e httpd . -p 2212"
+alias serve="http-serve"

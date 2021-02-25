@@ -46,3 +46,11 @@ grep -i installed /var/log/pacman.log
 
 # for package followed by description use
 pacman -Ss ruby |  perl -pe 's/\n// if $. % 2 == 1' | sed 's/\t//g'
+
+# rank speed of download mirrrors (requires pacman-contrib package)
+#
+# 1. download current mirrorlist
+curl -o /etc/pacman.d/mirrorlist.new https://archlinux.org/mirrorlist/all/
+# 2. uncomment which mirrors are preferable and then run
+# 3. rank them and recreate the mirrorlist
+rankmirrors -n 6 /etc/pacman.d/mirrorlist.new > /etc/pacman.d/mirrorlist
