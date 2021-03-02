@@ -1,10 +1,10 @@
 #!/usr/bin/env bash
 #
-# User defined aliases 
+# User defined aliases
 
 OS=$(uname -s)
 
-if [ $OS == "FreeBSD" ]; then 
+if [ $OS == "FreeBSD" ]; then
 
   alias eg='egrep -i'
   alias h='fc -l'
@@ -84,16 +84,20 @@ alias ssh-add-fingerprint='ssh-add -l -E md5'
 alias sysdoc="cat $HOME/repos/dotfiles/doc/systemd-tips"
 #alias tree='tree -I .git --charset UTF-8 -push'
 alias tree='tree -I .git --charset UTF-8 --dirsfirst -F'
-alias trdd='trd 2 -d'
-alias trddd='trd 3 -d'
+alias trd2='trd 2 -d'
+alias trd3='trd 3 -d'
 alias ftree='tree -I .git -I "*.png" --charset UTF-8 --dirsfirst -F'
 alias tmux='TERM=tmux-256color tmux -u'
 alias vi='vim'
 alias vb='/usr/local/bin/vimb 2>/dev/null &'
 alias vimb='/usr/local/bin/vimb 2>/dev/null &'
 
-alias pacdoc="showdoc $HOME/repos/dotfiles/doc/pacman-tips"
-alias vimdoc="showdoc $HOME/repos/dotfiles/doc/vim-tips"
+alias 0xMF-doc-pacman="showdoc $HOME/repos/dotfiles/doc/pacman"
+alias 0xMF-doc-pcre="showdoc $HOME/repos/dotfiles/doc/re"
+alias 0xMF-doc-perl="0xMF-doc-pcre"
+alias 0xMF-doc-vim="showdoc $HOME/repos/dotfiles/doc/vim"
+alias pacdoc="0xMF-doc-pacman"
+alias vimdoc="0xMF-doc-vim"
 alias reload=". ~/.bashrc"
 
 # vim:nospell:ft=sh:
