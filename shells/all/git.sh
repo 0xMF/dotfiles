@@ -437,13 +437,27 @@ gcr() {
 }
 
 # formerly aliases, now rewritten as functions
-gd()    { if _is_git_repo -eq 0; then git diff --color=always -w; fi }
-gdc()   { if _is_git_repo -eq 0; then git diff --color=always -w --cached; fi }
-gdh()   { if _is_git_repo -eq 0; then git diff --color=always -w HEAD; fi }
-gds()   { if _is_git_repo -eq 0; then git diff --color=always -w --staged; fi }
-gdiff() { if _is_git_repo -eq 0; then git diff --color=always -w HEAD | grep -v binary; fi }
-gst()   { if _is_git_repo -eq 0; then git status ; fi }
-gss()   { if _is_git_repo -eq 0; then git status -s; fi }
+gd() { 
+  if _is_git_repo -eq 0; then git diff --color=always -w; fi 
+}
+gdc() { 
+  if _is_git_repo -eq 0; then git diff --color=always -w --cached; fi 
+}
+gdh() { 
+  if _is_git_repo -eq 0; then git diff --color=always -w HEAD; fi 
+}
+gds() { 
+  if _is_git_repo -eq 0; then git diff --color=always -w --staged; fi 
+}
+gdiff() { 
+  if _is_git_repo -eq 0; then git diff --color=always -w HEAD | grep -v binary; fi 
+}
+gst() {
+  if _is_git_repo -eq 0; then git status ; fi 
+}
+gss() { 
+  if _is_git_repo -eq 0; then git status -s; fi 
+}
 
 __gdh() {
   if _is_git_repo -eq 0
