@@ -1,4 +1,4 @@
-function jc {
+jc() {
   case "$1" in
     "" ) /usr/bin/journalctl -xe | less -FeqRSX ;;
     "help"|"h"|"-h"|"--help") /usr/bin/journalctl --help "$@" ;;
@@ -6,7 +6,7 @@ function jc {
   esac
 }
 
-function sc {
+sc() {
   case "$1" in
     "help"|"h"|"-h"|"--help") /usr/bin/systemctl --help "$@" ;;
     * ) /usr/bin/systemctl "$@" ;;
@@ -14,7 +14,7 @@ function sc {
 }
 
 # jump to EXAMPLES section of man page if exists else quit
-function eman {
+eman() {
   [[ -z "$1" ]] && { >&2 echo "Usage: eman man-page-with-EXAMPLES-section"; return; }
   ( man -f $1
     echo
@@ -22,7 +22,7 @@ function eman {
     man -Tutf8 $1 | col -bx | sed -n '/^EXAMPLES/,/^[A-Z]/p' | sed -nr '/^(EXAMPLES| |$)/p' ) | less -FeqRSX
 }
 
-function sadu {
+sadu() {
   distro=$(\grep -w ID /etc/os-release | cut -d= -f2 | tr -d '"')
   case "${distro}" in
     arch|manjaro)
@@ -37,7 +37,7 @@ function sadu {
   esac
 }
 
-function saru {
+saru() {
   distro=$(\grep -w ID /etc/os-release | cut -d= -f2 | tr -d '"')
   case "${distro}" in
     arch|manjaro)
@@ -52,18 +52,18 @@ function saru {
   esac
 }
 
-function pacsearch {
+pacsearch() {
   [[ -z "$1" ]] && { >&2 echo "Usage: pacsearch SEARCH_TERM"; return 1; }
   pacman -Ss "$1" |  perl -pe 's/\n// if $. % 2 == 1' | sed 's/\t//g'
 }
 
-function apt {
+apt() {
     echo $1
     [ "$1" == "info" ] && shift && /usr/bin/apt show "$@" \
                        || /usr/bin/apt "$@"
 }
 
-function dpkg-get-selections {
+dpkg-get-selections() {
   dpkg --get-selections
   >&2 echo
   >&2 echo -----------------------------
@@ -71,23 +71,23 @@ function dpkg-get-selections {
   >&2 echo -----------------------------
 }
 
-function dpkg-list {
+dpkg-list() {
   dpkg-query --list|awk -F' ' '{printf("%s\t%-32s\t",$1,substr($2,0,40));$1=$2=$3=$4=""; print $0}'
 }
 
-function pkg_locate {
+pkg_locate() {
   [ -z "$1" ] && echo "Usage: pkg_locate name" && return
   ports "$1"
 }
 
-function ports {
+ports() {
   [ -z "$1" ] && echo "Usage: ports name" && return
   pushd /usr/ports > /dev/null
   echo */*|tr ' ' '\n'|$GREP $1
   popd  > /dev/null
 }
 
-function pkg {
+pkg() {
   [ "`uname -s`" != "FreeBSD" ] && return
 
   local old_pkg=/usr/sbin/pkg
