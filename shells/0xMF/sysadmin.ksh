@@ -22,7 +22,7 @@ function sc {
 
 # jump to EXAMPLES section of man page if exists else quit
 function eman {
-  [[ -z "$1" ]] && { >&2 echo "Usage: eman man-page-with-EXAMPLES-section"; return; }
+  [ -z "$1" ] && { >&2 echo "Usage: eman man-page-with-EXAMPLES-section"; return; }
   ( man -f $1
     echo
     man -Tutf8 $1 | col -bx | sed -n '/^SYNOPSIS/,/^[A-Z]/p' | sed -nr '/^(SYNOPSIS| |$)/p'
@@ -30,6 +30,15 @@ function eman {
 }
 
 function sadu {
+
+  [ ! -s /usr/bin/df ] && return
+
+  used=$(/usr/bin/df -lh / | perl -lane '$. != 1 && print $F[-2]')
+
+  echo -n "You have used $used on / ...continue(y/N)? "
+  read REPLY
+  [[ "$REPLY" != "y"  &&  "$REPLY" != "Y" && "$REPLY" != "yes" ]] && return
+
   distro=$(\grep -w ID /etc/os-release | cut -d= -f2 | tr -d '"')
   case "${distro}" in
     arch|manjaro)
@@ -38,9 +47,11 @@ function sadu {
     centos)
       sudo yum update
         ;;
-    *)
+    debian|kali|mint|ubuntu)
       sudo apt update
       sudo apt dist-upgrade
+        ;;
+    *) echo does not support ${distro} yet;;
   esac
 }
 
@@ -60,7 +71,7 @@ function saru {
 }
 
 function pacsearch {
-  [[ -z "$1" ]] && { >&2 echo "Usage: pacsearch SEARCH_TERM"; return 1; }
+  [ -z "$1" ] && { >&2 echo "Usage: pacsearch SEARCH_TERM"; return 1; }
   pacman -Ss "$1" |  perl -pe 's/\n// if $. % 2 == 1' | sed 's/\t//g'
 }
 
