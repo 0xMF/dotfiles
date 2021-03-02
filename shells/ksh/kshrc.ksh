@@ -51,18 +51,18 @@ FCEDIT='/usr/bin/vim'    # fc usese vi too
 
 # resembles the bash equivalent of '\w$ ' with green colour highlighting
 # next vary prompt according to regular user or root
-if [ -f $REPO/all/git.sh ]; then
-  . $REPO/all/git.sh
+if [ -f $REPO/0xMF/git.ksh ]; then
+  . $REPO/0xMF/git.ksh
   psl
 else
   export PS1=`print '\e[0m\e[32;1m$(basename $(echo $PWD|sed "s,^$HOME$,~," ))\e[0m% '`
   export PROMPT_COMMAND="ps1;$PROMPT_COMMAND"
-  print "WARNING: Missing critical dependency git.sh!" >&2
+  print "WARNING: Missing critical dependency git.ksh!" >&2
 fi
 
-[ -f $REPO/all/pleasure.sh ] \
-  && . $REPO/all/pleasure.sh \
-  || print "WARNING: Missing critical dependency pleasure.sh!" >&2
+[ -f $REPO/0xMF/pleasure.ksh ] \
+  && . $REPO/0xMF/pleasure.ksh \
+  || print "WARNING: Missing critical dependency pleasure.ksh!" >&2
 
 # command line calendar
 pal 2> /dev/null

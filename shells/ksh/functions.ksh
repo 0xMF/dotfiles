@@ -4,19 +4,19 @@
 [[ "$(uname -s)" == "FreeBSD" ]] && OS="BSD"
 [[ "$(uname)" == "OpenBSD" ]] && OS="BSD"
 
-0xMF-cv() {
+function 0xMF-cv {
   command -V "$1"
   typeset -f "$1"
 }
 
-0xMF-sudo() {
+function 0xMF-sudo {
   print 'default to doas instead of sudo' >&2
   [[ "$1" == "-i" ]] \
     && doas su - \
     || doas "$@"
 }
 
-0xMF-declare() {
+function 0xMF-declare {
   case "$1" in
     "-f") typeset -f $2 ;;
     "-F") typeset +f ;;
@@ -24,27 +24,27 @@
   esac
 }
 
-anc() {
+function anc {
   alias ls='lsn'
   alias tree='tree -n'
   alias grep='grep --color=none -i'
 }
 
-eman() {
+function eman {
   [[ -z "$1" ]] && { print >&2 "Usage: eman man-page-with-EXAMPLES-section"; return; }
   man -Tascii $1 | col -bx | sed -n '/^EXAMPLES/,/^[A-Z]/p' | sed -nr '/^(EXAMPLES| |$)/p'
 }
 
-dpkg-list() {
+function dpkg-list {
   dpkg-query --list|awk -F' ' '{printf("%s\t%-32s\t",$1,substr($2,0,40));$1=$2=$3=$4=""; print $0}'
 }
 
-pkg_locate() {
+function 0xMF-pkg_locate {
   [ -z "$1" ] && echo "Usage: pkg_locate name" && return
   ports "$1"
 }
 
-ports() {
+function ports {
   [ -z "$1" ] && echo "Usage: ports name" && return
   pushd /usr/ports > /dev/null
   echo */*|tr ' ' '\n'|grep $1

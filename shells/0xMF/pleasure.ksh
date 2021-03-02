@@ -6,7 +6,8 @@ alias perldoc='perldoc -MPod::Text::Color::Delight'
 
 alias tmux='tmux -u'
 alias http-serve="serve"
-serve() {
+
+function serve {
 
   local port=2212
   dirs=`dirs | tr ' ' '\n' | wc -l`

@@ -31,7 +31,7 @@ else
   NOCOLOR="\[\033[00m\]"
 fi
 
-green() {
+function green {
   LS_COLORS="`echo $LS_COLORS|sed 's/di=0[01];3[0-9]/di=01;33/'`"
   LS_COLORS="`echo $LS_COLORS|sed 's/ln=[01][01];3[0-9]/ln=00;32/'`"
   LS_COLORS="`echo $LS_COLORS|sed 's/ex=0[01];3[0-9]/ex=01;32/'`"
@@ -65,7 +65,7 @@ green() {
   fi
 }
 
-psdark() {
+function psdark {
   # blue dir, green link, light green executables
   LS_COLORS="`echo $LS_COLORS|sed 's/di=0[01];3[0-9]/di=01;34/'`"
   LS_COLORS="`echo $LS_COLORS|sed 's/ln=[01][01];3[0-9]/ln=00;32/'`"
@@ -73,7 +73,7 @@ psdark() {
   export LS_COLORS
 }
 
-pslight() {
+function pslight {
   # black dir   #LS_COLORS="`echo $LS_COLORS|sed 's/di=01;33/di=00;30/'`"
   # brown dir   #LS_COLORS="`echo $LS_COLORS|sed 's/di=0[01];3[0-9]/di=00;34/'`"
   # purple link #LS_COLORS="`echo $LS_COLORS|sed 's/ln=0[01];3[0-9]/ln=01;35/'`"
@@ -85,7 +85,7 @@ pslight() {
   export LS_COLORS
 }
 
-ps1() {
+function ps1 {
   if [ `id -u` -eq 0 ]; then
     PS1="$RED${OSRV}$BLUE:\w $(parse_git_repo)$RED#$NOCOLOR "
     PROMPT_COMMAND="ps1"
@@ -104,7 +104,7 @@ ps1() {
   fi
 }
 
-pscs() {
+function pscs {
   if [ `id -u` -eq 0 ]; then
     PS1="$RED\h:\W $(parse_git_repo)$RED#$NOCOLOR "
     PROMPT_COMMAND="pscs"
@@ -119,7 +119,7 @@ pscs() {
   fi
 }
 
-psc() {
+function psc {
   if [ `id -u` -eq 0 ]; then
     PS1="$RED\h:\W $(parse_git_repo)$RED#$NOCOLOR "
     PROMPT_COMMAND="psc"
@@ -134,7 +134,7 @@ psc() {
   fi
 }
 
-pssc() {
+function pssc {
   if [ `id -u` -eq 0 ]; then
     PS1="$RED\W $(parse_git_repo)$RED#$NOCOLOR "
     PROMPT_COMMAND="pssc"
@@ -149,7 +149,7 @@ pssc() {
   fi
 }
 
-psh() {
+function psh {
   if [ `id -u` -eq 0 ]; then
     PS1="$RED\h:\W $(parse_git_repo)$RED#$NOCOLOR "
     PROMPT_COMMAND="psh"
@@ -164,7 +164,7 @@ psh() {
   fi
 }
 
-psept() {
+function psept {
   if [ `id -u` -eq 0 ]; then
     PS1="$RED\h:\W $(parse_git_repo)$RED#$NOCOLOR "
     PROMPT_COMMAND="psept"
@@ -185,7 +185,7 @@ psept() {
   fi
 }
 
-pss() {
+function pss {
   if [ `id -u` -eq 0 ]; then
     PS1="$RED\W $(parse_git_repo)$RED#$NOCOLOR "
     PROMPT_COMMAND="pss"
@@ -200,7 +200,7 @@ pss() {
   fi
 }
 
-psl() {
+function psl {
   if [ `id -u` -eq 0 ]; then
     PS1="$PURPLE\W $(parse_git_repo)$RED#$NOCOLOR "
     PROMPT_COMMAND="psl"
@@ -216,7 +216,7 @@ psl() {
   pslight
 }
 
-psd() {
+function psd {
   if [ `id -u` -eq 0 ]; then
     PS1="$PURPLE\W $(parse_git_repo)$RED#$NOCOLOR "
     PROMPT_COMMAND="psd"
@@ -232,8 +232,8 @@ psd() {
   psdark
 }
 
-psm() {
-  [ "$shell" = "zsh" ] && { eval "precmd() { PROMPT='$MAGENTA%%$NOCOLOR ' }"; return; }
+function psm {
+  [ "$shell" = "zsh" ] && { eval "precmd { PROMPT='$MAGENTA%%$NOCOLOR ' }"; return; }
   WHITE="%{$fg_bold[white]%}"
 
   if [ `id -u` -eq 0 ]; then
@@ -250,7 +250,7 @@ psm() {
   fi
 }
 
-gbruh() {
+function gbruh {
   if [ -z "$1" ]; then
     echo "Usage: git push -u origin branch-name" >&2
     return
@@ -263,7 +263,7 @@ gbruh() {
   fi
 }
 
-parse_git_repo() {
+function parse_git_repo {
   [ -z "$(parse_git_branch)" ] && return
 
   is_bare=$(git rev-parse --is-bare-repository)
@@ -272,12 +272,12 @@ parse_git_repo() {
   || parse_git_branch_colour
 }
 
-parse_git_branch() {
+function parse_git_branch {
   ref=$(git symbolic-ref HEAD 2> /dev/null) || return
   echo ${ref#refs/heads/}
 }
 
-parse_git_branch_colour() {
+function parse_git_branch_colour {
   br=$(parse_git_branch)
 
   if [ -z "$br" ]; then
@@ -289,7 +289,7 @@ parse_git_branch_colour() {
   fi
 }
 
-parse_git_dirty() {
+function parse_git_dirty {
   local unchanged="$GREEN✔$NOCOLOR"
   local changed="$RED✗$NOCOLOR"
       sts=$(git status --porcelain 2>&1)
@@ -300,7 +300,7 @@ parse_git_dirty() {
       fi
 }
 
-old_parse_git_dirty() {
+function old_parse_git_dirty {
 
   local large_repos=~/.bash_git_large_repos
   local unchanged="$GREEN✔$NOCOLOR"
@@ -351,7 +351,7 @@ old_parse_git_dirty() {
 }
 
 # show all git aliases
-gits() {
+function gits {
   # get all git-aliases and git-functions; filter out non-git; sort
   {
     alias|sed 's/alias //' | $GREP '^g[a-zA-Z]'
@@ -368,7 +368,7 @@ gits() {
   echo
 }
 
-ghelp() {
+function ghelp {
   if [ -z "$1" ]; then
     ghuman
     echo
@@ -388,22 +388,22 @@ ghelp() {
   fi
 }
 
-ghuman() {
+function ghuman {
    sed -n '/BEGIN HUMAN/,/END HUMAN/p' $HOME/.git/aliases.gitconfig
 }
 
 # git most-recently-used aliases and bash-functions
-gmru() {
+function gmru {
    history|awk '{$1="";print $0}'|sort|uniq -c|sort -n|$GREP  '[0-9] *g[a-zA-Z]'
 }
 
-_is_git_repo() {
+function _is_git_repo {
   git status >/dev/null 2>&1
   return $?
 }
 
 # show all git commits history
-ghist() {
+function ghist {
   if _is_git_repo -eq 0
   then
     [ "$1" = "--all" ] \
@@ -413,7 +413,7 @@ ghist() {
   fi
 }
 
-ghist-all() {
+function ghist-all {
   if _is_git_repo -eq 0
   then
     [[ -n "$1" && -s "$1" ]] \
@@ -426,7 +426,7 @@ ghist-all() {
 #   * alias gcf for git commit --fixup
 #   * alias gcs for git commit --squash
 #   * function gcr for git commit --reword
-gcr() {
+function gcr {
   if _is_git_repo -eq 0
   then
     case $# in
@@ -437,29 +437,15 @@ gcr() {
 }
 
 # formerly aliases, now rewritten as functions
-gd() { 
-  if _is_git_repo -eq 0; then git diff --color=always -w; fi 
-}
-gdc() { 
-  if _is_git_repo -eq 0; then git diff --color=always -w --cached; fi 
-}
-gdh() { 
-  if _is_git_repo -eq 0; then git diff --color=always -w HEAD; fi 
-}
-gds() { 
-  if _is_git_repo -eq 0; then git diff --color=always -w --staged; fi 
-}
-gdiff() { 
-  if _is_git_repo -eq 0; then git diff --color=always -w HEAD | grep -v binary; fi 
-}
-gst() {
-  if _is_git_repo -eq 0; then git status ; fi 
-}
-gss() { 
-  if _is_git_repo -eq 0; then git status -s; fi 
-}
+function gd    { if _is_git_repo -eq 0; then git diff --color=always -w; fi }
+function gdc   { if _is_git_repo -eq 0; then git diff --color=always -w --cached; fi }
+function gdh   { if _is_git_repo -eq 0; then git diff --color=always -w HEAD; fi }
+function gds   { if _is_git_repo -eq 0; then git diff --color=always -w --staged; fi }
+function gdiff { if _is_git_repo -eq 0; then git diff --color=always -w HEAD | grep -v binary; fi }
+function gst   { if _is_git_repo -eq 0; then git status ; fi }
+function gss   { if _is_git_repo -eq 0; then git status -s; fi }
 
-__gdh() {
+function __gdh {
   if _is_git_repo -eq 0
   then
     n=${1:--10}
@@ -468,7 +454,7 @@ __gdh() {
   fi
 }
 
-__gh() {
+function __gh {
   if _is_git_repo -eq 0
   then
     n=${1:--10}
@@ -490,7 +476,7 @@ __gh() {
 #   no args : show last 10 one-line commit messages
 #   1 arg   : show that (relative to HEAD~) commit message details
 #   2 args  : show summary of commit messages within the given numbers
-gh() {
+function gh {
   #`echo "$@"|sed -r 's/(,|-|  )/ /g'`
 
   if _is_git_repo -eq 0
@@ -516,14 +502,14 @@ gh() {
   fi
 }
 
-gha() {
+function gha {
   if _is_git_repo -eq 0
   then
    eval ` [ -z "$1" ] && echo __gh || echo __gdh ` --all
   fi
 }
 
-ghb() {
+function ghb {
   if _is_git_repo -eq 0
   then
     for c in `seq $(gh|wc -l)`
@@ -534,7 +520,7 @@ ghb() {
   fi
 }
 
-ghd() {
+function ghd {
   # lines=$(git log --color=always --oneline|wc -l)
   # pager=`[ $lines -gt 78 ] && echo "less -R"  || echo "cat"  `
   if _is_git_repo -eq 0
@@ -546,7 +532,7 @@ ghd() {
 }
 
 # if $1 is 1 'git show HEAD' otherwise 'git show $1'
-_gshow() {
+function _gshow {
   if _is_git_repo -eq 0
   then
     case $# in
@@ -563,7 +549,7 @@ _gshow() {
 }
 
 # if $1 contains alphabets (HEAD,SHA1 commits) 'git show $1' otherwise call _gshow
-gshow() {
+function gshow {
   if _is_git_repo -eq 0
   then
     _gshow "$@"
@@ -571,7 +557,7 @@ gshow() {
 }
 
 # goto any repo which is below pwd and show commits from there; pop back when done
-rshow() {
+function rshow {
   if _is_git_repo -eq 0
   then
     if [ "$1" = "" ]; then
@@ -592,7 +578,7 @@ rshow() {
 }
 
 # help learning git, without arguments shows a list, with arguments works like grep
-glearn() {
+function glearn {
 
   TFILE=/tmp/glearn
 
@@ -633,7 +619,7 @@ glearn() {
 }
 
 # serve up git man-pages
-gman() {
+function gman {
   old_pwd=`pwd`
   which adsf > /dev/null
   [ $? -eq 0 ] && {
@@ -643,7 +629,7 @@ gman() {
   cd $old_pwd
 }
 
-ghw() {
+function ghw {
   echo -e "my git workflow\n\
     git branch wip\n\
     git commit ...\n\
@@ -652,7 +638,7 @@ ghw() {
     git merge wip"
 }
 
-gsearch() {
+function gsearch {
   [ -z "$1" ] && echo Usage: gsearch search_term && return
 
   for commit in $(git log --color=always --oneline|$GREP "$1"|awk '{print $1}')
@@ -662,13 +648,13 @@ gsearch() {
   done
 }
 
-glast() {
+function glast {
   mru_repo=$(cat $HOME/repos/mru_repo)
   cd $HOME/repos/$mru_repo
   [ -z "$1" ] && echo "Usage: glast my_git_command/alias" >&2 || "$1"
 }
 
-g() {
+function g {
   aliases=$(git config --get-regexp alias.*|cut -d'.' -f2-|awk '{f=$1; $1=""; printf("%-15s %s\n", f, $0)}')
   case "$1" in
     "alias"|"a")  echo "$aliases"|sort -bk2,2|less ;;
@@ -677,27 +663,28 @@ g() {
   esac
 }
 
-gsts() {
+
+function gsts {
   if _is_git_repo; then
     git stash show --text
     git status -s
   fi
 }
 
-gt() {
+function gt {
   git status 2&>/dev/null && [ $? -eq 0 ] && git tags | sort -n | fmt -w 110
 }
 
-contributors() {
+function contributors {
   git shortlog --color=always -s -n | sort -b -k1,1nr -k2
 }
 
 # Credit: oh-my-zsh/lib/git.zsh and oh-my-zsh/themes/robbyrussell.zsh-theme
-precmd() {
+function precmd {
   [ "$shell" = "zsh" ] && 0xMF-zsh-prompt
 }
 
-0xMF-zsh-prompt() {
+function 0xMF-zsh-prompt {
   [ "$shell" = "zsh" ] && {
     PROMPT="%(?:%{$fg_bold[green]%}➜ :%{$fg_bold[red]%}➜ )"
     PROMPT+=' %{$fg[cyan]%}%c%{$reset_color%} $(parse_git_repo 2>/dev/null)'
@@ -706,7 +693,7 @@ precmd() {
   }
 }
 
-git-use-mine() {
+function git-use-mine {
   [[ -d ~/.oh-my-zsh || -f ~/.oh-my-zsh ]] && {
     unalias gsts
   } 2>/dev/null
@@ -715,7 +702,6 @@ git-use-mine() {
 # git based aliases
 #hub >/dev/null 2>&1
 #[ $? -eq  0 ] && alias git='hub'
-#alias g='git' # now g() is a function that calls git
 alias ga='git add'
 alias gaa='git add --all'
 alias gam='git am'
