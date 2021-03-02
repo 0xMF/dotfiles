@@ -149,7 +149,7 @@ alarm() {
   fi
 }
 
-g+++() {
+function g+++ {
   rm -f a.out
   if [ -e /usr/bin/g++-4.9 ];
   then

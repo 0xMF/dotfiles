@@ -30,20 +30,20 @@ fi
 
 #
 # source stuff kept common across all shells  (dependencies)
-if [ -f $REPO/all/git.sh ]; then
-  source $REPO/all/git.sh
+if [ -f $REPO/0xMF/git.ksh ]; then
+  source $REPO/0xMF/git.ksh
 else
   >&2 echo "WARNING! Missing dependency: git.sh"
 fi
 
-if [ -f $REPO/all/pleasure.sh ]; then
-  source $REPO/all/pleasure.sh
+if [ -f $REPO/0xMF/pleasure.ksh ]; then
+  source $REPO/0xMF/pleasure.ksh
 else
   >&2 print "WARNING: Missing critical dependency pleasure.sh!"
 fi
 
-if [ -f $REPO/all/sysadmin.sh ]; then
-  source $REPO/all/sysadmin.sh
+if [ -f $REPO/0xMF/sysadmin.ksh ]; then
+  source $REPO/0xMF/sysadmin.ksh
 else
   >&2 print "WARNING: Missing critical dependency sysadmin.sh!"
 fi
