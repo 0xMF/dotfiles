@@ -1,9 +1,16 @@
 #!/usr/bin/env bash
 #
 
+THIS_SHELL=`ps o command -p $$ | grep -v "^COMMAND$" | tr -d '-' | cut -d' ' -f1`
+case "${THIS_SHELL}" in
+  bash|ksh|zsh) ;;
+  *) >&2 echo "This script probably wont work with your shell, so bailing out now...bye!";
+     exit 1;;
+esac
+
 OS=$(uname -s)
 
-if [ $OS == "FreeBSD" ]; then 
+if [ $OS == "FreeBSD" ]; then
   export LSCOLORS="ExGxcxdxCxegDxabagacad"
   export GREP=/usr/bin/grep
 else
@@ -34,7 +41,7 @@ if [[ -t 0 ]]; then
 fi
 
 
-# Handles: (-R) ANSI colors with ESC, (-FX) quit on one screen without destroying text, 
+# Handles: (-R) ANSI colors with ESC, (-FX) quit on one screen without destroying text,
 #          (-q) quiet mode and (-e) terminate after second encounter with EOF
 export LESS='FeqRSX'
 export MANPAGER="less -$LESS"

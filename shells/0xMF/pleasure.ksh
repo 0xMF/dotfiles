@@ -1,4 +1,12 @@
 # pleasure.sh: perl like ruby for regular expression needs and more
+
+THIS_SHELL=`ps o command -p $$ | grep -v "^COMMAND$" | tr -d '-' | cut -d' ' -f1`
+case "${THIS_SHELL}" in
+  bash|ksh|zsh) ;;
+  *) >&2 echo "This script probably wont work with your shell, so bailing out now...bye!";
+     exit 1;;
+esac
+
 alias ple='perl -wnle'
 alias please='perl -wnle'
 alias pd='perldoc -MPod::Text::Color::Delight'
