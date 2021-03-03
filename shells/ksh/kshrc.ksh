@@ -71,6 +71,10 @@ fi
   && . $REPO/0xMF/pleasure.ksh \
   || print "WARNING: Missing critical dependency pleasure.ksh!" >&2
 
+[ -f $REPO/0xMF/sysadmin.ksh ] \
+  && . $REPO/0xMF/sysadmin.ksh \
+  || print "WARNING: Missing critical dependency sysadmin.ksh!" >&2
+
 # command line calendar
 pal 2> /dev/null
 if [ $? -eq 0 ]; then

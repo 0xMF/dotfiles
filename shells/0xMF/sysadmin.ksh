@@ -6,6 +6,7 @@ case "${THIS_SHELL}" in
 esac
 
 function jc {
+  [ "`uname`" != "Linux" ] && { echo "not running on Linux"; return; }
   local myjc=$(which journalctl)
   [ `id -u` -ne 0 ] && myjc="sudo $myjc"
   case "$1" in
@@ -16,6 +17,7 @@ function jc {
 }
 
 function sc {
+  [ "`uname`" != "Linux" ] && { echo "not running on Linux"; return; }
   local mysc=$(which systemctl)
   [ `id -u` -ne 0 ] && mysc="sudo $mysc"
   case "$1" in
