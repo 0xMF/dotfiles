@@ -47,35 +47,44 @@ function sadu {
   read REPLY
   [[ "$REPLY" != "y"  &&  "$REPLY" != "Y" && "$REPLY" != "yes" ]] && return
 
-  distro=$(\grep -w ID /etc/os-release | cut -d= -f2 | tr -d '"')
-  case "${distro}" in
-    arch|manjaro)
-      sudo pacman -Syu
-        ;;
-    centos)
-      sudo yum update
-        ;;
-    debian|kali|mint|ubuntu)
-      sudo apt update
-      sudo apt dist-upgrade
-        ;;
-    *) echo does not support ${distro} yet;;
-  esac
+  if [ "`uname`" = "Linux" ]; then
+    distro=$(\grep -w ID /etc/os-release | cut -d= -f2 | tr -d '"')
+    case "${distro}" in
+      arch|manjaro)
+        sudo pacman -Syu
+          ;;
+      centos)
+        sudo yum update
+          ;;
+      debian|kali|mint|ubuntu)
+        sudo apt update
+        sudo apt dist-upgrade
+          ;;
+      *) echo does not support ${distro} yet;;
+    esac
+  fi
+
+  if [ "`uname`" = "OpenBSD" ]; then
+    doas syspatch
+    doas pkg_add -Uu
+  fi
 }
 
 function saru {
-  distro=$(\grep -w ID /etc/os-release | cut -d= -f2 | tr -d '"')
-  case "${distro}" in
-    arch|manjaro)
-      unneeded=`pacman -Qdtq`
-      [[ -n "$unneeded" ]] && sudo pacman -Rsn `echo $unneeded`
-      ;;
-    centos)
-      sudo yum autoremove "$@"
-      ;;
-    *)
-      sudo apt autoremove
-  esac
+  if [ "`uname`" = "Linux" ]; then
+    distro=$(\grep -w ID /etc/os-release | cut -d= -f2 | tr -d '"')
+    case "${distro}" in
+      arch|manjaro)
+        unneeded=`pacman -Qdtq`
+        [[ -n "$unneeded" ]] && sudo pacman -Rsn `echo $unneeded`
+        ;;
+      centos)
+        sudo yum autoremove "$@"
+        ;;
+      *)
+        sudo apt autoremove
+    esac
+  fi
 }
 
 function pacsearch {
