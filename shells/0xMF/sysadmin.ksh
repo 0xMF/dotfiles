@@ -31,9 +31,11 @@ function eman {
 
 function sadu {
 
-  [ ! -s /usr/bin/df ] && return
+  mydf=$(which df 2>/dev/null)
+  [ -z $mydf ] && return
+  [[ ! -s /usr/bin/df && ! -s /bin/df ]] && return
 
-  used=$(/usr/bin/df -lh / | perl -lane '$. != 1 && print $F[-2]')
+  used=$($mydf -lh / | perl -lane '$. != 1 && print $F[-2]')
 
   echo -n "You have used $used of disk space on your / partition...continue(y/N)? "
   read REPLY
