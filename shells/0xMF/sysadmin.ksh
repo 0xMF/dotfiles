@@ -35,7 +35,7 @@ function sadu {
 
   used=$(/usr/bin/df -lh / | perl -lane '$. != 1 && print $F[-2]')
 
-  echo -n "You have used $used on / ...continue(y/N)? "
+  echo -n "You have used $used of disk space on your / partition...continue(y/N)? "
   read REPLY
   [[ "$REPLY" != "y"  &&  "$REPLY" != "Y" && "$REPLY" != "yes" ]] && return
 
