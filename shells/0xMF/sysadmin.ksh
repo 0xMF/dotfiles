@@ -6,17 +6,21 @@ case "${THIS_SHELL}" in
 esac
 
 function jc {
+  local myjc=$(which journalctl)
+  [ `id -u` -ne 0 ] && myjc="sudo $myjc"
   case "$1" in
-    "" ) /usr/bin/journalctl -xe | less -FeqRSX ;;
-    "help"|"h"|"-h"|"--help") /usr/bin/journalctl --help "$@" ;;
-    * ) /usr/bin/journalctl "$@" ;;
+    "" ) $myjc -xe | less -FeqRSX ;;
+    "help"|"h"|"-h"|"--help") $myjc --help "$@" ;;
+    * ) $myjc "$@" ;;
   esac
 }
 
 function sc {
+  local mysc=$(which systemctl)
+  [ `id -u` -ne 0 ] && mysc="sudo $mysc"
   case "$1" in
-    "help"|"h"|"-h"|"--help") /usr/bin/systemctl --help "$@" ;;
-    * ) /usr/bin/systemctl "$@" ;;
+    "help"|"h"|"-h"|"--help") $mysc --help "$@" ;;
+    * ) $mysc "$@" ;;
   esac
 }
 
