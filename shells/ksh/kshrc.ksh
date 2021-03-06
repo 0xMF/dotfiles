@@ -58,6 +58,13 @@ FCEDIT='/usr/bin/vim'    # fc usese vi too
 
 # resembles the bash equivalent of '\w$ ' with green colour highlighting
 # next vary prompt according to regular user or root
+if [ -f $REPO/0xMF/prompt.sh ]; then
+  . $REPO/0xMF/prompt.sh
+  psl
+else
+  print "WARNING: Missing dependency prompt.sh!" >&2
+fi
+
 if [ -f $REPO/0xMF/git.ksh ]; then
   . $REPO/0xMF/git.ksh
   psl

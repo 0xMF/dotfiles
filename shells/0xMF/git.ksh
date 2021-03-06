@@ -72,26 +72,6 @@ function green {
   fi
 }
 
-function psdark {
-  # blue dir, green link, light green executables
-  LS_COLORS="`echo $LS_COLORS|sed 's/di=0[01];3[0-9]/di=01;34/'`"
-  LS_COLORS="`echo $LS_COLORS|sed 's/ln=[01][01];3[0-9]/ln=00;32/'`"
-  LS_COLORS="`echo $LS_COLORS|sed 's/ex=0[01];3[0-9]/ex=01;32/'`"
-  export LS_COLORS
-}
-
-function pslight {
-  # black dir   #LS_COLORS="`echo $LS_COLORS|sed 's/di=01;33/di=00;30/'`"
-  # brown dir   #LS_COLORS="`echo $LS_COLORS|sed 's/di=0[01];3[0-9]/di=00;34/'`"
-  # purple link #LS_COLORS="`echo $LS_COLORS|sed 's/ln=0[01];3[0-9]/ln=01;35/'`"
-
-  # yellow dir, cyan link, light green executables
-  LS_COLORS="`echo $LS_COLORS|sed 's/di=0[01];3[0-9]/di=01;33/'`"
-  LS_COLORS="`echo $LS_COLORS|sed 's/ln=[01][01];3[0-9]/ln=01;36/'`"
-  LS_COLORS="`echo $LS_COLORS|sed 's/ex=0[01];3[0-9]/ex=01;32/'`"
-  export LS_COLORS
-}
-
 function ps1 {
   if [ `id -u` -eq 0 ]; then
     PS1="$RED${OSRV}$BLUE:\w $(parse_git_repo)$RED#$NOCOLOR "
@@ -240,7 +220,7 @@ function psd {
 }
 
 function psm {
-  [ "$shell" = "zsh" ] && { eval "precmd { PROMPT='$MAGENTA%%$NOCOLOR ' }"; return; }
+  [ "$shell" = "zsh" ] && { eval "function precmd { PROMPT='$MAGENTA%%$NOCOLOR ' }" ; return ; }
   WHITE="%{$fg_bold[white]%}"
 
   if [ `id -u` -eq 0 ]; then
@@ -700,7 +680,7 @@ function 0xMF-zsh-prompt {
   }
 }
 
-function git-use-mine {
+function git-use-0xMF {
   [[ -d ~/.oh-my-zsh || -f ~/.oh-my-zsh ]] && {
     unalias gsts
   } 2>/dev/null
@@ -770,6 +750,6 @@ alias outgoing='git log --color=always master ^origin/master'
 alias gout='git log --color=always master ^origin/master'
 
 
-git-use-mine
+git-use-0xMF
 
 # vim:nospell:ft=sh:

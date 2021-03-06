@@ -37,6 +37,12 @@ fi
 
 #
 # source stuff kept common across all shells  (dependencies)
+if [ -f $REPO/0xMF/prompt.sh ]; then
+  source $REPO/0xMF/prompt.sh
+else
+  >&2 echo "WARNING! Missing dependency: prompt.sh"
+fi
+
 if [ -f $REPO/0xMF/git.ksh ]; then
   source $REPO/0xMF/git.ksh
 else
