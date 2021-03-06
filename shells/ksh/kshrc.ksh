@@ -60,7 +60,6 @@ FCEDIT='/usr/bin/vim'    # fc usese vi too
 # next vary prompt according to regular user or root
 if [ -f $REPO/0xMF/prompt.sh ]; then
   . $REPO/0xMF/prompt.sh
-  psl
 else
   print "WARNING: Missing dependency prompt.sh!" >&2
 fi
