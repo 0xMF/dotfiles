@@ -45,8 +45,25 @@ function serve {
 
 function gdoc {
   # run go doc to get help on arguments passed, otherwise how to use go help doc
-  [ -z "$1" ] \
-  && { go help doc | perl -wnle '($. < 3) || (/^Examples/..\Z) and print' ; } \
-  || { go doc "$1" | chroma -l go -f terminal256 -s base16-snazzy | less -FeqRSX ; }
+  if [ -z "$1" ]; then
+   go help doc | perl -wnle '($. < 3) || (/^Examples/..\Z) and print'
+   echo -e "\nSee also:\n\tgdoc-list-cmd:\t\tGo command line utils and more" \
+           "\n\tgdoc-list-std:\t\tGo std lib" \
+           "\n\tgdoc-list-vendor:\tAdditional vendor stuff shipped with Go"
+  else
+   go doc "$1" | chroma -l go -f terminal256 -s base16-snazzy | less -FeqRSX
+  fi
+}
+
+function gdoc-list-std {
+  go list std | sed '/^vendor/d' | pr -a -4 -T -w $COLUMNS | less
+}
+
+function gdoc-list-vendor {
+  go list std | sed -n '/^vendor/p' | column -x
+}
+
+function gdoc-list-cmd {
+  go list cmd | sed '/vendor/d' | pr -a -4 -T -w $COLUMNS
 }
 
