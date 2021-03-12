@@ -51,7 +51,7 @@ function gdoc {
            "\n\tgdoc-list-std:\t\tGo std lib" \
            "\n\tgdoc-list-vendor:\tAdditional vendor stuff shipped with Go"
   else
-   go doc "$1" | chroma -l go -f terminal256 -s base16-snazzy | less -FeqRSX
+   go doc "$1" | chroma -l go -f terminal256 -s paraiso-dark | less -FeqRSX
   fi
 }
 
