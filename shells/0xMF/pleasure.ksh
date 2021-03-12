@@ -77,9 +77,43 @@ function 0xMF-gdoc-list-cmd {
   go list cmd | sed '/vendor/d' | pr -4 -T -w $COLUMNS
 }
 
+function 0xMF-list-aliases {
+  case "${THIS_SHELL}" in
+    zsh) alias|cut -d= -f1 | sort -u|pr -4 -T -w $COLUMNS ;;
+    *) ;;
+  esac
+}
+
 function 0xMF-list-functions {
   case "${THIS_SHELL}" in
     zsh) print -l ${(ok)functions}\n | sed '/^_/d' | pr -4 -T -w ${COLUMNS} ;;
     *) ;;
   esac
+}
+
+function 0xMF-help {
+
+  DOC=$HOME/repos/dotfiles/doc
+  old=$(pwd)
+
+  if [ -z "$1" ]; then
+    >&2 echo "Usage: 0xMF-help TOPIC, where TOPIC is one or more of: `ls $DOC|fmt`"
+  else
+    if [ ! -d "$DOC" ]; then
+      >&2 echo "Not found: $DOC"
+    else
+      cd $DOC
+      for f in "$@"
+      do
+        echo -n "Displaying help for:\t ${f}\n--------------------\n"
+        if which chroma > /dev/null 2>&1; then
+          [ -s $f ] && chroma -l sh -f terminal256 -s `[ -z $CHROMA_STYLE ] && echo rrt || echo $CHROMA_STYLE` ${f}
+        else
+          cat ${f}
+        fi
+        echo
+      done
+      cd $old
+    fi
+  fi
 }
