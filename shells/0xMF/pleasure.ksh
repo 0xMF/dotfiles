@@ -8,8 +8,9 @@ case "${THIS_SHELL}" in
 esac
 
 alias ple='perl -wnle'
-alias please='perl -wnle'
+alias pale='perl -awnle'
 alias pd='perldoc -MPod::Text::Color::Delight'
+alias pdoc='perldoc -MPod::Text::Color::Delight'
 alias perldoc='perldoc -MPod::Text::Color::Delight'
 
 alias tmux='tmux -u'
@@ -41,3 +42,11 @@ function serve {
     d=`dirs | tr ' ' '\n' | wc -l`
     [[ $d -ne $dirs ]] && popd
 }
+
+function gdoc {
+  # run go doc to get help on arguments passed, otherwise how to use go help doc
+  [ -z "$1" ] \
+  && { go help doc | perl -wnle '($. < 3) || (/^Examples/..\Z) and print' ; } \
+  || { go doc "$1" | less -FeqRSX ; }
+}
+
