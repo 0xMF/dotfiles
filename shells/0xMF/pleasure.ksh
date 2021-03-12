@@ -57,19 +57,29 @@ function gdoc {
   fi
 }
 
-function gdoc-list-std {
+function 0xMF-gdoc-list-packages {
+  go list std cmd | cut -d/ -f1 | sort -u | column
+}
+
+function 0xMF-gdoc-list-std {
   go list std | sed '/^vendor/d' | pr -4 -T -w $COLUMNS | less -FeqRSX
 }
 
-function gdoc-list-std-row-wise {
+function 0xMF-gdoc-list-std-row-wise {
   go list std | sed '/^vendor/d' | pr -a -4 -T -w $COLUMNS | less -FeqRSX
 }
 
-function gdoc-list-vendor {
+function 0xMF-gdoc-list-vendor {
   go list std | sed -n '/^vendor/p' | column -x
 }
 
-function gdoc-list-cmd {
+function 0xMF-gdoc-list-cmd {
   go list cmd | sed '/vendor/d' | pr -4 -T -w $COLUMNS
 }
 
+function 0xMF-list-functions {
+  case "${THIS_SHELL}" in
+    zsh) print -l ${(ok)functions}\n | sed '/^_/d' | pr -4 -T -w ${COLUMNS} ;;
+    *) ;;
+  esac
+}
