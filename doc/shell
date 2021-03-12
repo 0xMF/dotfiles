@@ -13,4 +13,8 @@ do
   fi
 done < afile
 
+# to unset alias and functions in zsh
+unalias alias-name
+unset -f function-name
+
 # vim: filetype=bash

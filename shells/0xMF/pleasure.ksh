@@ -56,7 +56,11 @@ function gdoc {
 }
 
 function gdoc-list-std {
-  go list std | sed '/^vendor/d' | pr -a -4 -T -w $COLUMNS | less
+  go list std | sed '/^vendor/d' | pr -4 -T -w $COLUMNS | less -FeqRSX
+}
+
+function gdoc-list-std-row-wise {
+  go list std | sed '/^vendor/d' | pr -a -4 -T -w $COLUMNS | less -FeqRSX
 }
 
 function gdoc-list-vendor {
@@ -64,6 +68,6 @@ function gdoc-list-vendor {
 }
 
 function gdoc-list-cmd {
-  go list cmd | sed '/vendor/d' | pr -a -4 -T -w $COLUMNS
+  go list cmd | sed '/vendor/d' | pr -4 -T -w $COLUMNS
 }
 
