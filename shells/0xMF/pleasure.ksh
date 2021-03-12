@@ -103,15 +103,17 @@ function 0xMF-help {
       >&2 echo "Not found: $DOC"
     else
       cd $DOC
-      for f in "$@"
+      for f in "`echo $@`"
       do
-        echo -n "Displaying help for:\t ${f}\n--------------------\n"
-        if which chroma > /dev/null 2>&1; then
-          [ -s $f ] && chroma -l sh -f terminal256 -s `[ -z $CHROMA_STYLE ] && echo rrt || echo $CHROMA_STYLE` ${f}
-        else
-          cat ${f}
+        if [ -f $f ]; then
+          echo -n "Displaying help for:\t ${f}\n--------------------\n"
+          if which chroma > /dev/null 2>&1; then
+            chroma -l sh -f terminal256 -s `[ -z $CHROMA_STYLE ] && echo rrt || echo $CHROMA_STYLE` ${f}
+          else
+            cat ${f}
+          fi
+          echo
         fi
-        echo
       done
       cd $old
     fi
