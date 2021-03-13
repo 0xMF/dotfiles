@@ -105,7 +105,7 @@ function 0xMF-list-aliases {
 
 function 0xMF-list-functions {
   case "${THIS_SHELL}" in
-    bash) declare -F ;;
+    bash) declare -F | awk '{ print $NF; }';;
     ksh)  typeset +f ;;
     zsh) print -l ${(ok)functions}\n ;;
     *) ;;
@@ -114,7 +114,7 @@ function 0xMF-list-functions {
 
 function 0xMF-list-functions-columnate {
   case "${THIS_SHELL}" in
-    bash) declare -F ;;
+    bash) declare -F | awk '{ print $NF; }';;
     ksh)  typeset +f ;;
     zsh) print -l ${(ok)functions}\n ;;
     *) ;;
