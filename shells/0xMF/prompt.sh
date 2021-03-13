@@ -1,3 +1,7 @@
+# prompt.sh: couple of prompts I like having follow me around...
+
+[ -z "$PS1" ] && return
+
 echo -n loading prompts...
 
 function psdark {
