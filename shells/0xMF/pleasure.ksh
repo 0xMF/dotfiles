@@ -57,6 +57,15 @@ function gdoc {
   fi
 }
 
+function 0xMF-ri {
+  [ -z "$1" ] && { ri --help; return; }
+
+   (ri -f markdown "$@"; print; ri -a -l "$@") \
+   | cat -s \
+   | chroma --unbuffered -l yaml -f terminal256 -s rrt \
+   | less -FeqRSX
+}
+
 function 0xMF-gdoc-list-packages {
   go list std cmd | cut -d/ -f1 | sort -u | column
 }
