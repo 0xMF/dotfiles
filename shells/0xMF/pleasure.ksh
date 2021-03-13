@@ -51,19 +51,27 @@ function gdoc {
             "\n\tgdoc-list-std:\t\tGo std lib" \
             "\n\tgdoc-list-vendor:\tAdditional vendor stuff shipped with Go"
   else
-    [ -z "$CHROMA_STYLE" ] \
-      && { go doc "$1" | chroma -l go -f terminal256 -s paraiso-dark | less -FeqRSX ; }  \
-      || { go doc "$1" | chroma -l go -f terminal256 -s "$CHROMA_STYLE" | less -FeqRSX ; }
+    if which chroma > /dev/null 2>&1; then
+      [ -z "$CHROMA_STYLE" ] \
+        && { go doc "$@" | chroma -l go -f terminal256 -s paraiso-dark | less -FeqRSX ; }  \
+        || { go doc "$@" | chroma -l go -f terminal256 -s "$CHROMA_STYLE" | less -FeqRSX ; }
+    else
+      go doc "$@"
+    fi
   fi
 }
 
 function 0xMF-ri {
   [ -z "$1" ] && { ri --help; return; }
 
-  (ri -f markdown "$@"; print; ri -a -l "$@") \
-  | cat -s \
-  | chroma --unbuffered -l yaml -f terminal256 -s rrt \
-  | less -FeqRSX
+  if which chroma > /dev/null 2>&1; then
+    (ri -f markdown "$@"; print; ri -a -l "$@") \
+    | cat -s \
+    | chroma --unbuffered -l yaml -f terminal256 -s rrt \
+    | less -FeqRSX
+  else
+    ri -f ansi "$@"; print; ri -a -l "$@"
+  fi
 }
 
 function 0xMF-gdoc-list-packages {
