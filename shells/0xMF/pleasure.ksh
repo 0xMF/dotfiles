@@ -105,9 +105,20 @@ function 0xMF-list-aliases {
 
 function 0xMF-list-functions {
   case "${THIS_SHELL}" in
-    zsh) print -l ${(ok)functions}\n | sed '/^_/d' | pr -4 -T -w ${COLUMNS} ;;
+    bash) declare -F ;;
+    ksh)  typeset +f ;;
+    zsh) print -l ${(ok)functions}\n ;;
     *) ;;
-  esac
+  esac | sed '/^_/d'
+}
+
+function 0xMF-list-functions-columnate {
+  case "${THIS_SHELL}" in
+    bash) declare -F ;;
+    ksh)  typeset +f ;;
+    zsh) print -l ${(ok)functions}\n ;;
+    *) ;;
+  esac | sed '/^_/d' | pr -4 -T -w ${COLUMNS}
 }
 
 function 0xMF-help {
