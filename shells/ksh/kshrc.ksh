@@ -1,6 +1,9 @@
 # .kshrc
 #-----------------------------------------------------------------
 
+# don't do anything if we don't have a prompt (not an interactive shell)
+[ -z "$PS1" ] && return
+
 THIS_SHELL=`ps o command -p $$ | grep -v "^COMMAND$" | tr -d '-' | cut -d' ' -f1`
 case "${THIS_SHELL}" in
   bash|ksh|zsh) ;;
