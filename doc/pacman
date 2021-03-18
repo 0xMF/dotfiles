@@ -53,4 +53,14 @@ pacman -Ss ruby |  perl -pe 's/\n// if $. % 2 == 1' | sed 's/\t//g'
 curl -o /etc/pacman.d/mirrorlist.new https://archlinux.org/mirrorlist/all/
 # 2. uncomment which mirrors are preferable and then run
 # 3. rank them and recreate the mirrorlist
+
+
+#
 rankmirrors -n 6 /etc/pacman.d/mirrorlist.new > /etc/pacman.d/mirrorlist
+
+# WARNING: security checks could be bypassed using this method
+#
+#     one way to fix a broken package
+#
+# 1. download the package from archive.archlinux.org
+# 2. run pacman -U package-name-pkg.tar.zst
