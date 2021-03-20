@@ -4,7 +4,7 @@ W_EMACS=
 EXPERIMENTAL="N"
 EMACS_D=${HOME}/.emacs.d
 
-MY_SHELL=$(ps -o command -p $$ | grep -v "^COMMAND$" | tr -d '-' | cut -d' ' -f1)
+MY_SHELL=$(basename `ps -o command -p $$ | grep -v "^COMMAND$" | tr -d '-' | cut -d' ' -f1`)
 SCRIPT_DIR="$( cd "$( dirname "$0" )" && pwd )"
 
 _FULL_PATH="$( cd "$( dirname "$0" )" && pwd -P )"
