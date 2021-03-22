@@ -2,7 +2,6 @@
 #
 
 THIS_SHELL=`ps o command -p $$ | grep -v "^COMMAND$" | tr -d '-' | cut -d' ' -f1`
-case "${THIS_SHELL}" in
 case "${THIS_SHELL##/**/}" in
   bash|ksh|zsh) ;;
   *) >&2 echo "This script probably wont work with your shell, so bailing out now...bye!";
