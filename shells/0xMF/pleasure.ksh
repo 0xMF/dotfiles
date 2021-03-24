@@ -48,18 +48,27 @@ function serve {
 function gdoc {
   # run go doc to get help on arguments passed, otherwise how to use go help doc
   if [ -z "$1" ]; then
-    go help doc | perl -wnle '($. < 3) || (/^Examples/..\Z) and print'
-    echo -e "\nSee also:\n\tgdoc-list-cmd:\t\tGo command line utils and more" \
-            "\n\tgdoc-list-std:\t\tGo std lib" \
-            "\n\tgdoc-list-vendor:\tAdditional vendor stuff shipped with Go"
-  else
-    if which chroma > /dev/null 2>&1; then
-      [ -z "$CHROMA_STYLE" ] \
-        && { go doc "$@" | chroma -l go -f terminal256 -s paraiso-dark | less -FeqRSX ; }  \
-        || { go doc "$@" | chroma -l go -f terminal256 -s "$CHROMA_STYLE" | less -FeqRSX ; }
+    if go doc . 2> /dev/null; then
+      _gdoc_helper .
     else
-      go doc "$@"
+      { go help doc | perl -wnle '($. < 3) || (/^Examples/..\Z) and print'
+        echo -e "\nSee also:\n\tgdoc-list-cmd:\t\tGo command line utils and more" \
+              "\n\tgdoc-list-std:\t\tGo std lib" \
+              "\n\tgdoc-list-vendor:\tAdditional vendor stuff shipped with Go" 
+      } | less -FeqRSX
     fi
+  else
+    _gdoc_helper "$@"
+  fi
+}
+
+function _gdoc_helper {
+  if which chroma > /dev/null 2>&1; then
+    [ -z "$CHROMA_STYLE" ] \
+      && { go doc "$@" | chroma -l go -f terminal256 -s paraiso-dark | less -FeqRSX ; }  \
+      || { go doc "$@" | chroma -l go -f terminal256 -s "$CHROMA_STYLE" | less -FeqRSX ; }
+  else
+    go doc "$@"
   fi
 }
 
