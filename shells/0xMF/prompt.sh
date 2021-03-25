@@ -2,7 +2,7 @@
 
 [ -z "$PS1" ] && return
 
-echo -n loading prompts...
+# echo -n loading prompts...
 
 function psdark {
   # blue dir, green link, light green executables
