@@ -54,7 +54,7 @@ function gdoc {
       { go help doc | perl -wnle '($. < 3) || (/^Examples/..\Z) and print'
         echo -e "\nSee also:\n\tgdoc-list-cmd:\t\tGo command line utils and more" \
               "\n\tgdoc-list-std:\t\tGo std lib" \
-              "\n\tgdoc-list-vendor:\tAdditional vendor stuff shipped with Go" 
+              "\n\tgdoc-list-vendor:\tAdditional vendor stuff shipped with Go"
       } | less -FeqRSX
     fi
   else
@@ -63,6 +63,11 @@ function gdoc {
 }
 
 function _gdoc_helper {
+  if [ "$1" = "help" ]; then
+    shift
+    go help "$@" | chroma -l go -f terminal256 -s paraiso-dark | less -FeqRSX
+    return
+  fi
   if which chroma > /dev/null 2>&1; then
     [ -z "$CHROMA_STYLE" ] \
       && { go doc "$@" | chroma -l go -f terminal256 -s paraiso-dark | less -FeqRSX ; }  \
