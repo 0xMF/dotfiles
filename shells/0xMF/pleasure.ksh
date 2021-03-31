@@ -52,9 +52,9 @@ function gdoc {
       _gdoc_helper .
     else
       { go help doc | perl -wnle '($. < 3) || (/^Examples/..\Z) and print'
-        echo -e "\nSee also:\n\tgdoc-list-cmd:\t\tGo command line utils and more" \
-              "\n\tgdoc-list-std:\t\tGo std lib" \
-              "\n\tgdoc-list-vendor:\tAdditional vendor stuff shipped with Go"
+        echo -e "\nSee also:\n\t0xMF-gdoc-list-cmd:\t\tGo command line utils and more." \
+              "\n\t0xMF-gdoc-list-std:\t\tGo std lib." \
+              "\n\t0xMF-gdoc-list-vendor:\tAdditional vendor stuff shipped with Go."
       } | less -FeqRSX
     fi
   else
@@ -78,16 +78,20 @@ function _gdoc_helper {
 }
 
 function 0xMF-ri {
-  [ -z "$1" ] && { ri --help; return; }
+  [ -z "$1" ] && { ri --help; echo -e "\nSee also:\n\t0xMF-rdoc-list-all\t\tShow all classes ri knows about."; return; }
 
   if which chroma > /dev/null 2>&1; then
     (ri -f markdown "$@"; print; ri -a -l "$@") \
     | cat -s \
-    | chroma --unbuffered -l yaml -f terminal256 -s rrt \
+    | chroma --unbuffered -l TOML -f terminal256 -s rrt \
     | less -FeqRSX
   else
     ri -f ansi "$@"; print; ri -a -l "$@"
   fi
+}
+
+function 0xMF-rdoc-list-all {
+  ri -l | cut -d: -f1-3 | uniq | pr -4 -T -w $COLUMNS |less -FeqRSX ;
 }
 
 function 0xMF-gdoc-list-packages {
