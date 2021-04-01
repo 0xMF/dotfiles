@@ -167,3 +167,32 @@ function 0xMF-help {
     fi
   fi
 }
+
+# show directory tree
+function 0xMF-tree {
+
+  if ! which tree > /dev/null; then
+    >&2 echo "Usage: tree command not found"
+    return
+  fi
+
+  if [ -z "$1" ]; then
+    depth="-L 1";
+  else
+    # if $1 is a number use it for maxdepth
+    if echo "$1" | grep "^[0-9][0-9]*$" > /dev/null; then
+      depth="-L $1";
+      shift
+      [ -d "$1" ] && tpath="$1"
+    else
+      tpath="$1"
+      depth="-L 1"
+    fi
+  fi
+
+  [[ -n "$tpath" && -n "$1" ]] && shift
+
+  eval "tree $depth $tpath $@"
+  unset depth tpath
+
+}
