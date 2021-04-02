@@ -171,8 +171,8 @@ function 0xMF-help {
 # show directory tree
 function 0xMF-tree {
 
-  if ! which tree > /dev/null; then
-    >&2 echo "Usage: tree command not found"
+  if ! which tree > /dev/null 2>&1; then
+    >&2 echo "tree command not found"
     return
   fi
 
