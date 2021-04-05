@@ -139,9 +139,14 @@ function 0xMF-list-functions-columnate {
   esac | sed '/^_/d' | pr -4 -T -w ${COLUMNS}
 }
 
-function 0xMF-help {
+function 0xMF-doc {
 
   DOC=$HOME/repos/dotfiles/doc
+  if [ ! -d $DOC ]; then
+    DOC=$(find $HOME/repos -type d -name 0xMF)
+    DOC=$(dirname $DOC)
+    DOC=$(dirname $DOC)/doc
+  fi
   old=$(pwd)
 
   if [ -z "$1" ]; then
@@ -167,6 +172,8 @@ function 0xMF-help {
     fi
   fi
 }
+
+alias 0xMF-help='0xMF-doc'
 
 # show directory tree
 function 0xMF-tree {
