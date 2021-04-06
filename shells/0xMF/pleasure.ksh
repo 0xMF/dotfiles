@@ -143,9 +143,7 @@ function 0xMF-doc {
 
   DOC=$HOME/repos/dotfiles/doc
   if [ ! -d $DOC ]; then
-    DOC=$(find $HOME/repos -type d -name 0xMF)
-    DOC=$(dirname $DOC)
-    DOC=$(dirname $DOC)/doc
+    DOC=$(find -L $HOME/repos -type d -name 0xMF|sed 's/shells.*/doc/'|uniq)
   fi
   old=$(pwd)
 
