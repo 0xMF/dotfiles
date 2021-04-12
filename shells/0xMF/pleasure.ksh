@@ -82,8 +82,14 @@ function hdoc {
     >&2 echo "hoogle is not installed"
     return
   fi
-  hoogle "$@" \
-  | if which chroma > /dev/null 2>&1; then chroma --unbuffered -l hs -f terminal256 -s paraiso-dark; else : ; fi \
+
+  # chroma style manni over paraiso-dark seems more suited for hoogle
+  hoogle "$@" --count=50 \
+  | if which chroma > /dev/null 2>&1; then \
+      [ -z "$CHROMA_STYLE" ] \
+        && chroma -l hs -f terminal256 -s paraiso-dark \
+        || chroma -l hs -f terminal256 -s "$CHROMA_STYLE" ; \
+    else : ; fi \
   | less -FeqRSX
 }
 
