@@ -2,7 +2,7 @@
 #
 # User defined aliases
 
-THIS_SHELL=`ps o command -p $$ | grep -v "^COMMAND$" | tr -d '-' | cut -d' ' -f1`
+THIS_SHELL=$(ps o command -p $$ | sed '/^COMMAND$/d' | tr -d '-' | cut -d' ' -f1)
 case "${THIS_SHELL##/**/}" in
   bash|ksh|zsh) ;;
   *) >&2 echo "This script probably wont work with your shell, so bailing out now...bye!";
@@ -11,7 +11,7 @@ esac
 
 OS=$(uname -s)
 
-if [ $OS == "FreeBSD" ]; then
+if [ "$OS" == "FreeBSD" ]; then
 
   alias eg='egrep -i'
   alias h='fc -l'
@@ -52,7 +52,6 @@ fi
 alias ..='cd ..'
 alias ...='cd ../..'
 alias ack='ack-grep'
-alias alldoc="cat $HOME/repos/dotfiles/doc/*-tips"
 alias cd..='cd ..'
 alias cls='clear'
 alias cpi='cp -i'
@@ -88,7 +87,7 @@ alias sau='sudo apt update'
 alias sbcl='rlwrap sbcl'
 alias sus='/usr/bin/systemctl hybrid-sleep -i'
 alias ssh-add-fingerprint='ssh-add -l -E md5'
-alias sysdoc="cat $HOME/repos/dotfiles/doc/systemd-tips"
+alias sysdoc="cat ~/repos/dotfiles/doc/systemd-tips"
 #alias tree='tree -I .git --charset UTF-8 -push'
 alias tree='tree -I .git --charset UTF-8 --dirsfirst -F'
 alias trd2='trd 2 -d'
@@ -99,10 +98,12 @@ alias vi='vim'
 alias vb='/usr/local/bin/vimb 2>/dev/null &'
 alias vimb='/usr/local/bin/vimb 2>/dev/null &'
 
-alias 0xMF-doc-pacman="showdoc $HOME/repos/dotfiles/doc/pacman"
-alias 0xMF-doc-pcre="showdoc $HOME/repos/dotfiles/doc/re"
+if [ -d ~/repos/dotfiles/doc ]; then
+  alias 0xMF-doc-pacman="showdoc ~/repos/dotfiles/doc/pacman"
+  alias 0xMF-doc-pcre="showdoc ~/repos/dotfiles/doc/re"
+  alias 0xMF-doc-vim="showdoc ~/repos/dotfiles/doc/vim"
+fi
 alias 0xMF-doc-perl="0xMF-doc-pcre"
-alias 0xMF-doc-vim="showdoc $HOME/repos/dotfiles/doc/vim"
 alias pacdoc="0xMF-doc-pacman"
 alias vimdoc="0xMF-doc-vim"
 alias reload=". ~/.bashrc"

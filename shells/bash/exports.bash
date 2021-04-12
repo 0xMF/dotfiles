@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 #
 
-THIS_SHELL=`ps o command -p $$ | grep -v "^COMMAND$" | tr -d '-' | cut -d' ' -f1`
+THIS_SHELL=$(ps o command -p $$ | sed '/^COMMAND$/d' | tr -d '-' | cut -d' ' -f1)
 case "${THIS_SHELL##/**/}" in
   bash|ksh|zsh) ;;
   *) >&2 echo "This script probably wont work with your shell, so bailing out now...bye!";
@@ -10,12 +10,16 @@ esac
 
 OS=$(uname -s)
 
-if [ $OS == "FreeBSD" ]; then
+if [ "${OS}" == "FreeBSD" ]; then
   export LSCOLORS="ExGxcxdxCxegDxabagacad"
   export GREP=/usr/bin/grep
 else
   export GREP=/bin/grep
-  [[ -n ${TMUX} ]] && export TERM=tmux-256color || export TERM=xterm-256color
+  if [ -n "${TMUX}" ]; then
+    export TERM=tmux-256color
+  else
+    export TERM=xterm-256color
+  fi
   export EMACS=emacs26
   export INFOPATH=~/.local/share/eless/info:$INFOPATH
   if [ ${TERM} != "dumb" ]; then
@@ -37,7 +41,7 @@ if [[ -t 0 ]]; then
   export LC_COLLATE=C
   export LANG=en_US.UTF-8
   export LANGUAGE=en_US.UTF-8
-  export TODAY=$(date +"%Y-%b-%d")
+  TODAY=$(date +"%Y-%b-%d"); [ -n "${TODAY}" ] && export TODAY
 fi
 
 
@@ -46,7 +50,7 @@ fi
 export LESS='FeqRSX'
 export MANPAGER="less -$LESS"
 
-[ `uname` == "CYGWIN_NT-10.0" ] && export DISPLAY=:0.0
+[ "$(uname)" = "CYGWIN_NT-10.0" ] && export DISPLAY=:0.0
 
 
 # build related exports
