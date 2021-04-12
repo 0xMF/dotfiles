@@ -77,6 +77,17 @@ function _gdoc_helper {
   fi
 }
 
+function hdoc {
+  if ! which hoogle > /dev/null 2>&1 ; then
+    >&2 echo "hoogle is not installed"
+    return
+  fi
+  hoogle "$@" \
+  | if which chroma > /dev/null 2>&1; then chroma --unbuffered -l hs -f terminal256 -s paraiso-dark; else : ; fi \
+  | less -FeqRSX
+}
+
+
 function 0xMF-ri {
   [ -z "$1" ] && { ri --help; echo -e "\nSee also:\n\t0xMF-rdoc-list-all\t\tShow all classes ri knows about."; return; }
 
