@@ -221,6 +221,7 @@ function 0xMF-tree {
 
 function _sddoc {
   wiw=$(find -L ~ -maxdepth 3 -type d -name "*wiwinwlh")
+  wiwf=~/.cache/0xMF/wiwinwlh-tutorial.md
   if [ ! -d "${wiw}" ]
   then
     echo -n 'Do you want to clone: "What I Wish I Knew When Learning Haskell"? (Y/n) '
@@ -232,6 +233,14 @@ function _sddoc {
       read REPLY
       [ -n "$REPLY" ] && wiwdir="${REPLY}"
       if git clone https://github.com/sdiehl/wiwinwlh ${wiwdir}; then
+        (
+          if [ -z "$CHROMA_STYLE" ]; then
+            mkdir -p ~/.cache/0xMF/dotfiles
+            chroma -l md -f terminal256 -s emacs "${wiw}/tutorial.md"
+          else
+            chroma -l md -f terminal256 -s "$CHROMA_STYLE" "${wiw}/tutorial.md"
+          fi
+        ) > "$wiwf"
         echo -e "\n...installed! Run sddoc again"
       fi
     fi
@@ -239,15 +248,34 @@ function _sddoc {
 }
 
 function sddoc {
-  if [ -d "${wiw}" ]
-  then
-    if [ -z "$CHROMA_STYLE" ]
-    then
-      chroma -l md -f terminal256 -s emacs "${wiw}/tutorial.md" | less $([ -n "$1" ] && echo "+$1") -FeqRSX
-    else
-      chroma -l md -f terminal256 -s "$CHROMA_STYLE" "${wiw}/tutorial.md" | less $([ -n "$1" ] && echo "+$1") -FeqRSX
-    fi
+  wiwf=~/.cache/0xMF/wiwinwlh-tutorial.md
+  if [ -s "$wiwf" ]; then
+    less $([ -n "$1" ] && echo "+$1") -FeqRSX "$wiwf"
   else
+    _sddoc
+  fi
+}
+
+function sddoc-refresh {
+  unset wiw wiwf
+  wiw=$(find -L ~ -maxdepth 3 -type d -name "*wiwinwlh")
+  wiwd=~/.cache/0xMF
+  mkdir -p $wiwd
+  wiwf=${wiwd}/wiwinwlh-tutorial.md
+  touch $wiwf
+  if [ -d  "$wiw" ]; then
+    (
+      cd $wiw || return
+      git pull > /dev/null
+      if [ -z "$CHROMA_STYLE" ]
+      then
+        chroma -l md -f terminal256 -s emacs "${wiw}/tutorial.md"
+      else
+        chroma -l md -f terminal256 -s "$CHROMA_STYLE" "${wiw}/tutorial.md"
+      fi
+    ) > "$wiwf"
+  else
+    echo "refreshing...What I Wish I Knew When Learning Haskell"
     _sddoc
   fi
 }
