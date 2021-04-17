@@ -218,3 +218,36 @@ function 0xMF-tree {
   unset depth tpath
 
 }
+
+function _sddoc {
+  wiw=$(find -L ~ -maxdepth 3 -type d -name "*wiwinwlh")
+  if [ ! -d "${wiw}" ]
+  then
+    echo -n 'Do you want to clone: "What I Wish I Knew When Learning Haskell"? (Y/n) '
+    read REPLY
+    if [[ "$REPLY" != "n" &&  "$REPLY" != "N" ]]
+    then
+      wiwdir=~/repos/z/wiwinwlh
+      echo -n 'Location to clone to: (default ~/repos/z/wiwinwlh or Ctrl+C to exit) '
+      read REPLY
+      [ -n "$REPLY" ] && wiwdir="${REPLY}"
+      if git clone https://github.com/sdiehl/wiwinwlh ${wiwdir}; then
+        echo -e "\n...installed! Run sddoc again"
+      fi
+    fi
+  fi
+}
+
+function sddoc {
+  if [ -d "${wiw}" ]
+  then
+    if [ -z "$CHROMA_STYLE" ]
+    then
+      chroma -l md -f terminal256 -s emacs "${wiw}/tutorial.md" | less $([ -n "$1" ] && echo "+$1") -FeqRSX
+    else
+      chroma -l md -f terminal256 -s "$CHROMA_STYLE" "${wiw}/tutorial.md" | less $([ -n "$1" ] && echo "+$1") -FeqRSX
+    fi
+  else
+    _sddoc
+  fi
+}
