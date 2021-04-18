@@ -1,0 +1,46 @@
+
+# workflow to check installer runs ok
+
+name: Installer
+
+# Controls when the action will run.
+on:
+  # Triggers the workflow on push or pull request events but only for the master branch
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+
+  # Allow workflow to run manually from the Actions tab
+  workflow_dispatch:
+
+jobs:
+  ubuntu:
+    runs-on: ubuntu-latest
+    steps:
+      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+      - uses: actions/checkout@v2
+
+      # run the installer script
+      - name: Run 0xMF-dotfiles install script
+        run: ${GITHUB_WORKSPACE}/bin/0xMF-dotfiles install
+
+  macOS:
+    runs-on: macOS-latest
+    steps:
+      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+      - uses: actions/checkout@v2
+
+      # run the installer script
+      - name: Run 0xMF-dotfiles install script
+        run: ${GITHUB_WORKSPACE}/bin/0xMF-dotfiles install
+
+  windows:
+    runs-on: windows-latest
+    steps:
+      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+      - uses: actions/checkout@v2
+
+      # run the installer script
+      - name: Run 0xMF-dotfiles install script
+        run: ::add-path::C:\msys64\usr\bin ${GITHUB_WORKSPACE}\bin\0xMF-dotfiles install
