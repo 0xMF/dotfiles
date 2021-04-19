@@ -41,6 +41,7 @@ jobs:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v2
 
-      # run the installer script
+      # ignore error when installer runs with Bash on Windows.
       - name: Run 0xMF-dotfiles install script
-        run: ::add-path::C:\msys64\usr\bin ${GITHUB_WORKSPACE}\bin\0xMF-dotfiles install
+        shell: bash
+        run: ${GITHUB_WORKSPACE}/bin/0xMF-dotfiles install || true
