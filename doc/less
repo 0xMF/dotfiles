@@ -1,0 +1,12 @@
+# less is more indeed. These are the options I found most useful
+
+-F
+-e
+-Q
+-R
+-S
+-X
+
+# within less: 
+- N : toggle line numbers (requires ENTER to complete)
+/   : search

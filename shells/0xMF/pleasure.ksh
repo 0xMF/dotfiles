@@ -180,7 +180,7 @@ function 0xMF-doc {
       >&2 echo "Not found: $DOC"
     else
       cd $DOC
-      for f in "`echo $@`"
+      for f in "$@"
       do
         if [ -f $f ]; then
           echo -n "Displaying help for:\t ${f}\n--------------------\n"
