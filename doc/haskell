@@ -1,0 +1,13 @@
+# What I Wish I Knew When Learning Haskell (Version 2.5)
+# Stephen Diehl
+# February 2020
+# ---
+
+220   Project Structure
+282   Cabal
+688   Stack
+837   Base
+865   Prelude
+950   Hackage (advice on choosing libraries)
+1480  Types
+18237 EOF

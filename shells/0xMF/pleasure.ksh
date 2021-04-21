@@ -166,6 +166,7 @@ function 0xMF-list-functions-columnate {
 
 function 0xMF-doc {
 
+  local DOC old
   DOC=$HOME/repos/dotfiles/doc
   if [ ! -d $DOC ]; then
     DOC=$(find -L $HOME/repos -type d -name 0xMF|sed 's/shells.*/doc/'|uniq)
@@ -173,7 +174,7 @@ function 0xMF-doc {
   old=$(pwd)
 
   if [ -z "$1" ]; then
-    >&2 echo "Usage: 0xMF-help TOPIC, where TOPIC is one or more of: `ls $DOC|fmt`"
+    >&2 echo -e "Usage: 0xMF-help TOPIC, where TOPIC is one or more of:\n\t `ls $DOC|fmt`"
   else
     if [ ! -d "$DOC" ]; then
       >&2 echo "Not found: $DOC"
@@ -194,6 +195,7 @@ function 0xMF-doc {
       cd $old
     fi
   fi
+  unset DOC old
 }
 
 alias 0xMF-help='0xMF-doc'
