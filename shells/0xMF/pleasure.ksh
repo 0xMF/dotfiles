@@ -96,9 +96,9 @@ function hdoc {
 function 0xMF-ghci-help {
   if [ -z "$1" ];
   then
-    { echo ':h' | ghci -ignore-dot-ghci | chroma -f terminal256 -s paraiso-dark | less -FeqRSX; return }
+    { echo ':h' | ghci -ignore-dot-ghci | chroma -f terminal256 -s paraiso-dark | less -FeqRSX; return ; }
   else
-    { echo ":browse! $1" | ghci -ignore-dot-ghci | sed 's/^Prelude> //;1d;$d'|chroma -l hs -f terminal256 -s paraiso-dark | less -FeqRSX }
+    { echo ":browse! $1" | ghci -ignore-dot-ghci | sed 's/^Prelude> //;1d;$d'|chroma -l hs -f terminal256 -s paraiso-dark | less -FeqRSX ; }
   fi
 }
 
