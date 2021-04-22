@@ -93,6 +93,8 @@ map <Nul>    <PageUp>
 imap <Nul>    <Space>
 "#-
 
+:imap <C-w> <Esc><C-W>|                 " setup toggle to other windows with hjkl and UpDnLtRt
+
 :imap <A-BS> <ESC>ua|                   " --ditto-- in insert mode
 :imap <C-D> <Esc>ldea|                  " --ditto-- in insert mode
 :imap <C-Del> <Esc>ldwi|                " Window's style delete
