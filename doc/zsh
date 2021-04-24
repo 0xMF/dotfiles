@@ -1,0 +1,32 @@
+# zsh specific stuff
+
+# set global alias
+alias -g NF="| awk '{print \$NF}'"
+alias -g ZD="| sed '1d'"
+alias -g L="| less -FeqRSX"
+
+# and then use them, like so..
+ls -l NF            # NF is replaced with awk '{ print $NF }' the \ in the alias above was necessary 
+cat /some/file L    # L is replaced with les -FeqRSX
+
+# unset global alias
+unalias \NF
+unalias \ZD
+unalias \L
+
+# variables declared in a shell script become global unless prefixed with local, like so
+local var
+var="value"
+>&2 echo "use ${var}"
+unset var
+
+# declare a function that lists directories in chronlogical order removing the total line.
+function zll() {
+  case "$1" in                                                # does it have arguments?
+     "" ) ls -ltr . | sed '1d' ;;                             # no then list pwd
+     * )  [ -d "$1" ] && { ls -ltr "$1" | sed '1d' ; } ;;     # yes, then list only if $1 is dir
+  esac
+}
+
+# unset function from global space
+unset -f zll
