@@ -95,9 +95,12 @@ function pacsearch {
 }
 
 function apt {
-    echo $1
-    [ "$1" == "info" ] && shift && /usr/bin/apt show "$@" \
-                       || /usr/bin/apt "$@"
+    if [ "$1" = "info" ]; then
+      shift
+      /usr/bin/apt show "$@"
+    then
+      /usr/bin/apt "$@"
+    fi
 }
 
 function dpkg-get-selections {
