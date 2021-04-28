@@ -98,7 +98,7 @@ function apt {
     if [ "$1" = "info" ]; then
       shift
       /usr/bin/apt show "$@"
-    then
+    else
       /usr/bin/apt "$@"
     fi
 }
