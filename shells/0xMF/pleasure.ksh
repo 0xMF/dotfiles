@@ -168,9 +168,9 @@ function 0xMF-list-functions-columnate {
 function 0xMF-doc {
 
   local DOC old
-  DOC=$HOME/repos/dotfiles/doc
+  DOC=~/repos/dotfiles/doc
   if [ ! -d $DOC ]; then
-    DOC=$(find -L $HOME/repos -type d -name 0xMF|sed 's/shells.*/doc/'|uniq)
+    DOC=$(find -L ~/repos -type d -wholename "*shells/0xMF"|sed 's/shells.*/doc/'|uniq)
   fi
   old=$(pwd)
 
