@@ -14,6 +14,7 @@ alias pale='perl -awnle'
 alias pd='perldoc -MPod::Text::Color::Delight'
 alias pdoc='perldoc -MPod::Text::Color::Delight'
 alias perldoc='perldoc -MPod::Text::Color::Delight'
+alias wiwin-refresh='sddoc-refresh'
 
 alias tmux='tmux -u'
 alias http-serve="serve"
