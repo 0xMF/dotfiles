@@ -174,7 +174,7 @@ function 0xMF-doc {
   old=$(pwd)
 
   if [ -z "$1" ]; then
-    >&2 echo -e "Usage: 0xMF-help TOPIC, where TOPIC is one or more of:\n\t `ls $DOC|fmt`"
+    >&2 echo -e "Usage: 0xMF-help TOPIC, where TOPIC is one or more of:\n\t `ls $xMFDOC|fmt`"
   else
     if [ ! -d "$xMFDOC" ]; then
       >&2 echo "Not found: $xMFDOC"
