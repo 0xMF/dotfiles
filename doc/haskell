@@ -1,3 +1,9 @@
+# hdoc
+hdoc "$"
+hdoc con map        # searches text con and map, like concatMap but not map
+hdoc ::a            # find type a
+hdoc a -> a         # search by type
+
 # What I Wish I Knew When Learning Haskell (Version 2.5)
 # Stephen Diehl
 # February 2020

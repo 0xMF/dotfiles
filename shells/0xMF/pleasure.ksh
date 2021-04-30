@@ -85,7 +85,7 @@ function hdoc {
   fi
 
   # chroma style manni over paraiso-dark seems more suited for hoogle
-  hoogle "$@" --count=50 \
+  (hoogle --info "$@" ; hoogle "$@" --count=50 ) \
   | if which chroma > /dev/null 2>&1; then \
       [ -z "$CHROMA_STYLE" ] \
         && chroma -l hs -f terminal256 -s paraiso-dark \
