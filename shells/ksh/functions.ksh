@@ -31,12 +31,6 @@ function 0xMF-declare {
   esac
 }
 
-function anc {
-  alias ls='lsn'
-  alias tree='tree -n'
-  alias grep='grep --color=none -i'
-}
-
 function eman {
   [[ -z "$1" ]] && { print >&2 "Usage: eman man-page-with-EXAMPLES-section"; return; }
   man -Tascii $1 | col -bx | sed -n '/^EXAMPLES/,/^[A-Z]/p' | sed -nr '/^(EXAMPLES| |$)/p'
@@ -56,26 +50,6 @@ function ports {
   pushd /usr/ports > /dev/null
   echo */*|tr ' ' '\n'|grep $1
   popd  > /dev/null
-}
-
-function g+++ {
-  rm -f a.out
-  if [ -e /usr/bin/g++-4.9 ];
-  then
-    /usr/bin/g++-4.9 -std=c++1y -Wall $*
-  else
-    /usr/bin/g++ -std=c++0x -Wall $*
-  fi
-
-  if [ -e a.out ]
-  then
-    if [ -e /usr/bin/valgrind ]
-    then
-      valgrind 2>&1 a.out|sed '1,5d'
-    else
-      a.out
-    fi
-  fi
 }
 
 # vim:nospell:ft=sh:

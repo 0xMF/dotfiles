@@ -17,6 +17,7 @@ bsd() {
   alias cv='0xMF-cv'
   alias declare='0xMF-declare'
   alias eg='egrep -i'
+  alias grep='grep -i'
   alias h='fc -l'
   alias iotop='top -mio -ototal'
   alias j=jobs
@@ -24,7 +25,7 @@ bsd() {
   alias links='elinks'
   alias ll='ls -laFo'
   alias lld='ls -laFod'
-  alias ls='/bin/ls -F'
+  alias ls='/bin/ls -pF'
   alias lsof='fstat'
   alias lynx='elinks'
   alias m=more
@@ -36,6 +37,7 @@ bsd() {
   alias su='su -l'
   alias sudo='0xMF-sudo'
   alias stats="man -k '*' | grep -Ee 'stat\((1|8)\) '"
+  alias tree='tree -n'
 }
 
 linux() {
