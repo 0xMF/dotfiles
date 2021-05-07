@@ -99,11 +99,15 @@ function 0xMF-ghci-help {
   then
     { echo ":browse! GHC.Base" | ghci -ignore-dot-ghci | chroma -l hs -f terminal256 -s paraiso-dark | less -FeqRSX; return ; }
   else
-    { echo ":browse! $1" | ghci -ignore-dot-ghci | sed 's/^Prelude> //;1d;$d'|chroma -l hs -f terminal256 -s paraiso-dark | less -FeqRSX ; }
+    { ( echo ":browse! $1"  | ghci -ignore-dot-ghci | sed 's/^Prelude> //;1d;$d' ;
+        echo ":info! $1"    | ghci -ignore-dot-ghci | sed 's/^Prelude> //;1d;$d' \
+      )  > /dev/null \
+      |chroma -l hs -f terminal256 -s paraiso-dark | less -FeqRSX ; }
   fi
 }
 
 alias hgdoc="0xMF-ghci-help"
+alias hdoc-ghci="0xMF-ghci-help"
 
 function 0xMF-ri {
   [ -z "$1" ] && { ri --help; echo -e "\nSee also:\n\t0xMF-rdoc-list-all\t\tShow all classes ri knows about."; return; }
