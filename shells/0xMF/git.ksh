@@ -431,8 +431,19 @@ function gdc   { if _is_git_repo -eq 0; then git diff --color=always -w --cached
 function gdh   { if _is_git_repo -eq 0; then git diff --color=always -w HEAD; fi }
 function gds   { if _is_git_repo -eq 0; then git diff --color=always -w --staged; fi }
 function gdiff { if _is_git_repo -eq 0; then git diff --color=always -w HEAD | grep -v binary; fi }
+function gdff  { if _is_git_repo -eq 0; then git diff --color=always -w HEAD | grep -v binary; fi }
 function gst   { if _is_git_repo -eq 0; then git status ; fi }
 function gss   { if _is_git_repo -eq 0; then git status -s; fi }
+
+function gdiff-pager {
+  [ $# -eq 0 ] && gdff
+  if _is_git_repo -eq 0; then
+    for f in "$@"
+    do
+      git diff --color=always -w $f | grep -v binary
+    done | less -FeqRSX
+  fi
+}
 
 function __gdh {
   if _is_git_repo -eq 0
