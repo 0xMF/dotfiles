@@ -59,7 +59,6 @@ alias cpu='cp -u'
 alias cpr='cp -r'
 alias cpa='cp -a'
 alias cv='type -a'
-alias dfh="df -h|egrep '^(Filesystem|/)'| sort -hk5"
 alias e='emacs'
 alias em='emacs'
 alias emcas='emacs'

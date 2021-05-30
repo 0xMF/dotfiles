@@ -7,6 +7,10 @@ case "${THIS_SHELL##/**/}" in
      exit 1;;
 esac
 
+function dfh {
+  /bin/df -h | egrep '^(Filesystem|/)' | sort -hk5
+}
+
 function jc {
   [ "`uname`" != "Linux" ] && { echo "not running on Linux"; return; }
   local myjc=$(which journalctl)
