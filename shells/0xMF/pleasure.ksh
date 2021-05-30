@@ -295,3 +295,19 @@ function sddoc-refresh {
     _sddoc
   fi
 }
+
+function m4a2mp3 {
+  if [ -z "$1" ]; then
+    echo "Usage: m4a2mp3 filename.m4a"
+  else
+    which ffmpeg > /dev/null
+    [ $? -ne 0 ] && { echo "ffmpeg not found!"; return ;  }
+    if file "$1" | grep -q "Audio$"; then
+      echo -n converting "$1"...
+      ffmpeg -v 5 -y -i "$1" -acodec libmp3lame -ac 2 -ab 192k "${1%m4a}mp3"
+      echo done!
+    else
+      echo "Not an m4a file"
+    fi
+  fi
+}
