@@ -59,6 +59,10 @@ function gdoc {
       } | less -FeqRSX
     fi
   else
+    if [ "$1" = "spec" ]; then
+      0xMF-gdoc-spec
+      return
+     fi
     _gdoc_helper "$@"
   fi
 }
@@ -75,6 +79,22 @@ function _gdoc_helper {
       || { go doc "$@" | chroma -l go -f terminal256 -s "$CHROMA_STYLE" | less -FeqRSX ; }
   else
     go doc "$@"
+  fi
+}
+
+function 0xMF-gdoc-spec {
+  local spec=~/.cache/0xMF/go_spec.html
+  if [ -s "$spec" ]; then
+    if which chroma > /dev/null 2>&1; then
+      [ -z "$CHROMA_STYLE" ] \
+      && { w3m -dump "$spec" | chroma -l go -f terminal256 -s paraiso-dark | less -FeqRSX -z$LINES; }  \
+      || { w3m -dump "$spec" | chroma -l go -f terminal256 -s "$CHROMA_STYLE" | less -FeqRSX -z$LINES; }
+    fi
+  else
+   >&2 echo -e "ERROR: $spec was not found\n\n Try:\n" \
+               "\t git clone -b master https://github.com/golang/go /path/to/go/repo\n" \
+               "\t cp /path/to/go/repo/doc/*html ~/.cache/0xMF\n"
+
   fi
 }
 
