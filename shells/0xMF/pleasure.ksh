@@ -87,8 +87,8 @@ function 0xMF-gdoc-spec {
   if [ -s "$spec" ]; then
     if which chroma > /dev/null 2>&1; then
       [ -z "$CHROMA_STYLE" ] \
-      && { w3m -dump "$spec" | chroma -l go -f terminal256 -s paraiso-dark | less -FeqRSX -z$LINES; }  \
-      || { w3m -dump "$spec" | chroma -l go -f terminal256 -s "$CHROMA_STYLE" | less -FeqRSX -z$LINES; }
+      && { w3m -dump "$spec" | chroma -l go -f terminal256 -s paraiso-dark | less -FeqRSX -z$LINES --mouse; }  \
+      || { w3m -dump "$spec" | chroma -l go -f terminal256 -s "$CHROMA_STYLE" | less -FeqRSX -z$LINES --mouse; }
     fi
   else
    >&2 echo -e "ERROR: $spec was not found\n\n Try:\n" \
