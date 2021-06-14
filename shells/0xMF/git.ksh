@@ -40,6 +40,8 @@ else
   NOCOLOR="\[\033[00m\]"
 fi
 
+GREP=$(if [ -s /bin/grep ]; then echo /bin/grep; else echo /usr/bin/grep; fi)
+
 function green {
   LS_COLORS="`echo $LS_COLORS|sed 's/di=0[01];3[0-9]/di=01;33/'`"
   LS_COLORS="`echo $LS_COLORS|sed 's/ln=[01][01];3[0-9]/ln=00;32/'`"
@@ -641,11 +643,12 @@ function ghw {
 function gsearch {
   [ -z "$1" ] && echo Usage: gsearch search_term && return
 
-  for commit in $(git log --color=always --oneline|$GREP "$1"|awk '{print $1}')
+  for commit in $(git log --color=never --oneline|$GREP "$1"|awk '{print $1}')
   do
-    git show --color=always --pretty="%h %s %b" --stat $commit
-    git show --color=always --pretty="%n %Cred===%C(yellow)**%Cgreenx%C(yellow)**%Cred===%Creset%n" -s $commit
-  done
+    git show --color=always --pretty="%C(auto)%h %s %b%Creset" --stat $commit
+    git show --color=always --pretty="medium" --minimal $commit
+    git show --color=always --pretty="%n %C(bold red)====%C(yellow)***%Cgreen|xxoxx|%C(yellow)***%Cred====%Creset%n" -s $commit
+  done | less -FeqRSX
 }
 
 function glast {
