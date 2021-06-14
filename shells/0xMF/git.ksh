@@ -643,6 +643,12 @@ function ghw {
 function gsearch {
   [ -z "$1" ] && echo Usage: gsearch search_term && return
 
+  git log --color=always --oneline | $GREP "$1" | less -FeqRSX
+}
+
+function gsearch-list {
+  [ -z "$1" ] && echo Usage: gsearch-list search_term && return
+
   for commit in $(git log --color=never --oneline|$GREP "$1"|awk '{print $1}')
   do
     git show --color=always --pretty="%C(auto)%h %s %b%Creset" --stat $commit
