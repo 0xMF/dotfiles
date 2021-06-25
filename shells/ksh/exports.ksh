@@ -32,6 +32,9 @@ LC_CTYPE="en_US.UTF-8"
 #export LESS='-iMRS -x2'
 export LESS='FceqRSX'
 export EDITOR="less -$LESS"
+if [ -s /usr/local/bin/vim ]; then
+  export VISUAL=/usr/local/bin/vim
+fi
 
 export MANPAGER=$EDITOR
 export FCEDIT=$EDITOR
