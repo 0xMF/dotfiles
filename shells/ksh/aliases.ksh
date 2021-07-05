@@ -23,8 +23,8 @@ bsd() {
   alias j=jobs
   alias l='ls -l'
   alias links='elinks'
-  alias ll='ls -laFo'
-  alias lld='ls -laFod'
+  alias ll='ls -lFaho'
+  alias lld='ls -lFahdo'
   alias ls='/bin/ls -pF'
   alias lsof='fstat'
   alias lynx='elinks'
