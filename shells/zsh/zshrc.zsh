@@ -70,7 +70,7 @@ ZSH_THEME="robbyrussell"
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(archlinux colorize colored-man-pages git man perl systemadmin systemd z)
+plugins=(archlinux colorize colored-man-pages man perl systemadmin systemd z)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -103,3 +103,4 @@ export ZSH_COLORIZE_CHROMA_FORMATTER=terminal
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 #
 [[ -s ~/.zlocal.zsh ]] && source ~/.zlocal.zsh
+[[ -s ~/.bash/0xMF/git.ksh ]] && source ~/.bash/0xMF/git.ksh
