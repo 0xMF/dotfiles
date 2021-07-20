@@ -13,7 +13,7 @@ function dfh {
 
 function jc {
   [ "`uname`" != "Linux" ] && { echo "not running on Linux"; return; }
-  local myjc=$(which journalctl)
+  local myjc=$( whereis journalctl | awk '{print $2}' )
   [ `id -u` -ne 0 ] && myjc="sudo $myjc"
   case "$1" in
     "" ) $myjc -xe | less -FeqRSX ;;
@@ -24,7 +24,7 @@ function jc {
 
 function sc {
   [ "`uname`" != "Linux" ] && { echo "not running on Linux"; return; }
-  local mysc=$(which systemctl)
+  local mysc=$( whereis systemctl | awk '{print $2}' )
   [ `id -u` -ne 0 ] && mysc="sudo $mysc"
   case "$1" in
     "help"|"h"|"-h"|"--help") $mysc --help "$@" ;;
@@ -43,7 +43,7 @@ function eman {
 
 function sadu {
 
-  mydf=$(which df 2>/dev/null)
+  mydf=$( whereis df 2>/dev/null | awk '{print $2}' )
   [ -z $mydf ] && return
   [[ ! -s /usr/bin/df && ! -s /bin/df ]] && return
 

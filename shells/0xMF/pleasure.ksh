@@ -230,7 +230,8 @@ alias 0xMF-help='0xMF-doc'
 # show directory tree
 function 0xMF-tree {
 
-  if ! which tree > /dev/null 2>&1; then
+  local _tree=$( whereis tree | awk '{print $2}' )
+  if [ -z "${_tree}" ]; then
     >&2 echo "tree command not found"
     return
   fi
@@ -251,7 +252,7 @@ function 0xMF-tree {
 
   [[ -n "$tpath" && -n "$1" ]] && shift
 
-  eval "tree $depth $tpath $@"
+  eval "${_tree} $depth $tpath $@"
   unset depth tpath
 
 }
@@ -322,11 +323,13 @@ function m4a2mp3 {
     echo "Usage: m4a2mp3 filename.m4a"
     return
   fi
-  which ffmpeg > /dev/null
-  [ $? -ne 0 ] && { echo "ffmpeg not found!"; return; }
+
+  local _ffmpeg=$( whereis ffmpeg | awk '{ print $2}' )
+
+  [ -z "${_ffmpeg}" ] && { echo "ffmpeg not found!"; return; }
   if file "$1" | grep -q Audio$; then
     echo -n converting "$1"...
-    ffmpeg -v 5 -y -i "$1" -acodec libmp3lame -ac 2 -ab 192k "${1%m4a}mp3"
+    ${_ffmpeg} -v 5 -y -i "$1" -acodec libmp3lame -ac 2 -ab 192k "${1%m4a}mp3"
     echo done!
   else
     echo "Not an m4a file"
