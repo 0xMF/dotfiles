@@ -43,18 +43,23 @@ function eman {
 
 function sadu {
 
-  mydf=$( whereis df 2>/dev/null | awk '{print $2}' )
-  [ -z $mydf ] && return
-  [[ ! -s /usr/bin/df && ! -s /bin/df ]] && return
+  os=$(uname)
 
-  used=$($mydf -lh / | perl -lane '$. != 1 && print $F[-2]')
+  case "${os}" in
+    "Linux"   ) local mydf=$( whereis df 2>/dev/null | awk '{print $2}' ) ;;
+    "OpenBSD" ) local mydf=$( whereis df 2>/dev/null ) ;;
+    *         ) local mydf="" ;;
+  esac
+  [ -z "${mydf}" ] && return
+
+  local used=$($mydf -lh / | perl -lane '$. != 1 && print $F[-2]')
 
   echo -n "You have used $used of disk space on your / partition...continue(y/N)? "
   read REPLY
   [[ "$REPLY" != "y"  &&  "$REPLY" != "Y" && "$REPLY" != "yes" ]] && return
 
-  if [ "`uname`" = "Linux" ]; then
-    distro=$(\grep -w ID /etc/os-release | cut -d= -f2 | tr -d '"')
+  if [ "${os}" = "Linux" ]; then
+    local distro=$(\grep -w ID /etc/os-release | cut -d= -f2 | tr -d '"')
     case "${distro}" in
       arch|manjaro)
         sudo pacman -Syu
@@ -70,7 +75,7 @@ function sadu {
     esac
   fi
 
-  if [ "`uname`" = "OpenBSD" ]; then
+  if [ "${os}" = "OpenBSD" ]; then
     doas syspatch
     doas pkg_add -Uu
   fi
