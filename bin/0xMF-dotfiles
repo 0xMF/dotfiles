@@ -35,23 +35,23 @@ help() {
   >&2 echo "        [bash,config,git,lisp,misc,pal,ruby,tmux,vim,zsh]"
   >&2 echo
   >&2 echo "    --minimal: a minimal setup for a typical Linux (bash+vim) server"
-  >&2 echo "        [bash,git,misc,ruby,tmux,vim]"
+  >&2 echo "        [bash,git,misc,tmux,vim]"
   >&2 echo
   >&2 echo "    --with-emacs: installs everything including Emacs"
   >&2 echo "        [bash,config,emacs,git,lisp,misc,pal,ruby,tmux,vim,zsh]"
   >&2 echo
   >&2 echo "    --with-emacs --minimal: install for Linux server with Emacs"
-  >&2 echo "        [bash,emacs,git,misc,ruby,tmux,vim]"
+  >&2 echo "        [bash,emacs,git,misc,tmux,vim]"
   >&2 echo
   >&2 echo " $installer on OpenBSD: default install ksh and all but 0xMF/emacs.d"
   >&2 echo "        [git,ksh,lisp,misc,pal,ruby,tmux,vim,zsh]"
   >&2 echo
   >&2 echo "    --minimal: a minimal setup for an OpenBSD (ksh+vim) server"
-  >&2 echo "        [git,ksh,misc,ruby,vim]"
+  >&2 echo "        [git,ksh,misc,vim]"
   >&2 echo
-  >&2 echo "  when run from OpenBSD (ksh shell)"
+  >&2 echo "  when run on OpenBSD (ksh shell)"
   >&2 echo "    --with-emacs installs both ksh and emacs"
-  >&2 echo "        [emacs,git,ksh,misc,ruby,vim]"
+  >&2 echo "        [emacs,git,ksh,misc,vim]"
   >&2 echo
   >&2 echo "  -h | --help: this message"
   >&2 echo
@@ -466,11 +466,11 @@ install() {
     _config_misc
     _lisp
     _pal
+   _ruby
     _zsh
   fi
 
    _misc
-   _ruby
    _tmux
    _vim
 }
