@@ -359,7 +359,9 @@ _profile() {
     echo " - found .profile, not installing" >&2
   } || {
     installed="$installed profile"
-    ln -s ${SCRIPTDIR_%bin}shells/0xMF/profile ~/.profile
+    [[ "$EXPERIMENTAL" = "yes" ]] \
+      && { ln -s ${_SCRIPTDIR%bin}shells/0xMF/profile ~/.profile; } \
+      || { ln -s ${SCRIPTDIR_%bin}shells/0xMF/profile ~/.profile; }
     echo " - ...INSTALLED .profile" >&2
   }
 }
