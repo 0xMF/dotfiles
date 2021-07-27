@@ -1,0 +1,16 @@
+# ~/.profile: executed when login shell starts
+
+TERM=tmux-256color
+
+case "$(uname)" in
+  Linux ) PATH=~/bin:~/.local/bin:/usr/bin:/usr/sbin:/bin:/sbin:/usr/local/bin:/usr/local/sbin ;;
+  *     ) PATH=~/bin:/bin:/sbin:/usr/bin:/usr/sbin:/usr/local/bin:/usr/local/sbin ;;
+esac
+
+case "$(basename $SHELL)" in
+  bash ) [ -f ~/.bashrc ] && ENV=~/.bashrc ;;
+  ksh  ) [ -f ~/.kshrc ]  && ENV=~/.kshrc ;;
+  *    ) [ -f ~/.zshenv ] && ENV=~/.zshenv ;;
+esac
+
+export ENV HOME PATH TERM

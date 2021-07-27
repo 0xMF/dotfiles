@@ -10,6 +10,7 @@ SCRIPT_DIR="$( cd "$( dirname "$0" )" && pwd )"
 _FULL_PATH="$( cd "$( dirname "$0" )" && pwd -P )"
 _REAL_HOME="$( cd ~  && pwd -P )"
 _SCRIPTDIR="$( echo .${_FULL_PATH#$_REAL_HOME} )"
+SCRIPTDIR_="$( echo ${_FULL_PATH#$_REAL_HOME} )"
 
 installer=$(basename $0)
 
@@ -351,6 +352,18 @@ _pal() {
   }
 }
 
+# profile
+_profile() {
+  echo "checking profile..." >&2
+  [[ -e $HOME/.profile || -L $HOME/.profile ]] && { :
+    echo " - found .profile, not installing" >&2
+  } || {
+    installed="$installed profile"
+    ln -s ${SCRIPTDIR_%bin}shells/0xMF/profile ~/.profile
+    echo " - ...INSTALLED .profile" >&2
+  }
+}
+
 # ruby
 _ruby() {
   echo "checking ruby..." >&2
@@ -454,6 +467,7 @@ install() {
 
   [ "$W_EMACS" = "--with-emacs" ] && _emacs
 
+   _profile
    _git
 
   if [ "$EXPERIMENTAL" = "yes" ]; then
