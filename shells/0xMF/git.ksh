@@ -676,7 +676,11 @@ function g {
 function gsts {
   if _is_git_repo; then
     git stash show --text
-    git status -s
+    if [ "$1" = "--all" ]; then
+      git status -s -u --ignored --ignore-submodules
+    else
+      git status -s
+    fi
   fi
 }
 
