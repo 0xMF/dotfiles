@@ -98,7 +98,6 @@ alias glolar='git log --decorate --pretty=oneline --abbrev-commit --all --revers
 alias gls='git ls-files'
 alias gst='git status'
 alias gsta='git status'
-alias gsts='git status -s'
 alias gtype='git cat-file -t'
 alias gwc='git whatchanged -p --abbrev-commit --pretty=medium'
 alias incoming='git log orgin/master ^master'
