@@ -676,11 +676,11 @@ function g {
 function gsts {
   if _is_git_repo; then
     git stash show --text
-    if [ "$1" = "--all" ]; then
-      git status -s -u --ignored --ignore-submodules
-    else
-      git status -s
-    fi
+    case "$1" in
+      "--all" ) git status -s -u --ignored --ignore-submodules ;;
+      "--no-swap" ) git status -s -u --ignored --ignore-submodules  | grep -vE ".*~$" ;;
+      * ) git status -s ;;
+    esac
   fi
 }
 
