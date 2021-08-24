@@ -335,3 +335,8 @@ function m4a2mp3 {
     echo "Not an m4a file"
   fi
 }
+
+function links {
+  local path=$([ -z "$1" ] && echo "." || echo "$@")
+  eval "/usr/bin/find ${path} -type l -exec /bin/ls -ld --color=always {} \;"
+}
