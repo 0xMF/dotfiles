@@ -336,7 +336,7 @@ function m4a2mp3 {
   fi
 }
 
-function links {
+function 0xMF-links {
   local path=$([ -z "$1" ] && echo "." || echo "$@")
   eval "/usr/bin/find ${path} -type l -exec /bin/ls -ld --color=always {} \;"
 }
