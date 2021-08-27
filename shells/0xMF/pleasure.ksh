@@ -49,11 +49,13 @@ function serve {
 }
 
 function 0xMF-cv {
-  if [ "$(basename $SHELL)" == "bash" ]; then
-    type -a "$1"
-  else
-    command -V "$1"
-    typeset -f "$1"
+  if [ -n "$1" ]; then
+    if [ "$(basename $SHELL)" == "bash" ]; then
+      type -a "$1"
+    else
+      command -V "$1"
+      typeset -f "$1"
+    fi
   fi
 }
 
