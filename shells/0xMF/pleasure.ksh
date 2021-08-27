@@ -9,6 +9,7 @@ case "${THIS_SHELL##/**/}" in
      exit 1;;
 esac
 
+alias cv='0xMF-cv'
 alias ple='perl -wnle'
 alias pale='perl -awnle'
 alias pd='perldoc -MPod::Text::Color::Delight'
@@ -45,6 +46,15 @@ function serve {
 
     d=`dirs | tr ' ' '\n' | wc -l`
     [[ $d -ne $dirs ]] && popd
+}
+
+function 0xMF-cv {
+  if [ "$(basename $SHELL)" == "bash" ]; then
+    type -a "$1"
+  else
+    command -V "$1"
+    typeset -f "$1"
+  fi
 }
 
 function gdoc {

@@ -14,7 +14,6 @@ esac
 export OS
 
 bsd() {
-  alias cv='0xMF-cv'
   alias declare='0xMF-declare'
   alias eg='egrep -i'
   alias grep='grep -i'
