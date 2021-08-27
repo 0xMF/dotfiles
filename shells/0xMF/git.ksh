@@ -241,6 +241,11 @@ function psm {
   fi
 }
 
+function psm-no-git {
+  PS1="$GREEN\h$WHITE:$YELLOW\W$WHITE\$$NOCOLOR "
+  PROMPT_COMMAND=""
+}
+
 function gbruh {
   if [ -z "$1" ]; then
     echo "Usage: git push -u origin branch-name" >&2
