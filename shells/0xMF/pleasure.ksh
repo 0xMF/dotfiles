@@ -50,12 +50,12 @@ function serve {
 
 function 0xMF-cv {
   if [ -n "$1" ]; then
-    if [ "$(basename $SHELL)" == "bash" ]; then
-      type -a "$1"
-    else
-      command -V "$1"
-      typeset -f "$1"
-    fi
+    case "$(basename $SHELL)" in
+      "bash"  ) type -a "$1" ;;
+      "ksh"   ) command -V "$1"; typeset -f "$1" ;;
+      "zsh"   ) type -f "$1" ;;
+      *       ) >&2 echo "not implemented in $SHELL" ;;
+    esac
   fi
 }
 
