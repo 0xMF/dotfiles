@@ -56,7 +56,7 @@ help() {
   >&2 echo
   >&2 echo "  -h | --help: this message"
   >&2 echo
-  >&2 echo "Operating Systems:   Arch (default), Debian, Kali, and OpenBSD"
+  >&2 echo "Operating Systems:   Arch (default), CentOS, Debian, Kali, and OpenBSD"
   >&2 echo "Shells:              Bash, ksh, Zsh (default)"
   >&2 echo "Editors (term/gui):  DrRacket, Emacs, Vim (default)"
   >&2 echo "Languages:           sbcl, Racket, Perl, Ruby"
@@ -171,7 +171,7 @@ _config_misc() {
       echo " - found .config/chromium-flags.conf, not installing" >&2
     } || {
       installed="chromium-flags.conf"
-      ln -s ${SCRIPT_DIR%bin}misc/config/chromium-flags.conf $HOME/.config/chromium-flags.conf
+      ln -s ${SCRIPT_DIR%bin}comp.misc/config/chromium-flags.conf $HOME/.config/chromium-flags.conf
     }
 
     [ ! -z "$installed" ] && echo "INSTALLED!" >&2
@@ -305,8 +305,8 @@ _lisp() {
     echo " - found .sbclrc, not installing" >&2
   else
     [[ "$EXPERIMENTAL" = "yes" ]] \
-     && { ln -s ${_SCRIPTDIR%bin}lisps/sbclrc ~/.sbclrc; } \
-     || { ln -s ${SCRIPT_DIR%bin}lisps/sbclrc $HOME/.sbclrc; }
+     && { ln -s ${_SCRIPTDIR%bin}comp.misc/lisps/sbclrc ~/.sbclrc; } \
+     || { ln -s ${SCRIPT_DIR%bin}comp.misc/lisps/sbclrc $HOME/.sbclrc; }
     echo " - ...INSTALLED .sbclrc" >&2
     installed="$installed .sbclrc"
   fi
@@ -314,16 +314,16 @@ _lisp() {
   [ ! -z "$installed" ] && echo " - ...INSTALLED $installed" >&2
 }
 
-# misc
-_misc() {
-  echo "checking misc dotfiles..." >&2
+# comp.misc
+_comp_misc() {
+  echo "checking comp.misc dotfiles..." >&2
 
   if [[ -e $HOME/.inputrc || -L $HOME/.inputrc ]]; then
     echo " - found .inputrc, not installing" >&2
   else
     [[ "$EXPERIMENTAL" = "yes" ]] \
-     && { ln -s ${_SCRIPTDIR%bin}misc/inputrc ~/.inputrc; } \
-     || { ln -s ${SCRIPT_DIR%bin}misc/inputrc $HOME/.inputrc; }
+     && { ln -s ${_SCRIPTDIR%bin}comp.misc/inputrc ~/.inputrc; } \
+     || { ln -s ${SCRIPT_DIR%bin}comp.misc/inputrc $HOME/.inputrc; }
     echo " - ...INSTALLED .inputrc" >&2
   fi
 
@@ -331,8 +331,8 @@ _misc() {
     echo " - found .toprc, not installing" >&2
   else
     [[ "$EXPERIMENTAL" = "yes" ]] \
-     && { ln -s ${_SCRIPTDIR%bin}misc/toprc ~/.toprc; } \
-     || { ln -s ${SCRIPT_DIR%bin}misc/toprc $HOME/.toprc; }
+     && { ln -s ${_SCRIPTDIR%bin}comp.misc/toprc ~/.toprc; } \
+     || { ln -s ${SCRIPT_DIR%bin}comp.misc/toprc $HOME/.toprc; }
     echo " - ...INSTALLED .toprc" >&2
   fi
 }
@@ -346,8 +346,8 @@ _pal() {
   } || {
     installed=".pal"
     [[ "$EXPERIMENTAL" = "yes" ]] \
-     && { ln -s ${_SCRIPTDIR%bin}misc/pal ~/.pal; } \
-     || { ln -s ${SCRIPT_DIR%bin}misc/pal $HOME/.pal; }
+     && { ln -s ${_SCRIPTDIR%bin}comp.misc/pal ~/.pal; } \
+     || { ln -s ${SCRIPT_DIR%bin}comp.misc/pal $HOME/.pal; }
     echo " - ...INSTALLED .pal" >&2
   }
 }
@@ -373,16 +373,16 @@ _ruby() {
     echo " - found .gemrc, not installing" >&2
   else
     [[ "$EXPERIMENTAL" = "yes" ]] \
-     && { ln -s ${_SCRIPTDIR%bin}misc/gemrc ~/.gemrc; } \
-     || { ln -s ${SCRIPT_DIR%bin}misc/ruby/gemrc $HOME/.gemrc; }
+     && { ln -s ${_SCRIPTDIR%bin}comp.misc/gemrc ~/.gemrc; } \
+     || { ln -s ${SCRIPT_DIR%bin}comp.misc/ruby/gemrc $HOME/.gemrc; }
     echo " - ...INSTALLED .gemrc" >&2
   fi
   if [[ -e $HOME/.pryrc || -L $HOME/.pryrc ]]; then
     echo " - found pryrc, not installing" >&2
   else
     [[ "$EXPERIMENTAL" = "yes" ]] \
-     && { ln -s ${_SCRIPTDIR%bin}misc/pryrc ~/.pryrc; } \
-     || { ln -s ${SCRIPT_DIR%bin}misc/ruby/pryrc $HOME/.pryrc; }
+     && { ln -s ${_SCRIPTDIR%bin}comp.misc/pryrc ~/.pryrc; } \
+     || { ln -s ${SCRIPT_DIR%bin}comp.misc/ruby/pryrc $HOME/.pryrc; }
     echo " - ...INSTALLED .pryrc" >&2
   fi
 }
@@ -395,8 +395,8 @@ _tmux() {
     echo " - found .tmux.conf, not installing" >&2
   else
     [[ "$EXPERIMENTAL" = "yes" ]] \
-     && { ln -s ${_SCRIPTDIR%bin}misc/tmux.conf ~/.tmux.conf; } \
-     || { ln -s ${SCRIPT_DIR%bin}misc/tmux.conf $HOME/.tmux.conf; }
+     && { ln -s ${_SCRIPTDIR%bin}comp.misc/tmux.conf ~/.tmux.conf; } \
+     || { ln -s ${SCRIPT_DIR%bin}comp.misc/tmux.conf $HOME/.tmux.conf; }
     echo " - ...INSTALLED .tmux.conf" >&2
   fi
 
@@ -404,8 +404,8 @@ _tmux() {
     echo " - found .tmuxinator, not installing" >&2
   else
     [[ "$EXPERIMENTAL" = "yes" ]] \
-     && { ln -s ${_SCRIPTDIR%bin}misc/tmuxinator ~/.tmuxinator; } \
-     || { ln -s ${SCRIPT_DIR%bin}misc/tmuxinator $HOME/.tmuxinator; }
+     && { ln -s ${_SCRIPTDIR%bin}comp.misc/tmuxinator ~/.tmuxinator; } \
+     || { ln -s ${SCRIPT_DIR%bin}comp.misc/tmuxinator $HOME/.tmuxinator; }
     echo " - ...INSTALLED .tmuxinator" >&2
   fi
 }
@@ -485,7 +485,7 @@ install() {
     _zsh
   fi
 
-   _misc
+   _comp_misc
    _tmux
    _vim
 }
