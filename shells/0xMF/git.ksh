@@ -233,10 +233,10 @@ function psm {
       PROMPT_COMMAND="psm"
     else
       if [[ "$SHELL_PROMPT" = "$" ]]; then
-        PS1="$(parse_git_repo)$NOCOLOR\W $SHELL_PROMPT "
+        PS1="$YELLOW\W $(parse_git_repo)$WHITE$SHELL_PROMPT$NOCOLOR "
         PROMPT_COMMAND="psm"
       else
-        print "$(parse_git_repo)$NOCOLOR\W $SHELL_PROMPT "
+        print "$YELLOW\W $(parse_git_repo)$WHITE$SHELL_PROMPT$NOCOLOR "
         PS1='$(psm)'
       fi
     fi
