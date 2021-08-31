@@ -268,6 +268,26 @@ function psmm {
   fi
 }
 
+function psmw {
+  if [ "$shell" = "zsh" ]; then
+    eval "function precmd { PROMPT='$MAGENTA%%$NOCOLOR ' }"
+    WHITE="%{$fg_bold[white]%}"
+  else
+    if [ `id -u` -eq 0 ]; then
+      PS1="$RED#$NOCOLOR "
+      PROMPT_COMMAND="psmw"
+    else
+      if [[ "$SHELL_PROMPT" = "$" ]]; then
+        PS1="$YELLOW\W $NOCOLOR$SHELL_PROMPT "
+        PROMPT_COMMAND="psmw"
+      else
+        print "$YELLOW\W $NOCOLOR$SHELL_PROMPT "
+        PS1='$(psmw)'
+      fi
+    fi
+  fi
+}
+
 function gbruh {
   if [ -z "$1" ]; then
     echo "Usage: git push -u origin branch-name" >&2
