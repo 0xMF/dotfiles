@@ -224,19 +224,21 @@ function psd {
 }
 
 function psm {
-  [ "$shell" = "zsh" ] && { eval "function precmd { PROMPT='$MAGENTA%%$NOCOLOR ' }" ; return ; }
-  WHITE="%{$fg_bold[white]%}"
-
-  if [ `id -u` -eq 0 ]; then
-    PS1="$(parse_git_repo)$RED#$NOCOLOR "
-    PROMPT_COMMAND="psm"
+  if [ "$shell" = "zsh" ]; then
+    eval "function precmd { PROMPT='$MAGENTA%%$NOCOLOR ' }"
+    WHITE="%{$fg_bold[white]%}"
   else
-    if [[ "$SHELL_PROMPT" = "$" ]]; then
-      PS1="$(parse_git_repo)$NOCOLOR$SHELL_PROMPT "
+    if [ `id -u` -eq 0 ]; then
+      PS1="$(parse_git_repo)$RED#$NOCOLOR "
       PROMPT_COMMAND="psm"
     else
-      print "$(parse_git_repo)$NOCOLOR$SHELL_PROMPT "
-      PS1='$(psm)'
+      if [[ "$SHELL_PROMPT" = "$" ]]; then
+        PS1="$(parse_git_repo)$NOCOLOR\W $SHELL_PROMPT "
+        PROMPT_COMMAND="psm"
+      else
+        print "$(parse_git_repo)$NOCOLOR\W $SHELL_PROMPT "
+        PS1='$(psm)'
+      fi
     fi
   fi
 }
@@ -244,6 +246,26 @@ function psm {
 function psm-no-git {
   PS1="$GREEN\h$WHITE:$YELLOW\W$WHITE\$$NOCOLOR "
   PROMPT_COMMAND=""
+}
+
+function psmm {
+  if [ "$shell" = "zsh" ]; then
+    eval "function precmd { PROMPT='$MAGENTA%%$NOCOLOR ' }"
+    WHITE="%{$fg_bold[white]%}"
+  else
+    if [ `id -u` -eq 0 ]; then
+      PS1="$RED#$NOCOLOR "
+      PROMPT_COMMAND="psmm"
+    else
+      if [[ "$SHELL_PROMPT" = "$" ]]; then
+        PS1="$NOCOLOR$SHELL_PROMPT "
+        PROMPT_COMMAND="psmm"
+      else
+        print "$NOCOLOR$SHELL_PROMPT "
+        PS1='$(psmm)'
+      fi
+    fi
+  fi
 }
 
 function gbruh {
