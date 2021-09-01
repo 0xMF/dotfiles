@@ -71,6 +71,7 @@ alias gnupg='gpg'
 alias mvi='mv -i'
 alias pg='vi -R'
 alias rehash='hash -r'
+alias reload='0xMF-reload'
 alias reset='reset -e ^?'
 alias vi='vim'
 
