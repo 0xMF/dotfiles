@@ -22,13 +22,21 @@ alias tmux='tmux -u'
 alias http-serve="serve"
 
 function 0xMF-reload {
-  if [ -d ~/.$(basename $SHELL)/0xMF ]; then
-    for f in ~/.$(basename $SHELL)/0xMF/*
+  local shell=$(basename $SHELL)
+  if [ -d ~/.${shell}/0xMF ]; then
+    for f in ~/.${shell}/0xMF/*
     do
-       [[ -s "$f" ]] && source $f
+      case ${shell} in
+        "ksh" ) [[ -s "$f" ]] && . $f ;;
+        * )     [[ -s "$f" ]] && source $f
+      esac
     done
   fi
-  source ~/.$(basename $SHELL)rc
+  case ${shell} in
+    "ksh" ) [[ -s "$f" ]] && . ~/.${shell}rc ;;
+    * )     [[ -s "$f" ]] && source ~/.${shell}rc
+  esac
+  unset shell
 }
 
 function serve {
