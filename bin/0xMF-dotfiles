@@ -30,29 +30,29 @@ help() {
   >&2 echo "installs $installer without overwriting existing files, directories, or links"
   >&2 echo
   >&2 echo "Usage: $installer install [OPTIONS] where supported OPTIONS are:"
-  >&2 echo "        [ none | empty string ] (default) --minimal --with-emacs"
+  >&2 echo "        [ none (default install) ] --minimal --with-emacs"
   >&2 echo
   >&2 echo " $installer on Linux: default install Bash and all but 0xMF/emacs.d"
-  >&2 echo "        [bash,config,git,lisp,misc,pal,ruby,tmux,vim,zsh]"
+  >&2 echo "        [bash,comp.misc,config,git,lisp,pal,profile,ruby,tmux,vim,zsh]"
   >&2 echo
   >&2 echo "    --minimal: a minimal setup for a typical Linux (bash+vim) server"
   >&2 echo "        [bash,git,misc,tmux,vim]"
   >&2 echo
   >&2 echo "    --with-emacs: installs everything including Emacs"
-  >&2 echo "        [bash,config,emacs,git,lisp,misc,pal,ruby,tmux,vim,zsh]"
+  >&2 echo "        [bash,comp.misc,config,emacs,git,lisp,pal,ruby,tmux,vim,zsh]"
   >&2 echo
   >&2 echo "    --with-emacs --minimal: install for Linux server with Emacs"
   >&2 echo "        [bash,emacs,git,misc,tmux,vim]"
   >&2 echo
   >&2 echo " $installer on OpenBSD: default install ksh and all but 0xMF/emacs.d"
-  >&2 echo "        [git,ksh,lisp,misc,pal,ruby,tmux,vim,zsh]"
+  >&2 echo "        [comp.misc,git,ksh,lisp,pal,ruby,tmux,vim,zsh]"
   >&2 echo
   >&2 echo "    --minimal: a minimal setup for an OpenBSD (ksh+vim) server"
-  >&2 echo "        [git,ksh,misc,vim]"
+  >&2 echo "        [comp.misc,git,ksh,vim]"
   >&2 echo
   >&2 echo "  when run on OpenBSD (ksh shell)"
   >&2 echo "    --with-emacs installs both ksh and emacs"
-  >&2 echo "        [emacs,git,ksh,misc,vim]"
+  >&2 echo "        [comp.misc,emacs,git,ksh,vim]"
   >&2 echo
   >&2 echo "  -h | --help: this message"
   >&2 echo
@@ -316,7 +316,7 @@ _lisp() {
 
 # comp.misc
 _comp_misc() {
-  echo "checking comp.misc dotfiles..." >&2
+  echo "checking comp.misc..." >&2
 
   if [[ -e $HOME/.inputrc || -L $HOME/.inputrc ]]; then
     echo " - found .inputrc, not installing" >&2
@@ -472,32 +472,45 @@ die() {
 }
 
 install() {
-
   check_args "$@" || die "$@"
   check_installer_shell
 
+  [ "$EXPERIMENTAL" != "yes" ] && _bash
+
+  _comp_misc
+  _config_misc
+
   [ "$W_EMACS" = "--with-emacs" ] && _emacs
 
-   _profile
-   _git
+  _git
 
-  if [ "$EXPERIMENTAL" = "yes" ]; then
-    _ksh
-  else
-    _bash
-  fi
+  [ "$EXPERIMENTAL" == "yes" ] && _ksh
 
-  if [ "$MINIMAL" != "--minimal" ]; then
-    _config_misc
-    _lisp
-    _pal
-   _ruby
-    _zsh
-  fi
+  _lisp
+  _pal
+  _profile
+  _ruby
+  _tmux
+  _vim
+  _zsh
+}
 
-   _comp_misc
-   _tmux
-   _vim
+install_minimal() {
+  check_args "$@" || die "$@"
+  check_installer_shell
+
+  [ "$EXPERIMENTAL" != "yes" ] && _bash
+
+  _comp_misc
+
+  [ "$W_EMACS" = "--with-emacs" ] && _emacs
+
+  _git
+
+  [ "$EXPERIMENTAL" == "yes" ] && _ksh
+
+  _tmux
+  _vim
 }
 
 if [ -z "$1" ]; then
@@ -507,8 +520,9 @@ if [ -z "$1" ]; then
 else
   if [ "$1" = "install" ]; then
     shift
-    if [ -z "$1" ] || [ "$1" = "--minimal" ] || [ "$1" = "--with-emacs" ]; then
-      install "$@"
+    [ -z "$1" ] && install
+    if [ "$1" = "--minimal" ] || [ "$1" = "--with-emacs" ]; then
+      install_minimal
     else
       die "$@"
     fi
