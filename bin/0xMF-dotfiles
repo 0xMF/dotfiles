@@ -74,17 +74,18 @@ check_installer_shell() {
       read EXPERIMENTAL
       [ "$EXPERIMENTAL" != "yes" ] && exit 1
    else
-      [ "$MY_SHELL" = "ksh" ] && return
+      if [[ "$MY_SHELL" != "ksh" && "$MY_SHELL" != "sh" ]]; then
 
-      >&2 echo "The shell used to run this script was: $MY_SHELL"
-      >&2 echo
-      >&2 echo "ERROR: $installer installation was tested using #!/bin/bash and #!/bin/ksh"
-      >&2 echo
-      >&2 echo "you could try running this script with:"
-      >&2 echo "   bash path/to/$installer"
-      >&2 echo "   ksh  path/to/$installer"
-      >&2 echo
-      exit 1
+        >&2 echo "The shell used to run this script was: $MY_SHELL"
+        >&2 echo
+        >&2 echo "ERROR: $installer installation was tested using #!/bin/bash and #!/bin/ksh"
+        >&2 echo
+        >&2 echo "you could try running this script with:"
+        >&2 echo "   bash path/to/$installer"
+        >&2 echo "   ksh  path/to/$installer"
+        >&2 echo
+        exit 1
+     fi
     fi
   fi
 
@@ -472,16 +473,22 @@ die() {
 }
 
 install() {
-  [ "$EXPERIMENTAL" != "yes" ] && _bash
+  if [ "$(basename $SHELL)" = "bash" ]; then
+    _bash
+  fi
 
   _comp_misc
   _config_misc
 
-  [ "$W_EMACS" = "--with-emacs" ] && _emacs
+  if [ "$W_EMACS" = "--with-emacs" ]; then
+    _emacs
+  fi
 
   _git
 
-  [ "$EXPERIMENTAL" == "yes" ] && _ksh
+  if [ "$(basename $SHELL)" = "ksh" ]; then
+    _ksh
+  fi
 
   _lisp
   _pal
@@ -489,40 +496,50 @@ install() {
   _ruby
   _tmux
   _vim
-  _zsh
+
+  if [[ "$(basename $SHELL)" != "ksh" && "$(basename $SHELL)" != "bash" ]]; then
+    _zsh
+  fi
 }
 
 install_minimal() {
-  [ "$EXPERIMENTAL" != "yes" ] && _bash
+  if [ "$(basename $SHELL)" = "bash" ]; then
+    _bash
+  fi
 
   _comp_misc
 
-  [ "$W_EMACS" = "--with-emacs" ] && _emacs
+  if [ "$W_EMACS" = "--with-emacs" ]; then
+    _emacs
+  fi
 
   _git
 
-  [ "$EXPERIMENTAL" == "yes" ] && _ksh
+  if [ "$(basename $SHELL)" = "ksh" ]; then
+    _ksh
+  fi
 
   _tmux
   _vim
 }
 
+check_installer_shell
 if [ -z "$1" ]; then
-  check_installer_shell
   help
   >&2 echo "ERROR!!! Missing command: install"
 else
   if [ "$1" = "install" ]; then
     shift
-    check_args "$@" || die "$@"
     if [ -z "$1" ] || [ "$1" != "--minimal" ] || [ "$1" = "--with-emacs" ]; then
       install
-    elif [ -z "$1" ] || [ "$1" = "--minimal" ]; then
-      install_minimal
+    else
+      if [ -n "$1" ] && [ "$1" = "--minimal" ]; then
+        install_minimal
+      else
+        help
+        die "$@"
+      fi
     fi
-  else
-    help
-    die "$@"
   fi
 fi
 

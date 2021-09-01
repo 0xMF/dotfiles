@@ -64,6 +64,7 @@ function serve {
 
     d=`dirs | tr ' ' '\n' | wc -l`
     [[ $d -ne $dirs ]] && popd
+  unset port
 }
 
 function 0xMF-cv {
@@ -367,6 +368,13 @@ function m4a2mp3 {
 }
 
 function 0xMF-links {
+  local shell=$(basename $SHELL)
   local path=$([ -z "$1" ] && echo "." || echo "$@")
-  eval "/usr/bin/find ${path} -type l -exec /bin/ls -ld --color=always {} \;"
+
+  if [ "$shell" = "ksh" ]; then
+    eval "/usr/bin/find ${path} -type l -exec /bin/ls -ld {} \;"
+  else
+    eval "/usr/bin/find ${path} -type l -exec /bin/ls -ld --color=always {} \;"
+  fi
+  unset shell
 }
