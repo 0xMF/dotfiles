@@ -472,9 +472,6 @@ die() {
 }
 
 install() {
-  check_args "$@" || die "$@"
-  check_installer_shell
-
   [ "$EXPERIMENTAL" != "yes" ] && _bash
 
   _comp_misc
@@ -496,9 +493,6 @@ install() {
 }
 
 install_minimal() {
-  check_args "$@" || die "$@"
-  check_installer_shell
-
   [ "$EXPERIMENTAL" != "yes" ] && _bash
 
   _comp_misc
@@ -520,14 +514,15 @@ if [ -z "$1" ]; then
 else
   if [ "$1" = "install" ]; then
     shift
-    [ -z "$1" ] && install
-    if [ "$1" = "--minimal" ] || [ "$1" = "--with-emacs" ]; then
+    check_args "$@" || die "$@"
+    if [ -z "$1" ] || [ "$1" != "--minimal" ] || [ "$1" = "--with-emacs" ]; then
+      install
+    elif [ -z "$1" ] || [ "$1" = "--minimal" ]; then
       install_minimal
-    else
-      die "$@"
     fi
   else
     help
+    die "$@"
   fi
 fi
 
