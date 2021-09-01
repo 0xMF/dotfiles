@@ -587,7 +587,7 @@ function _gshow {
     case $# in
       0) git show --color=always HEAD~11..HEAD --minimal 2>/dev/null ;;
       1) if [ -s "$1" ]; then
-            git show $(git log "$1" | head -1 | cut -d\  -f2)
+            git show $(git log -n 3 --oneline "$1" | cut -d' ' -f1)
          else
             [[ $1 -eq 1 ]] \
              && git show --color=always HEAD~2..HEAD 2>/dev/null \
