@@ -102,5 +102,11 @@ export ZSH_COLORIZE_CHROMA_FORMATTER=terminal
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 #
-alias reload='0xMF-reload'
-reload
+
+if [ -d ~/.zsh/0xMF ]; then
+  alias reload='0xMF-reload'
+  for f in ~/.zsh/0xMF/*
+  do
+    [[ -s "$f" ]] && source "$f"
+  done
+fi
