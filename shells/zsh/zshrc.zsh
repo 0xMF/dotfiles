@@ -103,6 +103,7 @@ export ZSH_COLORIZE_CHROMA_FORMATTER=terminal
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 #
 
+# -- all 0xMF dotfiles settings
 if [ -d ~/.zsh/0xMF ]; then
   alias reload='0xMF-reload'
   for f in ~/.zsh/0xMF/*
