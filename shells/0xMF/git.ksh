@@ -586,9 +586,13 @@ function _gshow {
   then
     case $# in
       0) git show --color=always HEAD~11..HEAD --minimal 2>/dev/null ;;
-      1) [ $1 -eq 1 ] \
+      1) if [ -s "$1" ]; then
+            git show $(git log "$1" | head -1 | cut -d\  -f2)
+         else
+            [[ $1 -eq 1 ]] \
              && git show --color=always HEAD~2..HEAD 2>/dev/null \
-             || git show --color=always HEAD~$1      2>/dev/null ;;
+             || git show --color=always HEAD~$1      2>/dev/null
+         fi ;;
       *) n=$(( `echo $2` + 1 )); git show --color=always HEAD~$n..HEAD~$1 --minimal;;
     esac
 
