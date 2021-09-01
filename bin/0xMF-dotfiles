@@ -442,6 +442,16 @@ _zsh() {
   installed=
   echo "checking zsh..." >&2
 
+  # install .zsh if not present else do nothing
+  [[ -d $HOME/.zsh || -L $HOME/.zsh ]] && {
+    echo " - found .zsh/ not installing" >&2
+  } || {
+    installed="zsh/"
+    [[ "$EXPERIMENTAL" = "yes" ]] \
+      && { ln -s ${_SCRIPTDIR%bin}shells/zsh ~/.zsh; } \
+      || { ln -s ${SCRIPT_DIR%bin}shells/zsh $HOME/.zsh; }
+  }
+
   [[ -e $HOME/.zshrc || -L $HOME/.zshrc ]] && {
     echo " - found .zshrc, not installing" >&2
   } || {

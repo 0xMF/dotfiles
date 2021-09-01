@@ -102,5 +102,5 @@ export ZSH_COLORIZE_CHROMA_FORMATTER=terminal
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 #
-[[ -s ~/.zlocal.zsh ]] && source ~/.zlocal.zsh
-[[ -s ~/.bash/0xMF/git.ksh ]] && source ~/.bash/0xMF/git.ksh
+alias reload='0xMF-reload'
+reload

@@ -22,10 +22,12 @@ alias tmux='tmux -u'
 alias http-serve="serve"
 
 function 0xMF-reload {
-  for f in ~/.$(basename $SHELL)/0xMF/*
-  do
-    source $f
-  done
+  if [ -d ~/.$(basename $SHELL)/0xMF ]; then
+    for f in ~/.$(basename $SHELL)/0xMF/*
+    do
+       [[ -s "$f" ]] && source $f
+    done
+  fi
   source ~/.$(basename $SHELL)rc
 }
 
