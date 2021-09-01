@@ -21,6 +21,14 @@ alias wiwin-doc='sddoc'
 alias tmux='tmux -u'
 alias http-serve="serve"
 
+function 0xMF-reload {
+  for f in ~/.$(basename $SHELL)/0xMF/*
+  do
+    source $f
+  done
+  source ~/.$(basename $SHELL)rc
+}
+
 function serve {
 
   local port=2212

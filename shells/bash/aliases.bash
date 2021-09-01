@@ -104,6 +104,6 @@ fi
 alias 0xMF-doc-perl="0xMF-doc-pcre"
 alias pacdoc="0xMF-doc-pacman"
 alias vimdoc="0xMF-doc-vim"
-alias reload=". ~/.bashrc"
+alias reload="0xMF-reload"
 
 # vim:nospell:ft=sh:
