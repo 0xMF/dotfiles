@@ -111,3 +111,11 @@ if [ -d ~/.zsh/0xMF ]; then
     [[ -s "$f" ]] && source "$f"
   done
 fi
+
+if [[ -s ~/.zlocal.zsh ]]; then
+ source ~/.zlocal.zsh
+fi
+
+if [[ -s ~/.zsh/local.zsh ]]; then
+ source ~/.zsh/local.zsh
+fi
