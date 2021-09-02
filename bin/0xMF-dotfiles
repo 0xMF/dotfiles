@@ -1,5 +1,5 @@
-MINIMAL=
-W_EMACS=
+ALL=
+EMACS=
 
 EXPERIMENTAL="N"
 EMACS_D=${HOME}/.emacs.d
@@ -17,38 +17,37 @@ installer=$(basename $0)
 check_args() {
   for i in "$@"; do
     case "$i" in
-      "--minimal"     ) MINIMAL="--minimal"     ;;
-      "--with-emacs"  ) W_EMACS="--with-emacs"  ;;
-      "-h" | "--help" ) help; exit              ;;
-      *               ) die "$@"                ;;
+      "--all"         ) ALL="--all"           ;;
+      "--with-emacs"  ) EMACS="--with-emacs"  ;;
+      "-h" | "--help" ) help; exit            ;;
+      *               ) die "$@"              ;;
     esac
   done
 }
 
 help() {
   >&2 echo
-  >&2 echo "installs $installer without overwriting existing files, directories, or links"
   >&2 echo
   >&2 echo "Usage: $installer install [OPTIONS] where supported OPTIONS are:"
-  >&2 echo "        [ none (default install) ] --minimal --with-emacs"
+  >&2 echo "        [ none (default install) ] | --all | --with-emacs"
   >&2 echo
-  >&2 echo " $installer on Linux: default install Bash and all but 0xMF/emacs.d"
+  >&2 echo " Linux: default install is a minimal setup for Linux (bash+vim)"
+  >&2 echo "        [bash,comp.misc,git,tmux,vim]"
+  >&2 echo
+  >&2 echo "    --all: is everything except 0xMF/emacs.d"
   >&2 echo "        [bash,comp.misc,config,git,lisp,pal,profile,ruby,tmux,vim,zsh]"
   >&2 echo
-  >&2 echo "    --minimal: a minimal setup for a typical Linux (bash+vim) server"
-  >&2 echo "        [bash,git,misc,tmux,vim]"
+  >&2 echo "    --with-emacs: installs minimal plus 0xMF/emacs.d"
+  >&2 echo "        [bash,comp.misc,emacs,git,tmux,vim]"
   >&2 echo
-  >&2 echo "    --with-emacs: installs everything including Emacs"
+  >&2 echo "    --with-emacs --all: install Bash+all including 0xMF/emacs.d"
   >&2 echo "        [bash,comp.misc,config,emacs,git,lisp,pal,ruby,tmux,vim,zsh]"
   >&2 echo
-  >&2 echo "    --with-emacs --minimal: install for Linux server with Emacs"
-  >&2 echo "        [bash,emacs,git,misc,tmux,vim]"
-  >&2 echo
-  >&2 echo " $installer on OpenBSD: default install ksh and all but 0xMF/emacs.d"
-  >&2 echo "        [comp.misc,git,ksh,lisp,pal,ruby,tmux,vim,zsh]"
-  >&2 echo
-  >&2 echo "    --minimal: a minimal setup for an OpenBSD (ksh+vim) server"
+  >&2 echo " OpenBSD: default is a minimal setup for an OpenBSD (ksh+vim) server"
   >&2 echo "        [comp.misc,git,ksh,vim]"
+  >&2 echo
+  >&2 echo "    --all: install ksh and all but 0xMF/emacs.d"
+  >&2 echo "        [comp.misc,git,ksh,lisp,pal,ruby,tmux,vim,zsh]"
   >&2 echo
   >&2 echo "  when run on OpenBSD (ksh shell)"
   >&2 echo "    --with-emacs installs both ksh and emacs"
@@ -63,7 +62,8 @@ help() {
   >&2 echo "Version Control:     Git (default)"
   >&2 echo "Known Issues:"
   >&2 echo
-  >&2 echo "   $installer does not uninstall links, files, or directories created during install"
+  >&2 echo "   $installer DOES NOT OVERWRITE existing links, overwrite files, or directories"
+  >&2 echo "   and DOES NOT UNINSTALL files, directories, or links created from previous install"
   >&2 echo
 }
 
@@ -480,7 +480,7 @@ install() {
   _comp_misc
   _config_misc
 
-  if [ "$W_EMACS" = "--with-emacs" ]; then
+  if [ "$EMACS" = "--with-emacs" ]; then
     _emacs
   fi
 
@@ -509,7 +509,7 @@ install_minimal() {
 
   _comp_misc
 
-  if [ "$W_EMACS" = "--with-emacs" ]; then
+  if [ "$EMACS" = "--with-emacs" ]; then
     _emacs
   fi
 
@@ -527,19 +527,20 @@ check_installer_shell
 if [ -z "$1" ]; then
   help
   >&2 echo "ERROR!!! Missing command: install"
-else
-  if [ "$1" = "install" ]; then
-    shift
-    if [ -z "$1" ] || [ "$1" != "--minimal" ] || [ "$1" = "--with-emacs" ]; then
-      install
-    else
-      if [ -n "$1" ] && [ "$1" = "--minimal" ]; then
-        install_minimal
-      else
-        help
-        die "$@"
-      fi
-    fi
+  exit 1
+fi
+
+if [ "$1" = "install" ]; then
+  shift
+  if [[ -z "$1" ]]; then
+      install_minimal
+  else
+    check_args "$@"
+    case "$1" in
+      "--with-emacs" ) install_minimal ;;
+      "--all"        ) install ;;
+      *              ) die "$@";;
+    esac
   fi
 fi
 
