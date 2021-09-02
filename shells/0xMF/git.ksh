@@ -715,7 +715,7 @@ function glast {
 }
 
 function g {
-  aliases=$(git config --get-regexp alias.*|cut -d'.' -f2-|awk '{f=$1; $1=""; printf("%-15s %s\n", f, $0)}')
+  local aliases=$(git config --get-regexp "^alias.*"|cut -d'.' -f2-|awk '{f=$1; $1=""; printf("%-15s %s\n", f, $0)}')
   case "$1" in
     "alias"|"a")  echo "$aliases"|sort -bk2,2|less ;;
     "ar")         echo "$aliases"|sort -rbk2,2|less ;;
