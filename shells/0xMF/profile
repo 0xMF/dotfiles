@@ -1,7 +1,5 @@
 # ~/.profile: executed when login shell starts
 
-TERM=tmux-256color
-
 case "$(uname)" in
   Linux ) PATH=~/bin:~/.local/bin:/usr/bin:/usr/sbin:/bin:/sbin:/usr/local/bin:/usr/local/sbin ;;
   *     ) PATH=~/bin:/bin:/sbin:/usr/bin:/usr/sbin:/usr/local/bin:/usr/local/sbin ;;
@@ -13,4 +11,11 @@ case "$(basename $SHELL)" in
   *    ) [ -f ~/.zshenv ] && ENV=~/.zshenv ;;
 esac
 
+if [ $(tput colors) -eq 256 ];
+then
+  if [ -x $(whereis tmux | cut -d' ' -f2) ];
+  then
+    TERM=tmux-256color
+  fi
+fi
 export ENV HOME PATH TERM
