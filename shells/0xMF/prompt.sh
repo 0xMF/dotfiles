@@ -24,3 +24,10 @@ function pslight {
   export LS_COLORS
 }
 
+# always ensure extended globbing and expansion is on
+THIS_SHELL=`ps o command -p $$ | grep -v "^COMMAND$" | tr -d '-' | cut -d' ' -f1`
+if [  "${THIS_SHELL##/**/}" = "bash" ]; then
+  shopt -s extglob      # shopt -u extglob to unset (don't ask why)
+  shopt -s extquote
+fi
+
