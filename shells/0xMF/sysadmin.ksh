@@ -132,7 +132,7 @@ function pkg_locate {
 function ports {
   [ -z "$1" ] && echo "Usage: ports name" && return
   pushd /usr/ports > /dev/null
-  echo */*|tr ' ' '\n'|$GREP $1
+  echo */*|tr ' ' '\n'| \grep $1
   popd  > /dev/null
 }
 
