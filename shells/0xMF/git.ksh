@@ -44,7 +44,7 @@ GREP=$(if [ -s /bin/grep ]; then echo /bin/grep; else echo /usr/bin/grep; fi)
 
 function green {
   LS_COLORS="`echo $LS_COLORS|sed 's/di=0[01];3[0-9]/di=01;33/'`"
-  LS_COLORS="`echo $LS_COLORS|sed 's/ln=[01][01];3[0-9]/ln=00;32/'`"
+  LS_COLORS="`echo $LS_COLORS|sed 's/ln=[01][01];3[0-9]/ln=01;36/'`"
   LS_COLORS="`echo $LS_COLORS|sed 's/ex=0[01];3[0-9]/ex=01;32/'`"
   export LS_COLORS
   [ "$shell" = "zsh" ] &&  { 0xMF-zsh-prompt; return; }
