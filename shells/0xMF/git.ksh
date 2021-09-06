@@ -404,14 +404,15 @@ function old_parse_git_dirty {
 }
 
 # show all git aliases
-function gits {
+function galias {
   # get all git-aliases and git-functions; filter out non-git; sort
   {
     alias|sed 's/alias //' | $GREP '^g[a-zA-Z]'
-  } | sed -r '/(gpg|gvim|grep)/d'| sort | awk -F"'" '{printf("%8s %s\n",$1,$2)}'|less -E
-  echo
-  echo To see any expansion of the functions below use ghelp, example: ghelp amend
-  echo
+  } | sed -r '/(gpg|gvim|grep)/d'| sort | awk -F"'" '{printf("%8s %s\n",$1,$2)}' |less -E
+}
+
+# show all git functions
+function gfunctions {
   {
     d=$(declare -F | $GREP ' -f g[a-zA-Z]' |cut -d" " -f3)
     a=$(sed -r '/#/d;/^$/d;/^\[/d;s/ *=.*//' $HOME/.git/aliases.gitconfig)
@@ -419,6 +420,7 @@ function gits {
     echo $f|tr ' ' '\n'
   } |sort |fmt -w `tput cols`
   echo
+  echo To see the full expansion use ghelp, example: ghelp amend
 }
 
 function ghelp {
@@ -751,7 +753,9 @@ function gsts {
 }
 
 function gt {
-  git status 2&>/dev/null && [ $? -eq 0 ] && git tags | sort -n | fmt -w 110
+  if git status 2&>/dev/null; then 
+    git tags --list -n
+  fi
 }
 
 function contributors {
@@ -831,6 +835,7 @@ alias gri='git rebase --interactive'
 alias grbi='git rebase --interactive'
 alias gsh='gshow'
 alias gtype='git cat-file -t'
+alias gtags='git tag --list -n'
 alias gua='git update-index --assume-unchanged'
 alias guna='git update-index --no-assume-unchanged'
 alias gundo='git reset --soft HEAD~1'

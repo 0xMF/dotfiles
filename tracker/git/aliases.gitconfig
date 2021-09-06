@@ -75,6 +75,7 @@
   gstd      = stash drop
   gstp      = stash pop
   gsts      = stash show --text
+  gtags     = tag --list -n
   gunignore = update-index --no-assume-unchanged
 
   # 'gc!'    = commit -v --amend
@@ -101,9 +102,7 @@
   discard     = checkout --
   dump        = cat-file -p
   filetrail   = git log --color=always --follow -p -w
-  graph       = log --color=always --graph -10 --branches --remotes --tags\
-                    --format=format:'%Cgreen%h %Creset %<(75,trunc)%s (%cN, %ar) %Cred%d' --date-order
-
+  graph       = log --color=always --graph -10 --branches --remotes --tags --format=format:'%Cgreen%h %Creset %<(75,trunc)%s (%cN, %ar) %Cred%d' --date-order
   hist        = log --color=always -10 --format=format:'%Cgreen%h %Creset %s (%cN, %ar)'
   history     = log --color=always --pretty=format:'%C(red bold)%h%Creset %C(blue bold)%ad%C(red bold)%d %Creset%s%C(cyan) [%cn]' --graph --date=short
   hist-all    = log --color=always --pretty=format:'%C(cyan bold)%h%Creset | %C(red bold)%ad%Creset %d %Creset%s%Cgreen [%cn]' --date=short --follow
@@ -134,7 +133,7 @@
   shop-all    = log --color=always --follow -p
   stashes     = stash list
   summary     = status -u -s
-  tags        = tag
+  tags        = tag --list -n
   type        = cat-file -t
   uncommit    = reset --mixed HEAD~
   undo        = reset --soft HEAD~1
