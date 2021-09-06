@@ -140,16 +140,31 @@ function pssc {
   fi
 }
 
+function pshw {
+  if [ `id -u` -eq 0 ]; then
+    PS1="$RED\h:\W $(parse_git_repo)$RED#$NOCOLOR "
+    PROMPT_COMMAND="pshw"
+  else
+    if [[ "$SHELL_PROMPT" = "$" ]]; then
+      PS1="$PURPLE\h:$CYAN\W $(parse_git_repo)$NOCOLOR$SHELL_PROMPT "
+      PROMPT_COMMAND="pshw"
+    else
+      print "$PURPLE\h:$CYAN\W $(parse_git_repo)$NOCOLOR$SHELL_PROMPT "
+      PS1='$(pshw)'
+    fi
+  fi
+}
+
 function psh {
   if [ `id -u` -eq 0 ]; then
     PS1="$RED\h:\W $(parse_git_repo)$RED#$NOCOLOR "
     PROMPT_COMMAND="psh"
   else
     if [[ "$SHELL_PROMPT" = "$" ]]; then
-      PS1="$PURPLE\h:$CYAN\W $(parse_git_repo)$NOCOLOR$SHELL_PROMPT "
+      PS1="$PURPLE\h$CYAN:$(parse_git_repo)$NOCOLOR$SHELL_PROMPT "
       PROMPT_COMMAND="psh"
     else
-      print "$PURPLE\h:$CYAN\W $(parse_git_repo)$NOCOLOR$SHELL_PROMPT "
+      print "$PURPLE\h$CYAN:$(parse_git_repo)$NOCOLOR$SHELL_PROMPT "
       PS1='$(psh)'
     fi
   fi
