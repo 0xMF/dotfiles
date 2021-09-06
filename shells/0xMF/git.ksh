@@ -351,6 +351,8 @@ function parse_git_dirty {
       else
         echo $changed
       fi
+  unset local
+  unset changed
 }
 
 function old_parse_git_dirty {
@@ -401,6 +403,11 @@ function old_parse_git_dirty {
       echo $changed
     fi
   fi
+
+  unset large_repos
+  unset changed
+  unset unchanged
+  unset sts_skip
 }
 
 # show all git aliases
@@ -597,18 +604,34 @@ function ghd {
   fi
 }
 
-# if $1 is 1 'git show HEAD' otherwise 'git show $1'
+# worker function for gshow:
+#     no arguments  = show last 10 commits
+#    one argument   =
+#        argument given was a file in git then show last 3 changes to that file
+#        argument given was a git object (like tag|commit|tree|blob), then show it
+#        argument given was a number then show HEAD if argument was 1 otherwise show HEAD~n
+#    otherwise consider two arguments given as two commit hashes and show commits between them
 function _gshow {
   if _is_git_repo -eq 0
   then
     case $# in
+      # no arguments means show last 10 commits
       0) git show --color=always HEAD~11..HEAD --minimal 2>/dev/null ;;
+
+      # we got one argument, show last 3 commits if that is a file
       1) if [ -s "$1" ]; then
             git show $(git log -n 3 --oneline "$1" | cut -d' ' -f1)
          else
-            [[ $1 -eq 1 ]] \
-             && git show --color=always HEAD~2..HEAD 2>/dev/null \
-             || git show --color=always HEAD~$1      2>/dev/null
+            # not a file, is it a git object type
+            local type=$(git cat-file -t $1)
+            if [[ "$type" = "commit" || "$type" = "tag" || "$type" = "tree" || "$type" = "blob" ]]; then
+              git show $1
+            else
+              [[ $1 -eq 1 ]] \
+                && git show --color=always HEAD~1..HEAD 2>/dev/null \
+                || git show --color=always HEAD~$1      2>/dev/null
+            fi
+            unset type
          fi ;;
       *) n=$(( `echo $2` + 1 )); git show --color=always HEAD~$n..HEAD~$1 --minimal;;
     esac
@@ -738,6 +761,7 @@ function g {
     "ar")         echo "$aliases"|sort -rbk2,2|less ;;
     *)            git "$@" ;;
   esac
+  unset aliases
 }
 
 
@@ -753,7 +777,7 @@ function gsts {
 }
 
 function gt {
-  if git status 2&>/dev/null; then 
+  if git status 2&>/dev/null; then
     git tags --list -n
   fi
 }
