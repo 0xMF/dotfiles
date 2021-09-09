@@ -624,8 +624,8 @@ function _gshow {
     done
     case $# in
       # no arguments means show last 10 commits
-      0) git show ${opts}  --date=short --pretty=format:"%C(red bold)%h%Creset %C(blue bold)%ad%Creset %C(cyan bold)|%Creset %C(auto)%d%Creset %s" \
-              HEAD~10..HEAD --dirstat=files,cumulative 2>/dev/null
+      0) git log --color=always -10 --graph --pretty=format:"%C(red bold)%h%Creset %C(cyan bold)|%Creset %C(auto)%d%Creset %s"
+         git diff --stat HEAD~10 HEAD
          echo -ne "\nShow last 10 commit details? (y/N) "; read key
          if [[ "$key" = "y" || "$key" = "Y" ]]; then
           git show ${opts} HEAD~10..HEAD --minimal 2>/dev/null
@@ -649,10 +649,12 @@ function _gshow {
          fi ;;
       *) if [[ $2 -gt $1 ]]; then
             n=$(( $(echo $2) + 1 ))
-            git show ${opts} HEAD~$n..HEAD~$1 --oneline --dirstat=files,cumulative 2>/dev/null
+            git log ${opts} HEAD~$n..HEAD~$1 --pretty=format:"%C(red bold)%h%Creset %C(cyan bold)|%Creset %C(auto)%d%Creset %s" 2>/dev/null
+            git diff --stat HEAD~$n..HEAD~$1 
          else
             if [[ $1 -gt $2 ]]; then
-              git show ${opts} HEAD~$1..HEAD~$2 --oneline --dirsta=files,cumulative 2>/dev/null
+              git log ${opts} HEAD~$(($1 + 1))..HEAD~$2 --pretty=format:"%C(red bold)%h%Creset %C(cyan bold)|%Creset %C(auto)%d%Creset %s" 2>/dev/null
+              git diff --stat HEAD~$(($1 + 1))..HEAD~$2
             fi
          fi;;
     esac
