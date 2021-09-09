@@ -618,8 +618,13 @@ function _gshow {
     for a in "$@"
     do
       if [[ "$a" = --* ]]; then
+        if [[ "$a" != "--help" ]]; then
          opts="$a $opts"
          shift
+        else
+          man git-show
+          return
+        fi
       fi
     done
     case $# in
@@ -645,25 +650,33 @@ function _gshow {
             if [[ "$type" = "commit" || "$type" = "tag" || "$type" = "tree" || "$type" = "blob" ]]; then
               eval "git show ${opts} $1"
             else
-              [[ $1 -lt 2 ]] \
-                && git show ${opts} HEAD~1..HEAD    2>/dev/null \
-                || git show ${opts} HEAD~$(($1-1))  2>/dev/null
+              if [[ $1 != [[:alpha:]]* ]]; then
+                [[ $1 -lt 2 ]] \
+                  && git show ${opts} HEAD~1..HEAD    2>/dev/null \
+                  || git show ${opts} HEAD~$(($1-1))  2>/dev/null
+              else
+                echo "did not understand... $1"
+              fi
             fi
             unset type
          fi ;;
-      *) if [[ $2 -gt $1 ]]; then
-            n=$(( $(echo $2) + 1 ))
-            git log ${opts} HEAD~$n..HEAD~$1 --pretty=format:"%C(red bold)%h%Creset %C(cyan bold)|%Creset %C(auto)%d%Creset %s" 2>/dev/null
-            git diff --stat HEAD~$n..HEAD~$1
-         else
-            if [[ $1 -gt $2 ]]; then
-              git log ${opts} HEAD~$(($1 + 1))..HEAD~$2 --pretty=format:"%C(red bold)%h%Creset %C(cyan bold)|%Creset %C(auto)%d%Creset %s" 2>/dev/null
-              git diff --stat HEAD~$(($1 + 1))..HEAD~$2
+      *) if  [[ $1 -gt 0 && $2 -gt 0 ]]; then
+              if [[ $2 -gt $1 ]]; then
+              n=$(( $(echo $2) + 1 ))
+              git log ${opts} HEAD~$n..HEAD~$1 --pretty=format:"%C(red bold)%h%Creset %C(cyan bold)|%Creset %C(auto)%d%Creset %s" 2>/dev/null
+              git diff --stat HEAD~$n..HEAD~$1
+            else
+              if [[ $1 -gt $2 ]]; then
+                git log ${opts} HEAD~$(($1 + 1))..HEAD~$2 --pretty=format:"%C(red bold)%h%Creset %C(cyan bold)|%Creset %C(auto)%d%Creset %s" 2>/dev/null
+                git diff --stat HEAD~$(($1 + 1))..HEAD~$2
+              fi
             fi
+          else
+            echo "did not understand... $*"
          fi;;
     esac
 
-    # unknown error, probably a SHA1, so git show $1
+    # unknown error, probably a SHA1s, so git show $1
     [ $? -ne 0 ] && eval "git show ${opts} $1"
   fi
   unset opts
