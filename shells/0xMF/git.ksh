@@ -624,7 +624,7 @@ function _gshow {
     done
     case $# in
       # no arguments means show last 10 commits
-      0) git log ${opts} -10 --graph --pretty=format:"%C(red bold)%h%Creset %C(cyan bold)|%Creset %C(auto)%d%Creset %s"
+      0) git log ${opts} -10 --graph --pretty=format:"%C(red bold)%h%Creset %C(cyan bold)|%Creset %C(blue bold)%ad%Creset %C(cyan bold)|%Creset %C(auto)%d%Creset %s" --date=short
          git diff --stat HEAD~10 HEAD
          echo -ne "\nShow last 10 commit details? (y/N) "; read key
          if [[ "$key" = "y" || "$key" = "Y" ]]; then
@@ -634,7 +634,11 @@ function _gshow {
 
       # we got one argument, show last 3 commits if that is a file
       1) if [ -s "$1" ]; then
-            git show ${opts} $(git log -n 3 --oneline "$1" | cut -d' ' -f1)
+            git log ${opts} --graph --pretty=format:"%C(red bold)%h%Creset %C(cyan bold)|%Creset %C(blue bold)%ad%Creset %C(cyan bold)|%Creset %C(auto)%d%Creset %s" --date=short "$1"
+            echo -ne "\nShow last 10 commit details? (y/N) "; read key
+            if [[ "$key" = "y" || "$key" = "Y" ]]; then
+              git show ${opts} $(git log -n 3 --oneline "$1" | cut -d' ' -f1)
+            fi
          else
             # not a file, is it a git object type
             local type=$(git cat-file -t $1 2>/dev/null)
@@ -650,7 +654,7 @@ function _gshow {
       *) if [[ $2 -gt $1 ]]; then
             n=$(( $(echo $2) + 1 ))
             git log ${opts} HEAD~$n..HEAD~$1 --pretty=format:"%C(red bold)%h%Creset %C(cyan bold)|%Creset %C(auto)%d%Creset %s" 2>/dev/null
-            git diff --stat HEAD~$n..HEAD~$1 
+            git diff --stat HEAD~$n..HEAD~$1
          else
             if [[ $1 -gt $2 ]]; then
               git log ${opts} HEAD~$(($1 + 1))..HEAD~$2 --pretty=format:"%C(red bold)%h%Creset %C(cyan bold)|%Creset %C(auto)%d%Creset %s" 2>/dev/null
