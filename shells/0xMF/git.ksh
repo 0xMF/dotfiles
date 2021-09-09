@@ -624,7 +624,7 @@ function _gshow {
     done
     case $# in
       # no arguments means show last 10 commits
-      0) git log --color=always -10 --graph --pretty=format:"%C(red bold)%h%Creset %C(cyan bold)|%Creset %C(auto)%d%Creset %s"
+      0) git log ${opts} -10 --graph --pretty=format:"%C(red bold)%h%Creset %C(cyan bold)|%Creset %C(auto)%d%Creset %s"
          git diff --stat HEAD~10 HEAD
          echo -ne "\nShow last 10 commit details? (y/N) "; read key
          if [[ "$key" = "y" || "$key" = "Y" ]]; then
