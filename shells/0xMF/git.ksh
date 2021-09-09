@@ -612,33 +612,55 @@ function ghd {
 #        argument given was a number then show HEAD if argument was 1 otherwise show HEAD~n
 #    otherwise consider two arguments given as two commit hashes and show commits between them
 function _gshow {
+  local opts="--color=always"
   if _is_git_repo -eq 0
   then
+    for a in "$@"
+    do
+      if [[ "$a" = --* ]]; then
+         opts="$a $opts"
+         shift
+      fi
+    done
     case $# in
       # no arguments means show last 10 commits
-      0) git show --color=always HEAD~11..HEAD --minimal 2>/dev/null ;;
+      0) git show ${opts}  --date=short --pretty=format:"%C(red bold)%h%Creset %C(blue bold)%ad%Creset %C(cyan bold)|%Creset %C(auto)%d%Creset %s" \
+              HEAD~10..HEAD --dirstat=files,cumulative 2>/dev/null
+         echo -ne "\nShow last 10 commit details? (y/N) "; read key
+         if [[ "$key" = "y" || "$key" = "Y" ]]; then
+          git show ${opts} HEAD~10..HEAD --minimal 2>/dev/null
+         fi
+        ;;
 
       # we got one argument, show last 3 commits if that is a file
       1) if [ -s "$1" ]; then
-            git show $(git log -n 3 --oneline "$1" | cut -d' ' -f1)
+            git show ${opts} $(git log -n 3 --oneline "$1" | cut -d' ' -f1)
          else
             # not a file, is it a git object type
-            local type=$(git cat-file -t $1)
+            local type=$(git cat-file -t $1 2>/dev/null)
             if [[ "$type" = "commit" || "$type" = "tag" || "$type" = "tree" || "$type" = "blob" ]]; then
-              git show $1
+              eval "git show ${opts} $1"
             else
-              [[ $1 -eq 1 ]] \
-                && git show --color=always HEAD~1..HEAD 2>/dev/null \
-                || git show --color=always HEAD~$1      2>/dev/null
+              [[ $1 -lt 2 ]] \
+                && git show ${opts} HEAD~1..HEAD    2>/dev/null \
+                || git show ${opts} HEAD~$(($1-1))  2>/dev/null
             fi
             unset type
          fi ;;
-      *) n=$(( `echo $2` + 1 )); git show --color=always HEAD~$n..HEAD~$1 --minimal;;
+      *) if [[ $2 -gt $1 ]]; then
+            n=$(( $(echo $2) + 1 ))
+            git show ${opts} HEAD~$n..HEAD~$1 --oneline --dirstat=files,cumulative 2>/dev/null
+         else
+            if [[ $1 -gt $2 ]]; then
+              git show ${opts} HEAD~$1..HEAD~$2 --oneline --dirsta=files,cumulative 2>/dev/null
+            fi
+         fi;;
     esac
 
     # unknown error, probably a SHA1, so git show $1
-    [ $? -ne 0 ] && git show --color=always $1
+    [ $? -ne 0 ] && eval "git show ${opts} $1"
   fi
+  unset opts
 }
 
 # if $1 contains alphabets (HEAD,SHA1 commits) 'git show $1' otherwise call _gshow
@@ -676,7 +698,7 @@ function glearn {
   TFILE=/tmp/glearn
 
   if [ ! -z "$1" ]; then
-    cat /dev/null > /tmp/glearn
+    cat /dev/null > ${TFILE}
     man -k git|$GREP --color=none -iw git|$GREP "(7)" | $GREP "$@" | tee -a $TFILE
     man -k git|$GREP --color=none -iw git|$GREP "(5)" | $GREP "$@" | tee -a $TFILE
     man -k git|$GREP --color=none -iw git|$GREP "([^157])" | $GREP "$@" | tee -a $TFILE
@@ -708,7 +730,7 @@ function glearn {
       man -k git|$GREP  -w git|$GREP "(1)"|sed 's/\(.*\) - \(.*\)/\2 : \1/'|sort| \
           awk -F':' '{printf ("%-80s %s\n", $1,$2)}'|less
   fi
-  rm -f $TFILE
+  rm -f ${TFILE}
 }
 
 # serve up git man-pages
