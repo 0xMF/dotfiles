@@ -522,7 +522,7 @@ function __gdh {
   if _is_git_repo -eq 0
   then
     n=${1:--10}
-    git log --color=always -$n --graph --date=short \
+    git log --color=always $n --graph --date=short \
       --pretty=format:"%C(red bold)%h%Creset %C(blue bold)%ad%Creset %C(cyan bold)|%Creset %C(auto)%d%Creset %s"
   fi
 }
@@ -578,7 +578,7 @@ function gh {
 function gha {
   if _is_git_repo -eq 0
   then
-   eval ` [ -z "$1" ] && echo __gh || echo __gdh ` --all
+   eval $([ -z "$1" ] && echo __gh || echo __gdh ) --all
   fi
 }
 
@@ -626,7 +626,7 @@ function _gshow {
       # no arguments means show last 10 commits
       0) git log ${opts} -10 --graph --pretty=format:"%C(red bold)%h%Creset %C(cyan bold)|%Creset %C(blue bold)%ad%Creset %C(cyan bold)|%Creset %C(auto)%d%Creset %s" --date=short
          git diff --stat HEAD~10 HEAD
-         echo -ne "\nShow last 10 commit details? (y/N) "; read key
+         echo -ne "\nShow details of last 10 commits? (y/N) "; read key
          if [[ "$key" = "y" || "$key" = "Y" ]]; then
           git show ${opts} HEAD~10..HEAD --minimal 2>/dev/null
          fi
