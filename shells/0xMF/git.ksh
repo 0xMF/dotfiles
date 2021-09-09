@@ -710,8 +710,7 @@ function glearn {
     man -k git|$GREP --color=none -iw git|$GREP "([^157])" | $GREP "$@" | tee -a $TFILE
 
     if [[ `wc -l $TFILE|awk '{print $1}'` -eq 1 ]]; then
-      echo
-      read -p 'Show man page? (Y/y/q): ' key
+      echo -n "Show man page? (Y/q) ";  read key
       [[ "$key" = "q" || "$key" = "Q" ]] && return
       man `awk '{print $1}' $TFILE|sed 's/([0-9])//'`
     fi
@@ -723,8 +722,7 @@ function glearn {
     man -k git|$GREP --color=none -iw git|$GREP --color "^[^:]*([^157])"
     # check if tty
     if [ -t 0 ]; then
-      echo
-      read -p 'Any key to continue or q to quit: ' key
+      echo -n "Any key to continue or q to quit: "; read key
       [[ "$key" = "q" || "$key" = "Q" ]] && return
     fi
   fi
