@@ -848,66 +848,95 @@ function git-use-0xMF {
 # git based aliases
 #hub >/dev/null 2>&1
 #[ $? -eq  0 ] && alias git='hub'
+
+alias g='git'
+
 alias ga='git add'
 alias gaa='git add --all'
 alias gam='git am'
 alias game='git amend'
 alias gamen='git amend'
 alias gamend='git amend'
+
 alias gbr='git branch'
 alias gbrn='git rev-parse --abbrev-ref HEAD'
+
 alias gc='git commit -v'
-alias gca='git commit -v -a -t ~/.git/commit.txt'
+alias gca='git commit -v -a'
+alias gcac='git commit -v -a -t ~/.git/commit.txt'
 alias gcam='git commit -am'
 alias gcb='git checkout'
 alias gcf='git add .;git commit --fixup'
-#alias gci='git commit'
+alias gci='git commit'
 alias gcm='git checkout master'
 alias gcmsg='git commit -m'
 alias gco='git checkout'
 alias gcs='git add .;git commit --squash'
+
+alias gd='git diff'
+alias gdiff='git diff'
 alias gdump='git cat-file -p'
+
 alias gfr='git fetch;git rebase remotes/origin/master'
+
 alias ghe='ghelp'
 alias ghista='ghist-all'
 alias ghumans="ghuman|sort -t'=' -k2 |cut -c1-120"
-alias g1='git log --color=always -p -1'
+
+alias gin='git log --color=always origin/master ^master'
+
 alias gl='git pull'
-alias gla='git log --color=always -p --all'
-alias glar='git log --color=always -p --all --reverse'
-alias glf='git log --color=always -p --follow'
-alias glog='git log --color=always -p'
+#alias g1='git log --color=always -p -1'
+alias gld='git log --color=always --decorate --abbrev-commit --date=short --pretty=format:"%C(red bold)%h%Creset %C(dim green)%ad%Creset %C(cyan bold)|%Creset %s"'
+alias glg='git log --color=always -p --all'
+alias glgr='git log --color=always -p --all --reverse'
+alias glgd='git log --color=always --decorate --abbrev-commit --date=short --pretty=format:"%C(red bold)%h%Creset %C(cyan bold)|%Creset %C(auto)%d%Creset%s"'
+alias glgf='git log --color=always -p --follow'
+alias glgp='git log -p'
+alias glgs='git log --stat'
+alias glog='git log --stat'
+alias glogp='git log --color=always -p'
+#alias glogs='git log --stat'
 alias glogs='git log --color=always --stat'
-#alias gld='git log --color=always --decorate --abbrev-commit --date=short --pretty=format:"%C(red bold)%h%Creset %C(dim green)%ad%Creset %C(cyan bold)|%Creset %s"'
-alias gld='git log --color=always --decorate --abbrev-commit --date=short --pretty=format:"%C(red bold)%h%Creset %C(cyan bold)|%Creset %C(auto)%d%Creset%s"'
-alias glol='gld --graph'
+alias glol='git log --graph --decorate --pretty=oneline --abbrev-commit'
 alias glola='gld --all --graph'
-alias glolar='gld --all --reverse'
+alias glolar='glola --reverse'
+#alias glola='git log --graph --decorate --pretty=oneline --abbrev-commit --all'
+#alias glolar='git log --decorate --pretty=oneline --abbrev-commit --all --reverse'
 alias glp='git log --color=always -p'
 alias gls='git ls-files'
 alias glum='git pull upstream master'
+
+alias gout='git log --color=always master ^origin/master'
+
 alias gp='git push'
 alias gpd='git push --dry-run'
 alias gpf='git push --force-with-lease'
-alias gpu='git push upstream'
-alias gpush='git push'
 alias gpot='git push origin --tags'
 alias gpr='git pull --rebase'
+alias gpu='git push upstream'
+alias gpush='git push'
+
+alias grbi='git rebase --interactive'
 alias gredo='gundo; gca -c ORIG_HEAD'
 alias gri='git rebase --interactive'
-alias grbi='git rebase --interactive'
+
 alias gsh='gshow'
-alias gtype='git cat-file -t'
+alias gst='git status'
+
 alias gtags='git tag --list -n'
+alias gtype='git cat-file -t'
+
 alias gua='git update-index --assume-unchanged'
 alias guna='git update-index --no-assume-unchanged'
 alias gundo='git reset --soft HEAD~1'
+
 alias gwc='git whatchanged -p --abbrev-commit --pretty=medium'
 
 alias incoming='git log --color=always origin/master ^master'
-alias gin='git log --color=always origin/master ^master'
 alias outgoing='git log --color=always master ^origin/master'
-alias gout='git log --color=always master ^origin/master'
+#alias incoming='git log orgin/master ^master'
+#alias outgoing='git log master ^orgin/master'
 
 
 git-use-0xMF
