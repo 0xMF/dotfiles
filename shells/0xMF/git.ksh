@@ -622,7 +622,7 @@ function _gshow {
          opts="$a $opts"
          shift
         else
-          man git-show
+          man git-show git-log git-diff
           return
         fi
       fi
