@@ -41,7 +41,8 @@ function eman {
     man -Tutf8 $1 | col -bx | sed -n '/^EXAMPLES/,/^[A-Z]/p' | sed -nr '/^(EXAMPLES| |$)/p' ) | less -FeqRSX
 }
 
-function sadu {
+alias sadu='0xMF-sysadmin-upgrade'
+function 0xMF-sysadmin-upgrade {
 
   os=$(uname)
 
@@ -81,7 +82,8 @@ function sadu {
   fi
 }
 
-function saru {
+alias saru='0xMF-sysadmin-remove-unused'
+function 0xMF-sysadmin-remove-unused {
   if [ "`uname`" = "Linux" ]; then
     distro=$(\grep -w ID /etc/os-release | cut -d= -f2 | tr -d '"')
     case "${distro}" in
@@ -98,12 +100,16 @@ function saru {
   fi
 }
 
-function pacsearch {
+alias pacsearch='0xMF-sysadmin-pacsearch'
+function 0xMF-sysadmin-pacsearch {
+  [ ! -s /usr/bin/pacman ] && { echo "not running on Arch"; return; }
   [ -z "$1" ] && { >&2 echo "Usage: pacsearch SEARCH_TERM"; return 1; }
-  pacman -Ss "$1" |  perl -pe 's/\n// if $. % 2 == 1' | sed 's/\t//g'
+  /usr/bin/pacman -Ss "$1" |  perl -pe 's/\n// if $. % 2 == 1' | sed 's/\t//g'
 }
 
-function apt {
+alias apt='0xMF-sysadmin-apt'
+function 0xMF-sysadmin-apt {
+  [ ! -s /usr/bin/apt ] && { echo "not running on Debian or its derivative"; return; }
     if [ "$1" = "info" ]; then
       shift
       /usr/bin/apt show "$@"
@@ -112,24 +118,38 @@ function apt {
     fi
 }
 
+function 0xMF-sysadmin-dpkg-get-selections {
+  dpkg-get-selections
+}
 function dpkg-get-selections {
-  dpkg --get-selections
+  /usr/bin/dpkg --get-selections
   >&2 echo
   >&2 echo -----------------------------
   >&2 echo Usage: dpkg --get-selections
   >&2 echo -----------------------------
 }
 
+function 0xMF-sysadmin-dpkg-list {
+ dpkg-list
+}
 function dpkg-list {
-  dpkg-query --list|awk -F' ' '{printf("%s\t%-32s\t",$1,substr($2,0,40));$1=$2=$3=$4=""; print $0}'
+  /usr/bin/dpkg-query --list|awk -F' ' '{printf("%s\t%-32s\t",$1,substr($2,0,40));$1=$2=$3=$4=""; print $0}'
 }
 
 function pkg_locate {
+  0xMF-sysadmin-pkg_locate "$@"
+}
+function 0xMF-sysadmin-pkg_locate {
+  [ ! -d /usr/ports ] && { echo "ports tree is not installed"; return; }
   [ -z "$1" ] && echo "Usage: pkg_locate name" && return
   ports "$1"
 }
 
 function ports {
+ 0xMF-sysadmin-ports "$@"
+}
+function 0xMF-sysadmin-ports {
+  [ ! -d /usr/ports ] && { echo "ports tree is not installed"; return; }
   [ -z "$1" ] && echo "Usage: ports name" && return
   pushd /usr/ports > /dev/null
   echo */*|tr ' ' '\n'| \grep $1
@@ -137,7 +157,10 @@ function ports {
 }
 
 function pkg {
-  [ "`uname -s`" != "FreeBSD" ] && return
+  0xMF-sysadmin-pkg "$@"
+}
+function 0xMF-sysadmin-pkg {
+  [ "`uname -s`" != "FreeBSD" ] && { echo "not on FreeBSD"; return; }
 
   local old_pkg=/usr/sbin/pkg
   case "$1" in
