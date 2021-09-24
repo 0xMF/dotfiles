@@ -7,4 +7,5 @@
 (ql:quickload "fiveam")
 (ql:quickload "trivial-ssh")
 
-
+;;(require :asdf)
+;;(push #P"~/comp.misc/lisp/systems" asdf:*central-registry*)
