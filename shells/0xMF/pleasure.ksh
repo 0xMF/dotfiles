@@ -10,6 +10,7 @@ case "${THIS_SHELL##/**/}" in
 esac
 
 alias cv='0xMF-cv'
+alias sbcl='rlwrap sbcl'
 alias ple='perl -wnle'
 alias pale='perl -awnle'
 alias pd='perldoc -MPod::Text::Color::Delight'

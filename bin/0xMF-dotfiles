@@ -58,7 +58,7 @@ help() {
   >&2 echo "Operating Systems:   Arch (default), CentOS, Debian, Kali, and OpenBSD"
   >&2 echo "Shells:              Bash, ksh, Zsh (default)"
   >&2 echo "Editors (term/gui):  DrRacket, Emacs, Vim (default)"
-  >&2 echo "Languages:           sbcl, Racket, Perl, Ruby"
+  >&2 echo "Languages:           Go, Haskell, Lisp (Racket and sbcl) Perl, and Ruby"
   >&2 echo "Version Control:     Git (default)"
   >&2 echo "Known Issues:"
   >&2 echo
@@ -294,22 +294,20 @@ _lisp() {
   installed=
   echo "checking lisps..." >&2
 
-  [ -d $HOME/.quicklisp ] || [ -L $HOME/.quicklisp ] && {
+  [ -d $HOME/.quicklisp ] || [ -L $HOME/.quicklisp ] || [ -d $HOME/comp.misc/lisp/quicklisp ]  && {
     echo " - found .quicklisp, not installing" >&2
   } || {
     installed="$installed quicklisp"
-    mkdir $HOME/.quicklisp
-    touch $HOME/.quicklisp/slime-helper.el
-    installed="$installed .quicklisp"
+    mkdir -p $HOME/comp.misc/lisp/quicklisp
+    touch $HOME/comp.misc/lisp/slime-helper.el
   }
 
   if [ -e $HOME/.sbclrc ] || [ -L $HOME/.sbclrc ]; then
     echo " - found .sbclrc, not installing" >&2
   else
     [ "$EXPERIMENTAL" = "yes" ] \
-     && { ln -s ${_SCRIPTDIR%bin}comp.misc/lisps/sbclrc ~/.sbclrc; } \
-     || { ln -s ${SCRIPT_DIR%bin}comp.misc/lisps/sbclrc $HOME/.sbclrc; }
-    echo " - ...INSTALLED .sbclrc" >&2
+     && { ln -s ${_SCRIPTDIR%bin}comp.misc/sbclrc ~/.sbclrc; } \
+     || { ln -s ${SCRIPT_DIR%bin}comp.misc/sbclrc $HOME/.sbclrc; }
     installed="$installed .sbclrc"
   fi
 
@@ -525,9 +523,9 @@ install_minimal() {
 }
 
 check_installer_shell
-if [ -z "$1" ]; then
+if [ "$1" != "install" ]; then
   help
-  >&2 echo "ERROR!!! Missing command: install"
+  >&2 echo "ERROR!!! Missing 'install' or 'install' is not the first argument."
   exit 1
 fi
 

@@ -1,11 +1,10 @@
-
 ;;; The following lines added by ql:add-to-init-file:
 #-quicklisp
-(let ((quicklisp-init (merge-pathnames "quicklisp/setup.lisp"
-                                       (user-homedir-pathname))))
+(let ((quicklisp-init #P"~/comp.misc/lisp/quicklisp/setup.lisp"))
   (when (probe-file quicklisp-init)
     (load quicklisp-init)))
 
 (ql:quickload "fiveam")
 (ql:quickload "trivial-ssh")
+
 
