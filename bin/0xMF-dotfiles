@@ -14,17 +14,6 @@ SCRIPTDIR_="$( echo ${_FULL_PATH#$_REAL_HOME} )"
 
 installer=$(basename $0)
 
-check_args() {
-  for i in "$@"; do
-    case "$i" in
-      "--all"         ) ALL="--all"           ;;
-      "--with-emacs"  ) EMACS="--with-emacs"  ;;
-      "-h" | "--help" ) help; exit            ;;
-      *               ) die "$@"              ;;
-    esac
-  done
-}
-
 help() {
   >&2 echo
   >&2 echo
@@ -65,6 +54,27 @@ help() {
   >&2 echo "   $installer DOES NOT OVERWRITE existing links, overwrite files, or directories"
   >&2 echo "   and DOES NOT UNINSTALL files, directories, or links created from previous install"
   >&2 echo
+}
+
+check_for_install() {
+  if [ "$1" != "install" ]; then
+    help
+    >&2 echo "ERROR!!! Missing 'install' or 'install' is not the first argument."
+    exit 1
+  fi
+}
+check_for_install "$@"
+shift
+
+check_args() {
+  for i in "$@"; do
+    case "$i" in
+      "--all"         ) ALL="--all"           ;;
+      "--with-emacs"  ) EMACS="--with-emacs"  ;;
+      "-h" | "--help" ) help; exit            ;;
+      *               ) die "$@"              ;;
+    esac
+  done
 }
 
 check_installer_shell() {
@@ -523,24 +533,15 @@ install_minimal() {
 }
 
 check_installer_shell
-if [ "$1" != "install" ]; then
-  help
-  >&2 echo "ERROR!!! Missing 'install' or 'install' is not the first argument."
-  exit 1
-fi
-
-if [ "$1" = "install" ]; then
-  shift
-  if [ -z "$1" ]; then
-      install_minimal
-  else
-    check_args "$@"
-    case "$1" in
-      "--with-emacs" ) install_minimal ;;
-      "--all"        ) install ;;
-      *              ) die "$@";;
-    esac
-  fi
+if [ -z "$1" ]; then
+  install_minimal
+else
+  check_args "$@"
+  case "$1" in
+    "--with-emacs" ) install_minimal ;;
+    "--all"        ) install ;;
+    *              ) die "$@";;
+  esac
 fi
 
 # vim: nonu:nowrap:nospell:ft=sh
