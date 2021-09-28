@@ -41,6 +41,31 @@ function eman {
     man -Tutf8 $1 | col -bx | sed -n '/^EXAMPLES/,/^[A-Z]/p' | sed -nr '/^(EXAMPLES| |$)/p' ) | less -FeqRSX
 }
 
+function 0xMF-sysadmin-query-package-list {
+  [ -z "$1" ] && { >&2 echo "Usage: $0 PACKAGE-NAME"; return; }
+
+  os=$(uname)
+  if [ "${os}" = "Linux" ]; then
+    local distro=$(\grep -w ID /etc/os-release | cut -d= -f2 | tr -d '"')
+    case "${distro}" in
+      arch|manjaro)
+        pacman -Ql "$1"
+          ;;
+      centos)
+        rpm -ql "$1"
+          ;;
+      debian|kali|mint|ubuntu)
+        dpkg -L "$1"
+          ;;
+      *) echo does not support ${distro} yet;;
+    esac
+  fi
+
+  if [ "${os}" = "OpenBSD" ]; then
+    pkg_info -L "$1"
+  fi
+}
+
 alias sadu='0xMF-sysadmin-upgrade'
 function 0xMF-sysadmin-upgrade {
 
