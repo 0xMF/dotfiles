@@ -5,9 +5,10 @@
   (when (probe-file quicklisp-init)
     (load quicklisp-init)))
 
-(ql:quickload "asdf")
-(ql:quickload "cl-ppcre")
-(ql:quickload "fiveam")
-(ql:quickload "trivial-ssh")
+#-locallisp
+(let ((local-init (merge-pathnames "comp.misc/lisp/local.lisp"
+                                       (user-homedir-pathname))))
+  (when (probe-file local-init)
+    (load local-init)))
 
 ;; (push #P"~/comp.misc/lisp/systems" asdf:*central-registry*)
