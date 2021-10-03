@@ -228,12 +228,16 @@ function 0xMF-doc {
 
   local old
   if [[ -z "$xMFDOC" || ! -d "$xMFDOC" ]]; then
-    xMFDOC=$(find -L ~/repos -type d -wholename "*shells/0xMF"|sed 's/shells.*/doc/'|uniq)
+    if [ "$OS" = "BSD" ]; then
+      xMFDOC=$(find -L ~ -type d -path "*shells*" -name "0xMF" | perl -wlne '/(.*)shells(.*)/ and print "$1doc"' | uniq)
+    else
+      xMFDOC=$(find -L ~/repos -type d -wholename "*shells/0xMF" | sed 's/shells.*/doc/' | uniq)
+    fi
   fi
   old=$(pwd)
 
   if [ -z "$1" ]; then
-    >&2 echo -e "Usage: 0xMF-help TOPIC, where TOPIC is one or more of:\n\t `ls $xMFDOC|fmt`"
+    >&2 echo -e "Usage: 0xMF-help TOPIC, where TOPIC is one or more of:\n\n  $(ls "$xMFDOC" | fmt)"
   else
     if [ ! -d "$xMFDOC" ]; then
       >&2 echo "Not found: $xMFDOC"
@@ -242,7 +246,7 @@ function 0xMF-doc {
       for f in "$@"
       do
         if [ -f $f ]; then
-          echo -n "Displaying help for:\t ${f}\n--------------------\n"
+          echo -ne "Displaying help for:\t ${f}\n--------------------\n"
           if which chroma > /dev/null 2>&1; then
             chroma -l sh -f terminal256 -s `[ -z $CHROMA_STYLE ] && echo rrt || echo $CHROMA_STYLE` ${f}
           else
