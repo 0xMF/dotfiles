@@ -56,7 +56,10 @@ esac
 
 set -o emacs             # vi-style editing
 bind -m '^L'=clear'^J'   # clear the screen
-FCEDIT='/usr/bin/vim'    # fc usese vi too
+FCEDIT=$(whereis vim)    # fc uses vim if found (installed)
+if [ -z "$FCEDIT" ]; then
+  FCEDIT='/usr/bin/vi'
+fi
 
 
 # resembles the bash equivalent of '\w$ ' with green colour highlighting
