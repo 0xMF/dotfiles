@@ -236,27 +236,9 @@ _git() {
       || { ln -s ${SCRIPT_DIR%bin}tracker/gitrc.gitconfig $HOME/.gitconfig; }
   }
 
-  [ -e $HOME/.gitattributes ] || [ -L $HOME/.gitattributes ] && { :
-    echo " - found .gitattributes, not installing" >&2
-  } || {
-    installed="$installed .gitattirbutes"
-    [ "$EXPERIMENTAL" = "yes" ] \
-      && { ln -s ${_SCRIPTDIR%bin}tracker/git/gitattributes ~/.gitattributes; } \
-      || { ln -s ${SCRIPT_DIR%bin}tracker/git/gitattributes $HOME/.gitattributes; }
-  }
-
-  [ -e $HOME/.gitignore ] || [ -L $HOME/.gitignore ] && { :
-    echo " - found .gitignore, not installing" >&2
-  } || {
-    installed="$installed .gitignore"
-    [ "$EXPERIMENTAL" = "yes" ] \
-      && { ln -s ${_SCRIPTDIR%bin}tracker/git/ignore.conf ~/.gitignore; } \
-      || { ln -s ${SCRIPT_DIR%bin}tracker/git/ignore.conf $HOME/.gitignore; }
-  }
-
   [ ! -z "$installed" ] && {
     echo " - ...INSTALLED $installed" >&2
-    echo "   install local.gitconfig and ignore.conf in $HOME/.git" >&2
+    echo "   install local.gitconfig in $HOME/.git" >&2
   }
 }
 

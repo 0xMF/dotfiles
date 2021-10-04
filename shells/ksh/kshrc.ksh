@@ -56,7 +56,11 @@ esac
 
 set -o emacs             # vi-style editing
 bind -m '^L'=clear'^J'   # clear the screen
-FCEDIT=$(whereis vim)    # fc uses vim if found (installed)
+if [ "$(uname)" = "OpenBSD" ]; then
+  FCEDIT=$(whereis vim)    # fc uses vim if found (installed)
+else
+  FCEDIT=$(whereis vim | cut -d' ' -f2)
+fi
 if [ -z "$FCEDIT" ]; then
   FCEDIT='/usr/bin/vi'
 fi

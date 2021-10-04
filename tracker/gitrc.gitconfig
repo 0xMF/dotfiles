@@ -2,12 +2,12 @@
 
 [include]
   path      = ~/.git/local.gitconfig
-  path      = ~/.git/aliases.gitconfig
+  path      = ~/.git/aliases
 
 [core]
-  attributesfile = ~/.gitattributes
+  attributesfile = ~/.git/attributes
   editor    = vim
-  excludesfile = ~/.gitignore
+  excludesfile = ~/.git/ignore
   pager     = less -FEqRSX
   #pager     = more -s
   # pager    = less -cFEXq
