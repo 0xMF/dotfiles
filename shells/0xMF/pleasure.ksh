@@ -9,13 +9,27 @@ case "${THIS_SHELL##/**/}" in
      exit 1;;
 esac
 
+function 0xMF-perldoc {
+  local _pdoc=$(whereis perldoc | cut -d' ' -f2)
+  if [ -d /usr/bin/core_perl ]; then
+    /usr/bin/core_perl/perldoc -MPod::Text::Color::Delight "$@"
+  else
+    if [ "$(uname)" = "OpenBSD" ]; then
+      eval "$(whereis perldoc) $@"
+    else
+      _pdoc "$@"
+    fi
+  fi
+  unset _pdoc
+}
+
 alias cv='0xMF-cv'
 alias sbcl='rlwrap sbcl'
 alias ple='perl -wnle'
 alias pale='perl -awnle'
-alias pd='perldoc -MPod::Text::Color::Delight'
-alias pdoc='perldoc -MPod::Text::Color::Delight'
-alias perldoc='perldoc -MPod::Text::Color::Delight'
+alias pd='0xMF-perldoc'
+alias pdoc='0xMF-perldoc'
+alias perldoc='0xMF-perldoc'
 alias wiwin-refresh='sddoc-refresh'
 alias wiwin-doc='sddoc'
 
