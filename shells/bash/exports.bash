@@ -14,10 +14,10 @@ export HISTCONTROL=ignoreboth
 
 # terminal clients need local
 if [[ -t 0 ]]; then
-  export LC_ALL=en_US.UTF-8
   #export LC_ALL=C
-  export LC_CTYPE=en_US.UTF-8
+  export LC_ALL=en_US.UTF-8
   export LC_COLLATE=C
+  export LC_CTYPE=en_US.UTF-8
   export LANG=en_US.UTF-8
   export LANGUAGE=en_US.UTF-8
   TODAY=$(date +"%Y-%b-%d"); [ -n "${TODAY}" ] && export TODAY
@@ -29,10 +29,5 @@ fi
 export LESS='FeqRSX'
 export MANPAGER="less -$LESS"
 
-[ "$(uname)" = "CYGWIN_NT-10.0" ] && export DISPLAY=:0.0
-
-
-# build related exports
-export ERL_TOP=$HOME/repos/otp
 
 # vim:nospell:ft=sh:
