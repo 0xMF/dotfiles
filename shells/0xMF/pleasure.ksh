@@ -10,15 +10,24 @@ case "${THIS_SHELL##/**/}" in
 esac
 
 function 0xMF-perldoc {
-  if [ -d /usr/bin/core_perl ]; then
-    /usr/bin/core_perl/perldoc -MPod::Text::Color::Delight "$@"
+  local pd=
+  if [ -d ~/comp.misc/perl5 ]; then
+    pd=$(find ~/comp.misc/perl5 -name "perldoc"|sed '1q')
+  fi
+  if [[ -n ${pd} && -x ${pd} ]]; then
+      eval "${pd} -MPod::Text::Color::Delight $@"
   else
-    if [ "$(uname)" = "OpenBSD" ]; then
-      eval "$(whereis perldoc) -MPod::Text::Color::Delight $@"
+    if [ -d /usr/bin/core_perl ]; then
+      /usr/bin/core_perl/perldoc -MPod::Text::Color::Delight "$@"
     else
-      eval "$(whereis perldoc | cut -d' ' -f2) -MPod::Text::Color::Delight $@"
+      if [ "$(uname)" = "OpenBSD" ]; then
+        eval "$(whereis perldoc) -MPod::Text::Color::Delight $@"
+      else
+        eval "$(whereis perldoc | cut -d' ' -f2) -MPod::Text::Color::Delight $@"
+      fi
     fi
   fi
+  unset pd
 }
 
 alias cv='0xMF-cv'
