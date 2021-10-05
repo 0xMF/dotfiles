@@ -11,8 +11,8 @@ esac
 
 function 0xMF-perldoc {
   local pd=
-  if [ -d ~/comp.misc/perl5 ]; then
-    pd=$(find ~/comp.misc/perl5 -name "perldoc" 2>/dev/null | sed '1q')
+  if [ -d $PERLBREW_ROOT/perls ]; then
+    pd=$(find $PERLBREW_ROOT/perls -name perldoc 2>/dev/null | sed '1q')
   fi
   if [[ -n ${pd} && -x ${pd} ]]; then
       eval "${pd} -MPod::Text::Color::Delight $@"
