@@ -27,8 +27,10 @@ fi
 # Handles: (-R) ANSI colors with ESC, (-FX) quit on one screen without destroying text,
 #          (-q) quiet mode and (-e) terminate after second encounter with EOF
 export LESS='FceqRSX'
-export MANPAGER="less -$LESS"
-export PAGER="less -$LESS"
+export EDITOR="less -${LESS}"
+export MANPAGER=$EDITOR
+export PAGER=$EDITOR
+
 if [ -s /usr/local/bin/vim ]; then
   export VISUAL=/usr/local/bin/vim
 else
@@ -38,5 +40,6 @@ else
     export VISUAL=$(whereis vim | cut -d' ' -f2)
   fi
 fi
+export FCEDIT=$VISUAL
 
 # vim:nospell:ft=sh:

@@ -29,6 +29,9 @@ fi
 #export LESS='-iMRS -x2'
 export LESS='FceqRSX'
 export EDITOR="less -${LESS}"
+export MANPAGER=$EDITOR
+export PAGER=$EDITOR
+
 if [ -s /usr/local/bin/vim ]; then
   export VISUAL=/usr/local/bin/vim
 else
@@ -38,9 +41,6 @@ else
     export VISUAL=$(whereis vim | cut -d' ' -f2)
   fi
 fi
-
-export MANPAGER=$EDITOR
-export FCEDIT=$EDITOR
-export PAGER=$EDITOR
+export FCEDIT=$VISUAL
 
 # vim:nospell:ft=sh:
