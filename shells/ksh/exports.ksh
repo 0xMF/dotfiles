@@ -27,7 +27,12 @@ fi
 # Handles: (-R) ANSI colors with ESC, (-FX) quit on one screen without destroying text,
 #          (-q) quiet mode and (-e) terminate after second encounter with EOF
 #export LESS='-iMRS -x2'
-export LESS='FceqRSX'
+if [ "$(uname)" = "OpenBSD" ]; then
+  export LESS='FceqRSX'
+else
+  export LESS='FeqRSX'
+fi
+
 export EDITOR="less -${LESS}"
 export MANPAGER=$EDITOR
 export PAGER=$EDITOR

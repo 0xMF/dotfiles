@@ -12,7 +12,7 @@ esac
 function 0xMF-perldoc {
   local pd=
   if [ -d ~/comp.misc/perl5 ]; then
-    pd=$(find ~/comp.misc/perl5 -name "perldoc"|sed '1q')
+    pd=$(find ~/comp.misc/perl5 -name "perldoc" 2>/dev/null | sed '1q')
   fi
   if [[ -n ${pd} && -x ${pd} ]]; then
       eval "${pd} -MPod::Text::Color::Delight $@"
@@ -250,9 +250,9 @@ function 0xMF-doc {
   local old
   if [[ -z "$xMFDOC" || ! -d "$xMFDOC" ]]; then
     if [ "$OS" = "BSD" ]; then
-      xMFDOC=$(find -L ~ -type d -path "*shells*" -name "0xMF" | perl -wlne '/(.*)shells(.*)/ and print "$1doc"' | uniq)
+      xMFDOC=$(find -L ~ -type d -path "*shells*" -name "0xMF" 2>/dev/null | perl -wlne '/(.*)shells(.*)/ and print "$1doc"' | uniq)
     else
-      xMFDOC=$(find -L ~/repos -type d -wholename "*shells/0xMF" | sed 's/shells.*/doc/' | uniq)
+      xMFDOC=$(find -L ~/repos -type d -wholename "*shells/0xMF" 2>/dev/null | sed 's/shells.*/doc/' | uniq)
     fi
   fi
   old=$(pwd)
@@ -315,7 +315,7 @@ function 0xMF-tree {
 }
 
 function _sddoc {
-  wiw=$(find -L ~ -maxdepth 3 -type d -name "*wiwinwlh")
+  wiw=$(find -L ~ -maxdepth 3 -type d -name "*wiwinwlh" 2>/dev/null)
   wiwf=~/.cache/0xMF/wiwinwlh-tutorial.md
   if [ ! -d "${wiw}" ]
   then
@@ -353,7 +353,7 @@ function sddoc {
 
 function sddoc-refresh {
   unset wiw wiwf
-  wiw=$(find -L ~ -maxdepth 3 -type d -name "*wiwinwlh")
+  wiw=$(find -L ~ -maxdepth 3 -type d -name "*wiwinwlh" 2>/dev/null)
   wiwd=~/.cache/0xMF
   mkdir -p $wiwd
   wiwf=${wiwd}/wiwinwlh-tutorial.md
@@ -398,9 +398,9 @@ function 0xMF-links {
   local path=$([ -z "$1" ] && echo "." || echo "$@")
 
   if [ "$shell" = "ksh" ]; then
-    eval "/usr/bin/find ${path} -type l -exec /bin/ls -ld {} \;"
+    eval "/usr/bin/find ${path} -type l -exec /bin/ls -ld {} \; 2>/dev/null"
   else
-    eval "/usr/bin/find ${path} -type l -exec /bin/ls -ld --color=always {} \;"
+    eval "/usr/bin/find ${path} -type l -exec /bin/ls -ld --color=always {} \; 2>/dev/null"
   fi
   unset shell
 }
