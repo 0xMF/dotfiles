@@ -245,14 +245,14 @@ function 0xMF-list-functions-columnate {
   esac | sed '/^_/d' | pr -4 -T -w ${COLUMNS}
 }
 
-function 0xMF-doc {
+function 0xMF-help {
 
   local old
   if [[ -z "$xMFDOC" || ! -d "$xMFDOC" ]]; then
     if [ "$OS" = "BSD" ]; then
-      xMFDOC=$(find -L ~ -type d -path "*shells*" -name "0xMF" 2>/dev/null | perl -wlne '/(.*)shells(.*)/ and print "$1doc"' | uniq)
+      xMFDOC=$(find -L ~ -maxdepth 4 -type d -path "*shells*" -name "0xMF" 2>/dev/null | perl -wlne '/(.*)shells(.*)/ and print "$1doc"' | uniq)
     else
-      xMFDOC=$(find -L ~/repos -type d -wholename "*shells/0xMF" 2>/dev/null | sed 's/shells.*/doc/' | uniq)
+      xMFDOC=$(find -L ~/repos -maxdepth 4 -type d -wholename "*shells/0xMF" 2>/dev/null | sed 's/shells.*/doc/' | uniq)
     fi
   fi
   old=$(pwd)
@@ -269,7 +269,8 @@ function 0xMF-doc {
         if [ -f $f ]; then
           echo -ne "Displaying help for:\t ${f}\n--------------------\n"
           if which chroma > /dev/null 2>&1; then
-            chroma -l sh -f terminal256 -s `[ -z $CHROMA_STYLE ] && echo rrt || echo $CHROMA_STYLE` ${f}
+            chroma -f terminal256 -l $([ -z "${CHROMA_LEXER}" ] && echo sh || echo ${CHROMA_LEXER}) \
+                   -s $([ -z "${CHROMA_STYLE}" ] && echo rrt || echo ${CHROMA_STYLE}) ${f}
           else
             cat ${f}
           fi
@@ -282,7 +283,7 @@ function 0xMF-doc {
   unset old
 }
 
-alias 0xMF-help='0xMF-doc'
+alias 0xMF-doc='0xMF-help'
 
 # show directory tree
 function 0xMF-tree {
@@ -329,7 +330,7 @@ function _sddoc {
       [ -n "$REPLY" ] && wiwdir="${REPLY}"
       if git clone https://github.com/sdiehl/wiwinwlh ${wiwdir}; then
         (
-          if [ -z "$CHROMA_STYLE" ]; then
+          if [ -z "${CHROMA_STYLE}" ]; then
             mkdir -p ~/.cache/0xMF/dotfiles
             chroma -l md -f terminal256 -s emacs "${wiw}/tutorial.md"
           else
