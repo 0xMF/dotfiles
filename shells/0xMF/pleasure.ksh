@@ -270,12 +270,12 @@ function 0xMF-help {
           local lex=$(\grep -wE "(filetype|ft)" "$f" | perl -wlne '/(.*):(filetype|ft)+?=([^ :]*)?(.*)/ and print "$3"')
           if which chroma > /dev/null 2>&1; then
             if [[ "$lex" != "markdown" && "$lex" != "md"  ]]; then
-              eval "chroma -f terminal256 -l $([ -z "${CHROMA_LEXER}" ] && echo sh || echo ${CHROMA_LEXER}) -s $([ -z "${CHROMA_STYLE}" ] && echo rrt || echo ${CHROMA_STYLE}) ${f}"
+              eval "chroma -f terminal256 -l $([ -z "${CHROMA_LEXER}" ] && echo sh || echo ${CHROMA_LEXER}) -s $([ -z "${CHROMA_STYLE}" ] && echo rrt || echo ${CHROMA_STYLE}) ${f}" | less -FeqRSX
             else
-              eval "chroma -f terminal256 -l $([ -z "${CHROMA_LEXER}" ] && echo md || echo ${CHROMA_LEXER}) -s $([ -z "${CHROMA_STYLE}" ] && echo vim || echo ${CHROMA_STYLE}) ${f}"
+              eval "chroma -f terminal256 -l $([ -z "${CHROMA_LEXER}" ] && echo md || echo ${CHROMA_LEXER}) -s $([ -z "${CHROMA_STYLE}" ] && echo vim || echo ${CHROMA_STYLE}) ${f}" | less -FeqRSX
             fi
           else
-            cat ${f}
+            cat ${f} | less -FeqRSX
           fi
           unset lex
           echo
