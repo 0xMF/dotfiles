@@ -1,4 +1,4 @@
-## Help
+# Help
 
   Help topics are identified by italics
 
@@ -33,4 +33,4 @@
   "% - displays the current filename (to see its value use ":echo @%")
   ": - displays the most recent command-line (to see its value use ":echo @:")
 
-# vim: filetype=markdown: textwidth=100
+# vim: :filetype=markdown :textwidth=100

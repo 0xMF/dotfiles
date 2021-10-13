@@ -246,7 +246,6 @@ function 0xMF-list-functions-columnate {
 }
 
 function 0xMF-help {
-
   local old
   if [[ -z "$xMFDOC" || ! -d "$xMFDOC" ]]; then
     if [ "$OS" = "BSD" ]; then
@@ -267,13 +266,18 @@ function 0xMF-help {
       for f in "$@"
       do
         if [ -f $f ]; then
-          echo -ne "Displaying help for:\t ${f}\n--------------------\n"
+          echo -ne "0xMF-help for ${f}\n\n"
+          local lex=$(\grep -wE "(filetype|ft)" "$f" | perl -wlne '/(.*):(filetype|ft)+?=([^ :]*)?(.*)/ and print "$3"')
           if which chroma > /dev/null 2>&1; then
-            chroma -f terminal256 -l $([ -z "${CHROMA_LEXER}" ] && echo sh || echo ${CHROMA_LEXER}) \
-                   -s $([ -z "${CHROMA_STYLE}" ] && echo rrt || echo ${CHROMA_STYLE}) ${f}
+            if [[ "$lex" != "markdown" && "$lex" != "md"  ]]; then
+              eval "chroma -f terminal256 -l $([ -z "${CHROMA_LEXER}" ] && echo sh || echo ${CHROMA_LEXER}) -s $([ -z "${CHROMA_STYLE}" ] && echo rrt || echo ${CHROMA_STYLE}) ${f}"
+            else
+              eval "chroma -f terminal256 -l $([ -z "${CHROMA_LEXER}" ] && echo md || echo ${CHROMA_LEXER}) -s $([ -z "${CHROMA_STYLE}" ] && echo vim || echo ${CHROMA_STYLE}) ${f}"
+            fi
           else
             cat ${f}
           fi
+          unset lex
           echo
         fi
       done

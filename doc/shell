@@ -1,30 +1,28 @@
-#!/bin/bash
-
 # want to know more about user-defined/built-in shell functions/aliases, use cv
-$ cv
-$ cv !!
+  $ cv
+  $ cv !!
 
 # while read ln; do if ! grep -q $ln bfile; then echo $ln; fi; done < afile
-while read ln;
-do
-  if ! grep -q $ln bfile
-  then
-    echo $ln
-  fi
-done < afile
+  while read ln;
+  do
+    if ! grep -q $ln bfile
+    then
+      echo $ln
+    fi
+  done < afile
 
 # to unset alias and functions in zsh
-unalias alias-name
-unset -f function-name
+  unalias alias-name
+  unset -f function-name
 
 # global (a.k.a suffix) aliases in zsh
-alias -g L='| less -FeqRSX'   # make a suffix alias
-some-long-pipe L              # expands to: some-long-pipe | less -FeqRSX
-diasble -a 'L'                # unset a suffix alias (requires quotes)
+  alias -g L='| less -FeqRSX'   # make a suffix alias
+  some-long-pipe L              # expands to: some-long-pipe | less -FeqRSX
+  diasble -a 'L'                # unset a suffix alias (requires quotes)
 
 # set and unset environment variables in zsh
-CHROMA_STYLE=dracula
-echo $CHROMA_STYLE
-unset CHROMA_STYLE
+  CHROMA_STYLE=dracula
+  echo $CHROMA_STYLE
+  unset CHROMA_STYLE
 
-# vim: filetype=bash
+# vim: filetype=sh

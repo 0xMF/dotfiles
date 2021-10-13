@@ -1,6 +1,6 @@
 # the nook and crannies of the Go documentation that I had to deal with
 # best read with gdoc, see also 0xMF-gdoc-XXXX for more Go-related help
 
-cmd/go
-cmd/cgo
-runtime
+  cmd/go
+  cmd/cgo
+  runtime

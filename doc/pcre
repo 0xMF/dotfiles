@@ -1,31 +1,31 @@
 # use my aliases for perl like grep/sed/awk
-ple     '/regex/ and print'                             # output match lines
-ple     'print unless /regex/'                          # output non-match lines
-please  '/(regex) (and) (capture)/ and print "$1 $3"'   # outputs contents of (regex) (capture)
+  ple     '/regex/ and print'                             # output match lines
+  ple     'print unless /regex/'                          # output non-match lines
+  please  '/(regex) (and) (capture)/ and print "$1 $3"'   # outputs contents of (regex) (capture)
 
 #
 # show matched lines
-awk       '/mark/'           /etc/passwd
-grep      "mark"             /etc/passwd
-perl -wne 'print if /mark/'  /etc/passwd
-ruby -wne 'print if /mark/'  /etc/passwd
-sed  -n   '/mark/p'          /etc/passwd
+  awk       '/mark/'           /etc/passwd
+  grep      "mark"             /etc/passwd
+  perl -wne 'print if /mark/'  /etc/passwd
+  ruby -wne 'print if /mark/'  /etc/passwd
+  sed  -n   '/mark/p'          /etc/passwd
 
 # show lines that did not match
-awk       '!/mark/'              /etc/passwd
-grep -ve  "mark"                 /etc/passwd
-perl -wne 'print unless /mark/'  /etc/passwd
-ruby -wne 'print unless /mark/'  /etc/passwd
-sed       '/mark/d'              /etc/passwd
+  awk       '!/mark/'              /etc/passwd
+  grep -ve  "mark"                 /etc/passwd
+  perl -wne 'print unless /mark/'  /etc/passwd
+  ruby -wne 'print unless /mark/'  /etc/passwd
+  sed       '/mark/d'              /etc/passwd
 
 # show matched lines betwen two patterns
-sed  -ne  '/root/,/mark/p' /etc/passwd
-perl -wne '/root/../mark/p' /etc/passwd
+  sed  -ne  '/root/,/mark/p' /etc/passwd
+  perl -wne '/root/../mark/p' /etc/passwd
 
-sed  -ne  '/\/bin\/bash/,/\/bin\/nologin/p'         /etc/passwd
+  sed  -ne  '/\/bin\/bash/,/\/bin\/nologin/p'         /etc/passwd
 
 # for more regex, specifically three dot and flip-flop, see: 
 #    perldoc perlre, perlop 
-perl -wne 'm|/bin/bash|..m|/bin/nologin| and print' /etc/passwd
-perl -wne 'm|/bin/bash|../^$/ and print'            /etc/passwd
-perl -wne 'm|/bin/bash|.../^mark/ and print'        /etc/passwd
+  perl -wne 'm|/bin/bash|..m|/bin/nologin| and print' /etc/passwd
+  perl -wne 'm|/bin/bash|../^$/ and print'            /etc/passwd
+  perl -wne 'm|/bin/bash|.../^mark/ and print'        /etc/passwd

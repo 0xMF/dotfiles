@@ -1,8 +1,6 @@
 # to skip any changes made to a locally tracked copy (but keep the initial tracking in git)
 # see: git --help update-index
-git update-index --skip-worktree <file>
+  git update-index --skip-worktree <file>
 
 # to skip changes of many tracked files showing up in git status
-git update-index --assume-unchanged <file>
-
-
+  git update-index --assume-unchanged <file>

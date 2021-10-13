@@ -1,6 +1,6 @@
 # tar saves time in nanoseconds but that does not help when using git,
 # so to create and store timestamps with posix-based time resolution:
 
-tar cvzHf posix dotgit.tgz .git/*     # .git sub-dir is tarred into dotgit.tgz
-tar xvzf dotgit.tgz                   # to untar
-tar lvzf dotgit.tgz                   # to list files in the tarred archive
+  tar cvzHf posix dotgit.tgz .git/*     # .git sub-dir is tarred into dotgit.tgz
+  tar xvzf dotgit.tgz                   # to untar
+  tar lvzf dotgit.tgz                   # to list files in the tarred archive

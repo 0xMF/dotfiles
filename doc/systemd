@@ -1,25 +1,21 @@
-#####################################################################
-  systemd related tips
-#####################################################################
-
 # get service-specific errors
-systemctl status some.service
-journalctl -u some.service
+  systemctl status some.service
+  journalctl -u some.service
 
 # simulate tail -f
-journalctl -fu some.service
+  journalctl -fu some.service
 
 # general errors
-journalctl -xe
+  journalctl -xe
 
 # start/stop service
-systemctl start some.service
-systemttl stop some.service
+  systemctl start some.service
+  systemttl stop some.service
 
 # automatically start/stop service at boot time
-systemctl enable some.service
-systemctl disable some.service
+  systemctl enable some.service
+  systemctl disable some.service
 
 # suspend/hibernate
-systemctl suspend
-systemctl hibernate
+  systemctl suspend
+  systemctl hibernate
