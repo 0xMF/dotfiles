@@ -3,34 +3,53 @@
   Help topics are identified by italics
 
  - Use `CTRL+[` to delve into a topic, and `CTRL+O` to back into previous help history
- - 'fold-behavior' controls folding; to eliminate all folds use 'zE (fold-delete-markier)'
- - The : line is called command-line (:help command-line)
+ - 'fold-behavior' controls folding; to eliminate all folds use 'zE (fold-delete-marker)'
+ - The : line is called command-line (see `:help command-line`)
  - Use | bar to send multiple commands at the same time, the example below is two commands
 
-    :set tw=100 | colorscheme murphy
+    `:set tw=100 | colorscheme murphy`
 
 ## Keybindings
 
+ * 0xMF configured
 
- * ;d deletes all trailing spaces
- * ;l shows non-visual characters like space, tab, end of line
- * ;n shows line numbers
- * ;q reformat line/paragraph around textwidth chars/line
+    ;d deletes all trailing spaces
+    ;l shows non-visual characters like space, tab, end of line
+    ;n shows line numbers
+    ;q reformat line/paragraph around textwidth chars/line
 
- * CTRL+Home/CTRL+End jumps to file top/bottom without exiting insert mode (gg, G in cmd mode)
- * CTRL+[ and CTRL+O to move around help (see above)
- * `` toggles jumping between cursor previous and current positions
- * v to start visual mode and V to start visual line mode
- * "ay to copy current visual mode selection into register a
- * "ap to paste register a into current cursor position
+ - vim defaults
+
+  * movment
+    CTRL+Home/End jumps to file top/bottom in insert mode (like gg, G in cmd mode)
+    CTRL+[ and CTRL+O to move around help (see above)
+    `` toggles jumping between cursor previous and current positions
+
+  * other
+    v to start visual mode and V to start visual line mode
+    "ay to copy current visual mode selection into register a
+    "ap to paste register a into current cursor position
 
 ## Registers
 
+  Vim registers (see `:help registers`)
 
-  Vim registers (see :help registers)
+  ". - displays the last inserted text (to see its value use `:echo @.`)
+  "% - displays the current filename (to see its value use `:echo @%`)
+  ": - displays the most recent command-line (to see its value use `:echo @:`)
 
-  ". - displays the last inserted text (to see its value use ":echo @.")
-  "% - displays the current filename (to see its value use ":echo @%")
-  ": - displays the most recent command-line (to see its value use ":echo @:")
+  To display the contents of registers "a "b "c use:
+
+```vim
+        :reg a b h j    " display contents of registers a b h j
+        :let @h = @a    " copy contents of register a into register h
+        :reg h
+
+        qb              " start recording all activity into register b
+        q               " stop recording
+        @b              " playback recording (commands + text) stored in reg b
+        :let @j = @b
+        :reg j          " show contents of register j
+```
 
 # vim: :filetype=markdown :textwidth=100

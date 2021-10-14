@@ -272,7 +272,7 @@ function 0xMF-help {
             if [[ "$lex" != "markdown" && "$lex" != "md"  ]]; then
               eval "chroma -f terminal256 -l $([ -z "${CHROMA_LEXER}" ] && echo sh || echo ${CHROMA_LEXER}) -s $([ -z "${CHROMA_STYLE}" ] && echo rrt || echo ${CHROMA_STYLE}) ${f}" | less -FeqRSX
             else
-              eval "chroma -f terminal256 -l $([ -z "${CHROMA_LEXER}" ] && echo md || echo ${CHROMA_LEXER}) -s $([ -z "${CHROMA_STYLE}" ] && echo vim || echo ${CHROMA_STYLE}) ${f}" | less -FeqRSX
+              eval "chroma -f terminal -l $([ -z "${CHROMA_LEXER}" ] && echo md || echo ${CHROMA_LEXER}) -s $([ -z "${CHROMA_STYLE}" ] && echo friendly || echo ${CHROMA_STYLE}) ${f}" | less -FeqRSX
             fi
           else
             cat ${f} | less -FeqRSX
