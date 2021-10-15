@@ -1,6 +1,6 @@
 # Help
 
-  Help topics are identified by italics
+>  Help topics are identified by italics
 
  - Use `CTRL+[` to delve into a topic, and `CTRL+O` to back into previous help history
  - 'fold-behavior' controls folding; to eliminate all folds use 'zE (fold-delete-marker)'
@@ -34,9 +34,9 @@
 
   Vim registers (see `:help registers`)
 
-  ". - displays the last inserted text (to see its value use `:echo @.`)
-  "% - displays the current filename (to see its value use `:echo @%`)
-  ": - displays the most recent command-line (to see its value use `:echo @:`)
+  ". - displays the _last inserted_ text (to see its value use `:echo @.`)
+  "% - displays the _current filename_ (to see its value use `:echo @%`)
+  ": - displays the _most recent command-line_ (to see its value use `:echo @:`)
 
   To display the contents of registers "a "b "c use:
 
