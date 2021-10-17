@@ -137,7 +137,7 @@ set formatoptions=tcqnl " include numbered lists when formatting with gq
 set comments-=s1:/*,mb:*,ex:*/  " removes C-style formatting from default
 set comments+=fb:*      " let comments begin with *; meaning lists can now have *
 set autoindent          " set automatic indenting
-set nowrap              " do not force word wrapping on (does not put hard return)
+set wrap                " do not force word wrapping on (does not put hard return)
 set linebreak           " does not breakup words
 set nojoinspaces        " avoids inserting two spaces when joining lines
 
@@ -186,6 +186,10 @@ set clipboard=unnamed   " all yanking goes to clipboard
     :filetype plugin on
     :set omnifunc=syntaxcomplete#Complete
     :set wildmode=list
+
+    "* AsciiDoc
+    au BufRead,BufNewFile   *.asc  setlocal syntax=asciidoc
+    au BufRead,BufNewFile   *.adoc setlocal syntax=asciidoc
 
     "* BibTeX  and LaTeX
     au BufNewFile,BufRead *.bib setlocal nospell
