@@ -189,6 +189,8 @@ set clipboard=unnamed   " all yanking goes to clipboard
 
     "* AsciiDoc
     au BufRead,BufNewFile   *.asc  setlocal syntax=asciidoc
+    au BufRead,BufNewFile   *.ad   setlocal syntax=asciidoc
+    au BufRead,BufNewFile   *.ad   setlocal filetype=asciidoc
     au BufRead,BufNewFile   *.adoc setlocal syntax=asciidoc
 
     "* BibTeX  and LaTeX
