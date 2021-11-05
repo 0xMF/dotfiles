@@ -293,6 +293,7 @@ alias 0xMF-doc='0xMF-help'
 function 0xMF-tree {
 
   local _tree=$( whereis tree | awk '{print $2}' )
+  local depth tpath onlydirs
   if [ -z "${_tree}" ]; then
     >&2 echo "tree command not found"
     return
@@ -301,21 +302,25 @@ function 0xMF-tree {
   if [ -z "$1" ]; then
     depth="-L 1";
   else
-    # if $1 is a number use it for maxdepth
-    if echo "$1" | grep "^[0-9][0-9]*$" > /dev/null; then
-      depth="-L $1";
-      shift
-      [ -d "$1" ] && tpath="$1"
-    else
-      tpath="$1"
-      depth="-L 1"
-    fi
+    for a in "$@"
+    do # if $1 is a number use it for maxdepth
+      if echo "$a" | grep "^[0-9][0-9]*$" > /dev/null; then
+        depth="-L $a";
+        shift
+      fi
+      if [ "$a" = "-d" ]; then
+        onlydirs=-d
+        shift
+      fi
+      if [ -d "$a" ] ; then
+        tpath="$a"
+        shift
+      fi
+    done
   fi
 
-  [[ -n "$tpath" && -n "$1" ]] && shift
-
-  eval "${_tree} $depth $tpath $@"
-  unset depth tpath
+  eval "${_tree} $onlydirs $depth $tpath $@"
+  unset depth tpath onlydirs
 
 }
 
