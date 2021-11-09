@@ -67,23 +67,9 @@ function xfcni {
 }
 
 # show directory tree
+# trd calls 0xMF-tree
 function trd {
-    depth="$1"
-    level="-L 1"
-    path="$2"
-
-    # if $1 is a number use it for maxdepth
-    if [ "$depth" -eq "$depth" ] 2> /dev/null
-    then
-        level="-L $1";
-        shift
-    else
-        path="$1"
-    fi
-
-    [[ "$1" == "$path" && -n "$1" ]] && shift
-
-    eval "tree $level $path $@"
+  0xMF-tree "$@"
 }
 
 function poof {
