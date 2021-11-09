@@ -302,21 +302,27 @@ function 0xMF-tree {
   if [ -z "$1" ]; then
     depth="-L 1";
   else
-    for a in "$@"
-    do # if $1 is a number use it for maxdepth
-      if echo "$a" | grep "^[0-9][0-9]*$" > /dev/null; then
-        depth="-L $a";
-        shift
-      fi
-      if [ "$a" = "-d" ]; then
-        onlydirs=-d
-        shift
-      fi
-      if [ -d "$a" ] ; then
-        tpath="$a"
-        shift
-      fi
-    done
+    if [[ $# -eq 1 && ! -d "$1" ]]; then
+      depth="-L $1";
+      onlydirs=-d
+      shift
+    else
+      for a in "$@"
+      do # if $1 is a number use it for maxdepth
+        if echo "$a" | grep "^[0-9][0-9]*$" > /dev/null; then
+          depth="-L $a";
+          shift
+        fi
+        if [ "$a" = "-d" ]; then
+          onlydirs=-d
+          shift
+        fi
+        if [ -d "$a" ] ; then
+          tpath="$a"
+          shift
+        fi
+      done
+    fi
   fi
 
   eval "${_tree} $onlydirs $depth $tpath $@"
