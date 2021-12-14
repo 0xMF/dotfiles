@@ -12,9 +12,9 @@ imap <C-A>  <Esc>m'ggVG|    "select all in insert mode
 vmap <C-A>  ggVG
 
 "<Ctrl-U> -- cut (goto visual mode and cut) (previously used Ctrl-X)
-map  <C-u>  vgG
-imap <C-u>  vgG
-vmap <C-u>  "+x<Esc>a
+"map  <C-u>  vgG
+"imap <C-u>  vgG
+"vmap <C-u>  "+x<Esc>a
 
 "<Ctrl-P> -- coPy (goto visual mode and copy)
 " have to use because X11 internally maps <C-C> to stopping a search
@@ -40,32 +40,34 @@ map g<C-\> :cs find 0 <C-R>=expand("<cword>")<CR><CR>
 " split horizontally, with search result displayed in
 " the new window.
 
-nmap <C-Space>s :scs find s <C-R>=expand("<cword>")<CR><CR>
-nmap <C-Space>g :scs find g <C-R>=expand("<cword>")<CR><CR>
-nmap <C-Space>c :scs find c <C-R>=expand("<cword>")<CR><CR>
-nmap <C-Space>t :scs find t <C-R>=expand("<cword>")<CR><CR>
-nmap <C-Space>e :scs find e <C-R>=expand("<cword>")<CR><CR>
-nmap <C-Space>f :scs find f <C-R>=expand("<cfile>")<CR><CR>
-nmap <C-Space>i :scs find i ^<C-R>=expand("<cfile>")<CR>$<CR>
-nmap <C-Space>d :scs find d <C-R>=expand("<cword>")<CR><CR>
+:map <C-Space> <C-D>
+
+"nmap <C-Space>s :scs find s <C-R>=expand("<cword>")<CR><CR>
+"nmap <C-Space>g :scs find g <C-R>=expand("<cword>")<CR><CR>
+"nmap <C-Space>c :scs find c <C-R>=expand("<cword>")<CR><CR>
+"nmap <C-Space>t :scs find t <C-R>=expand("<cword>")<CR><CR>
+"nmap <C-Space>e :scs find e <C-R>=expand("<cword>")<CR><CR>
+"nmap <C-Space>f :scs find f <C-R>=expand("<cfile>")<CR><CR>
+"nmap <C-Space>i :scs find i ^<C-R>=expand("<cfile>")<CR>$<CR>
+"nmap <C-Space>d :scs find d <C-R>=expand("<cword>")<CR><CR>
 
 " Hitting CTRL-space *twice* before the search type does a vertical
 " split instead of a horizontal one
 
-nmap <C-Space><C-Space>s
-    \:vert scs find s <C-R>=expand("<cword>")<CR><CR>
-nmap <C-Space><C-Space>g
-    \:vert scs find g <C-R>=expand("<cword>")<CR><CR>
-nmap <C-Space><C-Space>c
-    \:vert scs find c <C-R>=expand("<cword>")<CR><CR>
-nmap <C-Space><C-Space>t
-    \:vert scs find t <C-R>=expand("<cword>")<CR><CR>
-nmap <C-Space><C-Space>e
-    \:vert scs find e <C-R>=expand("<cword>")<CR><CR>
-nmap <C-Space><C-Space>i
-    \:vert scs find i ^<C-R>=expand("<cfile>")<CR>$<CR>
-nmap <C-Space><C-Space>d
-    \:vert scs find d <C-R>=expand("<cword>")<CR><CR>
+"nmap <C-Space><C-Space>s
+"    \:vert scs find s <C-R>=expand("<cword>")<CR><CR>
+"nmap <C-Space><C-Space>g
+"    \:vert scs find g <C-R>=expand("<cword>")<CR><CR>
+"nmap <C-Space><C-Space>c
+"    \:vert scs find c <C-R>=expand("<cword>")<CR><CR>
+"nmap <C-Space><C-Space>t
+"    \:vert scs find t <C-R>=expand("<cword>")<CR><CR>
+"nmap <C-Space><C-Space>e
+"    \:vert scs find e <C-R>=expand("<cword>")<CR><CR>
+"nmap <C-Space><C-Space>i
+"    \:vert scs find i ^<C-R>=expand("<cfile>")<CR>$<CR>
+"nmap <C-Space><C-Space>d
+"    \:vert scs find d <C-R>=expand("<cword>")<CR><CR>
 
 "  mappings for building programs
 map <F2> :Tlist<CR>|      " taglist window toggle
@@ -96,7 +98,7 @@ imap <Nul>    <Space>
 :imap <C-w> <Esc><C-W>|                 " setup toggle to other windows with hjkl and UpDnLtRt
 
 :imap <A-BS> <ESC>ua|                   " --ditto-- in insert mode
-:imap <C-D> <Esc>ldea|                  " --ditto-- in insert mode
+":imap <C-D> <Esc>ldea|                  " --ditto-- in insert mode
 :imap <C-Del> <Esc>ldwi|                " Window's style delete
 :imap <C-s> <Esc>:w<CR>a|               " --ditto-- in insert mode
 :imap <End> <Esc>$a|                    " --ditto-- in insert mode
@@ -135,7 +137,7 @@ imap <Nul>    <Space>
 :map ;tp gT|                            " tabprevious for console vim
 :map ;tn gt|                            " tabnext
 :map <A-BS> <ESC>u|                     " Window's style undo
-:map <C-D> de|                          " delete word under cursor
+":map <C-D> de|                          " delete word under cursor
 :map <C-s> :w<CR>|                      " like Windows CTRL +S to save
 :map <End>  <Esc>$|                     " jump to the end
 :map <C-p> gT|                          " tabprevious for console vim
