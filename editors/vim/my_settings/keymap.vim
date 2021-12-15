@@ -43,9 +43,13 @@ map g<C-\> :cs find 0 <C-R>=expand("<cword>")<CR><CR>
 " half a page down
 :map <C-Space> <C-D>
 
-" jump to other window when in split window mode
+" jump/scroll up/down in other window when in split window mode
 :map <C-L> <C-W>p
 :imap <C-L> <Esc><C-W>p
+:map <C-J> <C-W>p<C-D><C-W>p
+:imap <C-J> <Esc><C-W>p<C-D><C-W>pa
+:map <C-K> <C-W>p<C-U><C-W>p
+:imap <C-K> <Esc><C-W>p<C-U><C-W>pa
 
 "nmap <C-Space>s :scs find s <C-R>=expand("<cword>")<CR><CR>
 "nmap <C-Space>g :scs find g <C-R>=expand("<cword>")<CR><CR>
