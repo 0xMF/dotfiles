@@ -40,7 +40,12 @@ map g<C-\> :cs find 0 <C-R>=expand("<cword>")<CR><CR>
 " split horizontally, with search result displayed in
 " the new window.
 
+" half a page down
 :map <C-Space> <C-D>
+
+" jump to other window when in split window mode
+:map <C-L> <C-W>p
+:imap <C-L> <Esc><C-W>p
 
 "nmap <C-Space>s :scs find s <C-R>=expand("<cword>")<CR><CR>
 "nmap <C-Space>g :scs find g <C-R>=expand("<cword>")<CR><CR>
