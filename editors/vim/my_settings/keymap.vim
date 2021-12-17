@@ -50,6 +50,8 @@ map g<C-\> :cs find 0 <C-R>=expand("<cword>")<CR><CR>
 :imap <C-J> <Esc><C-W>p<C-D><C-W>pa
 :map <C-K> <C-W>p<C-U><C-W>p
 :imap <C-K> <Esc><C-W>p<C-U><C-W>pa
+map <C-Down> <C-J>
+map <C-Up> <C-K>
 
 "nmap <C-Space>s :scs find s <C-R>=expand("<cword>")<CR><CR>
 "nmap <C-Space>g :scs find g <C-R>=expand("<cword>")<CR><CR>
@@ -79,13 +81,13 @@ map g<C-\> :cs find 0 <C-R>=expand("<cword>")<CR><CR>
 "    \:vert scs find d <C-R>=expand("<cword>")<CR><CR>
 
 "  mappings for building programs
-map <F2> :Tlist<CR>|      " taglist window toggle
+"map <F2> :Tlist<CR>|      " taglist window toggle
 "map <F5> :make<CR>|       " build
-map <F5> :call My_Build()<CR>|       " build
-imap <F5> <Esc>:call My_Build()<CR>|       " build
-map <C-Up> :cprevious<CR>
-map <C-Down> :cnext<CR>
-map <C-F12> :!ctags -R --c++-kinds=+p --fields=+iaS --extra=+q .<CR>
+"map <F5> :call My_Build()<CR>|       " build
+"imap <F5> <Esc>:call My_Build()<CR>|       " build
+"map <C-Up> :cprevious<CR>
+"map <C-Down> :cnext<CR>
+"map <C-F12> :!ctags -R --c++-kinds=+p --fields=+iaS --extra=+q .<CR>
 map <F3>  :execute "mksession! " . v:this_session<CR>
 
 " mappings for less like behaviour (works with behave msvim)
