@@ -160,10 +160,10 @@ set mousemodel=popup keymodel=startsel        " type of mouse/keyboard behaviour
 :if  $USER == 0
 : hi User1 cterm=NONE    ctermfg=red    ctermbg=white  guifg=red    guibg=white
 ": set statusline=%1*%f%m%r%h%w\ [%{&ff}]\ [%Y]\ [ASCII=%b]\ [HEX=0x%B]\ [%l,%v]\ [%{CharCount()}\ CHARS][%{WordCount()}\ WORDS][%p%%:%L\ LINES]\ TIME:\ %{strftime('%c')}
-: set statusline=%1*%f%m%r%h%w\ [%Y]\ [%l,%v]\ [CHARS:%{CharCount()},\ WORDS:%{WordCount()}][%p%%:%L\ LINES]\ %{strftime('%c')}
+: set statusline=%1*%t%m%r%h%w\ [%Y]\ [%l,%v]\ [CHARS:%{CharCount()},\ WORDS:%{WordCount()}][%p%%:%L\ LINES]\ %{strftime('%c')}
 :else
 ": set statusline=%f%m%r%h%w\ [%{&ff}]\ [%Y]\ [ASCII=%b]\ [HEX=0x\%B]\ [%l,%v]\ [%{CharCount()}\ CHARS][%{WordCount()}\ WORDS][%p%%:%L\ LINES]\ TIME:\ %{strftime('%c')}
-: set statusline=%f%m%r%h%w\ [%Y]\ [%l,%v]\ [CHARS:%{CharCount()},\ WORDS:%{WordCount()}][%p%%:%L\ LINES]\ %{strftime('%c')}
+: set statusline=%t%m%r%h%w\ [%Y]\ [%l,%v]\ [CHARS:%{CharCount()},\ WORDS:%{WordCount()}][%p%%:%L\ LINES]\ %{strftime('%c')}
 :endif
 set laststatus=2        " always show the statusline
 
