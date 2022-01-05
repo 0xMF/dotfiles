@@ -7,6 +7,8 @@ case "${THIS_SHELL##/**/}" in
      exit 1;;
 esac
 
+sdo=$(if sudo -Al 2>&1 >/dev/null; then echo "sudo"; else echo ":"; fi)
+
 function dfh {
   /bin/df -h | egrep '^(Filesystem|/)' | sort -hk5
 }
@@ -14,7 +16,7 @@ function dfh {
 function jc {
   [ "`uname`" != "Linux" ] && { echo "not running on Linux"; return; }
   local myjc=$( whereis journalctl | awk '{print $2}' )
-  [ `id -u` -ne 0 ] && myjc="sudo $myjc"
+  [ `id -u` -ne 0 ] && myjc="${sdo} $myjc"
   case "$1" in
     "" ) $myjc -xe | less -FeqRSX ;;
     "help"|"h"|"-h"|"--help") $myjc --help "$@" ;;
@@ -25,7 +27,7 @@ function jc {
 function sc {
   [ "`uname`" != "Linux" ] && { echo "not running on Linux"; return; }
   local mysc=$( whereis systemctl | awk '{print $2}' )
-  [ `id -u` -ne 0 ] && mysc="sudo $mysc"
+  [ `id -u` -ne 0 ] && mysc="${sdo} $mysc"
   case "$1" in
     "help"|"h"|"-h"|"--help") $mysc --help "$@" ;;
     * ) $mysc "$@" ;;
@@ -88,14 +90,14 @@ function 0xMF-sysadmin-upgrade {
     local distro=$(\grep -w ID /etc/os-release | cut -d= -f2 | tr -d '"')
     case "${distro}" in
       arch|manjaro)
-        sudo pacman -Syu
+        "${sdo}" pacman -Syu
           ;;
       centos)
-        sudo yum update
+        "${sdo}" yum update
           ;;
       debian|kali|mint|ubuntu)
-        sudo apt update
-        sudo apt dist-upgrade
+        "${sdo}" apt update
+        "${sdo}" apt dist-upgrade
           ;;
       *) echo does not support ${distro} yet;;
     esac
@@ -114,13 +116,13 @@ function 0xMF-sysadmin-remove-unused {
     case "${distro}" in
       arch|manjaro)
         unneeded=`pacman -Qdtq`
-        [[ -n "$unneeded" ]] && sudo pacman -Rsn `echo $unneeded`
+        [[ -n "$unneeded" ]] && "${sdo}" pacman -Rsn `echo $unneeded`
         ;;
       centos)
-        sudo yum autoremove "$@"
+        "${sdo}" yum autoremove "$@"
         ;;
       *)
-        sudo apt autoremove
+        "${sdo}" apt autoremove
     esac
   fi
 }
