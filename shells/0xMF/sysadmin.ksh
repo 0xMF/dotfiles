@@ -139,6 +139,9 @@ function 0xMF-sysadmin-remove-unused {
         "${sdo}" apt autoremove
     esac
   fi
+  if [ "${os}" = "OpenBSD" ]; then
+    "${sdo}" pkg_delete -aic
+  fi
 }
 
 alias pacsearch='0xMF-sysadmin-pacsearch'
