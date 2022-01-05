@@ -7,7 +7,19 @@ case "${THIS_SHELL##/**/}" in
      exit 1;;
 esac
 
-sdo=$(if sudo -Al 2>&1 >/dev/null; then echo "sudo"; else echo ":"; fi)
+function can_sudo {
+  if [ "$(uname)" = "OpenBSD" ]; then
+    echo "doas"
+    return
+  fi
+  if sudo -Al 2>/dev/null 1>/dev/null; then
+    echo "sudo"
+  else
+    echo ":"
+  fi
+}
+
+sdo=$(can_sudo)
 
 function dfh {
   /bin/df -h | egrep '^(Filesystem|/)' | sort -hk5
@@ -71,6 +83,8 @@ function 0xMF-sysadmin-query-package-list {
 alias sadu='0xMF-sysadmin-upgrade'
 function 0xMF-sysadmin-upgrade {
 
+  [[ "${sdo}" != "sudo" && "${sdo}" != "doas" ]] && return
+
   os=$(uname)
 
   case "${os}" in
@@ -104,8 +118,8 @@ function 0xMF-sysadmin-upgrade {
   fi
 
   if [ "${os}" = "OpenBSD" ]; then
-    doas syspatch
-    doas pkg_add -Uu
+    "${sdo}" syspatch
+    "${sdo}" pkg_add -Uu
   fi
 }
 
