@@ -31,6 +31,7 @@ function 0xMF-perldoc {
 }
 
 alias cv='0xMF-cv'
+alias make-slides="0xMF-make-slides"
 alias sbcl='rlwrap sbcl'
 alias ple='perl -wnle'
 alias pale='perl -awnle'
@@ -59,6 +60,11 @@ function 0xMF-reload {
     * )     [[ -s "$f" ]] && source ~/.${shell}rc
   esac
   unset shell
+}
+
+function 0xMF-make-slides {
+  [ ! -s "$1" ] && { >&2 echo "Usage: $(basename $0) filename"; return 1; }
+  pandoc -t beamer "$1" -V theme:Pittsburgh -V fonttheme:professionalfonts -o "${1%md}pdf"
 }
 
 function serve {
