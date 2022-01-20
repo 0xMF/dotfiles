@@ -64,7 +64,7 @@ function 0xMF-reload {
 
 function 0xMF-make-slides {
   [ ! -s "$1" ] && { >&2 echo "Usage: $(basename $0) filename"; return 1; }
-  pandoc -t beamer "$1" -V theme:Pittsburgh -V fonttheme:professionalfonts -o "${1%md}pdf"
+  pandoc -t beamer "$1" -V theme:Pittsburgh -V colortheme:beaver -V fonttheme:professionalfonts -o "${1%md}pdf"
 }
 
 function serve {
