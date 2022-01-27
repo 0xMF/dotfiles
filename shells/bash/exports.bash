@@ -25,7 +25,7 @@ fi
 
 
 # make Bash work like Zsh/ksh
-export GLOBIGNORE='.:..:*.:*..'
+export GLOBIGNORE='*.:*..'
 
 # Handles: (-R) ANSI colors with ESC, (-FX) quit on one screen without destroying text,
 #          (-q) quiet mode and (-e) terminate after second encounter with EOF
