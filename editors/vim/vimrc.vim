@@ -373,3 +373,9 @@ set clipboard=unnamed   " all yanking goes to clipboard
 " see :h vundle for more details or wiki for FAQ
 " Put your non-Plugin stuff after this line
 "
+
+" settings for a local setup
+:if filereadable(expand("$MYVIM/local.vim"))
+:  source $MYVIM/local.vim
+:endif
+
