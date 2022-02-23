@@ -250,6 +250,9 @@ set clipboard=unnamed   " all yanking goes to clipboard
     au BufRead,BufNewFile *.go setlocal colorcolumn=100
     au BufRead,BufNewFile *.go setlocal noexpandtab
 
+    "* Mail
+    au FileType mail setlocal textwidth=0 spell
+
     "* Markdown
     au BufRead,BufNewFile *.md setlocal filetype=markdown
     au BufRead,BufNewFile *.md setlocal spell
