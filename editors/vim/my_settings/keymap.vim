@@ -118,7 +118,8 @@ imap <Nul>    <Space>
 :imap ;l  <Esc>:set list!<CR>a|         " toggle non-printable
 :imap ;n <Esc>:set nu!<CR>a|            " toggle numbering
 :imap ;nu  <Esc>:set nu!<CR>a|          " toggle line-numbers
-:imap ;q  <Esc>magq}``|                 " par command paragraph formatting
+:imap ;q  <Esc>ma:set wrap!<CR>``a|     " favour ventilated prose
+:imap ;qq  <Esc>magq}``|                " par command paragraph formatting
 :imap ;qw <Esc>magw}``|                 " Vim's paragraph formatting
 :imap ;t <Esc>:set laststatus=0<CR>a|    " off statusbar
 :imap ;tm <Esc>:set statusline=%f%h%w\ [%Y]\ [%l,%v]\ %L:%p%%\ %{strftime('%c')}<CR><CR>a| "minimal statusbar
@@ -147,7 +148,8 @@ imap <Nul>    <Space>
 :map ;n <Esc>:set nu!<CR>|              " toggle line-numbers
 :map ;nu <Esc>:set nu!<CR>|             " toggle line-numbers
 :map ;p mpi(<Esc>Ea)<Esc>`p|            " parens () around a word
-:map ;q  <Esc>magq}``|                  " par command  paragraph formatting
+:map ;q  <Esc>:set wrap!<CR>|           " favour ventilated prose
+:map ;qq <Esc>magq}``|                  " par command  paragraph formatting
 :map ;qw <Esc>magw}``|                  " Vim's paragraph formatting
 :map ;t <Esc>:set laststatus=0<CR>|     " off statusbar
 :map ;tm <Esc>:set statusline=%f%h%w\ [%Y]\ [%l,%v]\ %L:%p%%\ %{strftime('%c')}<CR><CR>| "minimal statusbar
