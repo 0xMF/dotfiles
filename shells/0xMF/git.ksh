@@ -604,6 +604,31 @@ function ghd {
   fi
 }
 
+# date strict ISO
+function ght {
+  if _is_git_repo -eq 0
+  then
+    git log --color=always --all --graph \
+            --pretty=format:"%C(red bold)%h%Creset %C(blue bold)%aI%Creset %C(green bold)%s%Creset"
+  fi
+}
+
+function ghh {
+  if _is_git_repo -eq 0
+  then
+    git log --color=always --all --graph \
+            --pretty=format:"%C(red bold)%h%Creset %C(blue bold)%ah%Creset %C(green bold)%s%Creset"
+  fi
+}
+
+function ghr {
+  if _is_git_repo -eq 0
+  then
+    git log --color=always --all --graph \
+            --pretty=format:"%C(red bold)%h%Creset %C(blue bold)%ar%Creset %C(green bold)%s%Creset"
+  fi
+}
+
 # worker function for gshow:
 #     no arguments  = show last 10 commits
 #    one argument   =
