@@ -422,7 +422,7 @@ function galias {
 function gfunctions {
   {
     d=$(declare -F | $GREP ' -f g[a-zA-Z]' |cut -d" " -f3)
-    a=$(sed -r '/#/d;/^$/d;/^\[/d;s/ *=.*//' $HOME/.git/aliases.gitconfig)
+    a=$(sed -r '/#/d;/^$/d;/^\[/d;s/ *=.*//' $HOME/.git/aliases)
     f="$d $a"
     echo $f|tr ' ' '\n'
   } |sort |fmt -w `tput cols`
@@ -436,12 +436,12 @@ function ghelp {
     echo
     echo -e "\nUsage: ghelp my_git_alias\n\n"\
             " where\n\n my_git_alias is any of the following (some aliases are shown above):\n"
-    sed -r '/#/d;/^$/d;/^\[/d;s/ *=.*//;s/ *--[a-z].*//;/^\s*$/d' $HOME/.git/aliases.gitconfig | sort | fmt
+    sed -r '/#/d;/^$/d;/^\[/d;s/ *=.*//;s/ *--[a-z].*//;/^\s*$/d' $HOME/.git/aliases | sort | fmt
     echo
   else
     expand=$(alias "$1" 2>/dev/null)
     [ $? -eq 0 ] && echo "$expand" && return
-    expand=$($GREP -w "^ *$1" $HOME/.git/aliases.gitconfig 2>/dev/null)
+    expand=$($GREP -w "^ *$1" $HOME/.git/aliases 2>/dev/null)
     [ $? -eq 0 ] && echo "$expand" && return
     expand=$(declare -f "$1")
     [ $? -eq 0 ] && echo "$expand" && return
@@ -451,7 +451,7 @@ function ghelp {
 }
 
 function ghuman {
-   sed -n '/BEGIN HUMAN/,/END HUMAN/p' $HOME/.git/aliases.gitconfig
+   sed -n '/BEGIN HUMAN/,/END HUMAN/p' $HOME/.git/aliases
 }
 
 # git most-recently-used aliases and bash-functions
