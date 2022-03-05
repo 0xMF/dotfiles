@@ -220,3 +220,10 @@ function 0xMF-sysadmin-pkg {
             ;;
   esac
 }
+
+function perl-repair {
+  echo -n "Repair perl locally? This might take a long time...continue(y/N)? "
+  read REPLY
+  [[ "$REPLY" != "y"  &&  "$REPLY" != "Y" && "$REPLY" != "yes" ]] && return
+  env PERL5LIB= PERL_LOCAL_LIB_ROOT= cpan -r
+}
