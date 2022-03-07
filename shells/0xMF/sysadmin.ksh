@@ -227,3 +227,15 @@ function perl-repair {
   [[ "$REPLY" != "y"  &&  "$REPLY" != "Y" && "$REPLY" != "yes" ]] && return
   env PERL5LIB= PERL_LOCAL_LIB_ROOT= cpan -r
 }
+
+alias enabled=0xMF-services-enabled
+function 0xMF-services-enabled {
+    /usr/bin/systemctl list-unit-files | /bin/grep -w 'enabled' | /bin/grep -vwE '(systemd|dbus|getty)'
+}
+
+alias running=0xMF-services-running
+function 0xMF-services-running ()
+{
+    /usr/bin/systemctl | /bin/grep -w running | /bin/awk '{ service=$1 ; $1=$2=$3=$4="" ; printf("%-40s\t%s\n", service, $0) }' | /bin/grep -vwE '(systemd|dbus|getty)'
+}
+
