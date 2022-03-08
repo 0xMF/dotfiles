@@ -256,6 +256,11 @@ function 0xMF-list-functions-columnate {
   esac | sed '/^_/d' | pr -4 -T -w ${COLUMNS}
 }
 
+alias cpan-installed=0xMF-list-cpan-installed
+function 0xMF-list-cpan-installed {
+  cpan -l | sort
+}
+
 function 0xMF-help {
   local old
   if [[ -z "$xMFDOC" || ! -d "$xMFDOC" ]]; then
