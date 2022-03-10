@@ -234,8 +234,6 @@ function 0xMF-services-enabled {
 }
 
 alias running=0xMF-services-running
-function 0xMF-services-running ()
-{
+function 0xMF-services-running {
     /usr/bin/systemctl | /bin/grep -w running | /bin/awk '{ service=$1 ; $1=$2=$3=$4="" ; printf("%-40s\t%s\n", service, $0) }' | /bin/grep -vwE '(systemd|dbus|getty)'
 }
-
