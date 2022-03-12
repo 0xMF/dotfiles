@@ -231,6 +231,12 @@ function 0xMF-gdoc-list-cmd {
   go list cmd | sed '/vendor/d' | pr -4 -T -w $COLUMNS
 }
 
+function 0xMF-pydoc {
+    [ -z "$CHROMA_STYLE" ] \
+      && { pydoc3 "$@" | cat -s | chroma --unbuffered -l go -f terminal256 -s paraiso-dark | less -FeqRSX ; }  \
+      || { pydoc3 "$@" | cat -s | chroma --unbuffered -l python -f terminal256 -s "$CHROMA_STYLE" | less -FeqRSX ; }
+}
+
 function 0xMF-list-aliases {
   case "${THIS_SHELL}" in
     zsh) alias|cut -d= -f1 | sort -u|pr -4 -T -w $COLUMNS ;;
