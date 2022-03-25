@@ -161,8 +161,8 @@ imap <Nul>    <Space>
 ":map <C-D> de|                          " delete word under cursor
 :map <C-s> :w<CR>|                      " like Windows CTRL +S to save
 :map <End>  <Esc>$|                     " jump to the end
-:map <C-p> gT|                          " tabprevious for console vim
-:map <C-n> gt|                          " tabnext
+:map <expr> <C-p>  has("gui_running") ? "gT" : ":bp<CR>"|  " tabprevious for console vim
+:map <expr> <C-n>  has("gui_running") ? "gt" : ":bn<CR>"|  " tabnext
 
 " Word counting
 :map <F11> :set report=0<CR>:set nohls<CR>:'t,.s/\i\+/&/g<CR>| " from mark t to current line wordcount
