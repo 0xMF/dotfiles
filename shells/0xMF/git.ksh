@@ -240,6 +240,24 @@ function psd {
 
 function psm {
   if [ "$shell" = "zsh" ]; then
+    if [ `id -u` -eq 0 ]; then
+      eval "function precmd { PROMPT='$RED#$NOCOLOR ' }"
+    else
+      eval "function precmd { PROMPT='$MAGENTA%%$NOCOLOR ' }"
+    fi
+    WHITE="%{$fg_bold[white]%}"
+  else
+    unset PROMPT_COMMAND
+    if [ `id -u` -eq 0 ]; then
+      PS1="# "
+    else
+      PS1="$ "
+    fi
+  fi
+}
+
+function psmo {
+  if [ "$shell" = "zsh" ]; then
     eval "function precmd { PROMPT='$MAGENTA%%$NOCOLOR ' }"
     WHITE="%{$fg_bold[white]%}"
   else
