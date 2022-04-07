@@ -230,10 +230,10 @@ function perl-repair {
 
 alias enabled=0xMF-services-enabled
 function 0xMF-services-enabled {
-    /usr/bin/systemctl list-unit-files | /bin/grep -w 'enabled' | /bin/grep -vwE '(systemd|dbus|getty)'
+    /usr/bin/systemctl list-unit-files | /bin/grep -w 'enabled' | /bin/grep -vwE '(systemd|dbus|getty)' | sort
 }
 
 alias running=0xMF-services-running
 function 0xMF-services-running {
-    /usr/bin/systemctl | /bin/grep -w running | /bin/awk '{ service=$1 ; $1=$2=$3=$4="" ; printf("%-40s\t%s\n", service, $0) }' | /bin/grep -vwE '(systemd|dbus|getty)'
+    /usr/bin/systemctl | /bin/grep -w running | /bin/awk '{ service=$1 ; $1=$2=$3=$4="" ; printf("%-40s\t%s\n", service, $0) }' | /bin/grep -vwE '(systemd|dbus|getty)' | sort
 }
