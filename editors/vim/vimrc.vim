@@ -76,6 +76,7 @@ source $VIMRUNTIME/mswin.vim
     :   set guiheadroom=20  "room for window decorations
     :   set guioptions-=T   "hide the toolbar
     :   set guioptions-=m   "hide the menu
+    :   set guioptions-=r   "hide the right scrollbar
     :   set columns=114     "width in number of cols
     :   set lines=30        "height in number of lines
     :endif
