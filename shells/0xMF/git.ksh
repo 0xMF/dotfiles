@@ -951,6 +951,7 @@ alias gls='git ls-files'
 alias glum='git pull upstream master'
 
 alias gout='git log --color=always master ^origin/master'
+alias gnevermind='git reset --hard HEAD && git clean -d -f'
 
 alias gp='git push'
 alias gpd='git push --dry-run'
