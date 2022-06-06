@@ -555,6 +555,19 @@ function __gh {
       git --no-pager log --color=always $n --graph --pretty=format:"%C(red bold)%h%Creset %C(cyan bold)|%Creset %C(auto)%d%Creset %s"
       echo
     fi
+  fi
+}
+
+function ghaf {
+  if _is_git_repo -eq 0
+  then
+    n=${1:--10}
+    if [[ "$n" = "--all" ]]; then
+      git log --color=always $n --graph --pretty=format:"%C(red bold)%h%Creset %C(cyan bold)|%Creset %C(auto)%d%Creset %s"
+    else
+      git --no-pager log --color=always $n --graph --pretty=format:"%C(red bold)%h%Creset %C(cyan bold)|%Creset %C(auto)%d%Creset %s"
+      echo
+    fi
     # default pager must handle less than one screen correctly (bash/Linux with less, ksh/OpenBSD with less -c are ok)
     # else uncomment line below when only on bash/Linux
     #if [[ "$SHELL_PROMPT" = "$" ]]; then
