@@ -456,6 +456,7 @@ function ghelp {
             " where\n\n my_git_alias is any of the following (some aliases are shown above):\n"
     sed -r '/#/d;/^$/d;/^\[/d;s/ *=.*//;s/ *--[a-z].*//;/^\s*$/d' $HOME/.git/aliases | sort | fmt
     echo
+    ghw
   else
     expand=$(alias "$1" 2>/dev/null)
     [ $? -eq 0 ] && echo "$expand" && return
@@ -470,6 +471,12 @@ function ghelp {
 
 function ghuman {
    sed -n '/BEGIN HUMAN/,/END HUMAN/p' $HOME/.git/aliases
+   ghw
+}
+
+function gr {
+  [ -z "$1" ] && { >&2 echo  "Usage: gr <branch> else use grr to run git rebase"; return; }
+  git rebase $1
 }
 
 # git most-recently-used aliases and bash-functions
@@ -819,11 +826,21 @@ function gman {
 
 function ghw {
   echo -e "my git workflow\n\
-    git branch wip\n\
-    git commit ...\n\
-    git rebase master\n\
-    git checkout master\n\
-    git merge wip"
+    # make branch wip and checkout wip\n\t\
+      gbr wip =>  git branch wip\n\t\
+      gco wip => git checkout wip\n\n\
+    # add commits and rebase as much as needed\n\t\
+      git add ...;\n\t\
+      gcam; gha; gshow...\n\t\
+      gri ...\n\t\
+      git commit ...\n\n\
+    # ready to merge \n\t\
+      git rebase master\n\t\
+      git checkout master\n\t\
+      git merge wip\n\n\
+    # push to origin\n\t\
+      git pull\n\t\
+      git push"
 }
 
 function gsearch {
@@ -942,6 +959,7 @@ alias ghumans="ghuman|sort -t'=' -k2 |cut -c1-120"
 alias gin='git log --color=always origin/master ^master'
 
 alias gl='git pull'
+alias glr='git pull --rebase'
 #alias g1='git log --color=always -p -1'
 alias gld='git log --color=always --decorate --abbrev-commit --date=short --pretty=format:"%C(red bold)%h%Creset %C(dim green)%ad%Creset %C(cyan bold)|%Creset %s"'
 alias glg='git log --color=always -p --all'
@@ -977,6 +995,7 @@ alias gpush='git push'
 alias grbi='git rebase --interactive'
 alias gredo='gundo; gca -c ORIG_HEAD'
 alias gri='git rebase --interactive'
+alias grr='git rebase'
 
 alias gsh='gshow'
 alias gst='git status'
