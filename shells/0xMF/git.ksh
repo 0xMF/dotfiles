@@ -474,9 +474,15 @@ function ghuman {
    ghw
 }
 
-function gr {
-  [ -z "$1" ] && { >&2 echo  "Usage: gr <branch> else use grr to run git rebase"; return; }
-  git rebase $1
+function grow {
+  if [ -z "$1" ]; then
+    >&2 echo -e "Usage: to rebase commits onto <branch-name>: grow <branch-name>, for example: grow beta\n\
+       does the following when alpha has latest changeset\n\
+        \tgit checkout alpha\n\
+        \tgit rebase --onto beta"
+    return
+  fi
+  git rebase --onto $1
 }
 
 # git most-recently-used aliases and bash-functions
@@ -995,7 +1001,7 @@ alias gpush='git push'
 alias grbi='git rebase --interactive'
 alias gredo='gundo; gca -c ORIG_HEAD'
 alias gri='git rebase --interactive'
-alias grr='git rebase'
+alias grr='grow'
 
 alias gsh='gshow'
 alias gst='git status'
