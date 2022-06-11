@@ -180,7 +180,7 @@ function dpkg-list {
   /usr/bin/dpkg-query --list|awk -F' ' '{printf("%s\t%-32s\t",$1,substr($2,0,40));$1=$2=$3=$4=""; print $0}'
 }
 function 0xMF-sysadmin-dpkg-list-by-size {
- dpkg-list
+ dpkg-list-by-size
 }
 function dpkg-list-by-size {
   /usr/bin/dpkg-query -Wf '${Installed-Size}\t${Package}\n' | sort -n
