@@ -9,6 +9,7 @@
   editor    = vim
   excludesfile = ~/.git/ignore
   pager     = less -FEqRSX
+	trustctile = false
   #pager     = more -s
   # pager    = less -cFEXq
   # pager    = more -Rq
