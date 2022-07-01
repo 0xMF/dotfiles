@@ -290,8 +290,8 @@ _lisp() {
     echo " - found .quicklisp, not installing" >&2
   } || {
     installed="$installed quicklisp"
-    mkdir -p $HOME/comp.misc/lisp/quicklisp
-    touch $HOME/comp.misc/lisp/slime-helper.el
+    mkdir -p $HOME/.comp.misc/lisp/quicklisp
+    touch $HOME/.comp.misc/lisp/slime-helper.el
   }
 
   if [ -e $HOME/.sbclrc ] || [ -L $HOME/.sbclrc ]; then

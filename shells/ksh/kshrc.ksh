@@ -22,7 +22,7 @@ REPO=~/.ksh
 [[ "`uname`" != "OpenBSD" ]] && { >&2 echo "Sorry! These KSH settings were tested on OpenBSD only."; return ; }
 
 [ -f $HOME/.profile ] && . ~/.profile
-PATH=$PATH:/usr/local/bin:.:~/bin
+PATH=$PATH:/usr/local/bin:~/bin
 
 # source various utility functions
 if [ -f $REPO/functions.ksh ]; then

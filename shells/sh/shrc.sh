@@ -8,7 +8,7 @@ export SHELL_REPO=~/.sh
 print .shrc called ...
 
 [ -f $HOME/.profile ] && . ~/.profile
-PATH=$PATH:/usr/local/bin:.:~/bin
+PATH=$PATH:/usr/local/bin:~/bin
 
 # source various utility functions
 if [ -f $SHELL_REPO/functions ]; then
