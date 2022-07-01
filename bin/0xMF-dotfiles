@@ -286,7 +286,7 @@ _lisp() {
   installed=
   echo "checking lisps..." >&2
 
-  [ -d $HOME/.quicklisp ] || [ -L $HOME/.quicklisp ] || [ -d $HOME/comp.misc/lisp/quicklisp ]  && {
+  [ -d $HOME/.quicklisp ] || [ -L $HOME/.quicklisp ] || [ -d $HOME/.comp.misc/lisp/quicklisp ]  && {
     echo " - found .quicklisp, not installing" >&2
   } || {
     installed="$installed quicklisp"
