@@ -499,10 +499,14 @@ function _is_git_repo {
 function ghist {
   if _is_git_repo -eq 0
   then
-    [ "$1" = "--all" ] \
-      && { shift; ghist-all "$@"; } \
-      || git log --all --color=always --graph --date=short --pretty=format:"%C(red bold)%h%Creset %C(blue bold)%ad%Creset %C(cyan bold)|%Creset %C(auto)%d%Creset %s" \
-            "$@"
+    if [ "$1" = "--all" ]; then
+      shift
+      ghist-all "$@"
+    else
+      git log \
+        --color=always --graph --date=short \
+        --pretty=format:"%C(red bold)%h%Creset %C(blue bold)%ad%Creset %C(cyan bold)|%Creset %C(auto)%d%Creset %s" "$@"
+    fi
   fi
 }
 
