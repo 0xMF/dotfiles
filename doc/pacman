@@ -45,6 +45,14 @@
   # or
     pacman -Suy --overwrite /usr/lib/p11-kit-trust.so
 
+ ## ERRORS: if errors about broken or invalid keys, update pacman-keys using
+    pacman-key --init
+    pacman-key --refresh-keys
+
+    # other useful commands
+    pacman-key -u | --updatedb
+    pacman-key --populate
+
  ### PACKAGE LIST get a list of packages installed by pacman
     grep -i installed /var/log/pacman.log
 
