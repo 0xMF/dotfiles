@@ -567,9 +567,9 @@ function __gh {
   then
     n=${1:--10}
     if [[ "$n" = "--all" ]]; then
-      git log --all --color=always $n --graph --pretty=format:"%C(red bold)%h%Creset %C(cyan bold)|%Creset %C(auto)%d%Creset %s"
+      git log --all --color=always $n --pretty=format:"%C(red bold)%h%Creset %C(cyan bold)|%Creset %C(auto)%d%Creset %s"
     else
-      git --no-pager log --all --color=always $n --graph --pretty=format:"%C(red bold)%h%Creset %C(cyan bold)|%Creset %C(auto)%d%Creset %s"
+      git --no-pager log --all --color=always $n --pretty=format:"%C(red bold)%h%Creset %C(cyan bold)|%Creset %C(auto)%d%Creset %s"
       echo
     fi
   fi
@@ -649,6 +649,19 @@ function ghd {
     git log --color=always --decorate --abbrev-commit --date=short --all --graph\
             --pretty=format:"%C(red bold)%h%Creset %C(green bold)%s%Creset" #|\
     #cut -c1-64 | less #eval "$pager"
+  fi
+}
+
+function ghg {
+  if _is_git_repo -eq 0
+  then
+    n=${1:--10}
+    if [[ "$n" = "--all" ]]; then
+      git log --all --color=always $n --graph --pretty=format:"%C(red bold)%h%Creset %C(cyan bold)|%Creset %C(auto)%d%Creset %s"
+    else
+      git --no-pager log --all --graph --color=always $n --pretty=format:"%C(red bold)%h%Creset %C(cyan bold)|%Creset %C(auto)%d%Creset %s"
+      echo
+    fi
   fi
 }
 
