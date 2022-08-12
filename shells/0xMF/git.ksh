@@ -538,10 +538,19 @@ function gd    { if _is_git_repo -eq 0; then git diff --color=always -w; fi }
 function gdc   { if _is_git_repo -eq 0; then git diff --color=always -w --cached; fi }
 function gdh   { if _is_git_repo -eq 0; then git diff --color=always -w HEAD; fi }
 function gds   { if _is_git_repo -eq 0; then git diff --color=always -w --staged; fi }
-function gdiff { if _is_git_repo -eq 0; then git diff --color=always -w HEAD | grep -v binary; fi }
 function gdff  { if _is_git_repo -eq 0; then git diff --color=always -w HEAD | grep -v binary; fi }
 function gst   { if _is_git_repo -eq 0; then git status ; fi }
 function gss   { if _is_git_repo -eq 0; then git status -s; fi }
+
+function gdiff {
+  if _is_git_repo -eq 0; then
+    if [ -z "$1" ]; then
+      git diff --color=always -w HEAD
+    else
+      git diff --color=always -w "$@"
+    fi | grep -v binary | less -FeqRSX
+  fi
+}
 
 function gdiff-pager {
   [ $# -eq 0 ] && gdff
@@ -567,9 +576,9 @@ function __gh {
   then
     n=${1:--10}
     if [[ "$n" = "--all" ]]; then
-      git log --all --color=always $n --pretty=format:"%C(red bold)%h%Creset %C(cyan bold)|%Creset %C(auto)%d%Creset %s"
+      git log --all --color=always $n --pretty=format:"%C(green bold)*%Creset %C(red bold)%h%Creset %C(cyan bold)|%Creset %C(auto)%d%Creset %s"
     else
-      git --no-pager log --all --color=always $n --pretty=format:"%C(red bold)%h%Creset %C(cyan bold)|%Creset %C(auto)%d%Creset %s"
+      git --no-pager log --all --color=always $n --pretty=format:"%C(green bold)*%Creset %C(red bold)%h%Creset %C(cyan bold)|%Creset %C(auto)%d%Creset %s"
       echo
     fi
   fi
@@ -979,7 +988,7 @@ alias gco='git checkout'
 alias gcs='git add .;git commit --squash'
 
 alias gd='git diff --color=always'
-alias gdiff='git diff --color=always'
+#alias gdiff='git diff --color=always'
 alias gdump='git cat-file -p'
 
 alias gfr='git fetch;git rebase remotes/origin/master'
