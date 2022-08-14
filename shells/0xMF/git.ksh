@@ -505,7 +505,8 @@ function ghist {
     else
       git log \
         --color=always --date=short \
-        --pretty=format:"%C(red bold)%h%Creset %C(blue bold)%ad%Creset %C(cyan bold)|%Creset %C(auto)%d%Creset %s" "$@"
+        --pretty=format:"%C(red bold)%h%Creset %C(blue bold)%ad%Creset %C(cyan bold)|%Creset %C(auto)%d%Creset %s" "$@" \
+      | __pager-counter
     fi
   fi
 }
@@ -513,9 +514,11 @@ function ghist {
 function ghist-all {
   if _is_git_repo -eq 0
   then
-    [[ -n "$1" && -s "$1" ]] \
-      && git log --all --color=always --pretty=format:'%C(cyan bold)%h%Creset | %C(red bold)%ad%Creset %d %Creset%s%Cgreen [%cn]' --date=short --follow -- "$1" \
-      || { >&2 echo "Usage ghist-all filename"; return; }
+    if [[ -n "$1" && -s "$1" ]]; then
+      git log --all --color=always --pretty=format:'%C(cyan bold)%h%Creset | %C(red bold)%ad%Creset %d %Creset%s%Cgreen [%cn]' --date=short --follow -- "$1" | __pager-counter
+    else
+      >&2 echo "Usage ghist-all filename"
+    fi
   fi
 }
 
@@ -571,14 +574,22 @@ function __gdh {
   fi
 }
 
+function __pager-counter {
+  awk '{ printf "%5d %s\n", NR-1, $0 }' | less -FeQRSX
+}
+
+function __no-pager-counter {
+  awk '{ printf "%5d %s\n", NR-1, $0 }'
+}
+
 function __gh {
   if _is_git_repo -eq 0
   then
     n=${1:--10}
     if [[ "$n" = "--all" ]]; then
-      git log --all --color=always $n --pretty=format:"%C(green bold)*%Creset %C(red bold)%h%Creset %C(cyan bold)|%Creset %C(auto)%d%Creset %s"
+      git log --all --color=always $n --pretty=format:"%C(green bold)*%Creset %C(red bold)%h%Creset %C(cyan bold)|%Creset %C(auto)%d%Creset %s" | __pager-counter
     else
-      git --no-pager log --all --color=always $n --pretty=format:"%C(green bold)*%Creset %C(red bold)%h%Creset %C(cyan bold)|%Creset %C(auto)%d%Creset %s"
+      git --no-pager log --all --color=always $n --pretty=format:"%C(green bold)*%Creset %C(red bold)%h%Creset %C(cyan bold)|%Creset %C(auto)%d%Creset %s" | __no-pager-counter
       echo
     fi
   fi
