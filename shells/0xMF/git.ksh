@@ -733,8 +733,10 @@ function _gshow {
     done
     case $# in
       # no arguments means show last 10 commits
-      0) git log ${opts} -10 --all --graph --pretty=format:"%C(red bold)%h%Creset %C(cyan bold)|%Creset %C(blue bold)%ad%Creset %C(cyan bold)|%Creset %C(auto)%d%Creset %s" --date=short
-         git diff --stat HEAD~10 HEAD
+      0) git log ${opts} -10 --all --pretty=format:"%C(red bold)%h%Creset %C(cyan bold)|%Creset %C(blue bold)%ad%Creset %C(cyan bold)|%Creset %C(auto)%d%Creset %s" --date=short
+        if [ $(git diff --stat HEAD~10 HEAD | wc -l) -le 10 ]; then
+          git diff --stat HEAD~10 HEAD
+        fi
          echo -ne "\nShow details of last 10 commits? (y/N) "; read key
          if [[ "$key" = "y" || "$key" = "Y" ]]; then
           git show ${opts} HEAD~10..HEAD --minimal 2>/dev/null
@@ -743,7 +745,7 @@ function _gshow {
 
       # we got one argument, show last 3 commits if that is a file
       1) if [ -s "$1" ]; then
-            git log ${opts} --all --graph --pretty=format:"%C(red bold)%h%Creset %C(cyan bold)|%Creset %C(blue bold)%ad%Creset %C(cyan bold)|%Creset %C(auto)%d%Creset %s" --date=short "$1"
+            git log ${opts} --all --pretty=format:"%C(red bold)%h%Creset %C(cyan bold)|%Creset %C(blue bold)%ad%Creset %C(cyan bold)|%Creset %C(auto)%d%Creset %s" --date=short "$1"
             echo -ne "\nShow last 10 commit details? (y/N) "; read key
             if [[ "$key" = "y" || "$key" = "Y" ]]; then
               git show ${opts} $(git log --all -n 3 --oneline "$1" | cut -d' ' -f1)
