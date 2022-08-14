@@ -504,7 +504,7 @@ function ghist {
       ghist-all "$@"
     else
       git log \
-        --color=always --graph --date=short \
+        --color=always --date=short \
         --pretty=format:"%C(red bold)%h%Creset %C(blue bold)%ad%Creset %C(cyan bold)|%Creset %C(auto)%d%Creset %s" "$@"
     fi
   fi
@@ -566,7 +566,7 @@ function __gdh {
   if _is_git_repo -eq 0
   then
     n=${1:--10}
-    git log --all --color=always $n --graph --date=short \
+    git log --all --color=always $n --date=short \
       --pretty=format:"%C(red bold)%h%Creset %C(blue bold)%ad%Creset %C(cyan bold)|%Creset %C(auto)%d%Creset %s"
   fi
 }
@@ -589,9 +589,9 @@ function ghaf {
   then
     n=${1:--10}
     if [[ "$n" = "--all" ]]; then
-      git log --all --color=always $n --graph --pretty=format:"%C(red bold)%h%Creset %C(cyan bold)|%Creset %C(auto)%d%Creset %s"
+      git log --all --color=always $n --pretty=format:"%C(red bold)%h%Creset %C(cyan bold)|%Creset %C(auto)%d%Creset %s"
     else
-      git --no-pager log --all --color=always $n --graph --pretty=format:"%C(red bold)%h%Creset %C(cyan bold)|%Creset %C(auto)%d%Creset %s"
+      git --no-pager log --all --color=always $n --pretty=format:"%C(red bold)%h%Creset %C(cyan bold)|%Creset %C(auto)%d%Creset %s"
       echo
     fi
     # default pager must handle less than one screen correctly (bash/Linux with less, ksh/OpenBSD with less -c are ok)
@@ -655,7 +655,7 @@ function ghd {
   # pager=`[ $lines -gt 78 ] && echo "less -R"  || echo "cat"  `
   if _is_git_repo -eq 0
   then
-    git log --color=always --decorate --abbrev-commit --date=short --all --graph\
+    git log --color=always --decorate --abbrev-commit --date=short --all \
             --pretty=format:"%C(red bold)%h%Creset %C(green bold)%s%Creset" #|\
     #cut -c1-64 | less #eval "$pager"
   fi
@@ -678,7 +678,7 @@ function ghg {
 function ght {
   if _is_git_repo -eq 0
   then
-    git log --color=always --all --graph --date=format:"%F %T"\
+    git log --color=always --all --date=format:"%F %T"\
             --pretty=format:"%C(red bold)%h%Creset %C(blue bold)%ad%Creset %C(cyan bold)%D%Creset %C(green bold)%s%Creset"
   fi
 }
@@ -687,7 +687,7 @@ function ght {
 function ghtA {
   if _is_git_repo -eq 0
   then
-    git log "$@" --color=always --all --graph --date=format:"%F %T"\
+    git log "$@" --color=always --all --date=format:"%F %T"\
             --pretty=format:"%C(red bold)%h%Creset %C(blue bold)%ad%Creset %C(cyan bold)%D%Creset %C(green bold)%s%Creset"
   fi
 }
@@ -695,7 +695,7 @@ function ghtA {
 function ghh {
   if _is_git_repo -eq 0
   then
-    git log --color=always --all --graph \
+    git log --color=always --all \
             --pretty=format:"%C(red bold)%h%Creset %C(blue bold)%ah%Creset %C(green bold)%s%Creset"
   fi
 }
@@ -703,7 +703,7 @@ function ghh {
 function ghr {
   if _is_git_repo -eq 0
   then
-    git log --color=always --all --graph \
+    git log --color=always --all \
             --pretty=format:"%C(red bold)%h%Creset %C(blue bold)%ar%Creset %C(green bold)%s%Creset"
   fi
 }
