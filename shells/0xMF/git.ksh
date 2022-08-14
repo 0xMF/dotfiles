@@ -997,6 +997,7 @@ alias gfr='git fetch;git rebase remotes/origin/master'
 
 alias ghe='ghelp'
 alias ghista='ghist-all'
+alias ghistg='ghist --graph'
 alias ghumans="ghuman|sort -t'=' -k2 |cut -c1-120"
 
 alias gin='git log --all --color=always origin/master ^master'
