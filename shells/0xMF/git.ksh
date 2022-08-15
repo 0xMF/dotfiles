@@ -495,6 +495,16 @@ function _is_git_repo {
   return $?
 }
 
+function 0xMF-git-log-pretty {
+  git log --color=always --date=short \
+          --pretty=format:"%C(red bold)%h%Creset %C(blue bold)%ad%Creset %C(cyan bold)|%Creset %C(auto)%d%Creset %s" "$@"
+}
+
+function 0xMF-git-log-pretty-reverse {
+  git log --reverse --color=always --date=short \
+          --pretty=format:"%C(red bold)%h%Creset %C(blue bold)%ad%Creset %C(cyan bold)|%Creset %C(auto)%d%Creset %s" "$@"
+}
+
 # show all git commits history
 function ghist {
   if _is_git_repo -eq 0
@@ -503,9 +513,7 @@ function ghist {
       shift
       ghist-all "$@"
     else
-      git log \
-        --color=always --date=short \
-        --pretty=format:"%C(red bold)%h%Creset %C(blue bold)%ad%Creset %C(cyan bold)|%Creset %C(auto)%d%Creset %s" "$@"
+      0xMF-git-log-pretty "$@"
     fi
   fi
 }
@@ -518,10 +526,7 @@ function ghist-rel-to-HEAD {
       shift
       ghist-all "$@"
     else
-      git log \
-        --color=always --date=short \
-        --pretty=format:"%C(red bold)%h%Creset %C(blue bold)%ad%Creset %C(cyan bold)|%Creset %C(auto)%d%Creset %s" "$@" \
-      | __pager-counter
+      0xMF-git-log-pretty "$@" | __pager-counter
     fi
   fi
 }
@@ -535,6 +540,15 @@ function ghist-all {
       >&2 echo "Usage ghist-all filename"
     fi
   fi
+}
+
+# shows history in reverse order
+function ghist-reverse {
+  0xMF-git-log-pretty-reverse "$@"   #| sed '$s/$/\n/' | tac | less
+}
+
+function ghist-reverse-rel-to-HEAD {
+  ghist-rel-to-HEAD "$@" | sed '$s/$/\n/' | tac | less
 }
 
 # completes the triad of:
@@ -1071,6 +1085,7 @@ alias gpush='git push'
 
 alias grbi='git rebase --interactive'
 alias gredo='gundo; gca -c ORIG_HEAD'
+alias gread-chrono='ghist-reverse'
 alias gri='git rebase --interactive'
 alias grr='grow'
 
