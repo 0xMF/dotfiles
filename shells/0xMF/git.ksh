@@ -813,6 +813,24 @@ function _gshow {
             fi
             unset type
          fi ;;
+
+      # two args shows commits, files-changed and diffs between them if first arg was a commit or tag
+      # assumes second arg is either a commit or a tag too.
+      2) type=$(git cat-file -t $1 2>/dev/null)
+          if [[ "$type" = "commit" || "$type" = "tag" ]]; then
+            echo "showing one line summaries of commits in chronological order...";
+            eval "git log ${opts} --pretty=format:\"%C(red bold)%h%Creset %C(cyan bold)|%Creset %C(blue bold)%ad%Creset %C(cyan bold)|%Creset %C(auto)%d%Creset %s\" --date=short $2...$1"
+
+            echo -n "show files changed between $1 and $2? (Y/n) ";  read key
+            [[ "$key" = "n" || "$key" = "N" ]] && return
+            eval "git diff ${opts} --stat $1 $2 2>/dev/null"
+
+            echo -n "show diffs between $1 and $2? (Y/n) ";  read key
+            [[ "$key" = "n" || "$key" = "N" ]] && return
+            eval "git diff ${opts} $@"
+
+          fi ;;
+
       *) if  [[ $1 -gt 0 && $2 -gt 0 ]]; then
               if [[ $2 -gt $1 ]]; then
               n=$(( $(echo $2) + 1 ))
