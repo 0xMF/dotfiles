@@ -819,7 +819,8 @@ function _gshow {
       2) type=$(git cat-file -t $1 2>/dev/null)
           if [[ "$type" = "commit" || "$type" = "tag" ]]; then
             echo "showing one line summaries of commits in chronological order...";
-            eval "git log ${opts} --pretty=format:\"%C(red bold)%h%Creset %C(cyan bold)|%Creset %C(blue bold)%ad%Creset %C(cyan bold)|%Creset %C(auto)%d%Creset %s\" --date=short $2...$1"
+            local parent=$(git rev-list --parents -n 1 $1|cut -d' ' -f2)
+            eval "git log ${opts} --reverse --pretty=format:\"%C(red bold)%h%Creset %C(cyan bold)|%Creset %C(blue bold)%ad%Creset %C(cyan bold)|%Creset %C(auto)%d%Creset %s\" --date=short $parent...$2"
 
             echo -n "show files changed between $1 and $2? (Y/n) ";  read key
             [[ "$key" = "n" || "$key" = "N" ]] && return
@@ -852,6 +853,9 @@ function _gshow {
   fi
   unset opts
 }
+if [ $SHELL=/bin/zsh ]; then
+  compdef _git gshow=git-log
+fi
 
 # if $1 contains alphabets (HEAD,SHA1 commits) 'git show $1' otherwise call _gshow
 function gshow {
