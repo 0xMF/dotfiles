@@ -804,14 +804,16 @@ function _gshow {
             if [[ "$type" = "commit" || "$type" = "tag" || "$type" = "tree" || "$type" = "blob" ]]; then
               eval "git show ${opts} $1"
             else
-              if [[ $1 != [[:alpha:]]* ]]; then
-                [[ $1 -lt 2 ]] \
-                  && git show ${opts} HEAD~1..HEAD    2>/dev/null \
-                  || git show ${opts} HEAD~$(($1-1))  2>/dev/null
-              else
-                echo "did not understand... $1"
+                if [[ "$1" = -[0-9]* || "$1" = [0-9]* ]]; then  # alternatively, if [[ "$1" != "[[:alpha:]]*" ]]; then
+                  if [[ $1 -lt 0 ]]; then
+                    git log ${opts} HEAD~$((0 - $1))...HEAD --pretty=format:"%C(red bold)%h%Creset %C(cyan bold)|%Creset %C(blue bold)%ad%Creset %C(cyan bold)|%Creset %C(auto)%d%Creset %s" --date=short
+                  else
+                    git show ${opts} HEAD~$1 2>/dev/null
+                  fi
+                else
+                  echo "did not understand... $1"
+                fi
               fi
-            fi
             unset type
          fi ;;
 
@@ -838,8 +840,8 @@ function _gshow {
           else
             if  [[ $1 -ge 0 && $2 -ge 0 ]]; then
               if [[ $2 -gt $1 ]]; then
-                git log ${opts} HEAD~$2...HEAD~$1 --pretty=format:"%C(red bold)%h%Creset %C(cyan bold)|%Creset %C(blue bold)%ad%Creset %C(cyan bold)|%Creset %C(auto)%d%Creset %s" --date=short
-                git diff --stat HEAD~$2..HEAD~$1
+                git log ${opts} HEAD~$(($2 + 1))...HEAD~$1 --pretty=format:"%C(red bold)%h%Creset %C(cyan bold)|%Creset %C(blue bold)%ad%Creset %C(cyan bold)|%Creset %C(auto)%d%Creset %s" --date=short
+                git diff --stat HEAD~$(($2 + 1))..HEAD~$1
               else
                 if [[ $1 -gt $2 ]]; then
                   git log ${opts} HEAD~$(($1 + 1))...HEAD~$2 --pretty=format:"%C(red bold)%h%Creset %C(cyan bold)|%Creset %C(blue bold)%ad%Creset %C(cyan bold)|%Creset %C(auto)%d%Creset %s" --date=short
