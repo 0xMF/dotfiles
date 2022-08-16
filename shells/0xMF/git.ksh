@@ -836,7 +836,7 @@ function _gshow {
             [[ "$key" = "n" || "$key" = "N" ]] && return
             eval "git diff ${opts} $@"
           else
-            if  [[ $1 -gt 0 && $2 -gt 0 ]]; then
+            if  [[ $1 -ge 0 && $2 -ge 0 ]]; then
               if [[ $2 -gt $1 ]]; then
                 n=$(( $(echo $2) + 1 ))
                 git log ${opts} HEAD~$n..HEAD~$1 --pretty=format:"%C(red bold)%h%Creset %C(cyan bold)|%Creset %C(auto)%d%Creset %s" 2>/dev/null
