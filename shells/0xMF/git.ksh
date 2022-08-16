@@ -428,6 +428,9 @@ function old_parse_git_dirty {
   unset sts_skip
 }
 
+unset opts
+opts="--color=always --first-parent --date=short --decorate=no"
+
 # show all git aliases
 function galias {
   # get all git-aliases and git-functions; filter out non-git; sort
@@ -496,13 +499,13 @@ function _is_git_repo {
 }
 
 function 0xMF-git-log-pretty {
-  git log --color=always --date=short \
-          --pretty=format:"%C(red bold)%h%Creset %C(blue bold)%ad%Creset %C(cyan bold)|%Creset %C(auto)%d%Creset %s" "$@"
+  eval "git log ${opts} \
+          --pretty=format:\"%C(red bold)%h%Creset %C(blue bold)%ad%Creset %C(cyan bold)|%Creset %C(auto)%d%Creset %s\" $@"
 }
 
 function 0xMF-git-log-pretty-reverse {
-  git log --reverse --color=always --date=short \
-          --pretty=format:"%C(red bold)%h%Creset %C(blue bold)%ad%Creset %C(cyan bold)|%Creset %C(auto)%d%Creset %s" "$@"
+  eval "git log --reverse ${opts} \
+          --pretty=format:\"%C(red bold)%h%Creset %C(blue bold)%ad%Creset %C(cyan bold)|%Creset %C(auto)%d%Creset %s\" $@"
 }
 
 # show all git commits history
@@ -513,7 +516,7 @@ function ghist {
       shift
       ghist-all "$@"
     else
-      0xMF-git-log-pretty "$@"
+      0xMF-git-log-pretty "$@" | __pager-counter
     fi
   fi
 }
@@ -535,7 +538,7 @@ function ghist-all {
   if _is_git_repo -eq 0
   then
     if [[ -n "$1" && -s "$1" ]]; then
-      git log --all --color=always --pretty=format:'%C(cyan bold)%h%Creset | %C(red bold)%ad%Creset %d %Creset%s%Cgreen [%cn]' --date=short --follow -- "$1"
+      git log --all $(echo "${opts}") --follow --pretty=format:'%C(cyan bold)%h%Creset | %C(red bold)%ad%Creset %d %Creset%s%Cgreen [%cn]' -- "$1"
     else
       >&2 echo "Usage ghist-all filename"
     fi
@@ -598,7 +601,7 @@ function __gdh {
   if _is_git_repo -eq 0
   then
     n=${1:--10}
-    git log --all --color=always $n --date=short \
+    git log --all $n $(echo "${opts}") \
       --pretty=format:"%C(red bold)%h%Creset %C(blue bold)%ad%Creset %C(cyan bold)|%Creset %C(auto)%d%Creset %s"
   fi
 }
@@ -615,12 +618,11 @@ function __gh {
   if _is_git_repo -eq 0
   then
     n=${1:--10}
-    if [[ "$n" = "--all" ]]; then
-      git log --all --color=always $n --pretty=format:"%C(green bold)*%Creset %C(red bold)%h%Creset %C(cyan bold)|%Creset %C(auto)%d%Creset %s"
+    if [[ "$n" != "--no-pager" ]]; then
+      git log $n $(echo "${opts}") --pretty=format:"%C(green bold)*%Creset %C(red bold)%h%Creset %C(cyan bold)| %ad | %Creset %C(auto)%d%Creset %s" | __no-pager-counter
     else
-      git --no-pager log --all --color=always $n --pretty=format:"%C(green bold)*%Creset %C(red bold)%h%Creset %C(cyan bold)|%Creset %C(auto)%d%Creset %s"
-      echo
-    fi | __pager-counter
+      git --no-pager log $(echo "${opts}") --pretty=format:"%C(green bold)*%Creset %C(red bold)%h%Creset %C(cyan bold)| %ad | %Creset %C(auto)%d%Creset %s" | __pager-counter
+    fi
   fi
 }
 
@@ -629,15 +631,15 @@ function ghaf {
   then
     n=${1:--10}
     if [[ "$n" = "--all" ]]; then
-      git log --all --color=always $n --pretty=format:"%C(red bold)%h%Creset %C(cyan bold)|%Creset %C(auto)%d%Creset %s"
+      git log --all $n $(echo "${opts}") --pretty=format:"%C(red bold)%h%Creset %C(cyan bold)|%Creset %C(auto)%d%Creset %s"
     else
-      git --no-pager log --all --color=always $n --pretty=format:"%C(red bold)%h%Creset %C(cyan bold)|%Creset %C(auto)%d%Creset %s"
+      git --no-pager log --all $n "${opts}" --pretty=format:"%C(red bold)%h%Creset %C(cyan bold)|%Creset %C(auto)%d%Creset %s"
       echo
     fi
     # default pager must handle less than one screen correctly (bash/Linux with less, ksh/OpenBSD with less -c are ok)
     # else uncomment line below when only on bash/Linux
     #if [[ "$SHELL_PROMPT" = "$" ]]; then
-      eval "[ `git log --all --color=always --pretty=oneline | wc -l` -gt 10 ] && git diff --color=always --stat HEAD~$((0 - $n)) HEAD"
+      eval "[ `git log --all ${opts} --pretty=oneline | wc -l` -gt 10 ] && git diff --color=always --stat HEAD~$((0 - $n)) HEAD"
     #fi
   fi
 }
@@ -655,10 +657,10 @@ function gh {
 
     [ "$1" = "d" ] && shift
     case $# in
-      1) [ $1 -eq 1 ] && git log --all --color=always -p --stat HEAD...HEAD~1 \
-                      || git log --all --color=always -p --stat HEAD~`expr $1 - 1`...HEAD~$1 ;;
-      2) [ $1 -eq 1 ] && git log --all --color=always --stat  HEAD...HEAD~$2 \
-                      || git log --all --color=always --stat  HEAD~$1...HEAD~$2 ;;
+      1) [ $1 -eq 1 ] && git log --all $(echo "${opts}") -p --stat HEAD...HEAD~1 \
+                      || git log --all $(echo "${opts}") -p --stat HEAD~`expr $1 - 1`...HEAD~$1 ;;
+      2) [ $1 -eq 1 ] && git log --all $(echo "${opts}") --stat  HEAD...HEAD~$2 \
+                      || git log --all $(echo "${opts}") --stat  HEAD~$1...HEAD~$2 ;;
       *) [[ `$e | wc -l` -gt 50 ]] \
                       && { $e | head -30; echo -e "\n   ...[snip]...\nremoved listings! use gha if you want it all\n"; }\
                       || $e ;;
@@ -679,7 +681,7 @@ function gh-rel-to-HEAD {
 function gha {
   if _is_git_repo -eq 0
   then
-   eval $([ -z "$1" ] && echo __gh || echo __gdh ) --all
+   eval $([ -z "$1" ] && echo __gh || echo __gdh) --no-pager
   fi
 }
 
@@ -692,7 +694,7 @@ function ghb {
   then
     for c in `seq $(gh|wc -l)`
     do
-        git log --all --color=always --pretty=format:"%C(bold red)%h%Creset %C(bold cyan)%s%Creset %C(bold green)%b%Creset" \
+        git log --all $(echo "${opts}") --pretty=format:"%C(bold red)%h%Creset %C(bold cyan)%s%Creset %C(bold green)%b%Creset" \
             HEAD~$c..HEAD~`expr $c - 1`
     done
   fi
@@ -703,7 +705,7 @@ function ghd {
   # pager=`[ $lines -gt 78 ] && echo "less -R"  || echo "cat"  `
   if _is_git_repo -eq 0
   then
-    git log --color=always --decorate --abbrev-commit --date=short --all \
+    git log $(echo "${opts}") --abbrev-commit --all \
             --pretty=format:"%C(red bold)%h%Creset %C(green bold)%s%Creset" #| #cut -c1-64 | less #eval "$pager"
   fi
 }
@@ -713,9 +715,9 @@ function ghg {
   then
     n=${1:--10}
     if [[ "$n" = "--all" ]]; then
-      git log --all --color=always $n --graph --pretty=format:"%C(red bold)%h%Creset %C(cyan bold)|%Creset %C(auto)%d%Creset %s"
+      git log --all $(echo "${opts}") $n --graph --pretty=format:"%C(red bold)%h%Creset %C(cyan bold)|%Creset %C(auto)%d%Creset %s"
     else
-      git --no-pager log --all --graph --color=always $n --pretty=format:"%C(red bold)%h%Creset %C(cyan bold)|%Creset %C(auto)%d%Creset %s"
+      git --no-pager log --all --graph "${opts}" $n --pretty=format:"%C(red bold)%h%Creset %C(cyan bold)|%Creset %C(auto)%d%Creset %s"
       echo
     fi
   fi
@@ -725,7 +727,7 @@ function ghg {
 function ght {
   if _is_git_repo -eq 0
   then
-    git log --color=always --all --date=format:"%F %T"\
+    git log $(echo "${opts}") --all --date=format:"%F %T"\
             --pretty=format:"%C(red bold)%h%Creset %C(blue bold)%ad%Creset %C(cyan bold)%D%Creset %C(green bold)%s%Creset"
   fi
 }
@@ -734,7 +736,7 @@ function ght {
 function ghtA {
   if _is_git_repo -eq 0
   then
-    git log "$@" --color=always --all --date=format:"%F %T"\
+    git log "$@" $(echo "${opts}") --all --date=format:"%F %T"\
             --pretty=format:"%C(red bold)%h%Creset %C(blue bold)%ad%Creset %C(cyan bold)%D%Creset %C(green bold)%s%Creset"
   fi
 }
@@ -742,7 +744,7 @@ function ghtA {
 function ghh {
   if _is_git_repo -eq 0
   then
-    git log --color=always --all \
+    git log $(echo "${opts}") --all \
             --pretty=format:"%C(red bold)%h%Creset %C(blue bold)%ah%Creset %C(green bold)%s%Creset"
   fi
 }
@@ -750,10 +752,11 @@ function ghh {
 function ghr {
   if _is_git_repo -eq 0
   then
-    git log --color=always --all \
+    git log $(echo "${opts}") --all \
             --pretty=format:"%C(red bold)%h%Creset %C(blue bold)%ar%Creset %C(green bold)%s%Creset"
   fi
 }
+
 
 # worker function for gshow:
 #     no arguments  = show last 10 commits
@@ -763,7 +766,7 @@ function ghr {
 #        argument given was a number then show HEAD if argument was 1 otherwise show HEAD~n
 #    otherwise consider two arguments given as two commit hashes and show commits between them
 function _gshow {
-  local opts="--color=always"
+  local old_opts="${opts}"
   if _is_git_repo -eq 0
   then
     for a in "$@"
@@ -781,34 +784,34 @@ function _gshow {
     case $# in
       # no arguments means show last 10 commits
       0) echo -e "Showing last 10 commit messages"
-      git log ${opts} -10 --pretty=format:"%C(red bold)%h%Creset %C(cyan bold)|%Creset %C(blue bold)%ad%Creset %C(cyan bold)|%Creset %C(auto)%d%Creset %s" --date=short | awk '{print NR-1,$0}'
+      git log $(echo "${opts}") -10 --pretty=format:"%C(red bold)%h%Creset %C(cyan bold)|%Creset %C(blue bold)%ad%Creset %C(cyan bold)|%Creset %C(auto)%d%Creset %s" --date=short | awk '{print NR-1,$0}'
         if [ $(git diff --stat HEAD~10 HEAD | wc -l) -le 10 ]; then
           git diff --stat HEAD~10 HEAD
         fi
          echo -ne "\nShow details of last 10 commits? (y/N) "; read key
          if [[ "$key" = "y" || "$key" = "Y" ]]; then
-          git show ${opts} HEAD~10..HEAD --minimal 2>/dev/null
+          git show $(echo "${opts}") HEAD~10..HEAD --minimal 2>/dev/null
          fi
         ;;
 
       # we got one argument, show last 3 commits if that is a file
       1) if [ -s "$1" ]; then
-            git log ${opts} --pretty=format:"%C(red bold)%h%Creset %C(cyan bold)|%Creset %C(blue bold)%ad%Creset %C(cyan bold)|%Creset %C(auto)%d%Creset %s" --date=short "$1"
+            git log $(echo "${opts}") --pretty=format:"%C(red bold)%h%Creset %C(cyan bold)|%Creset %C(blue bold)%ad%Creset %C(cyan bold)|%Creset %C(auto)%d%Creset %s" --date=short "$1"
             echo -ne "\nShow last 10 commit details? (y/N) "; read key
             if [[ "$key" = "y" || "$key" = "Y" ]]; then
-              git show ${opts} $(git log --all -n 3 --oneline "$1" | cut -d' ' -f1)
+              git show $(echo "${opts}") $(git log --all -n 3 --oneline "$1" | cut -d' ' -f1)
             fi
          else
             # not a file, is it a git object type
             local type=$(git cat-file -t $1 2>/dev/null)
             if [[ "$type" = "commit" || "$type" = "tag" || "$type" = "tree" || "$type" = "blob" ]]; then
-              eval "git show ${opts} $1"
+              eval "git show $(echo "${opts}") $1"
             else
                 if [[ "$1" = -[0-9]* || "$1" = [0-9]* ]]; then  # alternatively, if [[ "$1" != "[[:alpha:]]*" ]]; then
                   if [[ $1 -lt 0 ]]; then
-                    git log ${opts} HEAD~$((0 - $1))...HEAD --pretty=format:"%C(red bold)%h%Creset %C(cyan bold)|%Creset %C(blue bold)%ad%Creset %C(cyan bold)|%Creset %C(auto)%d%Creset %s" --date=short
+                    git log $(echo "${opts}") HEAD~$((0 - $1))...HEAD --pretty=format:"%C(red bold)%h%Creset %C(cyan bold)|%Creset %C(blue bold)%ad%Creset %C(cyan bold)|%Creset %C(auto)%d%Creset %s"
                   else
-                    git show ${opts} HEAD~$1 2>/dev/null
+                    git show $(echo "${opts}") HEAD~$1 2>/dev/null
                   fi
                 else
                   echo "did not understand... $1"
@@ -840,11 +843,11 @@ function _gshow {
           else
             if  [[ $1 -ge 0 && $2 -ge 0 ]]; then
               if [[ $2 -gt $1 ]]; then
-                git log ${opts} HEAD~$(($2 + 1))...HEAD~$1 --pretty=format:"%C(red bold)%h%Creset %C(cyan bold)|%Creset %C(blue bold)%ad%Creset %C(cyan bold)|%Creset %C(auto)%d%Creset %s" --date=short
+                git log $(echo "${opts}") HEAD~$(($2 + 1))...HEAD~$1 --pretty=format:"%C(red bold)%h%Creset %C(cyan bold)|%Creset %C(blue bold)%ad%Creset %C(cyan bold)|%Creset %C(auto)%d%Creset %s" --date=short
                 git diff --stat HEAD~$(($2 + 1))..HEAD~$1
               else
                 if [[ $1 -gt $2 ]]; then
-                  git log ${opts} HEAD~$(($1 + 1))...HEAD~$2 --pretty=format:"%C(red bold)%h%Creset %C(cyan bold)|%Creset %C(blue bold)%ad%Creset %C(cyan bold)|%Creset %C(auto)%d%Creset %s" --date=short
+                  git log $(echo "${opts}") HEAD~$(($1 + 1))...HEAD~$2 --pretty=format:"%C(red bold)%h%Creset %C(cyan bold)|%Creset %C(blue bold)%ad%Creset %C(cyan bold)|%Creset %C(auto)%d%Creset %s" --date=short
                   git diff --stat HEAD~$(($1 + 1))..HEAD~$2
                 else
                   echo "did not understand... $*"
@@ -859,7 +862,7 @@ function _gshow {
     # unknown error, probably a SHA1s, so git show $1
     [ $? -ne 0 ] && eval "git show ${opts} $1"
   fi
-  unset opts
+  opts="${old_opts}"
 }
 if [ "$SHELL" = "/bin/zsh" ]; then
   compdef _git gshow=git-log
@@ -966,7 +969,7 @@ function ghw {
 function gsearch {
   [ -z "$1" ] && echo Usage: gsearch search_term && return
 
-  git log --all --color=always --oneline | $GREP "$1" | less -FeqRSX
+  git log --all $(echo "${opts}") --oneline | $GREP "$1" | less -FeqRSX
 }
 
 function gsearch-list {
