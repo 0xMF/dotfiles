@@ -824,7 +824,12 @@ function _gshow {
 
             echo -n "show files changed between $1 and $2? (Y/n) ";  read key
             [[ "$key" = "n" || "$key" = "N" ]] && return
-            eval "git diff ${opts} --stat $1 $2 2>/dev/null"
+            local files=$(git diff ${opts} --stat $1 $2 2>/dev/null)
+            if [[ $(echo "${files}" | wc -l) -le 1 ]]; then
+              echo "no files found; next time try with more hex digits from commit hash for one or both commits"
+            else
+              eval "git diff ${opts} --stat $1 $2 2>/dev/null"
+            fi
 
             echo -n "show diffs between $1 and $2? (Y/n) ";  read key
             [[ "$key" = "n" || "$key" = "N" ]] && return
