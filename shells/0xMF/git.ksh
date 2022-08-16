@@ -853,7 +853,7 @@ function _gshow {
   fi
   unset opts
 }
-if [ $SHELL=/bin/zsh ]; then
+if [ "$SHELL" = "/bin/zsh" ]; then
   compdef _git gshow=git-log
 fi
 
