@@ -780,7 +780,8 @@ function _gshow {
     done
     case $# in
       # no arguments means show last 10 commits
-      0) git log ${opts} -10 --all --pretty=format:"%C(red bold)%h%Creset %C(cyan bold)|%Creset %C(blue bold)%ad%Creset %C(cyan bold)|%Creset %C(auto)%d%Creset %s" --date=short
+      0) echo -e "Showing last 10 commit messages in chronological order (most recent appears last)"
+      git log ${opts} -10 --all --pretty=format:"%C(red bold)%h%Creset %C(cyan bold)|%Creset %C(blue bold)%ad%Creset %C(cyan bold)|%Creset %C(auto)%d%Creset %s" --date=short | sed '$s/$/\n/' | tac
         if [ $(git diff --stat HEAD~10 HEAD | wc -l) -le 10 ]; then
           git diff --stat HEAD~10 HEAD
         fi
@@ -834,23 +835,22 @@ function _gshow {
             echo -n "show diffs between $1 and $2? (Y/n) ";  read key
             [[ "$key" = "n" || "$key" = "N" ]] && return
             eval "git diff ${opts} $@"
-
-          fi ;;
-
-      *) if  [[ $1 -gt 0 && $2 -gt 0 ]]; then
+          else
+            if  [[ $1 -gt 0 && $2 -gt 0 ]]; then
               if [[ $2 -gt $1 ]]; then
-              n=$(( $(echo $2) + 1 ))
-              git log ${opts} HEAD~$n..HEAD~$1 --all --pretty=format:"%C(red bold)%h%Creset %C(cyan bold)|%Creset %C(auto)%d%Creset %s" 2>/dev/null
-              git diff --stat HEAD~$n..HEAD~$1
-            else
-              if [[ $1 -gt $2 ]]; then
-                git log ${opts} HEAD~$(($1 + 1))..HEAD~$2 --all --pretty=format:"%C(red bold)%h%Creset %C(cyan bold)|%Creset %C(auto)%d%Creset %s" 2>/dev/null
-                git diff --stat HEAD~$(($1 + 1))..HEAD~$2
+                n=$(( $(echo $2) + 1 ))
+                git log ${opts} HEAD~$n..HEAD~$1 --pretty=format:"%C(red bold)%h%Creset %C(cyan bold)|%Creset %C(auto)%d%Creset %s" 2>/dev/null
+                git diff --stat HEAD~$n..HEAD~$1
+              else
+                if [[ $1 -gt $2 ]]; then
+                  git log ${opts} HEAD~$(($1 + 1))..HEAD~$2 --pretty=format:"%C(red bold)%h%Creset %C(cyan bold)|%Creset %C(auto)%d%Creset %s" 2>/dev/null
+                  git diff --stat HEAD~$(($1 + 1))..HEAD~$2
+                fi
               fi
             fi
-          else
-            echo "did not understand... $*"
-         fi;;
+          fi ;;
+      *) echo "did not understand... $*"
+         ;;
     esac
 
     # unknown error, probably a SHA1s, so git show $1
