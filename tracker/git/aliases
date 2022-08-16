@@ -6,6 +6,7 @@
   dc        = diff --color=always -w --cached
   diff      = diff --color=always
   ds        = diff --color=always -w --staged
+  first     = rev-list --max-parents=0 HEAD
   g         = grep --break --heading --line-number
   h         = log --color=always --pretty=oneline --decorate --abbrev-commit --date=short
   hist      = log --color=always --pretty=format:\"%h %ad | %s%d [%an]\" --graph --date=short
