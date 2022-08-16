@@ -620,7 +620,7 @@ function __gh {
     else
       git --no-pager log --all --color=always $n --pretty=format:"%C(green bold)*%Creset %C(red bold)%h%Creset %C(cyan bold)|%Creset %C(auto)%d%Creset %s"
       echo
-    fi
+    fi | __pager-counter
   fi
 }
 
