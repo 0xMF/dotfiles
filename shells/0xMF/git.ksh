@@ -429,7 +429,12 @@ function old_parse_git_dirty {
 }
 
 unset opts
+unset optsDiff
+unset optsPretty1 optsPretty2
 opts="--color=always --first-parent --date=short --decorate=no"
+optsDiff="--color=always"
+optsPretty1="%C(red bold)%h%Creset %C(cyan bold)| %ad %C(green bold)*%Creset %C(auto)%d%Creset %s"
+optsPretty2="%C(red bold)%h%Creset %C(cyan bold)| %ad %C(green bold)*%Creset %C(auto)%d%Creset %s"
 
 # show all git aliases
 function galias {
@@ -619,9 +624,9 @@ function __gh {
   then
     n=${1:--10}
     if [[ "$n" != "--no-pager" ]]; then
-      git log $n $(echo "${opts}") --pretty=format:"%C(green bold)*%Creset %C(red bold)%h%Creset %C(cyan bold)| %ad | %Creset %C(auto)%d%Creset %s" | __no-pager-counter
+     eval "git log $n $(echo ${opts})         --pretty=format:\"${optsPretty1}\"" | __no-pager-counter
     else
-      git --no-pager log $(echo "${opts}") --pretty=format:"%C(green bold)*%Creset %C(red bold)%h%Creset %C(cyan bold)| %ad | %Creset %C(auto)%d%Creset %s" | __pager-counter
+     eval "git --no-pager log $(echo ${opts}) --pretty=format:\"${optsPretty1}\"" | __pager-counter
     fi
   fi
 }
@@ -786,7 +791,9 @@ function _gshow {
       0) echo -e "Showing last 10 commit messages"
       git log $(echo "${opts}") -10 --pretty=format:"%C(red bold)%h%Creset %C(cyan bold)|%Creset %C(blue bold)%ad%Creset %C(cyan bold)|%Creset %C(auto)%d%Creset %s" --date=short | awk '{print NR-1,$0}'
         if [ $(git diff --stat HEAD~10 HEAD | wc -l) -le 10 ]; then
-          git diff --stat HEAD~10 HEAD
+          git diff $(echo ${optsDiff}) --stat HEAD~10 HEAD
+        else
+          echo -e "files changed were too many to list...skipping"
         fi
          echo -ne "\nShow details of last 10 commits? (y/N) "; read key
          if [[ "$key" = "y" || "$key" = "Y" ]]; then
@@ -799,6 +806,7 @@ function _gshow {
             git log $(echo "${opts}") --pretty=format:"%C(red bold)%h%Creset %C(cyan bold)|%Creset %C(blue bold)%ad%Creset %C(cyan bold)|%Creset %C(auto)%d%Creset %s" --date=short "$1"
             echo -ne "\nShow last 10 commit details? (y/N) "; read key
             if [[ "$key" = "y" || "$key" = "Y" ]]; then
+              git st $(echo "${opts}") $(git log --all -n 3 --oneline "$1" | cut -d' ' -f1)
               git show $(echo "${opts}") $(git log --all -n 3 --oneline "$1" | cut -d' ' -f1)
             fi
          else
@@ -830,25 +838,25 @@ function _gshow {
 
             echo -n "show files changed between $1 and $2? (Y/n) ";  read key
             [[ "$key" = "n" || "$key" = "N" ]] && return
-            local files=$(git diff ${opts} --stat $1 $2 2>/dev/null)
+            local files=$(git diff $(echo ${optsDiff}) --stat $1 $2 2>/dev/null)
             if [[ $(echo "${files}" | wc -l) -le 1 ]]; then
               echo "no files found; next time try with more hex digits from commit hash for one or both commits"
             else
-              eval "git diff ${opts} --stat $1 $2 2>/dev/null"
+              eval "git diff $(echo ${optsDiff}) --stat $1 $2 2>/dev/null"
             fi
 
             echo -n "show diffs between $1 and $2? (Y/n) ";  read key
             [[ "$key" = "n" || "$key" = "N" ]] && return
-            eval "git diff ${opts} $@"
+            eval "git diff $(echo ${optsDiff}) $@"
           else
             if  [[ $1 -ge 0 && $2 -ge 0 ]]; then
               if [[ $2 -gt $1 ]]; then
                 git log $(echo "${opts}") HEAD~$(($2 + 1))...HEAD~$1 --pretty=format:"%C(red bold)%h%Creset %C(cyan bold)|%Creset %C(blue bold)%ad%Creset %C(cyan bold)|%Creset %C(auto)%d%Creset %s" --date=short
-                git diff --stat HEAD~$(($2 + 1))..HEAD~$1
+                git diff $(echo ${optsDiff}) --stat HEAD~$(($2 + 1))..HEAD~$1
               else
                 if [[ $1 -gt $2 ]]; then
                   git log $(echo "${opts}") HEAD~$(($1 + 1))...HEAD~$2 --pretty=format:"%C(red bold)%h%Creset %C(cyan bold)|%Creset %C(blue bold)%ad%Creset %C(cyan bold)|%Creset %C(auto)%d%Creset %s" --date=short
-                  git diff --stat HEAD~$(($1 + 1))..HEAD~$2
+                  git diff $(echo ${optsDiff}) --stat HEAD~$(($1 + 1))..HEAD~$2
                 else
                   echo "did not understand... $*"
                 fi
@@ -864,7 +872,7 @@ function _gshow {
   fi
   opts="${old_opts}"
 }
-if [ "$SHELL" = "/bin/zsh" ]; then
+if [ "${SHELL##*/}" = "zsh" ]; then
   compdef _git gshow=git-log
 fi
 
