@@ -435,6 +435,7 @@ opts="--color=always --first-parent --date=short --decorate=no"
 optsDiff="--color=always"
 optsPretty1="%C(red bold)%h%Creset %C(cyan bold)| %ad %C(green bold)*%Creset %C(auto)%d%Creset %s"
 optsPretty2="%C(red bold)%h%Creset %C(cyan bold)| %ad %C(green bold)*%Creset %C(auto)%d%Creset %s"
+optsPretty3="%C(red bold)%h%Creset %C(cyan bold)| %Creset %C(blue bold)%ad%Creset %C(cyan bold)|%Creset %C(auto)%d%Creset %s"
 
 # show all git aliases
 function galias {
@@ -624,7 +625,7 @@ function __gh {
   then
     n=${1:--10}
     if [[ "$n" != "--no-pager" ]]; then
-     eval "git log $n $(echo ${opts})         --pretty=format:\"${optsPretty1}\"" | __no-pager-counter
+     eval "git log $n $(echo ${opts}) --pretty=format:\"${optsPretty1}\"" | __no-pager-counter
     else
      eval "git --no-pager log $(echo ${opts}) --pretty=format:\"${optsPretty1}\"" | __pager-counter
     fi
@@ -817,7 +818,7 @@ function _gshow {
             else
                 if [[ "$1" = -[0-9]* || "$1" = [0-9]* ]]; then  # alternatively, if [[ "$1" != "[[:alpha:]]*" ]]; then
                   if [[ $1 -lt 0 ]]; then
-                    git log $(echo "${opts}") HEAD~$((0 - $1))...HEAD --pretty=format:"%C(red bold)%h%Creset %C(cyan bold)|%Creset %C(blue bold)%ad%Creset %C(cyan bold)|%Creset %C(auto)%d%Creset %s"
+                    eval "git log ${opts} HEAD~$((0 - $1))...HEAD --pretty=format:\"${optsPretty3}\"" | __no-pager-counter
                   else
                     git show $(echo "${opts}") HEAD~$1 2>/dev/null
                   fi
