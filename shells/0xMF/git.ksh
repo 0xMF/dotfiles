@@ -522,7 +522,9 @@ function ghist {
       shift
       ghist-all "$@"
     else
-      0xMF-git-log-pretty "$@" | __pager-counter
+      0xMF-git-log-pretty "$@" | {
+       [ -z "$1" ] && __pager-counter || __pager-no-counter
+      }
     fi
   fi
 }
@@ -690,6 +692,11 @@ function __pager-counter {
 function __no-pager-counter {
   awk '{ printf "%5d %s\n", NR-1, $0 }'
 }
+
+function __pager-no-counter {
+  less -FeQRSX
+}
+
 
 function __gh {
   if _is_git_repo -eq 0
