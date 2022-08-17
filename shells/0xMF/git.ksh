@@ -557,7 +557,13 @@ function ghist-reverse {
 }
 
 function ghist-reverse-rel-to-HEAD {
-  ghist-rel-to-HEAD "$@" | tac | less 
+  ghist-rel-to-HEAD "$@" | {
+    if [ `uname` != "Linux" ]; then
+      tail -r
+    else
+      tac
+    fi
+  } | less
 }
 
 # completes the triad of:
