@@ -1157,7 +1157,7 @@ alias gpush='git push'
 
 alias grbi='git rebase --interactive'
 alias gredo='gundo; gca -c ORIG_HEAD'
-alias gread-chrono='ghist-reverse'
+alias gread-chrono='ghist-reverse-rel-to-HEAD'
 alias gri='git rebase --interactive'
 alias grr='grow'
 
