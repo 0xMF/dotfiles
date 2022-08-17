@@ -659,24 +659,28 @@ function gh {
 
   if _is_git_repo -eq 0
   then
-    e=$([ "$1" = "d" ] && echo __gdh || echo __gh)
+    if [[ $1 -le 0 ]]; then
+      gshow $1
+    else
+      e=$([ "$1" = "d" ] && echo __gdh || echo __gh)
 
-    [ "$1" = "d" ] && shift
-    case $# in
-      1) [ $1 -eq 1 ] && git log --all $(echo "${opts}") -p --stat HEAD...HEAD~1 \
-                      || git log --all $(echo "${opts}") -p --stat HEAD~`expr $1 - 1`...HEAD~$1 ;;
-      2) [ $1 -eq 1 ] && git log --all $(echo "${opts}") --stat  HEAD...HEAD~$2 \
-                      || git log --all $(echo "${opts}") --stat  HEAD~$1...HEAD~$2 ;;
-      *) [[ `$e | wc -l` -gt 50 ]] \
-                      && { $e | head -30; echo -e "\n   ...[snip]...\nremoved listings! use gha if you want it all\n"; }\
-                      || $e ;;
-         #br_name=`git rev-parse --abbrev-ref HEAD`
-         #br_all=`git branch -a|$GREP HEAD|cut -d'>' -f2`
-         #case "origin/$br_name" in
-         #  "$br_all") $e HEAD...origin/$br_name;;
-         #  *)
-         #esac
-    esac
+      [ "$1" = "d" ] && shift
+      case $# in
+        1) [ $1 -eq 1 ] && git log --all $(echo "${opts}") -p --stat HEAD...HEAD~1 \
+                        || git log --all $(echo "${opts}") -p --stat HEAD~`expr $1 - 1`...HEAD~$1 ;;
+        2) [ $1 -eq 1 ] && git log --all $(echo "${opts}") --stat  HEAD...HEAD~$2 \
+                        || git log --all $(echo "${opts}") --stat  HEAD~$1...HEAD~$2 ;;
+        *) [[ `$e | wc -l` -gt 50 ]] \
+                        && { $e | head -30; echo -e "\n   ...[snip]...\nremoved listings! use gha if you want it all\n"; }\
+                        || $e ;;
+           #br_name=`git rev-parse --abbrev-ref HEAD`
+           #br_all=`git branch -a|$GREP HEAD|cut -d'>' -f2`
+           #case "origin/$br_name" in
+           #  "$br_all") $e HEAD...origin/$br_name;;
+           #  *)
+           #esac
+      esac
+    fi
   fi
 }
 
