@@ -557,7 +557,7 @@ function ghist-reverse {
 }
 
 function ghist-reverse-rel-to-HEAD {
-  ghist-rel-to-HEAD "$@" | sed '$s/$/\n/' | tac | less
+  ghist-rel-to-HEAD "$@" | tac | less 
 }
 
 # completes the triad of:
