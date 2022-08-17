@@ -583,6 +583,45 @@ function gdff  { if _is_git_repo -eq 0; then git diff --color=always -w HEAD | g
 function gst   { if _is_git_repo -eq 0; then git status ; fi }
 function gss   { if _is_git_repo -eq 0; then git status -s; fi }
 
+function gdiff-files-changed {
+  if _is_git_repo -eq 0; then
+    if [ -z "$1" ]; then
+      lines=$(git diff --color=always -w HEAD |wc -l)
+      [ $lines -eq 0 ] && return
+      git diff --color=always --stat -w HEAD
+      if [ $lines -le 30 ]; then
+        echo
+        git diff --color=always -w HEAD
+      else
+        echo -ne "\nShow diff details from HEAD? (y/N) "; read key
+        if [[ "$key" = "y" || "$key" = "Y" ]]; then
+          git diff --color=always -w HEAD
+        fi
+      fi
+    else
+      if [[ -z "$2" && "${1}" -gt 0 ]]; then
+        echo -e "Top (max) 10 files changed...from HEAD~${1} HEAD...were "
+        git diff --color=always -w --stat HEAD~"${1}" HEAD
+        echo -ne "\nShow diff details from HEAD~$1 HEAD? (y/N) "; read key
+          if [[ "$key" = "y" || "$key" = "y" ]]; then
+            git diff --color=always -w HEAD~"${1}" HEAD | grep -v binary | less -FeqRSX
+          fi
+      else
+        if [[ "${2}" -gt 0 ]] ; then
+          echo -e "Top (max) 10 files changed...from HEAD~${1} HEAD~${2}...were "
+          git diff --color=always -w --stat HEAD~"${1}" HEAD~"${2}"
+          echo -ne "\nShow diff details from HEAD~${1} HEAD~${2}? (y/N) "; read key
+          if [[ "$key" = "y" || "$key" = "Y" ]]; then
+            git diff --color=always -w HEAD~"${1}" HEAD~"${2}" | grep -v binary | less -FeqRSX
+          fi
+        else
+          echo "did not understand...$2"
+        fi
+      fi
+    fi
+  fi
+}
+
 function gdiff {
   if _is_git_repo -eq 0; then
     if [ -z "$1" ]; then
@@ -1109,7 +1148,7 @@ alias gco='git checkout'
 alias gcs='git add .;git commit --squash'
 
 alias gd='git diff --color=always'
-#alias gdiff='git diff --color=always'
+alias gdiff-minimal="gdiff-files-changed"
 alias gdump='git cat-file -p'
 
 alias gfr='git fetch;git rebase remotes/origin/master'
