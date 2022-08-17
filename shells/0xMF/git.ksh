@@ -1120,6 +1120,14 @@ function contributors {
   git shortlog --color=always -s -n | sort -b -k1,1nr -k2
 }
 
+function gco {
+  if [[ -n "$1" && "$1" -ge 0 ]]; then
+    git checkout HEAD~"$1"
+  else
+    git checkout "$@"
+  fi
+}
+
 # Credit: oh-my-zsh/lib/git.zsh and oh-my-zsh/themes/robbyrussell.zsh-theme
 function precmd {
   [ "$shell" = "zsh" ] && 0xMF-zsh-prompt
@@ -1165,7 +1173,6 @@ alias gcf='git add .;git commit --fixup'
 alias gci='git commit'
 alias gcm='git checkout master'
 alias gcmsg='git commit -m'
-alias gco='git checkout'
 alias gcs='git add .;git commit --squash'
 
 alias gd='git diff --color=always'
