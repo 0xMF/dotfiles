@@ -701,11 +701,17 @@ function __pager-no-counter {
 function __gh {
   if _is_git_repo -eq 0
   then
+    c=$(git log --oneline | wc -l)
     n=${1:--10}
     if [[ "$n" != "--no-pager" ]]; then
-     eval "git log $n $(echo ${opts}) --pretty=format:\"${optsPretty1}\"" | __no-pager-counter
+      echo here
+      if [ $c -le 9 ]; then
+        eval "git log -$c $(echo ${opts}) --pretty=format:\"${optsPretty1}\"" | __no-pager-counter
+      else
+        eval "git log $n $(echo ${opts}) --pretty=format:\"${optsPretty1}\"" | __no-pager-counter
+      fi
     else
-     eval "git --no-pager log $(echo ${opts}) --pretty=format:\"${optsPretty1}\"" | __pager-counter
+      eval "git --no-pager log $(echo ${opts}) --pretty=format:\"${optsPretty1}\"" | __pager-counter
     fi
   fi
 }
@@ -750,7 +756,7 @@ function gh {
                         || git log --all $(echo "${opts}") --stat  HEAD~$1...HEAD~$2 ;;
         *) [[ `$e | wc -l` -gt 50 ]] \
                         && { $e | head -30; echo -e "\n   ...[snip]...\nremoved listings! use gha if you want it all\n"; }\
-                        || $e ;;
+                        || $e;;
            #br_name=`git rev-parse --abbrev-ref HEAD`
            #br_all=`git branch -a|$GREP HEAD|cut -d'>' -f2`
            #case "origin/$br_name" in
@@ -869,25 +875,27 @@ function _gshow {
         fi
       fi
     done
+    c=$(git log --oneline | wc -l)
+    p=$([ $c -ge 10 ] && echo 10 || echo $(( $c - 1 )))
     case $# in
       # no arguments means show last 10 commits
-      0) echo -e "Showing last 10 commit messages"
-      git log $(echo "${opts}") -10 --pretty=format:"%C(red bold)%h%Creset %C(cyan bold)|%Creset %C(blue bold)%ad%Creset %C(cyan bold)|%Creset %C(auto)%d%Creset %s" --date=short | awk '{print NR-1,$0}'
-        if [ $(git diff --stat HEAD~10 HEAD | wc -l) -le 10 ]; then
-          git diff $(echo ${optsDiff}) --stat HEAD~10 HEAD
+      0) echo -e "Showing last $p commit messages"
+        git log $(echo "${opts}") -"${p}" --pretty=format:"%C(red bold)%h%Creset %C(cyan bold)|%Creset %C(blue bold)%ad%Creset %C(cyan bold)|%Creset %C(auto)%d%Creset %s" --date=short | awk '{print NR-1,$0}'
+        if [ $(git diff --stat HEAD~$p HEAD | wc -l) -gt 10 ]; then
+          git diff $(echo ${optsDiff}) --stat HEAD~$p HEAD | head
         else
-          echo -e "files changed were too many to list...skipping"
+          git diff $(echo ${optsDiff}) --stat HEAD~$p HEAD
         fi
-         echo -ne "\nShow details of last 10 commits? (y/N) "; read key
+         echo -ne "\nShow details of last $p commits? (y/N) "; read key
          if [[ "$key" = "y" || "$key" = "Y" ]]; then
-          git show $(echo "${opts}") HEAD~10..HEAD --minimal 2>/dev/null
+          git show $(echo "${opts}") HEAD~$p...HEAD --minimal 2>/dev/null
          fi
         ;;
 
       # we got one argument, show last 3 commits if that is a file
       1) if [ -s "$1" ]; then
             git log $(echo "${opts}") --pretty=format:"%C(red bold)%h%Creset %C(cyan bold)|%Creset %C(blue bold)%ad%Creset %C(cyan bold)|%Creset %C(auto)%d%Creset %s" --date=short "$1"
-            echo -ne "\nShow last 10 commit details? (y/N) "; read key
+            echo -ne "\nShow last $p commit details? (y/N) "; read key
             if [[ "$key" = "y" || "$key" = "Y" ]]; then
               git st $(echo "${opts}") $(git log --all -n 3 --oneline "$1" | cut -d' ' -f1)
               git show $(echo "${opts}") $(git log --all -n 3 --oneline "$1" | cut -d' ' -f1)
