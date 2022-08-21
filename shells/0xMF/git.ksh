@@ -615,7 +615,7 @@ function gdiff-files-changed {
             git diff --color=always -w HEAD~"${1}" HEAD | grep -v binary | less -FeqRSX
           fi
       else
-        if [[ "${2}" -gt 0 ]] ; then
+        if [[ ! -s "${2}" && "${2}" -gt 0 ]] ; then
           echo -e "Top (max) 10 files changed...from HEAD~${1} HEAD~${2}...were "
           git diff --color=always -w --stat HEAD~"${1}" HEAD~"${2}"
           echo -ne "\nShow diff details from HEAD~${1} HEAD~${2}? (y/N) "; read key
@@ -627,6 +627,21 @@ function gdiff-files-changed {
         fi
       fi
     fi
+  fi
+}
+
+function __gdiff-list-files-and-show-diffs {
+  if [ -z "$3" ]; then
+    echo -e "list of (max) 10 files changed...from HEAD~${1} to HEAD~${2}...were "
+    git diff --color=always -w --stat HEAD~"${1}" HEAD~"${2}" | head
+    echo -ne "\nShow diff details from HEAD~$1 HEAD~$2? (Y/n) "; read key
+    [[ "$key" = "n" || "$key" = "N" ]] && return
+    git diff --color=always -w HEAD~"${1}" HEAD~"${2}" | grep -v binary | less -FeqRSX
+  else
+    git diff --color=always -w --stat HEAD~"${1}" HEAD~"${2}" -- "$3" | head
+    echo -ne "\nShow diff details from HEAD~$1 HEAD~$2? (Y/n) "; read key
+    [[ "$key" = "n" || "$key" = "N" ]] && return
+    git diff --color=always -w HEAD~"${1}" HEAD~"${2}" -- "$3" | grep -v binary | less -FeqRSX
   fi
 }
 
@@ -645,21 +660,27 @@ function gdiff {
         git diff --color=always -w HEAD
       fi
     else
-      if [[ -z "$2" && "${1}" -gt 0 ]]; then
-        echo -e "Top (max) 10 files changed...from HEAD~${1} HEAD...were "
-        git diff --color=always -w --stat HEAD~"${1}" HEAD | head
-        echo -ne "\nShow diff details from HEAD~$1 HEAD? (Y/n) "; read key
-          [[ "$key" = "n" || "$key" = "N" ]] && return
-          git diff --color=always -w HEAD~"${1}" HEAD | grep -v binary | less -FeqRSX
-      else
-        if [[ "${2}" -gt 0 ]] ; then
-          echo -e "Top (max) 10 files changed...from HEAD~${1} HEAD~${2}...were "
-          git diff --color=always -w --stat HEAD~"${1}" HEAD~"${2}" | head
-          echo -ne "\nShow diff details from HEAD~${1} HEAD~${2}? (Y/n) "; read key
-          [[ "$key" = "n" || "$key" = "N" ]] && return
-          git diff --color=always -w HEAD~"${1}" HEAD~"${2}" | grep -v binary | less -FeqRSX
+      # $1 is a file
+      if [[ -s "$1" ]]; then
+        if [[ -z "$3" && "${2}" -gt 0 ]]; then
+          __gdiff-list-files-and-show-diffs $2 0 $1
         else
-          echo "did not understand...$2"
+          git diff --color=always -w "${1}" | grep -v binary | less -FeqRSX
+        fi
+        return
+      fi
+      # $1 and (if given) $2 are integers greater than zero
+      if [[ -z "$2" && "${1}" -gt 0 ]]; then
+        __gdiff-list-files-and-show-diffs $1 0
+      else
+        if [[ -s "${2}" ]]; then
+          __gdiff-list-files-and-show-diffs $1 0 $2
+        else
+          if [[ "${2}" -gt 0 ]] ; then
+          else
+            echo "git-diff for...$@"
+            __gdiff-list-files-and-show-diffs $1 $2 $3
+          fi
         fi
       fi
     fi
