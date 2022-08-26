@@ -677,9 +677,10 @@ function gdiff {
           __gdiff-list-files-and-show-diffs $1 0 $2
         else
           if [[ "${2}" -gt 0 ]] ; then
-          else
             echo "git-diff for...$@"
             __gdiff-list-files-and-show-diffs $1 $2 $3
+            else
+              echo "couldn't understand...$@"
           fi
         fi
       fi
