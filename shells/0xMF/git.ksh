@@ -679,8 +679,8 @@ function gdiff {
           if [[ "${2}" -gt 0 ]] ; then
             echo "git-diff for...$@"
             __gdiff-list-files-and-show-diffs $1 $2 $3
-            else
-              echo "couldn't understand...$@"
+          else
+            echo "couldn't understand...$@"
           fi
         fi
       fi
@@ -1143,10 +1143,14 @@ function contributors {
 }
 
 function gco {
-  if [[ -n "$1" && "$1" -ge 0 ]]; then
-    git checkout HEAD~"$1"
+  if [[ -n "$1" ]]; then
+    if echo "$1" | grep -q '[0-9][0-9]*'; then
+      git checkout HEAD~"$1"
+    else
+      git checkout "$@"
+    fi
   else
-    git checkout "$@"
+    git checkout
   fi
 }
 
