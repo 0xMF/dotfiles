@@ -110,6 +110,30 @@ function pscs {
   fi
 }
 
+function psu {
+  if [ `id -u` -eq 0 ]; then
+    PS1="$RED\u@\h:\W $(parse_git_repo)$RED#$NOCOLOR "
+    PROMPT_COMMAND="psu"
+  else
+    if [[ "$SHELL_PROMPT" = "$" ]]; then
+      PS1="$YELLOW\u$CYAN:$GREEN\W $(parse_git_repo)$NOCOLOR$SHELL_PROMPT "
+      PROMPT_COMMAND="psu"
+    else
+      if [ "$shell" = "zsh" ]; then
+        if [ `id -u` -eq 0 ]; then
+          eval "function precmd { PROMPT='$RED#$NOCOLOR ' }"
+        else
+          eval "function precmd { PROMPT='$YELLOW%n$CYAN:$GREEN%1d $(parse_git_repo)%%$NOCOLOR ' }"
+        fi
+        WHITE="%{$fg_bold[white]%}"
+      else
+        print "$YELLOW\u$CYAN:$GREEN\W $(parse_git_repo)$NOCOLOR$SHELL_PROMPT "
+        PS1='$(psu)'
+      fi
+    fi
+  fi
+}
+
 function psc {
   if [ `id -u` -eq 0 ]; then
     PS1="$RED\h:\W $(parse_git_repo)$RED#$NOCOLOR "
