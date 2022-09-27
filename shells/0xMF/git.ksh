@@ -1194,8 +1194,8 @@ function 0xMF-zsh-prompt {
 
 function 0xMF-zsh-psu {
   [ "$shell" = "zsh" ] && {
-    PROMPT="%(?:%{$fg_bold[yellow]%}%n:%{$fg_bold[cyan]%})"
-    PROMPT+=' %{$fg[green]%}:%1d%{$reset_color%} $(parse_git_repo 2>/dev/null)'
+    PROMPT="%(?:%{$fg_bold[yellow]%}%n:)"
+    PROMPT+='%{$fg_bold[cyan]%}:%{$fg[green]%}%1d%{$reset_color%} $(parse_git_repo 2>/dev/null)'
     PROMPT+=" %{$fg_bold[green]%}%%$NOCOLOR "
     eval "function precmd { 0xMF-zsh-psu }"
   }
