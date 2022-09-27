@@ -123,7 +123,7 @@ function psu {
         if [ `id -u` -eq 0 ]; then
           eval "function precmd { PROMPT='$RED#$NOCOLOR ' }"
         else
-          eval "function precmd { PROMPT='$YELLOW%n$CYAN:$GREEN%1d $(parse_git_repo)%%$NOCOLOR ' }"
+          { 0xMF-zsh-psu; return }
         fi
         WHITE="%{$fg_bold[white]%}"
       else
@@ -1189,6 +1189,15 @@ function 0xMF-zsh-prompt {
     PROMPT+=' %{$fg[cyan]%}%c%{$reset_color%} $(parse_git_repo 2>/dev/null)'
     PROMPT+=" %{$fg_bold[green]%}%%$NOCOLOR "
     eval "function precmd { 0xMF-zsh-prompt }"
+  }
+}
+
+function 0xMF-zsh-psu {
+  [ "$shell" = "zsh" ] && {
+    PROMPT="%(?:%{$fg_bold[yellow]%}%n:%{$fg_bold[cyan]%})"
+    PROMPT+=' %{$fg[green]%}:%1d%{$reset_color%} $(parse_git_repo 2>/dev/null)'
+    PROMPT+=" %{$fg_bold[green]%}%%$NOCOLOR "
+    eval "function precmd { 0xMF-zsh-psu }"
   }
 }
 
