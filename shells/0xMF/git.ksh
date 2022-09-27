@@ -123,7 +123,7 @@ function psu {
         if [ `id -u` -eq 0 ]; then
           eval "function precmd { PROMPT='$RED#$NOCOLOR ' }"
         else
-          { 0xMF-zsh-psu; return }
+          { 0xMF-zsh-psu; return;  }
         fi
         WHITE="%{$fg_bold[white]%}"
       else
