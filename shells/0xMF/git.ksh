@@ -101,7 +101,7 @@ function psuh {
     PROMPT_COMMAND="psuh"
   else
     if [[ "$SHELL_PROMPT" = "$" ]]; then
-      PS1="$CYAN\u$YELLOW@$PURPLE\h$RED:$GREEN\W $(parse_git_repo)$NOCOLOR$SHELL_PROMPT "
+      PS1="$CYAN\u$YELLOW@$PURPLE\h$RED:$GREEN\W $(parse_git_repo) $NOCOLOR$SHELL_PROMPT "
       PROMPT_COMMAND="psuh"
     else
       if [ "$shell" = "zsh" ]; then
@@ -112,7 +112,7 @@ function psuh {
         fi
         WHITE="%{$fg_bold[white]%}"
       else
-        print "$CYAN\u$YELLOW@$PURPLE\h$RED:$GREEN\W $(parse_git_repo)$NOCOLOR$SHELL_PROMPT "
+        print "$CYAN\u$YELLOW@$PURPLE\h$RED:$GREEN\W $(parse_git_repo) $NOCOLOR$SHELL_PROMPT "
         PS1='$(psuh)'
       fi
     fi
@@ -125,7 +125,7 @@ function psu {
     PROMPT_COMMAND="psu"
   else
     if [[ "$SHELL_PROMPT" = "$" ]]; then
-      PS1="$CYAN\u$RED:$GREEN\W $(parse_git_repo)$NOCOLOR$SHELL_PROMPT "
+      PS1="$CYAN\u$RED:$GREEN\W $(parse_git_repo) $NOCOLOR$SHELL_PROMPT "
       PROMPT_COMMAND="psu"
     else
       if [ "$shell" = "zsh" ]; then
@@ -136,7 +136,7 @@ function psu {
         fi
         WHITE="%{$fg_bold[white]%}"
       else
-        print "$CYAN\u$RED:$GREEN\W $(parse_git_repo)$NOCOLOR$SHELL_PROMPT "
+        print "$CYAN\u$RED:$GREEN\W $(parse_git_repo) $NOCOLOR$SHELL_PROMPT "
         PS1='$(psu)'
       fi
     fi
@@ -179,7 +179,7 @@ function psh {
     PROMPT_COMMAND="psh"
   else
     if [[ "$SHELL_PROMPT" = "$" ]]; then
-      PS1="$PURPLE\h$RED:$GREEN\W $(parse_git_repo)$NOCOLOR$SHELL_PROMPT "
+      PS1="$PURPLE\h$RED:$GREEN\W $(parse_git_repo) $NOCOLOR$SHELL_PROMPT "
       PROMPT_COMMAND="psh"
     else
       if [ "$shell" = "zsh" ]; then
@@ -190,7 +190,7 @@ function psh {
         fi
         WHITE="%{$fg_bold[white]%}"
       else
-        print "$PURPLE\h$RED:$GREEN\W $(parse_git_repo)$NOCOLOR$SHELL_PROMPT "
+        print "$PURPLE\h$RED:$GREEN\W $(parse_git_repo) $NOCOLOR$SHELL_PROMPT "
         PS1='$(psh)'
       fi
     fi
