@@ -95,17 +95,26 @@ function ps1 {
   fi
 }
 
-function pscs {
+function psuh {
   if [ `id -u` -eq 0 ]; then
     PS1="$RED\h:\W $(parse_git_repo)$RED#$NOCOLOR "
-    PROMPT_COMMAND="pscs"
+    PROMPT_COMMAND="psuh"
   else
     if [[ "$SHELL_PROMPT" = "$" ]]; then
       PS1="$GREEN\u$YELLOW@$CYAN\h$YELLOW:$GREEN\W $(parse_git_repo)$NOCOLOR$SHELL_PROMPT "
-      PROMPT_COMMAND="pscs"
+      PROMPT_COMMAND="psuh"
     else
-      print "$GREEN\u$YELLOW@$CYAN\h$YELLOW:$GREEN\W $(parse_git_repo)$NOCOLOR$SHELL_PROMPT "
-      PS1='$(pscs)'
+      if [ "$shell" = "zsh" ]; then
+        if [ `id -u` -eq 0 ]; then
+          eval "function precmd { PROMPT='$RED#$NOCOLOR ' }"
+        else
+          { 0xMF-zsh-psu; return;  }
+        fi
+        WHITE="%{$fg_bold[white]%}"
+      else
+        print "$CYAN\u$YELLOW@$CYAN\h$RED:$GREEN\W $(parse_git_repo)$NOCOLOR$SHELL_PROMPT "
+        PS1='$(psuh)'
+      fi
     fi
   fi
 }
@@ -1201,6 +1210,15 @@ function 0xMF-zsh-psh {
     PROMPT+='%{$fg_bold[red]%}:%{$fg[green]%}%1d%{$reset_color%} $(parse_git_repo 2>/dev/null)'
     PROMPT+=" %{$fg_bold[green]%}%%$NOCOLOR "
     eval "function precmd { 0xMF-zsh-psh }"
+  }
+}
+
+function 0xMF-zsh-psuh {
+  [ "$shell" = "zsh" ] && {
+    PROMPT="%(?:%{$fg_bold[cyan]%}%n@%m:)"
+    PROMPT+='%{$fg_bold[red]%}:%{$fg[green]%}%1d%{$reset_color%} $(parse_git_repo 2>/dev/null)'
+    PROMPT+=" %{$fg_bold[green]%}%%$NOCOLOR "
+    eval "function precmd { 0xMF-zsh-psuh }"
   }
 }
 
