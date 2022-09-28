@@ -179,7 +179,7 @@ function psh {
     PROMPT_COMMAND="psh"
   else
     if [[ "$SHELL_PROMPT" = "$" ]]; then
-      PS1="$PURPLE\h$CYAN:\W$(parse_git_repo)$NOCOLOR$SHELL_PROMPT "
+      PS1="$PURPLE\h$RED:$GREEN\W $(parse_git_repo)$NOCOLOR$SHELL_PROMPT "
       PROMPT_COMMAND="psh"
     else
       if [ "$shell" = "zsh" ]; then
@@ -190,7 +190,7 @@ function psh {
         fi
         WHITE="%{$fg_bold[white]%}"
       else
-        print "$PURPLE\h$RED:\W$(parse_git_repo)$NOCOLOR$SHELL_PROMPT "
+        print "$PURPLE\h$RED:$GREEN\W $(parse_git_repo)$NOCOLOR$SHELL_PROMPT "
         PS1='$(psh)'
       fi
     fi
