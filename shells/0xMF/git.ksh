@@ -116,7 +116,7 @@ function psu {
     PROMPT_COMMAND="psu"
   else
     if [[ "$SHELL_PROMPT" = "$" ]]; then
-      PS1="$YELLOW\u$CYAN:$GREEN\W $(parse_git_repo)$NOCOLOR$SHELL_PROMPT "
+      PS1="$CYAN\u$RED:$GREEN\W $(parse_git_repo)$NOCOLOR$SHELL_PROMPT "
       PROMPT_COMMAND="psu"
     else
       if [ "$shell" = "zsh" ]; then
@@ -127,7 +127,7 @@ function psu {
         fi
         WHITE="%{$fg_bold[white]%}"
       else
-        print "$YELLOW\u$CYAN:$GREEN\W $(parse_git_repo)$NOCOLOR$SHELL_PROMPT "
+        print "$CYAN\u$RED:$GREEN\W $(parse_git_repo)$NOCOLOR$SHELL_PROMPT "
         PS1='$(psu)'
       fi
     fi
@@ -1194,8 +1194,8 @@ function 0xMF-zsh-prompt {
 
 function 0xMF-zsh-psu {
   [ "$shell" = "zsh" ] && {
-    PROMPT="%(?:%{$fg_bold[yellow]%}%n:)"
-    PROMPT+='%{$fg_bold[cyan]%}:%{$fg[green]%}%1d%{$reset_color%} $(parse_git_repo 2>/dev/null)'
+    PROMPT="%(?:%{$fg_bold[cyan]%}%n:)"
+    PROMPT+='%{$fg_bold[red]%}:%{$fg[green]%}%1d%{$reset_color%} $(parse_git_repo 2>/dev/null)'
     PROMPT+=" %{$fg_bold[green]%}%%$NOCOLOR "
     eval "function precmd { 0xMF-zsh-psu }"
   }
