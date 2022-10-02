@@ -113,10 +113,12 @@
   invert      = revert
   incoming    = log --color=always orgin/master ^master            # show only what is in orgin/master that isn't in master
   last        = log --color=always -1 HEAD --format=format:"%Cred%H"
+  list-update-ignored = !git ls-files -v | grep '^[[:lower:]]'    # Show list of files ignored by git
   logs        = log --color=always --stat
   mergetrail  = log --color=always --ancestry-path --merges
   move        = mv
   nevermind   = !git reset --hard HEAD && git clean -d -f
+  no-ignore-unchanged   = !git update-index --no-assume-unchanged
   outgoing    = log --color=always master ^orgin/master            # show only what is in master that isn't in orgin/master
   pot         = push origin --tags
   praise      = blame
@@ -138,13 +140,14 @@
   type        = cat-file -t
   uncommit    = reset --mixed HEAD~
   undo        = reset --soft HEAD~1
-  unignore    = update-index --no-assume-changed
+  unignore    = !git no-ignore-unchanged
   unmerged    = branch --no-merged
   unmerged    = diff --color=always -w --name-only --diff-filter=U
   unstage     = reset -q HEAD --
   unstash     = stash pop
   untrack     = rm -r --cached
   up          = push up master
+  update-ignored-list = !git list-update-ignored
   what        = show -w
   #----
   # END HUMAN
