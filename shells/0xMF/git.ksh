@@ -1170,14 +1170,18 @@ function contributors {
 }
 
 function gco {
-  if [[ -n "$1" ]]; then
-    if echo "$1" | grep -q '[0-9][0-9]*'; then
-      git checkout HEAD~"$1"
-    else
+  if [[ -e "$1" ]]; then
       git checkout "$@"
-    fi
   else
-    git checkout
+    if [[ -n "$1" ]]; then
+      if echo "$1" | grep -q '[0-9][0-9]*'; then
+        git checkout HEAD~"$1"
+      else
+        git checkout
+      fi
+    else
+      git checkout
+    fi
   fi
 }
 
