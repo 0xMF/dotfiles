@@ -47,9 +47,13 @@ alias http-serve="serve"
 alias ll='0xMF-ll'
 function 0xMF-ll {
   if [ -z "$1" ]; then
-    ls --color=always -lhFtr --time-style=+"%Y-%b-%d %H:%M"
+    [ "$(uname)" = "OpenBSD" ] \
+      && ls -lhFtr \
+      || ls --color=always -lhFtr --time-style=+"%Y-%b-%d %H:%M"
   else
-    ls --color=always -lhFtr --time-style=+"%Y-%b-%d %H:%M" "$@"
+    [ "$(uname)" = "OpenBSD" ] \
+      && ls -lhFtr "$@" \
+      || ls --color=always -lhFtr --time-style=+"%Y-%b-%d %H:%M"
   fi | sed '/^total /d'
 }
 
