@@ -44,6 +44,15 @@ alias wiwin-doc='sddoc'
 alias tmux='tmux -u'
 alias http-serve="serve"
 
+alias ll='0xMF-ll'
+function 0xMF-ll {
+  if [ -z "$1" ]; then
+    ls -lh | sed '1d'
+  else
+    ls -lh "$@" | sed '/^total /d'
+  fi
+}
+
 function 0xMF-reload {
   local shell=$(basename $SHELL)
   if [ -d ~/.${shell}/0xMF ]; then
