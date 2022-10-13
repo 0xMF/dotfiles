@@ -22,8 +22,8 @@ function showdoc {
 function ll {
 
   [[ -z "$1" ]]\
-    && ls --color=always -lhFtr --time-style=+"%Y-%b-%d %H:%S" | sed "/^total /d"\
-    || ls --color=always -lhFtr --time-style=+"%Y-%b-%d %H:%S" "$@" | sed "/^total /d"
+    && ls --color=always -lhFtr --time-style=+"%Y-%b-%d %H:%M" | sed "/^total /d"\
+    || ls --color=always -lhFtr --time-style=+"%Y-%b-%d %H:%M" "$@" | sed "/^total /d"
 }
 
 function ls-files-only {

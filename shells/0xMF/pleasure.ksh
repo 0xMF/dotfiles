@@ -47,10 +47,10 @@ alias http-serve="serve"
 alias ll='0xMF-ll'
 function 0xMF-ll {
   if [ -z "$1" ]; then
-    ls -lh | sed '1d'
+    ls --color=always -lhFtr --time-style=+"%Y-%b-%d %H:%M"
   else
-    ls -lh "$@" | sed '/^total /d'
-  fi
+    ls --color=always -lhFtr --time-style=+"%Y-%b-%d %H:%M" "$@"
+  fi | sed '/^total /d'
 }
 
 function 0xMF-reload {
