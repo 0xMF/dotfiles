@@ -22,7 +22,7 @@ bsd() {
   alias j=jobs
   alias l='ls -l'
   alias links='0xMF-links'
-  alias ll='ls -lFaho'
+  alias ll="ls -lFaho | sed '1d'"
   alias lld='ls -lFahdo'
   alias ls='/bin/ls -pF'
   alias lsof='fstat'
@@ -44,7 +44,7 @@ linux() {
   alias lsn='ls -pF --color=none'
   alias la='ls -lah'
   alias lc='ls -Cp -w 120|less -FRMS'
-  alias ll='ls -lh'
+  alias ll="ls -lh | sed '1d'"
   alias lld='ls -lhd'
   alias grep='grep --color=always -i'
   alias su='su -'

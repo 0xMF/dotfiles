@@ -19,7 +19,7 @@ if [ "$OS" == "FreeBSD" ]; then
   alias j=jobs
   alias l='ls -lG'
   alias links='elinks'
-  alias ll='ls -lAFGo'
+  alias ll="ls -lAFGo | sed '1d'"
   alias lld='ls -lAFodG'
   alias ls='/bin/ls -FG'
   alias lsof='fstat'

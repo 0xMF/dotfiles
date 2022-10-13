@@ -12,7 +12,7 @@ if [ $OS == "FreeBSD" ]; then
   alias j=jobs
   alias l='ls -l'
   alias links='elinks'
-  alias ll='ls -laFo'
+  alias ll="ls -laFo | sed '1d'"
   alias lld='ls -laFod'
   alias ls='/bin/ls -F'
   alias lsof='fstat'
@@ -32,7 +32,7 @@ else
   alias lsn='ls -pF --color=none'
   alias la='ls -lah'
   alias lc='ls -Cp -w 120|less -FRMS'
-  alias ll='ls -lh'
+  alias ll="ls -lh | sed '1d'"
   alias lld='ls -lhd'
   alias su='su -'
   alias stats="man -k ' ' | grep -Ee 'stat \((1|8)\) '"
