@@ -23,7 +23,7 @@ function 0xMF-perldoc {
       if [ "$(uname)" = "OpenBSD" ]; then
         eval "$(whereis perldoc) -MPod::Text::Color::Delight $@"
       else
-        eval "$(whereis perldoc | awk '{print $NF}') -MPod::Text::Color::Delight $@"
+        eval "$(whereis perldoc | cut -d' ' -f2 | sed 's/.stub//') -MPod::Text::Color::Delight $@"
       fi
     fi
   fi
