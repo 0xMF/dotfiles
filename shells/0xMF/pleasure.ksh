@@ -113,14 +113,26 @@ function serve {
   unset port
 }
 
-function 0xMF-cv {
-  if [ -n "$1" ]; then
+function _0xMF-cv-helper {
     case "$(basename $SHELL)" in
       "bash"  ) type -a "$1" ;;
       "ksh"   ) command -V "$1"; typeset -f "$1" ;;
       "zsh"   ) type -f "$1" ;;
       *       ) >&2 echo "not implemented in $SHELL" ;;
     esac
+}
+
+function 0xMF-cv {
+  if [ -n "$1" ]; then
+    if echo "$1" | grep -q "0xMF"; then
+      _0xMF-cv-helper "$1"
+    else
+      if ! _0xMF-cv-helper "$1" |  grep -q "alias for 0xMF"; then
+        _0xMF-cv-helper "$1"
+      else
+        _0xMF-cv-helper "0xMF-$1"
+      fi
+    fi
   fi
 }
 
