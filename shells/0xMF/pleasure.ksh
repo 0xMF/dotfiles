@@ -124,13 +124,13 @@ function _0xMF-cv-helper {
 
 function 0xMF-cv {
   if [ -n "$1" ]; then
-    if echo "$1" | grep -q "0xMF"; then
+    if echo "$1" | grep -q "0xMF-cv"; then
       _0xMF-cv-helper "$1"
     else
       if ! _0xMF-cv-helper "$1" |  grep -q "alias for 0xMF"; then
         _0xMF-cv-helper "$1"
       else
-        _0xMF-cv-helper "0xMF-$1"
+        0xMF-cv $(_0xMF-cv-helper "$1"|awk '{print $NF}')
       fi
     fi
   fi
