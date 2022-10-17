@@ -127,9 +127,10 @@ function 0xMF-cv {
   if [ -n "$1" ]; then
     _cv=$(_0xMF-cv-helper "$1")
     echo "$_cv"
-    if echo "${_cv}" |  grep -qE "(alias for|aliased to) 0xMF"; then
+    if echo "${_cv}" |  grep -qE "(alias for 0xMF|aliased to)"; then
       [[ "$1" = "0xMF-cv"  && "$(basename $SHELL)" = "zsh" ]] && return
-      0xMF-cv $(echo "$_cv"|awk '{print $NF}')
+      [[ "$(basename $SHELL)" != "bash" ]] && { 0xMF-cv $(echo "$_cv"|awk '{print $NF}'); return; }
+      _0xMF-cv-helper $(echo "$_cv" | awk '{print $NF}' | sed "s/\`//;s/'//")
     fi
   fi
   unset _cv
