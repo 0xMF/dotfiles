@@ -123,17 +123,17 @@ function _0xMF-cv-helper {
 }
 
 function 0xMF-cv {
+  local _cv
   if [ -n "$1" ]; then
-    if echo "$1" | grep -q "0xMF-cv"; then
+    _cv=$(_0xMF-cv-helper "$1")
+    if ! echo "${_cv}" |  grep -q "alias for 0xMF"; then
       _0xMF-cv-helper "$1"
     else
-      if ! _0xMF-cv-helper "$1" |  grep -q "alias for 0xMF"; then
-        _0xMF-cv-helper "$1"
-      else
-        0xMF-cv $(_0xMF-cv-helper "$1"|awk '{print $NF}')
-      fi
+      echo "$_cv"
+      [ "$1" != "0xMF-cv" ] && 0xMF-cv $(echo "$_cv"|awk '{print $NF}')
     fi
   fi
+  unset _cv
 }
 
 function gdoc {
