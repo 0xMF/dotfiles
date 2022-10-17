@@ -130,7 +130,7 @@ function 0xMF-cv {
     if echo "${_cv}" |  grep -qE "(alias for 0xMF|aliased to)"; then
       [[ "$1" = "0xMF-cv"  && "$(basename $SHELL)" = "zsh" ]] && return
 
-      if [[ "$(basename $SHELL)" = "bash" ]]; then
+      if [[ "$(basename $SHELL)" != "zsh" ]]; then
         _0xMF-cv-helper $(echo "$_cv" | awk '{print $NF}' | sed "s/\`//;s/'//")
       else
         0xMF-cv $(echo "$_cv"|awk '{print $NF}')
