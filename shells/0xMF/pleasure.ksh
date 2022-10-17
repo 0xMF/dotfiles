@@ -126,7 +126,7 @@ function 0xMF-cv {
   local _cv
   if [ -n "$1" ]; then
     _cv=$(_0xMF-cv-helper "$1")
-    if ! echo "${_cv}" |  grep -q "alias for 0xMF"; then
+    if ! echo "${_cv}" |  grep -qE "(alias for|aliased to) 0xMF"; then
       _0xMF-cv-helper "$1"
     else
       echo "$_cv"
