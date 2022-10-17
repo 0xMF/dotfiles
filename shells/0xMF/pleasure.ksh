@@ -133,7 +133,9 @@ function 0xMF-cv {
           0xMF-cv $(echo "$_cv"|awk '{print $NF}')
         fi
       else
-        if ! echo "$1" | grep -q "0xMF"; then
+        if echo "$1" | grep -q "0xMF"; then
+          0xMF-cv $(echo "$_cv"|awk '{print $NF}')
+        else
           _0xMF-cv-helper $(echo "$_cv" | awk '{print $NF}' | sed "s/\`//;s/'//")
         fi
       fi
