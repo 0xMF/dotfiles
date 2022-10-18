@@ -53,7 +53,7 @@ function 0xMF-ll {
   else
     [ "$(uname)" = "OpenBSD" ] \
       && ls -lhFtr "$@" \
-      || ls --color=always -lhFtr --time-style=+"%Y-%b-%d %H:%M"
+      || ls --color=always -lhFtr --time-style=+"%Y-%b-%d %H:%M" "$@"
   fi | sed '/^total /d'
 }
 
