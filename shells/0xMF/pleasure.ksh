@@ -32,7 +32,7 @@ function 0xMF-perldoc {
 
 alias cv='0xMF-cv'
 
-ogrep=$(alias grep)
+ogrep=$(alias grep|sed 's/-i//g')
 ogrep=$(echo "${ogrep}" -i|sed s/\'//g)
 unalias grep
 alias grep="$(echo ${ogrep}|sed 's/^grep=//')"
