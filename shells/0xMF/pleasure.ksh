@@ -35,7 +35,7 @@ alias cv='0xMF-cv'
 ogrep=$(alias grep|sed 's/-i//g')
 ogrep=$(echo "${ogrep}" -i|sed s/\'//g)
 unalias grep
-alias grep="$(echo ${ogrep}|sed 's/^grep=//')"
+alias grep="$(echo ${ogrep}|sed 's/^.*grep=//')"
 unset ogrep
 
 alias make-slides="0xMF-make-slides"
