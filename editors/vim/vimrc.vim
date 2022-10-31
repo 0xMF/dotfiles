@@ -246,7 +246,7 @@ set clipboard=unnamed   " all yanking goes to clipboard
     au BufRead,BufNewFile *.go setlocal filetype=go
     "au BufRead,BufNewFile *.go setlocal bomb
     au BufRead,BufNewFile *.go setlocal fileencoding=utf-8
-    au BufRead,BufNewFile *.go setlocal spell
+    au BufRead,BufNewFile *.go setlocal nospell
     au BufRead,BufNewFile *.go setlocal textwidth=99
     "au BufRead,BufNewFile *.go setlocal formatprg=par\ -reqw85
     au BufRead,BufNewFile *.go setlocal colorcolumn=100
