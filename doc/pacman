@@ -26,6 +26,10 @@
   pacman -Qg | cut -f1 -d' ' | sort -u      # QUERY and list as group
   pacman -Qk | grep -ve '0 missing'         # QUERY installed packages for broken installs
   pacman -Ql emacs                          # QUERY-list files belonging to package
+
+  # QUERY-owner of file (which package does this file belong to)
+  pacman -Qo /usr/share/glib-2.0/schemas/org.gnome.nm-applet.gschema.xml
+
   pacman -Qqe > installed_packages          # QUERY LIST of installed packages
                                             # QUERY list of installed packages (sorted by size)
   pacman -Qi | awk '/^Name/{name=$3} /^Installed Size/{print $4$5, name}' | sort -h
