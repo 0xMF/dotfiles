@@ -106,7 +106,6 @@ map <Nul>    <PageUp>
 imap <Nul>    <Space>
 "#-
 
-:imap <C-w> <Esc><C-W>|                 " setup toggle to other windows with hjkl and UpDnLtRt
 
 :imap <A-BS> <ESC>ua|                   " --ditto-- in insert mode
 ":imap <C-D> <Esc>ldea|                  " --ditto-- in insert mode
@@ -163,6 +162,15 @@ imap <Nul>    <Space>
 :map <End>  <Esc>$|                     " jump to the end
 :map <expr> <C-p>  has("gui_running") ? "gT" : ":bp<CR>"|  " tabprevious for console vim
 :map <expr> <C-n>  has("gui_running") ? "gt" : ":bn<CR>"|  " tabnext
+
+" window resizing
+:map <C-x>1 :resize<CR>
+:map <C-w>1 :resize<CR>
+:map <C-x>=  <C-W>=
+:imap <C-x>1 <Esc>:resize<CR>a
+:imap <C-w>1 <Esc>:resize<CR>a
+:imap <C-x>= <Esc><C-W>=<CR>a
+:imap <C-w> <Esc><C-W>|                 " setup toggle to other windows with hjkl and UpDnLtRt
 
 " Word counting
 :map <F11> :set report=0<CR>:set nohls<CR>:'t,.s/\i\+/&/g<CR>| " from mark t to current line wordcount
