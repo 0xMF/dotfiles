@@ -113,19 +113,20 @@ imap <Nul>    <Space>
 :imap <C-s> <Esc>:w<CR>a|               " --ditto-- in insert mode
 :imap <End> <Esc>$a|                    " --ditto-- in insert mode
 :imap <M-q> <Esc>magq}``a|              " --ditto-- in insert mode
-:imap ;a <<Esc>ea><Esc>a|               " --ditto-- in insert mode
-:imap ;l  <Esc>:set list!<CR>a|         " toggle non-printable
-:imap ;n <Esc>:set nu!<CR>a|            " toggle numbering
-:imap ;nu  <Esc>:set nu!<CR>a|          " toggle line-numbers
-:imap ;q  <Esc>ma:set wrap!<CR>``a|     " favour ventilated prose
-:imap ;qq  <Esc>magq}``|                " par command paragraph formatting
-:imap ;qw <Esc>magw}``|                 " Vim's paragraph formatting
-:imap ;t <Esc>:set laststatus=0<CR>a|    " off statusbar
-:imap ;tm <Esc>:set statusline=%f%h%w\ [%Y]\ [%l,%v]\ %L:%p%%\ %{strftime('%c')}<CR><CR>a| "minimal statusbar
-:imap ;ts <Esc>:set statusline=%f%m%r%h%w\ [%{&ff}]\ [%Y]\ [ASCII=\%3.3b]\ [HEX=\%02.2B]\ [%l,%v][%p%%]\ [TOTAL=%L]\ TIME:\ %{strftime('%c')}<CR><CR>a| "normal statusbar
-:imap ;tt <Esc>:set laststatus=2<CR>a|    " on statusbar
+:imap ;a    <Esc>ea><Esc>a|             " --ditto-- in insert mode
+:imap ;l    <Esc>:set list!<CR>a|       " toggle non-printable
+:imap ;n    <Esc>:set nu!<CR>a|         " toggle numbering
+:imap ;nu   <Esc>:set nu!<CR>a|         " toggle line-numbers
+:imap ;q    <Esc>ma:set wrap!<CR>``a|   " favour ventilated prose
+:imap ;qq   <Esc>magq}``|               " par command paragraph formatting
+:imap ;qw   <Esc>magw}``|               " Vim's paragraph formatting
+:imap ;t    <Esc>:set laststatus=0<CR>a|    " off statusbar
+:imap ;tm   <Esc>:set statusline=%f%h%w\ [%Y]\ [%l,%v]\ %L:%p%%\ %{strftime('%c')}<CR><CR>a| "minimal statusbar
+:imap ;ts   <Esc>:set statusline=%f%m%r%h%w\ [%{&ff}]\ [%Y]\ [ASCII=\%3.3b]\ [HEX=\%02.2B]\ [%l,%v][%p%%]\ [TOTAL=%L]\ TIME:\ %{strftime('%c')}<CR><CR>a| "normal statusbar
+:imap ;tt   <Esc>:set laststatus=2<CR>a|    " on statusbar
 
-:imap ;e <Esc>:set spell!<CR>i|  "toggle spell checking
+:imap ;e <Esc>:set spell!<CR>i|  " toggle spell checking
+:imap ;w <Esc>:set wrap!<Esc>a|  " toggle word wrapping
 
 :map ;' i'<Esc>Ea'<Esc>|              " ' ' around a word
 :map ;* i*<Esc>Ea*<Esc>|              " * * around a word
@@ -156,6 +157,7 @@ imap <Nul>    <Space>
 :map ;tt <Esc>:set laststatus=2<CR>|    " on statusbar
 :map ;tp gT|                            " tabprevious for console vim
 :map ;tn gt|                            " tabnext
+:map ;w <Esc>:set wrap!<Esc>|           " toggle word wrapping
 :map <A-BS> <ESC>u|                     " Window's style undo
 ":map <C-D> de|                          " delete word under cursor
 :map <C-s> :w<CR>|                      " like Windows CTRL +S to save
