@@ -127,6 +127,7 @@ imap <Nul>    <Space>
 
 :imap ;e <Esc>:set spell!<CR>i|  " toggle spell checking
 :imap ;w <Esc>:set wrap!<Esc>a|  " toggle word wrapping
+:imap ;u <Esc>:call ToggleUnicodeChars()<CR>|   " toggle display of Unicode chars
 
 :map ;' i'<Esc>Ea'<Esc>|              " ' ' around a word
 :map ;* i*<Esc>Ea*<Esc>|              " * * around a word
@@ -158,6 +159,7 @@ imap <Nul>    <Space>
 :map ;tp gT|                            " tabprevious for console vim
 :map ;tn gt|                            " tabnext
 :map ;w <Esc>:set wrap!<Esc>|           " toggle word wrapping
+:map ;u :call ToggleUnicodeChars()<CR>|   " toggle display of Unicode chars
 :map <A-BS> <ESC>u|                     " Window's style undo
 ":map <C-D> de|                          " delete word under cursor
 :map <C-s> :w<CR>|                      " like Windows CTRL +S to save

@@ -101,3 +101,14 @@ augroup END
     :   endif
     :endif
 :endfunction
+
+" toggle showing unicode characters when vim|gvim -b is run
+:function! ToggleUnicodeChars()
+:if has("multi_byte_encoding")
+:   set encoding=latin1
+: else
+:   set encoding=utf8
+:endif
+: set isprint=
+: set display+=uhex
+:endfunction
