@@ -9,6 +9,26 @@
 *.so
 a.out
 
+# Dynamic language intermediates
+################################
+# Clojure
+/target
+/classes
+/checkouts
+profiles.clj
+pom.xml
+pom.xml.asc
+*.jar
+*.class
+/.lein-*
+/.nrepl-port
+/.prepl-port
+
+# Python
+__pycache__/
+*.py[cod]
+*.egg
+
 # Packages #
 ############
 # it's better to unpack these files and commit the raw source
