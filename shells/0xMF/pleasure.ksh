@@ -97,13 +97,15 @@ function 0xMF-reload {
 }
 
 function 0xMF-make-slides {
-  [ ! -s "$1" ] && { >&2 echo "Usage: $(basename $0) filename"; return 1; }
+  local src="${1/%.*/.md}"
+  [ ! -s "$src" ] && { >&2 echo "Usage: $(basename $0) filename"; return 1; }
   if [[ -n $(whereis pandoc|awk '{print $2}') ]]; then
-    pandoc -t beamer "$1" -V theme:Pittsburgh -V colortheme:beaver -V fonttheme:professionalfonts -o "${1%md}pdf"
+    pandoc -t beamer "$src" -V theme:Pittsburgh -V colortheme:beaver -V fonttheme:professionalfonts -o "${1%md}pdf"
     [[ -n $(whereis mupdf|awk '{print $2}') ]] && mupdf "${1%md}pdf"
   else
     >&2 echo "pandoc is required but not found"
   fi
+  unset src
 }
 
 function serve {
