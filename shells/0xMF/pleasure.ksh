@@ -496,3 +496,14 @@ function 0xMF-links {
   fi
   unset shell
 }
+
+alias magnify=0xMF-magnify
+function 0xMF-magnify {
+  local w=512 h=128 m=4
+  [ "$1" -gt 0 ] && w="$1"
+  [ "$2" -gt 0 ] && h="$2"
+  [ "$3" -gt 0 ] && m="$3"
+
+  xmag -source "$w"x"$h" -mag "$m"
+  unset w h m
+}
