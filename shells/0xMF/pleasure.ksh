@@ -101,7 +101,9 @@ function 0xMF-make-slides {
   [ ! -s "$src" ] && { >&2 echo "Usage: $(basename $0) filename"; return 1; }
   if [[ -n $(whereis pandoc|awk '{print $2}') ]]; then
     pandoc -t beamer "$src" -V theme:Pittsburgh -V colortheme:beaver -V fonttheme:professionalfonts -o "${1%md}pdf"
+    xset s off
     [[ -n $(whereis mupdf|awk '{print $2}') ]] && mupdf "${1%md}pdf"
+    xset s on
   else
     >&2 echo "pandoc is required but not found"
   fi
