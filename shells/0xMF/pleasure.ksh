@@ -110,6 +110,18 @@ function 0xMF-make-slides {
   unset src
 }
 
+alias ss-on=0xMF-screensaver-on
+function 0xMF-screensaver-on {
+  [ "$1" -gt 0 ] && xset s $1 || xset s $1 on
+  xset -q | sed -n '/^Screen Saver:/,/^  timeout:/p'
+}
+
+alias ss-off=0xMF-screensaver-off
+function 0xMF-screensaver-off {
+  xset s off
+  xset -q | sed -n '/^Screen Saver:/,/^  timeout:/p'
+}
+
 function serve {
 
   local port=2212
