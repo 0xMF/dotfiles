@@ -97,17 +97,42 @@ function 0xMF-reload {
 }
 
 function 0xMF-make-slides {
-  local src="${1/%.*/.md}"
-  [ ! -s "$src" ] && { >&2 echo "Usage: $(basename $0) filename"; return 1; }
+  local force options src
+
+  if ! options=$(getopt -a -l "force" -o "f" -- "$@"); then
+    echo "Usage: $(basename $0) ( -f | --force ) filename"
+    return
+  fi
+  eval set -- "$options"
+  while true; do
+    case "$1" in
+      -f | --force)
+        force=yes
+        shift ;;
+      --) shift; break ;;
+      *)
+        echo "ERROR: $@"
+        return ;;
+    esac
+  done
+
+  src="${1/%.*/.md}"
+  [ ! -s "$src" ] && { >&2 echo "Usage: $(basename $0) ( -f | --force ) filename"; return 1; }
   if [[ -n $(whereis pandoc|awk '{print $2}') ]]; then
     pandoc -t beamer "$src" -V theme:Pittsburgh -V colortheme:beaver -V fonttheme:professionalfonts -o "${1%md}pdf"
+    mkdir -p ~/Documents/slides
+    if [[ "$force" = "yes" && -s ~/Documents/slides/"${1%md}pdf" ]]; then
+      mv "${1%md}pdf" ~/Documents/slides
+    else
+      mv -i "${1%md}pdf" ~/Documents/slides
+    fi
     xset s off
-    [[ -n $(whereis mupdf|awk '{print $2}') ]] && mupdf "${1%md}pdf"
+    [[ -n $(whereis mupdf|awk '{print $2}') ]] && mupdf ~/Documents/slides/"${1%md}pdf"
     xset s on
   else
     >&2 echo "pandoc is required but not found"
   fi
-  unset src
+  unset force options src
 }
 
 alias ss-on=0xMF-screensaver-on
