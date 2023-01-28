@@ -66,12 +66,23 @@ augroup END
 :1
 :endfunction
 
+:let s:colorscheme = "pablo"
 :function! My_Colours_Change()
+: if has ("gui_running")
 :   if g:colors_name == "nice-gui"
-:     colorscheme darkblue
+:     execute "colorscheme" s:colorscheme
 :   else
+:     let s:colorscheme = g:colors_name == "industry" ? "midnight" : g:colors_name
 :     colorscheme nice-gui
 :   endif
+: else
+:   if g:colors_name == "nice-term"
+:     execute "colorscheme" s:colorscheme
+:   else
+:     let s:colorscheme = g:colors_name == "pablo" ?  g:colors_name : "pablo"
+:     colorscheme nice-term
+:   endif
+: endif
 :endfunction
 
 :function! My_Fonts_Change()
