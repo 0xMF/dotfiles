@@ -1024,6 +1024,13 @@ function gshow {
   fi
 }
 
+function gshow--stat {
+  if _is_git_repo -eq 0
+  then
+    _gshow --stat "$@"
+  fi
+}
+
 # goto any repo which is below pwd and show commits from there; pop back when done
 function rshow {
   if _is_git_repo -eq 0
