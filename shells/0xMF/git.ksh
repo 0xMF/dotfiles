@@ -1301,6 +1301,7 @@ alias glolar='glola --reverse'
 #alias glolar='git log --decorate --pretty=oneline --abbrev-commit --all --reverse'
 alias glp='git log --all --color=always -p'
 alias gls='git ls-files'
+alias glsi='git status -s --ignored'
 alias glum='git pull upstream master'
 
 alias gout='git log --all --color=always master ^origin/master'
