@@ -1111,7 +1111,8 @@ function ghw {
       git add ...;\n\t\
       gcam; gha; gshow...\n\t\
       gri ...\n\t\
-      git commit ...\n\n\
+      git commit ...\n\t\
+      git tag -a x.y.z(-beta) -m 'message'\n\n\
     # ready to merge \n\t\
       git rebase master\n\t\
       git checkout master\n\t\
