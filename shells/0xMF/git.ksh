@@ -1111,15 +1111,17 @@ function ghw {
       git add ...;\n\t\
       gcam; gha; gshow...\n\t\
       gri ...\n\t\
-      git commit ...\n\t\
-      git tag -a x.y.z(-beta) -m 'message'\n\n\
+      git commit ...\n\n\
     # ready to merge \n\t\
       git rebase master\n\t\
       git checkout master\n\t\
       git merge wip\n\n\
     # push to origin\n\t\
       git pull\n\t\
-      git push"
+      git push\n\n\
+    # prepare a tagged release\n\t\
+      git tag -a x.y.z(-beta) -m 'message'\n\t\
+      git push --tags"
 }
 
 function gsearch {
