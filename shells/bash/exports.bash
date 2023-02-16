@@ -15,34 +15,34 @@ export HISTCONTROL=ignoreboth
 # terminal clients need local
 if [[ -t 0 ]]; then
   #export LC_ALL=C
-  export LC_ALL=en_US.UTF-8
-  export LC_COLLATE=C
-  export LC_CTYPE=en_US.UTF-8
-  export LANG=en_US.UTF-8
-  export LANGUAGE=en_US.UTF-8
-  TODAY=$(date +"%Y-%b-%d"); [ -n "${TODAY}" ] && export TODAY
+  LC_ALL=en_US.UTF-8; export LC_ALL
+  LC_COLLATE=C; export LC_COLLATE
+  LC_CTYPE=en_US.UTF-8; export LC_CTYPE
+  LANG=en_US.UTF-8; export LANG
+  LANGUAGE=en_US.UTF-8; export LANGUAGE
+  TODAY=$(date +"%Y-%m-%d"); [ -n "${TODAY}" ] && export TODAY
 fi
 
 
 # make Bash work like Zsh/ksh
-export GLOBIGNORE='.:..'
+GLOBIGNORE='.:..'; export GLOBIGNORE
 
 # Handles: (-R) ANSI colors with ESC, (-FX) quit on one screen without destroying text,
 #          (-q) quiet mode and (-e) terminate after second encounter with EOF
-export LESS='FeqRSX'
-export PAGER="less -${LESS}"
-export MANPAGER=$PAGER
+LESS='FeqRSX'; export LESS
+PAGER="less -${LESS}"; export PAGER
+MANPAGER=$PAGER; export MANPAGER
 
 if [ -s /usr/local/bin/vim ]; then
-  export VISUAL=/usr/local/bin/vim
+  VISUAL=/usr/local/bin/vim; export VISUAL
 else
   if [ -s /usr/bin/vim ]; then
-    export VISUAL=/usr/bin/vim
+    VISUAL=/usr/bin/vim; export VISUAL
   else
-    export VISUAL=$(whereis vim | cut -d' ' -f2)
+    VISUAL=$(whereis vim | cut -d' ' -f2); export VISUAL
   fi
 fi
-export EDITOR=$VISUAL
-export FCEDIT=$VISUAL
+EDITOR=$VISUAL; export EDITOR
+FCEDIT=$VISUAL; export FCEDIT
 
 # vim:nospell:ft=sh:
