@@ -107,7 +107,7 @@ fi
 
 # editor settings for bash
 set -o emacs
-shopt -s extglob
+shopt -s dotglob extglob
 
 # check the window size after each command and, if necessary,
 # update the values of LINES and COLUMNS.
