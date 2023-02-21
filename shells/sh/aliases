@@ -6,7 +6,7 @@ OS=$(uname -s)
 
 if [ $OS == "FreeBSD" ]; then
 
-  alias eg='egrep -i'
+  alias eg='grep -iE'
   alias h='fc -l'
   alias iotop='top -mio -ototal'
   alias j=jobs

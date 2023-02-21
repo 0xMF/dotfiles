@@ -15,7 +15,7 @@ export OS
 
 bsd() {
   alias declare='0xMF-declare'
-  alias eg='egrep -i'
+  alias eg='grep -iE'
   alias grep='grep -i'
   alias h='fc -l'
   alias iotop='top -mio -ototal'

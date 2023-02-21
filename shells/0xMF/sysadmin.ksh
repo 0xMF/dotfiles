@@ -22,7 +22,7 @@ function can_sudo {
 sdo=$(can_sudo)
 
 function dfh {
-  /bin/df -h | egrep '^(Filesystem|/)' | sort -hk5
+  /bin/df -h | grep -E '^(Filesystem|/)' | sort -hk5
 }
 
 function jc {
