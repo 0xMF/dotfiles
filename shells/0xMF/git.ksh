@@ -308,6 +308,24 @@ function psm-no-git {
   PROMPT_COMMAND=""
 }
 
+function ps-remote {
+  if [[ "$SHELL_PROMPT" = "$" ]]; then
+    if [ -n "${PURPLE}" ]; then
+      PS1="$CYAN\u$PURPLE@\h$GREEN:\W$NOCOLOR$SHELL_PROMPT ";
+      PROMPT_COMMAND="ps-remote"
+    fi
+  else
+    if [ -n "${MAGENTA}" ]; then
+      if [ `id -u` -eq 0 ]; then
+        eval "function precmd { PROMPT='$RED#$NOCOLOR ' }"
+      else
+        { 0xMF-zsh-psremote; return;  }
+      fi
+      WHITE="%{$fg_bold[white]%}"
+    fi
+  fi
+}
+
 function psmm {
   if [ "$shell" = "zsh" ]; then
     eval "function precmd { PROMPT='$MAGENTA%%$NOCOLOR ' }"
@@ -1212,7 +1230,10 @@ function 0xMF-zsh-prompt {
 function 0xMF-zsh-psu {
   [ "$shell" = "zsh" ] && {
     PROMPT="%(?:%{$fg_bold[cyan]%}%n:)"
-    PROMPT+='%{$fg_bold[red]%}:%{$fg[green]%}%1d%{$reset_color%} $(parse_git_repo 2>/dev/null)'
+    PROMPT+='%{$fg_bold[red]%}:%{$fg[green]%}%1d%{$reset_color%}'
+    if _is_git_repo ; then
+      PROMPT+=' $(parse_git_repo 2>/dev/null)'
+    fi
     PROMPT+=" %{$fg_bold[green]%}%%$NOCOLOR "
     eval "function precmd { 0xMF-zsh-psu }"
   }
@@ -1221,7 +1242,10 @@ function 0xMF-zsh-psu {
 function 0xMF-zsh-psh {
   [ "$shell" = "zsh" ] && {
     PROMPT="%(?:%{$fg_bold[magenta]%}%m:)"
-    PROMPT+='%{$fg_bold[red]%}:%{$fg[green]%}%1d%{$reset_color%} $(parse_git_repo 2>/dev/null)'
+    PROMPT+='%{$fg_bold[red]%}:%{$fg[green]%}%1d%{$reset_color%}'
+    if _is_git_repo ; then
+      PROMPT+=' $(parse_git_repo 2>/dev/null)'
+    fi
     PROMPT+=" %{$fg_bold[green]%}%%$NOCOLOR "
     eval "function precmd { 0xMF-zsh-psh }"
   }
@@ -1230,9 +1254,24 @@ function 0xMF-zsh-psh {
 function 0xMF-zsh-psuh {
   [ "$shell" = "zsh" ] && {
     PROMPT="%(?:%{$fg_bold[cyan]%}%n%{$fg_bold[yellow]%}@%{$fg_bold[magenta]%}%m:)"
-    PROMPT+='%{$fg_bold[red]%}:%{$fg[green]%}%1d%{$reset_color%} $(parse_git_repo 2>/dev/null)'
+    PROMPT+='%{$fg_bold[red]%}:%{$fg[green]%}%1d%{$reset_color%}'
+    if _is_git_repo ; then
+      PROMPT+=' $(parse_git_repo 2>/dev/null)'
+    fi
     PROMPT+=" %{$fg_bold[green]%}%%$NOCOLOR "
     eval "function precmd { 0xMF-zsh-psuh }"
+  }
+}
+
+function 0xMF-zsh-psremote {
+  [ "$shell" = "zsh" ] && {
+    PROMPT="%(?:%{$fg_bold[cyan]%}%n@%{$fg_bold[magenta]%}%m:)"
+    PROMPT+='%{$fg[green]%}:%c%{$reset_color%}'
+    if _is_git_repo ; then
+      PROMPT+=' $(parse_git_repo 2>/dev/null)'
+    fi
+    PROMPT+=" %{$fg_bold[green]%}%%$NOCOLOR "
+    eval "function precmd { 0xMF-zsh-psremote }"
   }
 }
 
