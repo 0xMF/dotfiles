@@ -54,6 +54,16 @@ alias http-serve="serve"
 alias ll='0xMF-ll'
 alias llr='0xMF-llr'
 
+
+function 0xMF-cal {
+  local c
+  c=$(whereis ncal|cut -d: -f2)
+  [[ "${c}" = "" ]] && /usr/bin/cal "$@" || /usr/bin/ncal -b "$@"
+  unset c
+}
+alias cal='0xMF-cal'
+
+
 function 0xMF-llr {
   if [ -z "$1" ]; then
     [ "$(uname)" = "OpenBSD" ] \
@@ -331,6 +341,7 @@ function 0xMF-pydoc {
       && { pydoc3 "$@" | cat -s | chroma --unbuffered -l go -f terminal256 -s paraiso-dark | less -FeqRSX ; }  \
       || { pydoc3 "$@" | cat -s | chroma --unbuffered -l python -f terminal256 -s "$CHROMA_STYLE" | less -FeqRSX ; }
 }
+alias pydoc='0xMF-pydoc'
 
 function 0xMF-list-aliases {
   case "${THIS_SHELL}" in
