@@ -25,4 +25,20 @@
   echo $CHROMA_STYLE
   unset CHROMA_STYLE
 
+## to get more or less consistent file expansion across shells
+#
+#   On Bash
+  shopt -s dotglob extglob
+  GLOBIGNORE=.:..; export GLOBIGNORE  # ignore pwd and parent directories
+
+#   On Bash and Ksh/Zsh
+  echo "match         /tmp/*(afile|adir)"
+
+#   On Bash
+  echo "do not match  /tmp/*!(afile|adir)"
+
+#   On Ksh/Zsh
+  echo "do not match  /tmp/*^(afile|adir)"
+
+
 # vim: filetype=sh
