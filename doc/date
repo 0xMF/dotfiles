@@ -1,0 +1,19 @@
+# date in iso format
+$ date +"%Y-%m-%dT%H:%M:%S%z"
+1970-01-01T00:00:00-0000
+
+$ sudo timedatectl set-timezone UTC
+
+$ date -d "@0" --iso-8601=seconds
+1970-01-01T00:00:00+00:00
+
+$ sudo timedatectl set-timezone EST
+
+# date in epoch format
+$ date -d "1969-12-31T19:00" +%s
+0
+
+$ date -d "YYYY-mm-dd HH:MM" +%s
+1234567890
+
+
