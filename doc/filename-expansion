@@ -1,0 +1,27 @@
+## to get more or less consistent file expansion across shells
+#
+#   On Bash
+  shopt -s dotglob extglob
+  GLOBIGNORE=.:..; export GLOBIGNORE  # ignore pwd and parent directories
+
+# On Zsh
+  setopt extendedglob
+
+# Assume /tmp contains
+  ls -d /tmp/*a*
+  /tmp/afile /tmp/adir
+
+# On Bash and Ksh/Zsh multiple match:
+  ls /tmp/*(afile|adir)
+
+# On Bash do not match multiple:
+  ls /tmp/*!(afile|adir)
+
+# On Ksh/Zsh do not match multiple
+  ls /tmp/*^(afile|adir)
+
+# On Ksh/Zsh do not match single file or directory
+  ls /tmp/*^afile /tmp/*^adir
+
+# vim: filetype=sh
+
