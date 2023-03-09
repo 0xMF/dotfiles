@@ -21,13 +21,23 @@
   ls /tmp/*(afile|adir)
 
 # On Bash do not match multiple:
-  ls /tmp/*!(afile|adir)
+  ls /tmp/!(afile|adir)
 
-# On Ksh/Zsh do not match multiple
-  ls /tmp/*^(afile|adir)
+  # No error but incorrect output
+  # ls /tmp/*!(afile|adir)
+
+  # ERROR
+  # ls /tmp/!*(afile|adir)
+
+# On Ksh/Zsh do not match multiple (both styles are correct)
+  ls /tmp/^(afile|adir)
+  ls /tmp/^*(afile|adir)
+
+  # No error but incorrect output
+  #ls /tmp/*^(afile|adir)
 
 # On Ksh/Zsh do not match single file or directory
-  ls /tmp/*^afile /tmp/*^adir
+  ls /tmp/^afile /tmp/^adir
 
 # vim: filetype=sh
 
