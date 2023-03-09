@@ -4,8 +4,14 @@
   shopt -s dotglob extglob
   GLOBIGNORE=.:..; export GLOBIGNORE  # ignore pwd and parent directories
 
+# On ksh
+  set -o
+
 # On Zsh
+  set -o extendedglob
+  set -o noextendedglob
   setopt extendedglob
+  setopt noextendedglob
 
 # Assume /tmp contains
   ls -d /tmp/*a*
