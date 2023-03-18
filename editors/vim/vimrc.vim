@@ -283,7 +283,7 @@ set clipboard=unnamed   " all yanking goes to clipboard
     au FileType ps1                 setlocal fileformat=dos
 
     "*  Python
-    au BufNewFile,BufRead *.py setlocal ts=4
+    au BufNewFile,BufRead *.py  setlocal tabstop=4
     au BufRead,BufNewFile *.py  setlocal expandtab
     "au BufNewFile,BufRead *.py so <sfile>:h\vim70\ftplugin\python.vim
 
