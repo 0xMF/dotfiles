@@ -110,16 +110,18 @@ function 0xMF-sysadmin-upgrade {
         "${sdo}" yum update
           ;;
       debian|kali|mint|ubuntu)
-        "${sdo}" apt update
-        "${sdo}" apt dist-upgrade
+        if "${sdo}" apt update; then
+          "${sdo}" apt dist-upgrade
+        fi
           ;;
       *) echo does not support ${distro} yet;;
     esac
   fi
 
   if [ "${os}" = "OpenBSD" ]; then
-    "${sdo}" syspatch
-    "${sdo}" pkg_add -Uu
+    if  "${sdo}" syspatch; then
+      "${sdo}" pkg_add -Uu
+    fi
   fi
 }
 
