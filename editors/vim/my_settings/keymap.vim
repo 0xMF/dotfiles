@@ -177,6 +177,16 @@ imap <Nul>    <Space>
 :imap <C-x>= <Esc><C-W>=<CR>a
 :imap <C-w> <Esc><C-W>|                 " setup toggle to other windows with hjkl and UpDnLtRt
 
+" window rotate
+:map <C-w><C-a>  <C-w>r
+:map <C-w><C-o>  <C-w>r
+:imap <C-w><C-a>  <Esc><C-w>r<CR>a
+:imap <C-w><C-o>  <Esc><C-w>r<CR>a
+
+" window close/hide
+:map <C-w>x  <C-w>j:hide<CR>
+:imap <C-w>x  <Esc><C-w>j<Esc>:hide<CR>a
+
 " Word counting
 :map <F11> :set report=0<CR>:set nohls<CR>:'t,.s/\i\+/&/g<CR>| " from mark t to current line wordcount
 :map <F12> :set report=0<CR>:set nohls<CR>:%s/\i\+/&/g<CR>| " entire file wordcount
