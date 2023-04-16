@@ -160,6 +160,10 @@ imap <Nul>    <Space>
 :map ;tp gT|                            " tabprevious for console vim
 :map ;tn gt|                            " tabnext
 :map ;w <Esc>:set wrap!<Esc>|           " toggle word wrapping
+:map ;wl :resize<CR>|                   " window resize
+:map ;wo <C-w>p<CR>|                    " window previous
+:map ;wO <C-w>o<CR>|                    " window previous
+
 :map ;u :call ToggleUnicodeChars()<CR>|   " toggle display of Unicode chars
 :map <A-BS> <ESC>u|                     " Window's style undo
 ":map <C-D> de|                          " delete word under cursor
@@ -173,6 +177,7 @@ imap <Nul>    <Space>
 
 :imap <C-p>  <Esc><C-p><CR>|  " tabprevious for console vim
 :imap <C-n>  <Esc><C-n><CR>|  " tabnext
+:imap ;wl <Esc>:resize<CR>a|  " window resize
 
 " window resizing
 :map <C-x>1 :resize<CR>
