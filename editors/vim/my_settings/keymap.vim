@@ -168,8 +168,8 @@ imap <Nul>    <Space>
 ":map <expr> <C-p>  has("gui_running") ? "gT" : ":bp<CR>"|  " tabprevious for console vim
 ":map <expr> <C-n>  has("gui_running") ? "gt" : ":bn<CR>"|  " tabnext
 
-:map <C-p>  <Esc>`a<CR>:bp<CR>ma<CR> |  " tabprevious for console vim
-:map <C-n>  <Esc>`a<CR>:bn<CR>ma<CR> |  " tabnext
+:map <C-p>  <Esc>:bp<CR>`"<CR> |  " tabprevious for console vim
+:map <C-n>  <Esc>:bn<CR>`"<CR> |  " tabnext
 
 :imap <C-p>  <Esc><C-p><CR>  |  " tabprevious for console vim
 :imap <C-n>  <Esc><C-n><CR>  |  " tabnext
