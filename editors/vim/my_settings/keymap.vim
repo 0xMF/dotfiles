@@ -165,8 +165,14 @@ imap <Nul>    <Space>
 ":map <C-D> de|                          " delete word under cursor
 :map <C-s> :w<CR>|                      " like Windows CTRL +S to save
 :map <End>  <Esc>$|                     " jump to the end
-:map <expr> <C-p>  has("gui_running") ? "gT" : ":bp<CR>"|  " tabprevious for console vim
-:map <expr> <C-n>  has("gui_running") ? "gt" : ":bn<CR>"|  " tabnext
+":map <expr> <C-p>  has("gui_running") ? "gT" : ":bp<CR>"|  " tabprevious for console vim
+":map <expr> <C-n>  has("gui_running") ? "gt" : ":bn<CR>"|  " tabnext
+
+:map <C-p>  <Esc>`a<CR>:bp<CR>ma<CR> |  " tabprevious for console vim
+:map <C-n>  <Esc>`a<CR>:bn<CR>ma<CR> |  " tabnext
+
+:imap <C-p>  <Esc><C-p><CR>  |  " tabprevious for console vim
+:imap <C-n>  <Esc><C-n><CR>  |  " tabnext
 
 " window resizing
 :map <C-x>1 :resize<CR>
