@@ -94,10 +94,12 @@ map <F3>  :execute "mksession! " . v:this_session<CR>
 " page down
 map <Space>   <PageDown>
 map f         <PageDown>
+map <A-n>     <PageDown>
 " page up
 map <S-Space> <PageUp>
 map <C-Space> <C-b>
 map b         <C-b>
+map <A-p>     <PageUp>
 "map q       :q<CR>
 
 " Solves the C-Space problem when using terminal vim insert/normal mode
@@ -161,8 +163,11 @@ imap <Nul>    <Space>
 :map ;tn gt|                            " tabnext
 :map ;w <Esc>:set wrap!<Esc>|           " toggle word wrapping
 :map ;wl :resize<CR>|                   " window resize
+:map ;wW :resize<CR>|                   " window resize
 :map ;wo <C-w>p<CR>|                    " window previous
 :map ;wO <C-w>o<CR>|                    " window previous
+:map ;w= <C-W>=
+:map ;w- <C-W>=
 
 :map ;u :call ToggleUnicodeChars()<CR>|   " toggle display of Unicode chars
 :map <A-BS> <ESC>u|                     " Window's style undo
@@ -204,6 +209,9 @@ imap <Nul>    <Space>
 
 " used for completion
 :imap <C-Tab> <C-P>
+
+:map <C-x>k :quit<CR>
+:imap <C-x>k <Esc>:quit<CR>a
 
 " FAILED COPY ATTEMPTS
 "map <C-C>  vgG
