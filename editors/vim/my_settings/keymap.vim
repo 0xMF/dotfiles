@@ -210,8 +210,8 @@ imap <Nul>    <Space>
 " used for completion
 :imap <C-Tab> <C-P>
 
-:map <C-x>k :quit<CR>
-:imap <C-x>k <Esc>:quit<CR>a
+:map <C-x>k :bd<CR>
+:imap <C-x>k <Esc>:bd<CR>a
 
 " FAILED COPY ATTEMPTS
 "map <C-C>  vgG
