@@ -123,3 +123,27 @@ augroup END
 : set isprint=
 : set display+=uhex
 :endfunction
+
+" tabprevious for console vim
+function! BufferPrevious()
+  let mybuflist = getbufinfo()
+  "let myjumplist = getjumplist()
+  :if len(mybuflist) <= 2
+  : echo "no previous buffer"
+  :else
+  : bprevious
+  : call setpos(".","``")
+  :endif
+endfunction
+
+" tabnext
+function! BufferNext()
+  let mybuflist = getbufinfo()
+  "let myjumplist = getjumplist()
+  :if len(mybuflist) <= 2
+  : echo "no next buffer"
+  :else
+  : bnext
+  : call setpos(".","``")
+  :endif
+endfunction
