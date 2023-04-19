@@ -132,11 +132,14 @@ function! BufferPrevious()
   : echo "no previous buffer"
   :else
   : bprevious
-  : if bufexists(0)
-  :   call setpos(".","``")
-  : else
-  :   call setpos(".","g\"")
+  : if line("'\"") >= 1 && line("'\"") <= line("$") && &ft !~# 'commit'
+  :   exe "normal! g`\""
   : endif
+  ":   call setpos(".","g`\"")
+  ": if bufexists(expand('%p'))
+  ":   call setpos(".","`\"")
+  ": else
+  ": endif
   :endif
 endfunction
 
@@ -148,10 +151,14 @@ function! BufferNext()
   : echo "no next buffer"
   :else
   : bnext
-  : if bufexists(0)
-  :   call setpos(".","``")
-  : else
-  :   call setpos(".","g\"")
+  " see restore-cursor
+  : if line("'\"") >= 1 && line("'\"") <= line("$") && &ft !~# 'commit'
+  :   exe "normal! g`\""
   : endif
+  ":   call setpos(".","g`\"")
+  ": if bufexists(expand('%p'))
+  ":   call setpos(".","`\"")
+  ": else
+  ": endif
   :endif
 endfunction
