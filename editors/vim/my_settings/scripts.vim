@@ -132,7 +132,11 @@ function! BufferPrevious()
   : echo "no previous buffer"
   :else
   : bprevious
-  : call setpos(".","``")
+  : if bufexists(0)
+  :   call setpos(".","``")
+  : else
+  :   call setpos(".","g\"")
+  : endif
   :endif
 endfunction
 
@@ -144,6 +148,10 @@ function! BufferNext()
   : echo "no next buffer"
   :else
   : bnext
-  : call setpos(".","``")
+  : if bufexists(0)
+  :   call setpos(".","``")
+  : else
+  :   call setpos(".","g\"")
+  : endif
   :endif
 endfunction
