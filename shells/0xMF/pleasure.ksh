@@ -30,6 +30,20 @@ function 0xMF-perldoc {
   unset pd
 }
 
+function 0xMF-sl {
+  local _sl _w
+  _sl=$(whereis -b sl | cut -d: -f2|tr -d ' ')
+  _w=$(date "+%s"|cut -b10-)
+  if [ -z "${_sl}" ]; then
+    >&2 echo "No fun, sorry. sl is not installed."
+    return 1
+  else
+    "${_sl}" -cale${_w}
+  fi
+  unset _sl _w
+}
+
+
 alias cv='0xMF-cv'
 
 ogrep=$(alias grep|sed 's/-i//g')
@@ -45,6 +59,7 @@ alias pale='perl -awnle'
 alias pd='0xMF-perldoc'
 alias pdoc='0xMF-perldoc'
 alias perldoc='0xMF-perldoc'
+alias sl='0xMF-sl'
 alias wiwin-refresh='sddoc-refresh'
 alias wiwin-doc='sddoc'
 
