@@ -42,8 +42,8 @@ function 0xMF-sl {
   unset _w
 }
 
-unalias sl 2> /dev/null
-_sl="$(which sl 2>&1 >/dev/null)"
+unalias sl 2>/dev/null
+_sl="$(which sl 2>/dev/null)"
 if echo "${_sl}" | grep -q "not found"; then
  _sl=""
 fi
