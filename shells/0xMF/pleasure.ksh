@@ -37,7 +37,7 @@ function 0xMF-sl {
     >&2 echo "No fun, sorry. sl is not installed."
     return 1
   else
-    "${1}" -cale${_w}
+    "${1}" -cale"${_w}"
   fi
   unset _w
 }
