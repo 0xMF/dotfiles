@@ -12,7 +12,7 @@ function can_sudo {
     echo "doas"
     return
   fi
-  if sudo -Al 2>/dev/null 1>/dev/null; then
+  if sudo -Al -U $USER 2>/dev/null 1>/dev/null; then
     echo "sudo"
   else
     echo ":"
