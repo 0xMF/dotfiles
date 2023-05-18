@@ -228,7 +228,7 @@ function 0xMF-cv {
         fi
       else
         if ! echo "$1" |  grep -q "0xMF"; then
-          _0xMF-cv-helper $(echo "$_cv" | awk '{print $NF}' | sed "s/\`//;s/'//")
+          _0xMF-cv-helper $(echo "$_cv" | awk '{print $NF}' | sed "s/\`//;s/'//") 2>/dev/null
         fi
       fi
     fi
