@@ -1343,6 +1343,7 @@ alias glolar='glola --reverse'
 alias glp='git log --all --color=always -p'
 alias gls='git ls-files'
 alias glsi='git status -s --ignored'
+alias glsv='git ls-files -v |grep -v "^H"'
 alias glum='git pull upstream master'
 
 alias gout='git log --all --color=always master ^origin/master'
