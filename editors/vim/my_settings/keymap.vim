@@ -117,7 +117,7 @@ imap <Nul>    <Space>
 :imap <M-q> <Esc>magq}``a|              " --ditto-- in insert mode
 :imap ;a    <Esc>ea><Esc>a|             " --ditto-- in insert mode
 :imap ;l    <Esc>:set list!<CR>a|       " toggle non-printable
-:imap ;m    <Esc>:! make<Esc>a|         " run a local make
+:imap ;m    <Esc>:w!<CR>:! make<Esc>a|   " run a local make
 :imap ;n    <Esc>:set nu!<CR>a|         " toggle numbering
 :imap ;nu   <Esc>:set nu!<CR>a|         " toggle line-numbers
 :imap ;q    <Esc>ma:set wrap!<CR>``a|   " favour ventilated prose
@@ -149,7 +149,7 @@ imap <Nul>    <Space>
 :map ;h :set hls!<CR>|                  " toggle hilightsearch
 :map ;i i'<Esc>Ea'<Esc>|                " ' ' around a word
 :map ;l <Esc>:set list!<CR>|            " toggle non-printable
-:map ;m <Esc>:! make<Esc>|              " run a local make
+:map ;m <Esc>:w!<CR>:! make<Esc>|        " run a local make
 :map ;M i+<Esc>Ea+<Esc>|                " + + around a word
 :map ;n <Esc>:set nu!<CR>|              " toggle line-numbers
 :map ;nu <Esc>:set nu!<CR>|             " toggle line-numbers

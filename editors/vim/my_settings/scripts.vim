@@ -128,7 +128,7 @@ augroup END
 function! BufferPrevious()
   let mybuflist = getbufinfo()
   "let myjumplist = getjumplist()
-  :if len(mybuflist) <= 2
+  :if len(mybuflist) < 2
   : echo "no previous buffer"
   :else
   : bprevious
@@ -147,7 +147,7 @@ endfunction
 function! BufferNext()
   let mybuflist = getbufinfo()
   "let myjumplist = getjumplist()
-  :if len(mybuflist) <= 2
+  :if len(mybuflist) < 2
   : echo "no next buffer"
   :else
   : bnext
