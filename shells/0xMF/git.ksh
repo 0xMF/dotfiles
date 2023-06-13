@@ -572,7 +572,7 @@ function ghist {
       ghist-all "$@"
     else
       if echo "$1" | grep -q "^[0-9][0-9]*$"; then
-        local c=$(git log --oneline $2 | __pager-counter | \grep "^ *$1 " | awk '{ print $2 }')
+        local c=$(git log --oneline --follow $(realpath $2) | __pager-counter | \grep "^ *$1 " | awk '{ print $2 }')
         git show $(echo "${opts}") "$c" --minimal 2>/dev/null
       else
         for f in "$@"
