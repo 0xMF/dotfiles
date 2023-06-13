@@ -571,16 +571,21 @@ function ghist {
       shift
       ghist-all "$@"
     else
-      for f in "$@"
-      do
-        echo "$f"
-        if  [[ $(0xMF-git-log-pretty "$f" | wc -l) -le 5 ]]; then
-          0xMF-git-log-pretty "$f" | __pager-no-counter
-        else
-          0xMF-git-log-pretty "$f" | __pager-counter
-        fi
-        echo
-      done | less -F
+      if echo $1 | grep -q '[0-9][0-9]*'; then
+        local c=$(git log --oneline $2 | __pager-counter | \grep "^ *$1 " | awk '{ print $2 }')
+        git show $(echo "${opts}") "$c" --minimal 2>/dev/null
+      else
+        for f in "$@"
+        do
+          echo "$f"
+          if  [[ $(0xMF-git-log-pretty "$f" | wc -l) -le 5 ]]; then
+            0xMF-git-log-pretty "$f" | __pager-no-counter
+          else
+            0xMF-git-log-pretty "$f" | __pager-counter
+          fi
+          echo
+        done | less -F
+      fi
     fi
   fi
 }
@@ -1022,18 +1027,22 @@ function _gshow {
             [[ "$key" = "n" || "$key" = "N" ]] && return
             eval "git diff $(echo ${optsDiff}) $@"
           else
-            if  [[ $1 -ge 0 && $2 -ge 0 ]]; then
-              if [[ $2 -gt $1 ]]; then
-                git log $(echo "${opts}") HEAD~$(($2 + 1))...HEAD~$1 --pretty=format:"%C(red bold)%h%Creset %C(cyan bold)|%Creset %C(blue bold)%ad%Creset %C(cyan bold)|%Creset %C(auto)%d%Creset %s" --date=short
-                git diff $(echo ${optsDiff}) --stat HEAD~$(($2 + 1))..HEAD~$1
-              else
-                if [[ $1 -gt $2 ]]; then
-                  git log $(echo "${opts}") HEAD~$(($1 + 1))...HEAD~$2 --pretty=format:"%C(red bold)%h%Creset %C(cyan bold)|%Creset %C(blue bold)%ad%Creset %C(cyan bold)|%Creset %C(auto)%d%Creset %s" --date=short
-                  git diff $(echo ${optsDiff}) --stat HEAD~$(($1 + 1))..HEAD~$2
+            if [[ ! -s $2 ]]; then
+              if  [[ $1 -ge 0 && $2 -ge 0 ]]; then
+                if [[ $2 -gt $1 ]]; then
+                  git log $(echo "${opts}") HEAD~$(($2 + 1))...HEAD~$1 --pretty=format:"%C(red bold)%h%Creset %C(cyan bold)|%Creset %C(blue bold)%ad%Creset %C(cyan bold)|%Creset %C(auto)%d%Creset %s" --date=short
+                  git diff $(echo ${optsDiff}) --stat HEAD~$(($2 + 1))..HEAD~$1
                 else
-                  echo "did not understand... $*"
+                  if [[ $1 -gt $2 ]]; then
+                    git log $(echo "${opts}") HEAD~$(($1 + 1))...HEAD~$2 --pretty=format:"%C(red bold)%h%Creset %C(cyan bold)|%Creset %C(blue bold)%ad%Creset %C(cyan bold)|%Creset %C(auto)%d%Creset %s" --date=short
+                    git diff $(echo ${optsDiff}) --stat HEAD~$(($1 + 1))..HEAD~$2
+                  else
+                    echo "did not understand... $*"
+                  fi
                 fi
               fi
+            else
+              0xMF-git-log-pretty $(echo "${opts}") HEAD~$1 $2
             fi
           fi ;;
       *) echo "did not understand... $*"
