@@ -571,13 +571,13 @@ function ghist {
       shift
       ghist-all "$@"
     else
-      for f in $@
+      for f in "$@"
       do
-        echo $f
-        if  [[ $(0xMF-git-log-pretty $f | wc -l) -le 5 ]]; then
-          0xMF-git-log-pretty $f | __pager-no-counter
+        echo "$f"
+        if  [[ $(0xMF-git-log-pretty "$f" | wc -l) -le 5 ]]; then
+          0xMF-git-log-pretty "$f" | __pager-no-counter
         else
-          0xMF-git-log-pretty $f | __pager-counter
+          0xMF-git-log-pretty "$f" | __pager-counter
         fi
         echo
       done | less -F
