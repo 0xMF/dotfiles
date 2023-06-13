@@ -563,13 +563,24 @@ function 0xMF-git-log-pretty-reverse {
 function ghist {
   if _is_git_repo -eq 0
   then
+    if [[ -z "$1" ]]; then
+      >&2 echo "Usage ghist filename"
+      return 1
+    fi
     if [ "$1" = "--all" ]; then
       shift
       ghist-all "$@"
     else
-      0xMF-git-log-pretty "$@" | {
-       [ -z "$1" ] && __pager-counter || __pager-no-counter
-      }
+      for f in $@
+      do
+        echo $f
+        if  [[ $(0xMF-git-log-pretty $f | wc -l) -le 5 ]]; then
+          0xMF-git-log-pretty $f | __pager-no-counter
+        else
+          0xMF-git-log-pretty $f | __pager-counter
+        fi
+        echo
+      done | less -F
     fi
   fi
 }
@@ -591,7 +602,11 @@ function ghist-all {
   if _is_git_repo -eq 0
   then
     if [[ -n "$1" && -s "$1" ]]; then
-      git log --all $(echo "${opts}") --follow --pretty=format:'%C(cyan bold)%h%Creset | %C(red bold)%ad%Creset %d %Creset%s%Cgreen [%cn]' -- "$1"
+      for f in "$@"
+      do
+        echo $f
+        git log --all $(echo "${opts}") --follow --pretty=format:'%C(cyan bold)%h%Creset | %C(red bold)%ad%Creset %d %Creset%s%Cgreen [%cn]' -- "$1"
+      done
     else
       >&2 echo "Usage ghist-all filename"
     fi
