@@ -1006,43 +1006,48 @@ function _gshow {
             unset type
          fi ;;
 
-      # two args shows commits, files-changed and diffs between them if first arg was a commit or tag
-      # assumes second arg is either a commit or a tag too.
-      2) type=$(git cat-file -t $1 2>/dev/null)
-          if [[ "$type" = "commit" || "$type" = "tag" ]]; then
-            echo "showing one line summaries of commits in chronological order...";
-            local parent=$(git rev-list --parents -n 1 $1|cut -d' ' -f2)
-            eval "git log ${opts} --reverse $parent...$2 --pretty=format:\"%C(red bold)%h%Creset %C(cyan bold)|%Creset %C(blue bold)%ad%Creset %C(cyan bold)|%Creset %C(auto)%d%Creset %s\" --date=short"
+      2) if echo "$1" | grep -q "^[0-9][0-9]*$"; then
+            local c=$(git log --oneline --follow $(realpath $2) | __pager-counter | \grep "^ *$1 " | awk '{ print $2 }')
+            git show $(echo "${opts}") "$c" --minimal 2>/dev/null
+         else
+            # two args shows commits, files-changed and diffs between them if first arg was a commit or tag
+            # assumes second arg is either a commit or a tag too.
+            type=$(git cat-file -t $1 2>/dev/null)
+            if [[ "$type" = "commit" || "$type" = "tag" ]]; then
+              echo "showing one line summaries of commits in chronological order...";
+              local parent=$(git rev-list --parents -n 1 $1|cut -d' ' -f2)
+              eval "git log ${opts} --reverse $parent...$2 --pretty=format:\"%C(red bold)%h%Creset %C(cyan bold)|%Creset %C(blue bold)%ad%Creset %C(cyan bold)|%Creset %C(auto)%d%Creset %s\" --date=short"
 
-            echo -n "show files changed between $1 and $2? (Y/n) ";  read key
-            [[ "$key" = "n" || "$key" = "N" ]] && return
-            local files=$(git diff $(echo ${optsDiff}) --stat $1 $2 2>/dev/null)
-            if [[ $(echo "${files}" | wc -l) -le 1 ]]; then
-              echo "no files found; next time try with more hex digits from commit hash for one or both commits"
+              echo -n "show files changed between $1 and $2? (Y/n) ";  read key
+              [[ "$key" = "n" || "$key" = "N" ]] && return
+              local files=$(git diff $(echo ${optsDiff}) --stat $1 $2 2>/dev/null)
+              if [[ $(echo "${files}" | wc -l) -le 1 ]]; then
+                echo "no files found; next time try with more hex digits from commit hash for one or both commits"
+              else
+                eval "git diff $(echo ${optsDiff}) --stat $1 $2 2>/dev/null"
+              fi
+
+              echo -n "show diffs between $1 and $2? (Y/n) ";  read key
+              [[ "$key" = "n" || "$key" = "N" ]] && return
+              eval "git diff $(echo ${optsDiff}) $@"
             else
-              eval "git diff $(echo ${optsDiff}) --stat $1 $2 2>/dev/null"
-            fi
-
-            echo -n "show diffs between $1 and $2? (Y/n) ";  read key
-            [[ "$key" = "n" || "$key" = "N" ]] && return
-            eval "git diff $(echo ${optsDiff}) $@"
-          else
-            if [[ ! -s $2 ]]; then
-              if  [[ $1 -ge 0 && $2 -ge 0 ]]; then
-                if [[ $2 -gt $1 ]]; then
-                  git log $(echo "${opts}") HEAD~$(($2 + 1))...HEAD~$1 --pretty=format:"%C(red bold)%h%Creset %C(cyan bold)|%Creset %C(blue bold)%ad%Creset %C(cyan bold)|%Creset %C(auto)%d%Creset %s" --date=short
-                  git diff $(echo ${optsDiff}) --stat HEAD~$(($2 + 1))..HEAD~$1
-                else
-                  if [[ $1 -gt $2 ]]; then
-                    git log $(echo "${opts}") HEAD~$(($1 + 1))...HEAD~$2 --pretty=format:"%C(red bold)%h%Creset %C(cyan bold)|%Creset %C(blue bold)%ad%Creset %C(cyan bold)|%Creset %C(auto)%d%Creset %s" --date=short
-                    git diff $(echo ${optsDiff}) --stat HEAD~$(($1 + 1))..HEAD~$2
+              if [[ ! -s $2 ]]; then
+                if  [[ $1 -ge 0 && $2 -ge 0 ]]; then
+                  if [[ $2 -gt $1 ]]; then
+                    git log $(echo "${opts}") HEAD~$(($2 + 1))...HEAD~$1 --pretty=format:"%C(red bold)%h%Creset %C(cyan bold)|%Creset %C(blue bold)%ad%Creset %C(cyan bold)|%Creset %C(auto)%d%Creset %s" --date=short
+                    git diff $(echo ${optsDiff}) --stat HEAD~$(($2 + 1))..HEAD~$1
                   else
-                    echo "did not understand... $*"
+                    if [[ $1 -gt $2 ]]; then
+                      git log $(echo "${opts}") HEAD~$(($1 + 1))...HEAD~$2 --pretty=format:"%C(red bold)%h%Creset %C(cyan bold)|%Creset %C(blue bold)%ad%Creset %C(cyan bold)|%Creset %C(auto)%d%Creset %s" --date=short
+                      git diff $(echo ${optsDiff}) --stat HEAD~$(($1 + 1))..HEAD~$2
+                    else
+                      echo "did not understand... $*"
+                    fi
                   fi
                 fi
+              else
+                0xMF-git-log-pretty $(echo "${opts}") HEAD~$1 $2
               fi
-            else
-              0xMF-git-log-pretty $(echo "${opts}") HEAD~$1 $2
             fi
           fi ;;
       *) echo "did not understand... $*"
