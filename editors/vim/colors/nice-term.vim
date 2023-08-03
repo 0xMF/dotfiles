@@ -91,7 +91,7 @@ hi NonText      cterm=none  ctermbg=none   ctermfg=DarkRed
 hi Question     cterm=none  ctermbg=none   ctermfg=Cyan
 hi Search       cterm=bold  ctermbg=White  ctermfg=Black
 hi SpecialKey   cterm=none  ctermbg=none   ctermfg=Cyan
-hi StatusLine   cterm=none  ctermbg=none   ctermfg=DarkYellow
+hi StatusLine   cterm=bold  ctermbg=none   ctermfg=DarkCyan
 hi StatusLineNC cterm=none  ctermbg=none   ctermfg=Cyan
 hi Title        cterm=none  ctermbg=none   ctermfg=Cyan
 hi Visual       cterm=bold  ctermbg=White  ctermfg=Black
@@ -104,8 +104,8 @@ hi Tooltip      cterm=none  ctermbg=none   ctermfg=Brown
 
 " syntax highlighting groups
 hi Comment      cterm=none  ctermbg=none   ctermfg=Green
-hi Constant     cterm=none  ctermbg=none   ctermfg=DarkMagenta
-hi Identifier   cterm=bold  ctermbg=none   ctermfg=DarkMagenta
+hi Constant     cterm=none  ctermbg=none   ctermfg=LightCyan
+hi Identifier   cterm=bold  ctermbg=none   ctermfg=LightCyan
 hi Statement    cterm=bold  ctermbg=none   ctermfg=Magenta
 hi PreProc      cterm=bold  ctermbg=none   ctermfg=DarkRed
 hi Type         cterm=bold  ctermbg=none   ctermfg=Green
