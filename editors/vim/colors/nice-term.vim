@@ -19,19 +19,19 @@
 "
 
 " termcap/terminfo detection
-:if &term =~ "xterm"
-:  if has("terminfo")
-:  set t_Co=8
-:  set t_Sf=<Esc>[3%p1%dm
-:  set t_Sb=<Esc>[4%p1%dm
+":if &term =~ "xterm"
+":  if has("terminfo")
+":  set t_Co=8
+":  set t_Sf=<Esc>[3%p1%dm
+":  set t_Sb=<Esc>[4%p1%dm
 ":   echo "terminfo"
-:  else
-:  set t_Co=8
-:  set t_Sf=<Esc>[3%dm
-:  set t_Sb=<Esc>[4%dm
+":  else
+":  set t_Co=8
+":  set t_Sf=<Esc>[3%dm
+":  set t_Sb=<Esc>[4%dm
 ":   echo "termcap"
-:  endif
-:endif
+":  endif
+":endif
 ":set t_ti= t_te=
 
 " your pick:
