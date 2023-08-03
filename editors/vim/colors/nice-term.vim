@@ -96,24 +96,24 @@ hi StatusLineNC cterm=none  ctermbg=none   ctermfg=Cyan
 hi Title        cterm=none  ctermbg=none   ctermfg=Cyan
 hi Visual       cterm=bold  ctermbg=White  ctermfg=Black
 hi VisualNOS    cterm=bold  ctermbg=White  ctermfg=Black
-hi WarningMsg   cterm=none  ctermbg=none   ctermfg=DarkRed
+hi WarningMsg   cterm=bold  ctermbg=none   ctermfg=Red
 hi WildMenu     cterm=none  ctermbg=none   ctermfg=Cyan
 hi Menu         cterm=none  ctermbg=none   ctermfg=DarkBlue
 hi Scrollbar    cterm=none  ctermbg=none   ctermfg=Cyan
 hi Tooltip      cterm=none  ctermbg=none   ctermfg=Brown
 
 " syntax highlighting groups
-hi Comment      cterm=none  ctermbg=none   ctermfg=DarkGreen
-hi Constant     cterm=none  ctermbg=none   ctermfg=DarkYellow
-hi Identifier   cterm=none  ctermbg=none   ctermfg=DarkCyan
-hi Statement    cterm=none  ctermbg=none   ctermfg=Blue
-hi PreProc      cterm=none  ctermbg=none   ctermfg=Red
-hi Type         cterm=none  ctermbg=none   ctermfg=Blue
-hi Special      cterm=none  ctermbg=none   ctermfg=DarkYellow
+hi Comment      cterm=none  ctermbg=none   ctermfg=Green
+hi Constant     cterm=none  ctermbg=none   ctermfg=DarkMagenta
+hi Identifier   cterm=bold  ctermbg=none   ctermfg=DarkMagenta
+hi Statement    cterm=bold  ctermbg=none   ctermfg=Magenta
+hi PreProc      cterm=bold  ctermbg=none   ctermfg=DarkRed
+hi Type         cterm=bold  ctermbg=none   ctermfg=Green
+hi Special      cterm=bold  ctermbg=none   ctermfg=DarkYellow
 hi Underlined   cterm=none  ctermbg=none   ctermfg=Blue
 hi Ignore       cterm=none  ctermbg=none   ctermfg=DarkGray
 hi Error        cterm=bold  ctermbg=none   ctermfg=Red
-hi Todo         cterm=none  ctermbg=none   ctermfg=Brown
+hi Todo         cterm=bold  ctermbg=none   ctermfg=Red
 
 " make even rare occurrences readable
 hi SpellBad    cterm=reverse ctermbg=Black  ctermfg=LightYellow
@@ -122,6 +122,7 @@ hi PmenuThumb  cterm=none   ctermbg=none   ctermfg=White
 hi CursorLineNr  cterm=bold ctermfg=red
 hi Italic      cterm=italic ctermbg=none   ctermfg=Blue
 hi Bold        cterm=bold ctermbg=none   ctermfg=Red
+hi goPackageComment      cterm=none  ctermbg=none   ctermfg=LightBlue
 hi asciidocQuotedEmphasized2 cterm=italic ctermbg=none   ctermfg=Blue
 hi asciidocQuotedUnconstrainedEmphasized cterm=italic ctermbg=none   ctermfg=Blue
 hi asciidocQuotedBold cterm=bold ctermbg=none   ctermfg=Red

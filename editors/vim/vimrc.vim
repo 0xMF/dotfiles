@@ -250,7 +250,7 @@ set clipboard=unnamed   " all yanking goes to clipboard
     au BufRead,BufNewFile *.go setlocal textwidth=99
     "au BufRead,BufNewFile *.go setlocal formatprg=par\ -reqw85
     au BufRead,BufNewFile *.go setlocal colorcolumn=100
-    au BufRead,BufNewFile *.go setlocal noexpandtab
+    au BufRead,BufNewFile *.go setlocal noexpandtab nowrap
 
     "* Mail
     au FileType mail setlocal textwidth=0 spell
