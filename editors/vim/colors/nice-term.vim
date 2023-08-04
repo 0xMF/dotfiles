@@ -104,7 +104,7 @@ hi Tooltip      cterm=none  ctermbg=none   ctermfg=Brown
 
 " syntax highlighting groups
 hi Comment      cterm=none  ctermbg=none   ctermfg=Green
-hi Constant     cterm=none  ctermbg=none   ctermfg=LightCyan
+hi Constant     cterm=none  ctermbg=none   ctermfg=Yellow
 hi Identifier   cterm=bold  ctermbg=none   ctermfg=LightCyan
 hi Statement    cterm=bold  ctermbg=none   ctermfg=Magenta
 hi PreProc      cterm=bold  ctermbg=none   ctermfg=DarkRed
