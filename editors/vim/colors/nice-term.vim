@@ -2,7 +2,7 @@
 " Filename:     nice-term.vim
 " Purpose:      Vim color file
 " Maintainer:   Mark Fernandes
-" Last Change:  10 Aug 2020
+" Last Change:  2023 Aug 05
 "   - added detection of xterm for termcap/terminfo
 "   - changed none to none to get it to work correctly on gnone-terminal
 "   - $VIMRUNTIME/syntax/hitest.vim corrected many unreadable bg/fg combos
@@ -107,8 +107,8 @@ hi Comment      cterm=none  ctermbg=none   ctermfg=Green
 hi Constant     cterm=none  ctermbg=none   ctermfg=Yellow
 hi Identifier   cterm=bold  ctermbg=none   ctermfg=LightCyan
 hi Statement    cterm=bold  ctermbg=none   ctermfg=Magenta
-hi PreProc      cterm=bold  ctermbg=none   ctermfg=DarkRed
-hi Type         cterm=bold  ctermbg=none   ctermfg=Green
+hi PreProc      cterm=bold  ctermbg=none   ctermfg=Magenta
+hi Type         cterm=bold  ctermbg=none   ctermfg=Magenta
 hi Special      cterm=bold  ctermbg=none   ctermfg=DarkYellow
 hi Underlined   cterm=none  ctermbg=none   ctermfg=Blue
 hi Ignore       cterm=none  ctermbg=none   ctermfg=DarkGray
