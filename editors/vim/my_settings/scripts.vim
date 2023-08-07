@@ -91,8 +91,9 @@ augroup END
 :   if g:colors_name == "nice-gui"
 :     if s:colors == "light"
 :       let s:colors = "dark"
-:       hi Normal               guifg=white     guibg=black
-:       hi Statement  gui=bold  guifg=Yellow
+:       hi Normal                 guifg=white   guibg=black
+:       hi Statement  gui=bold    guifg=Yellow
+:       hi Comment    gui=italic  guifg=Green
 :     else
 :       let s:colors = "light"
 :       colorscheme nice-gui
