@@ -44,9 +44,9 @@ hi Title      gui=bold    term=underline  ctermfg=Blue                  guifg=Bl
 hi Comment      gui=italic      guifg=DarkGreen                 cterm=none        ctermbg=none      ctermfg=Green
 hi Constant     gui=italic,bold guifg=#888999                   cterm=none                          ctermfg=Cyan
 hi Error                        guifg=White     guibg=Red       cterm=bold        ctermbg=White     ctermfg=Red
-hi Identifier   gui=bold        guifg=Blue                      cterm=bold                          ctermfg=Magenta
+hi Identifier   gui=bold        guifg=Red                       cterm=bold                          ctermfg=Magenta
 hi Ignore                                                       cterm=none        ctermbg=none      ctermfg=DarkGray
-hi PreProc      gui=bold        guifg=#FF3311                   cterm=bold                          ctermfg=Magenta  " guifg=Reddish
+hi PreProc      gui=bold        guifg=#FF3311                   cterm=bold                          ctermfg=Magenta   " guifg=Reddish
 hi Special      gui=bold        guifg=OrangeRed                 cterm=bold                          ctermfg=Yellow
 hi Statement    gui=bold        guifg=Brown                     cterm=bold                          ctermfg=Magenta
 hi Todo                         guifg=Blue      guibg=Yellow    cterm=standout    ctermbg=Yellow    ctermfg=Black
