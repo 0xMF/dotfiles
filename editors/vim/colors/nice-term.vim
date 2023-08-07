@@ -2,7 +2,7 @@
 " Filename:     nice-term.vim
 " Purpose:      Vim color file
 " Maintainer:   Mark Fernandes
-" Last Change:  2023 Aug 05
+" Last Change:  2023 Aug 07
 "   - added detection of xterm for termcap/terminfo
 "   - changed none to none to get it to work correctly on gnone-terminal
 "   - $VIMRUNTIME/syntax/hitest.vim corrected many unreadable bg/fg combos
@@ -74,46 +74,46 @@ hi Normal      cterm=none   ctermbg=none   ctermfg=none
 
 hi Cursor       cterm=none  ctermbg=none   ctermfg=Red
 hi CursorIM     cterm=none  ctermbg=none   ctermfg=Red
-hi Directory    cterm=none  ctermbg=none   ctermfg=Cyan
 hi DiffAdd      cterm=none  ctermbg=none   ctermfg=Blue
 hi DiffChange   cterm=none  ctermbg=none   ctermfg=Blue
 hi DiffDelete   cterm=none  ctermbg=none   ctermfg=Red
 hi DiffText     cterm=none  ctermbg=none   ctermfg=DarkRed
+hi Directory    cterm=none  ctermbg=none   ctermfg=Cyan
 hi ErrorMsg     cterm=none  ctermbg=none   ctermfg=Red
-hi VertSplit    cterm=none  ctermbg=none   ctermfg=Cyan
-hi Folded       cterm=none  ctermbg=none   ctermfg=DarkRed
 hi FoldColumn   cterm=none  ctermbg=none   ctermfg=Cyan
+hi Folded       cterm=none  ctermbg=none   ctermfg=DarkRed
 hi IncSearch    cterm=none  ctermbg=none   ctermfg=Cyan
 hi LineNr       cterm=none  ctermbg=none   ctermfg=DarkCyan
+hi Menu         cterm=none  ctermbg=none   ctermfg=DarkBlue
 hi ModeMsg      cterm=none  ctermbg=none   ctermfg=DarkRed
 hi MoreMsg      cterm=none  ctermbg=none   ctermfg=Cyan
 hi NonText      cterm=none  ctermbg=none   ctermfg=DarkRed
 hi Question     cterm=none  ctermbg=none   ctermfg=Cyan
+hi Scrollbar    cterm=none  ctermbg=none   ctermfg=Cyan
 hi Search       cterm=bold  ctermbg=White  ctermfg=Black
 hi SpecialKey   cterm=none  ctermbg=none   ctermfg=Cyan
 hi StatusLine   cterm=bold  ctermbg=none   ctermfg=DarkCyan
 hi StatusLineNC cterm=none  ctermbg=none   ctermfg=Cyan
 hi Title        cterm=none  ctermbg=none   ctermfg=Cyan
+hi Tooltip      cterm=none  ctermbg=none   ctermfg=Brown
+hi VertSplit    cterm=none  ctermbg=none   ctermfg=Cyan
 hi Visual       cterm=bold  ctermbg=White  ctermfg=Black
 hi VisualNOS    cterm=bold  ctermbg=White  ctermfg=Black
 hi WarningMsg   cterm=bold  ctermbg=none   ctermfg=Red
 hi WildMenu     cterm=none  ctermbg=none   ctermfg=Cyan
-hi Menu         cterm=none  ctermbg=none   ctermfg=DarkBlue
-hi Scrollbar    cterm=none  ctermbg=none   ctermfg=Cyan
-hi Tooltip      cterm=none  ctermbg=none   ctermfg=Brown
 
 " syntax highlighting groups
 hi Comment      cterm=none  ctermbg=none   ctermfg=Green
 hi Constant     cterm=none  ctermbg=none   ctermfg=Yellow
-hi Identifier   cterm=bold  ctermbg=none   ctermfg=LightCyan
-hi Statement    cterm=bold  ctermbg=none   ctermfg=Magenta
-hi PreProc      cterm=bold  ctermbg=none   ctermfg=Magenta
-hi Type         cterm=bold  ctermbg=none   ctermfg=Magenta
-hi Special      cterm=bold  ctermbg=none   ctermfg=DarkYellow
-hi Underlined   cterm=none  ctermbg=none   ctermfg=Blue
-hi Ignore       cterm=none  ctermbg=none   ctermfg=DarkGray
 hi Error        cterm=bold  ctermbg=none   ctermfg=Red
+hi Identifier   cterm=bold  ctermbg=none   ctermfg=LightCyan
+hi Ignore       cterm=none  ctermbg=none   ctermfg=DarkGray
+hi PreProc      cterm=bold  ctermbg=none   ctermfg=Magenta
+hi Special      cterm=bold  ctermbg=none   ctermfg=DarkYellow
+hi Statement    cterm=bold  ctermbg=none   ctermfg=Magenta
 hi Todo         cterm=bold  ctermbg=none   ctermfg=Red
+hi Type         cterm=bold  ctermbg=none   ctermfg=Magenta
+hi Underlined   cterm=none  ctermbg=none   ctermfg=Blue
 
 " make even rare occurrences readable
 hi SpellBad    cterm=reverse ctermbg=Black  ctermfg=LightYellow
