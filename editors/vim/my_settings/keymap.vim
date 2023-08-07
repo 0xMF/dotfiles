@@ -163,6 +163,7 @@ imap <Nul>    <Space>
 :map ;tt <Esc>:set laststatus=2<CR>|    " on statusbar
 :map ;tp gT|                            " tabprevious for console vim
 :map ;tn gt|                            " tabnext
+:map ;T <Esc>:call My_Colours_Toggle()<CR>|  " toggle between my colorschemes dark and lignt
 :map ;w <Esc>:set wrap!<Esc>|           " toggle word wrapping
 :map ;wl :resize<CR>|                   " window resize
 :map ;wW :resize<CR>|                   " window resize
