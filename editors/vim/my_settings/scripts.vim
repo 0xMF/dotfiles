@@ -85,6 +85,28 @@ augroup END
 : endif
 :endfunction
 
+:let s:colors = "light"
+:function! My_Colours_Toggle()
+: if has ("gui_running")
+:   if g:colors_name == "nice-gui"
+:     if s:colors == "light"
+:       let s:colors = "dark"
+:       hi Normal               guifg=white     guibg=black
+:       hi Statement  gui=bold  guifg=Yellow
+:     else
+:       let s:colors = "light"
+:       colorscheme nice-gui
+:     endif
+:   endif
+: else
+:   if g:colors_name == "nice-term"
+:     execute "colorscheme" s:colorscheme
+:   else
+:     colorscheme nice-term
+:   endif
+: endif
+:endfunction
+
 :function! My_Fonts_Change()
     :if exists("g:font_small")
     :   unlet g:font_small
