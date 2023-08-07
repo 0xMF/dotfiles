@@ -157,13 +157,14 @@ imap <Nul>    <Space>
 :map ;q  <Esc>:set wrap!<CR>|           " favour ventilated prose
 :map ;qq <Esc>magq}``|                  " par command  paragraph formatting
 :map ;qw <Esc>magw}``|                  " Vim's paragraph formatting
-:map ;t <Esc>:set laststatus=0<CR>|     " off statusbar
-:map ;tm <Esc>:set statusline=%f%h%w\ [%Y]\ [%l,%v]\ %L:%p%%\ %{strftime('%c')}<CR><CR>| "minimal statusbar
-:map ;ts <Esc>:set statusline=%f%m%r%h%w\ [%{&ff}]\ [%Y]\ [ASCII=\%3.3b]\ [HEX=\%02.2B]\ [%l,%v][%p%%]\ [TOTAL=%L]\ TIME:\ %{strftime('%c')}<CR><CR>| "normal statusbar
-:map ;tt <Esc>:set laststatus=2<CR>|    " on statusbar
+:map ;T <Esc>:set laststatus=0<CR>|     " off statusbar
+:map ;Tm <Esc>:set statusline=%f%h%w\ [%Y]\ [%l,%v]\ %L:%p%%\ %{strftime('%c')}<CR><CR>| "minimal statusbar
+:map ;Ts <Esc>:set statusline=%f%m%r%h%w\ [%{&ff}]\ [%Y]\ [ASCII=\%3.3b]\ [HEX=\%02.2B]\ [%l,%v][%p%%]\ [TOTAL=%L]\ TIME:\ %{strftime('%c')}<CR><CR>| "normal statusbar
+:map ;ttt <Esc>:set laststatus=2<CR>|    " on statusbar
+:map ;tt <Esc>:set laststatus=0<CR>|     " off statusbar
 :map ;tp gT|                            " tabprevious for console vim
 :map ;tn gt|                            " tabnext
-:map ;T <Esc>:call My_Colours_Toggle()<CR>|  " toggle between my colorschemes dark and lignt
+:map ;t <Esc>:call My_Colours_Toggle()<CR>|  " toggle between my colorschemes dark and lignt
 :map ;w <Esc>:set wrap!<Esc>|           " toggle word wrapping
 :map ;wl :resize<CR>|                   " window resize
 :map ;wW :resize<CR>|                   " window resize
