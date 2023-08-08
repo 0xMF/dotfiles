@@ -110,12 +110,12 @@ source $VIMRUNTIME/mswin.vim
     :   let &tags.= tagfiles
     :endif
 
-    "** use my colorscheme (nice-gui) if both industry and midnight are not available (win/gtk)
+    "** use my colorscheme (nice) if both industry and midnight are not available (win/gtk)
     :if expand(g:colors_name) != "industry"
     :   if filereadable(expand("$MYVIM/colors/midnight.vim"))
     :     colorscheme midnight
-    :   elseif filereadable(expand("$MYVIM/colors/nice-gui.vim"))
-    :     colorscheme nice-gui
+    :   elseif filereadable(expand("$MYVIM/colors/nice.vim"))
+    :     colorscheme nice
     :   else
     :     colorscheme ron
     :   endif

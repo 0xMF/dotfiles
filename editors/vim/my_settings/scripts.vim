@@ -69,11 +69,11 @@ augroup END
 :let s:colorscheme = "pablo"
 :function! My_Colours_Change()
 : if has ("gui_running")
-:   if g:colors_name == "nice-gui"
+:   if g:colors_name == "nice"
 :     execute "colorscheme" s:colorscheme
 :   else
 :     let s:colorscheme = g:colors_name == "industry" ? "midnight" : g:colors_name
-:     colorscheme nice-gui
+:     colorscheme nice
 :   endif
 : else
 :   if g:colors_name == "nice-term"
@@ -88,7 +88,7 @@ augroup END
 :let s:colors = "light"
 :function! My_Colours_Toggle()
 : if has ("gui_running")
-:   if g:colors_name == "nice-gui"
+:   if g:colors_name == "nice"
 :     if s:colors == "light"
 :       let s:colors = "dark"
 :       hi Normal                     guifg=White   guibg=Black
@@ -99,7 +99,7 @@ augroup END
 :       hi Type       gui=bold,italic guifg=Magenta
 :     else
 :       let s:colors = "light"
-:       colorscheme nice-gui
+:       colorscheme nice
 :     endif
 :   endif
 : else
