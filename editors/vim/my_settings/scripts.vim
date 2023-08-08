@@ -87,8 +87,11 @@ augroup END
 
 :let s:colors = "light"
 :function! My_Colours_Toggle()
+: if g:colors_name == "nice-gui"
+:   let s:colors = "dark"
+: endif
 : if has ("gui_running")
-:   if g:colors_name == "nice"
+:   if g:colors_name == "nice" || g:colors_name == "nice-gui"
 :     if s:colors == "light"
 :       let s:colors = "dark"
 :       hi Normal                     guifg=White   guibg=Black
