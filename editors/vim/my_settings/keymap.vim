@@ -138,7 +138,7 @@ imap <Nul>    <Space>
 ":map ;a i<<Esc>Ea><Esc>|              " angles <> around a word
 :map ;a  <Esc>magq}``|                " par command  paragraph formatting
 :map ;b i*<Esc>Ea*<Esc>|              " * * around a word
-:map ;c <Esc>:call My_Colours_Toggle()<CR>|  " toggle between my colorschemes dark and lignt
+:map ;c <Esc>:colorscheme nice<CR>|   " switch to preferred colorscheme
 :map ;cc <Esc>:call My_Colours_Change()<CR>|  " toggle between my colorschemes and vim's (gui and con)
 :map ;cu i{<Esc>Ea}<Esc>|              " curlies {} around a word
 :map ;cf <Esc>:call My_Fonts_Change()<CR>|

@@ -91,7 +91,7 @@ augroup END
 :   let s:colors = "dark"
 : endif
 : if has ("gui_running")
-:   if g:colors_name == "nice" || g:colors_name == "nice-gui"
+:   if g:colors_name == "nice" || g:colors_name == "nice-gui" || g:colors_name == "nice-term"
 :     if s:colors == "light"
 :       let s:colors = "dark"
 :       hi Normal                     guifg=White   guibg=Black
@@ -104,13 +104,11 @@ augroup END
 :       let s:colors = "light"
 :       colorscheme nice
 :     endif
+:   else
+:     execute "colorscheme" s:colorscheme
 :   endif
 : else
-:   if g:colors_name == "nice-term"
-:     execute "colorscheme" s:colorscheme
-:   else
-:     colorscheme nice-term
-:   endif
+:   colorscheme nice-term
 : endif
 :endfunction
 
