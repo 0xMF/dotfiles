@@ -139,7 +139,7 @@ set formatoptions=tcqnl " include numbered lists when formatting with gq
 set comments-=s1:/*,mb:*,ex:*/  " removes C-style formatting from default
 set comments+=fb:*      " let comments begin with *; meaning lists can now have *
 set autoindent          " set automatic indenting
-set wrap                " do not force word wrapping on (does not put hard return)
+set nowrap              " do not force word wrapping on (does not put hard return)
 set linebreak           " does not breakup words
 set nojoinspaces        " avoids inserting two spaces when joining lines
 
