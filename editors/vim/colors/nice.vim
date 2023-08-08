@@ -50,7 +50,7 @@ hi PreProc      gui=bold        guifg=#FF3311                   cterm=bold      
 hi Special      gui=bold        guifg=OrangeRed                 cterm=bold                          ctermfg=Yellow
 hi Statement    gui=bold        guifg=Brown                     cterm=bold                          ctermfg=Magenta
 hi Todo                         guifg=Blue      guibg=Yellow    cterm=standout    ctermbg=Yellow    ctermfg=Black
-hi Type         gui=bold,italic guifg=Blue                      cterm=bold                          ctermfg=Magenta
+hi Type         gui=bold        guifg=Blue                      cterm=bold                          ctermfg=Magenta
 hi Underlined                                                   cterm=none        ctermbg=none      ctermfg=DarkRed
 
 " Colour for crucial elements
@@ -92,7 +92,7 @@ hi  link Character      Constant
 hi  link Number         Constant
 hi  link String         Constant
 hi! link WarningMsg     ErrorMsg
-hi  link Function       Identifier
+hi  link Function       Type
 hi  link Float          Number
 hi  link Define         PreProc
 hi  link Include        PreProc

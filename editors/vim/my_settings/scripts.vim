@@ -99,7 +99,7 @@ augroup END
 :       hi Constant   gui=italic,bold guifg=Cyan
 :       hi Statement  gui=bold        guifg=Yellow
 :       hi StatusLine gui=bold        guifg=Cyan    guibg=Black
-:       hi Type       gui=bold,italic guifg=Magenta
+:       hi Type       gui=bold        guifg=Magenta
 :     else
 :       let s:colors = "light"
 :       colorscheme nice
