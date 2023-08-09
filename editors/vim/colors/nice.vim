@@ -26,10 +26,10 @@ let g:colors_name = "nice"
 " Alternate nice colors (gray: #888999) (purple:AA0BBB)
 
 " Mode and Document settings
-hi Normal     gui=none    term=bold                                     guifg=black guibg=Beige
-hi Visual     gui=none    term=reverse    ctermfg=Yellow  ctermbg=Red   guifg=Black guibg=Yellow
-hi Search     gui=none    term=reverse    ctermfg=Black   ctermbg=Cyan  guifg=Black guibg=Cyan
-hi StatusLine gui=bold    term=reverse    ctermfg=Gray    ctermbg=Black guifg=DarkBlue guibg=DarkGray
+hi Normal     gui=none    term=bold                                     guifg=Black     guibg=Beige
+hi Visual     gui=none    term=reverse    ctermfg=Yellow  ctermbg=Red   guifg=Black     guibg=Yellow
+hi Search     gui=none    term=reverse    ctermfg=Black   ctermbg=Cyan  guifg=Black     guibg=Cyan
+hi StatusLine gui=bold    term=reverse    ctermfg=Gray    ctermbg=Black guifg=DarkBlue  guibg=DarkGray
 hi Title      gui=bold    term=underline  ctermfg=Blue                  guifg=Black
 
 " syntax highlighting groups
@@ -49,7 +49,7 @@ hi Ignore                                                       cterm=none      
 hi PreProc      gui=bold        guifg=#FF3311                   cterm=bold                          ctermfg=Magenta   " guifg=Reddish
 hi Special      gui=bold        guifg=OrangeRed                 cterm=bold                          ctermfg=Yellow
 hi Statement    gui=bold        guifg=Brown                     cterm=bold                          ctermfg=Magenta
-hi Todo                         guifg=Blue      guibg=Yellow    cterm=standout    ctermbg=Yellow    ctermfg=Black
+hi Todo         gui=bold        guifg=Red       guibg=Yellow    cterm=standout    ctermbg=Yellow    ctermfg=Black
 hi Type         gui=bold        guifg=Blue                      cterm=bold                          ctermfg=Magenta
 hi Underlined                                                   cterm=none        ctermbg=none      ctermfg=DarkRed
 
@@ -113,6 +113,11 @@ hi  link Structure      Type
 hi  link Typedef        Type
 hi! link ErrorMsg       Visual
 
+hi goPackageComment      cterm=none  ctermbg=none   ctermfg=LightBlue
+hi asciidocQuotedEmphasized2 cterm=italic ctermbg=none   ctermfg=Blue
+hi asciidocQuotedUnconstrainedEmphasized cterm=italic ctermbg=none   ctermfg=Blue
+hi asciidocQuotedBold cterm=bold ctermbg=none   ctermfg=Red
+hi asciidocQuotedUnconstrainedBold cterm=bold ctermbg=none   ctermfg=Red
 
 " local syntax file - set colors on a per-machine basis:
 " vim: tw=0 ts=4 sw=4

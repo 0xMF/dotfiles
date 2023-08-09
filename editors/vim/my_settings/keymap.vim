@@ -172,6 +172,7 @@ imap <Nul>    <Space>
 :map ;wO <C-w>o<CR>|                    " window previous
 :map ;w= <C-W>=
 :map ;w- <C-W>=
+:map ;w_ :resize<CR>
 
 :map ;u :call ToggleUnicodeChars()<CR>|   " toggle display of Unicode chars
 :map <A-BS> <ESC>u|                     " Window's style undo
@@ -191,11 +192,13 @@ imap <Nul>    <Space>
 " window resizing
 :map <C-x>1 :resize<CR>
 :map <C-w>1 :resize<CR>
+:map <C-w>_ :resize<CR>
 :map <C-x>=  <C-W>=
 :imap <C-x>1 <Esc>:resize<CR>a
 :imap <C-w>1 <Esc>:resize<CR>a
 :imap <C-x>= <Esc><C-W>=<CR>a
 :imap <C-w> <Esc><C-W>|                 " setup toggle to other windows with hjkl and UpDnLtRt
+:map <C-w>_ <Esc>:resize<CR>
 
 " window rotate
 :map <C-w><C-a>  <C-w>r
