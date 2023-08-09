@@ -85,33 +85,38 @@ hi VisualNOS                                                    cterm=bold      
 hi WarningMsg                                                   cterm=bold        ctermbg=none      ctermfg=Red
 hi WildMenu                                                     cterm=none        ctermbg=none      ctermfg=Cyan
 
+hi! link ErrorMsg       Visual
 hi! link MoreMsg        Comment
 hi! link Question       Comment
-hi  link Boolean        Constant
-hi  link Character      Constant
-hi  link Number         Constant
-hi  link String         Constant
 hi! link WarningMsg     ErrorMsg
+
+hi  link Conditional    Statement
+hi  link Exception      Statement
+hi  link Keyword        Statement
+hi  link Operator       Statement
+hi  link Repeat         Statement
+
 hi  link Function       Type
-hi  link Float          Number
-hi  link Define         PreProc
-hi  link Include        PreProc
-hi  link Macro          PreProc
-hi  link PreCondit      PreProc
+hi  link StorageClass   Type
+hi  link Structure      Type
+hi  link Typedef        Type
+
 hi  link Debug          Special
 hi  link Delimiter      Special
 hi  link Label          Special
 hi  link SpecialChar    Special
 hi  link SpecialComment Special
-hi  link Exception      Statement
-hi  link Keyword        Statement
-hi  link Operator       Statement
-hi  link Conditional    Type
-hi  link Repeat         Type
-hi  link StorageClass   Type
-hi  link Structure      Type
-hi  link Typedef        Type
-hi! link ErrorMsg       Visual
+
+hi  link Define         PreProc
+hi  link Include        PreProc
+hi  link Macro          PreProc
+hi  link PreCondit      PreProc
+
+hi  link Boolean        Constant
+hi  link Character      Constant
+hi  link Float          Number
+hi  link Number         Constant
+hi  link String         Constant
 
 hi goPackageComment      cterm=none  ctermbg=none   ctermfg=LightBlue
 hi asciidocQuotedEmphasized2 cterm=italic ctermbg=none   ctermfg=Blue
