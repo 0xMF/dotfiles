@@ -104,7 +104,7 @@ hi WildMenu     cterm=none  ctermbg=none   ctermfg=Cyan
 
 " syntax highlighting groups
 hi Comment      cterm=none  ctermbg=none   ctermfg=Green
-hi Constant     cterm=none  ctermbg=none   ctermfg=Yellow
+hi Constant     cterm=none  ctermbg=none   ctermfg=DarkYellow
 hi Error        cterm=bold  ctermbg=none   ctermfg=Red
 hi Identifier   cterm=bold  ctermbg=none   ctermfg=LightCyan
 hi Ignore       cterm=none  ctermbg=none   ctermfg=DarkGray
