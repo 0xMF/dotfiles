@@ -116,8 +116,9 @@ hi Type         cterm=bold  ctermbg=none   ctermfg=Magenta
 hi Underlined   cterm=none  ctermbg=none   ctermfg=Blue
 
 " make even rare occurrences readable
-hi SpellBad    cterm=reverse ctermbg=Black  ctermfg=LightYellow
-hi SpellLocal  cterm=reverse ctermbg=none  ctermfg=White
+hi SpellBad    cterm=reverse ctermbg=Black  ctermfg=Red
+hi SpellCap    cterm=reverse ctermbg=Yellow  ctermfg=Red
+hi SpellLocal  cterm=reverse ctermbg=Cyan  ctermfg=Red
 hi PmenuThumb  cterm=none   ctermbg=none   ctermfg=White
 hi CursorLineNr  cterm=bold ctermfg=red
 hi Italic      cterm=italic ctermbg=none   ctermfg=Blue
