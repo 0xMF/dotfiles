@@ -26,33 +26,47 @@ function dfh {
 }
 
 function jc {
-  [ "`uname`" != "Linux" ] && { echo "not running on Linux"; return; }
   local myjc=$( whereis journalctl | awk '{print $2}' )
+
+  [ "`uname`" != "Linux" ] && { echo "not running on Linux"; return; }
   [ `id -u` -ne 0 ] && myjc="${sdo} $myjc"
   case "$1" in
     "" ) $myjc -xe | less -FeqRSX ;;
     "help"|"h"|"-h"|"--help") $myjc --help "$@" ;;
     * ) $myjc "$@" ;;
   esac
+
+  unset myjc
 }
 
 function sc {
-  [ "`uname`" != "Linux" ] && { echo "not running on Linux"; return; }
   local mysc=$( whereis systemctl | awk '{print $2}' )
+
+  [ "`uname`" != "Linux" ] && { echo "not running on Linux"; return; }
   [ `id -u` -ne 0 ] && mysc="${sdo} $mysc"
   case "$1" in
     "help"|"h"|"-h"|"--help") $mysc --help "$@" ;;
     * ) $mysc "$@" ;;
   esac
+
+  unset mysc
 }
 
 # jump to EXAMPLES section of man page if exists else quit
 function eman {
+  local manopts
+
   [ -z "$1" ] && { >&2 echo "Usage: eman man-page-with-EXAMPLES-section"; return; }
+  if man -Eutf8 $1 > /dev/null 2>&1;  then
+    manopts=-Eutf8
+  fi
   ( man -f $1
     echo
-    man -Eutf8 $1 | col -bx | sed -n '/^SYNOPSIS/,/^[A-Z]/p' | sed -nr '/^(SYNOPSIS| |$)/p'
-    man -Eutf8 $1 | col -bx | sed -n '/^EXAMPLES/,/^[A-Z]/p' | sed -nr '/^(EXAMPLES| |$)/p' ) | less -FeqRSX
+    man $manopts $1 | col -bx | sed -n '/^SYNOPSIS/,/^[A-Z]/p' | sed -nr '/^(SYNOPSIS| |$)/p'
+    man $manopts $1 | col -bx | sed -n '/^EXAMPLES/,/^[A-Z]/p' | sed -nr '/^(EXAMPLES| |$)/p'
+  ) | less -FeqRSX
+
+  unset manopts
 }
 
 function 0xMF-sysadmin-query-package-list {
