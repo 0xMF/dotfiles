@@ -168,6 +168,7 @@ imap <Nul>    <Space>
 :map ;w <Esc>:set wrap!<Esc>|           " toggle word wrapping
 :map ;wl :resize<CR>|                   " window resize
 :map ;wW :resize<CR>|                   " window resize
+:map ;ww :resize<CR>|                   " window resize
 :map ;wo <C-w>p<CR>|                    " window previous
 :map ;wO <C-w>o<CR>|                    " window previous
 :map ;w= <C-W>=
