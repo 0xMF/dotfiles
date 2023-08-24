@@ -394,7 +394,7 @@ function 0xMF-list-cpan-installed {
 }
 
 function 0xMF-help {
-  local old
+  local old found
   if [[ -z "$xMFDOC" || ! -d "$xMFDOC" ]]; then
     if [ "$OS" = "BSD" ]; then
       xMFDOC=$(find -L ~ -maxdepth 4 -type d -path "*shells*" -name "0xMF" 2>/dev/null | perl -wlne '/(.*)shells(.*)/ and print "$1doc"' | uniq)
@@ -402,37 +402,43 @@ function 0xMF-help {
       xMFDOC=$(find -L ~/repos -maxdepth 4 -type d -wholename "*shells/0xMF" 2>/dev/null | sed 's/shells.*/doc/' | uniq)
     fi
   fi
+  xMFDOC=$(echo $xMFDOC | find -L ~/repos -maxdepth 2 -type d -name "doc" 2>/dev/null | sort -u | tr '\n' ' ')
   old=$(pwd)
 
   if [ -z "$1" ]; then
-    >&2 echo -e "Usage: 0xMF-help TOPIC, where TOPIC is one or more of:\n\n  $(ls "$xMFDOC" | fmt)"
+    >&2 echo -e "Usage: 0xMF-help TOPIC, where TOPIC is one or more of:\n\n  $(ls `echo "$xMFDOC"` | sed '/^\/.*:$/d;/^$/d' | sort | fmt)"
   else
-    if [ ! -d "$xMFDOC" ]; then
-      >&2 echo "Not found: $xMFDOC"
-    else
-      cd $xMFDOC
-      for f in "$@"
-      do
-        if [ -f $f ]; then
-          echo -ne "0xMF-help for ${f}\n\n"
-          local lex=$(\grep -wE "(filetype|ft)" "$f" | perl -wlne '/(.*):(filetype|ft)+?=([^ :]*)?(.*)/ and print "$3"')
-          if which chroma > /dev/null 2>&1; then
-            if [[ "$lex" != "markdown" && "$lex" != "md"  ]]; then
-              eval "chroma -f terminal256 -l $([ -z "${CHROMA_LEXER}" ] && echo sh || echo ${CHROMA_LEXER}) -s $([ -z "${CHROMA_STYLE}" ] && echo rrt || echo ${CHROMA_STYLE}) ${f}" | less -FeqRSX
+    for d in $(echo ${xMFDOC})
+    do
+      if [ -d "$d" ]; then
+        cd $d
+        for f in "$@"
+        do
+          if [ -f $f ]; then
+            found="y"
+            echo -ne "0xMF-help for ${f}\n\n"
+            local lex=$(\grep -wE "(filetype|ft)" "$f" | perl -wlne '/(.*):(filetype|ft)+?=([^ :]*)?(.*)/ and print "$3"')
+            if which chroma > /dev/null 2>&1; then
+              if [[ "$lex" != "markdown" && "$lex" != "md"  ]]; then
+                eval "chroma -f terminal256 -l $([ -z "${CHROMA_LEXER}" ] && echo sh || echo ${CHROMA_LEXER}) -s $([ -z "${CHROMA_STYLE}" ] && echo rrt || echo ${CHROMA_STYLE}) ${d}/${f}" | less -FeqRSX
+              else
+                eval "chroma -f terminal -l $([ -z "${CHROMA_LEXER}" ] && echo md || echo ${CHROMA_LEXER}) -s $([ -z "${CHROMA_STYLE}" ] && echo friendly || echo ${CHROMA_STYLE}) ${d}/${f}" | less -FeqRSX
+              fi
             else
-              eval "chroma -f terminal -l $([ -z "${CHROMA_LEXER}" ] && echo md || echo ${CHROMA_LEXER}) -s $([ -z "${CHROMA_STYLE}" ] && echo friendly || echo ${CHROMA_STYLE}) ${f}" | less -FeqRSX
+              cat ${f} | less -FeqRSX
             fi
-          else
-            cat ${f} | less -FeqRSX
+            unset lex
+            echo
           fi
-          unset lex
-          echo
-        fi
-      done
-      cd $old
+        done
+      fi
+    done
+    if [ -z "$found" ]; then
+      >&2 echo -e "did not find any help doc for: "$@"\n in: $xMFDOC"
     fi
+    cd $old
   fi
-  unset old
+  unset old found
 }
 
 alias 0xMF-doc='0xMF-help'
