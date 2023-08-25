@@ -408,7 +408,7 @@ function 0xMF-help {
   if [ -z "$1" ]; then
     >&2 echo -e "Usage: 0xMF-help TOPIC, where TOPIC is one or more of:\n\n  $(ls `echo "$xMFDOC"` | sed '/^\/.*:$/d;/^$/d' | sort | fmt)"
   else
-    found=$(eval "find -L `echo $xMFDOC` -name $@")
+    found=$(eval "find -L $xMFDOC -name \"$@\"")
     if [ -n "$found" ]; then
       echo -ne "0xMF-help for $@\n\n"
       local lex=$(\grep -wE "(filetype|ft)" "$f" | perl -wlne '/(.*):(filetype|ft)+?=([^ :]*)?(.*)/ and print "$3"')
