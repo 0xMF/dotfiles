@@ -78,6 +78,10 @@ source $ZSH/oh-my-zsh.sh
 export ZSH_COLORIZE_TOOL=chroma
 export ZSH_COLORIZE_CHROMA_FORMATTER=terminal
 
+#-- colored-man-pages requires either one of
+#export GROFF_NO_SGR=1      # disable color output from groff
+export MANROFFOPT=-c        # same as above but restricts roff setting to man page output only
+
 # export MANPATH="/usr/local/man:$MANPATH"
 
 # You may need to manually set your language environment
