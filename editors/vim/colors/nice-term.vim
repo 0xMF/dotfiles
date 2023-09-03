@@ -77,7 +77,7 @@ hi CursorIM     cterm=none  ctermbg=none   ctermfg=Red
 hi DiffAdd      cterm=none  ctermbg=none   ctermfg=LightBlue
 hi DiffChange   cterm=none  ctermbg=none   ctermfg=LightBlue
 hi DiffDelete   cterm=none  ctermbg=none   ctermfg=Red
-hi DiffText     cterm=none  ctermbg=none   ctermfg=DarkRed
+hi DiffText     cterm=none  ctermbg=none   ctermfg=White
 hi Directory    cterm=none  ctermbg=none   ctermfg=Cyan
 hi ErrorMsg     cterm=none  ctermbg=none   ctermfg=Red
 hi FoldColumn   cterm=none  ctermbg=none   ctermfg=Cyan
