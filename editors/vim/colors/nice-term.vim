@@ -74,8 +74,8 @@ hi Normal      cterm=none   ctermbg=none   ctermfg=none cterm=none   guibg=Black
 
 hi Cursor       cterm=none  ctermbg=none   ctermfg=Red
 hi CursorIM     cterm=none  ctermbg=none   ctermfg=Red
-hi DiffAdd      cterm=none  ctermbg=none   ctermfg=Blue
-hi DiffChange   cterm=none  ctermbg=none   ctermfg=Blue
+hi DiffAdd      cterm=none  ctermbg=none   ctermfg=LightBlue
+hi DiffChange   cterm=none  ctermbg=none   ctermfg=LightBlue
 hi DiffDelete   cterm=none  ctermbg=none   ctermfg=Red
 hi DiffText     cterm=none  ctermbg=none   ctermfg=DarkRed
 hi Directory    cterm=none  ctermbg=none   ctermfg=Cyan
