@@ -574,3 +574,15 @@ function 0xMF-magnify {
   xmag -source "$w"x"$h" -mag "$m"
   unset w h m
 }
+
+function 0xMF-hogs {
+  local files f  sz
+  [ -z "$1" ] && sz="+10M" || sz="$1"
+
+  files=$(find -size $sz -exec ls -l {} \;)
+  f=$(echo $files | awk '{print $5,"+"}' | tr '\n' ' ' |sed 's/+ $//')
+  f=$(echo $f | bc | numfmt --to=iec)
+  echo -e "Files of size $sz or more in $PWD and under total $f:\n$files"
+
+  unset files f sz
+}
