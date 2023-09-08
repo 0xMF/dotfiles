@@ -583,37 +583,44 @@ function 0xMF-hogs {
   fi
 
   if [ -z "$1" ]; then
-    sz="+10M"
+    if [ "$(uname)" = "OpenBSD" ]; then
+      sz="1950"
+    else
+      sz="+10M"
+    fi
   else
-    sz="$1"
+    if [ "$(uname)" = "OpenBSD" ]; then
+      sz="$(echo $1|sed 's/[kK]/ * 2/;s/M/ * 4/;s/G/ * 8/'|bc)"
+    else
+      sz="$1"
+    fi
   fi
 
-  files=$(find -size $sz -exec ls -l {} \;)
-  f=$(echo $files | awk '{print $5,"+"}' | tr '\n' ' ' |sed 's/+ $//')
-  nf=$(whereis numfmt)
-  if [ -n "$nf" ]; then
-    f=$(echo $f | bc | numfmt --to=iec)
-  else
-    nf=$(whereis gnumfmt)
+  files=$(find -L "$PWD" -size "$sz" -exec ls -l {} \;)
+  if [[ -n "$files" ]]; then
+    f=$(echo $files | awk '{print $5,"+"}' | tr '\n' ' ' |sed 's/+ $//')
+    nf=$(whereis numfmt)
     if [ -n "$nf" ]; then
-      f=$(echo $f | bc | gnumfmt --to=iec)
+      f=$(echo $f | bc | numfmt --to=iec)
     else
-      f=$(echo $f | bc)
-    fi
-  fi
-
-  if [[ -n "$files" && -n "$f" ]]; then
-    if [ $(echo $files | wc -l) -lt 20 ]; then
-      echo -e "Files of size $sz or more in $PWD and under total $f:\n$files"
-    else
-      echo -e "$files\nFiles of size $sz or more in $PWD and under total $f"
+      nf=$(whereis gnumfmt)
+      if [ -n "$nf" ]; then
+        f=$(echo $f | bc | gnumfmt --to=iec)
+      else
+        f=$(echo $f | bc)
+      fi
     fi
 
-    echo files: $files  and f $f
-    if [ $(echo $files | wc -l) -lt 20 ]; then
-      echo -e "Files of size $sz or more in $PWD and under total $f:\n$files"
+    if [ -n "$f" ]; then
+      files=$(find -L "$PWD" -size "$sz" -exec ls -lh {} \; | sort -hk5,5)
+      nf=$(echo "$files" | wc -l)
+      if [ $nf -lt 20 ]; then
+        echo -e "$nf files of size $sz or more were under $PWD. Total size: $f.\n$files"
+      else
+        echo -e "$files\n$nf files of size $sz or more were under $PWD. Total size: $f."
+      fi
     else
-      echo -e "$files\nFiles of size $sz or more in $PWD and under total $f"
+      echo -e "No files of size $sz or more were found under $PWD"
     fi
   fi
 
