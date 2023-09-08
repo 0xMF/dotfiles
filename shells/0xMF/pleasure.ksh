@@ -578,21 +578,25 @@ function 0xMF-magnify {
 function 0xMF-hogs {
   local files f nf sz
   if [[ "$1" = "--help" || "$1" = "-h" ]]; then
-    >&2 echo -n "Usage: $0 [+-]nnn[M|G|K]\n       Input is -size option of find. Default shows files of 10M or more.\n"
+    >&2 echo -n "Usage: $0 [+-]nnn[M|G|K] [--sort-human]\n" \
+                "      Input is -size option of find. Default shows files of 10M or more.\n"
     return
   fi
 
-  if [ -z "$1" ]; then
+  if [[ -z "$1"  || "$1" = "--sort-human" ]]; then
     if [ "$(uname)" = "OpenBSD" ]; then
       sz="1950"
     else
       sz="+10M"
     fi
   else
-    if [ "$(uname)" = "OpenBSD" ]; then
-      sz="$(echo $1|sed 's/[kK]/ * 2/;s/M/ * 4/;s/G/ * 8/'|bc)"
-    else
-      sz="$1"
+    if [ "$1" != "--sort-human" ]; then
+      if [ "$(uname)" = "OpenBSD" ]; then
+        sz="$(echo $1|sed 's/[kK]/ * 2/;s/M/ * 4/;s/G/ * 8/'|bc)"
+      else
+        sz="$1"
+      fi
+      shift
     fi
   fi
 
@@ -617,14 +621,16 @@ function 0xMF-hogs {
       fi
     fi
 
-    if [ -n "$f" ]; then
-      files=$(find -L "$PWD" -size "$sz" -exec ls -lh {} \; | sort -hk5,5)
-      nf=$(echo "$files" | wc -l)
-      if [ $nf -lt 20 ]; then
-        echo -e "$nf files of size $sz or more were under $PWD. Total size: $f.\n$files"
-      else
-        echo -e "$files\n$nf files of size $sz or more were under $PWD. Total size: $f."
+    if [ -n "$f"  ]; then
+      if [ "$1" = "--sort-human" ]; then
+        files=$(find -L "$PWD" -size "$sz" -exec ls -lh {} \; | sort -hk5,5)
       fi
+      nf=$(echo "$files" | wc -l)
+        if [ $nf -lt 20 ]; then
+          echo -e "$nf files of size $sz or more were under $PWD. Total size: $f.\n$files"
+        else
+          echo -e "$files\n$nf files of size $sz or more were under $PWD. Total size: $f."
+        fi
     else
       echo -e "No files of size $sz or more were found under $PWD"
     fi
