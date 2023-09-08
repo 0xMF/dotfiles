@@ -598,7 +598,13 @@ function 0xMF-hogs {
 
   files=$(find -L "$PWD" -size "$sz" -exec ls -l {} \;)
   if [[ -n "$files" ]]; then
-    f=$(echo $files | awk '{print $5,"+"}' | tr '\n' ' ' |sed 's/+ $//')
+    nf=$(echo "$files" | wc -l)
+    if [ $nf -gt 999 ]; then
+      echo -e "$files\n$nf files of size $sz or more were under $PWD, far too many to calculate total size."
+      return
+    fi
+
+    f=$(echo "$files" | awk '{print $5,"+"}' | sed 's/^ *+/0 +/g' | tr '\n' ' ' |sed 's/+ $//g')
     nf=$(whereis numfmt)
     if [ -n "$nf" ]; then
       f=$(echo $f | bc | numfmt --to=iec)
