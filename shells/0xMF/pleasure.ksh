@@ -576,7 +576,7 @@ function 0xMF-magnify {
 }
 
 function 0xMF-hogs {
-  local files f  sz
+  local files f nf sz
   if [[ "$1" = "--help" || "$1" = "-h" ]]; then
     >&2 echo -n "Usage: $0 [+-]nnn[M|G|K]\n       Input is -size option of find. Default shows files of 10M or more.\n"
     return
@@ -586,12 +586,28 @@ function 0xMF-hogs {
 
   files=$(find -size $sz -exec ls -l {} \;)
   f=$(echo $files | awk '{print $5,"+"}' | tr '\n' ' ' |sed 's/+ $//')
-  f=$(echo $f | bc | numfmt --to=iec)
+  nf=$(whereis numfmt)
+  if [ -n "$nf" ]; then
+    f=$(echo $f | bc | numfmt --to=iec)
+  else
+    nf=$(whereis gnumfmt)
+    if [ -n "$nf" ]; then
+      f=$(echo $f | bc | gnumfmt --to=iec)
+    else
+      f=$(echo $f | bc)
+    fi
+  fi
   if [ $(echo $files | wc -l) -lt 20 ]; then
     echo -e "Files of size $sz or more in $PWD and under total $f:\n$files"
   else
     echo -e "$files\nFiles of size $sz or more in $PWD and under total $f"
   fi
 
-  unset files f sz
+  if [ $(echo $files | wc -l) -lt 20 ]; then
+    echo -e "Files of size $sz or more in $PWD and under total $f:\n$files"
+  else
+    echo -e "$files\nFiles of size $sz or more in $PWD and under total $f"
+  fi
+
+  unset files f nf sz
 }
