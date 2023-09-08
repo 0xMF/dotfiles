@@ -582,7 +582,11 @@ function 0xMF-hogs {
     return
   fi
 
-  [ -z "$1" ] && sz="+10M" || sz="$1"
+  if [ -z "$1" ]; then
+    sz="+10M"
+  else
+    sz="$1"
+  fi
 
   files=$(find -size $sz -exec ls -l {} \;)
   f=$(echo $files | awk '{print $5,"+"}' | tr '\n' ' ' |sed 's/+ $//')
@@ -597,16 +601,20 @@ function 0xMF-hogs {
       f=$(echo $f | bc)
     fi
   fi
-  if [ $(echo $files | wc -l) -lt 20 ]; then
-    echo -e "Files of size $sz or more in $PWD and under total $f:\n$files"
-  else
-    echo -e "$files\nFiles of size $sz or more in $PWD and under total $f"
-  fi
 
-  if [ $(echo $files | wc -l) -lt 20 ]; then
-    echo -e "Files of size $sz or more in $PWD and under total $f:\n$files"
-  else
-    echo -e "$files\nFiles of size $sz or more in $PWD and under total $f"
+  if [[ -n "$files" && -n "$f" ]]; then
+    if [ $(echo $files | wc -l) -lt 20 ]; then
+      echo -e "Files of size $sz or more in $PWD and under total $f:\n$files"
+    else
+      echo -e "$files\nFiles of size $sz or more in $PWD and under total $f"
+    fi
+
+    echo files: $files  and f $f
+    if [ $(echo $files | wc -l) -lt 20 ]; then
+      echo -e "Files of size $sz or more in $PWD and under total $f:\n$files"
+    else
+      echo -e "$files\nFiles of size $sz or more in $PWD and under total $f"
+    fi
   fi
 
   unset files f nf sz
