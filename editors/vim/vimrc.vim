@@ -21,7 +21,9 @@
 :end
 
 set runtimepath=$VIMRUNTIME,$MYVIM,$MYVIM/dependencies
-source $VIMRUNTIME/mswin.vim
+:if filereadable($VIMRUNTIME . "/mswin.vim")
+: source $VIMRUNTIME/mswin.vim
+:endif
 
 "** Keyboard Mappings
 :if filereadable($MYVIM . "/my_settings/keymap.vim")

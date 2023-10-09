@@ -19,7 +19,7 @@ function can_sudo {
   fi
 }
 
-sdo=$(can_sudo)
+#sdo=$(can_sudo)
 
 function dfh {
   /bin/df -h | grep -E '^(Filesystem|/)' | sort -hk5
@@ -27,6 +27,7 @@ function dfh {
 
 function jc {
   local myjc=$( whereis journalctl | awk '{print $2}' )
+  local sdo=$(can_sudo)
 
   [ "`uname`" != "Linux" ] && { echo "not running on Linux"; return; }
   [ `id -u` -ne 0 ] && myjc="${sdo} $myjc"
@@ -36,11 +37,12 @@ function jc {
     * ) $myjc "$@" ;;
   esac
 
-  unset myjc
+  unset myjc sdo
 }
 
 function sc {
   local mysc=$( whereis systemctl | awk '{print $2}' )
+  local sdo=$(can_sudo)
 
   [ "`uname`" != "Linux" ] && { echo "not running on Linux"; return; }
   [ `id -u` -ne 0 ] && mysc="${sdo} $mysc"
@@ -49,7 +51,7 @@ function sc {
     * ) $mysc "$@" ;;
   esac
 
-  unset mysc
+  unset mysc sdo
 }
 
 # jump to EXAMPLES section of man page if exists else quit
@@ -97,6 +99,7 @@ function 0xMF-sysadmin-query-package-list {
 alias sadu='0xMF-sysadmin-upgrade'
 function 0xMF-sysadmin-upgrade {
 
+  local sdo=$(can_sudo)
   [[ "${sdo}" != "sudo" && "${sdo}" != "doas" ]] && return
 
   os=$(uname)
@@ -137,10 +140,13 @@ function 0xMF-sysadmin-upgrade {
       "${sdo}" pkg_add -Uu
     fi
   fi
+
+  unset sdo
 }
 
 alias saru='0xMF-sysadmin-remove-unused'
 function 0xMF-sysadmin-remove-unused {
+  local sdo=$(can_sudo)
   if [ "`uname`" = "Linux" ]; then
     distro=$(\grep -w ID /etc/os-release | cut -d= -f2 | tr -d '"')
     case "${distro}" in
@@ -158,6 +164,8 @@ function 0xMF-sysadmin-remove-unused {
   if [ "${os}" = "OpenBSD" ]; then
     "${sdo}" pkg_delete -aic
   fi
+
+  unset sdo
 }
 
 alias pacsearch='0xMF-sysadmin-pacsearch'
