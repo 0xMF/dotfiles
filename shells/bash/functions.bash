@@ -175,17 +175,8 @@ function erls {
 
 function emacs {
   EMACS=$(which -a emacs|sed '1q')
-  if [ -z "${EMACS}" ]
-  then
-    [[ -e "$HOME/repos/x/emacs/src/emacs" ]] \
-      &&  EMACS="$HOME/repos/x/emacs/src/emacs" \
-      ||  EMACS="/usr/local/share/emacs/src/emacs"
-  fi
-  ${EMACS} "$@" &
-  if [ $? -eq 0 ]
-  then
-   which pal 2>/dev/null
-   [ $? -eq 0 ] && pal
+  if [ -n "${EMACS}" ]; then
+    ${EMACS} "$@"
   fi
 }
 
