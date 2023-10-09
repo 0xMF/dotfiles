@@ -1,4 +1,10 @@
 #!/usr/bin/env bash
 # ~/.bash_profile: executed by bash(1) when login shell starts.
 
-[ -f ~/.bashrc ] && . ~/.bashrc
+if [ -f ~/.profile ]; then
+  . ~/.profile
+else
+  if [ -f ~/.bashrc ]; then
+    . ~/.bashrc
+  fi
+fi
