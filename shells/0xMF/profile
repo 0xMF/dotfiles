@@ -22,4 +22,3 @@ then
 fi
 
 export ENV HOME PATH TERM
-. $ENV
