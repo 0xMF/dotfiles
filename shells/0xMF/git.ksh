@@ -7,7 +7,7 @@ case "${THIS_SHELL##/**/}" in
      exit 1;;
 esac
 
-shell=$(basename $SHELL)
+shell=$(basename $THIS_SHELL)
 [[ "$BASH" = "/usr/bin/bash" || "$BASH" = "/bin/bash" ]] && shell="bash"
 
 # required for hub (cli tool for github management)
@@ -17,27 +17,27 @@ export PROMPT_COMMAND="green"
 export SHELL_PROMPT=$( [ "$shell" = "bash" ] && echo $ || echo %)
 
 if [ "$shell" = "zsh" ]; then
-  BLACK="%{$fg[black]%}"
-  GREY="%{$fg_bold[grey]%}"
-  RED="%{$fg_bold[red]%}"
-  GREEN="%{$fg_bold[green]%}"
-  YELLOW="%{$fg_bold[yellow]%}"
-  BLUE="%{$fg_bold[blue]%}"
-  MAGENTA="%{$fg_bold[magenta]%}"
-  CYAN="%{$fg_bold[cyan]%}"
-  WHITE="%{$fg_bold[white]%}"
-  NOCOLOR="%{$reset_color%}"
+  BLACK="%{$fg[black]%}"; export BLACK
+  GREY="%{$fg_bold[grey]%}"; export GREY
+  RED="%{$fg_bold[red]%}"; export RED
+  GREEN="%{$fg_bold[green]%}"; export GREEN
+  YELLOW="%{$fg_bold[yellow]%}"; export YELLOW
+  BLUE="%{$fg_bold[blue]%}"; export BLUE
+  MAGENTA="%{$fg_bold[magenta]%}"; export MAGENTA
+  CYAN="%{$fg_bold[cyan]%}"; export CYAN
+  WHITE="%{$fg_bold[white]%}"; export WHITE
+  NOCOLOR="%{$reset_color%}"; export NOCOLOR
 else
-  BLACK="\[\033[30m\]"
-  GREY="\[\033[1;30m\]"
-  RED="\[\033[1;31m\]"
-  GREEN="\[\033[1;32m\]"
-  YELLOW="\[\033[1;33m\]"
-  BLUE="\[\033[1;34m\]"
-  PURPLE="\[\033[1;35m"
-  CYAN="\[\033[1;36m\]"
-  WHITE="\[\033[1;37m\]"
-  NOCOLOR="\[\033[00m\]"
+  BLACK="\[\033[30m\]"; export BLACK
+  GREY="\[\033[1;30m\]"; export GREY
+  RED="\[\033[1;31m\]"; export RED
+  GREEN="\[\033[1;32m\]"; export GREEN
+  YELLOW="\[\033[1;33m\]"; export YELLOW
+  BLUE="\[\033[1;34m\]"; export BLUE
+  PURPLE="\[\033[1;35m"; export PURPLE
+  CYAN="\[\033[1;36m\]"; export CYAN
+  WHITE="\[\033[1;37m\]"; export WHITE
+  NOCOLOR="\[\033[00m\]"; export NOCOLOR
 fi
 
 GREP=$(if [ -s /bin/grep ]; then echo /bin/grep; else echo /usr/bin/grep; fi)
