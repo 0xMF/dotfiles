@@ -110,7 +110,7 @@ export MANROFFOPT=-c        # same as above but restricts roff setting to man pa
 # -- all 0xMF dotfiles settings
 if [ -d ~/.zsh/0xMF ]; then
   alias reload='0xMF-reload'
-  for f in ~/.zsh/0xMF/*
+  for f in ~/.zsh/0xMF/*sh
   do
     [[ -s "$f" ]] && source "$f"
   done
