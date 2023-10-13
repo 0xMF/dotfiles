@@ -22,4 +22,4 @@ then
 fi
 
 export ENV HOME PATH TERM
-source $ENV
+. $ENV
