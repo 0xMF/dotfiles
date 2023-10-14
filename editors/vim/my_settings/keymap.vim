@@ -93,6 +93,7 @@ map <F3>  :execute "mksession! " . v:this_session<CR>
 " mappings for less like behaviour (works with behave msvim)
 " page down
 map <Space>   <PageDown>
+map <Space>   <C-f>
 map f         <PageDown>
 map <A-n>     <PageDown>
 " page up
