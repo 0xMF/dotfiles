@@ -44,6 +44,7 @@ map g<C-\> :cs find 0 <C-R>=expand("<cword>")<CR><CR>
 :map <C-Space> <C-D>
 
 " jump/scroll up/down in other window when in split window mode
+:map <C-H> <C-W>p
 :map <C-L> <C-W>p
 :imap <C-L> <Esc><C-W>p
 :map <C-J> <C-W>p<C-D><C-W>p
