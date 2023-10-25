@@ -70,10 +70,14 @@ augroup END
 :function! My_Colours_Change()
 : if has ("gui_running")
 :   if g:colors_name == "nice"
-:     execute "colorscheme" s:colorscheme
-:   else
-:     let s:colorscheme = g:colors_name == "industry" ? "midnight" : g:colors_name
-:     colorscheme nice
+":     execute "colorscheme" s:colorscheme
+:     execute "colorscheme pablo"
+:   elseif g:colors_name == "pablo"
+:     execute "colorscheme industry"
+:   elseif g:colors_name == "industry"
+:     execute "colorscheme midnight"
+:   elseif g:colors_name == "midnight"
+:     execute "colorscheme nice"
 :   endif
 : else
 :   if g:colors_name == "nice-term"
