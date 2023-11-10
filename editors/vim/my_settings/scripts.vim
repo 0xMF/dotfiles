@@ -75,7 +75,11 @@ augroup END
 :   elseif g:colors_name == "pablo"
 :     execute "colorscheme industry"
 :   elseif g:colors_name == "industry"
-:     execute "colorscheme midnight"
+:     try
+:       execute "colorscheme midnight"
+:     catch
+:       execute "colorscheme nice"
+:     endtry
 :   elseif g:colors_name == "midnight"
 :     execute "colorscheme nice"
 :   endif
