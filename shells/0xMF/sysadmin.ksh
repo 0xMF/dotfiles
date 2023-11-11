@@ -136,8 +136,10 @@ function 0xMF-sysadmin-upgrade {
   fi
 
   if [ "${os}" = "OpenBSD" ]; then
-    if  "${sdo}" syspatch; then
-      "${sdo}" pkg_add -Uu
+    if "${sdo}" syspatch; then
+      TERM=dumb "${sdo}" pkg_add -Uu
+    else
+      TERM=dumb "${sdo}" pkg_add -D snap -Uu
     fi
   fi
 
