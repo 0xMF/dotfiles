@@ -164,7 +164,7 @@ function 0xMF-sysadmin-remove-unused {
     esac
   fi
   if [ "${os}" = "OpenBSD" ]; then
-    "${sdo}" pkg_delete -aic
+    TERM=dumb "${sdo}" pkg_delete -aic
   fi
 
   unset sdo
