@@ -1242,6 +1242,13 @@ function gco {
   fi
 }
 
+function gcm {
+  if ! git checkout master 2>/dev/null; then
+    git checkout main
+  fi
+}
+
+
 # Credit: oh-my-zsh/lib/git.zsh and oh-my-zsh/themes/robbyrussell.zsh-theme
 function precmd {
   [ "$shell" = "zsh" ] && 0xMF-zsh-prompt
@@ -1333,7 +1340,6 @@ alias gcam='git commit -am'
 alias gcb='git switch -'
 alias gcf='git add .;git commit --fixup'
 alias gci='git commit'
-alias gcm='git checkout master'
 alias gcmsg='git commit -m'
 alias gcs='git add .;git commit --squash'
 
