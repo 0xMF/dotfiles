@@ -73,6 +73,8 @@ augroup END
 ":     execute "colorscheme" s:colorscheme
 :     execute "colorscheme pablo"
 :   elseif g:colors_name == "pablo"
+:     execute "colorscheme darkblue"
+:   elseif g:colors_name == "darkblue"
 :     execute "colorscheme industry"
 :   elseif g:colors_name == "industry"
 :     try
