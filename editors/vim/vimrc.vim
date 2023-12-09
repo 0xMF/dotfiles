@@ -289,6 +289,13 @@ set clipboard=unnamed   " all yanking goes to clipboard
     au BufRead,BufNewFile *.py  setlocal expandtab
     "au BufNewFile,BufRead *.py so <sfile>:h\vim70\ftplugin\python.vim
 
+    "* Ruby
+    au BufRead,BufNewFile *.rb setlocal filetype=ruby
+    au BufRead,BufNewFile *.rb setlocal fileencoding=utf-8
+    au BufRead,BufNewFile *.rb setlocal textwidth=99
+    au BufRead,BufNewFile *.rb setlocal colorcolumn=100
+    au BufRead,BufNewFile *.rb setlocal noexpandtab nonumber nospell nowrap
+
     "* options for SCALA files
     au BufRead,BufNewFile *.scala setlocal filetype=scala
     au FileType SCALA             setlocal syntax=scala
