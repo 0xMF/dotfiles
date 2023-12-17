@@ -290,21 +290,21 @@ function psmo {
   else
     if [ `id -u` -eq 0 ]; then
       PS1="$(parse_git_repo)$RED#$NOCOLOR "
-      PROMPT_COMMAND="psm"
+      PROMPT_COMMAND="psmo"
     else
       if [[ "$SHELL_PROMPT" = "$" ]]; then
-        PS1="$YELLOW\W $(parse_git_repo)$WHITE$SHELL_PROMPT$NOCOLOR "
-        PROMPT_COMMAND="psm"
+        PS1="$GREEN\W $(parse_git_repo)$WHITE$SHELL_PROMPT$NOCOLOR "
+        PROMPT_COMMAND="psmo"
       else
-        print "$YELLOW\W $(parse_git_repo)$WHITE$SHELL_PROMPT$NOCOLOR "
-        PS1='$(psm)'
+        print "$GREEN\W $(parse_git_repo)$WHITE$SHELL_PROMPT$NOCOLOR "
+        PS1='$(psmo)'
       fi
     fi
   fi
 }
 
 function psm-no-git {
-  PS1="$GREEN\h$WHITE:$YELLOW\W$WHITE\$$NOCOLOR "
+  PS1="$YELLOW\h$WHITE:$GREEN\W$WHITE\$$NOCOLOR "
   PROMPT_COMMAND=""
 }
 
@@ -356,10 +356,10 @@ function psmw {
       PROMPT_COMMAND="psmw"
     else
       if [[ "$SHELL_PROMPT" = "$" ]]; then
-        PS1="$YELLOW\W $NOCOLOR$SHELL_PROMPT "
+        PS1="$GREEN\W $NOCOLOR$SHELL_PROMPT "
         PROMPT_COMMAND="psmw"
       else
-        print "$YELLOW\W $NOCOLOR$SHELL_PROMPT "
+        print "$GREEN\W $NOCOLOR$SHELL_PROMPT "
         PS1='$(psmw)'
       fi
     fi
