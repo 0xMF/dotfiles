@@ -15,15 +15,15 @@
 :   if filereadable(expand("$MYVIM"))
 :     echoerr $MYVIM
 :   endif
+:   if filereadable($VIMRUNTIME . "/mswin.vim")
+:     source $VIMRUNTIME/mswin.vim
+:   endif
 :else
 :   let $USER=substitute(system("/usr/bin/id -u"),"\n","","g")
 :   let $MYVIM=expand("$HOME/.vim")
 :end
 
 set runtimepath=$VIMRUNTIME,$MYVIM,$MYVIM/dependencies
-:if filereadable($VIMRUNTIME . "/mswin.vim")
-: source $VIMRUNTIME/mswin.vim
-:endif
 
 "** Keyboard Mappings
 :if filereadable($MYVIM . "/my_settings/keymap.vim")
