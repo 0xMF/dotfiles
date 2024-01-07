@@ -87,24 +87,24 @@ alias cal='0xMF-cal'
 function 0xMF-llr {
   if [ -z "$1" ]; then
     [ "$(uname)" = "OpenBSD" ] \
-      && ls -lhFt \
-      || ls --colo=always -lhFt --time-style=+"%Y-%b-%d %H:%M"
+      && ls -lhFtr \
+      || ls --colo=always -lhFtr --time-style=+"%Y-%b-%d %H:%M"
   else
     [ "$(uname)" = "OpenBSD" ] \
-      && ls -lhFt "$@" \
-      || ls --color=always -lhFt --time-style=+"%Y-%b-%d %H:%M" "$@"
+      && ls -lhFtr "$@" \
+      || ls --color=always -lhFtr --time-style=+"%Y-%b-%d %H:%M" "$@"
   fi | sed '/^total /d'
 }
 
 function 0xMF-ll {
   if [ -z "$1" ]; then
     [ "$(uname)" = "OpenBSD" ] \
-      && ls -lhFtr \
-      || ls --color=always -lhFtr --time-style=+"%Y-%b-%d %H:%M"
+      && ls -lhFt \
+      || ls --color=always -lhFt --time-style=+"%Y-%b-%d %H:%M"
   else
     [ "$(uname)" = "OpenBSD" ] \
-      && ls -lhFtr "$@" \
-      || ls --color=always -lhFtr --time-style=+"%Y-%b-%d %H:%M" "$@"
+      && ls -lhFt "$@" \
+      || ls --color=always -lhFt --time-style=+"%Y-%b-%d %H:%M" "$@"
   fi | sed '/^total /d'
 }
 
