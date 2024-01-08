@@ -186,9 +186,13 @@ imap <Nul>    <Space>
 
 :map <C-p>  <Esc>:call BufferPrevious()<CR>
 :map <C-n>  <Esc>:call BufferNext()<CR>
+:map <A-P>  <Esc>:call TabPrevious()<CR>
+:map <A-N>  <Esc>:call TabNext()<CR>
 
-:imap <C-p>  <Esc><C-p><CR>|  " tabprevious for console vim
-:imap <C-n>  <Esc><C-n><CR>|  " tabnext
+:imap <C-p>  <Esc><C-p><CR>a|  " bufferprevious for console vim
+:imap <C-n>  <Esc><C-n><CR>a|  " buffernext
+:imap <A-P>  <Esc><A-P><CR>a|  " tabprevious
+:imap <A-N>  <Esc><A-N><CR>a|  " tabnext
 :imap ;wl <Esc>:resize<CR>a|  " window resize
 
 " window resizing

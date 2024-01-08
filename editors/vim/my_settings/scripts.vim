@@ -161,10 +161,9 @@ augroup END
 : set display+=uhex
 :endfunction
 
-" tabprevious for console vim
+" get previous buffer for console vim
 function! BufferPrevious()
   let mybuflist = getbufinfo()
-  "let myjumplist = getjumplist()
   :if len(mybuflist) < 2
   : echo "no previous buffer"
   :else
@@ -172,18 +171,12 @@ function! BufferPrevious()
   : if line("'\"") >= 1 && line("'\"") <= line("$") && &ft !~# 'commit'
   :   exe "normal! g`\""
   : endif
-  ":   call setpos(".","g`\"")
-  ": if bufexists(expand('%p'))
-  ":   call setpos(".","`\"")
-  ": else
-  ": endif
   :endif
 endfunction
 
-" tabnext
+" get next buffer
 function! BufferNext()
   let mybuflist = getbufinfo()
-  "let myjumplist = getjumplist()
   :if len(mybuflist) < 2
   : echo "no next buffer"
   :else
@@ -192,10 +185,33 @@ function! BufferNext()
   : if line("'\"") >= 1 && line("'\"") <= line("$") && &ft !~# 'commit'
   :   exe "normal! g`\""
   : endif
-  ":   call setpos(".","g`\"")
-  ": if bufexists(expand('%p'))
-  ":   call setpos(".","`\"")
-  ": else
-  ": endif
+  :endif
+endfunction
+
+" get previous tab
+function! TabPrevious()
+  let mytablist = gettabinfo()
+  :if len(mytablist) < 2
+  : echo "no previous tab"
+  :else
+  : tabPrevious
+  : if line("'\"") >= 1 && line("'\"") <= line("$") && &ft !~# 'commit'
+  :   exe "normal! g`\""
+  : endif
+  :endif
+endfunction
+
+" tabnext
+function! TabNext()
+  let mytablist = gettabinfo()
+  "let myjumplist = getjumplist()
+  :if len(mytablist) < 2
+  : echo "no next tab"
+  :else
+  : tabNext
+  " see restore-cursor
+  : if line("'\"") >= 1 && line("'\"") <= line("$") && &ft !~# 'commit'
+  :   exe "normal! g`\""
+  : endif
   :endif
 endfunction
