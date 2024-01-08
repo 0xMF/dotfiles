@@ -163,6 +163,7 @@ augroup END
 
 " get previous buffer for console vim
 function! BufferPrevious()
+  :set showtabline=0   " =0 never show tabs, =1 show if 2 or more tabs, =2 always show
   let mybuflist = getbufinfo()
   :if len(mybuflist) < 2
   : echo "no previous buffer"
@@ -176,6 +177,7 @@ endfunction
 
 " get next buffer
 function! BufferNext()
+  :set showtabline=0   " =0 never show tabs, =1 show if 2 or more tabs, =2 always show
   let mybuflist = getbufinfo()
   :if len(mybuflist) < 2
   : echo "no next buffer"
@@ -190,11 +192,12 @@ endfunction
 
 " get previous tab
 function! TabPrevious()
+  :set showtabline=1   " =0 never show tabs, =1 show if 2 or more tabs, =2 always show
   let mytablist = gettabinfo()
   :if len(mytablist) < 2
   : echo "no previous tab"
   :else
-  : tabPrevious
+  : tabprevious
   : if line("'\"") >= 1 && line("'\"") <= line("$") && &ft !~# 'commit'
   :   exe "normal! g`\""
   : endif
@@ -203,6 +206,7 @@ endfunction
 
 " tabnext
 function! TabNext()
+  :set showtabline=1   " =0 never show tabs, =1 show if 2 or more tabs, =2 always show
   let mytablist = gettabinfo()
   "let myjumplist = getjumplist()
   :if len(mytablist) < 2
