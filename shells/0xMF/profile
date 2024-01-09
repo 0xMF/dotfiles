@@ -22,3 +22,7 @@ then
 fi
 
 export ENV HOME PATH TERM
+
+if [ -s ~/.profile-local ]; then
+  source ~/.profile-local
+fi
