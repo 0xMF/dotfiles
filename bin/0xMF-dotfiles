@@ -183,7 +183,7 @@ _config_misc() {
       echo " - found .config/chromium-flags.conf, not installing" >&2
     } || {
       installed="chromium-flags.conf"
-      ln -s ${SCRIPT_DIR%bin}comp.misc/config/chromium-flags.conf $HOME/.config/chromium-flags.conf
+      ln -s ${SCRIPT_DIR%bin}.comp.misc/config/chromium-flags.conf $HOME/.config/chromium-flags.conf
     }
 
     [ ! -z "$installed" ] && echo "INSTALLED!" >&2
@@ -298,8 +298,8 @@ _lisp() {
     echo " - found .sbclrc, not installing" >&2
   else
     [ "$EXPERIMENTAL" = "yes" ] \
-     && { ln -s ${_SCRIPTDIR%bin}comp.misc/sbclrc ~/.sbclrc; } \
-     || { ln -s ${SCRIPT_DIR%bin}comp.misc/sbclrc $HOME/.sbclrc; }
+     && { ln -s ${_SCRIPTDIR%bin}.comp.misc/sbclrc ~/.sbclrc; } \
+     || { ln -s ${SCRIPT_DIR%bin}.comp.misc/sbclrc $HOME/.sbclrc; }
     installed="$installed .sbclrc"
   fi
 
