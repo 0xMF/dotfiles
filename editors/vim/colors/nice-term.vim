@@ -103,7 +103,7 @@ hi WarningMsg   cterm=bold  ctermbg=none   ctermfg=Red
 hi WildMenu     cterm=none  ctermbg=none   ctermfg=Cyan
 
 " syntax highlighting groups
-hi Comment      cterm=none  ctermbg=none   ctermfg=Green
+hi Comment      cterm=none  ctermbg=none   ctermfg=DarkGreen
 hi Constant     cterm=none  ctermbg=none   ctermfg=Green
 hi Error        cterm=bold  ctermbg=none   ctermfg=Red
 hi Identifier   cterm=bold  ctermbg=none   ctermfg=LightCyan
