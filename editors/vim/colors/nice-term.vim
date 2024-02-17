@@ -87,7 +87,7 @@ hi LineNr       cterm=none  ctermbg=none   ctermfg=DarkCyan
 hi Menu         cterm=none  ctermbg=none   ctermfg=DarkBlue
 hi ModeMsg      cterm=none  ctermbg=none   ctermfg=DarkRed
 hi MoreMsg      cterm=none  ctermbg=none   ctermfg=Cyan
-hi NonText      cterm=none  ctermbg=none   ctermfg=DarkRed
+hi NonText      cterm=none  ctermbg=none   ctermfg=DarkCyan
 hi Question     cterm=none  ctermbg=none   ctermfg=Cyan
 hi Scrollbar    cterm=none  ctermbg=none   ctermfg=Cyan
 hi Search       cterm=bold  ctermbg=White  ctermfg=Black
@@ -104,12 +104,12 @@ hi WildMenu     cterm=none  ctermbg=none   ctermfg=Cyan
 
 " syntax highlighting groups
 hi Comment      cterm=none  ctermbg=none   ctermfg=Green
-hi Constant     cterm=none  ctermbg=none   ctermfg=DarkYellow
+hi Constant     cterm=none  ctermbg=none   ctermfg=Green
 hi Error        cterm=bold  ctermbg=none   ctermfg=Red
 hi Identifier   cterm=bold  ctermbg=none   ctermfg=LightCyan
 hi Ignore       cterm=none  ctermbg=none   ctermfg=DarkGray
 hi PreProc      cterm=bold  ctermbg=none   ctermfg=Magenta
-hi Special      cterm=bold  ctermbg=none   ctermfg=DarkYellow
+hi Special      cterm=bold  ctermbg=none   ctermfg=Green
 hi Statement    cterm=bold  ctermbg=none   ctermfg=Magenta
 hi Todo         cterm=bold  ctermbg=none   ctermfg=Red
 hi Type         cterm=bold  ctermbg=none   ctermfg=Magenta
