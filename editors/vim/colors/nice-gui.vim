@@ -35,7 +35,7 @@ hi Title      gui=bold    term=underline  ctermfg=Blue                  guifg=Bl
 
 " Colour for crucial elements
 hi Comment    gui=italic      term=bold       ctermfg=Red                     guifg=DarkGreen
-hi Constant   gui=italic,bold term=underline  ctermfg=DarkGray                guifg=#888999             " gray
+hi Constant   gui=italic,bold term=underline  ctermfg=DarkGray                guifg=DarkCyan  "#888999             " gray
 hi Error                      term=reverse    ctermfg=15 ctermbg=9            guifg=White     guibg=Red
 hi Identifier gui=bold        term=underline  ctermfg=Blue                    guifg=Blue
 hi PreProc    gui=bold        term=underline  ctermfg=Magenta                 guifg=#FF3311             " reddish
