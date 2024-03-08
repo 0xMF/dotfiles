@@ -1,7 +1,7 @@
 # ~/.profile: executed when login shell starts
 
 case "$(uname)" in
-  Linux ) PATH=~/bin:~/.local/bin:/usr/bin:/usr/sbin:/bin:/sbin:/usr/local/bin:/usr/local/sbin ;;
+  Linux ) PATH=~/bin:~/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin ;;
   *     ) PATH=~/bin:/bin:/sbin:/usr/bin:/usr/sbin:/usr/local/bin:/usr/local/sbin ;;
 esac
 
