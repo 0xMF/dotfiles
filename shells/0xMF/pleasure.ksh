@@ -73,6 +73,7 @@ alias http-serve="serve"
 
 alias ll='0xMF-ll'
 alias llr='0xMF-llr'
+alias lg='0xMF-lg'
 
 
 function 0xMF-cal {
@@ -83,6 +84,9 @@ function 0xMF-cal {
 }
 alias cal='0xMF-cal'
 
+function 0xMF-lg {
+ ls -g "$@" | awk '!/total/{$2=$3="\b"; print $0}'
+}
 
 function 0xMF-llr {
   if [ -z "$1" ]; then
