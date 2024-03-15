@@ -398,7 +398,7 @@ function parse_git_branch_colour {
 
   if [ -z "$br" ]; then
     return
-  elif [ "$br" = "master" ]; then
+  elif [ "$br" = "master" ] || [ "$br" = "dev" ] || [ "$br" = "main" ]; then
     echo "$BLUE($RED"$br"$BLUE $(parse_git_dirty)$BLUE)"
   else
     echo "$BLUE($YELLOW"$br"$BLUE $(parse_git_dirty)$BLUE)"

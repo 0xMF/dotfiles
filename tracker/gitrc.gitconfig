@@ -52,6 +52,12 @@
 [branch "master"]
 	autoSetupRebase = never
 
+[branch "main"]
+	autoSetupRebase = never
+
+[branch "dev"]
+	autoSetupRebase = never
+
 [pull]
 	rebase = true
 
@@ -64,3 +70,6 @@
 [diff]
 	tool = less -FEqRSX
   renameLimit = 1742
+
+[init]
+	defaultBranch = dev
