@@ -143,17 +143,18 @@ function psu {
   fi
 }
 
-function psc {
+function psg {
   if [ `id -u` -eq 0 ]; then
-    PS1="$RED\h:\W $(parse_git_repo)$RED#$NOCOLOR "
-    PROMPT_COMMAND="psc"
+    PS1="$RED$(parse_git_repo)$RED#$NOCOLOR "
+    PROMPT_COMMAND="psg"
   else
+    [ "$shell" = "zsh" ] &&  { 0xMF-zsh-psg; return; }
     if [[ "$SHELL_PROMPT" = "$" ]]; then
       PS1="$(parse_git_repo)$CYAN$SHELL_PROMPT$NOCOLOR "
-      PROMPT_COMMAND="psc"
+      PROMPT_COMMAND="psg"
     else
       print "$(parse_git_repo)$CYAN$SHELL_PROMPT$NOCOLOR "
-      PS1='$(pscs)'
+      PS1='$(psg)'
     fi
   fi
 }
@@ -1262,6 +1263,14 @@ function 0xMF-zsh-prompt {
     PROMPT+=' %{$fg[cyan]%}%c%{$reset_color%} $(parse_git_repo 2>/dev/null)'
     PROMPT+=" %{$fg_bold[green]%}%%$NOCOLOR "
     eval "function precmd { 0xMF-zsh-prompt }"
+  }
+}
+
+function 0xMF-zsh-psg {
+  [ "$shell" = "zsh" ] && {
+    PROMPT='$(parse_git_repo 2>/dev/null)'
+    PROMPT+=" %{$fg_bold[green]%}%%$NOCOLOR "
+    eval "function precmd { 0xMF-zsh-psg }"
   }
 }
 
