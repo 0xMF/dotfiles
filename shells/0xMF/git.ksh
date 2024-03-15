@@ -1160,8 +1160,8 @@ function ghw {
       gri ...\n\t\
       git commit ...\n\n\
     # ready to merge \n\t\
-      git rebase master\n\t\
-      git checkout master\n\t\
+      git rebase (master|dev|main)\n\t\
+      git checkout (master|dev|main)\n\t\
       git merge wip\n\n\
     # push to origin\n\t\
       git pull\n\t\
@@ -1244,7 +1244,9 @@ function gco {
 
 function gcm {
   if ! git checkout master 2>/dev/null; then
-    git checkout main
+    if ! git checkout dev 2>/dev/null; then
+        git checkout main
+    fi
   fi
 }
 
@@ -1347,14 +1349,10 @@ alias gd='git diff --color=always'
 alias gdiff-minimal="gdiff-files-changed"
 alias gdump='git cat-file -p'
 
-alias gfr='git fetch;git rebase remotes/origin/master'
-
 alias ghe='ghelp'
 alias ghista='ghist-all'
 alias ghistg='ghist --graph'
 alias ghumans="ghuman|sort -t'=' -k2 |cut -c1-120"
-
-alias gin='git log --all --color=always origin/master ^master'
 
 alias gl='git pull'
 alias glr='git pull --rebase'
@@ -1379,9 +1377,7 @@ alias glp='git log --all --color=always -p'
 alias gls='git ls-files'
 alias glsi='git status -s --ignored'
 alias glsv='git ls-files -v |\grep -v "^H"'
-alias glum='git pull upstream master'
 
-alias gout='git log --all --color=always master ^origin/master'
 alias gnevermind='git reset --hard HEAD && git clean -d -f'
 
 alias gp='git push'
@@ -1411,11 +1407,58 @@ alias gundo='git reset --soft HEAD~1'
 
 alias gwc='git whatchanged -p --abbrev-commit --pretty=medium'
 
-alias incoming='git log --all --color=always origin/master ^master'
-alias outgoing='git log --all --color=always master ^origin/master'
 #alias incoming='git log orgin/master ^master'
 #alias outgoing='git log master ^orgin/master'
 
+
+## original aliases that are now replaced by functions
+unalias gfr glum gin gout incoming outgoing 2>/dev/null
+
+#alias gfr='git fetch;git rebase remotes/origin/master'
+function gfr {
+ git fetch
+ if ! git rebase remotes/origin/master 2>/dev/null; then
+  if ! git rebase remotes/origin/dev 2>/dev/null; then
+    git rebase remotes/origin/main 2>/dev/null
+  fi
+ fi
+}
+
+#alias glum='git pull upstream master'
+function glum {
+ if ! git pull upstream/master 2>/dev/null; then
+  if ! git pull upstream/dev 2>/dev/null; then
+    git pull upstream/main 2>/dev/null
+  fi
+ fi
+}
+
+#alias gin='git log --all --color=always origin/master ^master'
+function gin {
+ if ! git log --all --color=always origin/master ^master 2>/dev/null; then
+  if ! git log --all --color=always origin/dev ^dev 2>/dev/null; then
+    git log --all --color=always origin/main ^main 2>/dev/null
+  fi
+ fi
+}
+
+#alias gout='git log --all --color=always master ^origin/master'
+function gout {
+ if ! git log --all --color=always origin/master ^origin/master 2>/dev/null; then
+  if ! git log --all --color=always origin/dev ^origin/dev 2>/dev/null; then
+    git log --all --color=always origin/main ^origin/main 2>/dev/null
+  fi
+ fi
+}
+
+#alias incoming='git log --all --color=always origin/master ^master'
+function incoming {
+  gin
+}
+#alias outgoing='git log --all --color=always master ^origin/master'
+function outgoing {
+  gout
+}
 
 git-use-0xMF
 
