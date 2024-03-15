@@ -1417,38 +1417,38 @@ unalias gfr glum gin gout incoming outgoing 2>/dev/null
 #alias gfr='git fetch;git rebase remotes/origin/master'
 function gfr {
  git fetch
- if ! git rebase remotes/origin/master 2>/dev/null; then
-  if ! git rebase remotes/origin/dev 2>/dev/null; then
-    git rebase remotes/origin/main 2>/dev/null
+ if ! git rebase remotes/origin/master; then
+  if ! git rebase remotes/origin/dev; then
+    git rebase remotes/origin/main
   fi
- fi
+ fi 2>/dev/null
 }
 
 #alias glum='git pull upstream master'
 function glum {
- if ! git pull upstream/master 2>/dev/null; then
-  if ! git pull upstream/dev 2>/dev/null; then
-    git pull upstream/main 2>/dev/null
+ if ! git pull upstream/master; then
+  if ! git pull upstream/dev; then
+    git pull upstream/main
   fi
- fi
+ fi 2>/dev/null
 }
 
 #alias gin='git log --all --color=always origin/master ^master'
 function gin {
- if ! git log --all --color=always origin/master ^master 2>/dev/null; then
-  if ! git log --all --color=always origin/dev ^dev 2>/dev/null; then
-    git log --all --color=always origin/main ^main 2>/dev/null
+ if ! git log --all --color=always origin/master ^master; then
+  if ! git log --all --color=always origin/dev ^dev; then
+    git log --all --color=always origin/main ^main
   fi
- fi
+ fi 2>/dev/null
 }
 
 #alias gout='git log --all --color=always master ^origin/master'
 function gout {
- if ! git log --all --color=always origin/master ^origin/master 2>/dev/null; then
-  if ! git log --all --color=always origin/dev ^origin/dev 2>/dev/null; then
-    git log --all --color=always origin/main ^origin/main 2>/dev/null
+ if ! git log --all --color=always origin/master ^origin/master; then
+  if ! git log --all --color=always origin/dev ^origin/dev; then
+    git log --all --color=always origin/main ^origin/main
   fi
- fi
+ fi 2>/dev/null
 }
 
 #alias incoming='git log --all --color=always origin/master ^master'
