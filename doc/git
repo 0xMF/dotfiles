@@ -4,3 +4,7 @@
 
 # to skip changes of many tracked files showing up in git status
   git update-index --assume-unchanged <file>
+
+# garbage collect and list lost-found objects
+  git gc
+  git fsck --lost-found

@@ -560,6 +560,18 @@ function 0xMF-git-log-pretty-reverse {
           --pretty=format:\"%C(red bold)%h%Creset %C(blue bold)%ad%Creset %C(cyan bold)|%Creset %C(auto)%d%Creset %s\" $@"
 }
 
+function 0xMF-git-lost-found {
+  if _is_git_repo -eq 0
+  then
+    git gc
+    for o in $(git fsck --lost-found | awk '{ print $NF}')
+    do
+      git show $o
+    done
+  fi
+}
+alias glost-found='0xMF-git-lost-found'
+
 # show all git commits history
 function ghist {
   if _is_git_repo -eq 0
