@@ -64,7 +64,9 @@ set runtimepath=$VIMRUNTIME,$MYVIM,$MYVIM/dependencies
     " use Ctrl+N Ctrl+P to cycle between open tabs (maximize view on smaller screens)
     :set showtabline=0   " =0 never show tabs, =1 show if 2 or more tabs, =2 always show
     :if (version > 740)                       " possible features for better than  Vim74
-    :   colorscheme industry                  " Wow!! Thank you Shian Lee!
+    " Wow!! Some elegant colorschemes come shipped with vim. Thanks to:
+    :   colorscheme darkblue                  " Bohdan Vlasyuk
+    ":  colorscheme industry                  " Shian Lee
     :endif
 :endif
 
