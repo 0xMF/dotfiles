@@ -1435,9 +1435,9 @@ function gfr {
 
 #alias glum='git pull upstream master'
 function glum {
- if ! git pull upstream/master; then
-  if ! git pull upstream/dev; then
-    git pull upstream/main
+ if ! git pull upstream master; then
+  if ! git pull upstream dev; then
+    git pull upstream main
   fi
  fi 2>/dev/null
 }
