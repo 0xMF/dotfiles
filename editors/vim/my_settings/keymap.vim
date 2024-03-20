@@ -16,9 +16,10 @@ vmap <C-A>  ggVG
 "imap <C-u>  vgG
 "vmap <C-u>  "+x<Esc>a
 
-"<Ctrl-P> -- coPy (goto visual mode and copy)
+"<Ctrl-Y> -- copY (goto visual mode and copy)
 " have to use because X11 internally maps <C-C> to stopping a search
-vmap <C-p>   "+ygv"zy`>
+" my settings for buffer and tab switching uses <C-p>
+vmap <C-y>   "+ygv"zy`>
 autocmd FocusGained * let @z=@+
 
 "<Ctrl-V> -- paste in insert mode
