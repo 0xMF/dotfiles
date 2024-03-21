@@ -15,7 +15,7 @@ function can_sudo {
   if sudo -Al -U $USER 2>/dev/null 1>/dev/null; then
     echo "sudo"
   else
-    echo ":"
+    echo ""
   fi
 }
 
@@ -44,11 +44,11 @@ function sc {
   local mysc=$( whereis systemctl | awk '{print $2}' )
   local sdo=$(can_sudo)
 
-  [ "`uname`" != "Linux" ] && { echo "not running on Linux"; return; }
-  [ `id -u` -ne 0 ] && mysc="${sdo} $mysc"
+  [ "$(uname)" != "Linux" ] && { echo "not running on Linux"; return; }
+  [ $(id -u) -ne 0 ] && mysc="${sdo} ${mysc}"
   case "$1" in
     "help"|"h"|"-h"|"--help") $mysc --help "$@" ;;
-    * ) $mysc "$@" ;;
+    * ) eval "$mysc $@" ;;
   esac
 
   unset mysc sdo
