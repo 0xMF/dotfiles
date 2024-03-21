@@ -29,12 +29,12 @@ function jc {
   local myjc=$( whereis journalctl | awk '{print $2}' )
   local sdo=$(can_sudo)
 
-  [ "`uname`" != "Linux" ] && { echo "not running on Linux"; return; }
-  [ `id -u` -ne 0 ] && myjc="${sdo} $myjc"
+  [ "$(uname)" != "Linux" ] && { echo "not running on Linux"; return; }
+  [ $(id -u) -ne 0 ] && myjc="${sdo} ${myjc}"
   case "$1" in
-    "" ) $myjc -xe | less -FeqRSX ;;
-    "help"|"h"|"-h"|"--help") $myjc --help "$@" ;;
-    * ) $myjc "$@" ;;
+    "" ) eval "${myjc} -xe" | less -FeqRSX ;;
+    "help"|"h"|"-h"|"--help") eval "${myjc} --help $@" ;;
+    * ) eval "${myjc} $@" ;;
   esac
 
   unset myjc sdo
@@ -47,8 +47,8 @@ function sc {
   [ "$(uname)" != "Linux" ] && { echo "not running on Linux"; return; }
   [ $(id -u) -ne 0 ] && mysc="${sdo} ${mysc}"
   case "$1" in
-    "help"|"h"|"-h"|"--help") $mysc --help "$@" ;;
-    * ) eval "$mysc $@" ;;
+    "help"|"h"|"-h"|"--help") eval "${mysc} --help $@" ;;
+    * ) eval "${mysc} $@" ;;
   esac
 
   unset mysc sdo
