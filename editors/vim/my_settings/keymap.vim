@@ -255,3 +255,4 @@ imap <Nul>    <Space>
 " :help gf
 "nnoremap gf :tabe <cfile><CR>
 "map <C-F> gf
+map ;hh <Esc>:call SynStack()<CR>

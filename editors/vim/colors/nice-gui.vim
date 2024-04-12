@@ -73,6 +73,5 @@ hi  link Structure      Type
 hi  link Typedef        Type
 hi! link ErrorMsg       Visual
 
-
 " local syntax file - set colors on a per-machine basis:
 " vim: tw=0 ts=4 sw=4

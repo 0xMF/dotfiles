@@ -124,5 +124,7 @@ hi asciidocQuotedUnconstrainedEmphasized cterm=italic ctermbg=none   ctermfg=Blu
 hi asciidocQuotedBold cterm=bold ctermbg=none   ctermfg=Red
 hi asciidocQuotedUnconstrainedBold cterm=bold ctermbg=none   ctermfg=Red
 
+hi  DiffText  guibg=Yellow
+
 " local syntax file - set colors on a per-machine basis:
 " vim: tw=0 ts=4 sw=4
