@@ -3,6 +3,8 @@
 : colorscheme pablo
 :endif
 
+let loaded_matchparen = 1
+
 set nohlsearch
 set textwidth=78
 set tabstop=2
