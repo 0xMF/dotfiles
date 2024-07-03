@@ -823,13 +823,13 @@ function ghaf {
     if [[ "$n" = "--all" ]]; then
       git log --all $n $(echo "${opts}") --pretty=format:"%C(red bold)%h%Creset %C(cyan bold)|%Creset %C(auto)%d%Creset %s"
     else
-      git --no-pager log --all $n "${opts}" --pretty=format:"%C(red bold)%h%Creset %C(cyan bold)|%Creset %C(auto)%d%Creset %s"
+      git --no-pager log --all $n $(echo "${opts}") --pretty=format:"%C(red bold)%h%Creset %C(cyan bold)|%Creset %C(auto)%d%Creset %s"
       echo
     fi
     # default pager must handle less than one screen correctly (bash/Linux with less, ksh/OpenBSD with less -c are ok)
     # else uncomment line below when only on bash/Linux
     #if [[ "$SHELL_PROMPT" = "$" ]]; then
-      eval "[ `git log --all ${opts} --pretty=oneline | wc -l` -gt 10 ] && git diff --color=always --stat HEAD~$((0 - $n)) HEAD"
+      eval "[ $(git log --all $(echo "${opts}") --pretty=oneline | wc -l) -gt 10 ] && git diff --color=always --stat HEAD~$((0 - $n)) HEAD"
     #fi
   fi
 }

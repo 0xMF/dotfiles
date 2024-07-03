@@ -1,6 +1,12 @@
+require 'pry-doc'
+Pry.config.commands.alias_command "doc", 'ri'
+Pry.config.commands.alias_command "src", "show-source -d"
+
 Pry.config.color = true
 Pry.config.editor = "vim"
 Pry.config.prompt = Pry::Prompt[:simple]
+Pry.config.skip_cruby_source = true
+
 Pry.config.history_file = "~/.irb_history"
 Pry.config.history_load = true
 Pry.config.history_save = true
