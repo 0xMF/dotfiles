@@ -798,7 +798,7 @@ function __pager-no-counter {
 }
 
 
-function __gh {
+function __ghh {
   if _is_git_repo -eq 0
   then
     c=$(git log --oneline | wc -l)
@@ -838,7 +838,7 @@ function ghaf {
 #   no args : show last 10 one-line commit messages
 #   1 arg   : show that (relative to HEAD~) commit message details
 #   2 args  : show summary of commit messages within the given numbers
-function gh {
+function ghh {
   #`echo "$@"|sed -r 's/(,|-|  )/ /g'`
 
   if _is_git_repo -eq 0
@@ -846,7 +846,7 @@ function gh {
     if [[ $1 -le 0 ]]; then
       gshow $1
     else
-      e=$([ "$1" = "d" ] && echo __gdh || echo __gh)
+      e=$([ "$1" = "d" ] && echo __gdh || echo __ghh)
 
       [ "$1" = "d" ] && shift
       case $# in
@@ -869,13 +869,13 @@ function gh {
 }
 
 function gh-rel-to-HEAD {
-  gh "$@" | __pager-counter
+  ghh "$@" | __pager-counter
 }
 
 function gha {
   if _is_git_repo -eq 0
   then
-   eval $([ -z "$1" ] && echo __gh || echo __gdh) --no-pager
+   eval $([ -z "$1" ] && echo __ghh || echo __gdh) --no-pager
   fi
 }
 
@@ -886,7 +886,7 @@ function gha-rel-to-HEAD {
 function ghb {
   if _is_git_repo -eq 0
   then
-    for c in `seq $(gh|wc -l)`
+    for c in `seq $(ghh|wc -l)`
     do
         git log --all $(echo "${opts}") --pretty=format:"%C(bold red)%h%Creset %C(bold cyan)%s%Creset %C(bold green)%b%Creset" \
             HEAD~$c..HEAD~`expr $c - 1`
@@ -935,7 +935,7 @@ function ghtA {
   fi
 }
 
-function ghh {
+function ghl {
   if _is_git_repo -eq 0
   then
     git log $(echo "${opts}") --all \
