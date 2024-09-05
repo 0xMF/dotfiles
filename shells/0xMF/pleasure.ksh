@@ -589,7 +589,7 @@ function 0xMF-hogs {
 
   if [[ -z "$1"  || "$1" = "--sort-human" ]]; then
     if [ "$(uname)" = "OpenBSD" ]; then
-      sz="1950"
+      sz="+1950"
     else
       sz="+10M"
     fi
@@ -638,6 +638,8 @@ function 0xMF-hogs {
     else
       echo -e "No files of size $sz or more were found under $PWD"
     fi
+  else
+    echo -e "No files of size $sz or more were found under $PWD"
   fi
 
   unset files f nf sz
