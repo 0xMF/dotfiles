@@ -740,11 +740,14 @@ function gdiff {
     else
       # $1 is a file
       if [[ -s "$1" ]]; then
+        local f
+        f=$(realpath "$1")
         if [[ -z "$3" && "${2}" -gt 0 ]]; then
-          __gdiff-list-files-and-show-diffs $2 0 $1
+          __gdiff-list-files-and-show-diffs $2 0 $f
         else
-          git diff --color=always -w "${1}" | grep -v binary | less -FeqRSX
+          git diff --color=always -w "${f}" | grep -v binary | less -FeqRSX
         fi
+        unset f
         return
       fi
       # $1 and (if given) $2 are integers greater than zero
