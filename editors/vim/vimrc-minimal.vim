@@ -10,7 +10,9 @@
 let loaded_matchparen = 1
 
 set expandtab
+set mousemodel=popup keymodel=startsel
 set nohlsearch
+set selectmode=mouse,key selection=inclusive
 set shiftwidth=2
 set softtabstop=2
 set textwidth=78
