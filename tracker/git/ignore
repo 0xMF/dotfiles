@@ -122,6 +122,7 @@ recentf
 ##############
 **/vim/dependencies/*
 **/vim/colors/midnight*
+.viminfo
 
 # erlang/otp make dirs
 armv7l-unknown-linux-gnueabihf
