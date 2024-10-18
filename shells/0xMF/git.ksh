@@ -1247,7 +1247,7 @@ function gco {
       git checkout "$@"
   else
     if [[ -n "$1" ]]; then
-      if echo "$1" | grep -q '^[0-9][0-9]*'; then
+      if echo "$1" | grep -q '^[0-9][0-9]*$'; then
         git checkout HEAD~"$1"
       else
         git checkout "$1"
