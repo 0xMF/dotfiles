@@ -118,6 +118,7 @@ imap <Nul>    <Space>
 :imap <End> <Esc>$a|                    " --ditto-- in insert mode
 :imap <M-q> <Esc>magq}``a|              " --ditto-- in insert mode
 :imap ;a    <Esc>ea><Esc>a|             " --ditto-- in insert mode
+:imap ;g    <Esc>:set cursorcolumn!<CR>a|
 :imap ;l    <Esc>:set list!<CR>a|       " toggle non-printable
 :imap ;m    <Esc>:w!<CR>:! make<Esc>a|   " run a local make
 :imap ;n    <Esc>:set nu!<CR>a|         " toggle numbering
@@ -148,6 +149,7 @@ imap <Nul>    <Space>
 :map ;e :set spell!<CR>|                " toggle spell checking
 :map ;ea i</<Esc>ea><Esc>|              " add end tags <> around a word
 :map ;fo <Esc>:call My_Convert()<CR>|   " removes dos formatting
+:map ;g :set cursorcolumn!<CR>
 :map ;h :set hls!<CR>|                  " toggle hilightsearch
 :map ;i i'<Esc>Ea'<Esc>|                " ' ' around a word
 :map ;l <Esc>:set list!<CR>|            " toggle non-printable

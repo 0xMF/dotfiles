@@ -914,7 +914,7 @@ function ghg {
     if [[ "$n" = "--all" ]]; then
       git log --all $(echo "${opts}") $n --graph --pretty=format:"%C(red bold)%h%Creset %C(cyan bold)|%Creset %C(auto)%d%Creset %s"
     else
-      git --no-pager log --all --graph "${opts}" $n --pretty=format:"%C(red bold)%h%Creset %C(cyan bold)|%Creset %C(auto)%d%Creset %s"
+      git --no-pager log --all --graph $(echo "${opts}") $n --pretty=format:"%C(red bold)%h%Creset %C(cyan bold)|%Creset %C(auto)%d%Creset %s"
       echo
     fi
   fi
