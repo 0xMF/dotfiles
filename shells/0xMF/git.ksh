@@ -479,6 +479,7 @@ unset optsDiff
 unset optsPretty1 optsPretty2
 opts="--color=always --first-parent --date=short --decorate=no"
 optsDiff="--color=always"
+optsDiffExclude=":(exclude)*.html"
 optsPretty1="%C(red bold)%h%Creset %C(cyan bold)| %ad %C(green bold)*%Creset %C(auto)%d%Creset %s"
 optsPretty2="%C(red bold)%h%Creset %C(cyan bold)| %ad %C(green bold)*%Creset %C(auto)%d%Creset %s"
 optsPretty3="%C(red bold)%h%Creset %C(cyan bold)| %Creset %C(blue bold)%ad%Creset %C(cyan bold)|%Creset %C(auto)%d%Creset %s"
@@ -726,16 +727,16 @@ function __gdiff-list-files-and-show-diffs {
 function gdiff {
   if _is_git_repo -eq 0; then
     if [ -z "$1" ]; then
-      lines=$(git diff --color=always -w HEAD |wc -l)
+      lines=$(git diff --color=always -w HEAD "${optsDiffExclude}" |wc -l)
       [ $lines -eq 0 ] && return
-      git diff --color=always --stat -w HEAD
+      git diff --color=always --stat -w HEAD "${optsDiffExclude}"
       if [ $lines -le 30 ]; then
         echo
-        git diff --color=always -w HEAD
+        git diff --color=always -w HEAD "${optsDiffExclude}"
       else
         echo -ne "\nShow diff details from HEAD? (Y/n) "; read key
         [[ "$key" = "n" || "$key" = "N" ]] && return
-        git diff --color=always -w HEAD
+        git diff --color=always -w HEAD "${optsDiffExclude}"
       fi
     else
       # $1 is a file
@@ -745,7 +746,7 @@ function gdiff {
         if [[ -z "$3" && "${2}" -gt 0 ]]; then
           __gdiff-list-files-and-show-diffs $2 0 $f
         else
-          git diff --color=always -w "${f}" | grep -v binary | less -FeqRSX
+          git diff --color=always -w "${f}" "${optsDiffExclude}"  | grep -v binary | less -FeqRSX
         fi
         unset f
         return
@@ -774,7 +775,7 @@ function gdiff-pager {
   if _is_git_repo -eq 0; then
     for f in "$@"
     do
-      git diff --color=always -w $f | grep -v binary
+      git diff --color=always -w $f "${optsDiffExclude}"  | grep -v binary
     done | less -FeqRSX
   fi
 }
@@ -985,9 +986,9 @@ function _gshow {
       0) echo -e "Showing last $p commit messages"
         git log $(echo "${opts}") -"${p}" --pretty=format:"%C(red bold)%h%Creset %C(cyan bold)|%Creset %C(blue bold)%ad%Creset %C(cyan bold)|%Creset %C(auto)%d%Creset %s" --date=short | awk '{print NR-1,$0}'
         if [ $(git diff --stat HEAD~$p HEAD | wc -l) -gt 10 ]; then
-          git diff $(echo ${optsDiff}) --stat HEAD~$p HEAD | head
+          git diff $(echo ${optsDiff}) --stat HEAD~$p HEAD "${optsDiffExclude}"| head
         else
-          git diff $(echo ${optsDiff}) --stat HEAD~$p HEAD
+          git diff $(echo ${optsDiff}) --stat HEAD~$p HEAD "${optsDiffExclude}"
         fi
          echo -ne "\nShow details of last $p commits? (y/N) "; read key
          if [[ "$key" = "y" || "$key" = "Y" ]]; then
@@ -1036,26 +1037,26 @@ function _gshow {
 
               echo -n "show files changed between $1 and $2? (Y/n) ";  read key
               [[ "$key" = "n" || "$key" = "N" ]] && return
-              local files=$(git diff $(echo ${optsDiff}) --stat $1 $2 2>/dev/null)
+              local files=$(git diff $(echo ${optsDiff}) --stat $1 $2 "${optsDiffExclude}" 2>/dev/null)
               if [[ $(echo "${files}" | wc -l) -le 1 ]]; then
                 echo "no files found; next time try with more hex digits from commit hash for one or both commits"
               else
-                eval "git diff $(echo ${optsDiff}) --stat $1 $2 2>/dev/null"
+                eval "git diff $(echo ${optsDiff}) --stat $1 $2 "${optsDiffExclude}" 2>/dev/null"
               fi
 
               echo -n "show diffs between $1 and $2? (Y/n) ";  read key
               [[ "$key" = "n" || "$key" = "N" ]] && return
-              eval "git diff $(echo ${optsDiff}) $@"
+              eval "git diff $(echo ${optsDiff}) ${optsDiffExclude} $@"
             else
               if [[ ! -s $2 ]]; then
                 if  [[ $1 -ge 0 && $2 -ge 0 ]]; then
                   if [[ $2 -gt $1 ]]; then
                     git log $(echo "${opts}") HEAD~$(($2 + 1))...HEAD~$1 --pretty=format:"%C(red bold)%h%Creset %C(cyan bold)|%Creset %C(blue bold)%ad%Creset %C(cyan bold)|%Creset %C(auto)%d%Creset %s" --date=short
-                    git diff $(echo ${optsDiff}) --stat HEAD~$(($2 + 1))..HEAD~$1
+                    git diff $(echo ${optsDiff}) --stat HEAD~$(($2 + 1))..HEAD~$1 "${optsDiffExclude}"
                   else
                     if [[ $1 -gt $2 ]]; then
                       git log $(echo "${opts}") HEAD~$(($1 + 1))...HEAD~$2 --pretty=format:"%C(red bold)%h%Creset %C(cyan bold)|%Creset %C(blue bold)%ad%Creset %C(cyan bold)|%Creset %C(auto)%d%Creset %s" --date=short
-                      git diff $(echo ${optsDiff}) --stat HEAD~$(($1 + 1))..HEAD~$2
+                      git diff $(echo ${optsDiff}) --stat HEAD~$(($1 + 1))..HEAD~$2 "${optsDiffExclude}"
                     else
                       echo "did not understand... $*"
                     fi
