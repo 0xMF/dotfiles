@@ -672,17 +672,17 @@ function gss   { if _is_git_repo -eq 0; then git status -s; fi }
 
 function gdiff-files-changed {
   if _is_git_repo -eq 0; then
-    if [ -z "$1" ]; then
-      lines=$(git diff --color=always -w HEAD |wc -l)
+    if [[ -z "$1" || -s "$1" ]]; then
+      lines=$(git diff --color=always -w HEAD "$@" |wc -l)
       [ $lines -eq 0 ] && return
-      git diff --color=always --stat -w HEAD
+      git diff --color=always --stat -w HEAD "$@"
       if [ $lines -le 30 ]; then
         echo
-        git diff --color=always -w HEAD
+        git diff --color=always -w HEAD "$@"
       else
         echo -ne "\nShow diff details from HEAD? (y/N) "; read key
         if [[ "$key" = "y" || "$key" = "Y" ]]; then
-          git diff --color=always -w HEAD
+          git diff --color=always -w HEAD "$@"
         fi
       fi
     else
@@ -726,17 +726,17 @@ function __gdiff-list-files-and-show-diffs {
 
 function gdiff {
   if _is_git_repo -eq 0; then
-    if [ -z "$1" ]; then
-      lines=$(git diff --color=always -w HEAD "${optsDiffExclude}" |wc -l)
+    if [[ -z "$1" || -s "$1" ]]; then
+      lines=$(git diff --color=always -w HEAD "$@" "${optsDiffExclude}" |wc -l)
       [ $lines -eq 0 ] && return
-      git diff --color=always --stat -w HEAD "${optsDiffExclude}"
+      git diff --color=always --stat -w HEAD "$@" "${optsDiffExclude}"
       if [ $lines -le 30 ]; then
         echo
-        git diff --color=always -w HEAD "${optsDiffExclude}"
+        git diff --color=always -w HEAD "$@" "${optsDiffExclude}"
       else
         echo -ne "\nShow diff details from HEAD? (Y/n) "; read key
         [[ "$key" = "n" || "$key" = "N" ]] && return
-        git diff --color=always -w HEAD "${optsDiffExclude}"
+        git diff --color=always -w HEAD "$@" "${optsDiffExclude}"
       fi
     else
       # $1 is a file
