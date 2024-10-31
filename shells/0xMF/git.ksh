@@ -808,7 +808,6 @@ function __ghh {
     c=$(git log --oneline | wc -l)
     n=${1:--10}
     if [[ "$n" != "--no-pager" ]]; then
-      echo here
       if [ $c -le 9 ]; then
         eval "git log -$c $(echo ${opts}) --pretty=format:\"${optsPretty1}\"" | __no-pager-counter
       else
@@ -890,7 +889,7 @@ function gha-rel-to-HEAD {
 function ghb {
   if _is_git_repo -eq 0
   then
-    for c in `seq $(ghh|wc -l)`
+    for c in `seq $(__ghh|wc -l)`
     do
         git log --all $(echo "${opts}") --pretty=format:"%C(bold red)%h%Creset %C(bold cyan)%s%Creset %C(bold green)%b%Creset" \
             HEAD~$c..HEAD~`expr $c - 1`
