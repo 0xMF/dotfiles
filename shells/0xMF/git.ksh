@@ -746,7 +746,7 @@ function gdiff {
         if [[ -z "$3" && "${2}" -gt 0 ]]; then
           __gdiff-list-files-and-show-diffs $2 0 $f
         else
-          git diff --color=always -w "${f}" "${optsDiffExclude}"  | grep -v binary | less -FeqRSX
+          git diff --color=always "${optsDiffExclude}"  | grep -v binary | less -FeqRSX
         fi
         unset f
         return
@@ -754,18 +754,18 @@ function gdiff {
       # $1 and (if given) $2 are integers greater than zero
       if [[ -z "$2" && "${1}" -gt 0 ]]; then
         __gdiff-list-files-and-show-diffs $1 0
-      else
-        if [[ -s "${2}" ]]; then
-          __gdiff-list-files-and-show-diffs $1 0 $2
-        else
-          if [[ "${2}" -gt 0 ]] ; then
-            echo "git-diff for...$@"
-            __gdiff-list-files-and-show-diffs $1 $2 $3
-          else
-            echo "couldn't understand...$@"
-          fi
-        fi
+        return
       fi
+      if [[ -s "${2}" ]]; then
+        __gdiff-list-files-and-show-diffs 0 $1 $2
+        return
+      fi
+      if [[ "${2}" -gt 0 ]] ; then
+        echo "git-diff for...$@"
+        __gdiff-list-files-and-show-diffs $1 $2 $3
+        return
+      fi
+      git diff --color=always "$@" "${optsDiffExclude}"
     fi
   fi
 }
