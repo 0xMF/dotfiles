@@ -23,7 +23,7 @@
 :   let $MYVIM=expand("$HOME/.vim")
 :end
 
-set runtimepath=$VIMRUNTIME,$MYVIM,$MYVIM/dependencies
+set runtimepath=$VIMRUNTIME,$MYVIM,$MYVIM/dependencies,$VIM/vimfiles
 
 "** Keyboard Mappings
 :if filereadable($MYVIM . "/my_settings/keymap.vim")

@@ -83,7 +83,20 @@ augroup END
 :       execute "colorscheme nice"
 :     endtry
 :   elseif g:colors_name == "midnight"
-:     execute "colorscheme nice"
+:       let g:gruvbox_contrast_light = 'hard'
+:       let g:gruvbox_contrast_dark = 'hard'
+:     try
+:       execute "set background=dark"
+:       execute "colorscheme gruvbox"
+:     catch
+:       execute "colorscheme nice"
+:     endtry
+:   elseif g:colors_name == "gruvbox"
+:     if &background == "dark"
+:       execute "set background=light"
+:     else
+:       execute "colorscheme nice"
+:     endif
 :   endif
 : else
 :   if g:colors_name == "nice-term"
