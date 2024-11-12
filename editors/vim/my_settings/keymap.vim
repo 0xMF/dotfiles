@@ -48,10 +48,10 @@ map g<C-\> :cs find 0 <C-R>=expand("<cword>")<CR><CR>
 :map <C-H> <C-W>p
 :map <C-L> <C-W>p
 :imap <C-L> <Esc><C-W>p
-:map <C-J> <C-W>p<C-D><C-W>p
-:imap <C-J> <Esc><C-W>p<C-D><C-W>pa
-:map <C-K> <C-W>p<C-U><C-W>p
-:imap <C-K> <Esc><C-W>p<C-U><C-W>pa
+:map <C-J> <C-W>p<C-D><C-W>p:vert resize -11<CR>
+:imap <C-J> <Esc><C-W>p<C-D><C-W>p:vert resize -11<CR>a
+:map <C-K> <C-W>p<C-U><C-W>p:vert resize -11<CR>
+:imap <C-K> <Esc><C-W>p<C-U><C-W>p:vert resize -11<CR>a
 map <C-Down> <C-J>
 map <C-Up> <C-K>
 
