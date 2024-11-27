@@ -175,7 +175,7 @@ imap <Nul>    <Space>
 :map ;wW :resize<CR>|                   " window resize
 :map ;ww :resize<CR>|                   " window resize
 :map ;wo <C-w>p<CR>|                    " window previous
-:map ;wO <C-w>o<CR>|                    " window previous
+":map ;wO <C-w>o<CR>|                    " window previous
 :map ;w= <C-W>=
 :map ;w- <C-W>=
 :map ;w_ :resize<CR>
@@ -209,6 +209,8 @@ imap <Nul>    <Space>
 :imap <C-x>= <Esc><C-W>=<CR>a
 :imap <C-w> <Esc><C-W>|                 " setup toggle to other windows with hjkl and UpDnLtRt
 :map <C-w>_ <Esc>:resize<CR>
+:map <C-w>o <Esc><C-w>p<CR>
+:imap <C-w>o <Esc><C-w>p<CR>a
 
 " window rotate
 :map <C-w><C-a>  <C-w>r
