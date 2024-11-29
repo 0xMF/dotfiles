@@ -1227,7 +1227,7 @@ function gsts {
     case "$1" in
       "--all" ) git status -s -u --ignored --ignore-submodules ;;
       "--no-swap" ) git status -s -u --ignored --ignore-submodules  | grep -vE ".*~$" ;;
-      * ) git status -s ;;
+      * ) git status -s "$@" ;;
     esac
   fi
 }
