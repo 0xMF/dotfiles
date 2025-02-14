@@ -71,6 +71,8 @@ augroup END
 : if has ("gui_running")
 :   if g:colors_name == "nice"
 ":     execute "colorscheme" s:colorscheme
+:     execute "colorscheme nice-blue"
+:   elseif g:colors_name == "nice-blue"
 :     execute "colorscheme pablo"
 :   elseif g:colors_name == "pablo"
 :     execute "colorscheme darkblue"
@@ -107,6 +109,7 @@ augroup END
 :   endif
 : endif
 :endfunction
+
 
 :let s:colors = "light"
 :function! My_Colours_Toggle()
