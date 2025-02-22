@@ -97,6 +97,12 @@ augroup END
 :     if &background == "dark"
 :       execute "set background=light"
 :     else
+:       execute "colorscheme retrobox"
+:     endif
+:   elseif g:colors_name == "retrobox"
+:     if &background == "dark"
+:       execute "set background=light"
+:     else
 :       execute "colorscheme nice"
 :     endif
 :   endif
