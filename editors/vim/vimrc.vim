@@ -20,7 +20,11 @@
 :   endif
 :else
 :   let $USER=substitute(system("/usr/bin/id -u"),"\n","","g")
-:   let $MYVIM=expand("$HOME/.vim")
+:   if $USER  == "0"
+:     let $MYVIM=expand("/root/.vim")
+:   else
+:     let $MYVIM=expand("$HOME/.vim")
+:   end
 :end
 
 set runtimepath=$VIMRUNTIME,$MYVIM,$MYVIM/dependencies,$VIM/vimfiles
