@@ -136,3 +136,6 @@ armv7l-unknown-linux-gnueabihf
 dist-newstyle
 newdist
 
+# TeX files
+###############
+*.tex
