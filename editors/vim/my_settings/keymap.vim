@@ -20,6 +20,7 @@ vmap <C-A>  ggVG
 " have to use because X11 internally maps <C-C> to stopping a search
 " my settings for buffer and tab switching uses <C-p>
 vmap <C-y>   "+ygv"zy`>
+vmap <C-c>   "+ygv"zy`>
 autocmd FocusGained * let @z=@+
 
 "<Ctrl-V> -- paste in insert mode
