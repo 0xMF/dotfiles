@@ -85,7 +85,7 @@ function 0xMF-cal {
 alias cal='0xMF-cal'
 
 function 0xMF-lg {
- ls -g "$@" | awk '!/total/{$2=$3="\b"; print $0}'
+ ls -g --color=always -Ft --time-style=+"%Y-%b-%d %H:%M" "$@" | awk '!/total/'
 }
 
 function 0xMF-llr {
