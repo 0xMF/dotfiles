@@ -264,15 +264,28 @@ function gdoc {
 function _gdoc_helper {
   if [ "$1" = "help" ]; then
     shift
-    go help "$@" | chroma -l go -f terminal256 -s paraiso-dark | less -FeqRSX
+    go help "$@" | _gdoc_helper_chroma
     return
   fi
+  if [ "$1" = "go" ]; then
+    if [[ "$2" == "help" ]]; then
+      shift 2
+      go help "$@" | _gdoc_helper_chroma
+      return
+    fi
+    go doc "$@" | _gdoc_helper_chroma
+    return
+  fi
+  go doc "$@" | _gdoc_helper_chroma
+}
+
+function _gdoc_helper_chroma {
   if which chroma > /dev/null 2>&1; then
-    [ -z "$CHROMA_STYLE" ] \
-      && { go doc "$@" | chroma -l go -f terminal256 -s paraiso-dark | less -FeqRSX ; }  \
-      || { go doc "$@" | chroma -l go -f terminal256 -s "$CHROMA_STYLE" | less -FeqRSX ; }
-  else
-    go doc "$@"
+    if [ -z "$CHROMA_STYLE" ]; then
+      chroma -l go -f terminal256 -s paraiso-dark
+    else
+      chroma -l go -f terminal256 -s "${CHROMA_STYLE}"
+    fi | less -FeqRSX
   fi
 }
 
