@@ -34,7 +34,7 @@ hi Title      gui=bold    term=underline  ctermfg=Blue                  guifg=Ye
 
 
 " Colour for crucial elements
-hi Comment    gui=italic      term=bold       ctermfg=Red                     guifg=DarkGreen
+hi Comment    gui=italic      term=bold       ctermfg=Red                     guifg=DeepSkyBlue2
 hi Constant   gui=italic,bold term=underline  ctermfg=DarkGray                guifg=DarkCyan  "#888999             " gray
 hi Error                      term=reverse    ctermfg=15 ctermbg=9            guifg=White     guibg=Red
 hi Identifier gui=none        term=underline  ctermfg=Blue                    guifg=LightGreen
