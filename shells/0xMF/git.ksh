@@ -1,14 +1,28 @@
+# Exit if not running interactively
 [ -z "$PS1" ] && return
 
-THIS_SHELL=`ps o command -p $$ | grep -v "^COMMAND$" | tr -d '-' | cut -d' ' -f1`
-case "${THIS_SHELL##/**/}" in
-  bash|ksh|zsh) ;;
-  *) >&2 echo "This script probably wont work with $THIS_SHELL, so bailing out now...bye!";
-     exit 1;;
-esac
+# Determine the current shell using reliable, built-in variables
+if [ -n "$BASH_VERSION" ]; then
+  shell="bash"
+elif [ -n "$ZSH_VERSION" ]; then
+  shell="zsh"
+elif [ -n "$KSH_VERSION" ] || [ "$(basename "$SHELL")" = "ksh" ]; then
+  shell="ksh"
+else
+  # Fallback to examining process info if built-in variables aren't available
+  THIS_SHELL=$(ps -p $$ -o comm= 2>/dev/null || basename "$SHELL")
+  THIS_SHELL=$(basename "$THIS_SHELL" | sed 's/^-//')
 
-shell=$(basename $THIS_SHELL)
-[[ "$BASH" = "/usr/bin/bash" || "$BASH" = "/bin/bash" ]] && shell="bash"
+  case "$THIS_SHELL" in
+    bash|ksh|zsh)
+      shell="$THIS_SHELL"
+      ;;
+    *)
+      >&2 echo "Warning: Unknown shell '$THIS_SHELL'. This script is designed for bash, ksh, or zsh."
+      >&2 echo "Some features may not work correctly, so bailing out now...bye!"
+      ;;
+  esac
+fi
 
 # required for hub (cli tool for github management)
 #export BROWSER='links2 -no-g'
