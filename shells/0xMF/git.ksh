@@ -1094,7 +1094,7 @@ function _gshow {
   fi
   opts="${old_opts}"
 }
-if [ "${SHELL##*/}" = "zsh" ]; then
+if [ -n "$ZSH_VERSION" ]; then
   compdef _git gshow=git-log
 fi
 
