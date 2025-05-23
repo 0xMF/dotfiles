@@ -1,7 +1,7 @@
 "--------------------------------------------------------------------
 " Filename:     nice-gui.vim
 " Purpose:      Vim color file
-" Based On:     color highlighting found in zellner.vim 
+" Based On:     color highlighting found in zellner.vim
 " Modified By:  Mark Fernandes
 " Last Change:  2010 Mar 28
 "--------------------------------------------------------------------
@@ -22,7 +22,7 @@ if exists("syntax_on")
 endif
 let g:colors_name = "nice-gui"
 
-" Possible color names: Brown, Blue, Purple, 
+" Possible color names: Brown, Blue, Purple,
 " Alternate nice colors (gray: #888999) (purple:AA0BBB)
 
 " Mode and Document settings
@@ -30,7 +30,8 @@ hi Normal     gui=none    term=bold                                     guifg=bl
 hi Visual     gui=none    term=reverse    ctermfg=Yellow  ctermbg=Red   guifg=Black guibg=Yellow
 hi Search     gui=none    term=reverse    ctermfg=Black   ctermbg=Cyan  guifg=Black guibg=Cyan
 hi StatusLine gui=bold    term=reverse    ctermfg=Gray    ctermbg=Black guifg=DarkBlue guibg=DarkGray
-hi Title      gui=bold    term=underline  ctermfg=Blue                  guifg=Black 
+hi Title      gui=bold    term=underline  ctermfg=Blue                  guifg=Black
+hi CursorLine gui=bold    cterm=reverse   ctermfg=LightBlue             guifg=Black guibg=LightCyan
 
 
 " Colour for crucial elements

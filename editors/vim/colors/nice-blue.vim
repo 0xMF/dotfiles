@@ -31,6 +31,7 @@ hi Visual     gui=none    term=reverse    ctermfg=Yellow  ctermbg=Red   guifg=Bl
 hi Search     gui=none    term=reverse    ctermfg=Black   ctermbg=Cyan  guifg=Black guibg=White
 hi StatusLine gui=bold    term=reverse    ctermfg=Gray    ctermbg=Black guifg=DarkBlue guibg=DarkGray
 hi Title      gui=bold    term=underline  ctermfg=Blue                  guifg=Yellow
+hi CursorLine gui=bold    cterm=reverse   ctermfg=LightBlue             guifg=Cyan     guibg=DarkBlue
 
 
 " Colour for crucial elements

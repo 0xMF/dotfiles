@@ -73,6 +73,7 @@ let g:colors_name="nice-term"
 hi Normal      cterm=none   ctermbg=none   ctermfg=none cterm=none   guibg=Black   guifg=White
 
 hi Cursor       cterm=none  ctermbg=none   ctermfg=Red
+hi CursorLine   cterm=reverse ctermfg=white
 hi CursorIM     cterm=none  ctermbg=none   ctermfg=Red
 hi DiffAdd      cterm=none  ctermbg=none   ctermfg=LightBlue
 hi DiffChange   cterm=none  ctermbg=none   ctermfg=LightBlue
