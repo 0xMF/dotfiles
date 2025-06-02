@@ -7,6 +7,7 @@ case "${THIS_SHELL##/**/}" in
      exit 1;;
 esac
 
+alias visudo='sudo EDITOR=vi visudo'
 function can_sudo {
   if [ "$(uname)" = "OpenBSD" ]; then
     echo "doas"
