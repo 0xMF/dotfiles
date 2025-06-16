@@ -1,8 +1,15 @@
 # ~/.profile: executed when login shell starts
 
 case "$(uname)" in
-  Linux ) PATH=~/bin:~/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin ;;
-  *     ) PATH=~/bin:/bin:/sbin:/usr/bin:/usr/sbin:/usr/local/bin:/usr/local/sbin ;;
+  Linux )
+    if ! echo $PATH | grep -q "$HOME/bin:"; then
+      PATH=~/bin:~/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
+    fi ;;
+
+  *     )
+    if ! echo $PATH | grep -q "$HOME/bin:"; then
+      PATH=~/bin:/bin:/sbin:/usr/bin:/usr/sbin:/usr/local/bin:/usr/local/sbin
+    fi ;;
 esac
 
 THIS_SHELL=`ps o command -p $$ | grep -v "^COMMAND$" | tr -d '-' | cut -d' ' -f1`
