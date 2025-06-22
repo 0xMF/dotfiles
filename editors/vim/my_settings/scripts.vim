@@ -250,3 +250,14 @@ function! SynStack()
   endif
   echo map(synstack(line('.'), col('.')), 'synIDattr(v:val, "name")')
 endfun
+
+let s:comment = "Green"
+function! CommentToggle()
+  if s:comment == "Green"
+    let s:comment = "DarkGreen"
+    hi Comment ctermfg=DarkGreen
+  else
+    let s:comment = "Green"
+    hi Comment ctermfg=Green
+  endif
+endfun

@@ -107,7 +107,7 @@ hi WildMenu     cterm=none  ctermbg=none   ctermfg=Cyan
 :if $USER == "root"
   hi Comment      cterm=none  ctermbg=none   ctermfg=Red
 :else
-  hi Comment      cterm=none  ctermbg=none   ctermfg=DarkGreen
+  hi Comment      cterm=none  ctermbg=none   ctermfg=Green
 :endif
 hi Constant     cterm=none  ctermbg=none   ctermfg=Green
 hi Error        cterm=bold  ctermbg=none   ctermfg=Red
