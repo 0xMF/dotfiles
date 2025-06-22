@@ -104,7 +104,11 @@ hi WarningMsg   cterm=bold  ctermbg=none   ctermfg=Red
 hi WildMenu     cterm=none  ctermbg=none   ctermfg=Cyan
 
 " syntax highlighting groups
-hi Comment      cterm=none  ctermbg=none   ctermfg=DarkGreen
+:if $USER == "root"
+  hi Comment      cterm=none  ctermbg=none   ctermfg=Red
+:else
+  hi Comment      cterm=none  ctermbg=none   ctermfg=DarkGreen
+:endif
 hi Constant     cterm=none  ctermbg=none   ctermfg=Green
 hi Error        cterm=bold  ctermbg=none   ctermfg=Red
 hi Identifier   cterm=bold  ctermbg=none   ctermfg=LightCyan
