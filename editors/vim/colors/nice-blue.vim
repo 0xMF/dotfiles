@@ -35,7 +35,11 @@ hi CursorLine gui=bold    cterm=reverse   ctermfg=LightBlue             guifg=Cy
 
 
 " Colour for crucial elements
-hi Comment    gui=italic      term=bold       ctermfg=Red                     guifg=DeepSkyBlue2
+:if $USER == "root" || $USER == 0
+    hi Comment    gui=italic      term=bold       ctermfg=Red                 guifg=Red
+:else
+    hi Comment    gui=italic      term=bold       ctermfg=Green               guifg=DeepSkyBlue2
+:endif
 hi Constant   gui=italic,bold term=underline  ctermfg=DarkGray                guifg=DarkCyan  "#888999             " gray
 hi Error                      term=reverse    ctermfg=15 ctermbg=9            guifg=White     guibg=Red
 hi Identifier gui=none        term=underline  ctermfg=Blue                    guifg=LightGreen
