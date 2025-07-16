@@ -150,6 +150,7 @@ set autoindent          " set automatic indenting
 set nowrap              " do not force word wrapping on (does not put hard return)
 set linebreak           " does not breakup words
 set nojoinspaces        " avoids inserting two spaces when joining lines
+set diffopt+=vertical   " enable vertical diffs by default
 
 set encoding=utf-8      " set encoding to Unicode by default
 
