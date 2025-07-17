@@ -500,7 +500,7 @@ opts="--color=always --first-parent --date=short --decorate=no"
 optsDiff="--color=always"
 optsDiffExclude=":(exclude)*.html"
 optsPretty1="%C(red bold)%h%Creset %C(cyan bold)| %ad %C(green bold)*%Creset %C(auto)%d%Creset %s"
-optsPretty2="%C(red bold)%h%Creset %C(cyan bold)| %ad %C(green bold)*%Creset %C(auto)%d%Creset %s"
+optsPretty2="%C(red bold)%h%Creset %C(cyan bold)| %ad %C(green bold)*%Creset %C(auto)%d%Creset %s%Creset %C(cyan)(%an)%Creset"
 optsPretty3="%C(red bold)%h%Creset %C(cyan bold)| %Creset %C(blue bold)%ad%Creset %C(cyan bold)|%Creset %C(auto)%d%Creset %s"
 
 # show all git aliases
@@ -906,6 +906,13 @@ function gha-rel-to-HEAD {
 }
 
 function ghb {
+  if _is_git_repo -eq 0
+  then
+    eval "git --no-pager log $(echo ${opts}) --pretty=format:\"${optsPretty2}\"" | __pager-counter
+  fi
+}
+
+function ghbb {
   if _is_git_repo -eq 0
   then
     for c in `seq $(__ghh|wc -l)`
