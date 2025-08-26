@@ -21,7 +21,7 @@
   st        = status
   sta       = status
   sts       = status -s
-  wc        = whatchanged -p --abbrev-commit --pretty=medium
+  wc        = log -p --abbrev-commit --pretty=medium
 
   ga        = add
   gb        = branch

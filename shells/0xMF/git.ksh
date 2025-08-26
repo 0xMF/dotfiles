@@ -1455,7 +1455,7 @@ alias gua='git update-index --assume-unchanged'
 alias guna='git update-index --no-assume-unchanged'
 alias gundo='git reset --soft HEAD~1'
 
-alias gwc='git whatchanged -p --abbrev-commit --pretty=medium'
+alias gwc='git log -p --abbrev-commit --pretty=medium'
 
 #alias incoming='git log orgin/master ^master'
 #alias outgoing='git log master ^orgin/master'
