@@ -76,7 +76,7 @@ function poof {
   sudo sync
   sudo sync
   sudo sync
-  sudo systemctl start poweroff.target
+  sudo poweroff
 }
 
 # Environment variable settings for setting DISPLAY to local or remote
