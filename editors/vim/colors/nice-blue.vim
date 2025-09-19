@@ -26,7 +26,7 @@ let g:colors_name = "nice-blue"
 " Alternate nice colors (gray: #888999) (purple:AA0BBB)
 
 " Mode and Document settings
-hi Normal     gui=none    term=bold                                     guifg=white guibg=#180248
+hi Normal     gui=none    term=bold                                     guifg=Green guibg=#180248
 hi Visual     gui=none    term=reverse    ctermfg=Yellow  ctermbg=Red   guifg=Black guibg=Yellow
 hi Search     gui=none    term=reverse    ctermfg=Black   ctermbg=Cyan  guifg=Black guibg=White
 hi StatusLine gui=bold    term=reverse    ctermfg=Gray    ctermbg=Black guifg=DarkBlue guibg=DarkGray
