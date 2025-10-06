@@ -324,8 +324,15 @@ function psmo {
 }
 
 function psm-no-git {
-  PS1="$YELLOW\h$WHITE:$GREEN\W$WHITE\$$NOCOLOR "
-  PROMPT_COMMAND=""
+  [ "$shell" = "zsh" ] && {
+    PROMPT="%(?:%{$fg_bold[green]%}➜ :%{$fg_bold[red]%}➜ )"
+    PROMPT+='%{$fg[cyan]%}%c%{$reset_color%}'
+    PROMPT+=" %{$fg_bold[green]%}%%$NOCOLOR "
+    eval "function precmd { psm-no-git }"
+  } || {
+    PS1="$YELLOW\h$WHITE:$GREEN\W$WHITE\$$NOCOLOR "
+    PROMPT_COMMAND=""
+  }
 }
 
 function ps-remote {
