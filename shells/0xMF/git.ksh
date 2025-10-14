@@ -912,14 +912,14 @@ function gha-rel-to-HEAD {
   gha "$@" | __pager-counter
 }
 
-function ghb {
+function ghA {
   if _is_git_repo -eq 0
   then
     eval "git --no-pager log $(echo ${opts}) --pretty=format:\"${optsPretty2}\"" | __pager-counter
   fi
 }
 
-function ghbb {
+function ghb {
   if _is_git_repo -eq 0
   then
     for c in `seq $(__ghh|wc -l)`
