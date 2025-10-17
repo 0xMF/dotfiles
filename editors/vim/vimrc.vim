@@ -69,7 +69,7 @@ set runtimepath=$VIMRUNTIME,$MYVIM,$MYVIM/dependencies,$VIM/vimfiles
     :set showtabline=0   " =0 never show tabs, =1 show if 2 or more tabs, =2 always show
     :if (version > 740)                       " possible features for better than  Vim74
     " Wow!! Some elegant colorschemes come shipped with vim. Thanks to:
-    :   colorscheme darkblue                  " Bohdan Vlasyuk
+    ":   colorscheme darkblue                  " Bohdan Vlasyuk
     ":  colorscheme industry                  " Shian Lee
     :endif
 :endif
@@ -119,7 +119,7 @@ set runtimepath=$VIMRUNTIME,$MYVIM,$MYVIM/dependencies,$VIM/vimfiles
     :endif
 
     "** use my colorscheme (nice) if both industry and midnight are not available (win/gtk)
-    :if expand(g:colors_name) != "industry"
+    :if expand("g:colors_name") != "industry"
     :   if filereadable(expand("$MYVIM/colors/midnight.vim"))
     :     colorscheme midnight
     :   elseif filereadable(expand("$MYVIM/colors/nice.vim"))
@@ -127,7 +127,7 @@ set runtimepath=$VIMRUNTIME,$MYVIM,$MYVIM/dependencies,$VIM/vimfiles
     :   else
     :     colorscheme ron
     :   endif
-    : endif
+    :endif
 :else
     "** prefer my colorscheme (nice-term) for conosole
     : if filereadable(expand("$MYVIM/colors/nice-term.vim"))
@@ -135,6 +135,7 @@ set runtimepath=$VIMRUNTIME,$MYVIM,$MYVIM/dependencies,$VIM/vimfiles
     :   syntax on               " start syntax highlighting
     : endif
 :endif
+colorscheme nice-blue
 
 "** Custom Settings
 set nocompatible        " Use VIM not vi
@@ -176,7 +177,8 @@ set mousemodel=popup keymodel=startsel        " type of mouse/keyboard behaviour
 ": set statusline=%f%m%r%h%w\ [%{&ff}]\ [%Y]\ [ASCII=%b]\ [HEX=0x\%B]\ [%l,%v]\ [%{CharCount()}\ CHARS][%{WordCount()}\ WORDS][%p%%:%L\ LINES]\ TIME:\ %{strftime('%c')}
 : set statusline=%t%m%r%h%w\ %Y\ [%l,%v]\ [CHARS:%{CharCount()},\ WORDS:%{WordCount()}][%p%%:%L\ LINES]\ %{strftime('%c')}
 :endif
-set laststatus=2        " always show the statusline
+"set laststatus=2        " always show the statusline
+set laststatus=0        " do not show the statusline
 
 "** Search related options
 set incsearch           " make search incremental
