@@ -73,6 +73,8 @@ augroup END
 ":     execute "colorscheme" s:colorscheme
 :     execute "colorscheme nice-blue"
 :   elseif g:colors_name == "nice-blue"
+:     execute "colorscheme nice-gui"
+:   elseif g:colors_name == "nice-gui"
 :     execute "colorscheme pablo"
 :   elseif g:colors_name == "pablo"
 :     execute "colorscheme darkblue"
