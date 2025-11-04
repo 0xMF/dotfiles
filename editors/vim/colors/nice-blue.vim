@@ -26,12 +26,13 @@ let g:colors_name = "nice-blue"
 " Alternate nice colors (gray: #888999) (purple:AA0BBB)
 
 " Mode and Document settings
-hi Normal     gui=none    term=bold                                     guifg=Green guibg=#180248
-hi Visual     gui=italic  term=reverse    ctermfg=Yellow  ctermbg=Red   guifg=Yellow guibg=#180248
-hi Search     gui=none    term=reverse    ctermfg=Black   ctermbg=Cyan  guifg=Black guibg=White
-hi StatusLine gui=bold    term=reverse    ctermfg=Gray    ctermbg=Black guifg=DarkBlue guibg=DarkGray
-hi Title      gui=bold    term=underline  ctermfg=Blue                  guifg=Yellow
-hi CursorLine gui=bold    cterm=reverse   ctermfg=LightBlue             guifg=Cyan     guibg=DarkBlue
+hi Normal     gui=none    term=bold                                       guifg=Green     guibg=#180248
+hi Visual     gui=italic  term=reverse    ctermfg=Yellow  ctermbg=Red     guifg=Yellow    guibg=#180248
+hi Search     gui=none    term=reverse    ctermfg=Black   ctermbg=Cyan    guifg=Black     guibg=White
+hi StatusLine gui=bold    term=reverse    ctermfg=Gray    ctermbg=Black   guifg=DarkBlue  guibg=DarkGray
+hi Title      gui=bold    term=underline  ctermfg=Blue                    guifg=Yellow
+hi CursorLine gui=bold    cterm=reverse   ctermfg=LightBlue               guifg=Cyan      guibg=DarkBlue
+hi CursorColumn gui=bold  cterm=NONE      ctermfg=White   ctermbg=Magenta guifg=NONE      guibg=DarkMagenta
 
 
 " Colour for crucial elements
