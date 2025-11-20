@@ -128,6 +128,7 @@ set runtimepath=$VIMRUNTIME,$MYVIM,$MYVIM/dependencies,$VIM/vimfiles
     :     colorscheme ron
     :   endif
     :endif
+    :colorscheme nice-blue
 :else
     "** prefer my colorscheme (nice-term) for conosole
     : if filereadable(expand("$MYVIM/colors/nice-term.vim"))
@@ -135,7 +136,6 @@ set runtimepath=$VIMRUNTIME,$MYVIM,$MYVIM/dependencies,$VIM/vimfiles
     :   syntax on               " start syntax highlighting
     : endif
 :endif
-colorscheme nice-blue
 
 "** Custom Settings
 set nocompatible        " Use VIM not vi
