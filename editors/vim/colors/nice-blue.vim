@@ -41,7 +41,7 @@ hi CursorColumn gui=bold  cterm=NONE      ctermfg=White   ctermbg=Magenta guifg=
 :else
     hi Comment    gui=italic      term=bold       ctermfg=Green               guifg=DeepSkyBlue2
 :endif
-hi Constant   gui=italic,bold term=underline  ctermfg=DarkGray                guifg=LightMagenta "DarkCyan  #888999 gray
+hi Constant   gui=italic term=underline  ctermfg=DarkGray                guifg=LightMagenta "DarkCyan  #888999 gray
 hi Error                      term=reverse    ctermfg=15 ctermbg=9            guifg=White     guibg=Red
 hi Identifier gui=none        term=underline  ctermfg=Blue                    guifg=LightGreen
 hi PreProc    gui=bold        term=underline  ctermfg=Magenta                 guifg=#FF3311             " reddish
