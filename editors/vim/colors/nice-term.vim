@@ -116,7 +116,7 @@ hi Identifier   cterm=bold  ctermbg=none   ctermfg=LightCyan
 hi Ignore       cterm=none  ctermbg=none   ctermfg=DarkGray
 hi PreProc      cterm=bold  ctermbg=none   ctermfg=Magenta
 hi Special      cterm=bold  ctermbg=none   ctermfg=Green
-hi Statement    cterm=bold  ctermbg=none   ctermfg=Magenta
+hi Statement    cterm=bold  ctermbg=none   ctermfg=Yellow
 hi Todo         cterm=bold  ctermbg=none   ctermfg=Red
 hi Type         cterm=bold  ctermbg=none   ctermfg=Magenta
 hi Underlined   cterm=none  ctermbg=none   ctermfg=Blue
