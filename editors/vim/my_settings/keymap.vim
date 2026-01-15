@@ -128,10 +128,12 @@ imap <Nul>    <Space>
 :imap ;q    <Esc>ma:set wrap!<CR>``a|   " favour ventilated prose
 :imap ;qq   <Esc>magq}``|               " par command paragraph formatting
 :imap ;qw   <Esc>magw}``|               " Vim's paragraph formatting
-:imap ;t    <Esc>:set laststatus=0<CR>a|    " off statusbar
+":imap ;t    <Esc>:set laststatus=0<CR>a|    " off statusbar
+:imap ;t    <Esc>:call HideStatusBars()<CR>a|    " off statusbar
+:imap ;tt   <Esc>:call HideAllStatusBars()<CR>a|    " off statusbar
 :imap ;tm   <Esc>:set statusline=%f%h%w\ [%Y]\ [%l,%v]\ %L:%p%%\ %{strftime('%c')}<CR><CR>a| "minimal statusbar
 :imap ;ts   <Esc>:set statusline=%f%m%r%h%w\ [%{&ff}]\ [%Y]\ [ASCII=\%3.3b]\ [HEX=\%02.2B]\ [%l,%v][%p%%]\ [TOTAL=%L]\ TIME:\ %{strftime('%c')}<CR><CR>a| "normal statusbar
-:imap ;tt   <Esc>:set laststatus=2<CR>a|    " on statusbar
+":imap ;tt   <Esc>:set laststatus=2<CR>a|    " on statusbar
 
 :imap ;e <Esc>:set spell!<CR>i|  " toggle spell checking
 :imap ;w <Esc>:set wrap!<Esc>a|  " toggle word wrapping
@@ -169,10 +171,13 @@ imap <Nul>    <Space>
 :map ;Tm <Esc>:set statusline=%f%h%w\ [%Y]\ [%l,%v]\ %L:%p%%\ %{strftime('%c')}<CR><CR>| "minimal statusbar
 :map ;Ts <Esc>:set statusline=%f%m%r%h%w\ [%{&ff}]\ [%Y]\ [ASCII=\%3.3b]\ [HEX=\%02.2B]\ [%l,%v][%p%%]\ [TOTAL=%L]\ TIME:\ %{strftime('%c')}<CR><CR>| "normal statusbar
 :map ;ttt <Esc>:set laststatus=2<CR>|    " on statusbar
-:map ;tt <Esc>:set laststatus=0<CR>|     " off statusbar
+":map ;tt <Esc>:set laststatus=0<CR>|     " off statusbar
+":map ;tt <Esc>:call My_Colours_Toggle()<CR>|  " toggle between my colorschemes dark and lignt
 :map ;tp gT|                            " tabprevious for console vim
 :map ;tn gt|                            " tabnext
-:map ;t <Esc>:call My_Colours_Toggle()<CR>|  " toggle between my colorschemes dark and lignt
+":map ;t <Esc>:call My_Colours_Toggle()<CR>|  " toggle between my colorschemes dark and lignt
+:map ;t    <Esc>:call HideStatusBars()<CR>|    " off statusbar
+:map ;tt   <Esc>:call HideAllStatusBars()<CR>|    " off statusbar
 :map ;w <Esc>:set wrap!<Esc>|           " toggle word wrapping
 :map ;wl :resize<CR>|                   " window resize
 :map ;wW :resize<CR>|                   " window resize

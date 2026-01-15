@@ -1454,6 +1454,8 @@ alias grr='grow'
 alias gsb='git switch -'
 alias gsh='gshow'
 alias gst='git status'
+alias gstc='gdc'
+alias gstsc='gdc'
 
 alias gtags='git tag --list -n'
 alias gtype='git cat-file -t'

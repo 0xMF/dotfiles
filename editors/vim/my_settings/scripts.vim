@@ -8,6 +8,23 @@ function! WordCount()
   return g:word_count
 endfunction
 
+function! HideAllStatusBars()
+  execute ':set statusline=\ '
+  set laststatus=0
+  highlight StatusLine ctermfg=NONE ctermbg=NONE guifg=NONE guibg=NONE
+  highlight StatusLineNC cterm=NONE gui=NONE
+endfunction
+
+function! HideStatusBars()
+  " turns off all but bottom statusline
+  "execute ':set statusline=\ '
+  "set laststatus=0
+  set statusline=
+  set laststatus=1
+  highlight StatusLine ctermfg=NONE ctermbg=NONE guifg=NONE guibg=NONE
+  highlight StatusLineNC cterm=NONE gui=NONE
+endfunction
+
 function! DeleteTrailingSpaces()
   let l:savecursor = winsaveview()
   :silent :%g/ *$/:s/ *$//
