@@ -657,3 +657,11 @@ function 0xMF-hogs {
 
   unset files f nf sz
 }
+
+function 0xMF-functions {
+  case "${THIS_SHELL##/**/}" in
+  ksh|zsh) functions + ;;
+  * ) declare -F | awk '{ print $NF }'
+  esac
+}
+alias functions-list=0xMF-functions
