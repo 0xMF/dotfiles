@@ -183,7 +183,7 @@ _config_misc() {
       echo " - found .config/chromium-flags.conf, not installing" >&2
     } || {
       installed="chromium-flags.conf"
-      ln -s ${SCRIPT_DIR%bin}.comp.misc/config/chromium-flags.conf $HOME/.config/chromium-flags.conf
+      ln -s ${SCRIPT_DIR%bin}comp.misc/config/chromium-flags.conf $HOME/.config/chromium-flags.conf
     }
 
     [ ! -z "$installed" ] && echo "INSTALLED!" >&2
