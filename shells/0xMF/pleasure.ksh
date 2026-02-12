@@ -2,7 +2,7 @@
 
 [ -z "$PS1" ] && return
 
-THIS_SHELL=`ps o command -p $$ | grep -v "^COMMAND$" | tr -d '-' | cut -d' ' -f1`
+THIS_SHELL=`ps o command -p $$ | /usr/bin/grep -v "^COMMAND$" | /usr/bin/tr -d '-' | /usr/bin/cut -d' ' -f1`
 case "${THIS_SHELL##/**/}" in
   bash|ksh|zsh) ;;
   *) >&2 echo "This script probably wont work with $THIS_SHELL, so bailing out now...bye!";
@@ -52,11 +52,16 @@ alias sl="0xMF-sl $(echo ${_sl})"
 
 alias cv='0xMF-cv'
 
-ogrep=$(alias grep|sed 's/-i//g')
-ogrep=$(echo "${ogrep}" -i|sed s/\'//g)
+#ogrep=$(alias grep|sed 's/-i//g')
+#ogrep=$(echo "${ogrep}" -i|sed s/\'//g)
+#alias grep="$(echo ${ogrep}|sed 's/^.*grep=//')"
+#unset ogrep
 unalias grep
-alias grep="$(echo ${ogrep}|sed 's/^.*grep=//')"
-unset ogrep
+if [ "$(uname)" = "OpenBSD" ]; then
+  alias grep="grep -i"
+else
+  alias grep="grep --color=auto --exclude-dir={.bzr,CVS,.git,.hg,.svn,.idea,.tox,.venv,venv} -i"
+fi
 
 alias make-slides="0xMF-make-slides"
 alias sbcl='rlwrap sbcl'
