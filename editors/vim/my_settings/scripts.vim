@@ -92,6 +92,8 @@ augroup END
 :   elseif g:colors_name == "nice-blue"
 :     execute "colorscheme nice-gui"
 :   elseif g:colors_name == "nice-gui"
+:     execute "colorscheme nice-gold"
+:   elseif g:colors_name == "nice-gold"
 :     execute "colorscheme pablo"
 :   elseif g:colors_name == "pablo"
 :     execute "colorscheme darkblue"
