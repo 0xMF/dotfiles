@@ -267,6 +267,7 @@ set clipboard=unnamed   " all yanking goes to clipboard
     au FileType mail setlocal textwidth=0 spell
 
     "* Markdown
+    au ColorScheme,Syntax * hi link markdownError NONE
     au BufRead,BufNewFile *.md setlocal filetype=markdown
     au BufRead,BufNewFile *.md setlocal spell
     au BufRead,BufNewFile *.md setlocal colorcolumn=100

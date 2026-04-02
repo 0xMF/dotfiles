@@ -167,6 +167,7 @@ imap <Nul>    <Space>
 :map ;qq <Esc>magq}``|                  " par command  paragraph formatting
 :map ;qw <Esc>magw}``|                  " Vim's paragraph formatting
 :map ;r  <Esc>:set rnu!<CR>|            " toggle relative line numbers
+:map ;s :echo synIDattr(synID(line("."), col("."), 1), "name")<CR>
 :map ;T <Esc>:set laststatus=2<CR>|     " show statusbar
 :map ;Tm <Esc>:set statusline=%f%h%w\ [%Y]\ [%l,%v]\ %L:%p%%\ %{strftime('%c')}<CR><CR>| "minimal statusbar
 :map ;Ts <Esc>:set statusline=%f%m%r%h%w\ [%{&ff}]\ [%Y]\ [ASCII=\%3.3b]\ [HEX=\%02.2B]\ [%l,%v][%p%%]\ [TOTAL=%L]\ TIME:\ %{strftime('%c')}<CR><CR>| "normal statusbar
