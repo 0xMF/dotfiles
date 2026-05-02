@@ -123,3 +123,7 @@ fi
 if [[ -s ~/.zsh/local.zsh ]]; then
  source ~/.zsh/local.zsh
 fi
+
+fpath+=~/.zfunc; autoload -Uz compinit; compinit
+
+zstyle ':completion:*' menu select
