@@ -140,7 +140,9 @@ function 0xMF-sysadmin-upgrade {
     ${sdo} syspatch 2> /dev/null
     case "$?" in
      1 ) TERM=dumb "${sdo}" pkg_add -D snap -Uu ;;
-     2 ) TERM=dumb "${sdo}" pkg_add -Uu ;;
+     2 ) if ! TERM=dumb "${sdo}" pkg_add -Uu ; then
+              TERM=dumb "${sdo}" pkg_add -D snap -Uu
+         fi ;;
      * ) TERM=dumb >&2 echo "run syspatch before updating" ;;
     esac
   fi
