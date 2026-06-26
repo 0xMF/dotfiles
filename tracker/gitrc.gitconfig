@@ -9,7 +9,7 @@
   editor    = vim
   excludesfile = ~/.git/ignore
   pager     = less -FEqRSX
-	trustctile = false
+  trustctime = false
   #pager     = more -s
   # pager    = less -cFEXq
   # pager    = more -Rq
@@ -68,7 +68,6 @@
 	required = true
 
 [diff]
-	tool = less -FEqRSX
   renameLimit = 1742
 
 [init]
