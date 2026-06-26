@@ -10,7 +10,7 @@
 
 # start/stop service
   systemctl start some.service
-  systemttl stop some.service
+  systemctl stop some.service
 
 # automatically start/stop service at boot time
   systemctl enable some.service

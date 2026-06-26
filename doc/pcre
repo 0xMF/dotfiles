@@ -20,7 +20,7 @@
 
 # show matched lines betwen two patterns
   sed  -ne  '/root/,/mark/p' /etc/passwd
-  perl -wne '/root/../mark/p' /etc/passwd
+  perl -wne 'print if /root/../mark/' /etc/passwd
 
   sed  -ne  '/\/bin\/bash/,/\/bin\/nologin/p'         /etc/passwd
 

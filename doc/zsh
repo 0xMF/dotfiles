@@ -5,7 +5,7 @@
 
 # and then use them, like so..
   ls -l NF            # NF is replaced with awk '{ print $NF }' the \ in the alias above was necessary 
-  cat /some/file L    # L is replaced with les -FeqRSX
+  cat /some/file L    # L is replaced with less -FeqRSX
 
 # unset global alias
   unalias \NF

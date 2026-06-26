@@ -18,7 +18,7 @@
 # global (a.k.a suffix) aliases in zsh
   alias -g L='| less -FeqRSX'   # make a suffix alias
   some-long-pipe L              # expands to: some-long-pipe | less -FeqRSX
-  diasble -a 'L'                # unset a suffix alias (requires quotes)
+  disable -a 'L'                # unset a suffix alias (requires quotes)
 
 # set and unset environment variables in zsh
   CHROMA_STYLE=dracula

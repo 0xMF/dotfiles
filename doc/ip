@@ -1,5 +1,6 @@
 # show
-  ip - address link
+  ip address
+  ip link
   ip -0 -brief address    # mac addresses
   ip -4 -brief address    # ipv4
   ip -6 -brief address    # ipv6
@@ -31,4 +32,4 @@
   ip maddress
 
 # mac address
-  ip link neighbour
+  ip neighbour

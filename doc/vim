@@ -2,7 +2,7 @@
 
 >  Help topics are identified by italics
 
- - Use `CTRL+[` to delve into a topic, and `CTRL+O` to back into previous help history
+ - Use `CTRL+]` to delve into a topic, and `CTRL+O` to back into previous help history
  - 'fold-behavior' controls folding; to eliminate all folds use 'zE (fold-delete-marker)'
  - The : line is called command-line (see `:help command-line`)
  - Use | bar to send multiple commands at the same time, the example below is two commands
@@ -22,7 +22,7 @@
 
   * movment
     CTRL+Home/End jumps to file top/bottom in insert mode (like gg, G in cmd mode)
-    CTRL+[ and CTRL+O to move around help (see above)
+    CTRL+] and CTRL+O to move around help (see above)
     `` toggles jumping between cursor previous and current positions
 
   * other

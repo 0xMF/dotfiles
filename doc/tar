@@ -3,4 +3,4 @@
 
   tar cvzHf posix dotgit.tgz .git/*     # .git sub-dir is tarred into dotgit.tgz
   tar xvzf dotgit.tgz                   # to untar
-  tar lvzf dotgit.tgz                   # to list files in the tarred archive
+  tar tvzf dotgit.tgz                   # to list files in the tarred archive
