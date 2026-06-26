@@ -9,6 +9,13 @@ case "${THIS_SHELL##/**/}" in
      exit 1;;
 esac
 
+# Derive OSRV if not already defined
+if [ -z "$OSRV" ]; then
+  case "$(uname)" in
+    "OpenBSD" ) OSRV="OpenBSD" ;;
+  esac
+fi
+
 [[ "$(uname -s)" == "FreeBSD" ]] && OS="BSD"
 [[ "$OSRV" == "OpenBSD" ]] && OS="BSD"
 export OS

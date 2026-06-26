@@ -24,6 +24,11 @@ else
   esac
 fi
 
+# Define local as typeset if the shell is ksh (where local is not a builtin)
+if [ "$shell" = "ksh" ]; then
+  alias local=typeset
+fi
+
 # required for hub (cli tool for github management)
 #export BROWSER='links2 -no-g'
 export BROWSER='w3m -v -no-mouse -s -cookie -no-proxy'
@@ -48,7 +53,7 @@ else
   GREEN="\[\033[1;32m\]"; export GREEN
   YELLOW="\[\033[1;33m\]"; export YELLOW
   BLUE="\[\033[1;34m\]"; export BLUE
-  PURPLE="\[\033[1;35m"; export PURPLE
+  PURPLE="\[\033[1;35m\]"; export PURPLE
   CYAN="\[\033[1;36m\]"; export CYAN
   WHITE="\[\033[1;37m\]"; export WHITE
   NOCOLOR="\[\033[00m\]"; export NOCOLOR

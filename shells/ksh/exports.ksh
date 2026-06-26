@@ -33,9 +33,8 @@ else
   export LESS='FeqRSX'
 fi
 
-export EDITOR="less -${LESS}"
-export MANPAGER=$EDITOR
-export PAGER=$EDITOR
+export PAGER="less -${LESS}"
+export MANPAGER=$PAGER
 
 if [ -s /usr/local/bin/vim ]; then
   export VISUAL=/usr/local/bin/vim
@@ -46,6 +45,7 @@ else
     export VISUAL=$(whereis vim | cut -d' ' -f2)
   fi
 fi
+export EDITOR=$VISUAL
 export FCEDIT=$VISUAL
 
 # vim:nospell:ft=sh:

@@ -52,13 +52,13 @@ fi
 if [ -f "${REPO}"/0xMF/pleasure.ksh ]; then
   source "${REPO}"/0xMF/pleasure.ksh
 else
-  >&2 print "WARNING: Missing critical dependency pleasure.sh!"
+  >&2 echo "WARNING: Missing critical dependency pleasure.sh!"
 fi
 
 if [ -f "${REPO}"/0xMF/sysadmin.ksh ]; then
   source "${REPO}"/0xMF/sysadmin.ksh
 else
-  >&2 print "WARNING: Missing critical dependency sysadmin.sh!"
+  >&2 echo "WARNING: Missing critical dependency sysadmin.sh!"
 fi
 
 
@@ -90,17 +90,17 @@ if [ "$(uname -o)" == "FreeBSD" ]; then
 fi
 
 # next vary prompt according to regular user or root
-if [ "$(/usr/bin/id -u)" -ne 0 ]; then
+if [ "$(/usr/bin/id -u)" -eq 0 ]; then
+  PS1="$RED${OSRV}$BLUE:\W$(parse_git_branch_colour 2>/dev/null)$NOCOLOR# "
+else
   if psl 2>/dev/null ; then
     PROMPT_COMMAND="psl"
   else
-    PS1="$RED${OSRV}$BLUE:\W$(parse_git_branch_colour 2>/dev/null)$NOCOLOR# "
-  fi
-else
-  if [ "$(/usr/bin/id -u)" = "1000" ]; then
-    PS1="$GREEN${OSRV}$BLUE:\W$(parse_git_branch_colour 2>/dev/null)$NOCOLOR$ "
-  else
-    PS1="$PURPLE${OSRV}$BLUE:\W$(parse_git_branch_colour 2>/dev/null)$NOCOLOR$ "
+    if [ "$(/usr/bin/id -u)" = "1000" ]; then
+      PS1="$GREEN${OSRV}$BLUE:\W$(parse_git_branch_colour 2>/dev/null)$NOCOLOR$ "
+    else
+      PS1="$PURPLE${OSRV}$BLUE:\W$(parse_git_branch_colour 2>/dev/null)$NOCOLOR$ "
+    fi
   fi
 fi
 

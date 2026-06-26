@@ -14,9 +14,9 @@ export BROWSER='w3m -v -no-mouse -s -cookie -no-proxy'
 export LESS="--RAW-CONTROL-CHARS"
 
 # Use colors for less, man, etc.
-if [[ -f $SHELL_REPO/LESS_TERMCAP ]]; then
+if [ -f "$SHELL_REPO/LESS_TERMCAP" ]; then
   . $SHELL_REPO/LESS_TERMCAP
-elif [ "`echo ${SHELL##*/}`" == "bash" ]; then
+elif [ "`echo ${SHELL##*/}`" = "bash" ]; then
   export LESS_TERMCAP_mb=$'\E[01;31m'       # begin blinking
   export LESS_TERMCAP_md=$'\E[01;38;5;74m'  # begin bold
   export LESS_TERMCAP_me=$'\E[0m'           # end mode

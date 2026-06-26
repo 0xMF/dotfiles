@@ -9,6 +9,11 @@ case "${THIS_SHELL##/**/}" in
      exit 1;;
 esac
 
+# Define local as typeset if the shell is ksh (where local is not a builtin)
+if [ "${THIS_SHELL##/**/}" = "ksh" ]; then
+  alias local=typeset
+fi
+
 function 0xMF-perldoc {
   local pd=
   if [ -d $PERLBREW_ROOT/perls ]; then
@@ -129,8 +134,8 @@ function 0xMF-reload {
     done
   fi
   case ${shell} in
-    "ksh" ) [[ -s "$f" ]] && . ~/.${shell}rc ;;
-    * )     [[ -s "$f" ]] && source ~/.${shell}rc
+    "ksh" ) [[ -s ~/.${shell}rc ]] && . ~/.${shell}rc ;;
+    * )     [[ -s ~/.${shell}rc ]] && source ~/.${shell}rc
   esac
   unset shell
 }
@@ -333,7 +338,7 @@ function 0xMF-ghci-help {
   else
     { ( echo ":browse! $1"  | ghci -ignore-dot-ghci | sed 's/^Prelude> //;1d;$d' ;
         echo ":info! $1"    | ghci -ignore-dot-ghci | sed 's/^Prelude> //;1d;$d' \
-      )  > /dev/null \
+      )  2> /dev/null \
       |chroma -l hs -f terminal256 -s paraiso-dark | less -FeqRSX ; }
   fi
 }

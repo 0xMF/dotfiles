@@ -22,7 +22,7 @@ function 0xMF-declare {
   case "$1" in
     "-f") typeset -f $2 ;;
     "-F") typeset +f ;;
-    "*" | "" ) functions ;;
+    * | "" ) functions ;;
   esac
 }
 

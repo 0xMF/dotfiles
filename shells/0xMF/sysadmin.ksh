@@ -7,6 +7,11 @@ case "${THIS_SHELL##/**/}" in
      exit 1;;
 esac
 
+# Define local as typeset if the shell is ksh (where local is not a builtin)
+if [ "${THIS_SHELL##/**/}" = "ksh" ]; then
+  alias local=typeset
+fi
+
 alias visudo='sudo EDITOR=vi visudo'
 function can_sudo {
   if [ "$(uname)" = "OpenBSD" ]; then
@@ -167,7 +172,7 @@ function 0xMF-sysadmin-remove-unused {
         "${sdo}" apt autoremove
     esac
   fi
-  if [ "${os}" = "OpenBSD" ]; then
+  if [ "$(uname)" = "OpenBSD" ]; then
     TERM=dumb "${sdo}" pkg_delete -aic
   fi
 
