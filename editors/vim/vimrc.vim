@@ -23,9 +23,9 @@
 :   if $USER  == "0"
 :     let $MYVIM=expand("/root/.vim")
 :   else
-:     let $MYVIM=expand("$HOME/.vim")
-:   end
-:end
+    let $MYVIM=expand("$HOME/.vim")
+  endif
+:endif
 
 set runtimepath=$VIMRUNTIME,$MYVIM,$MYVIM/dependencies,$VIM/vimfiles
 
@@ -113,7 +113,7 @@ set runtimepath=$VIMRUNTIME,$MYVIM,$MYVIM/dependencies,$VIM/vimfiles
     :   let &guicursor = &guicursor . ",a:blinkon0"
     "** tags
     :   set tags=./tags,tags,TAGS,
-    :   let tagfiles = glob("`/bin/ls -1 $HOME/src/tags/*tags`")
+    let tagfiles = glob("$HOME/src/tags/*tags")
     :   let tagfiles = substitute(tagfiles, "\n", ",", "g")
     :   let &tags.= tagfiles
     :endif

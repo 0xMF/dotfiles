@@ -23,9 +23,9 @@ au BufWritePost * call DeleteTrailingSpaces()
 
 syntax on
 
-imap ;n <ESC>:set number!a<CR>
-imap ;l <ESC>:set list!a<CR>
-imap ;w <ESC>:set wrap!a<CR>
+imap ;n <ESC>:set number!<CR>a
+imap ;l <ESC>:set list!<CR>a
+imap ;w <ESC>:set wrap!<CR>a
 
 map b <PageUp>
 map f <PageDown>

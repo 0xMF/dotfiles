@@ -1,2 +1,2 @@
-:let $VIMRC=expand("$HOME/repos/dotfiles/editor/vimrc.vim")
+:let $VIMRC=expand("$HOME/repos/dotfiles/editors/vim/vimrc.vim")
 :source $VIMRC
