@@ -271,7 +271,7 @@ _ksh() {
   } || {
     installed="$installed ksh_profile"
     [ "$EXPERIMENTAL" = "yes" ] \
-      && { ln -s ${_SCRIPTDIR%bin}shells/ksh/ksh_profile ~/.profile; } \
+      && { ln -s ${_SCRIPTDIR%bin}shells/ksh/ksh_profile ~/.ksh_profile; } \
       || { ln -s ${SCRIPT_DIR%bin}shells/ksh/ksh_profile $HOME/.ksh_profile; }
   }
 
@@ -298,8 +298,8 @@ _lisp() {
     echo " - found .sbclrc, not installing" >&2
   else
     [ "$EXPERIMENTAL" = "yes" ] \
-     && { ln -s ${_SCRIPTDIR%bin}.comp.misc/sbclrc ~/.sbclrc; } \
-     || { ln -s ${SCRIPT_DIR%bin}.comp.misc/sbclrc $HOME/.sbclrc; }
+     && { ln -s ${_SCRIPTDIR%bin}comp.misc/sbclrc ~/.sbclrc; } \
+     || { ln -s ${SCRIPT_DIR%bin}comp.misc/sbclrc $HOME/.sbclrc; }
     installed="$installed .sbclrc"
   fi
 
@@ -365,7 +365,7 @@ _ruby() {
     echo " - found .gemrc, not installing" >&2
   else
     [ "$EXPERIMENTAL" = "yes" ] \
-     && { ln -s ${_SCRIPTDIR%bin}comp.misc/gemrc ~/.gemrc; } \
+     && { ln -s ${_SCRIPTDIR%bin}comp.misc/ruby/gemrc ~/.gemrc; } \
      || { ln -s ${SCRIPT_DIR%bin}comp.misc/ruby/gemrc $HOME/.gemrc; }
     echo " - ...INSTALLED .gemrc" >&2
   fi
@@ -373,7 +373,7 @@ _ruby() {
     echo " - found pryrc, not installing" >&2
   else
     [ "$EXPERIMENTAL" = "yes" ] \
-     && { ln -s ${_SCRIPTDIR%bin}comp.misc/pryrc ~/.pryrc; } \
+     && { ln -s ${_SCRIPTDIR%bin}comp.misc/ruby/pryrc ~/.pryrc; } \
      || { ln -s ${SCRIPT_DIR%bin}comp.misc/ruby/pryrc $HOME/.pryrc; }
     echo " - ...INSTALLED .pryrc" >&2
   fi
@@ -519,11 +519,11 @@ if [ -z "$1" ]; then
   install_minimal
 else
   check_args "$@"
-  case "$1" in
-    "--with-emacs" ) install_minimal ;;
-    "--all"        ) install ;;
-    *              ) die "$@";;
-  esac
+  if [ -n "$ALL" ]; then
+    install
+  else
+    install_minimal
+  fi
 fi
 
 # vim: nonu:nowrap:nospell:ft=sh

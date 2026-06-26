@@ -6,6 +6,7 @@ VERSIONS_F="${SCRIPT_DIR%bin}doc/versions"
 function cleanup() {
   [ -e ${VERSIONS_F}.old ] && cat ${VERSIONS_F}.old >> ${VERSIONS_F}.org && rm -rf ${VERSIONS_F}.old
 }
+trap cleanup EXIT
 
 [ -e ${VERSIONS_F}.org ] && mv -f ${VERSIONS_F}.org ${VERSIONS_F}.old
 
@@ -39,4 +40,4 @@ done
 
 printf "\n" >> ${VERSIONS_F}.org
 
-trap cleanup EXIT
+
