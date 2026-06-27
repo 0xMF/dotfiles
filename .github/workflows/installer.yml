@@ -1,47 +1,32 @@
-
-# workflow to check installer runs ok
+# Workflow to check installer runs ok
 
 name: Installer
 
-# Controls when the action will run.
 on:
-  # Triggers the workflow on push or pull request events but only for the master branch
   push:
     branches: [ master ]
   pull_request:
     branches: [ master ]
-
-  # Allow workflow to run manually from the Actions tab
   workflow_dispatch:
 
 jobs:
-  ubuntu:
-    runs-on: ubuntu-latest
+  install:
+    name: Install on ${{ matrix.os }}
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, macos-latest, windows-latest]
     steps:
-      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
-      - uses: actions/checkout@v2
+      - name: Checkout repository
+        uses: actions/checkout@v4
 
-      # run the installer script
-      - name: Run 0xMF-dotfiles install script
-        run: ${GITHUB_WORKSPACE}/bin/0xMF-dotfiles install
-
-  macOS:
-    runs-on: macOS-latest
-    steps:
-      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
-      - uses: actions/checkout@v2
-
-      # run the installer script
-      - name: Run 0xMF-dotfiles install script
-        run: ${GITHUB_WORKSPACE}/bin/0xMF-dotfiles install
-
-  windows:
-    runs-on: windows-latest
-    steps:
-      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
-      - uses: actions/checkout@v2
-
-      # ignore error when installer runs with Bash on Windows.
       - name: Run 0xMF-dotfiles install script
         shell: bash
-        run: ${GITHUB_WORKSPACE}/bin/0xMF-dotfiles install || true
+        run: |
+          if [ "${{ matrix.os }}" = "windows-latest" ]; then
+            # Ignore errors when running installer on Windows (e.g. due to symlink permission restrictions)
+            ./bin/0xMF-dotfiles install || true
+          else
+            ./bin/0xMF-dotfiles install
+          fi
