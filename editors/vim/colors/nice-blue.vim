@@ -31,7 +31,8 @@ hi Visual     gui=italic  term=reverse    ctermfg=Yellow  ctermbg=Red     guifg=
 hi Search     gui=none    term=reverse    ctermfg=Black   ctermbg=Cyan    guifg=Black     guibg=White
 hi StatusLine gui=bold    term=reverse    ctermfg=Gray    ctermbg=Black   guifg=DarkBlue  guibg=DarkGray
 hi Title      gui=bold    term=underline  ctermfg=Blue                    guifg=Yellow
-hi CursorLine gui=bold    cterm=reverse   ctermfg=LightBlue               guifg=Cyan      guibg=DarkBlue
+"hi CursorLine gui=bold    cterm=reverse   ctermfg=LightBlue               guifg=Cyan      guibg=DarkBlue
+hi CursorLine gui=bold    cterm=reverse   ctermfg=LightBlue               guifg=Black     guibg=Violet
 hi CursorColumn gui=bold  cterm=NONE      ctermfg=White   ctermbg=Magenta guifg=NONE      guibg=DarkMagenta
 
 
